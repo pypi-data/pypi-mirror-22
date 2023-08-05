@@ -1,0 +1,7 @@
+
+DROP TABLE IF EXISTS bankfull;
+    CREATE TABLE bankfull (age float, job string, marital string, education string, 
+                          default2 string, balance float, housing string, loan string,
+                          contact string, day float, month string, duration float, 
+                          campaign float, pdays float, previous float, poutcome string, y string);
+    LOAD DATA INPATH "$CONTAINER/centrale/bank_full_tab.txt" INTO TABLE bankfull;

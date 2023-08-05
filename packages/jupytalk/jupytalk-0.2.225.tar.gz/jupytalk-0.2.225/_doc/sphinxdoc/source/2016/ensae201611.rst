@@ -1,0 +1,183 @@
+
+.. _l-ensae2016:
+
+ENSAE 14/11/2016
+================
+
+.. sharenet::
+    :facebook: 1
+    :linkedin: 2
+    :twitter: 3
+    :head: False
+
+Présentation
+++++++++++++
+
+* :ref:`kagglereview2016rst`
+
+Librairies
+++++++++++
+
+* `VLFeat <https://github.com/vlfeat/vlfeat>`_ : Vision Lab Features Library
+* `MXNet Tutorial and Hand Written Digit Recognition <https://github.com/dmlc/mxnet-gtc-tutorial/blob/master/tutorial.ipynb>`_ :
+  deep learning with MXNet
+* `XGBFIR <https://github.com/limexp/xgbfir>`_ :
+  Xgbfir is a XGBoost model dump parser, which ranks features as well as feature interactions by different metrics.
+* `libFM <https://github.com/srendle/libfm>`_ : Library for factorization machines
+* `pywFM <https://github.com/jfloff/pywFM>`_ : pywFM is a Python wrapper for Steffen Rendle's libFM
+* `Regularized Greedy Forest (RGF) in C++ <http://stat.rutgers.edu/home/tzhang/software/rgf/>`_
+* `Quizlet <https://quizlet.com/api/2.0/docs>`_ (voir `Quizlet <https://en.wikipedia.org/wiki/Quizlet>`_)
+* `LightGBM <https://github.com/Microsoft/LightGBM>`_
+* `jellyfish <https://pypi.python.org/pypi/jellyfish>`_
+
+Idées / algorithmes
++++++++++++++++++++
+
+* :ref:`Les bases de train et test sont-elles homogènes ? <faq-train-test-homogeneous>` : une idée simple
+  pour vérifier cette hypothèse et corriger l'apprentissage et façon à coller au plus près des données
+  d'évaluation, lire `Adversarial validation, part one <http://fastml.com/adversarial-validation-part-one/>`_.
+* `RANSAC <https://fr.wikipedia.org/wiki/RANSAC>`_ : abréviation pour **RANdom SAmple Consensus**,
+  `scikit-learn/RANSAC <http://scikit-learn.org/stable/modules/linear_model.html#ransac-random-sample-consensus>`_
+* `Normalized compression distance <https://en.wikipedia.org/wiki/Normalized_compression_distance>`_ :
+  mesure la proximité entre deux séquences d'objets
+* `The Boosting Margin, or Why Boosting Doesn’t Overfit <https://jeremykun.com/2015/09/21/the-boosting-margin-or-why-boosting-doesnt-overfit/>`_
+* `Ad Click Prediction: a View from the Trenches <http://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf>`_ (FTRL-Proximal online learning algorithm)
+* `DMLC Model Gallery <https://github.com/dmlc/mxnet-model-gallery>`_
+* `KAGGLE ENSEMBLING GUIDE <http://mlwave.com/kaggle-ensembling-guide/>`_
+* `Optimization of AMS using Weighted AUC optimized models <http://jmlr.org/proceedings/papers/v42/diaz14.pdf>`_
+
+Liens
++++++
+
+* 09/2016 - `The Allen AI Science Challenge <https://www.kaggle.com/c/the-allen-ai-science-challenge>`_ : Is your model smarter than an 8th grader?
+
+    * `The Allen AI Science Challenge, Winner's Interview: 3rd place, Alejandro Mosquera <http://blog.kaggle.com/2016/04/09/the-allen-ai-science-challenge-winners-interview-3rd-place-alejandro-mosquera/>`_
+    * `comparaison des trois solutions gagnantes <https://gist.github.com/vihari/32b11ad1fac001cfab5981430ad8f36c>`_
+
+* 09/2016 - `Predicting Red Hat Business Value <https://www.kaggle.com/c/predicting-red-hat-business-value>`_:
+  Classify customer potential
+
+    * `Red Hat Business Value Competition, 1st Place Winner's Interview: Darius Barušauskas <http://blog.kaggle.com/2016/11/03/red-hat-business-value-competition-1st-place-winners-interview-darius-barusauskas/>`_
+
+* 09/2016 - `TalkingData Mobile User Demographics <https://www.kaggle.com/c/talkingdata-mobile-user-demographics>`_:
+  Get to know millions of mobile device users
+
+    * `TalkingData Mobile User Demographics Competition, Winners' Interview: 3rd Place, Team utc(+1,-3) | Danijel & Matias <http://blog.kaggle.com/2016/10/19/talkingdata-mobile-user-demographics-competition-winners-interview-3rd-place-team-utc1-3-danijel-matias/>`_
+
+* 08/2016 - `Grupo Bimbo Inventory Demand <https://www.kaggle.com/c/grupo-bimbo-inventory-demand>`_ :
+  Maximize sales and minimize returns of bakery goods
+
+    * `Grupo Bimbo Inventory Demand, Winners' Interview: Clustifier & Alex & Andrey <http://blog.kaggle.com/2016/09/27/grupo-bimbo-inventory-demand-winners-interviewclustifier-alex-andrey/>`_ (+FFM, + FTRL)
+
+* 07/2016 - `Facebook V: Predicting Check Ins <https://www.kaggle.com/c/facebook-v-predicting-check-ins>`_ :
+  Identify the correct place for check ins
+
+    * `Facebook V: Predicting Check Ins, Winner's Interview: 1st Place, Tom Van de Wiele <http://blog.kaggle.com/2016/08/16/facebook-v-predicting-check-ins-winners-interview-1st-place-tom-van-de-wiele/>`_
+    * `Facebook V: Predicting Check Ins, Winner's Interview: 2nd Place, Markus Kliegl <http://blog.kaggle.com/2016/08/02/facebook-v-predicting-check-ins-winners-interview-2nd-place-markus-kliegl/>`_
+      (`GitHub <https://github.com/mkliegl/kaggle-Facebook-V>`_)
+    * `Facebook V: Predicting Check Ins, Winner's Interview: 3rd Place, Ryuji Sakata <http://blog.kaggle.com/2016/08/18/facebook-v-predicting-check-ins-winners-interview-3rd-place-ryuji-sakata/>`_
+
+* 07/2016 - `Avito Duplicate Ads Detection <https://www.kaggle.com/c/avito-duplicate-ads-detection>`_ :
+  Can you detect duplicitous duplicate ads?
+
+    * `Avito Duplicate Ads Detection, Winners' Interview: 1st Place Team, Devil Team | Stanislav Semenov & Dmitrii Tsybulevskii <http://blog.kaggle.com/2016/08/24/avito-duplicate-ads-detection-winners-interview-1st-place-team-devil-team-stanislav-dmitrii/>`_
+    * `Avito Duplicate Ads Detection, Winners' Interview: 2nd Place, Team TheQuants | Mikel, Peter, Marios, & Sonny <http://blog.kaggle.com/2016/08/31/avito-duplicate-ads-detection-winners-interview-2nd-place-team-the-quants-mikel-peter-marios-sonny/>`_
+
+* 06/2016 - `Draper Satellite Image Chronology <https://www.kaggle.com/c/draper-satellite-image-chronology>`_ :
+  Can you put order to space and time?
+  Le jeu de données
+  est consitué d'images satellites prises aux mêmes endroits sur une durée de cinq jours. Elles sont mélangées.
+  Il faut retrouver leur ordre chronologique.
+
+    * `Draper Satellite Image Chronology: Pure ML Solution | Vicens Gaitan <http://blog.kaggle.com/2016/09/15/draper-satellite-image-chronology-machine-learning-solution-vicens-gaitan/>`_
+      (`R code <https://www.kaggle.com/vicensgaitan/draper-satellite-image-chronology/image-registration-the-r-way/notebook>`_)
+    * `Draper Satellite Image Chronology: Pure ML Solution | Damien Soukhavong <http://blog.kaggle.com/2016/09/08/draper-satellite-image-chronology-damien-soukhavong/>`_
+
+* 04/2016 - `Home Depot Product Search Relevance <https://www.kaggle.com/c/home-depot-product-search-relevance>`_ :
+  Predict the relevance of search results on homedepot.com
+
+    * `Home Depot Product Search Relevance, Winners' Interview: 2nd Place | Thomas, Sean, Qingchen, & Nima <http://blog.kaggle.com/2016/06/15/home-depot-product-search-relevance-winners-interview-2nd-place-thomas-sean-qingchen-nima/>`_
+
+* 04/2016 - `Yelp Restaurant Photo Classification <https://www.kaggle.com/c/yelp-restaurant-photo-classification>`_ :
+  Predict attribute labels for restaurants using user-submitted photos
+
+    * `Yelp Restaurant Photo Classification, Winner's Interview: 1st Place, Dmitrii Tsybulevskii <http://blog.kaggle.com/2016/04/28/yelp-restaurant-photo-classification-winners-interview-1st-place-dmitrii-tsybulevskii/>`_
+    * `Yelp Restaurant Photo Classification, Winner's Interview: 2nd Place, Thuyen Ngo <http://blog.kaggle.com/2016/05/04/yelp-restaurant-photo-classification-winners-interview-2rd-place-thuyen-ngo/>`_
+
+* 02/2016 - `Homesite Quote Conversion <https://www.kaggle.com/c/homesite-quote-conversion>`_ : Which customers will purchase a quoted insurance plan?
+
+    * `Homesite Quote Conversion, Winners' Write-Up, 1st Place: KazAnova | Faron | clobber <http://blog.kaggle.com/2016/04/08/homesite-quote-conversion-winners-write-up-1st-place-kazanova-faron-clobber/>`_
+    * `Homesite Quote Conversion, Winners' Interview: 2nd Place, Team Frenchies | Nicolas, Florian, & Pierre <http://blog.kaggle.com/2016/05/02/homesite-quote-conversion-winners-interview-2nd-place-team-frenchies-nicolas-florian-pierre/>`_
+
+* 12/2015 - `Second Annual Data Science Bowl <https://www.kaggle.com/c/second-annual-data-science-bowl>`_ : Transforming How We Diagnose Heart Disease
+
+    * `Diagnosing Heart Diseases in the Data Science Bowl: 2nd place, Team kunsthart <http://blog.kaggle.com/2016/04/13/diagnosing-heart-diseases-with-deep-neural-networks-2nd-place-ira-korshunova/>`_
+
+* 12/2015 - `How Much Did It Rain? II <https://www.kaggle.com/c/how-much-did-it-rain-ii>`_ : Predict hourly rainfall using data from polarimetric radars
+
+    * `How Much Did It Rain? II, Winner's Interview: 1st place, PuPa (aka Aaron Sim) <http://blog.kaggle.com/2016/01/04/how-much-did-it-rain-ii-winners-interview-1st-place-pupa-aka-aaron-sim/>`_
+
+* 10/2015 - `Truly Native? <https://www.kaggle.com/c/dato-native>`_ : Predict which web pages served by StumbleUpon are sponsored
+
+    * `Dato Truly Native? Winner's Interview: 2nd place, mortehu <http://blog.kaggle.com/2015/10/30/dato-winners-interview-2nd-place-mortehu/>`_
+
+* 08/2015 - `Liberty Mutual Group: Property Inspection Prediction <https://www.kaggle.com/c/liberty-mutual-group-property-inspection-prediction>`_ :
+  Quantify property hazards before time of inspection
+
+    * `Liberty Mutual Property Inspection, Winner's Interview: 1st place, Qingchen Wang <http://blog.kaggle.com/2015/09/28/liberty-mutual-property-inspection-winners-interview-qingchen-wang/>`_
+
+* 07/2015 - `ECML/PKDD 15: Taxi Trajectory Prediction (I) <https://www.kaggle.com/c/pkdd-15-predict-taxi-service-trajectory-i>`_ :
+  Predict the destination of taxi trips based on initial partial trajectories
+
+    * `Taxi Trajectory Winners' Interview: 1st place, Team ? <http://blog.kaggle.com/2015/07/27/taxi-trajectory-winners-interview-1st-place-team-%F0%9F%9A%95/>`_
+
+* 07/2013 - `Facebook Recruiting III - Keyword Extraction <https://www.kaggle.com/c/facebook-recruiting-iii-keyword-extraction>`_ :
+  Identify keywords and tags from millions of text questions
+
+    * `Keyword Extraction and Semantic Tag Prediction <http://cs229.stanford.edu/proj2013/FangHong-Keyword%20Extraction%20and%20Semantic%20Tag%20Prediction.pdf>`_
+
+FAQ
++++
+
+.. faqref::
+    :title: Les bases de train et test sont-elles homogènes ?
+    :lid: faq-train-test-homogeneous
+
+    Lors d'une compétition, on dispose le plus souvent d'un jeu d'apprentissage
+    :math:`(X_t, Y_t)` et d'un jeu qui sert à évaluer les participants qui ne connaissent
+    que :math:`X_e`. Seul le jury connaît les :math:`Y_e` correspondant.
+    *Les bases de train et test sont-elles homogènes ?*
+    Pour répondre à cette question, on apprend un classifieur qui est appris sur
+    une base réordonnée aléatoirement à partir de
+    :math:`(X_t \cup X_e, (x_i \in X_e)_i)`. Autrement dit, on essaye de construire
+    un classifieur qui prédit si l'observation :math:`x_i` appartient au jeu d'apprentissage
+    ou à celui d'évaluation. Si le classifieur n'y parvient pas, alors les deux bases sont homogènes.
+
+    *Que faire dans les deux bases ne sont pas homogènes ?*
+
+    Une option consiste à utiliser le classifieur :math:`C_e` précédent pour déterminer les
+    observations de la base d'apprentissage qui sont proches de la base d'évaluation
+    (le classifieur les classes dans :math:`X_e`) et de les surpondérer
+    pour estimer le modèle :math:`M_c` lié à au problème de la compétition.
+    On peut choisir comme pondération le score de classification du modèle :math:`C_e`.
+    Cela revient à corriger l'erreur d'apprenissage en construisant un estimateur de l'erreur
+    que le modèle ferait sur la base d'évaluation :
+
+    .. math::
+
+        E(X_e, M_c) = \mathbb{E}( E(X, M_c) | X \in X_e ) \sim \sum_i e(x_i, M_c) \mathbb{P}(x_i \in X_e)
+
+    Par extension, si les bases d'apprentissage et d'évaluation ont été
+    construites de telle sorte qu'elles soient homogènes, un modèle capable
+    de bien prédire l'appartenance d'une observation à l'une des deux bases
+    fait nécessaire du surapprentissage (ou *overfitting*).
+    Il en sera de même si le modèle est utilisé pour prédire autre chose.
+
+    **Séries temporelles**
+
+    Dans le cas des séries temporelles, le découpage apprentissage / évaluation
+    est très souvent temporel. Les données passées sont utilisées pour l'apprentissage,
+    les données futures pour l'évaluation. S'il est possible de construire un classifier
+    capable de déterminer si une observation :math:`x_i` fait partie du passé
+    ou du futur, cela signifie certainement qu'il est préférable de prétraiter la série
+    pour enlever une tendance.

@@ -1,0 +1,58 @@
+environment:
+
+  global:
+    # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
+    # /E:ON and /V:ON options are not enabled in the batch script intepreter
+    # See: http://stackoverflow.com/a/13751649/163740
+    WITH_COMPILER: "cmd /E:ON /V:ON /C .\\appveyor\\run_with_compiler.cmd"
+
+  matrix:
+
+    - PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5.x"
+      PYTHON_ARCH: "64"
+    - PYTHON: "C:\\Python36-x64"
+      PYTHON_VERSION: "3.6.x"
+      PYTHON_ARCH: "64"
+
+init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+
+install:
+  - "%PYTHON%\\python -m pip install --upgrade pip"
+  - "%PYTHON%\\Scripts\\pip install pymyinstall"
+  - "%PYTHON%\\Scripts\\pip install -U git+https://github.com/quantopian/qgrid --no-deps"
+  - "%PYTHON%\\Scripts\\pymy_install3 --set=pyensae"
+  - "%PYTHON%\\Scripts\\pip install cryptography"
+  - "%PYTHON%\\Scripts\\pip install azure"
+  - "%PYTHON%\\Scripts\\pymy_install3 pycrypto numba pycurl Pillow"
+  - "%PYTHON%\\Scripts\\pymy_install3 basemap sympy pyqt4 mpmath reportlab statsmodels cffi scipy pylzma"
+  - "%PYTHON%\\Scripts\\pip install pycryptodomex jyquickhelper"
+  - "%PYTHON%\\Scripts\\pip install urllib3 traittypes"
+  - "%PYTHON%\\Scripts\\pip install pycodestyle version_information"
+  - "%PYTHON%\\Scripts\\pip install ete3"
+  - "%PYTHON%\\Scripts\\pip install bokeh"
+  - "%PYTHON%\\Scripts\\pip install bqplot"
+  - "%PYTHON%\\Scripts\\pip install xarray"
+  - "%PYTHON%\\Scripts\\pip install brythonmagic"
+  - "%PYTHON%\\Scripts\\pip install lightning-python"
+  - "%PYTHON%\\Scripts\\pip install mpld3"
+  - "%PYTHON%\\Scripts\\pip install datashape"
+  - "%PYTHON%\\Scripts\\pip install pygal"
+  - "%PYTHON%\\Scripts\\pip install brewer2mpl cufflinks"
+  - "%PYTHON%\\Scripts\\pip install lifelines"
+  - "%PYTHON%\\Scripts\\pip install missingno pythreejs vega"
+  - "%PYTHON%\\Scripts\\pip install pygal_maps_fr"
+  - "%PYTHON%\\Scripts\\pip install ggplot"  # ==0.9.3"
+  - "%PYTHON%\\Scripts\\pymy_install3 --task=tool --source=zip graphviz"
+  - "%PYTHON%\\Scripts\\pymy_install3 datashader pydy biopython scikit-image pyproj"
+  - "%PYTHON%\\Scripts\\pip install -r requirements.txt"
+  - "%PYTHON%\\Scripts\\pip install widgetsnbextension"
+  - "set PATH=%PATH%;%PYTHON%\\Scripts"
+  - "jupyter nbextension enable --py --sys-prefix widgetsnbextension"
+  - "set PATH=%PATH%;C:\\projects\\jupytalk\\build\\update_modules\\Graphviz\\bin"
+build: off
+
+test_script:
+  - "%PYTHON%\\python -u setup.py build_script"
+  - "%PYTHON%\\python -u setup.py unittests"
