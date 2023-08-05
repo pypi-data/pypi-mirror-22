@@ -1,0 +1,45 @@
+Metadata-Version: 1.1
+Name: wahlrecht
+Version: 0.0.2
+Summary: Python module to download and parse wahlrecht.de polls
+Home-page: https://github.com/stefanw/wahlrecht
+Author: Stefan Wehrmeyer
+Author-email: mail@stefanwehrmeyer.com
+License: MIT
+Description: # Python module for getting Wahlrecht.de polling data
+        
+        Install:
+        
+             pip install wahlrecht
+        
+        Run like this:
+        
+            $ python -m wahlrecht <jurisdiction> > output.csv
+        
+        `jurisdiction` determines which kind of election will be downloaded. It can be a state election with a state slug (like 'baden-wuerttemberg') or for the federal election 'bund'.
+        
+        Or just download everything:
+        
+            $ sh download.sh
+        
+        
+        Or use like this as a Python module.:
+        
+            from wahlrecht import get_state_polls, get_federal_polls
+        
+            for info in get_state_polls('nrw'):
+                print(info)
+        
+            for info in get_federal_polls():
+                print(info)
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering
