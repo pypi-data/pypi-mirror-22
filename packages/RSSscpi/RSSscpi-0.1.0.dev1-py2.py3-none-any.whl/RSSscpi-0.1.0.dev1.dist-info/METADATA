@@ -1,0 +1,58 @@
+Metadata-Version: 2.0
+Name: RSSscpi
+Version: 0.1.0.dev1
+Summary: A package for controlling SCPI based instruments in a pythonic way.
+Home-page: http://github.com/luksan/RSSscpi
+Author: Lukas Sandström
+Author-email: lukas.sandstrom@rohde-schwarz.com
+License: BSD
+Keywords: instrument control SCPI VISA VNA
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries
+Requires-Dist: PyVISA (>=1.8)
+Requires-Dist: enum34
+Provides-Extra: dev
+Requires-Dist: beautifulsoup4 (>=4.5.1); extra == 'dev'
+Requires-Dist: numpy (>=1.11.2); extra == 'dev'
+Requires-Dist: pytest (>=3.07); extra == 'dev'
+
+========================================================
+RSSscpi - Instrument (VNA) control in a pythonic fashion
+========================================================
+
+
+
+The purpose of this Python library is to provide a nice way of writing measurement instrument remote control programs
+in Python. This is acheived mainly by converting all SCPI commands to equivalent Python classes, so that no text strings
+with SCPI commands have to be entered by the programmer. This will hopefully reduce bugs in the code, and increase
+programmer productivity.
+
+Main features
+-------------
+* Complete SCPI command class heirarchy; automatically generated from extracted command lists
+* Each SCPI command class has a docstring with links to the relevant online manual page
+* py.test regression testsuite
+* Helper classes to wrap the more unveildly SCPI commands
+
+To use this library you need pyvisa, and a suitable VISA backend.
+
+See ``examples/`` for inspirational usage.
+
+Please report bugs to lukas.sandstrom@rohde-schwarz.com, or at https://github.com/luksan/RSSscpi
+
+
