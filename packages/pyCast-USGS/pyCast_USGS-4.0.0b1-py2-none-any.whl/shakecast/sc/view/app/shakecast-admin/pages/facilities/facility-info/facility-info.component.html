@@ -1,0 +1,14 @@
+<div class="fac-info">
+    <div class="info-content" *ngIf="facility">
+        <div class="header">
+            <h2 class="info-header">{{ facility.name }}</h2>
+            <p class="desc">{{ facility.description ? facility.description : 'No Description' }}</p>
+        </div>
+
+        <h1 class="info-header">Shaking History</h1>
+
+        <div class="eq-list">
+            <earthquake-list></earthquake-list>
+        </div>
+    </div>
+</div>
