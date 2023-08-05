@@ -1,0 +1,41 @@
+Metadata-Version: 1.1
+Name: tsaw
+Version: 0.4.10
+Summary: TSAW : Torrent Server API Wrapper.
+Home-page: https://github.com/ylaizet/tsaw
+Author: Yec'han Laizet
+Author-email: y.laizet@bordeaux.unicancer.fr
+License: GPL3
+Download-URL: https://github.com/ylaizet/tsaw/archive/0.4.10.tar.gz
+Description: TSAW
+        ====
+        
+        TSAW Torrent Server API Wrapper.
+        
+        More information about the api at http://ion-torrent-sdk.readthedocs.io/en/latest/
+        
+        
+        Installation
+        ------------
+        
+            pip install tsaw
+        
+        
+        Usage example
+        -------------
+        
+        Get the 10 last results for plugin with id 42
+            
+            >>> from tsaw import TorrentServerApi
+            >>> ts = TorrentServerApi("http://myserver/rundb/api/v1/", "ION_TS_USERNAME", "ION_TS_PASSWORD")
+            >>> pluginresults = ts.pluginresult(params={"format": "json", "limit": 10, "order_by": "-id", "plugin": "42"})
+        
+Keywords: api,sequencer,Torrent server
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
