@@ -1,0 +1,72 @@
+Metadata-Version: 1.0
+Name: ice-latency-metrics-collector
+Version: 0.1.0a7
+Summary: ZerocIce latency metrics collector
+Home-page: https://github.com/3g0r/ice-latency-metrics-collector
+Author: 3g0r
+Author-email: eg0r.n1k0l43v@gmail.com
+License: MIT
+Description: ZerocIce latency metrics collector
+        ==================================
+        
+        Simple Example
+        ^^^^^^^^^^^^^^
+        
+        .. code:: python
+        
+            from ice_latency_metrics_collector import latency_metrics_factory
+        
+            import MyIceModule
+        
+        
+            with_latency_metrics = latency_metrics_factory(enabled=True)
+        
+        
+            @with_latency_metrics
+            class MyServant(MyIceModule.MyServant):
+        
+              # This method send timings to statsd 
+              def my_proxyed_method(self):
+                # your implementation
+                pass
+                
+              # This method don't send timings to statsd
+              def my_custom_internal_method(self):
+                # your implementation
+                pass
+        
+        Statsd configuration
+        ^^^^^^^^^^^^^^^^^^^^
+        
+        ``config`` param in factory will be passed to `StatsClient
+        constructor <http://statsd.readthedocs.io/en/v3.2.1/configure.html>`__
+        
+        .. code:: python
+        
+            latency_metrics_factory(enabled=True, config=dict(host='statsd'))
+        
+        Logging configuration
+        ^^^^^^^^^^^^^^^^^^^^^
+        
+        You need to use standard python logging configuration file.
+        
+        .. code:: python
+        
+            latency_metrics_factory(enabled=True, logging_conf_path=your_logging_conf_path)
+        
+        Disable or enable
+        ^^^^^^^^^^^^^^^^^
+        
+        Example with env
+        
+        .. code:: python
+        
+            import os
+        
+            METRICS_ENABLED = os.environ.get('METRICS_ENABLED', 'false').lower() == 'true'
+        
+            latency_metrics_factory(enabled=METRICS_ENABLED)
+        
+        
+Keywords: ice,latency,statsd,zeroc
+Platform: UNKNOWN
