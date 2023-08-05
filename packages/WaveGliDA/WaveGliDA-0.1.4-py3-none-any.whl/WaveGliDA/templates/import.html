@@ -1,0 +1,98 @@
+{% extends "index.html" %}
+{% block title %}Welcome Inside!{% endblock %}
+{% block main %}
+    <script>
+        $(function() {
+
+          // We can attach the `fileselect` event to all file inputs on the page
+          $(document).on('change', ':file', function() {
+            var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+
+            document.getElementById("processFiles").disabled = false;
+
+          });
+
+          // We can watch for our custom `fileselect` event like this
+          $(document).ready( function() {
+              $(':file').on('fileselect', function(event, numFiles, label) {
+
+                  var input = $(this).parents('.input-group').find(':text'),
+                      log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                  if( input.length ) {
+                      input.val(log);
+                  } else {
+                      if( log ) alert(log);
+                  }
+              });
+          });
+        });
+
+    </script>
+
+    <title>WaveGliDA : Import and Process</title>
+
+    <div class="row col-lg-12">
+        <form action='/import_data/' id="fileForm" method=POST enctype=multipart/form-data>
+            <div class="input-group">
+
+                <label class="input-group-btn">
+                    <span class="btn btn-default">
+                        Browse ... <input id="fileSelect"
+                                          type="file"
+                                          accept="text/*"
+                                          style="display: none;"
+                                          name="files[]"
+                                          multiple>
+                    </span>
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       id="fileStatus"
+                       value="{{ number_of_files }}"
+                       title="Browse new files to clear selection"
+                       data-toggle="tooltip"
+                       data-placement="bottom"
+                       data-html="true"
+                       readonly>
+
+                <span class="input-group-btn">
+                    <button class="btn btn-danger" onclick="this.form.submit()" id="processFiles" disabled> Process data </button>
+                </span>
+            </div>
+        </form>
+    </div>
+
+  <div class="row col-lg-12" style="min-height: 20px">
+
+  </div>
+
+  <div class="row col-lg-12">
+    {% if number_of_files %}
+          <div class="panel panel-default" >
+
+          <div class="btn-group btn-group-justified" >
+            <a href="/download_csv/" class="btn btn-primary" style="border-bottom-left-radius:  0px;">   Save as CSV     </a>
+            <a href="/download_xls/" class="btn btn-success" style="border-bottom-right-radius: 0px;">   Save as Excel   </a>
+          </div>
+
+          <div class="panel-body" style="padding: 0px; border: 0px; overflow-x: scroll">
+            {{ table | safe }}
+          </div>
+
+          </div>
+    {% else %}
+        <p style="text-align: center;">A reduced table of the data will show here once the data has been processed. <br>Click "Browse ..." to find files.</p>
+    {% endif %}
+  </div>
+
+  <script>
+  $(document).ready(function(){ $('[data-toggle="tooltip"]').tooltip(); });
+  </script>
+
+
+{% endblock %}

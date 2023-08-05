@@ -1,0 +1,46 @@
+<h3>About WaveGliDA </h3>
+This software package processes raw Iridium output from the CSIR / STS CO<sub>2</sub> instrument into a readable table format. The instrument uses an equilibrator approach to measure CO<sub>2</sub> with a LICOR-820.
+<br>
+<br>
+
+<b>Authors:</b> Luke Gregor and Clinton Hagan <br>
+<b>Feedback:</b> <a href="mailto:lukegre@gmail.com">lukegre@gmail.com</a> <br>
+<b>Version:</b> 0.3.1  (16 May 2017) <br>
+This application is built in Python using the `Flask` backend framework. Calculations are done using `Pandas`.
+<br>
+<br>
+<h3>Basic instructions</h3>
+<ol>
+    <li>Go to the <code>IMPORT</code> page and browse your computer for the raw input files.</li>
+    <li>Click <code>Process data</code> to reformat the data. The button also calculates pCO<sub>2</sub> and fCO<sub>2</sub>.</li>
+    <li>The data can then be saved as `CSV` or an excel spreadsheet.</li>
+    <li>Plot the data with the <a href="http://plot.ly" title="Plotly website">www.plot.ly</a> interface under <code>MAP</code> and <code>TIME SERIES</code></li>
+</ol>
+
+<br>
+<br>
+
+<h3>CO<sub>2</sub> calculations</h3>
+The CSIR/STS CO<sub>2</sub> instrument returns the mole fraction of carbon dioxide (xCO<sub>2</sub>) as given by the LICOR-820 instrument. xCO<sub>2</sub> is used to calculate parital pressure of CO<sub>2</sub> and fugacity CO<sub>2</sub> with the equations shown below. The methods presented below are in the <code>./backend/calculations.py</code> file.
+
+$$ p\mbox{CO}_2^{sst} = x\mbox{CO}_2 \times P_c \times \exp(0.0423 \cdot \Delta T) $$
+
+where $\Delta T$ is the difference between the equilibrator and sea surface temperatures. This empirical exponential relationship is as defined by <em>Takahashi et al. (1993)</em>. Note that $\Delta T$ is considered 0 K for Wave Glider installations of the instrument, <em>i.e.</em> the equilibrator and sea surface temperatures are exactly the same. $P_{atm}$ is measured atmospheric pressure corrected for the partial pressure of H<sub>2</sub>O.
+
+$$P_c = (P_{atm} - P_{H_2O})$$
+
+where $P_{H_2O}$ is calculated from salinity and temperature according to <em>Weiss and Price (1980)</em>. This is done for both marine and atmospheric measurements of CO<sub>2</sub>.
+<br>
+<br>
+The fugacity of CO<sub>2</sub> is a correction for the non-ideal behaviour of CO<sub>2</sub>. This is done by calculating the vireal expansion as shown below:
+
+$$ f\mbox{CO}_2^{sst} = p\mbox{CO}_2 \times \frac{P_{atm}}{k_B T} $$
+
+where $k_B$ is the Boltzmann constant and $T$ is the absolute temperature. This expression is equivalent to the expansion
+$$ \rho + B_2(T)\rho^2 + B_3(T)\rho^3 + ... , $$
+
+where $\rho$ is the density of CO<sub>2</sub>
+<br><br>
+For more information see the code below used to calculate these functions.
+<br>
+<br>
