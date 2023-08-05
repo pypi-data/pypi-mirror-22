@@ -1,0 +1,72 @@
+Metadata-Version: 2.0
+Name: imgpy
+Version: 0.1.0
+Summary: Image processing library for Python with animated GIFs support
+Home-page: https://github.com/embali/imgpy/
+Author: Anton Smolin
+Author-email: smolin.anton@gmail.com
+License: MIT
+Keywords: image info crop resize thumbnail gif
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: Pillow (>=4.1.1)
+
+ImgPy
+=====
+
+Image processing library for Python with animated GIFs support
+
+|travisci|
+
+.. |travisci| image:: https://travis-ci.org/embali/imgpy.svg?branch=master
+    :target: https://travis-ci.org/embali/imgpy
+    :alt: travis ci build status
+
+Features
+--------
+
+* Info
+* Crop
+* Resize
+* Thumbnail
+
+Requirements
+------------
+
+Python 3.6+
+
+Setup
+-----
+
+.. code-block:: bash
+
+    python-3.6 -m venv .env
+    source .env/bin/activate
+    pip install imgpy
+
+Usage
+-----
+
+.. code-block:: python
+
+    from imgpy import ImgPy
+
+
+    # Load target image
+    im = ImgPy(fp='test.jpg')
+
+    # Thumbnail it to 100x100 size
+    im.thumbnail(size=(100, 100))
+
+    # Save
+    im.save(fp='thumb.jpg')
+
+Tests
+-----
+
+Run tests: py.test
+
+
