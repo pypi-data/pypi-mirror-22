@@ -1,0 +1,55 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.customlogin">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <includeDependencies package="." />
+
+  <!-- -*- extra stuff goes here -*- -->
+  <interface
+      interface="collective.customlogin.interfaces.IUnauthorizedEvent"
+      type="plone.contentrules.rule.interfaces.IRuleEventType"
+      name="Unauthorized access"
+      />
+
+  <subscriber
+      for="collective.customlogin.interfaces.IUnauthorizedEvent"
+      handler=".events.unauthorized_handler"
+      />
+
+    <!-- Redirect action -->
+
+    <adapter factory=".redirect.RedirectActionExecutor" />
+
+    <browser:page
+        for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+        name="collective.customlogin.Redirect"
+        class=".redirect.RedirectAddForm"
+        permission="plone.app.contentrules.ManageContentRules"
+      />
+
+    <browser:page
+        for="collective.customlogin.redirect.IRedirectAction"
+        name="edit"
+        class=".redirect.RedirectEditForm"
+        permission="plone.app.contentrules.ManageContentRules"
+      />
+
+    <plone:ruleAction
+        name="collective.customlogin.Redirect"
+        title="Redirect user"
+        description="Redirect the user"
+        for="*"
+        event="*"
+        addview="collective.customlogin.Redirect"
+        editview="edit"
+        schema=".redirect.IRedirectAction"
+        factory=".redirect.RedirectAction"
+        />
+
+</configure>

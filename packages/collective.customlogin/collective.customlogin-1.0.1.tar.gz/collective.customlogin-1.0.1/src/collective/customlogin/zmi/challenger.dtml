@@ -1,0 +1,26 @@
+<dtml-var manage_page_header>
+
+<h2>Add a Custom Login challenge plugin to PAS</h2>
+
+<p class="form-help"
+  install a Custom Login challenger. This challenger will raise action
+  IUnathorized event on errors.
+</p>
+
+<form action="manage_addCustomLogin" method="POST">
+  <table>
+    <tr>
+      <td class="form-label">Id</td>
+      <td><input type="text" name="id"></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div class="form-element">
+          <input type="submit" value="add Custom Login"/>
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
