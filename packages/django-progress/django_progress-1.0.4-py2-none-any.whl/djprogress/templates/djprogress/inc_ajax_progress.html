@@ -1,0 +1,47 @@
+<div id="django-progress-container" ng-app="DjangoProgress" ng-controller="ProgressCtrl" ng-hide="get_percent()==100">
+    <div style="border: 1px solid #000; width: 100px; height: 16px;">
+        <div style="background: #07F; height: 16px; width: {% templatetag openvariable %}progress|widthratio:100{% templatetag closevariable %}px;"></div>
+    </div>
+    <span ng-bind="get_percent()"></span>% | <span ng-bind="progress.seconds_left"></span> seconds left
+</div>
+
+
+<script>
+    var DjangoProgress = angular.module('DjangoProgress', []);
+    DjangoProgress.controller('ProgressCtrl', function($scope, $http) {
+        $scope.fetch_progress = function() {
+            $http.get('{% url "djprogress_api_get" %}?name={{ progress_name }}').
+            success(function(data, status) {
+                $scope.progress = data;
+            }).
+            error(function(data, status) {
+
+            });
+        };
+
+        $scope.get_percent = function() {
+            if (!$scope.progress)
+                return 0;
+            return Math.floor($scope.progress.current * 100 / $scope.progress.total);
+        };
+
+        $scope.update_progress = function() {
+            $scope.fetch_progress();
+            if (!$scope.progress || $scope.get_percent() < 100)
+                setTimeout($scope.update_progress, 5000);
+        };
+
+        $scope.update_progress();
+    });
+
+    DjangoProgress.filter('widthratio', function() {
+        return function(progress, width) {
+            if (progress)
+                return Math.floor(progress.current * width / progress.total);
+            else
+                return 0;
+        };
+    });
+
+    angular.bootstrap(angular.element('#django-progress-container'), ['DjangoProgress']);
+</script>

@@ -1,0 +1,108 @@
+{% extends "djprogress/base.html" %}
+{% load i18n %}
+{% block coltype %}colMS{% endblock %}
+{% block bodyclass %}dashboard{% endblock %}
+
+{% block footer %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script>
+$(function(){
+    var update_content = function(){
+        $.ajax({
+            'type': 'GET',
+            'url': '.',
+            'success': function(x) {
+                var response_markup = $(x);
+                var content = response_markup.find('#content-main');
+                $('#content-main').html(content.html());
+                setTimeout(update_content, 5000);
+            },
+            'error': function(x) {
+                $('#refresh-notice').html('The connection was interrupted. Please refresh this page manually.');
+            }
+        });
+    }
+    setTimeout(update_content, 5000);
+});
+</script>
+{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Overview" %}</h1>
+
+<p id="refresh-notice">
+    {% blocktrans %}This page automatically refreshes every 5 seconds.{% endblocktrans %}
+</p>
+
+<div id="content-main">
+    {% for progress in progresses %}
+    <div class="module">
+        <table>
+            
+            <caption {% if progress.exception %}style="background: red;"{% endif %}><span class="section">{{ progress.name }}</span></caption>
+            
+            {% if progress.parent %}
+            <tr>
+                <th scope="row">{% trans "Parent" %}</th>
+                <td colspan="2">{{ progress.parent.name }}</td>
+            </tr>
+            {% endif %}
+            
+            <tr>
+                <th scope="row">{% trans "Last updated" %}</th>
+                <td>{{ progress.last_updated|time:"H:i:s" }}</td>
+                <td>
+                    {% if progress.is_just_now_updated %}
+                        {% trans "just now" %}
+                    {% else %}
+                        {{ progress.last_updated|timesince }} {% trans "ago" %}
+                    {% endif %}
+                </td>
+            </tr>
+            
+            <tr>
+                <th scope="row">{% trans "Est. time remaining" %}</th>
+                <td>{{ progress.eta|time:"H:i:s" }}</td>
+                <td>
+                    {% if progress.eta %}
+                        <strong>{{ progress.eta|timeuntil }}</strong>
+                    {% else %}
+                        {% trans "calculating" %}...
+                    {% endif %}
+                </td>
+            </tr>
+            
+            <tr>
+                <th scope="row">{% trans "Progress" %}</th>
+                <td><strong>{{ progress.current }} / {{ progress.total }}</strong></td>
+                <td>
+                    <div style="width: 64px; border: 1px solid #CCC; margin: 0; padding: 0;">
+                         <div style="margin: 0; padding: 0; width: {% widthratio progress.current progress.total 64 %}px; height: 12px; background: #ACE url({{ STATIC_URL }}admin/img/admin/default-bg.gif) repeat-x;"></div>
+                    </div>
+                </td>
+            </tr>
+            {% if progress.exception %}
+            <tr>
+                <th scope="row">{% trans "Exception" %}</th>
+                <td><a href="{% url 'djprogress_show_exception' progress.pk %}" target="_new">{% trans "Show exception" %}</a></td>
+                <td><a href="{% url 'djprogress_resolve' progress.pk %}">{% trans "Mark as resolved" %}</a></td>
+            </tr>
+            {% endif %}
+            
+            {% comment %}
+            <tr>
+                <td>{% trans "Total" %}:</td>
+                <td>{{ model.stats.0 }}%</td>
+                <td>
+                    <div style="width: 256px; border: 1px solid #CCC; margin: 0; padding: 0;">
+                         <div style="margin: 0; padding: 0; width: {% widthratio model.stats.0 100 256 %}px; height: 12px; background: #ACE url({% admin_media_prefix %}img/admin/default-bg.gif) repeat-x;"></div>
+                    </div>
+                </td>
+            </tr>
+            {% endcomment %}
+        </table>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
