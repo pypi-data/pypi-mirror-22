@@ -1,0 +1,1 @@
+full documentation can be found at : https://github.com/cogniteev/pymailgun
