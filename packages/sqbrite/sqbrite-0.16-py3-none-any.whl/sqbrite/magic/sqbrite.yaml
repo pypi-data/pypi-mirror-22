@@ -1,0 +1,34 @@
+%YAML 1.2
+# SQBrite heuristics
+---
+
+# Mozilla Firefox tables
+Firefox:
+  moz_places:
+    magic: !!binary "ACguezN9KQgICA=="
+    offset: 1
+
+
+# Tables found in iOS databases
+iOs:
+  ZCALLRECORD:
+    magic: !!binary "AAEJCQk="
+    offset: 1
+
+  attachment:
+    magic: !!binary "AFU="
+    offset: 1
+
+  chat:
+    magic: !!binary "AQFV"
+    offset: 3
+
+  handle:
+    magic: !!binary "AFUi"
+    offset: 1
+
+  message:
+    magic: !!binary "AFU="
+    offset: 1
+
+...
