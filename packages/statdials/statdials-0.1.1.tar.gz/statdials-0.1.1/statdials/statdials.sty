@@ -1,0 +1,61 @@
+% This package is use to generate statistical dials
+%
+% (c) Matthew Wardrop
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+%
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{statdials}
+  [2017/05/09 - Initial version]
+
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+\RequirePackage{pgfkeys}
+\RequirePackage{xifthen}
+\RequirePackage{lmodern}
+
+\definecolor{bluasde}{HTML}{0000FF}
+\definecolor{statdialGrey}{HTML}{aaaaaa}
+\definecolor{statdialSigPos}{HTML}{00FF00}
+\definecolor{statdialSigNeg}{HTML}{FF0000}
+
+% Set up the keys.  Only the ones directly under /myparbox
+% can be accepted as options to the \myparbox macro.
+\pgfkeys{
+  /statdial/.is family, /statdial,
+  % Here are the options that a user can pass
+  default/.style =
+  {uncertainty=, position={(0,0)}, weight=1, weightOffset=0, color=statdialGrey},
+  uncertainty/.store in = \statdialUncertainty,
+  position/.store in = \statdialPosition,
+  weight/.store in = \statdialWeight,
+  weightOffset/.store in = \statdialWeightOffset,
+  color/.store in = \statdialColor
+}
+
+\newcommand{\statdial}[2][]{%
+  \begingroup%
+	\pgfkeys{/statdial, default, #1}%
+
+	\pgfmathsetmacro\startdegrees{90-\statdialWeightOffset*360}
+	\pgfmathsetmacro\enddegrees{90 - (\statdialWeightOffset + \statdialWeight)*360 }
+	\pgfmathsetmacro\xarcstart{cos(\startdegrees)}
+	\pgfmathsetmacro\yarcstart{sin(\startdegrees)}
+
+	\draw[line width=0.5mm, color=\statdialColor] \statdialPosition circle (1);
+	\draw[line width=2mm, color=\statdialColor] \statdialPosition + (\xarcstart,\yarcstart) arc (\startdegrees:\enddegrees:1);
+
+	\node[text width=2cm, anchor=center, yshift=-0.15em] at \statdialPosition {
+		\sf{\fontsize{13pt}{0}\fontseries{bx}\selectfont #2}
+		\ifthenelse{\equal{\statdialUncertainty}{}}{}{
+			\\{\fontsize{8pt}{0}\fontseries{l}\selectfont $\pm$ \statdialUncertainty}
+		}
+	};
+  \endgroup%
+}
+
+\endinput
+%%
+%% End of file `mypackage.sty'.
