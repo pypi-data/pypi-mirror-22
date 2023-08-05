@@ -1,0 +1,58 @@
+Installation
+============
+
+::
+
+    [instance]
+    ...
+    eggs =
+        ...
+        edw.logger
+    zcml =
+        ...
+        edw.logger
+
+
+Introduction
+============
+
+This package creates a new `edw.logger` log facility that logs to
+INFO and ERROR the following events:
+
+* Viewed pages;
+* Added/created content;
+* Copied/moved/deleted content;
+* ZODB commits;
+* Raised errors.
+
+Changelog
+=========
+
+1.4 - (2017-05-12)
+------------------
+- Ignore health.check URLs
+  [batradav]
+
+1.3 - (2017-02.21)
+------------------
+- Fixed cases where traceback contains non-ascii characters
+  [olimpiurob refs #82516]
+
+- Add 'font' to ignored content types.
+  [batradav]
+
+1.2 - (2017-01-26)
+------------------
+- Ignore all but GET and POST requests.
+  [batradav]
+
+1.1 - (2017-01-19)
+------------------
+- Added LoggerName in the JSON object [refs #80663 olimpiurob]
+
+1.0 - (2017-01-17)
+------------------
+- Initial release
+
+
+
