@@ -1,0 +1,46 @@
+const path = require('path');
+const webpack = require('webpack');
+
+
+const APP_DIR = path.resolve(__dirname, 'app');
+const DIST_DIR = path.resolve(__dirname, 'dist');
+
+module.exports = {
+  entry: {
+    main: path.resolve(APP_DIR, 'main.jsx'),
+  },
+  output: {
+    filename: '[name].[chunkhash].js',
+    path: DIST_DIR
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',  // Specify the common bundle's name.
+      minChunks: function(module) {
+        // This assumes your vendor imports exist in the node_modules directory.
+        return (module.context &&
+                module.context.indexOf('node_modules') !== -1);
+      }
+    }),
+    // CommonChunksPlugin will now extract all the common modules
+    // from vendor and main bundles.
+    new webpack.optimize.CommonsChunkPlugin({ 
+      // But since there are no more common modules between them we end up
+      // with just the runtime code included in the manifest file.
+      name: 'manifest'
+    }),
+    function() {
+      this.plugin("done", function(stats) {
+        require("fs").writeFileSync(
+          path.join(DIST_DIR, "stats.json"),
+          JSON.stringify(stats.toJson())
+        );
+      });
+    }
+  ],
+  module: {
+    rules: [
+      {test: /\.jsx?/, include: APP_DIR, use: 'babel-loader'}
+    ]
+  }
+};
