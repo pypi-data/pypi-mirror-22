@@ -1,0 +1,38 @@
+Metadata-Version: 2.0
+Name: naviance-client
+Version: 0.0.2
+Summary: A simple client for the Naviance SchoolSync REST API
+Home-page: https://github.com/IronCountySchoolDistrict/naviance-client
+Author: Iron County School District
+Author-email: data@ironmail.org
+License: MIT
+Keywords: naviance schoolsync client rest
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Environment :: Web Environment
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: requests
+
+naviance-client
+########################################
+
+This library enables you to perform data imports with Naviance's SchoolSync REST API.
+
+Usage
+===========
+::
+
+    from naviance import Naviance
+
+    client = Naviance()
+
+    # import parents
+    client.import_parents(csv_data)
+    # import students
+    client.import_students(csv_data)
+
+
