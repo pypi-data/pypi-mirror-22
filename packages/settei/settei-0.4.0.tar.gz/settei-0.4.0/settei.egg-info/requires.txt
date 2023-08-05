@@ -1,0 +1,26 @@
+pytoml >= 0.1.10, < 0.2.0
+setuptools
+typeguard >= 2.1.1
+
+[celery]
+celery
+kombu
+
+[docs]
+Sphinx >= 1.4
+sphinx_rtd_theme
+Flask
+Werkzeug
+celery
+kombu
+
+[flask]
+Flask
+Werkzeug
+
+[tests]
+pytest >= 2.7.0
+Flask
+Werkzeug
+celery
+kombu
