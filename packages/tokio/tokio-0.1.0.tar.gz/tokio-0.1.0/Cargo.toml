@@ -1,0 +1,50 @@
+[package]
+name = "async-tokio"
+version = "0.1.0"
+license = "Apache-2.0"
+authors = ["Nikolay Kim <fafhrd91@gmail.com>"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+boxfnonce = "*"
+chan = "0.1"
+log = "0.3"
+env_logger = "0.4"
+net2 = "0.2"
+libc = "0.2"
+lazy_static = "0.2"
+twoway = "0.1"
+bytes = "0.4"
+mio = "0.6"
+futures = "0.1"
+
+tokio-io = "0.1"
+#tokio-io = { git = "https://github.com/tokio-rs/tokio-io" }
+
+tokio-core = "0.1"
+# tokio-core = { git = "https://github.com/tokio-rs/tokio-core.git" }
+
+tokio-signal = "0.1"
+# tokio-signal = { git = "https://github.com/alexcrichton/tokio-signal.git" }
+
+tokio-uds = "0.1"
+# tokio-uds = { git = "https://github.com/tokio-rs/tokio-uds.git" }
+
+# native-tls = "0.1"
+# tokio-tls = "0.1"
+
+[dependencies.cpython]
+# path = "../tokio/rust-cpython"
+git = "https://github.com/PyO3/rust-cpython.git"
+default-features = false
+
+[dev-dependencies]
+http-muncher = "0.3"
+httparse = "*"
+
+[profile.bench]
+lto = true
+codegen-units = 1
+opt-level = 3
