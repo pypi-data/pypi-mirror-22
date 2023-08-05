@@ -1,0 +1,54 @@
+Metadata-Version: 1.1
+Name: yoctol-nlu
+Version: 0.1.0
+Summary: Yoctol Natural Language Understanding SDK
+Home-page: UNKNOWN
+Author: cph
+Author-email: UNKNOWN
+License: MIT
+Description: # yoctol-nlu-py
+        Yoctol Natural Language Understanding SDK for python.
+        
+        ## Install
+        ```
+        pip install yoctol-nlu
+        ```
+        
+        ## Usage
+        
+        ###Intent Classifier Service
+        
+        For new user:
+        ```python
+        from yoctol_nlu import IntentClassifierClient
+        
+        client = IntentClassifierClient(
+            url='xxx.xxx.xxx.x' # will be removed after 1.0.0
+            token='TOKEN',
+        )
+        
+        client.create_classifier(
+            name='clf_for_test'
+        )
+        
+        client.create_intents([])
+        
+        print(client.data)
+        
+        client.train()
+        ```
+        
+        For existing classifier:
+        ```python
+        from yoctol_nlu import IntentClassifierClient
+        
+        client = IntentClassifierClient(
+            url='xxx.xxx.xxx.x' # will be removed after 1.0.0
+            token='TOKEN',
+            classifier_id='CLASSIFIER_ID'
+        )
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
