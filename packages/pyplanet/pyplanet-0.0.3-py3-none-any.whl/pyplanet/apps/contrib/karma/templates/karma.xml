@@ -1,0 +1,23 @@
+{% extends 'core.views/generics/widget.xml' %}
+
+{% block content %}
+  <frame pos="{{ ((size_x - 37) / 2) }} 0">
+    <gauge pos="1 -2" z-index="5" size="30 1" style="ProgressBar" ratio="{{ progress_percentage / 100 }}" color="{{ progress_color }}FF"
+           drawblockbg="0" />
+
+    {% if player_vote == -1 %}
+      <quad pos="1.75 -4.25" size="6.5 6.5" z-index="0" style="Icons64x64_1" substyle="LvlRed" />
+    {% endif %}
+    <quad pos="2 -4.5" size="6 6" z-index="1" style="Icons64x64_1" substyle="Sub" action="{{ id }}__vote_negative" />
+
+    <label pos="16.5 -6.3" size="5 2" text="$s$o{{ karma_text_color }}{{ current_karma }}" textsize="0.9" halign="center" />
+    <label pos="5 -10.2" size="5 2" text="$s$f66{{ negative_votes }}" textsize="0.8" halign="center" />
+    <label pos="16.5 -10.2" size="10 2" text="$s{{ karma_percentage }}%" textsize="0.8" halign="center" />
+    <label pos="28 -10.2" size="5 2" text="$s$3f3{{ positive_votes }}" textsize="0.8" halign="center" />
+
+    {% if player_vote == 1 %}
+      <quad pos="24.75 -4.25" size="6.5 6.5" z-index="0" style="Icons64x64_1" substyle="LvlGreen" />
+    {% endif %}
+    <quad pos="25 -4.5" size="6 6" z-index="1" style="Icons64x64_1" substyle="Add" action="{{ id }}__vote_positive" />
+  </frame>
+{% endblock %}
