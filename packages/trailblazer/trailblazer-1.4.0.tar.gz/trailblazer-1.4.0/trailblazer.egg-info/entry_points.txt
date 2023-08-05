@@ -1,0 +1,11 @@
+[console_scripts]
+trailblazer = trailblazer.cli:root
+
+[trailblazer.subcommands.1]
+add = trailblazer.add:add_cmd
+analyze = trailblazer.analyze.cli:analyze
+delete = trailblazer.store.cli:delete
+init = trailblazer.init:init
+list = trailblazer.store.cli:list_cmd
+scan = trailblazer.scan:scan
+
