@@ -1,0 +1,36 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.smartappbanner">
+
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot
+      directory="overrides"
+      layer="collective.smartappbanner.interfaces.ICollectiveSmartappbannerLayer"
+      />
+
+  <!-- Publish static files  -->
+  <browser:resourceDirectory
+    name="collective.smartappbanner"
+    directory="static" />
+
+  <browser:page
+    name="smartappbanner-settings"
+    for="Products.CMFCore.interfaces.ISiteRoot"
+    class=".settings.SettingsView"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:viewlet
+    name="smartappbanner"
+    for="*"
+    manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+    class=".viewlets.SmartappbannerViewlet"
+    layer="..interfaces.ICollectiveSmartappbannerLayer"
+    template="smartappbanner.pt"
+    permission="zope2.View"
+    />
+
+</configure>
