@@ -1,0 +1,51 @@
+Metadata-Version: 1.1
+Name: creh-urls-redirec
+Version: 0.1.8
+Summary: Url redirec application
+Home-page: https://bitbucket.org/crehana/creh-urls
+Author: Enrique
+Author-email: enrique@crehana.com
+License: MIT
+Description: =====
+        Creh Urls
+        =====
+        
+        Creh-urls is a simple Django app redirect inactive urls in web page.
+        
+        Detailed documentation is in the "docs" directory.
+        
+        Quick start
+        -----------
+        
+        1. creh-urls can be obtained directly from PyPI, and can be installed with pip:
+        
+            pip install creh-urls
+        
+        1. Add "urls" to your INSTALLED_APPS setting like this::
+        
+            INSTALLED_APPS = [
+                ...
+                'urls',
+                ...
+            ]
+        
+        2. Run "python manage.py migrate" to create the log models.
+        
+        3. Use
+        
+            MIDDLEWARE_CLASSES = (
+            ...
+            'urls.middleware.UrlRedirectMiddleware',
+            ...
+            )
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
