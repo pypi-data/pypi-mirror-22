@@ -1,0 +1,166 @@
+sudo: false
+language: python
+python:
+- 2.6
+- 2.7
+- 3.3
+- 3.4
+- 3.5
+- 3.6
+- nightly
+_base_envs:
+- &linux_base
+  os: linux
+  dist: trusty
+  sudo: required
+  addons:
+    apt:
+      packages:
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - llvm
+      - libncurses5-dev
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+- &pyenv_base
+  python: pypy
+  env:
+  - PYTHON_VERSION=pypy2-5.7.1
+  - &env_pyenv PYENV_ROOT="$HOME/.pyenv"
+  - &env_path PATH="$PYENV_ROOT/bin:$PATH"
+  before_install:
+  - &ensure_pyenv_installed |
+    if [ -f "$PYENV_ROOT/bin/pyenv" ]
+    then
+      eval "$(pyenv init -)"
+      eval "$(pyenv virtualenv-init -)"
+      pyenv update
+    else
+      rm -rf "$PYENV_ROOT"
+      curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+      eval "$(pyenv init -)"
+      eval "$(pyenv virtualenv-init -)"
+    fi
+  - &install_python pyenv install --skip-existing --keep --verbose "$PYTHON_VERSION"
+  - &switch_python pyenv shell "$PYTHON_VERSION"
+  - &python_version python --version
+- &linux_python_base
+  <<: *linux_base
+  <<: *pyenv_base
+- &osx_python_base
+  <<: *pyenv_base
+  os: osx
+  language: generic
+  before_install:
+  - brew update
+  - brew install readline xz
+  - *ensure_pyenv_installed
+  - *install_python
+  - *switch_python
+  - *python_version
+  before_cache:
+  - brew --cache
+matrix:
+  fast_finish: true
+  allow_failures:
+  - env: TOXENV=pre-commit-pep257
+  include:
+  - <<: *linux_python_base
+    python: pypy
+    env:
+    - PYTHON_VERSION=pypy2-5.7.1
+    - *env_pyenv
+    - *env_path
+  - <<: *linux_python_base
+    python: pypy3
+    env:
+    - PYTHON_VERSION=pypy3.5-5.7.1-beta
+    - *env_pyenv
+    - *env_path
+  - <<: *osx_python_base
+    python: 2.6
+    env:
+    - PYTHON_VERSION=2.6.9
+    - *env_pyenv
+    - *env_path
+  - <<: *osx_python_base
+    python: 2.7
+    env:
+    - PYTHON_VERSION=2.7.13
+    - *env_pyenv
+    - *env_path
+  - <<: *osx_python_base
+    python: 3.3
+    env:
+    - PYTHON_VERSION=3.3.6
+    - *env_pyenv
+    - *env_path
+  - <<: *osx_python_base
+    python: 3.4
+    env:
+    - PYTHON_VERSION=3.4.6
+    - *env_pyenv
+    - *env_path
+  - <<: *osx_python_base
+    python: 3.5
+    env:
+    - PYTHON_VERSION=3.5.3
+    - *env_pyenv
+    - *env_path
+  - <<: *osx_python_base
+    python: 3.6
+    env:
+    - PYTHON_VERSION=3.6.1
+    - *env_pyenv
+    - *env_path
+  - <<: *osx_python_base
+    python: nightly
+    env:
+    - PYTHON_VERSION=3.7-dev
+    - *env_pyenv
+    - *env_path
+  - <<: *osx_python_base
+    python: pypy2-5.7.1
+    env:
+    - PYTHON_VERSION=pypy2-5.7.1
+    - *env_pyenv
+    - *env_path
+  # pypy3.5-5.7.1-beta fails under OS X because it's unsupported (PR #26)
+  - python: 3.6
+    env: TOXENV=pre-commit
+  - python: 3.6
+    env: TOXENV=pre-commit-pep257
+cache:
+  pip: true
+  directories:
+  - $HOME/.pre-commit
+  - $HOME/Library/Caches/Homebrew
+before_install:
+- "if [[ $TRAVIS_PYTHON_VERSION == 'pypy3' ]]; then . .travis/replace-pypy3 ; fi"
+install:
+- pip install tox "setuptools>=28.2"
+script:
+- tox
+branches:
+  except:
+  - skeleton
+deploy:
+  provider: pypi
+  server: https://upload.pypi.org/legacy/
+  on:
+    tags: true
+    all_branches: true
+    python: 3.6
+  user: jaraco
+  distributions: dists
+  skip_upload_docs: true
+  password:
+    secure: RAfz06AINvz7bfij/YhfkAreRqamgxS8a6jSRNxntYhtJke3ZszUbIDag8+n1I+G5XT2LnMhHqPNR7Plc+AeMz7VXTuy+b81Li5kse20NYlPhd7mBVmTUpXtqYQashV5J39F4qkATBLznCOrMEomM07VTXjO/o2hmQuXniab2Uo=
