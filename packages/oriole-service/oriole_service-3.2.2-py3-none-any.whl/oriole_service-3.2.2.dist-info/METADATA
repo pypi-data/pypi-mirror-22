@@ -1,0 +1,88 @@
+Metadata-Version: 2.0
+Name: oriole-service
+Version: 3.2.2
+Summary: Rapidly create services.
+Home-page: https://github.com/zhouxiaoxiang/oriole-service
+Author: Eric.Zhou
+Author-email: xiaoxiang.cn@gmail.com
+License: Apache License, Version 2.0
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers
+Requires-Dist: PyMySQL (>=0.7.9)
+Requires-Dist: PyYAML (>=3.12)
+Requires-Dist: Sphinx (>=1.5b1)
+Requires-Dist: mockredispy (>=2.9.3)
+Requires-Dist: mogo (>=0.4.0)
+Requires-Dist: mongomock (>=3.7.0)
+Requires-Dist: mysqlclient (>=1.3.9)
+Requires-Dist: nameko-sqlalchemy (>=0.0.4)
+Requires-Dist: pytest (>=3.0.4)
+Requires-Dist: redis (>=2.10.5)
+Requires-Dist: six (>=1.10.0)
+Requires-Dist: zope.sqlalchemy (>=0.7.7)
+
+# Oriole-Service
+
+**Rapidly create services.**
+
+[![build](https://travis-ci.org/zhouxiaoxiang/oriole-service.png?branch=master)](https://travis-ci.org/zhouxiaoxiang/oriole-service)
+
+**[Framework]**
+
+[Orile-Service](https://github.com/zhouxiaoxiang/oriole-service)
+
+- Prerequisites
+
+  - python >= 3.5.2
+  - mongodb
+  - mysql
+  - rabbitmq
+  - redis-server
+
+- Install oriole.
+
+```
+  pip install oriole-service
+```
+
+- Run unit tests.
+
+```
+  oriole test
+```
+
+![](https://github.com/zhouxiaoxiang/oriole-service/raw/master/docs/test.gif)
+
+- Run a service. 
+
+```
+  oriole run <service>
+```
+
+![](https://github.com/zhouxiaoxiang/oriole-service/raw/master/docs/run.gif)
+
+- Create documents. 
+
+```
+  oriole doc
+```
+
+![](https://github.com/zhouxiaoxiang/oriole-service/raw/master/docs/doc.gif)
+
+- Run a client.
+
+```
+  oriole sh
+```
+
+![](https://github.com/zhouxiaoxiang/oriole-service/raw/master/docs/run.gif)
+ 
+That's all.
+
+
