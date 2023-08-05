@@ -1,0 +1,34 @@
+0.39 ms 	 *CLS;*ESE 127;*SRE 36
+0.27 ms 	 SYSTem:COMMunicate:GPIB:SELF:RTERminator EOI
+0.18 ms 	 SYSTem:COMMunicate:CODec UTF8
+31.39 ms 	 SYSTem:LANGuage? 
+0.15 ms 	 *RST 
+0.13 ms 	 INITiate:CONTinuous:ALL OFF
+0.17 ms 	 CONFigure:CHANnel1:NAME 'SP_ch_1'
+0.13 ms 	 SENSe1:FREQuency:STARt 100000000.0
+0.12 ms 	 SENSe1:FREQuency:STOP 3000000000.0
+0.12 ms 	 SENSe1:SWEep:POINts 10001
+0.14 ms 	 SOURce1:POWer:LEVel 0 dBm
+159.35 ms 	 CALCulate1:PARameter:SELect? 
+0.23 ms 	 CALCulate1:PARameter:DELete 'Trc1'
+0.21 ms 	 CALCulate1:PARameter:SDEFine 'S11', 'S11'
+0.29 ms 	 DISPlay:WINDow1:TRACe:EFEed 'S11'
+0.13 ms 	 CALCulate1:PARameter:SDEFine 'S21', 'S21'
+0.24 ms 	 DISPlay:WINDow1:TRACe:EFEed 'S21'
+0.24 ms 	 CALCulate1:PARameter:SDEFine 'S12', 'S12'
+0.63 ms 	 DISPlay:WINDow1:TRACe:EFEed 'S12'
+0.38 ms 	 CALCulate1:PARameter:SDEFine 'S22', 'S22'
+0.26 ms 	 DISPlay:WINDow1:TRACe:EFEed 'S22'
+0.26 ms 	 INITiate1:IMMediate 
+0.24 ms 	 *OPC 
+Handling service request
+0.65 ms 	 *ESR?
+VISA event: STB: 01100000, ESR: 00000001, duration 702.29 ms
+0.37 ms 	 INITiate1:IMMediate 
+0.44 ms 	 *OPC 
+Handling service request
+0.97 ms 	 *ESR?
+VISA event: STB: 01100000, ESR: 00000001, duration 296.66 ms
+0.32 ms 	 MMEMory:STORe:TRACe:PORTs 1, 'test.s2p', LOGPhase, CIMPedance, 1, 2
+443.00 ms 	 MMEMory:CDIRectory? 
+0.86 ms 	 *OPC? 

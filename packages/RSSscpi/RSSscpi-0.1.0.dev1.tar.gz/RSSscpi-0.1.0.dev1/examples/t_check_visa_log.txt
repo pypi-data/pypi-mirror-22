@@ -1,0 +1,36 @@
+0.56 ms 	 *CLS;*ESE 127;*SRE 36
+0.53 ms 	 SYSTem:COMMunicate:GPIB:SELF:RTERminator EOI
+0.49 ms 	 SYSTem:COMMunicate:CODec UTF8
+1.64 ms 	 SYSTem:LANGuage? 
+0.41 ms 	 *RST 
+0.38 ms 	 INITiate:CONTinuous:ALL OFF
+0.41 ms 	 CONFigure:CHANnel1:NAME 'SP_ch_1'
+0.40 ms 	 SENSe1:SWEep:TYPE LIN
+0.44 ms 	 SENSe1:FREQuency:STARt 100000000.0
+0.44 ms 	 SENSe1:FREQuency:STOP 3000000000.0
+0.43 ms 	 SENSe1:SWEep:POINts 801
+0.46 ms 	 SOURce1:POWer:LEVel:IMMediate:AMPLitude 0
+49.33 ms 	 CALCulate1:PARameter:SELect? 
+0.27 ms 	 CALCulate1:PARameter:DELete 'Trc1'
+0.23 ms 	 CALCulate1:PARameter:SDEFine 'S11', 'S11'
+0.28 ms 	 DISPlay:WINDow1:TRACe:EFEed 'S11'
+0.30 ms 	 CALCulate1:PARameter:SDEFine 'S21', 'S21'
+0.30 ms 	 DISPlay:WINDow1:TRACe:EFEed 'S21'
+0.27 ms 	 CALCulate1:PARameter:SDEFine 'S12', 'S12'
+0.26 ms 	 DISPlay:WINDow1:TRACe:EFEed 'S12'
+0.29 ms 	 CALCulate1:PARameter:SDEFine 'S22', 'S22'
+0.44 ms 	 DISPlay:WINDow1:TRACe:EFEed 'S22'
+0.28 ms 	 DISPlay:WINDow2:STATe ON
+0.28 ms 	 DISPlay:WINDow2:NAME 'Tcheck'
+0.30 ms 	 CALCulate1:PARameter:SDEFine 'T_check', 'S11'
+0.40 ms 	 DISPlay:WINDow2:TRACe:EFEed 'T_check'
+0.35 ms 	 CALCulate1:PARameter:SELect 'T_check'
+0.42 ms 	 CALCulate1:MATH:EXPRession:SDEFine 'linMag(S11*(Re(S21)-Im(S21)) + S12*(Re(S22)-Im(S22))) / ((1-linMag(S11)^2-linMag(S12)^2)*(1-linMag(S21)^2-linMag(S22)^2))^0.5'
+0.32 ms 	 CALCulate1:MATH:STATe ON
+0.28 ms 	 CALCulate1:FORMat REAL
+0.32 ms 	 DISPlay:WINDow:TRACe:Y:SCALe:TOP 1.25, 'T_check'
+0.28 ms 	 DISPlay:WINDow:TRACe:Y:SCALe:BOTTom 0.75, 'T_check'
+0.26 ms 	 DISPlay:WINDow:TRACe:Y:SCALe:RLEVel 1, 'T_check'
+0.25 ms 	 DISPlay:WINDow:TRACe:Y:SCALe:RPOSition 50, 'T_check'
+0.26 ms 	 INITiate:IMMediate:ALL 
+174.97 ms 	 *OPC? 
