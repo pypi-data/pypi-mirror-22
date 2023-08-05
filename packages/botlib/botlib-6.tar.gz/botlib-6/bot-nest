@@ -1,0 +1,111 @@
+#!/usr/bin/env python3
+#
+
+import os, sys
+sys.path.insert(0, os.getcwd())
+
+import importlib
+import shutil
+import urllib
+import urllib.parse
+import urllib.request
+import warnings
+
+pipurl= "https://bootstrap.pypa.io/get-pip.py"
+
+def get_url(url):
+    url = urllib.parse.urlunparse(urllib.parse.urlparse(url))
+    req = urllib.request.Request(url)
+    resp = urllib.request.urlopen(req)
+    resp.data = resp.read()
+    return resp
+
+curdir = os.path.abspath(os.getcwd())
+
+try:
+    fname = sys.argv[1]
+except:
+    fname = curdir.split(os.sep)[-1]
+
+installdir = fname.upper()
+
+print("setting PYTHONPATH to %s" % installdir)
+os.environ['PYTHONPATH'] = installdir
+
+if not os.path.isdir(installdir):
+    os.mkdir(installdir)
+
+try:
+    shutil.rmtree(installdir)
+except Exception as ex:
+    pass
+
+try:
+     shutil.rmtree("dist")
+except Exception as ex:
+     pass
+
+try:
+     shutil.rmtree("%s.egg-info" % fname)
+except Exception as ex:
+     pass
+
+try:
+    os.mkdir("dist")
+except Exception as ex:
+    pass
+
+try:
+    os.mkdir(installdir)
+except Exception as ex:
+    pass
+
+
+try:
+    from setuptools.command.easy_install import main
+    import pkg_resources
+except ImportError as ex:
+    print("setuptools is needed to use bot-nest: %s" % str(ex))
+    os._exit(1)
+
+def do_main():
+    if not os.path.exists("%s/get-pip.py" % installdir):
+        print("downloading pip")
+        resp = get_url(pipurl)
+        f = open("%s/get-pip.py" % installdir, "w")
+        f.write(str(resp.data, "utf-8"))
+        f.flush()
+        f.close()
+        for l in os.popen("python3 %s/get-pip.py -t %s" % (installdir, installdir)).readlines():
+            print(l)
+    for line in os.popen("python3 setup.py sdist").readlines():
+        print(line.strip())
+    fns = os.listdir("dist")
+    target = fname
+    highest = 0
+    for fn in fns:
+       f = fn.split(".")[0]
+       nr = int(f.split("-")[-1])
+       if nr > highest:
+            highest = nr
+            target = fn
+    if os.path.exists("dist"):
+        runstring = '--record=install.log --install-dir=%s -a -U -l %s/dist/%s ' % (installdir, os.getcwd(), target)
+        main(runstring.split())
+    runstring = '--record=install.log --install-dir=%s -a -U sleekxmpp' % installdir
+    main(runstring.split())
+    runstring = '--record=install.log --install-dir=%s -a -U bs4' % installdir
+    main(runstring.split())
+    runstring = '--record=install.log --install-dir=%s -a -U pyasn1' % installdir
+    main(runstring.split())
+    runstring = '--record=install.log --install-dir=%s -a -U pyasn1_modules' % installdir
+    main(runstring.split())
+    runstring = '--record=install.log --install-dir=%s -a -U feedparser' % installdir
+    main(runstring.split())
+    runstring = '--record=install.log --install-dir=%s -a -U setuptools' % installdir
+    main(runstring.split())
+    for line in os.popen("tar zcvf %s.tar.gz %s" % (fname, fname.upper())).readlines():
+        print(line.strip())
+
+if __name__ == "__main__":
+    do_main()
