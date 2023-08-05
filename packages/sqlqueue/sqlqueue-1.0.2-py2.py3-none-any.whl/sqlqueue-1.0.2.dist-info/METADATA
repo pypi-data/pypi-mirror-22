@@ -1,0 +1,61 @@
+Metadata-Version: 2.0
+Name: sqlqueue
+Version: 1.0.2
+Summary: A simple queue lib base on sqlite3
+Home-page: https://github.com/eromoe/sqlqueue
+Author: Mithril
+Author-email: eromoe@users.noreply.github.com
+License: UNKNOWN
+Keywords: sql,sqlite3,local,file,queue
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Object Brokering
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+
+# A simple queue lib base on sqlite3
+
+----------
+
+Feature:
+- Local disk queue base on sqlite3
+- Simple and easy to use
+
+
+Usage:
+
+```python
+
+from sqlqueue import Queue
+queue = Queue('myqueue')
+
+print queue.get_nowait()
+>>> None
+
+queue.put('sqlqueue')
+queue.put(1)
+queue.put({'foo':1, 'bar':2})
+
+print queue.get_nowait()
+>>> 'sqlqueue'
+print queue.get_nowait()
+>>> 1
+print queue.get_nowait()
+>>> {'bar': 2, 'foo': 1}
+
+```
+
+
+This is a copy from [http://flask.pocoo.org/snippets/88/](http://flask.pocoo.org/snippets/88/) with little alternation
+
+
+
