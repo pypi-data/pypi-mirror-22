@@ -1,0 +1,20 @@
+Metadata-Version: 1.0
+Name: dproxify
+Version: 0.1
+Summary: An object daemon proxifier for GNU/Linux (Python 3.x)
+Home-page: https://github.com/phr4nz/dproxify
+Author: nature thorugh Francesco Palumbo aka phranz
+Author-email: franzodev@gmail.com
+License: GNU General Public License v3
+Description: ------------------------------------------------------
+        dproxify is a object daemon proxifier for GNU/Linux
+        (Python 3.x), released under the terms of GPL3 license.
+        -------------------------------------------------------
+        
+        Any custom object which is pickleable, is loaded
+        into a detached daemon which communicate with
+        clients (one at a time) through AFUnix sockets.
+        With some exceptions (this is an alpha project),
+        every call to object's methods through client is
+        executed/computed on the daemon.
+Platform: UNKNOWN
