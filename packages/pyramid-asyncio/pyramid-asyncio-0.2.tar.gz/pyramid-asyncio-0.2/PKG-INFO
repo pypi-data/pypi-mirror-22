@@ -1,0 +1,89 @@
+Metadata-Version: 1.1
+Name: pyramid-asyncio
+Version: 0.2
+Summary: Pyramid Asyncio Glue
+Home-page: https://github.com/mardiros/pyramid_asyncio
+Author: Guillaume Gauvrit
+Author-email: guillaume@gauvr.it
+License: BSD-derived (http://www.repoze.org/LICENSE.txt)
+Description: ===============
+        pyramid-asyncio
+        ===============
+        
+        A lib that override pyramid to build asyncio web application.
+        
+        Basically, it change views to asyncio coroutine.
+        
+        
+        
+        .. important ::
+        
+          This library is a proof of concept and has not been ported to recent version
+          of Pyramid and aiohttp.
+        
+        
+        Getting Started
+        ---------------
+        
+        pyramid_asyncio add two directives to treat views as coroutine.
+        
+        * config.add_coroutine_view()
+        
+        This is a coroutine version of the ``config.add_view``.
+        pyramid_asyncio provide also a decorator ``coroutine_view_config`` which
+        is the view_config version for coroutine view.
+        
+        * config.make_asyncio_app()
+        
+        This create the wsgi app that work with the aiohttp gunicorn worker.
+        aiohttp.worker.AsyncGunicornWorker
+        
+        config.make_wsgi_app() could not be used because the pyramid router
+        must be changed.
+        
+        
+        The simple way to create the pyramid app with asyncio is to use the
+        scaffold.
+        
+        pyramid_asyncio comme with a scaffold that create a "hello world" application,
+        check it 
+        
+        ::
+        
+            pcreate -s aio_jinja2 helloworld
+        
+        
+        
+        Changelog
+        =========
+        
+        0.2 Released on 2017-05-07
+        --------------------------
+        
+        - Pin version of Pyramid 1.5
+        
+          The ViewDeriver has evolved and is now an interface IViewDeriver.
+          Unfortunately, this make things harder for replacing the default ViewDeriver
+          installed.
+        
+        - Pin version of aiohttp.
+        
+           WSGI/Gunicorn support has been dropped in version 2.
+        
+        
+        0.1 Released on 2015-03-30 
+        --------------------------
+        
+        - Initial Release
+        
+        
+Keywords: pyramid asyncio
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Framework :: Pyramid
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Classifier: Intended Audience :: Developers
+Classifier: License :: Repoze Public License
