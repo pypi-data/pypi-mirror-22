@@ -1,0 +1,272 @@
+==================================
+Preview\_generator's Documentation
+==================================
+
+------------
+Presentation
+------------
+
+This module allows to generate jpeg, pdf, text or html preview for virtually any kind of files including a cache management.
+It allows to generate preview for a given page and put it in cache. The context of creation of this module (as an example of use context) was for **Tracim**, a github project (https://github.com/Tracim/tracim) where users can put file on a
+repository in order to share it with other users. The only way to find a file was with his name. Hence it was decided to generate previews of the files in order to ease the location of one. **Only works on Linux**.
+
+It is distributed with MIT license (https://choosealicense.com/licenses/mit/)
+
+--------------
+Format handled
+--------------
+
+
++-----------------------+-----------+--------+--------+--------+-------+
+|                       |   JPEG    |  PDF   | TEXT   | HTML   |  JSON |
++=======================+===========+========+========+========+=======+
+| PNG                   |    ☑      |        |        |        |   ☑   |
++-----------------------+-----------+--------+--------+--------+-------+
+| JPEG                  |    ☑      |        |        |        |   ☑   |
++-----------------------+-----------+--------+--------+--------+-------+
+| BMP                   |    ☑      |        |        |        |   ☑   |
++-----------------------+-----------+--------+--------+--------+-------+
+| GIF                   |    ☑      |        |        |        |   ☑   |
++-----------------------+-----------+--------+--------+--------+-------+
+| PDF                   |    ☑      |        |        |        |       |
++-----------------------+-----------+--------+--------+--------+-------+
+| Compressed            |           |        |   ☑    |   ☑    |   ☑   |
+| files                 |           |        |        |        |       |
++-----------------------+-----------+--------+--------+--------+-------+
+| Office files          |       ☑   |   ☑    |        |        |       |
+| (word, LibreOffice)   |           |        |        |        |       |
++-----------------------+-----------+--------+--------+--------+-------+
+| Text                  |           |        |   ☑    |        |       |
++-----------------------+-----------+--------+--------+--------+-------+
+
+
+------------
+Installation
+------------
+
+`pip install PyPreviewGenerator`
+
+
+-----------
+Requirement
+-----------
+
+Some packages are needed but may also be already on your OS. You can check if they are already installed or you can just try to install PyPreviewGenerator and if the `pip install PyPreviewGenerator` command fails, do :
+
+`apt-get install zlib1g-dev`
+
+`apt-get install libjpeg-dev`
+
+and try `pip install PyPreviewGenerator` again.
+
+This package uses several libraries :
+
+  - wand
+  - python-magick
+  - pillow
+  - PyPDF2
+
+These should be automatically installed with the `pip install PyPreviewGenerator` command. But if some error occurs quoting one of these library, try to install them 1 by 1 with a simple `pip install ...` to locate the library that causes the problem.
+
+**WARNING!** about **LibreOffice**
+
+If you want to use the conversion from an office file to pdf or jpeg, ensure that **LibreOffice** is already installed on the computer because the conversion is made by the Libreoffice's export feature.
+
+LibreOffice's download page : https://fr.libreoffice.org/download/libreoffice-stable/
+
+
+-----
+Usage
+-----
+
+Getting a preview
+-----------------
+
+.. code:: python
+
+  from PyPreviewGenerator.manager import PreviewManager
+  manager = PreviewManager(path='/home/user/Pictures/')
+  path_to_file = manager.get_jpeg_preview(
+    file_path='/home/user/Pictures/myfile.gif',
+    height=100,
+    width=100,
+  )
+  print('Preview created at path : ', path_to_file)
+
+
+
+
+The preview manager
+-------------------
+
+.. code:: python
+
+  preview_manager = PreviewManager(cache_path)
+
+*args :*
+
+   *cache_path : a String of the path to the directory where the cache file will be stored*
+
+*returns :*
+
+  *a PreviewManager Object*
+
+The builders
+------------
+
+Here is the way it is meant to be used
+
+For Office types into PDF :
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+  preview_manager = PreviewManager(cache_path)
+  preview = preview_manager.get_pdf_preview(file_path,page=page_id)
+
+-> Will create a preview from an office file into a pdf file
+
+*args :*
+
+  *file_path : the String of the path where is the file you want to get the preview*
+
+  *page : the page you want to get. If not mentioned all the pages will be returned. First page is page 0*
+
+*returns :*
+
+  *a FileIO stream of bytes of the pdf preview*
+
+For images(GIF, BMP, PNG, JPEG, PDF) into jpeg :
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+  preview_manager = PreviewManager(cache_path)
+  preview = preview_manager.get_jpeg_preview(file_path,height=1024,width=526)
+
+-> Will create a preview from an image file into a jpeg file of size 1024 * 526
+
+*args :*
+
+  *file_path : the String of the path where is the file you want to get the preview*
+
+  *height : height of the preview in pixels*
+
+  *width : width of the preview in pixels. If not mentioned, width will be the same as height*
+
+*returns :*
+
+  *a FileIO stream of bytes of the jpeg preview*
+
+Other conversions :
+~~~~~~~~~~~~~~~~~~~
+
+The principle is the same as above
+
+**Zip to text or html :** will build a list of files into texte/html inside the json
+
+**Office to jpeg :** will build the pdf out of the office file and then build the jpeg.
+
+**Text to text :** mainly just a copy stored in the cache
+
+
+---------------
+Cache mechanism
+---------------
+
+
+Naming :
+--------
+
+The name of the preview generated in the cache directory will be :
+
+{file_name}-[{size}-]{file_md5sum}[({page})]{extension}
+  file_name = the name of the file you asked for a preview without the extension.
+
+  size = the size you asked for the preview. In case of a Jpeg preview.
+
+  file_md5sum = the md5sum of the entire path of the file. To avoid conflicts like files that have the same name but are in different directory.
+
+  page = the page asked in case of pdf or office document preview.
+
+  extensions = the extension of the preview (.jpeg for a jpeg, .txt for a text, etc)
+
+
+Example :
+---------
+
+These scripts :
+
+GIF to JPEG :
+~~~~~~~~~~~~~
+
+
+.. code:: python
+
+  import os
+  from PyPreviewGenerator.manager import PreviewManager
+  current_dir = os.path.dirname(os.path.abspath(__file__)) +'/'
+
+  manager = PreviewManager(path=current_dir + 'cache')
+  path_to_file = manager.get_jpeg_preview(
+      file_path=current_dir + 'the_gif.gif',
+      height=512,
+      width=512,
+  )
+
+  print('Preview created at path : ', path_to_file)
+
+will print
+
+  Preview created at path : the_gif-512x512-60dc9ef46936cc4fff2fe60bb07d4260.jpeg
+
+ODT to JPEG :
+~~~~~~~~~~~~~
+
+.. code:: python
+
+  import os
+  from PyPreviewGenerator.manager import PreviewManager
+  current_dir = os.path.dirname(os.path.abspath(__file__)) +'/'
+
+  manager = PreviewManager(path=current_dir + 'cache')
+  path_to_file = manager.get_jpeg_preview(
+      file_path=current_dir + 'the_odt.odt',
+      page=1,
+      height=1024,
+      width=1024,
+  )
+
+  print('Preview created at path : ', path_to_file)
+
+will print
+
+  Preview created at path : the_odt-1024x1024-c8b37debbc45fa96466e5e1382f6bd2e(1).jpeg
+
+ZIP to Text :
+~~~~~~~~~~~~~
+.. code:: python
+
+  import os
+  from PyPreviewGenerator.manager import PreviewManager
+  current_dir = os.path.dirname(os.path.abspath(__file__)) +'/'
+
+  manager = PreviewManager(path=current_dir + 'cache')
+  path_to_file = manager.get_text_preview(
+      file_path=current_dir + 'the_zip.zip',
+  )
+
+  print('Preview created at path : ', path_to_file)
+
+will print
+
+  Preview created at path : the_zip-a733739af8006558720be26c4dc5569a.txt
+
+
+
+
+
+
+
+
+
