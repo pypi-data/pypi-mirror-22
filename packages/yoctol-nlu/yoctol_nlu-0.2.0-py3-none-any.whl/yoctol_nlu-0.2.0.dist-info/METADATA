@@ -1,0 +1,75 @@
+Metadata-Version: 2.0
+Name: yoctol-nlu
+Version: 0.2.0
+Summary: Yoctol Natural Language Understanding SDK
+Home-page: UNKNOWN
+Author: cph
+Author-email: UNKNOWN
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: gql (==0.1.0)
+Requires-Dist: requests (==2.13.0)
+
+# yoctol-nlu-py
+Yoctol Natural Language Understanding SDK for python.
+
+## Install
+```
+pip install yoctol-nlu
+```
+
+## Usage
+
+### Intent Classifier Service
+
+For new user:
+```python
+from ynlu import IntentClassifierClient
+
+client = IntentClassifierClient(
+    token='TOKEN',
+)
+
+client.create_classifier(
+    name='clf_for_test'
+)
+
+# to get the classifier id:
+# print(client.classifier_id)
+
+# create intent, utterances pairs
+# This is a idempotent action, since it will check every item if it is added before.
+success, msg = client.add_intent_utterance_pairs([
+    {'intent': '打招呼', 'utterance': '嗨'},
+    {'intent': '感謝', 'utterance': '謝謝'},
+    {'intent': '說再見', 'utterance': '再見'},
+    {'intent': '打招呼', 'utterance': '早安'},
+    {'intent': '打招呼', 'utterance': '你好'},
+    {'intent': '感謝', 'utterance': '非常感謝'},
+    {'intent': '說再見', 'utterance': '掰掰'},
+    {'intent': '感謝', 'utterance': '有你真好'},
+    {'intent': '說再見', 'utterance': '下次見'},
+]) 
+
+if success:
+    train_success, msg = client.train()
+    if train_success:
+        result = client.predict('你好嗎') # This is a action without side-effects
+```
+
+For existing classifier:
+```python
+from ynlu import IntentClassifierClient
+
+client = IntentClassifierClient(
+    token='TOKEN',
+)
+
+client.get_classifier(classifier_id='CLASSIFIER_ID')
+
+result = client.predict('你好嗎')
+```
+
+
