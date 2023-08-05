@@ -1,0 +1,62 @@
+Metadata-Version: 1.1
+Name: results-schema
+Version: 1.0.3
+Summary: Store results of modeling runs
+Home-page: https://github.com/dssg/results-schema
+Author: Center for Data Science and Public Policy
+Author-email: datascifellows@gmail.com
+License: BY DOWNLOADING results-schema PROGRAM YOU AGREE TO THE FOLLOWING TERMS OF USE:
+
+Copyright ©2016.  The University of Chicago (“Chicago”). All Rights Reserved.
+
+Permission to use, copy, modify, and distribute this software, including all object code and source code, and any accompanying documentation (together the “Program”) for educational and not-for-profit research purposes, without fee and without a signed licensing agreement, is hereby granted, provided that the above copyright notice, this paragraph and the following three paragraphs appear in all copies, modifications, and distributions. For the avoidance of doubt, educational and not-for-profit research purposes excludes any service or part of selling a service that uses the Program. To obtain a commercial license for the Program, contact the Technology Commercialization and Licensing, Polsky Center for Entrepreneurship and Innovation, University of Chicago, 1452 East 53rd Street, 2nd floor, Chicago, IL 60615.
+
+Created by Data Science and Public Policy, University of Chicago
+
+The Program is copyrighted by Chicago. The Program is supplied "as is", without any accompanying services from Chicago. Chicago does not warrant that the operation of the Program will be uninterrupted or error-free. The end-user understands that the Program was developed for research purposes and is advised not to rely exclusively on the Program for any reason.
+
+IN NO EVENT SHALL CHICAGO BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THE PROGRAM, EVEN IF CHICAGO HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. CHICAGO SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE PROGRAM PROVIDED HEREUNDER IS PROVIDED "AS IS".  CHICAGO HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+
+Description: # results-schema
+        Store results of modeling runs in a relational database
+        
+        ## Quick Start
+        
+        1. Install
+        
+        `pip install git+https://github.com/dssg/results-schema.git`
+        
+        2. Create a YAML file with your database credentials (see example_db_config.yaml), or an environment variable 'DBURL' with a connection string. The database must be created already.
+        
+        3. Call 'upgrade_db' function from Python console or script
+        
+        ```
+        >>> from results_schema import upgrade_db
+        >>> upgrade_db('my_db_config.yaml')
+        ```
+        
+        This command will create a 'results' schema and the necessary tables.
+        
+        
+        ## Modifying the schema
+        
+        [Alembic](http://alembic.zzzcomputing.com/en/latest/tutorial.html) is a schema migrations library written in Python. It allows us to auto-generate migrations to run incremental database schema changes, such as adding or removing a column. This is done by comparing the definition of a schema in code with that of a live database. There are many valid ways to create migrations, which you can read about in [Alembic's documentation](http://alembic.zzzcomputing.com/en/latest/tutorial.html). But here is a common workflow we will use to modify the schema.
+        
+        1. Have a candidate database for comparison. You can use a toy database for this that you upgrade to the current master, or use your project database if the results schema has not been manually modified.
+        
+        2. Make the desired modifications to [results_schema.schema](results_schema/schema.py).
+        
+        3. Autogenerate a migration: `alembic -c results_schema/alembic.ini -x db_config_file=my_db_config.yaml revision --autogenerate` - This will look at the difference between your schema definition and the database, and generate a new file in results_schema/alembic/versions/.
+        
+        4. Inspect the file generated in step 3 and make sure that the changes it is suggesting make sense. Make any modifications you want; the autogenerate functionality is just meant as a guideline.
+        
+        5. Upgrade the database: `alembic -c results_schema/alembic.ini -x db_config_file=my_db_config.yaml upgrade head` 
+        
+        6. If everything looks good, create a pull request!
+        
+Keywords: analytics datascience modeling modelevaluation
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
