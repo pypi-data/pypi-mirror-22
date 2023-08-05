@@ -1,0 +1,57 @@
+Metadata-Version: 1.1
+Name: calico
+Version: 1.0a2
+Summary: I/O checker for command-line programs.
+Home-page: https://bitbucket.org/uyar/calico
+Author: H. Turgut Uyar
+Author-email: uyar@itu.edu.tr
+License: GPL
+Description: Calico is a utility for checking command-line programs in terms of their
+        input and output. It checks whether a program generates the correct output
+        when given some inputs. It was developed to evaluate simple programming
+        assignments in an introductory programming course.
+        
+        :PyPI: https://pypi.python.org/pypi/calico/
+        :Repository: https://bitbucket.org/uyar/calico
+        :Documentation: https://calico.readthedocs.io/
+        
+        Calico has been tested with Python 3.4. You can install the latest version
+        from PyPI::
+        
+           pip install calico
+        
+        Calico uses `pexpect`_ for interacting with the program it is checking.
+        The file that specifies the inputs and outputs for the checks
+        is in `YAML`_ format.
+        
+        .. _pexpect: https://pexpect.readthedocs.io/
+        .. _YAML: http://www.yaml.org/
+        
+        
+        
+        
+        History
+        =======
+        
+        1.0a2 (2017-05-04)
+        ------------------
+        
+        * Switched configuration format from RSON to YAML.
+        * Added support for jailing test runs.
+        * Added option for test visibility in report.
+        
+        1.0a1 (unreleased)
+        ------------------
+        
+        * First usable version.
+        
+Keywords: cli testing
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Education :: Testing
+Classifier: Topic :: Utilities
