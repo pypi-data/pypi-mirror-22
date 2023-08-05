@@ -1,0 +1,106 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="zope">
+  <include package="zope.component" file="meta.zcml" />
+  <!-- view directive -->
+  <include package="zope.browserpage" file="meta.zcml" />
+  <!-- resource directive -->
+  <include package="zope.browserresource" file="meta.zcml" />
+  <!-- publisher directivie -->
+  <include package="zope.app.publication" file="meta.zcml" />
+  <!-- grant directives -->
+  <include package="zope.securitypolicy" file="meta.zcml" />
+  <!-- principal directives -->
+  <include package="zope.security" file="meta.zcml" />
+  <include package="zope.principalregistry" file="meta.zcml" />
+
+  <!-- defaultView directive -->
+  <include package="zope.publisher" file="meta.zcml" />
+
+  <!-- menu/addMenuItem directive -->
+  <include package="zope.browsermenu" file="meta.zcml" />
+
+
+  <include package="zope.applicationcontrol" />
+  <include package="zope.browsermenu" />
+  <include package="zope.container" />
+  <include package="zope.component" />
+  <include package="zope.generations" />
+  <include package="zope.generations" file="subscriber.zcml" />
+  <include package="zope.location" />
+  <include package="zope.login" />
+  <include package="zope.password" />
+  <include package="zope.principalregistry" />
+  <include package="zope.publisher" />
+  <include package="zope.security" />
+  <include package="zope.securitypolicy" />
+  <include package="zope.site" />
+  <include package="zope.traversing" />
+  <include package="zope.traversing.browser" />
+
+  <!-- These normally come from zope.app.zcmlfiles/menus.zcml -->
+  <browser:menu
+      id="zmi_views"
+      title="Views"
+      description="Menu for displaying alternate representations of an object"
+      />
+
+  <!-- Register the Application folder -->
+  <include package="zope.app.appsetup" />
+
+  <!-- @@standard_macros -->
+  <include package="zope.app.basicskin" />
+
+  <include package="zope.app.generations" />
+  <include package="zope.app.publication" />
+
+  <browser:defaultView name="index.html" />
+
+
+  <!-- Security setup -->
+  <securityPolicy
+    component="zope.securitypolicy.zopepolicy.ZopeSecurityPolicy" />
+
+  <role id="zope.Anonymous" title="Everybody"
+        description="All users have this role implicitly" />
+  <role id="zope.Manager" title="Site Manager" />
+
+  <!-- Replace the following directive if you don't want public access
+       -->
+  <grant permission="zope.View"
+         role="zope.Anonymous" />
+
+  <grantAll role="zope.Manager" />
+
+  <!-- Principals -->
+
+  <unauthenticatedPrincipal
+      id="zope.anybody"
+      title="Unauthenticated User" />
+
+  <unauthenticatedGroup
+    id="zope.Anybody"
+    title="Unauthenticated Users"
+    />
+
+  <authenticatedGroup
+    id="zope.Authenticated"
+    title="Authenticated Users"
+    />
+
+  <everybodyGroup
+    id="zope.Everybody"
+    title="All Users"
+    />
+
+  <!-- Principal that tests generally run as -->
+  <principal
+      id="zope.globalmgr"
+      title="Manager"
+      login="globalmgr"
+      password="globalmgrpw" />
+
+  <grant role="zope.Manager" principal="zope.globalmgr" />
+
+</configure>
