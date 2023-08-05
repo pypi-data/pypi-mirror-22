@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Module grab.spider &#8212; Grab 0.6 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module grab.document" href="grab_document.html" />
+    <link rel="prev" title="Module grab.cookie" href="grab_cookie.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="grab_document.html" title="Module grab.document"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="grab_cookie.html" title="Module grab.cookie"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Grab 0.6 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="module-grab.spider.base"><span id="api-grab-spider-base"></span></span><div class="section" id="module-grab.spider.base">
+<span id="module-grab-spider"></span><h1>Module grab.spider<a class="headerlink" href="#module-grab.spider.base" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="grab.spider.base.Spider">
+<em class="property">class </em><code class="descclassname">grab.spider.base.</code><code class="descname">Spider</code><span class="sig-paren">(</span><em>thread_number=None</em>, <em>network_try_limit=None</em>, <em>task_try_limit=None</em>, <em>request_pause=&lt;object object&gt;</em>, <em>priority_mode='random'</em>, <em>meta=None</em>, <em>only_cache=False</em>, <em>config=None</em>, <em>args=None</em>, <em>taskq=None</em>, <em>network_result_queue=None</em>, <em>parser_result_queue=None</em>, <em>is_parser_idle=None</em>, <em>shutdown_event=None</em>, <em>mp_mode=False</em>, <em>parser_pool_size=None</em>, <em>parser_mode=False</em>, <em>parser_requests_per_process=10000</em>, <em>http_api_port=None</em>, <em>transport='multicurl'</em>, <em>grab_transport='pycurl'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asynchronous scraping framework.</p>
+<dl class="method">
+<dt id="grab.spider.base.Spider.add_task">
+<code class="descname">add_task</code><span class="sig-paren">(</span><em>task</em>, <em>raise_error=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.add_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.add_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add task to the task queue.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.check_task_limits">
+<code class="descname">check_task_limits</code><span class="sig-paren">(</span><em>task</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.check_task_limits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.check_task_limits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that task&#8217;s network &amp; try counters do not exceed limits.</p>
+<p>Returns:
+* if success: (True, None)
+* if error: (False, reason)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.is_valid_network_response_code">
+<code class="descname">is_valid_network_response_code</code><span class="sig-paren">(</span><em>code</em>, <em>task</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.is_valid_network_response_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.is_valid_network_response_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Answer the question: if the response could be handled via
+usual task handler or the task failed and should be processed as error.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.load_proxylist">
+<code class="descname">load_proxylist</code><span class="sig-paren">(</span><em>source</em>, <em>source_type=None</em>, <em>proxy_type='http'</em>, <em>auto_init=True</em>, <em>auto_change=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.load_proxylist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.load_proxylist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load proxy list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>source</strong> &#8211; Proxy source.
+Accepts string (file path, url) or <code class="docutils literal"><span class="pre">BaseProxySource</span></code> instance.</li>
+<li><strong>source_type</strong> &#8211; The type of the specified source.
+Should be one of the following: &#8216;text_file&#8217; or &#8216;url&#8217;.</li>
+<li><strong>proxy_type</strong> &#8211; Should be one of the following: &#8216;socks4&#8217;, &#8216;socks5&#8217; or&#8217;http&#8217;.</li>
+<li><strong>auto_change</strong> &#8211; If set to <cite>True</cite> then automatical random proxy rotation will be used.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Proxy source format should be one of the following (for each line):</dt>
+<dd><ul class="first last simple">
+<li>ip:port</li>
+<li>ip:port:login:password</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.prepare">
+<code class="descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p>You can do additional spider customization here
+before it has started working. Simply redefine
+this method in your Spider class.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.prepare_parser">
+<code class="descname">prepare_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.prepare_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.prepare_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>You can do additional spider customization here
+before it has started working. Simply redefine
+this method in your Spider class.</p>
+<p>This method is called only from Spider working in parser mode
+that, in turn, is spawned automatically by main spider proces
+working in multiprocess mode.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.process_grab_proxy">
+<code class="descname">process_grab_proxy</code><span class="sig-paren">(</span><em>task</em>, <em>grab</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.process_grab_proxy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.process_grab_proxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign new proxy from proxylist to the task</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.process_handler_result">
+<code class="descname">process_handler_result</code><span class="sig-paren">(</span><em>result</em>, <em>task</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.process_handler_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.process_handler_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process result received from the task handler.</p>
+<p>Result could be:
+* None
+* Task instance
+* Data instance.
+* dict:</p>
+<blockquote>
+<div><ul class="simple">
+<li>{type: &#8220;stat&#8221;, counters: [], collections: []}</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>ResponseNotValid-based exception</li>
+<li>Arbitrary exception</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.process_next_page">
+<code class="descname">process_next_page</code><span class="sig-paren">(</span><em>grab</em>, <em>task</em>, <em>xpath</em>, <em>resolve_base=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.process_next_page"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.process_next_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate task for next page.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>grab</strong> &#8211; Grab instance</li>
+<li><strong>task</strong> &#8211; Task object which should be assigned to next page url</li>
+<li><strong>xpath</strong> &#8211; xpath expression which calculates list of URLS</li>
+<li><strong>**kwargs</strong> &#8211; <p>extra settings for new task object</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">follow_links</span><span class="p">(</span><span class="n">grab</span><span class="p">,</span> <span class="s1">&#39;topic&#39;</span><span class="p">,</span> <span class="s1">&#39;//div[@class=&quot;topic&quot;]/a/@href&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main method. All work is done here.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.run_parser">
+<code class="descname">run_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.run_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.run_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main work cycle of spider process working in parser-mode.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.setup_cache">
+<code class="descname">setup_cache</code><span class="sig-paren">(</span><em>backend='mongo'</em>, <em>database=None</em>, <em>use_compression=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.setup_cache"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.setup_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup cache.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>backend</strong> &#8211; Backend name
+Should be one of the following: &#8216;mongo&#8217;, &#8216;mysql&#8217; or &#8216;postgresql&#8217;.</li>
+<li><strong>database</strong> &#8211; Database name.</li>
+<li><strong>kwargs</strong> &#8211; Additional credentials for backend.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.setup_queue">
+<code class="descname">setup_queue</code><span class="sig-paren">(</span><em>backend='memory'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.setup_queue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.setup_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup queue.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>backend</strong> &#8211; Backend name
+Should be one of the following: &#8216;memory&#8217;, &#8216;redis&#8217; or &#8216;mongo&#8217;.</li>
+<li><strong>kwargs</strong> &#8211; Additional credentials for backend.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.shutdown">
+<code class="descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.shutdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>You can override this method to do some final actions
+after parsing has been done.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.start_task_generators">
+<code class="descname">start_task_generators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.start_task_generators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.start_task_generators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process <cite>self.initial_urls</cite> list and <cite>self.task_generator</cite>
+method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method set internal flag which signal spider
+to stop processing new task and shuts down.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.task_generator">
+<code class="descname">task_generator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.task_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.task_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>You can override this method to load new tasks smoothly.</p>
+<p>It will be used each time as number of tasks
+in task queue is less then number of threads multiplied on 2
+This allows you to not overload all free memory if total number of
+tasks is big.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.task_generator_thread_wrapper">
+<code class="descname">task_generator_thread_wrapper</code><span class="sig-paren">(</span><em>task_generator</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.task_generator_thread_wrapper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.task_generator_thread_wrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load new tasks from <cite>self.task_generator_object</cite>
+Create new tasks.</p>
+<p>If task queue size is less than some value
+then load new tasks from tasks file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grab.spider.base.Spider.update_grab_instance">
+<code class="descname">update_grab_instance</code><span class="sig-paren">(</span><em>grab</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grab/spider/base.html#Spider.update_grab_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grab.spider.base.Spider.update_grab_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use this method to automatically update config of any
+<cite>Grab</cite> instance created by the spider.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="grab_cookie.html"
+                        title="previous chapter">Module grab.cookie</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="grab_document.html"
+                        title="next chapter">Module grab.document</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/grab_spider_base.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="grab_document.html" title="Module grab.document"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="grab_cookie.html" title="Module grab.cookie"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Grab 0.6 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Gregory Petukhov.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+    </div>
+  </body>
+</html>
