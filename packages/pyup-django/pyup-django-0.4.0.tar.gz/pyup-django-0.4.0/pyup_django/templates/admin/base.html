@@ -1,0 +1,84 @@
+{% extends "admin/base.html" %}
+{% block extrastyle %}
+    {{ block.super }}
+    <style>
+
+    .pyup-insecure{
+      background: #ff1325 !important;
+    }
+
+    .pyup-header{
+       width: 100%;
+      color: white;
+      overflow: hidden;
+      padding: 0px 10px 20px 40px;
+    }
+    .pyup-header.dj-18{
+      padding: 0px 10px 10px 10px;
+    }
+
+    #pyup-show{
+      cursor: pointer;
+    }
+
+    #pyup-vulns{
+        padding: 10px;
+        display: none;
+    }
+
+    #pyup-chevron{
+        font-size: 8px;
+    }
+
+
+  </style>
+{% endblock %}
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) {
+
+            function check() {
+                var path = '{% url "admin:pyup" %}';
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.onreadystatechange = function () {
+                    if (httpRequest.readyState === 4) {
+                        if (httpRequest.status === 200) {
+                            var data = JSON.parse(httpRequest.responseText);
+                            displayBanner(data);
+                        }
+                    }
+                };
+                httpRequest.open('GET', path);
+                httpRequest.send();
+            }
+
+            function displayBanner(data) {
+                var header = document.getElementById("header");
+                if (data.insecure) {
+                    header.className += "pyup-insecure";
+                    header.outerHTML += data.template;
+                }
+
+            }
+
+            var nextRunAt = new Date();
+            var insecure = true;
+            //
+            {% if request.session.pyup_django %}
+            nextRunAt.setTime({{ request.session.pyup_django.run_again_at }} * 1000);
+            insecure = {% if request.session.pyup_django.insecure %}true{% else %}false{% endif %};
+            {% endif %}
+            if(nextRunAt < Date.now() || insecure){
+              // result of the last run is outdated, check again
+              check();
+            }else{
+              // result of the last run is still valid, use the data from the session to display the message
+              displayBanner({
+                "insecure": insecure,
+                "template": '{{ request.session.pyup_django.template|safe }}'
+              });
+            }
+        });
+</script>
+{% endblock %}
