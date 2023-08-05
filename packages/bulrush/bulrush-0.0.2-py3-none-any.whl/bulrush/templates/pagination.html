@@ -1,0 +1,14 @@
+<nav class="pagination is-centered">
+  <a class="pagination-previous{% if not articles_page.has_previous() %} is-disabled{% endif %}"
+      href="{{ SITEURL }}/{{ articles_previous_page.url }}">
+    Previous
+  </a>
+  <a class="pagination-next{% if not articles_page.has_next() %} is-disabled{% endif %}"
+      href="{{ SITEURL }}/{{ articles_next_page.url }}">
+    Next page
+  </a>
+  <ul class="pagination-list">
+    <li>Page {{ articles_page.number }} / {{ articles_paginator.num_pages }}</li>
+  </ul>
+</nav>
+<br>
