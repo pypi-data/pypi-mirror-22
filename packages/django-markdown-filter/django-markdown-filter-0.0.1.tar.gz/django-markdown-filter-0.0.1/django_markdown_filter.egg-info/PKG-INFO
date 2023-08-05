@@ -1,0 +1,47 @@
+Metadata-Version: 1.1
+Name: django-markdown-filter
+Version: 0.0.1
+Summary: Markdown template filter for Django.
+Home-page: https://github.com/mrtc0/django-markdown-filter
+Author: mrtc0
+Author-email: mrtc0.py@gmail.com
+License: MIT
+Description: # django-markdown-filter
+        
+        # Usage
+        
+        ```
+        {% markdown_filter %}
+        {{ model|markdown_filter|safe }}
+        ```
+        
+        See example.
+        
+        # Install
+        
+        ```
+        pip install django-markdown-filter
+        ```
+        
+        To enable dajngo-markdown-filter in your project you need to add it to INSTALLED_APPS in your projects settings.py file:
+        ```
+        INSTALLED_APPS = [
+            ...
+            'markdown_filter',
+            ...
+        ]
+        ```
+        
+        Add whitelist HTML tags to your projects settings.py file:
+        ```
+        MARKDOWNIFY_WHITELIST_TAGS = [
+            'a',
+            'p',
+            'code',
+            'h1',
+        ]
+        
+        ```
+        
+Platform: UNKNOWN
+Classifier: Framework :: Django
