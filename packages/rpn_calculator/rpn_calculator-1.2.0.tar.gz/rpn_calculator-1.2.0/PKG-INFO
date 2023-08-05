@@ -1,0 +1,68 @@
+Metadata-Version: 1.1
+Name: rpn_calculator
+Version: 1.2.0
+Summary: RPN calculator for CLI
+Home-page: https://github.com/massongit/rpn_calculator
+Author: Masaya SUZUKI
+Author-email: suzukimasaya428@gmail.com
+License: MIT
+Description: rpn\_calculator
+        ===============
+        
+        RPN Calculator for CLI
+        
+        Environment
+        -----------
+        
+        -  Python 3.5.2
+        -  Python 2.7.12
+        
+        Supported operations
+        --------------------
+        
+        +-------------+------------------+
+        | Operation   | Distraction      |
+        +=============+==================+
+        | ``+``       | Addition         |
+        +-------------+------------------+
+        | ``-``       | Subtraction      |
+        +-------------+------------------+
+        | ``*``       | Multiplication   |
+        +-------------+------------------+
+        | ``/``       | Division         |
+        +-------------+------------------+
+        | ``%``       | Residue          |
+        +-------------+------------------+
+        | ``^``       | Power            |
+        +-------------+------------------+
+        
+        Example
+        -------
+        
+        Case: ``10 * 5 + 2``
+        
+        ::
+        
+            $ python rpn.py
+            > 10  
+            10.0
+            > 5*
+            5.0
+            50.0
+            > 2+
+            2.0
+            52.0
+            >
+        
+        Licence
+        -------
+        
+        Copyright (c) 2017 Masaya SUZUKI <suzukimasaya428@gmail.com>
+        
+        Released under the MIT license
+        
+Keywords: RPN Calculator
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
