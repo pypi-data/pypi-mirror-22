@@ -1,0 +1,156 @@
+Metadata-Version: 1.1
+Name: factoirc
+Version: 0.6
+Summary: Bidirectional IRC bridge for Factorio
+Home-page: https://github.com/mickael9/factoirc
+Author: Mickaël Thomas
+Author-email: mickael9@gmail.com
+License: MIT
+Description: ========
+        FactoIRC
+        ========
+        
+        FactoIRC is a bidirectional IRC bridge between Factorio and IRC.
+        It comes as a plugin for the irc3_ python module.
+        
+        It can join one or more channels and forward messages back and forth between IRC and Factorio.
+        
+        Some IRC commands are also provided :
+        
+        - **!rcon**: Execute an RCON command and return the result.
+        - **!players**: Get the list of the currently online players.
+        
+        FactoIRC uses the RCON protocol introduced in Factorio 0.13 to forward messages from IRC to Factorio.
+        As a result, FactoIRC **will not work with Factorio 0.12** and earlier versions.
+        
+        Forwarding Factorio chat messages to IRC requires access to the Factorio server output which can be achieved using several methods depending on your setup.
+        
+        Compatibility
+        -------------
+        
+        *On Windows, forwarding in the IRC -> Factorio direction is only supported starting from Factorio 0.15 and using the console log* (`--console-log`)
+        : https://forums.factorio.com/viewtopic.php?f=49&t=37108.
+        
+        Join/leave messages should work with Factorio 0.13 but are broken in 0.14 (https://forums.factorio.com/viewtopic.php?f=6&t=30697).
+        Factorio 0.15 brings them back.
+        
+        Installation
+        ------------
+        
+        You'll need to have Python 3.5 (or later) which can be obtained through your distribution's package manager
+        or downloaded from https://www.python.org/ (for Windows users).
+        
+        On Windows, make sure to check the *"Add Python 3.x to PATH"* checkbox when installing.
+        
+        Once Python is installed, FactoIRC can be installed using
+        
+        .. code:: bash
+        
+            $ pip3 install factoirc
+        
+        Configuration
+        -------------
+        
+        Configuration is done using the `config.ini` file. A config.example.ini_ file is provided as an example and contains extensive documentation.
+        
+        Depending on your setup, you will have to use one of the `file`, `stdin` or `systemd` methods.
+        
+        Method 1: `file` (recommended)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        This method reads the Factorio chat from a console log.
+        
+        .. code:: ini
+        
+            [factoirc]
+            method = file
+            file = console.log
+        
+        The console log can be generated using `--console-log` in Factorio 0.15:
+        
+        .. code:: bash
+        
+            $ factorio --rcon-port=27015 --rcon-password=password --start-server=save.zip --console-log=console.log
+        
+        For Factorio < 0.15, you can redirect the Factorio output to a file to achieve the same behavior (`doesn't work on Windows <https://forums.factorio.com/viewtopic.php?f=49&t=37108>`_):
+        
+        .. code:: bash
+        
+            $ factorio --rcon-port=27015 --rcon-password=password --start-server=save.zip > console.log
+        
+        factorio-init_ users can also use the `server.out` file as input.
+        Note that the systemd service for `factorio-init` does not save the output into the journal, so you can't use the `systemd` method with it.
+        
+        **Warning:** do *not* use the `factorio-current.log` file created by Factorio. It does not contain the chat log.
+        
+        Method 2: `systemd` journal
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        This method applies only if your Factorio server runs under systemd (only for Linux machines) and its output is stored in the journal.
+        
+        In this case, FactoIRC can directly read the log from the journal.
+        
+        You'll need the following options in your configuration file:
+        
+        .. code:: ini
+        
+            [factoirc]
+            method = systemd
+            unit = factorio.service
+        
+        For this method to work, the `python-systemd` module is required and can be installed via pip:
+        
+        .. code:: bash
+        
+            $ pip3 install python-systemd
+        
+        Method 3: `stdin`
+        ~~~~~~~~~~~~~~~~~
+        
+        This method reads the Factorio chat log from the standard input stream, it also supports reading from a file via shell redirection.
+        
+        .. code:: ini
+        
+            [factoirc]
+            method = stdin
+        
+        You will need to connect the Factorio chat log output to the FactoIRC bot:
+        
+        .. code:: bash
+        
+            $ factorio --rcon-port=27015 --rcon-password=password --start-server=save.zip | irc3 config.ini
+        
+        
+        Forwarding customization
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        You can customize the forwarding of messages for the different game and irc actions, see config.example.ini_ for more information.
+        
+        Running
+        -------
+        
+        To run FactoIRC, you just need to use the `irc3` command with a FactoIRC-enabled config file (see config.example.ini_)
+        
+        .. code:: bash
+        
+            $ irc3 config.ini
+        
+        `irc3` can be started with the ``-v`` flag to show more log messages (including those generated by FactoIRC).
+        
+        IRC raw traffic can be shown with ``-r``.
+        
+        Try ``irc3 -h`` for the full list of options.
+        
+        .. _irc3: https://irc3.readthedocs.io/
+        .. _config.example.ini: config.example.ini
+        .. _factorio-init: https://github.com/Bisa/factorio-init
+        
+Keywords: factorio irc
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Communications :: Chat :: Internet Relay Chat
+Classifier: Topic :: Games/Entertainment
