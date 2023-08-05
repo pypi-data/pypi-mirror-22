@@ -1,0 +1,117 @@
+# This file was automatically generated with Craftr.
+# It is not recommended to edit this file manually.
+
+Craftr_run_command = craftr -q -P .. run -m craftr.lib.zlib -b .
+
+# target: craftr.lib.zlib-1.0.0.zlib
+# ----------------------------------
+rule craftr.lib.zlib-1.0.0.zlib
+  command = cmd /Q /c .commands\craftr.lib.zlib-1.0.0.zlib.cmd
+  description = msvc staticlib ($out)
+
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\zlib.lib: $
+    craftr.lib.zlib-1.0.0.zlib $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\adler32.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\compress.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\crc32.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\deflate.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\gzclose.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\gzlib.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\gzread.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\gzwrite.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\infback.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\inffast.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\inflate.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\inftrees.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\trees.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\uncompr.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\zutil.obj
+build craftr.lib.zlib-1.0.0.zlib: phony $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\zlib.lib
+# target: craftr.lib.zlib-1.0.0.msvc_compile_0000
+# -----------------------------------------------
+rule craftr.lib.zlib-1.0.0.msvc_compile_0000
+  command = cmd /Q /c .commands\craftr.lib.zlib-1.0.0.msvc_compile_0000.cmd $
+      $in $out
+  description = msvc compile ($out)
+  deps = msvc
+  msvc_deps_prefix = Note: including file:
+
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\adler32.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\adler32.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\compress.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\compress.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\crc32.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\crc32.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\deflate.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\deflate.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\gzclose.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\gzclose.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\gzlib.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\gzlib.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\gzread.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\gzread.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\gzwrite.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\gzwrite.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\infback.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\infback.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\inffast.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\inffast.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\inflate.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\inflate.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\inftrees.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\inftrees.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\trees.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\trees.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\uncompr.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\uncompr.c
+build $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\zutil.obj: $
+    craftr.lib.zlib-1.0.0.msvc_compile_0000 $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\data\zlib-1.2.10\zutil.c
+build craftr.lib.zlib-1.0.0.msvc_compile_0000: phony $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\adler32.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\compress.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\crc32.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\deflate.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\gzclose.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\gzlib.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\gzread.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\gzwrite.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\infback.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\inffast.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\inflate.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\inftrees.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\trees.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\uncompr.obj $
+    c$:\users\niklas\repos\craftr\examples\build\craftr.lib.zlib-1.0.0\obj\zutil.obj
+default craftr.lib.zlib-1.0.0.zlib craftr.lib.zlib-1.0.0.msvc_compile_0000

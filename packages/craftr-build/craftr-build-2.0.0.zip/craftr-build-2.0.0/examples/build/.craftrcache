@@ -1,0 +1,58 @@
+{
+	"loaders": {
+		"craftr.lib.zlib": {
+			"craftr.lib.zlib-1.0.0.directory": {
+				"archive_source": "craftr.lib.zlib-1.0.0\\data/zlib-1.2.10.tar.gz",
+				"archive_dir": "craftr.lib.zlib-1.0.0\\data/zlib-1.2.10",
+				"download_file": "craftr.lib.zlib-1.0.0\\data/zlib-1.2.10.tar.gz",
+				"download_url": "http://zlib.net/fossils/zlib-1.2.10.tar.gz"
+			}
+		},
+		"craftr.lib.jpeg": {
+			"craftr.lib.jpeg-1.0.0.source_directory": {
+				"archive_source": "craftr.lib.jpeg-1.0.0\\data/libjpeg-master.zip",
+				"archive_dir": "craftr.lib.jpeg-1.0.0\\data/libjpeg-master",
+				"download_url": "https://github.com/LuaDist/libjpeg/archive/master.zip",
+				"download_file": "craftr.lib.jpeg-1.0.0\\data/libjpeg-master.zip"
+			}
+		}
+	},
+	"build": {
+		"targets": [
+			"craftr.lib.zlib-1.0.0.zlib",
+			"craftr.lib.zlib-1.0.0.msvc_compile_0000"
+		],
+		"main": "craftr.lib.zlib-1.0.0",
+		"options": [],
+		"modules": {
+			"craftr.lang.cxx": {
+				"1.0.0": {
+					"deps": [
+						"c:\\users\\niklas\\repos\\craftr\\craftr\\stl\\craftr.lang.cxx\\manifest.cson",
+						"c:\\users\\niklas\\repos\\craftr\\craftr\\stl\\craftr.lang.cxx\\craftrfile"
+					],
+					"mtime": 2968899401
+				}
+			},
+			"craftr.lang.cxx.msvc": {
+				"1.0.0": {
+					"deps": [
+						"c:\\users\\niklas\\repos\\craftr\\craftr\\stl\\craftr.lang.cxx.msvc\\manifest.cson",
+						"c:\\users\\niklas\\repos\\craftr\\craftr\\stl\\craftr.lang.cxx.msvc\\craftrfile"
+					],
+					"mtime": 2966454860
+				}
+			},
+			"craftr.lib.zlib": {
+				"1.0.0": {
+					"deps": [
+						"c:\\users\\niklas\\repos\\craftr\\craftr\\stl_auxiliary\\craftr.lib.zlib\\manifest.json",
+						"c:\\users\\niklas\\repos\\craftr\\craftr\\stl_auxiliary\\craftr.lib.zlib\\craftrfile",
+						"c:\\users\\niklas\\repos\\craftr\\craftr\\stl_auxiliary\\craftr.lib.zlib\\from_source.py"
+					],
+					"mtime": 4450844010
+				}
+			}
+		}
+	}
+}
