@@ -1,0 +1,52 @@
+Metadata-Version: 1.1
+Name: gTTS_Simple
+Version: 1.2
+Summary: La synthèse vocale simplifiée
+Home-page: https://github.com/LaGvidilo/gTTS_simple
+Author: Cyril Coelho
+Author-email: cyrilcoelho67x@gmail.com
+License: UNKNOWN
+Description: gTTS_simple
+        Rendre encore plus simple de quelque chose de pas compliqué 
+        
+        Auteur: Cyril Coelho -
+        
+        Version 1.2
+        
+        Pas besoin de paniquer ceci va vous aider a comprendre comment ça marche
+        Les dependances sont: gTTS et pygame
+        Installez les avec pip et installer ensuite gTTS_Simple:
+        
+        
+        pip install gTTS pygame
+        pip install gTTS_Simple
+        
+        
+        Ensuite voilà comment utiliser cette librairie,
+        voila comment faire de la synthèse vocale:
+        
+        
+        from gTTS_Simple imoport *
+        v = voice("ceci est un test","fr",False)
+        v.compilation("test.mp3")
+        v.lecture()
+        
+        
+        
+        
+        Vous pouvez a tout moment stopper la lecture avec:
+        
+        
+        v.stop()
+        
+        
+        
+        Voila c'est pas plus compliqué 
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved
+Classifier: Natural Language :: French
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Communications
