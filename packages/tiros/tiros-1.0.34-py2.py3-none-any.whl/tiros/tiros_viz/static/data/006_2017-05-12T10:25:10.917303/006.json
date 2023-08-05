@@ -1,0 +1,8002 @@
+{
+  "subnets" : {
+    "subnets" : [
+      {
+        "state" : "available",
+        "cidr" : "10.60.11.0/24",
+        "az" : "us-east-1a",
+        "vpc" : "vpc-252e9140",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "state" : "available",
+        "cidr" : "10.60.21.0/24",
+        "az" : "us-east-1a",
+        "vpc" : "vpc-252e9140",
+        "subnet" : "subnet-999b65c0"
+      },
+      {
+        "state" : "available",
+        "cidr" : "10.60.10.0/24",
+        "az" : "us-east-1c",
+        "vpc" : "vpc-252e9140",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "state" : "available",
+        "cidr" : "10.60.20.0/24",
+        "az" : "us-east-1c",
+        "vpc" : "vpc-252e9140",
+        "subnet" : "subnet-2f2d3307"
+      },
+      {
+        "state" : "available",
+        "cidr" : "10.60.31.0/24",
+        "az" : "us-east-1a",
+        "vpc" : "vpc-252e9140",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "state" : "available",
+        "cidr" : "10.60.30.0/24",
+        "az" : "us-east-1c",
+        "vpc" : "vpc-252e9140",
+        "subnet" : "subnet-202d3308"
+      }
+    ],
+    "tags" : [
+      {
+        "id" : "subnet-e69b65bf",
+        "key" : "network",
+        "value" : "private"
+      },
+      {
+        "id" : "subnet-e69b65bf",
+        "key" : "Tier",
+        "value" : "priv"
+      },
+      {
+        "id" : "subnet-e69b65bf",
+        "key" : "Name",
+        "value" : "sn-ce-core-qafire-priv-1a"
+      },
+      {
+        "id" : "subnet-999b65c0",
+        "key" : "Tier",
+        "value" : "pub"
+      },
+      {
+        "id" : "subnet-999b65c0",
+        "key" : "Name",
+        "value" : "sn-ce-core-qafire-pub-1a"
+      },
+      {
+        "id" : "subnet-999b65c0",
+        "key" : "network",
+        "value" : "public"
+      },
+      {
+        "id" : "subnet-2e2d3306",
+        "key" : "Name",
+        "value" : "sn-ce-core-qafire-priv-1c"
+      },
+      {
+        "id" : "subnet-2e2d3306",
+        "key" : "Tier",
+        "value" : "priv"
+      },
+      {
+        "id" : "subnet-2e2d3306",
+        "key" : "network",
+        "value" : "private"
+      },
+      {
+        "id" : "subnet-2f2d3307",
+        "key" : "network",
+        "value" : "public"
+      },
+      {
+        "id" : "subnet-2f2d3307",
+        "key" : "Tier",
+        "value" : "pub"
+      },
+      {
+        "id" : "subnet-2f2d3307",
+        "key" : "Name",
+        "value" : "sn-ce-core-qafire-pub-1c"
+      },
+      {
+        "id" : "subnet-9b9b65c2",
+        "key" : "network",
+        "value" : "natted"
+      },
+      {
+        "id" : "subnet-9b9b65c2",
+        "key" : "Tier",
+        "value" : "nat"
+      },
+      {
+        "id" : "subnet-9b9b65c2",
+        "key" : "Name",
+        "value" : "sn-ce-core-qafire-nat-1a"
+      },
+      {
+        "id" : "subnet-202d3308",
+        "key" : "Tier",
+        "value" : "nat"
+      },
+      {
+        "id" : "subnet-202d3308",
+        "key" : "Name",
+        "value" : "sn-ce-core-qafire-nat-1c"
+      },
+      {
+        "id" : "subnet-202d3308",
+        "key" : "network",
+        "value" : "natted"
+      }
+    ]
+  },
+  "enis" : {
+    "associations" : [
+      {
+        "eni" : "eni-b7eb90a4",
+        "private-ip" : "10.60.20.223",
+        "public-ip" : "52.7.172.204"
+      },
+      {
+        "eni" : "eni-208ce73d",
+        "private-ip" : "10.60.21.79",
+        "public-ip" : "52.0.74.188"
+      },
+      {
+        "eni" : "eni-4f5f2962",
+        "private-ip" : "10.60.20.190",
+        "public-ip" : "54.152.72.76"
+      },
+      {
+        "eni" : "eni-ac7547f7",
+        "private-ip" : "10.60.21.202",
+        "public-ip" : "52.0.45.254"
+      },
+      {
+        "eni" : "eni-7e5c8ba5",
+        "private-ip" : "10.60.21.184",
+        "public-ip" : "52.6.242.82"
+      },
+      {
+        "eni" : "eni-bf528564",
+        "private-ip" : "10.60.21.72",
+        "public-ip" : "52.4.128.181"
+      }
+    ],
+    "enis" : [
+      {
+        "eni" : "eni-86c016a4",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-93f151cf",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-769be86c",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-285e6876",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-60631d4a",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-85e09b42",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-65a67996",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-77bafcb2",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-b7eb90a4",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2f2d3307"
+      },
+      {
+        "eni" : "eni-a9a898f2",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-f8c40809",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-1ae9190b",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-43fb55b6",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-b7ad4d74",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-47ca8387",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-e1304722",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-9df163c0",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-0bd2a02a",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-1557c24d",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-7e3c0925",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-d75cdfcc",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-d3ab0323",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-7d0bf066",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-5ac8ba9a",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-208ce73d",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-999b65c0"
+      },
+      {
+        "eni" : "eni-4c381a8b",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-16963e47",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-0d7dee50",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-292f05d7",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-54fb2808",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-185da642",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-3c28ac13",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-202d3308"
+      },
+      {
+        "eni" : "eni-027a392f",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-202d3308"
+      },
+      {
+        "eni" : "eni-f42c3aaf",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-64fc8fa0",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-10ac4ed7",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-cc60aeed",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-3c46d8e5",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-b09941e1",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-c6590a03",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-d2dfad88",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-c8091c92",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-3fe6b6ca",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-202d3308"
+      },
+      {
+        "eni" : "eni-783c1b55",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-0be3fe54",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-6837eb34",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-8c401c7f",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-202d3308"
+      },
+      {
+        "eni" : "eni-2e8472ec",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-3573baf0",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-4f5f2962",
+        "source-dest-check" : false,
+        "state" : "in-use",
+        "subnet" : "subnet-2f2d3307"
+      },
+      {
+        "eni" : "eni-26e7d1e1",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-498d456c",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-a0267151",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-ac7547f7",
+        "source-dest-check" : false,
+        "state" : "in-use",
+        "subnet" : "subnet-999b65c0"
+      },
+      {
+        "eni" : "eni-cca5d1e0",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-202d3308"
+      },
+      {
+        "eni" : "eni-fa67e309",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-202d3308"
+      },
+      {
+        "eni" : "eni-7e5c8ba5",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-999b65c0"
+      },
+      {
+        "eni" : "eni-61f721a3",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-dc99818e",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-936f92cb",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-999b65c0"
+      },
+      {
+        "eni" : "eni-b3debb46",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-0e5992fe",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "eni" : "eni-76f4542a",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-801afe42",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-9535e9c9",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-5e888e01",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-f2e376ac",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-15269a48",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-c540949e",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "eni" : "eni-bf528564",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-999b65c0"
+      },
+      {
+        "eni" : "eni-1f071242",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "eni" : "eni-1022f14b",
+        "source-dest-check" : true,
+        "state" : "in-use",
+        "subnet" : "subnet-e69b65bf"
+      }
+    ],
+    "tags" : [
+      {
+        "id" : "eni-a9a898f2",
+        "key" : "Name",
+        "value" : "ad1-qafire-eni"
+      },
+      {
+        "id" : "eni-cca5d1e0",
+        "key" : "Name",
+        "value" : "ad2-qafire-eni"
+      }
+    ],
+    "ips" : [
+      {
+        "eni" : "eni-86c016a4",
+        "ip" : "10.60.10.248"
+      },
+      {
+        "eni" : "eni-93f151cf",
+        "ip" : "10.60.11.240"
+      },
+      {
+        "eni" : "eni-769be86c",
+        "ip" : "10.60.11.69"
+      },
+      {
+        "eni" : "eni-285e6876",
+        "ip" : "10.60.31.24"
+      },
+      {
+        "eni" : "eni-60631d4a",
+        "ip" : "10.60.10.123"
+      },
+      {
+        "eni" : "eni-85e09b42",
+        "ip" : "10.60.11.77"
+      },
+      {
+        "eni" : "eni-65a67996",
+        "ip" : "10.60.10.90"
+      },
+      {
+        "eni" : "eni-77bafcb2",
+        "ip" : "10.60.31.148"
+      },
+      {
+        "eni" : "eni-b7eb90a4",
+        "ip" : "10.60.20.223"
+      },
+      {
+        "eni" : "eni-a9a898f2",
+        "ip" : "10.60.31.156"
+      },
+      {
+        "eni" : "eni-f8c40809",
+        "ip" : "10.60.10.13"
+      },
+      {
+        "eni" : "eni-1ae9190b",
+        "ip" : "10.60.10.184"
+      },
+      {
+        "eni" : "eni-43fb55b6",
+        "ip" : "10.60.10.14"
+      },
+      {
+        "eni" : "eni-b7ad4d74",
+        "ip" : "10.60.11.130"
+      },
+      {
+        "eni" : "eni-47ca8387",
+        "ip" : "10.60.11.76"
+      },
+      {
+        "eni" : "eni-e1304722",
+        "ip" : "10.60.11.23"
+      },
+      {
+        "eni" : "eni-9df163c0",
+        "ip" : "10.60.31.64"
+      },
+      {
+        "eni" : "eni-0bd2a02a",
+        "ip" : "10.60.10.97"
+      },
+      {
+        "eni" : "eni-1557c24d",
+        "ip" : "10.60.11.20"
+      },
+      {
+        "eni" : "eni-7e3c0925",
+        "ip" : "10.60.31.104"
+      },
+      {
+        "eni" : "eni-d75cdfcc",
+        "ip" : "10.60.31.51"
+      },
+      {
+        "eni" : "eni-d3ab0323",
+        "ip" : "10.60.10.141"
+      },
+      {
+        "eni" : "eni-7d0bf066",
+        "ip" : "10.60.11.172"
+      },
+      {
+        "eni" : "eni-5ac8ba9a",
+        "ip" : "10.60.31.58"
+      },
+      {
+        "eni" : "eni-208ce73d",
+        "ip" : "10.60.21.79"
+      },
+      {
+        "eni" : "eni-4c381a8b",
+        "ip" : "10.60.31.207"
+      },
+      {
+        "eni" : "eni-16963e47",
+        "ip" : "10.60.11.215"
+      },
+      {
+        "eni" : "eni-0d7dee50",
+        "ip" : "10.60.31.177"
+      },
+      {
+        "eni" : "eni-292f05d7",
+        "ip" : "10.60.10.177"
+      },
+      {
+        "eni" : "eni-54fb2808",
+        "ip" : "10.60.31.208"
+      },
+      {
+        "eni" : "eni-185da642",
+        "ip" : "10.60.31.210"
+      },
+      {
+        "eni" : "eni-3c28ac13",
+        "ip" : "10.60.30.78"
+      },
+      {
+        "eni" : "eni-027a392f",
+        "ip" : "10.60.30.185"
+      },
+      {
+        "eni" : "eni-f42c3aaf",
+        "ip" : "10.60.31.203"
+      },
+      {
+        "eni" : "eni-64fc8fa0",
+        "ip" : "10.60.31.167"
+      },
+      {
+        "eni" : "eni-10ac4ed7",
+        "ip" : "10.60.11.73"
+      },
+      {
+        "eni" : "eni-cc60aeed",
+        "ip" : "10.60.10.80"
+      },
+      {
+        "eni" : "eni-3c46d8e5",
+        "ip" : "10.60.31.134"
+      },
+      {
+        "eni" : "eni-b09941e1",
+        "ip" : "10.60.31.4"
+      },
+      {
+        "eni" : "eni-c6590a03",
+        "ip" : "10.60.31.46"
+      },
+      {
+        "eni" : "eni-d2dfad88",
+        "ip" : "10.60.31.234"
+      },
+      {
+        "eni" : "eni-c8091c92",
+        "ip" : "10.60.31.246"
+      },
+      {
+        "eni" : "eni-3fe6b6ca",
+        "ip" : "10.60.30.28"
+      },
+      {
+        "eni" : "eni-783c1b55",
+        "ip" : "10.60.10.220"
+      },
+      {
+        "eni" : "eni-0be3fe54",
+        "ip" : "10.60.31.150"
+      },
+      {
+        "eni" : "eni-6837eb34",
+        "ip" : "10.60.31.66"
+      },
+      {
+        "eni" : "eni-8c401c7f",
+        "ip" : "10.60.30.33"
+      },
+      {
+        "eni" : "eni-2e8472ec",
+        "ip" : "10.60.11.213"
+      },
+      {
+        "eni" : "eni-3573baf0",
+        "ip" : "10.60.11.141"
+      },
+      {
+        "eni" : "eni-4f5f2962",
+        "ip" : "10.60.20.190"
+      },
+      {
+        "eni" : "eni-26e7d1e1",
+        "ip" : "10.60.31.84"
+      },
+      {
+        "eni" : "eni-498d456c",
+        "ip" : "10.60.10.45"
+      },
+      {
+        "eni" : "eni-a0267151",
+        "ip" : "10.60.10.83"
+      },
+      {
+        "eni" : "eni-ac7547f7",
+        "ip" : "10.60.21.202"
+      },
+      {
+        "eni" : "eni-cca5d1e0",
+        "ip" : "10.60.30.89"
+      },
+      {
+        "eni" : "eni-fa67e309",
+        "ip" : "10.60.30.241"
+      },
+      {
+        "eni" : "eni-7e5c8ba5",
+        "ip" : "10.60.21.184"
+      },
+      {
+        "eni" : "eni-61f721a3",
+        "ip" : "10.60.11.85"
+      },
+      {
+        "eni" : "eni-dc99818e",
+        "ip" : "10.60.31.36"
+      },
+      {
+        "eni" : "eni-936f92cb",
+        "ip" : "10.60.21.227"
+      },
+      {
+        "eni" : "eni-b3debb46",
+        "ip" : "10.60.10.145"
+      },
+      {
+        "eni" : "eni-0e5992fe",
+        "ip" : "10.60.10.106"
+      },
+      {
+        "eni" : "eni-76f4542a",
+        "ip" : "10.60.31.229"
+      },
+      {
+        "eni" : "eni-801afe42",
+        "ip" : "10.60.31.122"
+      },
+      {
+        "eni" : "eni-9535e9c9",
+        "ip" : "10.60.31.9"
+      },
+      {
+        "eni" : "eni-5e888e01",
+        "ip" : "10.60.31.130"
+      },
+      {
+        "eni" : "eni-f2e376ac",
+        "ip" : "10.60.11.161"
+      },
+      {
+        "eni" : "eni-15269a48",
+        "ip" : "10.60.11.204"
+      },
+      {
+        "eni" : "eni-c540949e",
+        "ip" : "10.60.31.176"
+      },
+      {
+        "eni" : "eni-bf528564",
+        "ip" : "10.60.21.72"
+      },
+      {
+        "eni" : "eni-1f071242",
+        "ip" : "10.60.11.214"
+      },
+      {
+        "eni" : "eni-1022f14b",
+        "ip" : "10.60.11.216"
+      }
+    ],
+    "sgs" : [
+      {
+        "eni" : "eni-86c016a4",
+        "sg" : "sg-c6b275a0"
+      },
+      {
+        "eni" : "eni-93f151cf",
+        "sg" : "sg-3e9b4d58"
+      },
+      {
+        "eni" : "eni-769be86c",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "eni" : "eni-285e6876",
+        "sg" : "sg-0e946f76"
+      },
+      {
+        "eni" : "eni-60631d4a",
+        "sg" : "sg-63726c06"
+      },
+      {
+        "eni" : "eni-85e09b42",
+        "sg" : "sg-d3f706ac"
+      },
+      {
+        "eni" : "eni-65a67996",
+        "sg" : "sg-08963474"
+      },
+      {
+        "eni" : "eni-77bafcb2",
+        "sg" : "sg-83ef7eff"
+      },
+      {
+        "eni" : "eni-b7eb90a4",
+        "sg" : "sg-c2f03da4"
+      },
+      {
+        "eni" : "eni-a9a898f2",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "eni" : "eni-f8c40809",
+        "sg" : "sg-16f33e70"
+      },
+      {
+        "eni" : "eni-1ae9190b",
+        "sg" : "sg-ab437ed0"
+      },
+      {
+        "eni" : "eni-43fb55b6",
+        "sg" : "sg-155bf36d"
+      },
+      {
+        "eni" : "eni-b7ad4d74",
+        "sg" : "sg-16f33e70"
+      },
+      {
+        "eni" : "eni-47ca8387",
+        "sg" : "sg-0f3c6b72"
+      },
+      {
+        "eni" : "eni-e1304722",
+        "sg" : "sg-3185d755"
+      },
+      {
+        "eni" : "eni-9df163c0",
+        "sg" : "sg-a0bfc8c7"
+      },
+      {
+        "eni" : "eni-0bd2a02a",
+        "sg" : "sg-3e9b4d58"
+      },
+      {
+        "eni" : "eni-1557c24d",
+        "sg" : "sg-50687635"
+      },
+      {
+        "eni" : "eni-7e3c0925",
+        "sg" : "sg-49b3e12d"
+      },
+      {
+        "eni" : "eni-d75cdfcc",
+        "sg" : "sg-195e6e62"
+      },
+      {
+        "eni" : "eni-d3ab0323",
+        "sg" : "sg-155e6e6e"
+      },
+      {
+        "eni" : "eni-7d0bf066",
+        "sg" : "sg-ab437ed0"
+      },
+      {
+        "eni" : "eni-5ac8ba9a",
+        "sg" : "sg-fe3c6b83"
+      },
+      {
+        "eni" : "eni-208ce73d",
+        "sg" : "sg-c2f03da4"
+      },
+      {
+        "eni" : "eni-4c381a8b",
+        "sg" : "sg-ec24e193"
+      },
+      {
+        "eni" : "eni-16963e47",
+        "sg" : "sg-925af2ea"
+      },
+      {
+        "eni" : "eni-0d7dee50",
+        "sg" : "sg-46d2a521"
+      },
+      {
+        "eni" : "eni-292f05d7",
+        "sg" : "sg-0f3c6b72"
+      },
+      {
+        "eni" : "eni-54fb2808",
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "eni" : "eni-185da642",
+        "sg" : "sg-ef1e358a"
+      },
+      {
+        "eni" : "eni-3c28ac13",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "eni" : "eni-027a392f",
+        "sg" : "sg-301e3555"
+      },
+      {
+        "eni" : "eni-f42c3aaf",
+        "sg" : "sg-171e3572"
+      },
+      {
+        "eni" : "eni-64fc8fa0",
+        "sg" : "sg-855af2fd"
+      },
+      {
+        "eni" : "eni-10ac4ed7",
+        "sg" : "sg-155bf36d"
+      },
+      {
+        "eni" : "eni-cc60aeed",
+        "sg" : "sg-d85027bf"
+      },
+      {
+        "eni" : "eni-3c46d8e5",
+        "sg" : "sg-9d8c29e0"
+      },
+      {
+        "eni" : "eni-b09941e1",
+        "sg" : "sg-14eb456c"
+      },
+      {
+        "eni" : "eni-c6590a03",
+        "sg" : "sg-87ef7efb"
+      },
+      {
+        "eni" : "eni-d2dfad88",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "eni" : "eni-c8091c92",
+        "sg" : "sg-ce8c55a9"
+      },
+      {
+        "eni" : "eni-3fe6b6ca",
+        "sg" : "sg-f024e18f"
+      },
+      {
+        "eni" : "eni-783c1b55",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "eni" : "eni-0be3fe54",
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "eni" : "eni-6837eb34",
+        "sg" : "sg-01f33e67"
+      },
+      {
+        "eni" : "eni-8c401c7f",
+        "sg" : "sg-87ef7efb"
+      },
+      {
+        "eni" : "eni-2e8472ec",
+        "sg" : "sg-3e9f7f42"
+      },
+      {
+        "eni" : "eni-3573baf0",
+        "sg" : "sg-08963474"
+      },
+      {
+        "eni" : "eni-4f5f2962",
+        "sg" : "sg-201e3545"
+      },
+      {
+        "eni" : "eni-26e7d1e1",
+        "sg" : "sg-f024e18f"
+      },
+      {
+        "eni" : "eni-498d456c",
+        "sg" : "sg-925af2ea"
+      },
+      {
+        "eni" : "eni-a0267151",
+        "sg" : "sg-3185d755"
+      },
+      {
+        "eni" : "eni-ac7547f7",
+        "sg" : "sg-201e3545"
+      },
+      {
+        "eni" : "eni-cca5d1e0",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "eni" : "eni-fa67e309",
+        "sg" : "sg-2fbd0c53"
+      },
+      {
+        "eni" : "eni-7e5c8ba5",
+        "sg" : "sg-da9296a1"
+      },
+      {
+        "eni" : "eni-61f721a3",
+        "sg" : "sg-155e6e6e"
+      },
+      {
+        "eni" : "eni-dc99818e",
+        "sg" : "sg-01467b7a"
+      },
+      {
+        "eni" : "eni-936f92cb",
+        "sg" : "sg-3a1e355f"
+      },
+      {
+        "eni" : "eni-b3debb46",
+        "sg" : "sg-d3f706ac"
+      },
+      {
+        "eni" : "eni-0e5992fe",
+        "sg" : "sg-3e9f7f42"
+      },
+      {
+        "eni" : "eni-76f4542a",
+        "sg" : "sg-13e12975"
+      },
+      {
+        "eni" : "eni-801afe42",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "eni" : "eni-9535e9c9",
+        "sg" : "sg-f8f03d9e"
+      },
+      {
+        "eni" : "eni-5e888e01",
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "eni" : "eni-f2e376ac",
+        "sg" : "sg-c6b275a0"
+      },
+      {
+        "eni" : "eni-15269a48",
+        "sg" : "sg-e1bfd186"
+      },
+      {
+        "eni" : "eni-c540949e",
+        "sg" : "sg-171e3572"
+      },
+      {
+        "eni" : "eni-bf528564",
+        "sg" : "sg-da9296a1"
+      },
+      {
+        "eni" : "eni-1f071242",
+        "sg" : "sg-d85027bf"
+      },
+      {
+        "eni" : "eni-1022f14b",
+        "sg" : "sg-63da5307"
+      }
+    ],
+    "attachments" : [
+      {
+        "eni" : "eni-285e6876",
+        "eni-attach" : "eni-attach-719a649e",
+        "instance" : "i-d60d724e",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-77bafcb2",
+        "eni-attach" : "eni-attach-a88e71f6",
+        "instance" : "i-0ca088d8db85cdd3e",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-a9a898f2",
+        "eni-attach" : "eni-attach-041fe57c",
+        "instance" : "i-1622c5e8",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-9df163c0",
+        "eni-attach" : "eni-attach-89c9e3f1",
+        "instance" : "i-4fc036ef",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-7e3c0925",
+        "eni-attach" : "eni-attach-bbca53c2",
+        "instance" : "i-521405ae",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-d75cdfcc",
+        "eni-attach" : "eni-attach-6471beb0",
+        "instance" : "i-58d69bc8",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-5ac8ba9a",
+        "eni-attach" : "eni-attach-3c884eba",
+        "instance" : "i-0b47d5541ec50a66c",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-4c381a8b",
+        "eni-attach" : "eni-attach-0fbf4e5f",
+        "instance" : "i-01b8fd86519931a13",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-0d7dee50",
+        "eni-attach" : "eni-attach-f32d078b",
+        "instance" : "i-676a9dc7",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-54fb2808",
+        "eni-attach" : "eni-attach-d11698aa",
+        "instance" : "i-8a05eb29",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-185da642",
+        "eni-attach" : "eni-attach-43adf23a",
+        "instance" : "i-1c8c37e3",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-3c28ac13",
+        "eni-attach" : "eni-attach-f9d78a86",
+        "instance" : "i-35fdca9c",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-027a392f",
+        "eni-attach" : "eni-attach-2011b35c",
+        "instance" : "i-2bbd40db",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-f42c3aaf",
+        "eni-attach" : "eni-attach-4df98b34",
+        "instance" : "i-27b676d8",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-64fc8fa0",
+        "eni-attach" : "eni-attach-78504b26",
+        "instance" : "i-07fd40d627bfde5e1",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-3c46d8e5",
+        "eni-attach" : "eni-attach-35fc0966",
+        "instance" : "i-06183a0cb83b1d698",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-b09941e1",
+        "eni-attach" : "eni-attach-ae059241",
+        "instance" : "i-33b0a5ab",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-d2dfad88",
+        "eni-attach" : "eni-attach-d030caa8",
+        "instance" : "i-1622c5e8",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-c8091c92",
+        "eni-attach" : "eni-attach-e0840798",
+        "instance" : "i-7e6ffad2",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-0be3fe54",
+        "eni-attach" : "eni-attach-d449c938",
+        "instance" : "i-50e085e3",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-6837eb34",
+        "eni-attach" : "eni-attach-d446cdaf",
+        "instance" : "i-3147ad92",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-4f5f2962",
+        "eni-attach" : "eni-attach-7f70a203",
+        "instance" : "i-108c99e1",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-ac7547f7",
+        "eni-attach" : "eni-attach-7ba0c402",
+        "instance" : "i-1b273ce7",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-cca5d1e0",
+        "eni-attach" : "eni-attach-cbf3aeb4",
+        "instance" : "i-35fdca9c",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-dc99818e",
+        "eni-attach" : "eni-attach-c1b86d14",
+        "instance" : "i-6578a7f5",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-936f92cb",
+        "eni-attach" : "eni-attach-1a24ee7c",
+        "instance" : "i-9192187c",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-76f4542a",
+        "eni-attach" : "eni-attach-4ed94435",
+        "instance" : "i-2afea29b",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-801afe42",
+        "eni-attach" : "eni-attach-0d0b7c51",
+        "instance" : "i-013f1dbc163ebfd51",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-9535e9c9",
+        "eni-attach" : "eni-attach-c840cbb3",
+        "instance" : "i-2a40aa89",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-5e888e01",
+        "eni-attach" : "eni-attach-18c776f4",
+        "instance" : "i-4eb139fd",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-15269a48",
+        "eni-attach" : "eni-attach-844b16fc",
+        "instance" : "i-2d72798c",
+        "state" : "attached"
+      },
+      {
+        "eni" : "eni-c540949e",
+        "eni-attach" : "eni-attach-250aed5c",
+        "instance" : "i-0ef689e1",
+        "state" : "attached"
+      }
+    ]
+  },
+  "pcxs" : {
+    "pcxs" : [
+      {
+        "pcx" : "pcx-ca73e2a3",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-4098c127"
+      },
+      {
+        "pcx" : "pcx-818951e8",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-a87d1dcc"
+      },
+      {
+        "pcx" : "pcx-9a42e2f3",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-b85bebdd"
+      },
+      {
+        "pcx" : "pcx-b3e64ada",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-a45bebc1"
+      },
+      {
+        "pcx" : "pcx-e224fb8b",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-ceb555aa"
+      },
+      {
+        "pcx" : "pcx-0637af6f",
+        "state" : "active",
+        "vpc1" : "vpc-dd499bbb",
+        "vpc2" : "vpc-252e9140"
+      },
+      {
+        "pcx" : "pcx-4f9d6226",
+        "state" : "active",
+        "vpc1" : "vpc-729ed417",
+        "vpc2" : "vpc-252e9140"
+      },
+      {
+        "pcx" : "pcx-95b877fc",
+        "state" : "active",
+        "vpc1" : "vpc-0f4a5d6a",
+        "vpc2" : "vpc-252e9140"
+      },
+      {
+        "pcx" : "pcx-76be561f",
+        "state" : "active",
+        "vpc1" : "vpc-212e9144",
+        "vpc2" : "vpc-252e9140"
+      },
+      {
+        "pcx" : "pcx-ab04f7c2",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-c57d01a0"
+      },
+      {
+        "pcx" : "pcx-9faa27f6",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-a75bebc2"
+      },
+      {
+        "pcx" : "pcx-b42c48dd",
+        "state" : "active",
+        "vpc1" : "vpc-36979d51",
+        "vpc2" : "vpc-252e9140"
+      },
+      {
+        "pcx" : "pcx-1f8b2376",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-d65bebb3"
+      },
+      {
+        "pcx" : "pcx-0484566d",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-d1d4d6b4"
+      },
+      {
+        "pcx" : "pcx-4122ed28",
+        "state" : "active",
+        "vpc1" : "vpc-5c968739",
+        "vpc2" : "vpc-252e9140"
+      },
+      {
+        "pcx" : "pcx-2074f449",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-f479c893"
+      },
+      {
+        "pcx" : "pcx-eb12c182",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-670eee03"
+      },
+      {
+        "pcx" : "pcx-6bbc6f02",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-3d6bb059"
+      },
+      {
+        "pcx" : "pcx-b8ba2bd1",
+        "state" : "active",
+        "vpc1" : "vpc-252e9140",
+        "vpc2" : "vpc-a43127c3"
+      },
+      {
+        "pcx" : "pcx-2c840945",
+        "state" : "active",
+        "vpc1" : "vpc-7d3aae1a",
+        "vpc2" : "vpc-252e9140"
+      }
+    ],
+    "tags" : [
+      {
+        "id" : "pcx-ca73e2a3",
+        "key" : "Name",
+        "value" : "055 CoreVPC <-> 006"
+      },
+      {
+        "id" : "pcx-9a42e2f3",
+        "key" : "Name",
+        "value" : "ce-devtools-prod ( silver env )"
+      },
+      {
+        "id" : "pcx-b3e64ada",
+        "key" : "Name",
+        "value" : "ce_core_qafire-lsdev"
+      },
+      {
+        "id" : "pcx-0637af6f",
+        "key" : "Name",
+        "value" : "bwce006.ce-core-qafire ⟷ bwce065.bwce065"
+      },
+      {
+        "id" : "pcx-0637af6f",
+        "key" : "acs:owner",
+        "value" : "arn:aws:cloudformation:us-east-1:180651393835:stack/admin-core/26d774f0-64c8-11e6-9a4d-50fae583dcd2"
+      },
+      {
+        "id" : "pcx-9faa27f6",
+        "key" : "Name",
+        "value" : "ce_autoname_bwce023 ( research HIIP )"
+      },
+      {
+        "id" : "pcx-b42c48dd",
+        "key" : "Name",
+        "value" : "bwce049"
+      },
+      {
+        "id" : "pcx-1f8b2376",
+        "key" : "Name",
+        "value" : "ce-core-qafire <-> csdev"
+      },
+      {
+        "id" : "pcx-0484566d",
+        "key" : "Name",
+        "value" : "devcore-deq3"
+      },
+      {
+        "id" : "pcx-2074f449",
+        "key" : "Name",
+        "value" : "cld-fwd-conf"
+      },
+      {
+        "id" : "pcx-eb12c182",
+        "key" : "Name",
+        "value" : "devcore-deq1"
+      },
+      {
+        "id" : "pcx-b8ba2bd1",
+        "key" : "Name",
+        "value" : "ce-core-qafire-to-bwce060"
+      },
+      {
+        "id" : "pcx-2c840945",
+        "key" : "Name",
+        "value" : "SecEngPerimeter"
+      }
+    ]
+  },
+  "elbs" : {
+    "subnets" : [
+      {
+        "elb" : "internal-qafire-orchestrator-guard-753060191.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "elb" : "internal-qafire-orchestrator-guard-753060191.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "elb" : "internal-qafire-orchestrator-primary-1437976097.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "elb" : "internal-qafire-orchestrator-primary-1437976097.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "elb" : "internal-hologram-Core-lb-vpc-252e9140-47737261.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "elb" : "internal-hologram-Core-lb-vpc-252e9140-47737261.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "elb" : "jamf-dmz-lb-40377589.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-2f2d3307"
+      },
+      {
+        "elb" : "jamf-dmz-lb-40377589.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-999b65c0"
+      },
+      {
+        "elb" : "internal-jamf-int-lb-1206930042.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "elb" : "internal-jamf-int-lb-1206930042.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "elb" : "internal-ce-ce-core-qafire-gerrit-lb-876459703.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "elb" : "internal-ce-ce-core-qafire-gerrit-lb-876459703.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "elb" : "internal-validation-lb-764445884.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "elb" : "internal-validation-lb-764445884.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "elb" : "internal-rundeck-lb-1126473935.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "elb" : "internal-rundeck-lb-1126473935.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "elb" : "netsus-dmz-lb-1711440466.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-999b65c0"
+      },
+      {
+        "elb" : "internal-netsus-internal-lb-425127528.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "elb" : "internal-netsus-internal-lb-425127528.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "elb" : "internal-jira-lbrestore-08dec16-1725186138.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "elb" : "internal-jira-lbrestore-08dec16-1725186138.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "elb" : "internal-jira-lbdev-playground-705137168.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "elb" : "internal-jira-lbdev-playground-705137168.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "elb" : "internal-ice-lb-1927125558.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "elb" : "internal-ice-lb-1927125558.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "elb" : "internal-jira-lb73test-776597168.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-202d3308"
+      },
+      {
+        "elb" : "internal-jira-lb73test-776597168.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "elb" : "internal-jira-lbconvergencetest-1217404088.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-202d3308"
+      },
+      {
+        "elb" : "internal-jira-lbconvergencetest-1217404088.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "elb" : "internal-confluence-lbscottl-344701305.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-202d3308"
+      },
+      {
+        "elb" : "internal-confluence-lbscottl-344701305.us-east-1.elb.amazonaws.com",
+        "subnet" : "subnet-9b9b65c2"
+      }
+    ],
+    "listeners" : [
+      {
+        "elb" : "internal-qafire-orchestrator-guard-753060191.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 8081
+      },
+      {
+        "elb" : "internal-qafire-orchestrator-primary-1437976097.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 8081
+      },
+      {
+        "elb" : "internal-hologram-Core-lb-vpc-252e9140-47737261.us-east-1.elb.amazonaws.com",
+        "elb-port" : 3100,
+        "instance-port" : 3100
+      },
+      {
+        "elb" : "jamf-dmz-lb-40377589.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 8443
+      },
+      {
+        "elb" : "internal-jamf-int-lb-1206930042.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 8443
+      },
+      {
+        "elb" : "internal-ce-ce-core-qafire-gerrit-lb-876459703.us-east-1.elb.amazonaws.com",
+        "elb-port" : 29418,
+        "instance-port" : 29418
+      },
+      {
+        "elb" : "internal-ce-ce-core-qafire-gerrit-lb-876459703.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 8080
+      },
+      {
+        "elb" : "internal-ce-ce-core-qafire-gerrit-lb-876459703.us-east-1.elb.amazonaws.com",
+        "elb-port" : 80,
+        "instance-port" : 29419
+      },
+      {
+        "elb" : "internal-validation-lb-764445884.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 443
+      },
+      {
+        "elb" : "internal-rundeck-lb-1126473935.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 4440
+      },
+      {
+        "elb" : "netsus-dmz-lb-1711440466.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 81
+      },
+      {
+        "elb" : "netsus-dmz-lb-1711440466.us-east-1.elb.amazonaws.com",
+        "elb-port" : 80,
+        "instance-port" : 80
+      },
+      {
+        "elb" : "internal-netsus-internal-lb-425127528.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 443
+      },
+      {
+        "elb" : "internal-jira-lbrestore-08dec16-1725186138.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 8080
+      },
+      {
+        "elb" : "internal-jira-lbrestore-08dec16-1725186138.us-east-1.elb.amazonaws.com",
+        "elb-port" : 22,
+        "instance-port" : 22
+      },
+      {
+        "elb" : "internal-jira-lbdev-playground-705137168.us-east-1.elb.amazonaws.com",
+        "elb-port" : 22,
+        "instance-port" : 22
+      },
+      {
+        "elb" : "internal-jira-lbdev-playground-705137168.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 8080
+      },
+      {
+        "elb" : "internal-ice-lb-1927125558.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 80
+      },
+      {
+        "elb" : "internal-jira-lb73test-776597168.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 8080
+      },
+      {
+        "elb" : "internal-jira-lb73test-776597168.us-east-1.elb.amazonaws.com",
+        "elb-port" : 22,
+        "instance-port" : 22
+      },
+      {
+        "elb" : "internal-jira-lbconvergencetest-1217404088.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 8080
+      },
+      {
+        "elb" : "internal-jira-lbconvergencetest-1217404088.us-east-1.elb.amazonaws.com",
+        "elb-port" : 22,
+        "instance-port" : 22
+      },
+      {
+        "elb" : "internal-confluence-lbscottl-344701305.us-east-1.elb.amazonaws.com",
+        "elb-port" : 443,
+        "instance-port" : 8090
+      }
+    ],
+    "elbs" : [
+      {
+        "name" : "qafire-orchestrator-guard",
+        "cross-zone" : false,
+        "elb" : "internal-qafire-orchestrator-guard-753060191.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "qafire-orchestrator-primary",
+        "cross-zone" : false,
+        "elb" : "internal-qafire-orchestrator-primary-1437976097.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "hologram-Core-lb-vpc-252e9140",
+        "cross-zone" : false,
+        "elb" : "internal-hologram-Core-lb-vpc-252e9140-47737261.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "jamf-dmz-lb",
+        "cross-zone" : true,
+        "elb" : "jamf-dmz-lb-40377589.us-east-1.elb.amazonaws.com",
+        "scheme" : "external",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "jamf-int-lb",
+        "cross-zone" : false,
+        "elb" : "internal-jamf-int-lb-1206930042.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "ce-ce-core-qafire-gerrit-lb",
+        "cross-zone" : false,
+        "elb" : "internal-ce-ce-core-qafire-gerrit-lb-876459703.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "validation-lb",
+        "cross-zone" : false,
+        "elb" : "internal-validation-lb-764445884.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "rundeck-lb",
+        "cross-zone" : false,
+        "elb" : "internal-rundeck-lb-1126473935.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "netsus-dmz-lb",
+        "cross-zone" : true,
+        "elb" : "netsus-dmz-lb-1711440466.us-east-1.elb.amazonaws.com",
+        "scheme" : "external",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "netsus-internal-lb",
+        "cross-zone" : true,
+        "elb" : "internal-netsus-internal-lb-425127528.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "jira-lbrestore-08dec16",
+        "cross-zone" : false,
+        "elb" : "internal-jira-lbrestore-08dec16-1725186138.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "jira-lbdev-playground",
+        "cross-zone" : false,
+        "elb" : "internal-jira-lbdev-playground-705137168.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "ice-lb",
+        "cross-zone" : false,
+        "elb" : "internal-ice-lb-1927125558.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "jira-lb73test",
+        "cross-zone" : false,
+        "elb" : "internal-jira-lb73test-776597168.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "jira-lbconvergencetest",
+        "cross-zone" : false,
+        "elb" : "internal-jira-lbconvergencetest-1217404088.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "name" : "confluence-lbscottl",
+        "cross-zone" : false,
+        "elb" : "internal-confluence-lbscottl-344701305.us-east-1.elb.amazonaws.com",
+        "scheme" : "internal",
+        "vpc" : "vpc-252e9140"
+      }
+    ],
+    "tags" : [
+      {
+        "id" : "internal-ice-lb-1927125558.us-east-1.elb.amazonaws.com",
+        "key" : "origin",
+        "value" : "vagrant@localhost.localdomain"
+      },
+      {
+        "id" : "internal-ice-lb-1927125558.us-east-1.elb.amazonaws.com",
+        "key" : "Name",
+        "value" : "e-ice-srv001v0q.devenv-qa"
+      }
+    ],
+    "azs" : [
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-qafire-orchestrator-guard-753060191.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-qafire-orchestrator-guard-753060191.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-qafire-orchestrator-primary-1437976097.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-qafire-orchestrator-primary-1437976097.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-hologram-Core-lb-vpc-252e9140-47737261.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-hologram-Core-lb-vpc-252e9140-47737261.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "jamf-dmz-lb-40377589.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "jamf-dmz-lb-40377589.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-jamf-int-lb-1206930042.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-jamf-int-lb-1206930042.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-ce-ce-core-qafire-gerrit-lb-876459703.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-ce-ce-core-qafire-gerrit-lb-876459703.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-validation-lb-764445884.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-validation-lb-764445884.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-rundeck-lb-1126473935.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-rundeck-lb-1126473935.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "netsus-dmz-lb-1711440466.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-netsus-internal-lb-425127528.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-netsus-internal-lb-425127528.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-jira-lbrestore-08dec16-1725186138.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-jira-lbrestore-08dec16-1725186138.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-jira-lbdev-playground-705137168.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-jira-lbdev-playground-705137168.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-ice-lb-1927125558.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-ice-lb-1927125558.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-jira-lb73test-776597168.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-jira-lb73test-776597168.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-jira-lbconvergencetest-1217404088.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-jira-lbconvergencetest-1217404088.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1a",
+        "elb" : "internal-confluence-lbscottl-344701305.us-east-1.elb.amazonaws.com"
+      },
+      {
+        "az" : "us-east-1c",
+        "elb" : "internal-confluence-lbscottl-344701305.us-east-1.elb.amazonaws.com"
+      }
+    ],
+    "instances" : [
+      {
+        "elb" : "internal-qafire-orchestrator-guard-753060191.us-east-1.elb.amazonaws.com",
+        "instance" : "i-0ef689e1"
+      },
+      {
+        "elb" : "internal-qafire-orchestrator-primary-1437976097.us-east-1.elb.amazonaws.com",
+        "instance" : "i-27b676d8"
+      },
+      {
+        "elb" : "internal-qafire-orchestrator-primary-1437976097.us-east-1.elb.amazonaws.com",
+        "instance" : "i-b48cf35b"
+      },
+      {
+        "elb" : "internal-hologram-Core-lb-vpc-252e9140-47737261.us-east-1.elb.amazonaws.com",
+        "instance" : "i-521405ae"
+      },
+      {
+        "elb" : "jamf-dmz-lb-40377589.us-east-1.elb.amazonaws.com",
+        "instance" : "i-2a40aa89"
+      },
+      {
+        "elb" : "internal-jamf-int-lb-1206930042.us-east-1.elb.amazonaws.com",
+        "instance" : "i-3147ad92"
+      },
+      {
+        "elb" : "internal-ce-ce-core-qafire-gerrit-lb-876459703.us-east-1.elb.amazonaws.com",
+        "instance" : "i-50e085e3"
+      },
+      {
+        "elb" : "internal-validation-lb-764445884.us-east-1.elb.amazonaws.com",
+        "instance" : "i-05d15f0c4358411ce"
+      },
+      {
+        "elb" : "internal-validation-lb-764445884.us-east-1.elb.amazonaws.com",
+        "instance" : "i-0329294f8c4c97cd5"
+      },
+      {
+        "elb" : "internal-validation-lb-764445884.us-east-1.elb.amazonaws.com",
+        "instance" : "i-07fd40d627bfde5e1"
+      },
+      {
+        "elb" : "internal-rundeck-lb-1126473935.us-east-1.elb.amazonaws.com",
+        "instance" : "i-58d69bc8"
+      },
+      {
+        "elb" : "netsus-dmz-lb-1711440466.us-east-1.elb.amazonaws.com",
+        "instance" : "i-6578a7f5"
+      },
+      {
+        "elb" : "internal-netsus-internal-lb-425127528.us-east-1.elb.amazonaws.com",
+        "instance" : "i-6578a7f5"
+      },
+      {
+        "elb" : "internal-jira-lbrestore-08dec16-1725186138.us-east-1.elb.amazonaws.com",
+        "instance" : "i-0b47d5541ec50a66c"
+      },
+      {
+        "elb" : "internal-jira-lbdev-playground-705137168.us-east-1.elb.amazonaws.com",
+        "instance" : "i-013f1dbc163ebfd51"
+      },
+      {
+        "elb" : "internal-ice-lb-1927125558.us-east-1.elb.amazonaws.com",
+        "instance" : "i-0f12880547c4981b8"
+      },
+      {
+        "elb" : "internal-ice-lb-1927125558.us-east-1.elb.amazonaws.com",
+        "instance" : "i-06183a0cb83b1d698"
+      },
+      {
+        "elb" : "internal-jira-lbconvergencetest-1217404088.us-east-1.elb.amazonaws.com",
+        "instance" : "i-0ca088d8db85cdd3e"
+      },
+      {
+        "elb" : "internal-confluence-lbscottl-344701305.us-east-1.elb.amazonaws.com",
+        "instance" : "i-01b8fd86519931a13"
+      }
+    ],
+    "classic" : [],
+    "sgs" : [
+      {
+        "elb" : "internal-qafire-orchestrator-guard-753060191.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-63726c06"
+      },
+      {
+        "elb" : "internal-qafire-orchestrator-primary-1437976097.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-50687635"
+      },
+      {
+        "elb" : "internal-hologram-Core-lb-vpc-252e9140-47737261.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-3185d755"
+      },
+      {
+        "elb" : "jamf-dmz-lb-40377589.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-c2f03da4"
+      },
+      {
+        "elb" : "internal-jamf-int-lb-1206930042.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-16f33e70"
+      },
+      {
+        "elb" : "internal-ce-ce-core-qafire-gerrit-lb-876459703.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "elb" : "internal-validation-lb-764445884.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-925af2ea"
+      },
+      {
+        "elb" : "internal-rundeck-lb-1126473935.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-155e6e6e"
+      },
+      {
+        "elb" : "netsus-dmz-lb-1711440466.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-da9296a1"
+      },
+      {
+        "elb" : "internal-netsus-internal-lb-425127528.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-ab437ed0"
+      },
+      {
+        "elb" : "internal-jira-lbrestore-08dec16-1725186138.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-0f3c6b72"
+      },
+      {
+        "elb" : "internal-jira-lbdev-playground-705137168.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-3e9f7f42"
+      },
+      {
+        "elb" : "internal-ice-lb-1927125558.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-08963474"
+      },
+      {
+        "elb" : "internal-jira-lb73test-776597168.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-2fbd0c53"
+      },
+      {
+        "elb" : "internal-jira-lbconvergencetest-1217404088.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-87ef7efb"
+      },
+      {
+        "elb" : "internal-confluence-lbscottl-344701305.us-east-1.elb.amazonaws.com",
+        "sg" : "sg-f024e18f"
+      }
+    ]
+  },
+  "rtbs" : {
+    "associations" : [
+      {
+        "rtb" : "rtb-71c35515",
+        "rtbassoc" : "rtbassoc-d9a889bd",
+        "subnet" : "subnet-202d3308"
+      },
+      {
+        "rtb" : "rtb-44c35520",
+        "rtbassoc" : "rtbassoc-a4a889c0",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "rtb" : "rtb-74c35510",
+        "rtbassoc" : "rtbassoc-d3a889b7",
+        "subnet" : "subnet-2e2d3306"
+      },
+      {
+        "rtb" : "rtb-74c35510",
+        "rtbassoc" : "rtbassoc-dca889b8",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "rtb" : "rtb-6ac3550e",
+        "rtbassoc" : "rtbassoc-d6a889b2",
+        "subnet" : "subnet-999b65c0"
+      },
+      {
+        "rtb" : "rtb-6ac3550e",
+        "rtbassoc" : "rtbassoc-d5a889b1",
+        "subnet" : "subnet-2f2d3307"
+      }
+    ],
+    "eni-routes" : [
+      {
+        "cidr" : "0.0.0.0/0",
+        "eni" : "eni-4f5f2962",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "eni" : "eni-ac7547f7",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      }
+    ],
+    "igw-routes" : [
+      {
+        "cidr" : "0.0.0.0/0",
+        "igw" : "igw-949f49f1",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      }
+    ],
+    "pcx-routes" : [
+      {
+        "cidr" : "172.28.33.0/24",
+        "pcx" : "pcx-2074f449",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.64.0/22",
+        "pcx" : "pcx-a58f67cc",
+        "rtb" : "rtb-71c35515",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "172.28.68.0/22",
+        "pcx" : "pcx-1f8b2376",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "pcx" : "pcx-eb12c182",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.29.88.0/22",
+        "pcx" : "pcx-0484566d",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.16.0/21",
+        "pcx" : "pcx-9faa27f6",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.28.32.0/21",
+        "pcx" : "pcx-ab04f7c2",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.110.0.0/21",
+        "pcx" : "pcx-b42c48dd",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.110.24.0/21",
+        "pcx" : "pcx-b8ba2bd1",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.80.0.0/20",
+        "pcx" : "pcx-2c840945",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.192.0/18",
+        "pcx" : "pcx-9a42e2f3",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.31.0.0/17",
+        "pcx" : "pcx-4044ad29",
+        "rtb" : "rtb-71c35515",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.11.0.0/16",
+        "pcx" : "pcx-e224fb8b",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "pcx" : "pcx-76be561f",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.51.0.0/16",
+        "pcx" : "pcx-4f9d6226",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.52.0.0/16",
+        "pcx" : "pcx-2113e948",
+        "rtb" : "rtb-71c35515",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.53.0.0/16",
+        "pcx" : "pcx-6831ca01",
+        "rtb" : "rtb-71c35515",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.54.0.0/16",
+        "pcx" : "pcx-038e486a",
+        "rtb" : "rtb-71c35515",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.55.0.0/16",
+        "pcx" : "pcx-be1adbd7",
+        "rtb" : "rtb-71c35515",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.56.0.0/16",
+        "pcx" : "pcx-95b877fc",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.59.0.0/16",
+        "pcx" : "pcx-818951e8",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.61.0.0/16",
+        "pcx" : "pcx-db39fbb2",
+        "rtb" : "rtb-71c35515",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.62.0.0/16",
+        "pcx" : "pcx-dc39fbb5",
+        "rtb" : "rtb-71c35515",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.63.0.0/16",
+        "pcx" : "pcx-d139fbb8",
+        "rtb" : "rtb-71c35515",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.64.0.0/16",
+        "pcx" : "pcx-4122ed28",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.65.0.0/16",
+        "pcx" : "pcx-01b77868",
+        "rtb" : "rtb-71c35515",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.74.0.0/16",
+        "pcx" : "pcx-6bbc6f02",
+        "rtb" : "rtb-71c35515",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.33.0/24",
+        "pcx" : "pcx-2074f449",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.64.0/22",
+        "pcx" : "pcx-a58f67cc",
+        "rtb" : "rtb-44c35520",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "172.28.68.0/22",
+        "pcx" : "pcx-1f8b2376",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "pcx" : "pcx-eb12c182",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.29.88.0/22",
+        "pcx" : "pcx-0484566d",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.8.0/21",
+        "pcx" : "pcx-b3e64ada",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.16.0/21",
+        "pcx" : "pcx-9faa27f6",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.28.32.0/21",
+        "pcx" : "pcx-ab04f7c2",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.110.0.0/21",
+        "pcx" : "pcx-b42c48dd",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.110.24.0/21",
+        "pcx" : "pcx-b8ba2bd1",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.80.0.0/20",
+        "pcx" : "pcx-2c840945",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.192.0/18",
+        "pcx" : "pcx-9a42e2f3",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.31.0.0/17",
+        "pcx" : "pcx-4044ad29",
+        "rtb" : "rtb-44c35520",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.11.0.0/16",
+        "pcx" : "pcx-e224fb8b",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "pcx" : "pcx-76be561f",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.51.0.0/16",
+        "pcx" : "pcx-4f9d6226",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.52.0.0/16",
+        "pcx" : "pcx-2113e948",
+        "rtb" : "rtb-44c35520",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.53.0.0/16",
+        "pcx" : "pcx-6831ca01",
+        "rtb" : "rtb-44c35520",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.54.0.0/16",
+        "pcx" : "pcx-038e486a",
+        "rtb" : "rtb-44c35520",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.55.0.0/16",
+        "pcx" : "pcx-be1adbd7",
+        "rtb" : "rtb-44c35520",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.56.0.0/16",
+        "pcx" : "pcx-95b877fc",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.59.0.0/16",
+        "pcx" : "pcx-818951e8",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.61.0.0/16",
+        "pcx" : "pcx-db39fbb2",
+        "rtb" : "rtb-44c35520",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.62.0.0/16",
+        "pcx" : "pcx-dc39fbb5",
+        "rtb" : "rtb-44c35520",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.63.0.0/16",
+        "pcx" : "pcx-d139fbb8",
+        "rtb" : "rtb-44c35520",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.64.0.0/16",
+        "pcx" : "pcx-4122ed28",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.65.0.0/16",
+        "pcx" : "pcx-01b77868",
+        "rtb" : "rtb-44c35520",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.74.0.0/16",
+        "pcx" : "pcx-6bbc6f02",
+        "rtb" : "rtb-44c35520",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.29.238.0/25",
+        "pcx" : "pcx-ca73e2a3",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.29.238.128/25",
+        "pcx" : "pcx-ca73e2a3",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.29.239.0/25",
+        "pcx" : "pcx-ca73e2a3",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.33.0/24",
+        "pcx" : "pcx-2074f449",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.64.0/22",
+        "pcx" : "pcx-a58f67cc",
+        "rtb" : "rtb-74c35510",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "172.28.68.0/22",
+        "pcx" : "pcx-1f8b2376",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "pcx" : "pcx-eb12c182",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.29.88.0/22",
+        "pcx" : "pcx-0484566d",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.100.12.0/22",
+        "pcx" : "pcx-0637af6f",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.8.0/21",
+        "pcx" : "pcx-b3e64ada",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.16.0/21",
+        "pcx" : "pcx-9faa27f6",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.28.32.0/21",
+        "pcx" : "pcx-ab04f7c2",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.110.24.0/21",
+        "pcx" : "pcx-b8ba2bd1",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.80.0.0/20",
+        "pcx" : "pcx-2c840945",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.192.0/18",
+        "pcx" : "pcx-9a42e2f3",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.31.0.0/17",
+        "pcx" : "pcx-4044ad29",
+        "rtb" : "rtb-74c35510",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.11.0.0/16",
+        "pcx" : "pcx-e224fb8b",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "pcx" : "pcx-76be561f",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.51.0.0/16",
+        "pcx" : "pcx-4f9d6226",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.52.0.0/16",
+        "pcx" : "pcx-2113e948",
+        "rtb" : "rtb-74c35510",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.53.0.0/16",
+        "pcx" : "pcx-6831ca01",
+        "rtb" : "rtb-74c35510",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.54.0.0/16",
+        "pcx" : "pcx-038e486a",
+        "rtb" : "rtb-74c35510",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.55.0.0/16",
+        "pcx" : "pcx-be1adbd7",
+        "rtb" : "rtb-74c35510",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.56.0.0/16",
+        "pcx" : "pcx-95b877fc",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.59.0.0/16",
+        "pcx" : "pcx-818951e8",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.61.0.0/16",
+        "pcx" : "pcx-db39fbb2",
+        "rtb" : "rtb-74c35510",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.62.0.0/16",
+        "pcx" : "pcx-dc39fbb5",
+        "rtb" : "rtb-74c35510",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.63.0.0/16",
+        "pcx" : "pcx-d139fbb8",
+        "rtb" : "rtb-74c35510",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.64.0.0/16",
+        "pcx" : "pcx-4122ed28",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.65.0.0/16",
+        "pcx" : "pcx-01b77868",
+        "rtb" : "rtb-74c35510",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.74.0.0/16",
+        "pcx" : "pcx-6bbc6f02",
+        "rtb" : "rtb-74c35510",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.33.0/24",
+        "pcx" : "pcx-2074f449",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.64.0/22",
+        "pcx" : "pcx-a58f67cc",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "172.28.68.0/22",
+        "pcx" : "pcx-1f8b2376",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "pcx" : "pcx-eb12c182",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.29.88.0/22",
+        "pcx" : "pcx-0484566d",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.8.0/21",
+        "pcx" : "pcx-b3e64ada",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.28.32.0/21",
+        "pcx" : "pcx-ab04f7c2",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.110.24.0/21",
+        "pcx" : "pcx-b8ba2bd1",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.80.0.0/20",
+        "pcx" : "pcx-2c840945",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.31.0.0/17",
+        "pcx" : "pcx-4044ad29",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.11.0.0/16",
+        "pcx" : "pcx-e224fb8b",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "pcx" : "pcx-76be561f",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.51.0.0/16",
+        "pcx" : "pcx-4f9d6226",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.52.0.0/16",
+        "pcx" : "pcx-2113e948",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.53.0.0/16",
+        "pcx" : "pcx-6831ca01",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.54.0.0/16",
+        "pcx" : "pcx-038e486a",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.55.0.0/16",
+        "pcx" : "pcx-be1adbd7",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.56.0.0/16",
+        "pcx" : "pcx-95b877fc",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.59.0.0/16",
+        "pcx" : "pcx-818951e8",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.61.0.0/16",
+        "pcx" : "pcx-db39fbb2",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.62.0.0/16",
+        "pcx" : "pcx-dc39fbb5",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.63.0.0/16",
+        "pcx" : "pcx-d139fbb8",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.64.0.0/16",
+        "pcx" : "pcx-4122ed28",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.65.0.0/16",
+        "pcx" : "pcx-01b77868",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.74.0.0/16",
+        "pcx" : "pcx-6bbc6f02",
+        "rtb" : "rtb-6ac3550e",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.28.64.0/22",
+        "pcx" : "pcx-a58f67cc",
+        "rtb" : "rtb-2057e845",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.110.24.0/21",
+        "pcx" : "pcx-b8ba2bd1",
+        "rtb" : "rtb-2057e845",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.80.0.0/20",
+        "pcx" : "pcx-2c840945",
+        "rtb" : "rtb-2057e845",
+        "state" : "active"
+      },
+      {
+        "cidr" : "172.31.0.0/17",
+        "pcx" : "pcx-4044ad29",
+        "rtb" : "rtb-2057e845",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "pcx" : "pcx-76be561f",
+        "rtb" : "rtb-2057e845",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.51.0.0/16",
+        "pcx" : "pcx-4f9d6226",
+        "rtb" : "rtb-2057e845",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.52.0.0/16",
+        "pcx" : "pcx-2113e948",
+        "rtb" : "rtb-2057e845",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.53.0.0/16",
+        "pcx" : "pcx-6831ca01",
+        "rtb" : "rtb-2057e845",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.54.0.0/16",
+        "pcx" : "pcx-038e486a",
+        "rtb" : "rtb-2057e845",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.55.0.0/16",
+        "pcx" : "pcx-be1adbd7",
+        "rtb" : "rtb-2057e845",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.56.0.0/16",
+        "pcx" : "pcx-95b877fc",
+        "rtb" : "rtb-2057e845",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.59.0.0/16",
+        "pcx" : "pcx-818951e8",
+        "rtb" : "rtb-2057e845",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.61.0.0/16",
+        "pcx" : "pcx-db39fbb2",
+        "rtb" : "rtb-2057e845",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.62.0.0/16",
+        "pcx" : "pcx-dc39fbb5",
+        "rtb" : "rtb-2057e845",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.63.0.0/16",
+        "pcx" : "pcx-d139fbb8",
+        "rtb" : "rtb-2057e845",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.64.0.0/16",
+        "pcx" : "pcx-4122ed28",
+        "rtb" : "rtb-2057e845",
+        "state" : "active"
+      },
+      {
+        "cidr" : "10.65.0.0/16",
+        "pcx" : "pcx-01b77868",
+        "rtb" : "rtb-2057e845",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.70.0.0/16",
+        "pcx" : "pcx-48be5621",
+        "rtb" : "rtb-2057e845",
+        "state" : "blackhole"
+      },
+      {
+        "cidr" : "10.110.0.0/16",
+        "pcx" : "pcx-80be56e9",
+        "rtb" : "rtb-2057e845",
+        "state" : "blackhole"
+      }
+    ],
+    "tags" : [
+      {
+        "id" : "rtb-71c35515",
+        "key" : "Name",
+        "value" : "ce-core-qafire natted us-east-1c"
+      },
+      {
+        "id" : "rtb-44c35520",
+        "key" : "Name",
+        "value" : "ce-core-qafire natted us-east-1a"
+      },
+      {
+        "id" : "rtb-74c35510",
+        "key" : "Name",
+        "value" : "ce-core-qafire private"
+      },
+      {
+        "id" : "rtb-6ac3550e",
+        "key" : "Name",
+        "value" : "ce-core-qafire public"
+      }
+    ],
+    "rtbs" : [
+      {
+        "main" : false,
+        "rtb" : "rtb-71c35515",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "main" : false,
+        "rtb" : "rtb-44c35520",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "main" : false,
+        "rtb" : "rtb-74c35510",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "main" : false,
+        "rtb" : "rtb-6ac3550e",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "main" : true,
+        "rtb" : "rtb-2057e845",
+        "vpc" : "vpc-252e9140"
+      }
+    ],
+    "ngw-routes" : [],
+    "vpce-routes" : [
+      {
+        "pl" : "pl-63a5400a",
+        "rtb" : "rtb-71c35515",
+        "state" : "active",
+        "vpce" : "vpce-771ecb1e"
+      },
+      {
+        "pl" : "pl-63a5400a",
+        "rtb" : "rtb-44c35520",
+        "state" : "active",
+        "vpce" : "vpce-771ecb1e"
+      },
+      {
+        "pl" : "pl-63a5400a",
+        "rtb" : "rtb-74c35510",
+        "state" : "active",
+        "vpce" : "vpce-771ecb1e"
+      }
+    ]
+  },
+  "azs" : {
+    "azs" : [
+      {
+        "az" : "us-east-1a",
+        "region" : "us-east-1",
+        "state" : "available"
+      },
+      {
+        "az" : "us-east-1b",
+        "region" : "us-east-1",
+        "state" : "available"
+      },
+      {
+        "az" : "us-east-1c",
+        "region" : "us-east-1",
+        "state" : "available"
+      },
+      {
+        "az" : "us-east-1d",
+        "region" : "us-east-1",
+        "state" : "available"
+      },
+      {
+        "az" : "us-east-1e",
+        "region" : "us-east-1",
+        "state" : "available"
+      }
+    ]
+  },
+  "instances" : {
+    "instance-subnets" : [
+      {
+        "instance" : "i-06183a0cb83b1d698",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-3147ad92",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-33b0a5ab",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-58d69bc8",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-0b47d5541ec50a66c",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-0ef689e1",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-1622c5e8",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-07fd40d627bfde5e1",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-013f1dbc163ebfd51",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-2a40aa89",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-8a05eb29",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-35fdca9c",
+        "subnet" : "subnet-202d3308"
+      },
+      {
+        "instance" : "i-7e6ffad2",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-01b8fd86519931a13",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-6578a7f5",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-521405ae",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-d60d724e",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-2afea29b",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-9192187c",
+        "subnet" : "subnet-999b65c0"
+      },
+      {
+        "instance" : "i-108c99e1",
+        "subnet" : "subnet-2f2d3307"
+      },
+      {
+        "instance" : "i-676a9dc7",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-1b273ce7",
+        "subnet" : "subnet-999b65c0"
+      },
+      {
+        "instance" : "i-50e085e3",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-4fc036ef",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-1c8c37e3",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-2d72798c",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "instance" : "i-4eb139fd",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-0ca088d8db85cdd3e",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-27b676d8",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "instance" : "i-2bbd40db",
+        "subnet" : "subnet-202d3308"
+      }
+    ],
+    "instances" : [
+      {
+        "instance" : "i-06183a0cb83b1d698",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-3147ad92",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-33b0a5ab",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-58d69bc8",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-0b47d5541ec50a66c",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-0ef689e1",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-1622c5e8",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-07fd40d627bfde5e1",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-013f1dbc163ebfd51",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-2a40aa89",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-0f12880547c4981b8",
+        "state" : "terminated"
+      },
+      {
+        "instance" : "i-8a05eb29",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-35fdca9c",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-7e6ffad2",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-01b8fd86519931a13",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-6578a7f5",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-521405ae",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-d60d724e",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-2afea29b",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-9192187c",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-108c99e1",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-676a9dc7",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-1b273ce7",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-50e085e3",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-4fc036ef",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-1c8c37e3",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-2d72798c",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-4eb139fd",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-0ca088d8db85cdd3e",
+        "state" : "running"
+      },
+      {
+        "instance" : "i-27b676d8",
+        "state" : "stopped"
+      },
+      {
+        "instance" : "i-2bbd40db",
+        "state" : "stopped"
+      }
+    ],
+    "tags" : [
+      {
+        "id" : "i-06183a0cb83b1d698",
+        "key" : "Department",
+        "value" : "ce"
+      },
+      {
+        "id" : "i-06183a0cb83b1d698",
+        "key" : "bw_tags",
+        "value" : "devenv-qa:ce:ice:1"
+      },
+      {
+        "id" : "i-06183a0cb83b1d698",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__dc75e74c3bfe7264d74030a1203f873f734aa000"
+      },
+      {
+        "id" : "i-06183a0cb83b1d698",
+        "key" : "Component",
+        "value" : "server"
+      },
+      {
+        "id" : "i-06183a0cb83b1d698",
+        "key" : "Environment",
+        "value" : "devenv-qa"
+      },
+      {
+        "id" : "i-06183a0cb83b1d698",
+        "key" : "Application",
+        "value" : "ice"
+      },
+      {
+        "id" : "i-06183a0cb83b1d698",
+        "key" : "owner",
+        "value" : "dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "i-06183a0cb83b1d698",
+        "key" : "origin",
+        "value" : "vagrant@localhost.localdomain"
+      },
+      {
+        "id" : "i-06183a0cb83b1d698",
+        "key" : "Name",
+        "value" : "e-ice-srv001v0q.devenv-qa"
+      },
+      {
+        "id" : "i-3147ad92",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__7321bc3f5f31a9751d77e5fd3b72e8b4b25d8b45"
+      },
+      {
+        "id" : "i-3147ad92",
+        "key" : "Name",
+        "value" : "ce-core-qafire-jamf-jss-trusted"
+      },
+      {
+        "id" : "i-3147ad92",
+        "key" : "owner",
+        "value" : "ce"
+      },
+      {
+        "id" : "i-3147ad92",
+        "key" : "bw_tags",
+        "value" : "ce-core-qafire:ce:jamf:1"
+      },
+      {
+        "id" : "i-3147ad92",
+        "key" : "bw_ansible_name",
+        "value" : "ce-core-qafire-jamf-jss-trusted"
+      },
+      {
+        "id" : "i-33b0a5ab",
+        "key" : "Name",
+        "value" : "test-ping-federate"
+      },
+      {
+        "id" : "i-58d69bc8",
+        "key" : "Application",
+        "value" : "rundeck"
+      },
+      {
+        "id" : "i-58d69bc8",
+        "key" : "owner",
+        "value" : "dev.miller.tim@dev.bwater.com, dev.merali.jamil@dev.bwater.com"
+      },
+      {
+        "id" : "i-58d69bc8",
+        "key" : "Component",
+        "value" : "server"
+      },
+      {
+        "id" : "i-58d69bc8",
+        "key" : "Environment",
+        "value" : "devenv-qa"
+      },
+      {
+        "id" : "i-58d69bc8",
+        "key" : "origin",
+        "value" : "patrickclancy@"
+      },
+      {
+        "id" : "i-58d69bc8",
+        "key" : "Name",
+        "value" : "e-rnd-srv001v0q.devenv-qa"
+      },
+      {
+        "id" : "i-58d69bc8",
+        "key" : "Department",
+        "value" : "TSI"
+      },
+      {
+        "id" : "i-0b47d5541ec50a66c",
+        "key" : "Application",
+        "value" : "jira"
+      },
+      {
+        "id" : "i-0b47d5541ec50a66c",
+        "key" : "Name",
+        "value" : "e-jir-ppl001v0q.devenv-qa-restore-08dec16"
+      },
+      {
+        "id" : "i-0b47d5541ec50a66c",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com, dev.miller.tim@dev.bwater.com, dev.zhao.wesley@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "i-0b47d5541ec50a66c",
+        "key" : "bw_tags",
+        "value" : "devenv-qa-restore-08dec16:TSI:jira:1"
+      },
+      {
+        "id" : "i-0b47d5541ec50a66c",
+        "key" : "origin",
+        "value" : "wesleyzhao@"
+      },
+      {
+        "id" : "i-0b47d5541ec50a66c",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__055a79221d91e0f0de3b2f075f1c61194f7e5367"
+      },
+      {
+        "id" : "i-0b47d5541ec50a66c",
+        "key" : "Environment",
+        "value" : "devenv-qa-restore-08dec16"
+      },
+      {
+        "id" : "i-0ef689e1",
+        "key" : "AppstackVersion",
+        "value" : "6ed60b99d1bf4cde3f81c9c06f4638aa4862a6bc_03d5bfe7c62009206f7602c24b7db83239ea602c"
+      },
+      {
+        "id" : "i-0ef689e1",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "i-0ef689e1",
+        "key" : "Name",
+        "value" : "orchestrator-guard"
+      },
+      {
+        "id" : "i-1622c5e8",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "i-1622c5e8",
+        "key" : "AppstackVersion",
+        "value" : "1.0.4"
+      },
+      {
+        "id" : "i-1622c5e8",
+        "key" : "Name",
+        "value" : "ad1"
+      },
+      {
+        "id" : "i-1622c5e8",
+        "key" : "bw:hostname",
+        "value" : "e-cor-dir001vad"
+      },
+      {
+        "id" : "i-07fd40d627bfde5e1",
+        "key" : "Environment",
+        "value" : "devenv-qa"
+      },
+      {
+        "id" : "i-07fd40d627bfde5e1",
+        "key" : "Name",
+        "value" : "e-vld-ppl001v0q.devenv-qa"
+      },
+      {
+        "id" : "i-07fd40d627bfde5e1",
+        "key" : "Component",
+        "value" : "application"
+      },
+      {
+        "id" : "i-07fd40d627bfde5e1",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__afc53e59d9b75018142be4852ef9b3b9b661c910"
+      },
+      {
+        "id" : "i-07fd40d627bfde5e1",
+        "key" : "origin",
+        "value" : "rundeck@ip-10-60-31-51"
+      },
+      {
+        "id" : "i-07fd40d627bfde5e1",
+        "key" : "owner",
+        "value" : "dev.clancy.patrick@dev.bwater.com, dev.stewart.curtis@dev.bwater.com, dev.ebie.anne@dev.bwater.com, dev.liggio.vince@dev.bwater.com, dev.patel.kalpesh@dev.bwater.com, dev.young.ed@dev.bwater.com"
+      },
+      {
+        "id" : "i-07fd40d627bfde5e1",
+        "key" : "Application",
+        "value" : "validation"
+      },
+      {
+        "id" : "i-07fd40d627bfde5e1",
+        "key" : "Department",
+        "value" : "TSI"
+      },
+      {
+        "id" : "i-07fd40d627bfde5e1",
+        "key" : "bw_tags",
+        "value" : "devenv-qa:TSI:validation:1"
+      },
+      {
+        "id" : "i-013f1dbc163ebfd51",
+        "key" : "Component",
+        "value" : "application"
+      },
+      {
+        "id" : "i-013f1dbc163ebfd51",
+        "key" : "origin",
+        "value" : "wesleyzhao@"
+      },
+      {
+        "id" : "i-013f1dbc163ebfd51",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com, dev.miller.tim@dev.bwater.com, dev.zhao.wesley@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "i-013f1dbc163ebfd51",
+        "key" : "Name",
+        "value" : "e-jir-ppl001v0q.devenv-qa-dev-playground"
+      },
+      {
+        "id" : "i-013f1dbc163ebfd51",
+        "key" : "Environment",
+        "value" : "devenv-qa-dev-playground"
+      },
+      {
+        "id" : "i-013f1dbc163ebfd51",
+        "key" : "bw_tags",
+        "value" : "devenv-qa-dev-playground:TSI:jira:1"
+      },
+      {
+        "id" : "i-013f1dbc163ebfd51",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__d511b520da9f4b3517bae31a178f493f9f4fca16"
+      },
+      {
+        "id" : "i-013f1dbc163ebfd51",
+        "key" : "Application",
+        "value" : "jira"
+      },
+      {
+        "id" : "i-013f1dbc163ebfd51",
+        "key" : "Department",
+        "value" : "TSI"
+      },
+      {
+        "id" : "i-2a40aa89",
+        "key" : "owner",
+        "value" : "ce"
+      },
+      {
+        "id" : "i-2a40aa89",
+        "key" : "Name",
+        "value" : "ce-core-qafire-jamf-jss-dmz"
+      },
+      {
+        "id" : "i-2a40aa89",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__bab8cac8e1dc91d3b3f31668f7abb0f25d729cbc"
+      },
+      {
+        "id" : "i-2a40aa89",
+        "key" : "bw_ansible_name",
+        "value" : "ce-core-qafire-jamf-jss-dmz"
+      },
+      {
+        "id" : "i-2a40aa89",
+        "key" : "bw_tags",
+        "value" : "ce-core-qafire:ce:jamf:1"
+      },
+      {
+        "id" : "i-0f12880547c4981b8",
+        "key" : "Name",
+        "value" : "e-ice-srv001v0q.devenv-qa-old"
+      },
+      {
+        "id" : "i-0f12880547c4981b8",
+        "key" : "Department",
+        "value" : "ce"
+      },
+      {
+        "id" : "i-0f12880547c4981b8",
+        "key" : "owner",
+        "value" : "dev.sydnor.ryan@dev.bwater.com, dev.clancy.patrick@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "i-0f12880547c4981b8",
+        "key" : "Component",
+        "value" : "server"
+      },
+      {
+        "id" : "i-0f12880547c4981b8",
+        "key" : "Environment",
+        "value" : "devenv-qa"
+      },
+      {
+        "id" : "i-0f12880547c4981b8",
+        "key" : "origin",
+        "value" : "vagrant@localhost.localdomain"
+      },
+      {
+        "id" : "i-0f12880547c4981b8",
+        "key" : "Application",
+        "value" : "ice"
+      },
+      {
+        "id" : "i-0f12880547c4981b8",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__fd18cb58e81a2b4b8a6c53922b9d511c2fec52e6"
+      },
+      {
+        "id" : "i-0f12880547c4981b8",
+        "key" : "bw_tags",
+        "value" : "devenv-qa:ce:ice:1"
+      },
+      {
+        "id" : "i-8a05eb29",
+        "key" : "bw_ansible_name",
+        "value" : "ce-core-qafire-gerrit-primary"
+      },
+      {
+        "id" : "i-8a05eb29",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__9521a24b495d565be6e88e1e8a98d4e32be3cf40"
+      },
+      {
+        "id" : "i-8a05eb29",
+        "key" : "owner",
+        "value" : "ce"
+      },
+      {
+        "id" : "i-8a05eb29",
+        "key" : "Name",
+        "value" : "ce-core-qafire-gerrit-primary-v2"
+      },
+      {
+        "id" : "i-8a05eb29",
+        "key" : "bw_tags",
+        "value" : "ce-core-qafire:ce:gerrit:1"
+      },
+      {
+        "id" : "i-35fdca9c",
+        "key" : "AppstackVersion",
+        "value" : "1.0.4"
+      },
+      {
+        "id" : "i-35fdca9c",
+        "key" : "bw:hostname",
+        "value" : "e-cor-dir001vcd"
+      },
+      {
+        "id" : "i-35fdca9c",
+        "key" : "Name",
+        "value" : "ad2"
+      },
+      {
+        "id" : "i-35fdca9c",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "i-7e6ffad2",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com"
+      },
+      {
+        "id" : "i-7e6ffad2",
+        "key" : "Name",
+        "value" : "gerrit-dev-env-v1"
+      },
+      {
+        "id" : "i-01b8fd86519931a13",
+        "key" : "bw_tags",
+        "value" : "devenv-qa-scottl:TSI:confluence:1"
+      },
+      {
+        "id" : "i-01b8fd86519931a13",
+        "key" : "Name",
+        "value" : "e-cnf-srv001v0q.devenv-qa-scottl"
+      },
+      {
+        "id" : "i-01b8fd86519931a13",
+        "key" : "origin",
+        "value" : "scottlepech@"
+      },
+      {
+        "id" : "i-01b8fd86519931a13",
+        "key" : "Component",
+        "value" : "server"
+      },
+      {
+        "id" : "i-01b8fd86519931a13",
+        "key" : "Application",
+        "value" : "confluence"
+      },
+      {
+        "id" : "i-01b8fd86519931a13",
+        "key" : "Department",
+        "value" : "TSI"
+      },
+      {
+        "id" : "i-01b8fd86519931a13",
+        "key" : "Environment",
+        "value" : "devenv-qa-scottl"
+      },
+      {
+        "id" : "i-01b8fd86519931a13",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__87c676523ae959348cd156282bb714bead14af82"
+      },
+      {
+        "id" : "i-01b8fd86519931a13",
+        "key" : "owner",
+        "value" : "dev.lepech.scott@dev.bwater.com, dev.cella.brian@dev.bwater.com, dev.greene.dan@dev.bwater.com, dev.spratt.justin@dev.bwater.com, dev.jagadeesh.janaki@dev.bwater.com, dev.miller.tim@dev.bwater.com"
+      },
+      {
+        "id" : "i-6578a7f5",
+        "key" : "Name",
+        "value" : "netsus"
+      },
+      {
+        "id" : "i-521405ae",
+        "key" : "aws:autoscaling:groupName",
+        "value" : "hologram-Core-asg-vpc-252e9140"
+      },
+      {
+        "id" : "i-521405ae",
+        "key" : "Name",
+        "value" : "hologram-Core-node-vpc-252e9140"
+      },
+      {
+        "id" : "i-d60d724e",
+        "key" : "Name",
+        "value" : "e-hpc-ppl001v0q.devenv-qa"
+      },
+      {
+        "id" : "i-2afea29b",
+        "key" : "Name",
+        "value" : "ce-core-qafire-jira-application"
+      },
+      {
+        "id" : "i-2afea29b",
+        "key" : "owner",
+        "value" : "ce"
+      },
+      {
+        "id" : "i-2afea29b",
+        "key" : "bw_tags",
+        "value" : "ce-core-qafire:ce:jira:1"
+      },
+      {
+        "id" : "i-2afea29b",
+        "key" : "bw_ansible_name",
+        "value" : "ce-core-qafire-jira-application"
+      },
+      {
+        "id" : "i-2afea29b",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__daed568ed1587d6fea589788a6cd4cff32344ecf"
+      },
+      {
+        "id" : "i-9192187c",
+        "key" : "Creator",
+        "value" : "ravi.mallarapu"
+      },
+      {
+        "id" : "i-9192187c",
+        "key" : "Name",
+        "value" : "i-ce-core-qafire-vpn-1a"
+      },
+      {
+        "id" : "i-9192187c",
+        "key" : "class",
+        "value" : "vpn"
+      },
+      {
+        "id" : "i-9192187c",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "i-9192187c",
+        "key" : "Tier",
+        "value" : "pub"
+      },
+      {
+        "id" : "i-108c99e1",
+        "key" : "aws:autoscaling:groupName",
+        "value" : "asg-ce-core-qafire-nat-1c"
+      },
+      {
+        "id" : "i-108c99e1",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "i-108c99e1",
+        "key" : "Name",
+        "value" : "asg-ce-core-qafire-nat-1c"
+      },
+      {
+        "id" : "i-108c99e1",
+        "key" : "Creator",
+        "value" : "ravi.mallarapu"
+      },
+      {
+        "id" : "i-108c99e1",
+        "key" : "class",
+        "value" : "nat"
+      },
+      {
+        "id" : "i-676a9dc7",
+        "key" : "Name",
+        "value" : "jss-dmz"
+      },
+      {
+        "id" : "i-1b273ce7",
+        "key" : "Name",
+        "value" : "asg-ce-core-qafire-nat-1a"
+      },
+      {
+        "id" : "i-1b273ce7",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "i-1b273ce7",
+        "key" : "Creator",
+        "value" : "ravi.mallarapu"
+      },
+      {
+        "id" : "i-1b273ce7",
+        "key" : "class",
+        "value" : "nat"
+      },
+      {
+        "id" : "i-1b273ce7",
+        "key" : "aws:autoscaling:groupName",
+        "value" : "asg-ce-core-qafire-nat-1a"
+      },
+      {
+        "id" : "i-50e085e3",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__19e25f9f98a27ee633ac072d138f8146946cf541"
+      },
+      {
+        "id" : "i-50e085e3",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com"
+      },
+      {
+        "id" : "i-50e085e3",
+        "key" : "Name",
+        "value" : "ce-core-qafire-gerrit-primary-v4"
+      },
+      {
+        "id" : "i-50e085e3",
+        "key" : "bw_tags",
+        "value" : "ce-core-qafire:ce:gerrit:1"
+      },
+      {
+        "id" : "i-50e085e3",
+        "key" : "origin",
+        "value" : "artemkazakov@"
+      },
+      {
+        "id" : "i-50e085e3",
+        "key" : "bw_ansible_name",
+        "value" : "ce-core-qafire-gerrit-primary"
+      },
+      {
+        "id" : "i-4fc036ef",
+        "key" : "Name",
+        "value" : "jss-internal"
+      },
+      {
+        "id" : "i-1c8c37e3",
+        "key" : "Name",
+        "value" : "packerextender build"
+      },
+      {
+        "id" : "i-1c8c37e3",
+        "key" : "JANITOR_META",
+        "value" : "category=core"
+      },
+      {
+        "id" : "i-2d72798c",
+        "key" : "Name",
+        "value" : "simple_ad_admin"
+      },
+      {
+        "id" : "i-4eb139fd",
+        "key" : "bw_tags",
+        "value" : "ce-core-qafire:ce:gerrit:1"
+      },
+      {
+        "id" : "i-4eb139fd",
+        "key" : "Name",
+        "value" : "ce-core-qafire-gerrit-primary-v3"
+      },
+      {
+        "id" : "i-4eb139fd",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__c6b87a63bc6cabbc4c6cb0cd1ce1a43103912baf"
+      },
+      {
+        "id" : "i-4eb139fd",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com"
+      },
+      {
+        "id" : "i-4eb139fd",
+        "key" : "bw_ansible_name",
+        "value" : "ce-core-qafire-gerrit-primary"
+      },
+      {
+        "id" : "i-4eb139fd",
+        "key" : "origin",
+        "value" : "artemkazakov@"
+      },
+      {
+        "id" : "i-0ca088d8db85cdd3e",
+        "key" : "Name",
+        "value" : "e-jir-ppl001v0q.devenv-qa-convergencetest"
+      },
+      {
+        "id" : "i-0ca088d8db85cdd3e",
+        "key" : "Application",
+        "value" : "jira"
+      },
+      {
+        "id" : "i-0ca088d8db85cdd3e",
+        "key" : "bw:hostname",
+        "value" : "__omit_place_holder__dd08139b301f56e46c69c6d95eb73c28b008b4ce"
+      },
+      {
+        "id" : "i-0ca088d8db85cdd3e",
+        "key" : "origin",
+        "value" : "scottlepech@"
+      },
+      {
+        "id" : "i-0ca088d8db85cdd3e",
+        "key" : "bw_tags",
+        "value" : "devenv-qa-convergencetest:TSI:jira:1"
+      },
+      {
+        "id" : "i-0ca088d8db85cdd3e",
+        "key" : "Component",
+        "value" : "application"
+      },
+      {
+        "id" : "i-0ca088d8db85cdd3e",
+        "key" : "Department",
+        "value" : "TSI"
+      },
+      {
+        "id" : "i-0ca088d8db85cdd3e",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com, dev.miller.tim@dev.bwater.com, dev.zhao.wesley@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "i-0ca088d8db85cdd3e",
+        "key" : "Environment",
+        "value" : "devenv-qa-convergencetest"
+      },
+      {
+        "id" : "i-27b676d8",
+        "key" : "Name",
+        "value" : "orchestrator"
+      },
+      {
+        "id" : "i-27b676d8",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "i-27b676d8",
+        "key" : "AppstackVersion",
+        "value" : "a2575aadb09558ea4b9429f359285b6bd1ef55ee_03d5bfe7c62009206f7602c24b7db83239ea602d"
+      },
+      {
+        "id" : "i-2bbd40db",
+        "key" : "Creator",
+        "value" : "ravi.mallarapu"
+      },
+      {
+        "id" : "i-2bbd40db",
+        "key" : "bw:hostname",
+        "value" : "e-cor-pvm001vcd"
+      },
+      {
+        "id" : "i-2bbd40db",
+        "key" : "class",
+        "value" : "pvm"
+      },
+      {
+        "id" : "i-2bbd40db",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "i-2bbd40db",
+        "key" : "Tier",
+        "value" : "nat"
+      },
+      {
+        "id" : "i-2bbd40db",
+        "key" : "Name",
+        "value" : "i-ce-core-qafire-pvm-1c-201"
+      }
+    ]
+  },
+  "vpcs" : {
+    "tags" : [
+      {
+        "cidr" : "10.60.0.0/16",
+        "state" : "available",
+        "vpc" : "vpc-252e9140"
+      }
+    ],
+    "vpcs" : [
+      {
+        "id" : "vpc-252e9140",
+        "key" : "Name",
+        "value" : "ce-core-qafire"
+      },
+      {
+        "id" : "vpc-252e9140",
+        "key" : "ce_vpc_link",
+        "value" : "ce-core-qafire"
+      },
+      {
+        "id" : "vpc-252e9140",
+        "key" : "Creator",
+        "value" : "ravi.mallarapu"
+      },
+      {
+        "id" : "vpc-252e9140",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "vpc-252e9140",
+        "key" : "ce_vpc_name",
+        "value" : "ce-core-qafire"
+      }
+    ]
+  },
+  "ngws" : {
+    "addresses" : [],
+    "ngws" : []
+  },
+  "vpces" : {
+    "cidrs" : [
+      {
+        "cidr" : "54.231.0.0/17",
+        "pl" : "pl-63a5400a"
+      },
+      {
+        "cidr" : "52.216.0.0/15",
+        "pl" : "pl-63a5400a"
+      }
+    ],
+    "vpces" : [
+      {
+        "state" : "available",
+        "vpc" : "vpc-252e9140",
+        "vpce" : "vpce-771ecb1e"
+      }
+    ]
+  },
+  "version" : "1.3",
+  "regions" : {
+    "regions" : [
+      "ap-south-1",
+      "eu-west-2",
+      "eu-west-1",
+      "ap-northeast-2",
+      "ap-northeast-1",
+      "sa-east-1",
+      "ca-central-1",
+      "ap-southeast-1",
+      "ap-southeast-2",
+      "eu-central-1",
+      "us-east-1",
+      "us-east-2",
+      "us-west-1",
+      "us-west-2"
+    ]
+  },
+  "sgs" : {
+    "tcp-udp-pls" : [
+      {
+        "pl" : "pl-63a5400a",
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "proto" : 6,
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "pl" : "pl-63a5400a",
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "proto" : 6,
+        "sg" : "sg-76be0f0a"
+      },
+      {
+        "pl" : "pl-63a5400a",
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "proto" : 6,
+        "sg" : "sg-83ef7eff"
+      },
+      {
+        "pl" : "pl-63a5400a",
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "proto" : 6,
+        "sg" : "sg-e1bfd186"
+      },
+      {
+        "pl" : "pl-63a5400a",
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "proto" : 6,
+        "sg" : "sg-ec24e193"
+      },
+      {
+        "pl" : "pl-63a5400a",
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "proto" : 6,
+        "sg" : "sg-fe3c6b83"
+      }
+    ],
+    "icmp-cidrs" : [
+      {
+        "cidr" : "10.60.0.0/16",
+        "dir" : "ingress",
+        "icmp" : {
+          "type" : -1,
+          "code" : -1
+        },
+        "sg" : "sg-63da5307"
+      }
+    ],
+    "tags" : [
+      {
+        "id" : "sg-08963474",
+        "key" : "origin",
+        "value" : "vagrant@localhost.localdomain"
+      },
+      {
+        "id" : "sg-08963474",
+        "key" : "owner",
+        "value" : "dev.sydnor.ryan@dev.bwater.com, dev.clancy.patrick@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "sg-0f3c6b72",
+        "key" : "origin",
+        "value" : "wesleyzhao@"
+      },
+      {
+        "id" : "sg-0f3c6b72",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com, dev.miller.tim@dev.bwater.com, dev.zhao.wesley@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "sg-155bf36d",
+        "key" : "origin",
+        "value" : "patrickclancy@"
+      },
+      {
+        "id" : "sg-155bf36d",
+        "key" : "owner",
+        "value" : "dev.zollman.aaron@dev.bwater.com, dev.stewart.curtis@dev.bwater.com, dev.ebie.anne@dev.bwater.com"
+      },
+      {
+        "id" : "sg-155e6e6e",
+        "key" : "origin",
+        "value" : "arkadiygoykhberg@"
+      },
+      {
+        "id" : "sg-155e6e6e",
+        "key" : "owner",
+        "value" : "dev.miller.tim@dev.bwater.com, dev.merali.jamil@dev.bwater.com"
+      },
+      {
+        "id" : "sg-171e3572",
+        "key" : "Name",
+        "value" : "sec-ce-core-qafire-jenkins"
+      },
+      {
+        "id" : "sg-171e3572",
+        "key" : "Creator",
+        "value" : "ravi.mallarapu"
+      },
+      {
+        "id" : "sg-171e3572",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "sg-195e6e62",
+        "key" : "owner",
+        "value" : "dev.miller.tim@dev.bwater.com, dev.merali.jamil@dev.bwater.com"
+      },
+      {
+        "id" : "sg-195e6e62",
+        "key" : "origin",
+        "value" : "arkadiygoykhberg@"
+      },
+      {
+        "id" : "sg-201e3545",
+        "key" : "Creator",
+        "value" : "ravi.mallarapu"
+      },
+      {
+        "id" : "sg-201e3545",
+        "key" : "Name",
+        "value" : "sec-ce-core-qafire-nat"
+      },
+      {
+        "id" : "sg-201e3545",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "sg-2fbd0c53",
+        "key" : "origin",
+        "value" : "scottlepech@"
+      },
+      {
+        "id" : "sg-2fbd0c53",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com, dev.miller.tim@dev.bwater.com, dev.zhao.wesley@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "sg-301e3555",
+        "key" : "Creator",
+        "value" : "ravi.mallarapu"
+      },
+      {
+        "id" : "sg-301e3555",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "sg-301e3555",
+        "key" : "Name",
+        "value" : "sec-ce-core-qafire-pvm"
+      },
+      {
+        "id" : "sg-3a1e355f",
+        "key" : "Name",
+        "value" : "sec-ce-core-qafire-vpn"
+      },
+      {
+        "id" : "sg-3a1e355f",
+        "key" : "Creator",
+        "value" : "ravi.mallarapu"
+      },
+      {
+        "id" : "sg-3a1e355f",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "sg-3a9f7f46",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com, dev.miller.tim@dev.bwater.com, dev.zhao.wesley@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "sg-3a9f7f46",
+        "key" : "origin",
+        "value" : "wesleyzhao@"
+      },
+      {
+        "id" : "sg-3e9f7f42",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com, dev.miller.tim@dev.bwater.com, dev.zhao.wesley@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "sg-3e9f7f42",
+        "key" : "origin",
+        "value" : "wesleyzhao@"
+      },
+      {
+        "id" : "sg-76be0f0a",
+        "key" : "origin",
+        "value" : "scottlepech@"
+      },
+      {
+        "id" : "sg-76be0f0a",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com, dev.miller.tim@dev.bwater.com, dev.zhao.wesley@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "sg-83ef7eff",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com, dev.miller.tim@dev.bwater.com, dev.zhao.wesley@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "sg-83ef7eff",
+        "key" : "origin",
+        "value" : "scottlepech@"
+      },
+      {
+        "id" : "sg-855af2fd",
+        "key" : "owner",
+        "value" : "dev.clancy.patrick@dev.bwater.com, dev.stewart.curtis@dev.bwater.com, dev.ebie.anne@dev.bwater.com, dev.liggio.vince@dev.bwater.com, dev.patel.kalpesh@dev.bwater.com, dev.young.ed@dev.bwater.com"
+      },
+      {
+        "id" : "sg-855af2fd",
+        "key" : "origin",
+        "value" : "rundeck@ip-10-60-31-51"
+      },
+      {
+        "id" : "sg-87ef7efb",
+        "key" : "origin",
+        "value" : "scottlepech@"
+      },
+      {
+        "id" : "sg-87ef7efb",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com, dev.miller.tim@dev.bwater.com, dev.zhao.wesley@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "sg-925af2ea",
+        "key" : "owner",
+        "value" : "dev.clancy.patrick@dev.bwater.com, dev.stewart.curtis@dev.bwater.com, dev.ebie.anne@dev.bwater.com, dev.liggio.vince@dev.bwater.com, dev.patel.kalpesh@dev.bwater.com, dev.young.ed@dev.bwater.com"
+      },
+      {
+        "id" : "sg-925af2ea",
+        "key" : "origin",
+        "value" : "rundeck@ip-10-60-31-51"
+      },
+      {
+        "id" : "sg-94200bf1",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "sg-94200bf1",
+        "key" : "Name",
+        "value" : "sec-ce-core-qafire-default"
+      },
+      {
+        "id" : "sg-94200bf1",
+        "key" : "Creator",
+        "value" : "ravi.mallarapu"
+      },
+      {
+        "id" : "sg-9d8c29e0",
+        "key" : "origin",
+        "value" : "vagrant@localhost.localdomain"
+      },
+      {
+        "id" : "sg-9d8c29e0",
+        "key" : "owner",
+        "value" : "dev.sydnor.ryan@dev.bwater.com, dev.clancy.patrick@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      },
+      {
+        "id" : "sg-c6b275a0",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com"
+      },
+      {
+        "id" : "sg-c6b275a0",
+        "key" : "origin",
+        "value" : "artemkazakov@"
+      },
+      {
+        "id" : "sg-d85027bf",
+        "key" : "Name",
+        "value" : "jamf_mysql-sg"
+      },
+      {
+        "id" : "sg-e8b2758e",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com"
+      },
+      {
+        "id" : "sg-e8b2758e",
+        "key" : "origin",
+        "value" : "artemkazakov@"
+      },
+      {
+        "id" : "sg-ec24e193",
+        "key" : "owner",
+        "value" : "dev.lepech.scott@dev.bwater.com, dev.cella.brian@dev.bwater.com, dev.greene.dan@dev.bwater.com, dev.spratt.justin@dev.bwater.com, dev.jagadeesh.janaki@dev.bwater.com, dev.miller.tim@dev.bwater.com"
+      },
+      {
+        "id" : "sg-ec24e193",
+        "key" : "origin",
+        "value" : "scottlepech@"
+      },
+      {
+        "id" : "sg-ef1e358a",
+        "key" : "Name",
+        "value" : "sec-ce-core-qafire-packerimage"
+      },
+      {
+        "id" : "sg-ef1e358a",
+        "key" : "Creator",
+        "value" : "ravi.mallarapu"
+      },
+      {
+        "id" : "sg-ef1e358a",
+        "key" : "Environment",
+        "value" : "qafire"
+      },
+      {
+        "id" : "sg-f024e18f",
+        "key" : "origin",
+        "value" : "scottlepech@"
+      },
+      {
+        "id" : "sg-f024e18f",
+        "key" : "owner",
+        "value" : "dev.lepech.scott@dev.bwater.com, dev.cella.brian@dev.bwater.com, dev.greene.dan@dev.bwater.com, dev.spratt.justin@dev.bwater.com, dev.jagadeesh.janaki@dev.bwater.com, dev.miller.tim@dev.bwater.com"
+      },
+      {
+        "id" : "sg-f7b27591",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com"
+      },
+      {
+        "id" : "sg-f7b27591",
+        "key" : "origin",
+        "value" : "artemkazakov@"
+      },
+      {
+        "id" : "sg-fe3c6b83",
+        "key" : "origin",
+        "value" : "wesleyzhao@"
+      },
+      {
+        "id" : "sg-fe3c6b83",
+        "key" : "owner",
+        "value" : "dev.merali.jamil@dev.bwater.com, dev.miller.tim@dev.bwater.com, dev.zhao.wesley@dev.bwater.com, dev.thompson.joel@dev.bwater.com"
+      }
+    ],
+    "custom-sgs" : [
+      {
+        "dir" : "ingress",
+        "proto" : -1,
+        "sg" : "sg-201e3545",
+        "target-sg" : "sg-201e3545"
+      },
+      {
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-63da5307",
+        "target-sg" : "sg-63da5307"
+      },
+      {
+        "dir" : "ingress",
+        "proto" : -1,
+        "sg" : "sg-94200bf1",
+        "target-sg" : "sg-94200bf1"
+      },
+      {
+        "dir" : "ingress",
+        "proto" : -1,
+        "sg" : "sg-ef1e358a",
+        "target-sg" : "sg-171e3572"
+      }
+    ],
+    "tcp-udp-sgs" : [
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "ingress",
+        "sg" : "sg-155bf36d",
+        "target-sg" : "sg-855af2fd"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 9093,
+          "to" : 9093
+        },
+        "dir" : "ingress",
+        "sg" : "sg-171e3572",
+        "target-sg" : "sg-301e3555"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 8080,
+          "to" : 8080
+        },
+        "dir" : "ingress",
+        "sg" : "sg-301e3555",
+        "target-sg" : "sg-3a1e355f"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 8080,
+          "to" : 8080
+        },
+        "dir" : "ingress",
+        "sg" : "sg-301e3555",
+        "target-sg" : "sg-171e3572"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-301e3555",
+        "target-sg" : "sg-3a1e355f"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-301e3555",
+        "target-sg" : "sg-3a1e355f"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 8443,
+          "to" : 8443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-46d2a521",
+        "target-sg" : "sg-3ff98e58"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 3100,
+          "to" : 3100
+        },
+        "dir" : "ingress",
+        "sg" : "sg-49b3e12d",
+        "target-sg" : "sg-3185d755"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 8080,
+          "to" : 8080
+        },
+        "dir" : "ingress",
+        "sg" : "sg-76be0f0a",
+        "target-sg" : "sg-2fbd0c53"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-76be0f0a",
+        "target-sg" : "sg-2fbd0c53"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 8080,
+          "to" : 8080
+        },
+        "dir" : "ingress",
+        "sg" : "sg-83ef7eff",
+        "target-sg" : "sg-87ef7efb"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-83ef7eff",
+        "target-sg" : "sg-87ef7efb"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-855af2fd",
+        "target-sg" : "sg-925af2ea"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 80,
+          "to" : 80
+        },
+        "dir" : "ingress",
+        "sg" : "sg-9d8c29e0",
+        "target-sg" : "sg-08963474"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 8443,
+          "to" : 8443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a0bfc8c7",
+        "target-sg" : "sg-e6dfa181"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 9093,
+          "to" : 9093
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7",
+        "target-sg" : "sg-301e3555"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 9090,
+          "to" : 9090
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7",
+        "target-sg" : "sg-301e3555"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 9090,
+          "to" : 9090
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7",
+        "target-sg" : "sg-d89e6fbf"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 9090,
+          "to" : 9090
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7",
+        "target-sg" : "sg-3a1e355f"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 9090,
+          "to" : 9090
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7",
+        "target-sg" : "sg-171e3572"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 3389,
+          "to" : 3389
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7",
+        "target-sg" : "sg-3a1e355f"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 5986,
+          "to" : 5986
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7",
+        "target-sg" : "sg-171e3572"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 5986,
+          "to" : 5986
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7",
+        "target-sg" : "sg-d89e6fbf"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 5986,
+          "to" : 5986
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7",
+        "target-sg" : "sg-3a1e355f"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 9093,
+          "to" : 9093
+        },
+        "dir" : "ingress",
+        "sg" : "sg-d89e6fbf",
+        "target-sg" : "sg-301e3555"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 9090,
+          "to" : 9090
+        },
+        "dir" : "ingress",
+        "sg" : "sg-d89e6fbf",
+        "target-sg" : "sg-301e3555"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 8081,
+          "to" : 8081
+        },
+        "dir" : "ingress",
+        "sg" : "sg-d89e6fbf",
+        "target-sg" : "sg-50687635"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 8090,
+          "to" : 8090
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ec24e193",
+        "target-sg" : "sg-f024e18f"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 5223,
+          "to" : 5223
+        },
+        "dir" : "egress",
+        "sg" : "sg-ec24e193",
+        "target-sg" : "sg-0e946f76"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 5222,
+          "to" : 5222
+        },
+        "dir" : "egress",
+        "sg" : "sg-ec24e193",
+        "target-sg" : "sg-0e946f76"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 389,
+          "to" : 389
+        },
+        "dir" : "egress",
+        "sg" : "sg-ec24e193",
+        "target-sg" : "sg-e1bfd186"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-ec24e193",
+        "target-sg" : "sg-f024e18f"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-ec24e193",
+        "target-sg" : "sg-0e946f76"
+      },
+      {
+        "proto" : 6,
+        "ports" : {
+          "from" : 9093,
+          "to" : 9093
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ef1e358a",
+        "target-sg" : "sg-301e3555"
+      }
+    ],
+    "icmp-sgs" : [],
+    "tcp-udp-cidrs" : [
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 80,
+          "to" : 80
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01467b7a"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 80,
+          "to" : 80
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01467b7a"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 81,
+          "to" : 81
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01467b7a"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 81,
+          "to" : 81
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01467b7a"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01467b7a"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01467b7a"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 139,
+          "to" : 139
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01467b7a"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 139,
+          "to" : 139
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01467b7a"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01467b7a"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01467b7a"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01f33e67"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01f33e67"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8443,
+          "to" : 8443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01f33e67"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8443,
+          "to" : 8443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01f33e67"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 3306,
+          "to" : 3306
+        },
+        "dir" : "ingress",
+        "sg" : "sg-01f33e67"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-08963474"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-0f3c6b72"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-0f3c6b72"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-0f3c6b72"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-0f3c6b72"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-0f3c6b72"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8080,
+          "to" : 8080
+        },
+        "dir" : "ingress",
+        "sg" : "sg-13e12975"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-13e12975"
+      },
+      {
+        "cidr" : "172.0.0.0/8",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-13e12975"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-13e12975"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 9000,
+          "to" : 9000
+        },
+        "dir" : "ingress",
+        "sg" : "sg-14eb456c"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8080,
+          "to" : 8080
+        },
+        "dir" : "ingress",
+        "sg" : "sg-14eb456c"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 9999,
+          "to" : 9999
+        },
+        "dir" : "ingress",
+        "sg" : "sg-14eb456c"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-14eb456c"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 9031,
+          "to" : 9032
+        },
+        "dir" : "ingress",
+        "sg" : "sg-14eb456c"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 17,
+        "ports" : {
+          "from" : 1812,
+          "to" : 1812
+        },
+        "dir" : "ingress",
+        "sg" : "sg-14eb456c"
+      },
+      {
+        "cidr" : "10.80.0.0/20",
+        "proto" : 17,
+        "ports" : {
+          "from" : 1812,
+          "to" : 1812
+        },
+        "dir" : "ingress",
+        "sg" : "sg-14eb456c"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-14eb456c"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 1812,
+          "to" : 1812
+        },
+        "dir" : "ingress",
+        "sg" : "sg-14eb456c"
+      },
+      {
+        "cidr" : "10.80.0.0/20",
+        "proto" : 6,
+        "ports" : {
+          "from" : 1812,
+          "to" : 1812
+        },
+        "dir" : "ingress",
+        "sg" : "sg-14eb456c"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-155e6e6e"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-155e6e6e"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-16f33e70"
+      },
+      {
+        "cidr" : "172.28.8.0/21",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-16f33e70"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8080,
+          "to" : 8080
+        },
+        "dir" : "ingress",
+        "sg" : "sg-171e3572"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-171e3572"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-171e3572"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 9090,
+          "to" : 9090
+        },
+        "dir" : "ingress",
+        "sg" : "sg-171e3572"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-195e6e62"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-195e6e62"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 4440,
+          "to" : 4440
+        },
+        "dir" : "ingress",
+        "sg" : "sg-195e6e62"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 4440,
+          "to" : 4440
+        },
+        "dir" : "ingress",
+        "sg" : "sg-195e6e62"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-1d596267"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-201e3545"
+      },
+      {
+        "cidr" : "216.238.128.0/20",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-201e3545"
+      },
+      {
+        "cidr" : "172.28.14.35/32",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-201e3545"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-2fbd0c53"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-2fbd0c53"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-2fbd0c53"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-2fbd0c53"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-2fbd0c53"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8080,
+          "to" : 8080
+        },
+        "dir" : "ingress",
+        "sg" : "sg-301e3555"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-301e3555"
+      },
+      {
+        "cidr" : "172.31.1.33/32",
+        "proto" : 6,
+        "ports" : {
+          "from" : 9000,
+          "to" : 9000
+        },
+        "dir" : "egress",
+        "sg" : "sg-301e3555"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-301e3555"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3185d755"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 3100,
+          "to" : 3100
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3185d755"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 17,
+        "ports" : {
+          "from" : 1194,
+          "to" : 1194
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3a1e355f"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3a1e355f"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3a1e355f"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8080,
+          "to" : 8080
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "egress",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "cidr" : "10.60.31.0/24",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5223,
+          "to" : 5223
+        },
+        "dir" : "egress",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "cidr" : "10.60.31.0/24",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5222,
+          "to" : 5222
+        },
+        "dir" : "egress",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 389,
+          "to" : 389
+        },
+        "dir" : "egress",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "cidr" : "10.60.31.0/24",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 587,
+          "to" : 587
+        },
+        "dir" : "egress",
+        "sg" : "sg-3a9f7f46"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3e9b4d58"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3e9b4d58"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3e9f7f42"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3e9f7f42"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3e9f7f42"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3e9f7f42"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3e9f7f42"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-3ff98e58"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-46d2a521"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8443,
+          "to" : 8443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-46d2a521"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 3306,
+          "to" : 3306
+        },
+        "dir" : "ingress",
+        "sg" : "sg-46d2a521"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-49b3e12d"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-50687635"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63726c06"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 17,
+        "ports" : {
+          "from" : 138,
+          "to" : 138
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 17,
+        "ports" : {
+          "from" : 445,
+          "to" : 445
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 17,
+        "ports" : {
+          "from" : 464,
+          "to" : 464
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 464,
+          "to" : 464
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 17,
+        "ports" : {
+          "from" : 53,
+          "to" : 53
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 17,
+        "ports" : {
+          "from" : 389,
+          "to" : 389
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 389,
+          "to" : 389
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 17,
+        "ports" : {
+          "from" : 123,
+          "to" : 123
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 445,
+          "to" : 445
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 3268,
+          "to" : 3269
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 88,
+          "to" : 88
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 1024,
+          "to" : 65535
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 135,
+          "to" : 135
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 636,
+          "to" : 636
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 53,
+          "to" : 53
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 17,
+        "ports" : {
+          "from" : 88,
+          "to" : 88
+        },
+        "dir" : "ingress",
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-76be0f0a"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-76be0f0a"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-76be0f0a"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "egress",
+        "sg" : "sg-76be0f0a"
+      },
+      {
+        "cidr" : "10.60.31.0/24",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5223,
+          "to" : 5223
+        },
+        "dir" : "egress",
+        "sg" : "sg-76be0f0a"
+      },
+      {
+        "cidr" : "10.60.31.0/24",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5222,
+          "to" : 5222
+        },
+        "dir" : "egress",
+        "sg" : "sg-76be0f0a"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 389,
+          "to" : 389
+        },
+        "dir" : "egress",
+        "sg" : "sg-76be0f0a"
+      },
+      {
+        "cidr" : "10.60.31.0/24",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-76be0f0a"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-76be0f0a"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 587,
+          "to" : 587
+        },
+        "dir" : "egress",
+        "sg" : "sg-76be0f0a"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-83ef7eff"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-83ef7eff"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-83ef7eff"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "egress",
+        "sg" : "sg-83ef7eff"
+      },
+      {
+        "cidr" : "10.60.31.0/24",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5223,
+          "to" : 5223
+        },
+        "dir" : "egress",
+        "sg" : "sg-83ef7eff"
+      },
+      {
+        "cidr" : "10.60.31.0/24",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5222,
+          "to" : 5222
+        },
+        "dir" : "egress",
+        "sg" : "sg-83ef7eff"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 389,
+          "to" : 389
+        },
+        "dir" : "egress",
+        "sg" : "sg-83ef7eff"
+      },
+      {
+        "cidr" : "10.60.31.0/24",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-83ef7eff"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-83ef7eff"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 587,
+          "to" : 587
+        },
+        "dir" : "egress",
+        "sg" : "sg-83ef7eff"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-855af2fd"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-855af2fd"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-87ef7efb"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-87ef7efb"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-87ef7efb"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-87ef7efb"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-87ef7efb"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-925af2ea"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-925af2ea"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-9d8c29e0"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a0bfc8c7"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a0bfc8c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 3306,
+          "to" : 3306
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a0bfc8c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 17,
+        "ports" : {
+          "from" : 49152,
+          "to" : 65535
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 17,
+        "ports" : {
+          "from" : 464,
+          "to" : 464
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 464,
+          "to" : 464
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 49152,
+          "to" : 65535
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 17,
+        "ports" : {
+          "from" : 389,
+          "to" : 389
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 17,
+        "ports" : {
+          "from" : 53,
+          "to" : 53
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 389,
+          "to" : 389
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 445,
+          "to" : 445
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 9389,
+          "to" : 9389
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 3268,
+          "to" : 3269
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 88,
+          "to" : 88
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 17,
+        "ports" : {
+          "from" : 137,
+          "to" : 138
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 135,
+          "to" : 135
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 636,
+          "to" : 636
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 53,
+          "to" : 53
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 17,
+        "ports" : {
+          "from" : 88,
+          "to" : 88
+        },
+        "dir" : "ingress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 17,
+        "ports" : {
+          "from" : 1,
+          "to" : 65535
+        },
+        "dir" : "egress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 1,
+          "to" : 65535
+        },
+        "dir" : "egress",
+        "sg" : "sg-a2b983c7"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ab437ed0"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ab437ed0"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-b32636cc"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-c2f03da4"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "ingress",
+        "sg" : "sg-c6b275a0"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "ingress",
+        "sg" : "sg-c6b275a0"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "ingress",
+        "sg" : "sg-c6b275a0"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ce8c55a9"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ce8c55a9"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ce8c55a9"
+      },
+      {
+        "cidr" : "10.74.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ce8c55a9"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ce8c55a9"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ce8c55a9"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8443,
+          "to" : 8443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ce8c55a9"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8443,
+          "to" : 8443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ce8c55a9"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 389,
+          "to" : 389
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ce8c55a9"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 17,
+        "ports" : {
+          "from" : 123,
+          "to" : 123
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ce8c55a9"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "ingress",
+        "sg" : "sg-d3f706ac"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "ingress",
+        "sg" : "sg-d3f706ac"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 3306,
+          "to" : 3306
+        },
+        "dir" : "ingress",
+        "sg" : "sg-d85027bf"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-d89e6fbf"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 9090,
+          "to" : 9090
+        },
+        "dir" : "ingress",
+        "sg" : "sg-d89e6fbf"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8081,
+          "to" : 8081
+        },
+        "dir" : "ingress",
+        "sg" : "sg-d89e6fbf"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 80,
+          "to" : 80
+        },
+        "dir" : "ingress",
+        "sg" : "sg-da9296a1"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-da9296a1"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 3389,
+          "to" : 3389
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e1bfd186"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e6dfa181"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e6dfa181"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 80,
+          "to" : 80
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 80,
+          "to" : 80
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 80,
+          "to" : 80
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "10.11.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "172.29.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "10.74.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "172.28.8.0/21",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "172.28.16.0/21",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "172.28.8.0/21",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ec24e193"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ec24e193"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ec24e193"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "egress",
+        "sg" : "sg-ec24e193"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 389,
+          "to" : 389
+        },
+        "dir" : "egress",
+        "sg" : "sg-ec24e193"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-ec24e193"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ef1e358a"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 9090,
+          "to" : 9090
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ef1e358a"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5986,
+          "to" : 5986
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ef1e358a"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 3389,
+          "to" : 3389
+        },
+        "dir" : "ingress",
+        "sg" : "sg-ef1e358a"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f024e18f"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f024e18f"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f024e18f"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f024e18f"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8080,
+          "to" : 8080
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "cidr" : "172.28.16.0/21",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29418,
+          "to" : 29418
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 29419,
+          "to" : 29419
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "cidr" : "172.28.14.35/32",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 17,
+        "ports" : {
+          "from" : 123,
+          "to" : 123
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f8f03d9e"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f8f03d9e"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8443,
+          "to" : 8443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f8f03d9e"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8443,
+          "to" : 8443
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f8f03d9e"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 3306,
+          "to" : 3306
+        },
+        "dir" : "ingress",
+        "sg" : "sg-f8f03d9e"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 8080,
+          "to" : 8080
+        },
+        "dir" : "ingress",
+        "sg" : "sg-fe3c6b83"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-fe3c6b83"
+      },
+      {
+        "cidr" : "172.28.88.0/22",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-fe3c6b83"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 22,
+          "to" : 22
+        },
+        "dir" : "ingress",
+        "sg" : "sg-fe3c6b83"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5432,
+          "to" : 5432
+        },
+        "dir" : "egress",
+        "sg" : "sg-fe3c6b83"
+      },
+      {
+        "cidr" : "10.60.31.0/24",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5223,
+          "to" : 5223
+        },
+        "dir" : "egress",
+        "sg" : "sg-fe3c6b83"
+      },
+      {
+        "cidr" : "10.60.31.0/24",
+        "proto" : 6,
+        "ports" : {
+          "from" : 5222,
+          "to" : 5222
+        },
+        "dir" : "egress",
+        "sg" : "sg-fe3c6b83"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 389,
+          "to" : 389
+        },
+        "dir" : "egress",
+        "sg" : "sg-fe3c6b83"
+      },
+      {
+        "cidr" : "10.60.31.0/24",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-fe3c6b83"
+      },
+      {
+        "cidr" : "10.50.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-fe3c6b83"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "proto" : 6,
+        "ports" : {
+          "from" : 443,
+          "to" : 443
+        },
+        "dir" : "egress",
+        "sg" : "sg-fe3c6b83"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : 6,
+        "ports" : {
+          "from" : 587,
+          "to" : 587
+        },
+        "dir" : "egress",
+        "sg" : "sg-fe3c6b83"
+      }
+    ],
+    "custom-pls" : [],
+    "icmp-pls" : [],
+    "sgs" : [
+      {
+        "sg" : "sg-01467b7a",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-01f33e67",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-08963474",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-0e946f76",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-0f3c6b72",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-13e12975",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-14eb456c",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-155bf36d",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-155e6e6e",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-16f33e70",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-171e3572",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-195e6e62",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-1d596267",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-201e3545",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-2fbd0c53",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-301e3555",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-3185d755",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-3a1e355f",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-3a9f7f46",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-3e9b4d58",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-3e9f7f42",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-3ff98e58",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-46d2a521",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-49b3e12d",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-50687635",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-63726c06",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-63da5307",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-76be0f0a",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-83ef7eff",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-855af2fd",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-87ef7efb",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-925af2ea",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-94200bf1",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-9d8c29e0",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-a0bfc8c7",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-a2b983c7",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-ab437ed0",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-b32636cc",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-c2f03da4",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-c6b275a0",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-ce8c55a9",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-d3f706ac",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-d85027bf",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-d89e6fbf",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-da9296a1",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-e1bfd186",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-e6dfa181",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-e8b2758e",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-ec24e193",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-ef1e358a",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-f024e18f",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-f7b27591",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-f8f03d9e",
+        "vpc" : "vpc-252e9140"
+      },
+      {
+        "sg" : "sg-fe3c6b83",
+        "vpc" : "vpc-252e9140"
+      }
+    ],
+    "custom-cidrs" : [
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-01467b7a"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-01f33e67"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-08963474"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "ingress",
+        "proto" : -1,
+        "sg" : "sg-0e946f76"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-0e946f76"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-0f3c6b72"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-13e12975"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-14eb456c"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-155bf36d"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-155e6e6e"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-16f33e70"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-171e3572"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-195e6e62"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-1d596267"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "dir" : "ingress",
+        "proto" : -1,
+        "sg" : "sg-201e3545"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-201e3545"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-2fbd0c53"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-301e3555"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-3185d755"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-3a1e355f"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-3e9b4d58"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-3e9f7f42"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-3ff98e58"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-46d2a521"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-49b3e12d"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-50687635"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-63726c06"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "ingress",
+        "proto" : -1,
+        "sg" : "sg-63da5307"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-855af2fd"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-87ef7efb"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-925af2ea"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-94200bf1"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-9d8c29e0"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-a0bfc8c7"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-ab437ed0"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-b32636cc"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-c2f03da4"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-c6b275a0"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-ce8c55a9"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-d3f706ac"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-d85027bf"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-d89e6fbf"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-d89e6fbf"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-da9296a1"
+      },
+      {
+        "cidr" : "10.60.0.0/16",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-e1bfd186"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-e6dfa181"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-e8b2758e"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-ef1e358a"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-f024e18f"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-f7b27591"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "dir" : "egress",
+        "proto" : -1,
+        "sg" : "sg-f8f03d9e"
+      }
+    ]
+  },
+  "elb2s" : {
+    "subnets" : [],
+    "elbtags" : [],
+    "targets" : [],
+    "listeners" : [],
+    "elbs" : [],
+    "azs" : [],
+    "tgtags" : [],
+    "sgs" : [],
+    "rules" : []
+  },
+  "igws" : {
+    "attachments" : [
+      {
+        "igw" : "igw-949f49f1",
+        "state" : "available",
+        "vpc" : "vpc-252e9140"
+      }
+    ],
+    "tags" : []
+  },
+  "acls" : {
+    "associations" : [
+      {
+        "acl" : "acl-45922220",
+        "aclassoc" : "aclassoc-43556b26",
+        "subnet" : "subnet-202d3308"
+      },
+      {
+        "acl" : "acl-45922220",
+        "aclassoc" : "aclassoc-48556b2d",
+        "subnet" : "subnet-9b9b65c2"
+      },
+      {
+        "acl" : "acl-45922220",
+        "aclassoc" : "aclassoc-46556b23",
+        "subnet" : "subnet-2f2d3307"
+      },
+      {
+        "acl" : "acl-45922220",
+        "aclassoc" : "aclassoc-4e556b2b",
+        "subnet" : "subnet-999b65c0"
+      },
+      {
+        "acl" : "acl-45922220",
+        "aclassoc" : "aclassoc-4c556b29",
+        "subnet" : "subnet-e69b65bf"
+      },
+      {
+        "acl" : "acl-45922220",
+        "aclassoc" : "aclassoc-47556b22",
+        "subnet" : "subnet-2e2d3306"
+      }
+    ],
+    "tags" : [],
+    "tcp-udps" : [],
+    "customs" : [
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : -1,
+        "num" : 100,
+        "acl" : "acl-45922220",
+        "dir" : "egress",
+        "action" : "allow"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : -1,
+        "num" : 32767,
+        "acl" : "acl-45922220",
+        "dir" : "egress",
+        "action" : "deny"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : -1,
+        "num" : 100,
+        "acl" : "acl-45922220",
+        "dir" : "ingress",
+        "action" : "allow"
+      },
+      {
+        "cidr" : "0.0.0.0/0",
+        "proto" : -1,
+        "num" : 32767,
+        "acl" : "acl-45922220",
+        "dir" : "ingress",
+        "action" : "deny"
+      }
+    ],
+    "icmps" : [],
+    "acls" : [
+      {
+        "acl" : "acl-45922220",
+        "vpc" : "vpc-252e9140"
+      }
+    ]
+  }
+}
