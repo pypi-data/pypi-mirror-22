@@ -1,0 +1,84 @@
+Metadata-Version: 2.0
+Name: bothub
+Version: 0.1.6
+Summary: Build serverless chatbot on BotHub.Studio
+Home-page: https://github.com/bothub-studio/bothub
+Author: Jeongsoo Park
+Author-email: jeongsoo.park@bothub.studio
+License: AGPL v3
+Keywords: bothub serverless chatbot framework
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Communications :: Chat
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Utilities
+Requires-Dist: requests
+Requires-Dist: zmq
+
+=========================================
+BotHub: Chatbot Framework for easy deploy
+=========================================
+
+This package provide components to works with `BotHub.Studio`_, which is a chatbot hosting service.
+
+With `bothub-cli`_, you can deploy a new chatbot with just four lines of commands.
+
+
+Installation
+============
+
+To install bothub::
+
+  $ pip install bothub
+
+The bothub package works on python2 and 3 both.
+
+
+Getting Started
+===============
+
+You can build a echo chatbot simply by subclassing ``BaseBot`` class and overriding ``handle_message`` method.
+
+.. code:: python
+
+   # -*- coding: utf-8 -*-
+
+   from bothub_client.bot import BaseBot
+
+   class Bot(BaseBot):
+       """Represent a Bot logic which interacts with a user.
+
+       BaseBot superclass have methods belows:
+
+       * Send message
+         * self.send_message(message, user_id=None, channel=None)
+       * Data Storage
+         * self.set_project_data(data)
+         * self.get_project_data()
+         * self.set_user_data(data, user_id=None, channel=None)
+         * self.get_user_data(user_id=None, channel=None)
+
+       When you omit user_id and channel argument, it regarded as a user
+       who triggered a bot.
+       """
+
+       def handle_message(self, event, context):
+           self.send_message(event['content'])
+
+
+
+License
+=======
+
+This package is licensed under AGPLv3 for non-commercial personal use. If you want to use this package for commercial use, please contact to ``bothub@bothub.studio``.
+
+.. _Bothub.studio: https://bothub.studio
+.. _bothub-cli: https://pypi.python.org/pypi/bothub-cli
+
+
