@@ -1,0 +1,108 @@
+Metadata-Version: 1.1
+Name: gitlabbuildvariables
+Version: 1.1.0
+Summary: Tools for dealing with GitLab CI build variables
+Home-page: https://github.com/wtsi-hgi/gitlab-build-variables
+Author: Colin Nolan
+Author-email: colin.nolan@sanger.ac.uk
+License: GPL3
+Description: |Build Status| |codecov.io|
+        
+        GitLab Build Variables
+        ======================
+        
+        *Tools for dealing with GitLab CI pipeline build variables.*
+        
+        Tools
+        -----
+        
+        Managing Multiple Projects
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        Updating GitLab Build Variables
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        Sets project build variables based on a configuration file:
+        
+        .. code:: bash
+        
+            gitlab-update-variables --url ${gitlabUrl} --token ${accessToken} --default-setting-extension ${extensions} \
+                --setting-repository ${repositoryDirectories} -- ${configLocation}
+        
+        *`See Example 1 <#example-1>`__ for a more intuitive example of how to
+        use this tool!*
+        
+        Managing a Single Project
+        ~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        Setting a GitLab Build Variables
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        This tool allows a GitLab CI project's build variables to be set from a
+        ini config file, a JSON file or a shell script that just exports
+        variables:
+        
+        .. code:: bash
+        
+            gitlab-set-variables --url ${gitlabUrl} --token ${accessToken} ${project} ${locationOfVariables}
+        
+        Getting GitLab Build Variables
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        .. code:: bash
+        
+            gitlab-get-variables --url ${gitlabUrl} --token ${accessToken} ${project}
+        
+        Examples
+        --------
+        
+        Example 1
+        ~~~~~~~~~
+        
+        Using the `example configuration <examples/config.json>`__ to update the
+        variables for a number of projects:
+        
+        .. code:: bash
+        
+            $ export gitlabUrl=https://gitlab.example.com 
+            $ export accessToken=personalAccessToken
+        
+            $ gitlab-get-variables --url ${gitlabUrl} --token ${accessToken} cn13/my-project-1
+            {'VALUE_1': 'other'}
+        
+            $ gitlab-get-variables --url ${gitlabUrl} --token ${accessToken} cn13/my-project-2
+            {}
+        
+            $ gitlab-update-variables --url ${gitlabUrl} --token ${accessToken} --default-setting-extension json ini sh \
+                --setting-repository examples/settings -- examples/config.json
+            Read config from "examples/config.json"
+            Set variables for "cn13/my-project-1": {'VALUE_1': 'abc', 'VALUE_2': 'other', 'VALUE_3': 'other'}
+            Set variables for "cn13/my-project-2": {'VALUE_1': 'abc', 'VALUE_2': 'other', 'VALUE_3': 'ghi'}
+        
+        Example 2
+        ~~~~~~~~~
+        
+        Using the settings defined in `the example
+        directory <examples/settings>`__ to update a project's variables:
+        
+        .. code:: bash
+        
+            $ export gitlabUrl=https://gitlab.internal.example.com 
+            $ export accessToken=applicationAccessToken
+        
+            $ gitlab-get-variables --url ${gitlabUrl} --token ${accessToken} my-project
+            {'VALUE_1': 'other'}
+        
+            $ gitlab-set-variables --url ${gitlabUrl} --token ${accessToken} group/my-project common.json s3.sh project.ini  
+            Variables for project "my-project" set to: {'VALUE_1': 'abc', 'VALUE_2': 'def', 'VALUE_3': 'ghi'}
+        
+        .. |Build Status| image:: https://travis-ci.org/wtsi-hgi/gitlab-build-variables-manager.svg
+           :target: https://travis-ci.org/wtsi-hgi/gitlab-build-variables-manager
+        .. |codecov.io| image:: https://codecov.io/gh/wtsi-hgi/gitlab-build-variables-manager/graph/badge.svg
+           :target: https://codecov.io/github/wtsi-hgi/gitlab-build-variables-manager
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
