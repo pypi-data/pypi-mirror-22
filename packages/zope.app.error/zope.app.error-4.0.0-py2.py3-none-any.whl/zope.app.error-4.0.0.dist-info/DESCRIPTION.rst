@@ -1,0 +1,116 @@
+This package provides management views for the error reporting
+utility defined in zope.error package.
+
+
+======
+README
+======
+
+This package provides an error reporting utility which is able to
+store errors. (Notice that the implementation classes have been moved
+to the ``zope.error`` package.)
+
+Let's create one:
+
+  >>> from zope.app.error.error import ErrorReportingUtility
+  >>> util = ErrorReportingUtility()
+  >>> util
+  <zope.error.error.ErrorReportingUtility object at ...>
+
+  >>> from zope.app.error.interfaces import IErrorReportingUtility
+  >>> IErrorReportingUtility.providedBy(util)
+  True
+  >>> IErrorReportingUtility
+  <InterfaceClass zope.error.interfaces.IErrorReportingUtility>
+
+This package contains ZMI views in the ``browser`` sub-package:
+
+  >>> from zope.app.error.browser import EditErrorLog, ErrorRedirect
+  >>> EditErrorLog
+  <class 'zope.app.error.browser.EditErrorLog'>
+  >>> ErrorRedirect
+  <class 'zope.app.error.browser.ErrorRedirect'>
+
+These are configured when the configuration for this package is
+executed (as long as the right dependencies are available).
+
+Certain ZMI menus must first be available:
+
+  >>> from zope.configuration import xmlconfig
+  >>> _ = xmlconfig.string(r"""
+  ...  <configure xmlns="http://namespaces.zope.org/browser" i18n_domain="zope">
+  ...    <include package="zope.browsermenu" file="meta.zcml" />
+  ...    <menu
+  ...       id="zmi_views"
+  ...       title="Views"
+  ...       />
+  ...
+  ...    <menu
+  ...       id="zmi_actions"
+  ...       title="Actions"
+  ...       />
+  ...  </configure>
+  ... """)
+
+Now we can configure the package:
+
+  >>> _ = xmlconfig.string(r"""
+  ...  <configure xmlns="http://namespaces.zope.org/zope">
+  ...    <include package="zope.app.error" />
+  ...  </configure>
+  ... """)
+
+
+=======
+CHANGES
+=======
+
+4.0.0 (2017-05-16)
+------------------
+
+- Add support for Python 3.4, 3.5, 3.6 and PyPy.
+
+
+3.5.3 (2010-09-01)
+------------------
+
+- Removed the dependency on zope.app.publisher, added missing dependencies.
+- Replaced the use of zope.deferredimport with direct imports.
+
+
+3.5.2 (2009-01-22)
+------------------
+
+- Removed zope.app.zapi from dependencies, replacing its
+  uses with direct imports.
+
+- Clean dependencies.
+
+- Changed mailing list address to zope-dev@zope.org, changed
+  url from cheeseshop to pypi.
+
+- Use zope.ManageServices permission instead of zope.ManageContent
+  for errorRedirect view and menu item, because all IErrorReportingUtility
+  views are registered for zope.ManageServices as well.
+
+- Fix package's README.txt
+
+
+3.5.1 (2007-09-27)
+------------------
+
+- rebumped to replace faulty egg
+
+
+3.5.0
+-----
+
+- Move core components to ``zope.error``
+
+
+3.4.0 (2007-09-24)
+------------------
+
+- Initial documented release
+
+
