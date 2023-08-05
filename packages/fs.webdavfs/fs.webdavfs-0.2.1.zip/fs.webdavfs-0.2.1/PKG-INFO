@@ -1,0 +1,102 @@
+Metadata-Version: 1.1
+Name: fs.webdavfs
+Version: 0.2.1
+Summary: WebDAV support for pyfilesystem2
+Home-page: http://pypi.python.org/pypi/fs.webdavfs/
+Author: Andreas Jung and others
+Author-email: info@zopyx.com
+License: BSD
+Description: fs.webdavfs
+        ===========
+        
+        ``fs.webdavfs`` is a WebDAV driver for PyFileSystem2.
+        
+        
+        Supported Python versions
+        -------------------------
+        
+        - Python 2.7
+        - Python 3.4
+        - Python 3.5
+        - Python 3.6
+        
+        Usage
+        -----
+        
+        .. code:: python
+        
+            > from webdavfs.webdavfs import WebDAVFS
+            > url = 'http://zopyx.com:22082'
+            > creds = dict(login='admin', password='admin')
+            > root = '/exist/webdav/db'
+            > handle = WebDAVFS(url, cred, root)
+            > handle.makedir('foo')
+            > print(handle.listdir('.'))
+            ....
+        
+        Repository
+        ----------
+        
+        - https://github.com/PyFilesystem/webdavfs
+        
+        Issue tracker
+        -------------
+        
+        - https://github.com/PyFilesystem/webdavfs/issues
+        
+        Tests
+        -----
+        
+        - https://travis-ci.org/PyFilesystem/webdavfs/builds
+        
+        Author and contributors
+        -----------------------
+        
+        - Yuriy H.
+        - Semyon Gaivoronskiy
+        - Andreas Jung
+        
+        
+        License
+        -------
+        
+        This module is published under the BSD license.
+        
+        This module was sponsored and financed by Andreas Jung/ZOPYX
+        
+        
+        Contact
+        -------
+        
+        | Andreas Jung/ZOPYX
+        | Hundskapfklinge 33
+        | D-72074 Tübingen
+        | info@zopyx.com
+        | www.zopyx.com
+        
+        
+        Release notes
+        =============
+        
+        0.2.0 (2017/05/04)
+        ------------------
+        - new testing infrastructure on Travis using Docker images for
+          testing against Python 2.7-3.6
+        
+        0.1.0 (2017/04/10)
+        ------------------
+        
+        - initial release
+        
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: System :: Filesystems
