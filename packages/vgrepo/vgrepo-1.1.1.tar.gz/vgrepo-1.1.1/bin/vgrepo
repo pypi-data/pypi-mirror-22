@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+# coding: utf8
+
+from vgrepo.client import VCLIApplication
+
+CONF_FILE = "/etc/vgrepo.conf"
+
+
+def main():
+    VCLIApplication(CONF_FILE)
+
+
+if __name__ == "__main__":
+    main()
