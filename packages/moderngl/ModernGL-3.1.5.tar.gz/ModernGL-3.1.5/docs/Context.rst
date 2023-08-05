@@ -1,0 +1,10 @@
+Context
+*******
+
+.. currentmodule:: ModernGL
+
+.. autoclass:: ModernGL.Context
+	:members:
+	:undoc-members:
+	:inherited-members:
+	:show-inheritance:
