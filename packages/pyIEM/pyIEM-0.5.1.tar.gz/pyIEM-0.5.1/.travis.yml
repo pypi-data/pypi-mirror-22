@@ -1,0 +1,67 @@
+sudo: required
+dist: trusty
+cache:
+  timeout: 1000
+  directories:
+    - $HOME/.cache/pip
+    - $HOME/miniconda
+addons:
+  postgresql: "9.5"
+  apt:
+    packages:
+      - postgresql-9.5-postgis-2.3
+  hosts:
+    - iemdb
+virtualenv:
+  system_site_packages: true
+language: python
+python:
+  - "2.7"
+before_install:
+  - sudo add-apt-repository ppa:ubuntugis/ppa -y
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq python-pyproj python-numpy python-scipy python-psycopg2
+install:
+  # copied^Hborrowed from cartopy
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - if [[ ! -f $HOME/miniconda/bin/python ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+      bash miniconda.sh -f -b -p $HOME/miniconda;
+      conda config --set always_yes yes --set changeps1 no;
+      conda create -n test-environment python=2.7;
+    fi
+  - conda update conda
+  - source activate test-environment
+  - conda config --add channels conda-forge
+  - PACKAGES="$PACKAGES cython nose pytest Shapely coveralls pandas gdata cartopy"
+  - PACKAGES="$PACKAGES psycopg2"
+  - conda install --quiet $PACKAGES
+  - "pip install --upgrade pip"
+  - "pip install --upgrade matplotlib"
+  - "pip install oauth2client"
+  - "pip install apiclient"
+  - "pip install urllib3"
+  - "pip install google-api-python-client"
+  - "pip install 'Pillow<3.0'"
+  - "pip install python-metar"
+  - "pip install git+https://github.com/smartsheet-platform/smartsheet-python-sdk"
+  - "pip install git+https://github.com/akrherz/windrose.git@darylchanges"
+before_script:
+  - psql -c 'create database postgis;' -U postgres
+  - psql -c 'create user nobody;' -U postgres
+  - psql -c 'create user apache;' -U postgres
+  - psql -c 'create database portfolio;' -U postgres
+  - psql -c 'create database iem;' -U postgres
+  - psql -c 'create database mesosite;' -U postgres
+  - psql -c 'create database asos;' -U postgres
+  - psql -c 'create database hads;' -U postgres
+  - psql -U postgres -f data/schema/iem.sql iem
+  - psql -U postgres -f data/schema/postgis.sql postgis
+  - psql -U postgres -f data/schema/portfolio.sql portfolio
+  - psql -U postgres -f data/schema/mesosite.sql mesosite
+  - psql -U postgres -f data/schema/asos.sql asos
+  - psql -U postgres -f data/schema/hads.sql hads
+script:
+  "coverage run --source=pyiem setup.py test"
+after_success:
+  coveralls
