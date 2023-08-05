@@ -1,0 +1,5 @@
+recursive-include src *
+include SConstruct
+include AUTHORS.txt LICENSE*.txt README.rst
+recursive-exclude src *.pyc *.so
+recursive-exclude * .gitattributes .gitignore .DS_Store
