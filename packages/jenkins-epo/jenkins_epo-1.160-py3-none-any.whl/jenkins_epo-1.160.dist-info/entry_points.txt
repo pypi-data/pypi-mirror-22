@@ -1,0 +1,21 @@
+[console_scripts]
+jenkins-epo = jenkins_epo.script:entrypoint
+
+[jenkins_epo.bot.extensions]
+autocancel = jenkins_epo.extensions.core:AutoCancelExtension
+error = jenkins_epo.extensions.core:ErrorExtension
+help = jenkins_epo.extensions.core:HelpExtension
+jenkins-backed = jenkins_epo.extensions.jenkins:BackedExtension
+jenkins-builder = jenkins_epo.extensions.jenkins:BuilderExtension
+jenkins-canceller = jenkins_epo.extensions.jenkins:CancellerExtension
+jenkins-createjobs = jenkins_epo.extensions.jenkins:CreateJobsExtension
+jenkins-poll = jenkins_epo.extensions.jenkins:PollExtension
+jenkins-stages = jenkins_epo.extensions.jenkins:StagesExtension
+merger = jenkins_epo.extensions.core:MergerExtension
+outdated = jenkins_epo.extensions.core:OutdatedExtension
+report = jenkins_epo.extensions.core:ReportExtension
+security = jenkins_epo.extensions.core:SecurityExtension
+skip = jenkins_epo.extensions.core:SkipExtension
+unskip = jenkins_epo.extensions.core:UnskipExtension
+yaml = jenkins_epo.extensions.core:YamlExtension
+
