@@ -1,0 +1,958 @@
+Metadata-Version: 1.0
+Name: bitmex-client
+Version: 1.0.2
+Summary: BitMEX API
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: jose.oliveros.1983@gmail.com
+License: UNKNOWN
+Description: bitmex\_client
+        ==============
+        
+        |Build Status|
+        
+        REST API for the BitMEX Trading Platform
+        ----------------------------------------
+        
+        `Changelog </app/apiChangelog>`__
+        
+        +------+
+        | #### |
+        | Gett |
+        | ing  |
+        | Star |
+        | ted  |
+        +------+
+        | #### |
+        | #    |
+        | Fetc |
+        | hing |
+        | Data |
+        | All  |
+        | REST |
+        | endp |
+        | oint |
+        | s    |
+        | are  |
+        | docu |
+        | ment |
+        | ed   |
+        | belo |
+        | w.   |
+        | You  |
+        | can  |
+        | try  |
+        | out  |
+        | any  |
+        | quer |
+        | y    |
+        | righ |
+        | t    |
+        | from |
+        | this |
+        | inte |
+        | rfac |
+        | e.   |
+        | Most |
+        | tabl |
+        | e    |
+        | quer |
+        | ies  |
+        | acce |
+        | pt   |
+        | ``co |
+        | unt` |
+        | `,   |
+        | ``st |
+        | art` |
+        | `,   |
+        | and  |
+        | ``re |
+        | vers |
+        | e``  |
+        | para |
+        | ms.  |
+        | Set  |
+        | ``re |
+        | vers |
+        | e=tr |
+        | ue`` |
+        | to   |
+        | get  |
+        | rows |
+        | newe |
+        | st-f |
+        | irst |
+        | .    |
+        | Addi |
+        | tion |
+        | al   |
+        | docu |
+        | ment |
+        | atio |
+        | n    |
+        | rega |
+        | rdin |
+        | g    |
+        | filt |
+        | ers, |
+        | time |
+        | stam |
+        | ps,  |
+        | and  |
+        | auth |
+        | enti |
+        | cati |
+        | on   |
+        | is   |
+        | avai |
+        | labl |
+        | e    |
+        | in   |
+        | `the |
+        | main |
+        | API  |
+        | docu |
+        | ment |
+        | atio |
+        | n <h |
+        | ttps |
+        | ://w |
+        | ww.b |
+        | itme |
+        | x.co |
+        | m/ap |
+        | p/re |
+        | stAP |
+        | I>`_ |
+        | _.   |
+        | *All |
+        | *    |
+        | tabl |
+        | e    |
+        | data |
+        | is   |
+        | avai |
+        | labl |
+        | e    |
+        | via  |
+        | the  |
+        | `Web |
+        | sock |
+        | et < |
+        | /app |
+        | /wsA |
+        | PI>` |
+        | __.  |
+        | We   |
+        | high |
+        | ly   |
+        | reco |
+        | mmen |
+        | d    |
+        | usin |
+        | g    |
+        | the  |
+        | sock |
+        | et   |
+        | if   |
+        | you  |
+        | want |
+        | to   |
+        | have |
+        | the  |
+        | quic |
+        | kest |
+        | poss |
+        | ible |
+        | data |
+        | with |
+        | out  |
+        | bein |
+        | g    |
+        | subj |
+        | ect  |
+        | to   |
+        | rate |
+        | limi |
+        | ts.  |
+        +------+
+        | #### |
+        | #    |
+        | Retu |
+        | rn   |
+        | Type |
+        | s    |
+        | By   |
+        | defa |
+        | ult, |
+        | all  |
+        | data |
+        | is   |
+        | retu |
+        | rned |
+        | as   |
+        | JSON |
+        | .    |
+        | Send |
+        | ``?_ |
+        | form |
+        | at=c |
+        | sv`` |
+        | to   |
+        | get  |
+        | CSV  |
+        | data |
+        | or   |
+        | ``?_ |
+        | form |
+        | at=x |
+        | ml`` |
+        | to   |
+        | get  |
+        | XML  |
+        | data |
+        | .    |
+        +------+
+        | #### |
+        | #    |
+        | Trad |
+        | e    |
+        | Data |
+        | Quer |
+        | ies  |
+        | *Thi |
+        | s    |
+        | is   |
+        | only |
+        | a    |
+        | smal |
+        | l    |
+        | subs |
+        | et   |
+        | of   |
+        | what |
+        | is   |
+        | avai |
+        | labl |
+        | e,   |
+        | to   |
+        | get  |
+        | you  |
+        | star |
+        | ted. |
+        | *    |
+        | Fill |
+        | in   |
+        | the  |
+        | para |
+        | mete |
+        | rs   |
+        | and  |
+        | clic |
+        | k    |
+        | the  |
+        | ``Tr |
+        | y it |
+        |  out |
+        | !``  |
+        | butt |
+        | on   |
+        | to   |
+        | try  |
+        | any  |
+        | of   |
+        | thes |
+        | e    |
+        | quer |
+        | ies. |
+        | \*   |
+        | `Pri |
+        | cing |
+        | Data |
+        |  <#! |
+        | /Quo |
+        | te/Q |
+        | uote |
+        | _get |
+        | >`__ |
+        | \*   |
+        | `Tra |
+        | de   |
+        | Data |
+        |  <#! |
+        | /Tra |
+        | de/T |
+        | rade |
+        | _get |
+        | >`__ |
+        | \*   |
+        | `Ord |
+        | erBo |
+        | ok   |
+        | Data |
+        |  <#! |
+        | /Ord |
+        | erBo |
+        | ok/O |
+        | rder |
+        | Book |
+        | _get |
+        | L2>` |
+        | __   |
+        | \*   |
+        | `Set |
+        | tlem |
+        | ent  |
+        | Data |
+        |  <#! |
+        | /Set |
+        | tlem |
+        | ent/ |
+        | Sett |
+        | leme |
+        | nt_g |
+        | et>` |
+        | __   |
+        | \*   |
+        | `Exc |
+        | hang |
+        | e    |
+        | Stat |
+        | isti |
+        | cs < |
+        | #!/S |
+        | tats |
+        | /Sta |
+        | ts_h |
+        | isto |
+        | ry>` |
+        | __   |
+        | Ever |
+        | y    |
+        | func |
+        | tion |
+        | of   |
+        | the  |
+        | BitM |
+        | EX.c |
+        | om   |
+        | plat |
+        | form |
+        | is   |
+        | expo |
+        | sed  |
+        | here |
+        | and  |
+        | docu |
+        | ment |
+        | ed.  |
+        | Many |
+        | more |
+        | func |
+        | tion |
+        | s    |
+        | are  |
+        | avai |
+        | labl |
+        | e.   |
+        +------+
+        
+        All API Endpoints Click to expand a section.
+        --------------------------------------------
+        
+        This Python package is automatically generated by the `Swagger
+        Codegen <https://github.com/swagger-api/swagger-codegen>`__ project:
+        
+        -  API version: 1.2.0
+        -  Package version: 1.0.0
+        -  Build package: io.swagger.codegen.languages.PythonClientCodegen
+        
+        Requirements.
+        -------------
+        
+        Python 2.7 and 3.4+
+        
+        Installation & Usage
+        --------------------
+        
+        pip install
+        ~~~~~~~~~~~
+        
+        .. code:: sh
+        
+            pip install bitmex-client
+        
+        Then import the package:
+        
+        .. code:: python
+        
+            import bitmex_client
+        
+        Setuptools
+        ~~~~~~~~~~
+        
+        Install via `Setuptools <http://pypi.python.org/pypi/setuptools>`__.
+        
+        .. code:: sh
+        
+            python setup.py install --user
+        
+        (or ``sudo python setup.py install`` to install the package for all
+        users)
+        
+        Then import the package:
+        
+        .. code:: python
+        
+            import bitmex_client
+        
+        Getting Started
+        ---------------
+        
+        Please follow the `installation procedure <#installation--usage>`__ and
+        then run the following:
+        
+        .. code:: python
+        
+            from __future__ import print_function
+            import time
+            import bitmex_client
+            from bitmex_client.rest import ApiException
+            from pprint import pprint
+            # create an instance of the API class
+            api_instance = bitmex_client.APIKeyApi()
+            api_key_id = 'api_key_id_example' # str | API Key ID (public component).
+        
+            try:
+                # Disable an API Key.
+                api_response = api_instance.a_pi_key_disable(api_key_id)
+                pprint(api_response)
+            except ApiException as e:
+                print("Exception when calling APIKeyApi->a_pi_key_disable: %s\n" % e)
+        
+        Documentation for API Endpoints
+        -------------------------------
+        
+        All URIs are relative to *https://localhost/api/v1*
+        
+        +---------------+----------------+----------------+----------------+
+        | Class         | Method         | HTTP request   | Description    |
+        +===============+================+================+================+
+        | *APIKeyApi*   | `**a\_pi\_key\ | **POST**       | Disable an API |
+        |               | _disable** <do | /apiKey/disabl | Key.           |
+        |               | cs/APIKeyApi.m | e              |                |
+        |               | d#a_pi_key_dis |                |                |
+        |               | able>`__       |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *APIKeyApi*   | `**a\_pi\_key\ | **POST**       | Enable an API  |
+        |               | _enable** <doc | /apiKey/enable | Key.           |
+        |               | s/APIKeyApi.md |                |                |
+        |               | #a_pi_key_enab |                |                |
+        |               | le>`__         |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *APIKeyApi*   | `**a\_pi\_key\ | **GET**        | Get your API   |
+        |               | _get** <docs/A | /apiKey        | Keys.          |
+        |               | PIKeyApi.md#a_ |                |                |
+        |               | pi_key_get>`__ |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *APIKeyApi*   | `**a\_pi\_key\ | **POST**       | Create a new   |
+        |               | _new** <docs/A | /apiKey        | API Key.       |
+        |               | PIKeyApi.md#a_ |                |                |
+        |               | pi_key_new>`__ |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *APIKeyApi*   | `**a\_pi\_key\ | **DELETE**     | Remove an API  |
+        |               | _remove** <doc | /apiKey        | Key.           |
+        |               | s/APIKeyApi.md |                |                |
+        |               | #a_pi_key_remo |                |                |
+        |               | ve>`__         |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *Announcement | `**announcemen | **GET**        | Get site       |
+        | Api*          | t\_get** <docs | /announcement  | announcements. |
+        |               | /AnnouncementA |                |                |
+        |               | pi.md#announce |                |                |
+        |               | ment_get>`__   |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *Announcement | `**announcemen | **GET**        | Get urgent     |
+        | Api*          | t\_get\_urgent | /announcement/ | (banner)       |
+        |               | ** <docs/Annou | urgent         | announcements. |
+        |               | ncementApi.md# |                |                |
+        |               | announcement_g |                |                |
+        |               | et_urgent>`__  |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *ChatApi*     | `**chat\_get** | **GET** /chat  | Get chat       |
+        |               |  <docs/ChatApi |                | messages.      |
+        |               | .md#chat_get>` |                |                |
+        |               | __             |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *ChatApi*     | `**chat\_get\_ | **GET**        | Get available  |
+        |               | channels** <do | /chat/channels | channels.      |
+        |               | cs/ChatApi.md# |                |                |
+        |               | chat_get_chann |                |                |
+        |               | els>`__        |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *ChatApi*     | `**chat\_get\_ | **GET**        | Get connected  |
+        |               | connected** <d | /chat/connecte | users.         |
+        |               | ocs/ChatApi.md | d              |                |
+        |               | #chat_get_conn |                |                |
+        |               | ected>`__      |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *ChatApi*     | `**chat\_new** | **POST** /chat | Send a chat    |
+        |               |  <docs/ChatApi |                | message.       |
+        |               | .md#chat_new>` |                |                |
+        |               | __             |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *ExecutionApi | `**execution\_ | **GET**        | Get all raw    |
+        | *             | get** <docs/Ex | /execution     | executions for |
+        |               | ecutionApi.md# |                | your account.  |
+        |               | execution_get> |                |                |
+        |               | `__            |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *ExecutionApi | `**execution\_ | **GET**        | Get all        |
+        | *             | get\_trade\_hi | /execution/tra | balance-affect |
+        |               | story** <docs/ | deHistory      | ing            |
+        |               | ExecutionApi.m |                | executions.    |
+        |               | d#execution_ge |                | This includes  |
+        |               | t_trade_histor |                | each trade,    |
+        |               | y>`__          |                | insurance      |
+        |               |                |                | charge, and    |
+        |               |                |                | settlement.    |
+        +---------------+----------------+----------------+----------------+
+        | *FundingApi*  | `**funding\_ge | **GET**        | Get funding    |
+        |               | t** <docs/Fund | /funding       | history.       |
+        |               | ingApi.md#fund |                |                |
+        |               | ing_get>`__    |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *InstrumentAp | `**instrument\ | **GET**        | Get            |
+        | i*            | _get** <docs/I | /instrument    | instruments.   |
+        |               | nstrumentApi.m |                |                |
+        |               | d#instrument_g |                |                |
+        |               | et>`__         |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *InstrumentAp | `**instrument\ | **GET**        | Get all active |
+        | i*            | _get\_active** | /instrument/ac | instruments    |
+        |               |  <docs/Instrum | tive           | and            |
+        |               | entApi.md#inst |                | instruments    |
+        |               | rument_get_act |                | that have      |
+        |               | ive>`__        |                | expired in     |
+        |               |                |                | <24hrs.        |
+        +---------------+----------------+----------------+----------------+
+        | *InstrumentAp | `**instrument\ | **GET**        | Helper method. |
+        | i*            | _get\_active\_ | /instrument/ac | Gets all       |
+        |               | and\_indices** | tiveAndIndices | active         |
+        |               |  <docs/Instrum |                | instruments    |
+        |               | entApi.md#inst |                | and all        |
+        |               | rument_get_act |                | indices. This  |
+        |               | ive_and_indice |                | is a join of   |
+        |               | s>`__          |                | the result of  |
+        |               |                |                | /indices and   |
+        |               |                |                | /active.       |
+        +---------------+----------------+----------------+----------------+
+        | *InstrumentAp | `**instrument\ | **GET**        | Return all     |
+        | i*            | _get\_active\_ | /instrument/ac | active         |
+        |               | intervals** <d | tiveIntervals  | contract       |
+        |               | ocs/Instrument |                | series and     |
+        |               | Api.md#instrum |                | interval       |
+        |               | ent_get_active |                | pairs.         |
+        |               | _intervals>`__ |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *InstrumentAp | `**instrument\ | **GET**        | Show           |
+        | i*            | _get\_composit | /instrument/co | constituent    |
+        |               | e\_index** <do | mpositeIndex   | parts of an    |
+        |               | cs/InstrumentA |                | index.         |
+        |               | pi.md#instrume |                |                |
+        |               | nt_get_composi |                |                |
+        |               | te_index>`__   |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *InstrumentAp | `**instrument\ | **GET**        | Get all price  |
+        | i*            | _get\_indices* | /instrument/in | indices.       |
+        |               | * <docs/Instru | dices          |                |
+        |               | mentApi.md#ins |                |                |
+        |               | trument_get_in |                |                |
+        |               | dices>`__      |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *InsuranceApi | `**insurance\_ | **GET**        | Get insurance  |
+        | *             | get** <docs/In | /insurance     | fund history.  |
+        |               | suranceApi.md# |                |                |
+        |               | insurance_get> |                |                |
+        |               | `__            |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *LeaderboardA | `**leaderboard | **GET**        | Get current    |
+        | pi*           | \_get** <docs/ | /leaderboard   | leaderboard.   |
+        |               | LeaderboardApi |                |                |
+        |               | .md#leaderboar |                |                |
+        |               | d_get>`__      |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *LiquidationA | `**liquidation | **GET**        | Get            |
+        | pi*           | \_get** <docs/ | /liquidation   | liquidation    |
+        |               | LiquidationApi |                | orders.        |
+        |               | .md#liquidatio |                |                |
+        |               | n_get>`__      |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *Notification | `**notificatio | **GET**        | Get your       |
+        | Api*          | n\_get** <docs | /notification  | current        |
+        |               | /NotificationA |                | notifications. |
+        |               | pi.md#notifica |                |                |
+        |               | tion_get>`__   |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *OrderApi*    | `**order\_amen | **PUT** /order | Amend the      |
+        |               | d** <docs/Orde |                | quantity or    |
+        |               | rApi.md#order_ |                | price of an    |
+        |               | amend>`__      |                | open order.    |
+        +---------------+----------------+----------------+----------------+
+        | *OrderApi*    | `**order\_amen | **PUT**        | Amend multiple |
+        |               | d\_bulk** <doc | /order/bulk    | orders.        |
+        |               | s/OrderApi.md# |                |                |
+        |               | order_amend_bu |                |                |
+        |               | lk>`__         |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *OrderApi*    | `**order\_canc | **DELETE**     | Cancel         |
+        |               | el** <docs/Ord | /order         | order(s). Send |
+        |               | erApi.md#order |                | multiple order |
+        |               | _cancel>`__    |                | IDs to cancel  |
+        |               |                |                | in bulk.       |
+        +---------------+----------------+----------------+----------------+
+        | *OrderApi*    | `**order\_canc | **DELETE**     | Cancels all of |
+        |               | el\_all** <doc | /order/all     | your orders.   |
+        |               | s/OrderApi.md# |                |                |
+        |               | order_cancel_a |                |                |
+        |               | ll>`__         |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *OrderApi*    | `**order\_canc | **POST**       | Automatically  |
+        |               | el\_all\_after | /order/cancelA | cancel all     |
+        |               | ** <docs/Order | llAfter        | your orders    |
+        |               | Api.md#order_c |                | after a        |
+        |               | ancel_all_afte |                | specified      |
+        |               | r>`__          |                | timeout.       |
+        +---------------+----------------+----------------+----------------+
+        | *OrderApi*    | `**order\_clos | **POST**       | Close a        |
+        |               | e\_position**  | /order/closePo | position.      |
+        |               | <docs/OrderApi | sition         | [Deprecated,   |
+        |               | .md#order_clos |                | use POST       |
+        |               | e_position>`__ |                | /order with    |
+        |               |                |                | execInst:      |
+        |               |                |                | 'Close']       |
+        +---------------+----------------+----------------+----------------+
+        | *OrderApi*    | `**order\_get\ | **GET** /order | Get your       |
+        |               | _orders** <doc |                | orders.        |
+        |               | s/OrderApi.md# |                |                |
+        |               | order_get_orde |                |                |
+        |               | rs>`__         |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *OrderApi*    | `**order\_new* | **POST**       | Create a new   |
+        |               | * <docs/OrderA | /order         | order.         |
+        |               | pi.md#order_ne |                |                |
+        |               | w>`__          |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *OrderApi*    | `**order\_new\ | **POST**       | Create         |
+        |               | _bulk** <docs/ | /order/bulk    | multiple new   |
+        |               | OrderApi.md#or |                | orders.        |
+        |               | der_new_bulk>` |                |                |
+        |               | __             |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *OrderBookApi | `**order\_book | **GET**        | Get current    |
+        | *             | \_get** <docs/ | /orderBook     | orderbook      |
+        |               | OrderBookApi.m |                | [deprecated,   |
+        |               | d#order_book_g |                | use            |
+        |               | et>`__         |                | /orderBook/L2] |
+        |               |                |                | .              |
+        +---------------+----------------+----------------+----------------+
+        | *OrderBookApi | `**order\_book | **GET**        | Get current    |
+        | *             | \_get\_l2** <d | /orderBook/L2  | orderbook in   |
+        |               | ocs/OrderBookA |                | vertical       |
+        |               | pi.md#order_bo |                | format.        |
+        |               | ok_get_l2>`__  |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *PositionApi* | `**position\_g | **GET**        | Get your       |
+        |               | et** <docs/Pos | /position      | positions.     |
+        |               | itionApi.md#po |                |                |
+        |               | sition_get>`__ |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *PositionApi* | `**position\_i | **POST**       | Enable         |
+        |               | solate\_margin | /position/isol | isolated       |
+        |               | ** <docs/Posit | ate            | margin or      |
+        |               | ionApi.md#posi |                | cross margin   |
+        |               | tion_isolate_m |                | per-position.  |
+        |               | argin>`__      |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *PositionApi* | `**position\_t | **POST**       | Transfer       |
+        |               | ransfer\_isola | /position/tran | equity in or   |
+        |               | ted\_margin**  | sferMargin     | out of a       |
+        |               | <docs/Position |                | position.      |
+        |               | Api.md#positio |                |                |
+        |               | n_transfer_iso |                |                |
+        |               | lated_margin>` |                |                |
+        |               | __             |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *PositionApi* | `**position\_u | **POST**       | Choose         |
+        |               | pdate\_leverag | /position/leve | leverage for a |
+        |               | e** <docs/Posi | rage           | position.      |
+        |               | tionApi.md#pos |                |                |
+        |               | ition_update_l |                |                |
+        |               | everage>`__    |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *PositionApi* | `**position\_u | **POST**       | Update your    |
+        |               | pdate\_risk\_l | /position/risk | risk limit.    |
+        |               | imit** <docs/P | Limit          |                |
+        |               | ositionApi.md# |                |                |
+        |               | position_updat |                |                |
+        |               | e_risk_limit>` |                |                |
+        |               | __             |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *QuoteApi*    | `**quote\_get* | **GET** /quote | Get Quotes.    |
+        |               | * <docs/QuoteA |                |                |
+        |               | pi.md#quote_ge |                |                |
+        |               | t>`__          |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *QuoteApi*    | `**quote\_get\ | **GET**        | Get previous   |
+        |               | _bucketed** <d | /quote/buckete | quotes in time |
+        |               | ocs/QuoteApi.m | d              | buckets.       |
+        |               | d#quote_get_bu |                |                |
+        |               | cketed>`__     |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *SchemaApi*   | `**schema\_get | **GET**        | Get model      |
+        |               | ** <docs/Schem | /schema        | schemata for   |
+        |               | aApi.md#schema |                | data objects   |
+        |               | _get>`__       |                | returned by    |
+        |               |                |                | this API.      |
+        +---------------+----------------+----------------+----------------+
+        | *SchemaApi*   | `**schema\_web | **GET**        | Returns help   |
+        |               | socket\_help** | /schema/websoc | text & subject |
+        |               |  <docs/SchemaA | ketHelp        | list for       |
+        |               | pi.md#schema_w |                | websocket      |
+        |               | ebsocket_help> |                | usage.         |
+        |               | `__            |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *SettlementAp | `**settlement\ | **GET**        | Get settlement |
+        | i*            | _get** <docs/S | /settlement    | history.       |
+        |               | ettlementApi.m |                |                |
+        |               | d#settlement_g |                |                |
+        |               | et>`__         |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *StatsApi*    | `**stats\_get* | **GET** /stats | Get            |
+        |               | * <docs/StatsA |                | exchange-wide  |
+        |               | pi.md#stats_ge |                | and per-series |
+        |               | t>`__          |                | turnover and   |
+        |               |                |                | volume         |
+        |               |                |                | statistics.    |
+        +---------------+----------------+----------------+----------------+
+        | *StatsApi*    | `**stats\_hist | **GET**        | Get historical |
+        |               | ory** <docs/St | /stats/history | exchange-wide  |
+        |               | atsApi.md#stat |                | and per-series |
+        |               | s_history>`__  |                | turnover and   |
+        |               |                |                | volume         |
+        |               |                |                | statistics.    |
+        +---------------+----------------+----------------+----------------+
+        | *TradeApi*    | `**trade\_get* | **GET** /trade | Get Trades.    |
+        |               | * <docs/TradeA |                |                |
+        |               | pi.md#trade_ge |                |                |
+        |               | t>`__          |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *TradeApi*    | `**trade\_get\ | **GET**        | Get previous   |
+        |               | _bucketed** <d | /trade/buckete | trades in time |
+        |               | ocs/TradeApi.m | d              | buckets.       |
+        |               | d#trade_get_bu |                |                |
+        |               | cketed>`__     |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_cance | **POST**       | Cancel a       |
+        |               | l\_withdrawal* | /user/cancelWi | withdrawal.    |
+        |               | * <docs/UserAp | thdrawal       |                |
+        |               | i.md#user_canc |                |                |
+        |               | el_withdrawal> |                |                |
+        |               | `__            |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_check | **GET**        | Check if a     |
+        |               | \_referral\_co | /user/checkRef | referral code  |
+        |               | de** <docs/Use | erralCode      | is valid.      |
+        |               | rApi.md#user_c |                |                |
+        |               | heck_referral_ |                |                |
+        |               | code>`__       |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_confi | **POST**       | Confirm your   |
+        |               | rm** <docs/Use | /user/confirmE | email address  |
+        |               | rApi.md#user_c | mail           | with a token.  |
+        |               | onfirm>`__     |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_confi | **POST**       | Confirm        |
+        |               | rm\_enable\_tf | /user/confirmE | two-factor     |
+        |               | a** <docs/User | nableTFA       | auth for this  |
+        |               | Api.md#user_co |                | account. If    |
+        |               | nfirm_enable_t |                | using a        |
+        |               | fa>`__         |                | Yubikey,       |
+        |               |                |                | simply send a  |
+        |               |                |                | token to this  |
+        |               |                |                | endpoint.      |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_confi | **POST**       | Confirm a      |
+        |               | rm\_withdrawal | /user/confirmW | withdrawal.    |
+        |               | ** <docs/UserA | ithdrawal      |                |
+        |               | pi.md#user_con |                |                |
+        |               | firm_withdrawa |                |                |
+        |               | l>`__          |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_disab | **POST**       | Disable        |
+        |               | le\_tfa** <doc | /user/disableT | two-factor     |
+        |               | s/UserApi.md#u | FA             | auth for this  |
+        |               | ser_disable_tf |                | account.       |
+        |               | a>`__          |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_get** | **GET** /user  | Get your user  |
+        |               |  <docs/UserApi |                | model.         |
+        |               | .md#user_get>` |                |                |
+        |               | __             |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_get\_ | **GET**        | Get your       |
+        |               | affiliate\_sta | /user/affiliat | current        |
+        |               | tus** <docs/Us | eStatus        | affiliate/refe |
+        |               | erApi.md#user_ |                | rral           |
+        |               | get_affiliate_ |                | status.        |
+        |               | status>`__     |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_get\_ | **GET**        | Get your       |
+        |               | commission** < | /user/commissi | account's      |
+        |               | docs/UserApi.m | on             | commission     |
+        |               | d#user_get_com |                | status.        |
+        |               | mission>`__    |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_get\_ | **GET**        | Get a deposit  |
+        |               | deposit\_addre | /user/depositA | address.       |
+        |               | ss** <docs/Use | ddress         |                |
+        |               | rApi.md#user_g |                |                |
+        |               | et_deposit_add |                |                |
+        |               | ress>`__       |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_get\_ | **GET**        | Get your       |
+        |               | margin** <docs | /user/margin   | account's      |
+        |               | /UserApi.md#us |                | margin status. |
+        |               | er_get_margin> |                | Send a         |
+        |               | `__            |                | currency of    |
+        |               |                |                | &quot;all&quot |
+        |               |                |                | ;              |
+        |               |                |                | to receive an  |
+        |               |                |                | array of all   |
+        |               |                |                | supported      |
+        |               |                |                | currencies.    |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_get\_ | **GET**        | Get your       |
+        |               | wallet** <docs | /user/wallet   | current wallet |
+        |               | /UserApi.md#us |                | information.   |
+        |               | er_get_wallet> |                |                |
+        |               | `__            |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_get\_ | **GET**        | Get a history  |
+        |               | wallet\_histor | /user/walletHi | of all of your |
+        |               | y** <docs/User | story          | wallet         |
+        |               | Api.md#user_ge |                | transactions   |
+        |               | t_wallet_histo |                | (deposits,     |
+        |               | ry>`__         |                | withdrawals,   |
+        |               |                |                | PNL).          |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_get\_ | **GET**        | Get a summary  |
+        |               | wallet\_summar | /user/walletSu | of all of your |
+        |               | y** <docs/User | mmary          | wallet         |
+        |               | Api.md#user_ge |                | transactions   |
+        |               | t_wallet_summa |                | (deposits,     |
+        |               | ry>`__         |                | withdrawals,   |
+        |               |                |                | PNL).          |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_logou | **POST**       | Log out of     |
+        |               | t** <docs/User | /user/logout   | BitMEX.        |
+        |               | Api.md#user_lo |                |                |
+        |               | gout>`__       |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_logou | **POST**       | Log all        |
+        |               | t\_all** <docs | /user/logoutAl | systems out of |
+        |               | /UserApi.md#us | l              | BitMEX. This   |
+        |               | er_logout_all> |                | will revoke    |
+        |               | `__            |                | all of your    |
+        |               |                |                | account's      |
+        |               |                |                | access tokens, |
+        |               |                |                | logging you    |
+        |               |                |                | out on all     |
+        |               |                |                | devices.       |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_min\_ | **GET**        | Get the        |
+        |               | withdrawal\_fe | /user/minWithd | minimum        |
+        |               | e** <docs/User | rawalFee       | withdrawal fee |
+        |               | Api.md#user_mi |                | for a          |
+        |               | n_withdrawal_f |                | currency.      |
+        |               | ee>`__         |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_reque | **POST**       | Get secret key |
+        |               | st\_enable\_tf | /user/requestE | for setting up |
+        |               | a** <docs/User | nableTFA       | two-factor     |
+        |               | Api.md#user_re |                | auth.          |
+        |               | quest_enable_t |                |                |
+        |               | fa>`__         |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_reque | **POST**       | Request a      |
+        |               | st\_withdrawal | /user/requestW | withdrawal to  |
+        |               | ** <docs/UserA | ithdrawal      | an external    |
+        |               | pi.md#user_req |                | wallet.        |
+        |               | uest_withdrawa |                |                |
+        |               | l>`__          |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_save\ | **POST**       | Save user      |
+        |               | _preferences** | /user/preferen | preferences.   |
+        |               |  <docs/UserApi | ces            |                |
+        |               | .md#user_save_ |                |                |
+        |               | preferences>`_ |                |                |
+        |               | _              |                |                |
+        +---------------+----------------+----------------+----------------+
+        | *UserApi*     | `**user\_updat | **PUT** /user  | Update your    |
+        |               | e** <docs/User |                | password,      |
+        |               | Api.md#user_up |                | name, and      |
+        |               | date>`__       |                | other          |
+        |               |                |                | attributes.    |
+        +---------------+----------------+----------------+----------------+
+        
+        Documentation For Models
+        ------------------------
+        
+        -  `APIKey <docs/APIKey.md>`__
+        -  `AccessToken <docs/AccessToken.md>`__
+        -  `Affiliate <docs/Affiliate.md>`__
+        -  `Announcement <docs/Announcement.md>`__
+        -  `Chat <docs/Chat.md>`__
+        -  `ChatChannel <docs/ChatChannel.md>`__
+        -  `ConnectedUsers <docs/ConnectedUsers.md>`__
+        -  `Error <docs/Error.md>`__
+        -  `ErrorError <docs/ErrorError.md>`__
+        -  `Execution <docs/Execution.md>`__
+        -  `Funding <docs/Funding.md>`__
+        -  `IndexComposite <docs/IndexComposite.md>`__
+        -  `InlineResponse200 <docs/InlineResponse200.md>`__
+        -  `Instrument <docs/Instrument.md>`__
+        -  `InstrumentInterval <docs/InstrumentInterval.md>`__
+        -  `Insurance <docs/Insurance.md>`__
+        -  `Leaderboard <docs/Leaderboard.md>`__
+        -  `Liquidation <docs/Liquidation.md>`__
+        -  `Margin <docs/Margin.md>`__
+        -  `Notification <docs/Notification.md>`__
+        -  `Order <docs/Order.md>`__
+        -  `OrderBook <docs/OrderBook.md>`__
+        -  `OrderBookL2 <docs/OrderBookL2.md>`__
+        -  `Position <docs/Position.md>`__
+        -  `Quote <docs/Quote.md>`__
+        -  `Settlement <docs/Settlement.md>`__
+        -  `Stats <docs/Stats.md>`__
+        -  `StatsHistory <docs/StatsHistory.md>`__
+        -  `Trade <docs/Trade.md>`__
+        -  `TradeBin <docs/TradeBin.md>`__
+        -  `Transaction <docs/Transaction.md>`__
+        -  `User <docs/User.md>`__
+        -  `UserCommission <docs/UserCommission.md>`__
+        -  `UserPreferences <docs/UserPreferences.md>`__
+        -  `Wallet <docs/Wallet.md>`__
+        -  `XAny <docs/XAny.md>`__
+        
+        Documentation For Authorization
+        -------------------------------
+        
+        All endpoints do not require authorization.
+        
+        .. |Build Status| image:: https://travis-ci.org/joliveros/bitmex-client.svg?branch=master
+           :target: https://travis-ci.org/joliveros/bitmex-client
+        
+Keywords: Swagger,BitMEX API
+Platform: UNKNOWN
