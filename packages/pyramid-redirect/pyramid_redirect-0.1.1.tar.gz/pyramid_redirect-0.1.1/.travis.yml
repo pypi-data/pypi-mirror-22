@@ -1,0 +1,23 @@
+sudo: false
+language: python
+python:
+  - 2.7
+  - 3.5
+
+script:
+ - python -Wd setup.py test -q
+
+notifications:
+  slack:
+    secure: |-
+      SzveotCT3Djv1kOyYzVKfRAMcoxsSutN68OCfos1OXo8NpJtEV1nKABOkcoYKtRb3y
+      j+pld8XI2/xsAGEysslyLUjoMBUE6ZM36VFpnOMlTr9+nV3npmzqsk7GpyRItAyQ6M
+      UnAZr4d+Qga5PIL2aafGr5KBuBNb9mB5cETtZC1gTgs6e57f4W1ZBUSQlSc6+JBhpf
+      w3bkwG2bMNPzl6gf/88EjqB6cjsbS2txmTWo/pQ+VwbJ1w7lYhXn69tDCLHlgJti6Q
+      zvieA1x+xYXJbzF6bz2acYqLrc1PcdZi07G+vnb9g9MgLBTSdP0GkXb59XoKkPlswI
+      QV89AErDoCk1xavF97w+kNDxdiVYaHbCbqpCeS0guPn15xHLH5xy+RBLW14GUk2J0D
+      P9HqQt1izyPpd1wwlH+lIaBxypk30zu2Zy3hjh3tCcnMgB6bahsowZFkt7coIflpbN
+      DDsihSAq1Jrsz2PEOZ/lzziL1Ekd8MLe+2sXh1KQYRDwpTeK8gNAm8tqGGN1qYouNE
+      pfrru0+B2cXT1BxkW1pnLhhLdo1RsAoDDkNr2QjwWl2dXdpP3jeMTrXGoy2xYkhjlM
+      GkpjKR51i+9N2ZOn69GniDcMrrnO69SBXtLwOG3LCkHKtc5doQrkCAQPVYMzycvp6k
+      DyQlheC1b7xLO2/Ndz0FADg=
