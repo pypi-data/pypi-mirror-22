@@ -1,0 +1,31 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+  <include package="zope.component" file="meta.zcml" />
+  <!-- defaultView directive -->
+  <include package="zope.publisher" file="meta.zcml" />
+
+  <include package="zope.component" />
+  <include package="zope.traversing" />
+  <include package="zope.container" />
+  <!-- IAuthentication utility -->
+  <include package="zope.principalregistry" />
+
+
+  <include package="zope.app.appsetup" />
+
+  <browser:defaultView name="index.html" />
+
+  <adapter
+      factory=".test_debug.FolderView"
+      provides="zope.traversing.interfaces.ITraversable"
+      for="zope.site.interfaces.IFolder *"
+      name="index.html"
+      />
+
+  <class class=".test_debug.FolderView">
+    <allow attributes="__call__" />
+  </class>
+
+</configure>
