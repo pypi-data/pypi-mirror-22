@@ -1,0 +1,52 @@
+Metadata-Version: 2.0
+Name: yellowbrick
+Version: 0.4
+Summary: A suite of visual analysis and diagnostic tools for machine learning.
+Home-page: https://github.com/districtdatalabs/yellowbrick
+Author: Rebecca Bilbro
+Author-email: rbilbro@districtdatalabs.com
+License: Apache 2
+Download-URL: https://github.com/districtdatalabs/yellowbrick/tarball/v0.4
+Keywords: visualization,machine learning,scikit-learn,matplotlib,data science
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Requires-Dist: cycler (>=0.10.0)
+Requires-Dist: matplotlib (>=1.5.1)
+Requires-Dist: numpy (>=1.11.0)
+Requires-Dist: scikit-learn (>=0.17.1)
+Requires-Dist: scipy (>=0.17.1)
+
+Yellowbrick is a suite of visual analysis and diagnostic tools designed to facilitate machine learning with Scikit-Learn. The library implements a new core API object, the "Visualizer" that is an Scikit-Learn estimator: an object that learns from data. Like transformers or models, visualizers learn from data by creating a visual representation of the model selection workflow.
+
+Visualizers allow users to steer the model selection process, building intuition around feature engineering, algorithm selection, and hyperparameter tuning. For example, visualizers can help diagnose common problems surrounding model complexity and bias, heteroscedasticity, underfit and overtraining, or class balance issues. By applying visualizers to the model selection workflow, Yellowbrick allows you to steer predictive models to more successful results, faster.
+
+Some of the available tools include:
+
+- pairwise feature ranking
+- parallel coordinates
+- radial visualization
+- ROC curves
+- classification heatmaps
+- residual plots
+- prediction error plots
+- alpha selection plots
+- validation curves
+- gridsearch heatmaps
+- text frequency distributions
+- tsne corpus visualization
+
+And much more! Please see the full documentation at: http://scikit-yb.org/
+
+
