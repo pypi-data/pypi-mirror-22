@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>States Tab &#8212; Products.DCWorkflow 2.4.0.dev0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.4.0.dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Transitions Tab" href="Transition.html" />
+    <link rel="prev" title="Scripts Tab" href="Scripts.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Transition.html" title="Transitions Tab"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Scripts.html" title="Scripts Tab"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">DCWorkflow Narrative Documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="states-tab">
+<h1>States Tab<a class="headerlink" href="#states-tab" title="Permalink to this headline">¶</a></h1>
+<p>From the states tab it&#8217;s possible to add new states, and rename and delete
+existing states. It is also possible to set a particular state to be the
+initial state that new content is set to when created.</p>
+<p>The list of existing states also displays each state&#8217;s title and all the
+possible transitions from that state (and their titles). You can go straight
+to the details of each state and transition from here.</p>
+<p>Within a state&#8217;s properties tab you can set the title, description, and the
+transitions that are possible from this state from a list of all the
+available transitions created in the workflow&#8217;s transitions tab.</p>
+<p>In the state&#8217;s permissions tab, you can set up the roles to permissions
+mappings that will apply to roles when content managed by this workflow is in
+this state. It uses the usual cookie cutter approach as do all other
+permissions tabs, except that the only permissions listed are those that have
+been selected to be managed by the workflow from the workflow&#8217;s permissions
+tab.</p>
+<p>A good strategy for managing permissions on each state is to rely on
+acquisition for the &#8220;published&#8221; states, and to drop acquisition and use
+explicit permissions on states that are private or interim publishing states.
+This way, you can modify the access policy to &#8220;published&#8221; content at the site
+root or for specific folders without having to modify each workflow&#8217;s set of
+&#8220;published&#8221; states.</p>
+<p>[<strong>Note</strong>: The available roles in the permissions tab will be whatever is
+acquired from the site root, so I guess creating roles under sub-folders
+ought to be discouraged if people want to use them in workflows]</p>
+<p>Reviewer roles should either have view permissions on every state or you
+should change the appropriate skins to take them somewhere sensible after a
+transition or they&#8217;ll end up with an ugly access denied page after sending
+content back to private state.</p>
+<p>In the state&#8217;s variables tab, you can add, change and delete variables that
+you want to assign a value to when objects move into this state. The
+available variables are set in the workflow&#8217;s variables tab, and the value is
+a TALES expression (see Expressions for more details).</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Scripts.html"
+                        title="previous chapter">Scripts Tab</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Transition.html"
+                        title="next chapter">Transitions Tab</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/narrative/States.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Transition.html" title="Transitions Tab"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Scripts.html" title="Scripts Tab"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >DCWorkflow Narrative Documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, CMF Developers.
+      Last updated on May 04, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>

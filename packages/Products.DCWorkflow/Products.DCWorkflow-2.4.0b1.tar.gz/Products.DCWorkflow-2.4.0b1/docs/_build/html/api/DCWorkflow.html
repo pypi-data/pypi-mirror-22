@@ -1,0 +1,1929 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>DCWorkflow Package &#8212; Products.DCWorkflow 2.4.0.dev0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.4.0.dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="browser Package" href="DCWorkflow.browser.html" />
+    <link rel="prev" title="DCWorkflow" href="modules.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="DCWorkflow.browser.html" title="browser Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="DCWorkflow"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">DCWorkflow</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dcworkflow-package">
+<h1>DCWorkflow Package<a class="headerlink" href="#dcworkflow-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">DCWorkflow</span></code> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-Products.DCWorkflow.__init__"></span><p>Web-configurable workflow.</p>
+<dl class="function">
+<dt id="Products.DCWorkflow.__init__.initialize">
+<code class="descclassname">Products.DCWorkflow.__init__.</code><code class="descname">initialize</code><span class="sig-paren">(</span><em>context</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.__init__.initialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.ContainerTab">
+<span id="containertab-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">ContainerTab</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.ContainerTab" title="Permalink to this headline">¶</a></h2>
+<p>A convenient base class for representing a container as a management tab.</p>
+<dl class="class">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.ContainerTab.</code><code class="descname">ContainerTab</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">OFS.Folder.Folder</span></code></p>
+<p>Folders are basic container objects that provide a standard
+interface for object management. Folder objects also implement
+a management interface and can have arbitrary properties.</p>
+<dl class="method">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>name</em>, <em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.getId">
+<code class="descname">getId</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.getId" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.has_key">
+<code class="descname">has_key</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.has_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.items">
+<code class="descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.keys">
+<code class="descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.manage_options">
+<code class="descname">manage_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.manage_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.manage_options__roles__">
+<code class="descname">manage_options__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.manage_options__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.manage_renameObjects">
+<code class="descname">manage_renameObjects</code><span class="sig-paren">(</span><em>ids=[]</em>, <em>new_ids=[]</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.manage_renameObjects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename several sub-objects</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.manage_renameObjects__roles__">
+<code class="descname">manage_renameObjects__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.manage_renameObjects__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.manage_workspace">
+<code class="descname">manage_workspace</code><span class="sig-paren">(</span><em>RESPONSE</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.manage_workspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Redirects to the primary option.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.manage_workspace__roles__">
+<code class="descname">manage_workspace__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.manage_workspace__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.meta_types">
+<code class="descname">meta_types</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.meta_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.objectIds">
+<code class="descname">objectIds</code><span class="sig-paren">(</span><em>spec=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.objectIds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.ContainerTab.ContainerTab.values">
+<code class="descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.ContainerTab.ContainerTab.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.DCWorkflow">
+<span id="dcworkflow-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">DCWorkflow</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.DCWorkflow" title="Permalink to this headline">¶</a></h2>
+<p>Web-configurable workflow.</p>
+<dl class="class">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.DCWorkflow.</code><code class="descname">DCWorkflowDefinition</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin" title="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin"><code class="xref py py-class docutils literal"><span class="pre">Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">OFS.Folder.Folder</span></code></p>
+<p>This class is the workflow engine and the container for the
+workflow definition.
+UI methods are in WorkflowUIMixin.</p>
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.allowCreate">
+<code class="descname">allowCreate</code><span class="sig-paren">(</span><em>container</em>, <em>type_name</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.allowCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the user is allowed to create a workflow instance.</p>
+<p>The object passed to the guard is the prospective container.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.allowCreate__roles__">
+<code class="descname">allowCreate__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.allowCreate__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.creation_guard">
+<code class="descname">creation_guard</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.creation_guard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.description">
+<code class="descname">description</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.doActionFor">
+<code class="descname">doActionFor</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em>, <em>comment=''</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.doActionFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows the user to request a workflow action.  This method
+must perform its own security checks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.doActionFor__roles__">
+<code class="descname">doActionFor__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.doActionFor__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.getCatalogVariablesFor">
+<code class="descname">getCatalogVariablesFor</code><span class="sig-paren">(</span><em>ob</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.getCatalogVariablesFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows this workflow to make workflow-specific variables
+available to the catalog, making it possible to implement
+worklists in a simple way.
+Returns a mapping containing the catalog variables
+that apply to ob.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.getCatalogVariablesFor__roles__">
+<code class="descname">getCatalogVariablesFor__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.getCatalogVariablesFor__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.getInfoFor">
+<code class="descname">getInfoFor</code><span class="sig-paren">(</span><em>ob</em>, <em>name</em>, <em>default</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.getInfoFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows the user to request information provided by the
+workflow.  This method must perform its own security checks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.getInfoFor__roles__">
+<code class="descname">getInfoFor__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.getInfoFor__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.groups">
+<code class="descname">groups</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.initial_state">
+<code class="descname">initial_state</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.initial_state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.isActionSupported">
+<code class="descname">isActionSupported</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.isActionSupported" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a true value if the given action name
+is possible in the current state.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.isActionSupported__roles__">
+<code class="descname">isActionSupported__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.isActionSupported__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.isInfoSupported">
+<code class="descname">isInfoSupported</code><span class="sig-paren">(</span><em>ob</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.isInfoSupported" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a true value if the given info name is supported.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.isInfoSupported__roles__">
+<code class="descname">isInfoSupported__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.isInfoSupported__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.listGlobalActions">
+<code class="descname">listGlobalActions</code><span class="sig-paren">(</span><em>info</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.listGlobalActions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows this workflow to
+include actions to be displayed in the actions box.
+Called on every request.
+Returns the actions to be displayed to the user.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.listGlobalActions__roles__">
+<code class="descname">listGlobalActions__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.listGlobalActions__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.listObjectActions">
+<code class="descname">listObjectActions</code><span class="sig-paren">(</span><em>info</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.listObjectActions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows this workflow to
+include actions to be displayed in the actions box.
+Called only when this workflow is applicable to
+info.object.
+Returns the actions to be displayed to the user.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.listObjectActions__roles__">
+<code class="descname">listObjectActions__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.listObjectActions__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.manage_options">
+<code class="descname">manage_options</code><em class="property"> = ({'action': 'manage_properties', 'label': 'Properties'}, {'action': 'states/manage_main', 'label': 'States'}, {'action': 'transitions/manage_main', 'label': 'Transitions'}, {'action': 'variables/manage_main', 'label': 'Variables'}, {'action': 'worklists/manage_main', 'label': 'Worklists'}, {'action': 'scripts/manage_main', 'label': 'Scripts'}, {'action': 'manage_permissions', 'label': 'Permissions'}, {'action': 'manage_groups', 'label': 'Groups'})</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.manage_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.manager_bypass">
+<code class="descname">manager_bypass</code><em class="property"> = 0</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.manager_bypass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.meta_types">
+<code class="descname">meta_types</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.meta_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifyBefore">
+<code class="descname">notifyBefore</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifyBefore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notifies this workflow of an action before it happens,
+allowing veto by exception.  Unless an exception is thrown, either
+a notifySuccess() or notifyException() can be expected later on.
+The action usually corresponds to a method name.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifyBefore__roles__">
+<code class="descname">notifyBefore__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifyBefore__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifyCreated">
+<code class="descname">notifyCreated</code><span class="sig-paren">(</span><em>ob</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifyCreated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notifies this workflow after an object has been created and added.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifyCreated__roles__">
+<code class="descname">notifyCreated__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifyCreated__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifyException">
+<code class="descname">notifyException</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em>, <em>exc</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifyException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notifies this workflow that an action failed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifyException__roles__">
+<code class="descname">notifyException__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifyException__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifySuccess">
+<code class="descname">notifySuccess</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em>, <em>result</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifySuccess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notifies this workflow that an action has taken place.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifySuccess__roles__">
+<code class="descname">notifySuccess__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.notifySuccess__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.permissions">
+<code class="descname">permissions</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.permissions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.roles">
+<code class="descname">roles</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.roles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.scripts">
+<code class="descname">scripts</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.scripts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.state_var">
+<code class="descname">state_var</code><em class="property"> = 'state'</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.state_var" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.states">
+<code class="descname">states</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.title">
+<code class="descname">title</code><em class="property"> = 'DC Workflow Definition'</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.transitions">
+<code class="descname">transitions</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.transitions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.updateRoleMappingsFor">
+<code class="descname">updateRoleMappingsFor</code><span class="sig-paren">(</span><em>ob</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.updateRoleMappingsFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the object permissions according to the current state.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.updateRoleMappingsFor__roles__">
+<code class="descname">updateRoleMappingsFor__roles__</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.updateRoleMappingsFor__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.variables">
+<code class="descname">variables</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.variables" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.worklists">
+<code class="descname">worklists</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.DCWorkflowDefinition.worklists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="Products.DCWorkflow.DCWorkflow.bad_id">
+<code class="descclassname">Products.DCWorkflow.DCWorkflow.</code><code class="descname">bad_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.bad_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>search(string[, pos[, endpos]]) &#8211;&gt; match object or None.
+Scan through string looking for a match, and return a corresponding
+match object instance. Return None if no position in the string matches.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Products.DCWorkflow.DCWorkflow.checkId">
+<code class="descclassname">Products.DCWorkflow.DCWorkflow.</code><code class="descname">checkId</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.DCWorkflow.checkId" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.Expression">
+<span id="expression-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">Expression</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.Expression" title="Permalink to this headline">¶</a></h2>
+<p>Expressions in a web-configurable workflow.</p>
+<dl class="class">
+<dt id="Products.DCWorkflow.Expression.SafeMapping">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.Expression.</code><code class="descname">SafeMapping</code><a class="headerlink" href="#Products.DCWorkflow.Expression.SafeMapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">MultiMapping</span></code></p>
+<p>Mapping with security declarations and limited method exposure.</p>
+<p>Since it subclasses MultiMapping, this class can be used to wrap
+one or more mapping objects.  Restricted Python code will not be
+able to mutate the SafeMapping or the wrapped mappings, but will be
+able to read any value.</p>
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Expression.SafeMapping.pop">
+<code class="descname">pop</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.Expression.SafeMapping.pop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Expression.SafeMapping.push">
+<code class="descname">push</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.Expression.SafeMapping.push" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DCWorkflow.Expression.StateChangeInfo">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.Expression.</code><code class="descname">StateChangeInfo</code><span class="sig-paren">(</span><em>object</em>, <em>workflow</em>, <em>status=None</em>, <em>transition=None</em>, <em>old_state=None</em>, <em>new_state=None</em>, <em>kwargs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Expression.StateChangeInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Provides information for expressions and scripts.</p>
+<dl class="exception">
+<dt id="Products.DCWorkflow.Expression.StateChangeInfo.ObjectDeleted">
+<em class="property">exception </em><code class="descname">ObjectDeleted</code><span class="sig-paren">(</span><em>result=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Expression.StateChangeInfo.ObjectDeleted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/exceptions.html#exceptions.Exception" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></a></p>
+<p>Raise to tell the workflow tool that the object has been deleted.</p>
+<p>Swallowed by the workflow tool.</p>
+<dl class="method">
+<dt id="Products.DCWorkflow.Expression.StateChangeInfo.ObjectDeleted.getResult">
+<code class="descname">getResult</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Expression.StateChangeInfo.ObjectDeleted.getResult" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="Products.DCWorkflow.Expression.StateChangeInfo.ObjectMoved">
+<em class="property">exception </em><code class="descname">ObjectMoved</code><span class="sig-paren">(</span><em>new_ob</em>, <em>result=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Expression.StateChangeInfo.ObjectMoved" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/exceptions.html#exceptions.Exception" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></a></p>
+<p>Raise to tell the workflow tool that the object has moved.</p>
+<p>Swallowed by the workflow tool.</p>
+<dl class="method">
+<dt id="Products.DCWorkflow.Expression.StateChangeInfo.ObjectMoved.getNewObject">
+<code class="descname">getNewObject</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Expression.StateChangeInfo.ObjectMoved.getNewObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Expression.StateChangeInfo.ObjectMoved.getResult">
+<code class="descname">getResult</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Expression.StateChangeInfo.ObjectMoved.getResult" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Expression.StateChangeInfo.getDateTime">
+<code class="descname">getDateTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Expression.StateChangeInfo.getDateTime" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Expression.StateChangeInfo.getHistory">
+<code class="descname">getHistory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Expression.StateChangeInfo.getHistory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Expression.StateChangeInfo.getPortal">
+<code class="descname">getPortal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Expression.StateChangeInfo.getPortal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="Products.DCWorkflow.Expression.createExprContext">
+<code class="descclassname">Products.DCWorkflow.Expression.</code><code class="descname">createExprContext</code><span class="sig-paren">(</span><em>sci</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Expression.createExprContext" title="Permalink to this definition">¶</a></dt>
+<dd><p>An expression context provides names for TALES expressions.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.Guard">
+<span id="guard-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">Guard</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.Guard" title="Permalink to this headline">¶</a></h2>
+<p>Guard conditions in a web-configurable workflow.</p>
+<dl class="class">
+<dt id="Products.DCWorkflow.Guard.Guard">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.Guard.</code><code class="descname">Guard</code><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Persistence.Persistent</span></code>, <code class="xref py py-class docutils literal"><span class="pre">ExplicitAcquirer</span></code></p>
+<p>Persistent ExtensionClass</p>
+<dl class="method">
+<dt id="Products.DCWorkflow.Guard.Guard.changeFromProperties">
+<code class="descname">changeFromProperties</code><span class="sig-paren">(</span><em>props</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.changeFromProperties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns 1 if changes were specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Guard.Guard.check">
+<code class="descname">check</code><span class="sig-paren">(</span><em>sm</em>, <em>wf_def</em>, <em>ob</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks conditions in this guard.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Guard.Guard.expr">
+<code class="descname">expr</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.expr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Guard.Guard.getExprText">
+<code class="descname">getExprText</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.getExprText" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Guard.Guard.getExprText__roles__">
+<code class="descname">getExprText__roles__</code><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.getExprText__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Guard.Guard.getGroupsText">
+<code class="descname">getGroupsText</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.getGroupsText" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Guard.Guard.getGroupsText__roles__">
+<code class="descname">getGroupsText__roles__</code><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.getGroupsText__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Guard.Guard.getPermissionsText">
+<code class="descname">getPermissionsText</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.getPermissionsText" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Guard.Guard.getPermissionsText__roles__">
+<code class="descname">getPermissionsText__roles__</code><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.getPermissionsText__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Guard.Guard.getRolesText">
+<code class="descname">getRolesText</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.getRolesText" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Guard.Guard.getRolesText__roles__">
+<code class="descname">getRolesText__roles__</code><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.getRolesText__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Guard.Guard.getSummary">
+<code class="descname">getSummary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.getSummary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Guard.Guard.getSummary__roles__">
+<code class="descname">getSummary__roles__</code><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.getSummary__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Guard.Guard.groups">
+<code class="descname">groups</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Guard.Guard.guardForm">
+<code class="descname">guardForm</code><em class="property"> = &lt;App.special_dtml.DTMLFile object&gt;</em><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.guardForm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Guard.Guard.permissions">
+<code class="descname">permissions</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.permissions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Guard.Guard.roles">
+<code class="descname">roles</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.Guard.Guard.roles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="Products.DCWorkflow.Guard.formatNameUnion">
+<code class="descclassname">Products.DCWorkflow.Guard.</code><code class="descname">formatNameUnion</code><span class="sig-paren">(</span><em>names</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Guard.formatNameUnion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.Scripts">
+<span id="scripts-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">Scripts</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.Scripts" title="Permalink to this headline">¶</a></h2>
+<p>Scripts in a web-configurable workflow.</p>
+<dl class="class">
+<dt id="Products.DCWorkflow.Scripts.Scripts">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.Scripts.</code><code class="descname">Scripts</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Scripts.Scripts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Products.DCWorkflow.ContainerTab.ContainerTab" title="Products.DCWorkflow.ContainerTab.ContainerTab"><code class="xref py py-class docutils literal"><span class="pre">Products.DCWorkflow.ContainerTab.ContainerTab</span></code></a></p>
+<p>A container for workflow scripts</p>
+<dl class="method">
+<dt id="Products.DCWorkflow.Scripts.Scripts.manage_main">
+<code class="descname">manage_main</code><span class="sig-paren">(</span><em>client=None</em>, <em>REQUEST=None</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Scripts.Scripts.manage_main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Scripts.Scripts.manage_main__roles__">
+<code class="descname">manage_main__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.Scripts.Scripts.manage_main__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Scripts.Scripts.meta_type">
+<code class="descname">meta_type</code><em class="property"> = 'Workflow Scripts'</em><a class="headerlink" href="#Products.DCWorkflow.Scripts.Scripts.meta_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Scripts.Scripts.meta_types">
+<code class="descname">meta_types</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.Scripts.Scripts.meta_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.States">
+<span id="states-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">States</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.States" title="Permalink to this headline">¶</a></h2>
+<p>States in a web-configurable workflow.</p>
+<dl class="class">
+<dt id="Products.DCWorkflow.States.StateDefinition">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.States.</code><code class="descname">StateDefinition</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">OFS.SimpleItem.SimpleItem</span></code></p>
+<p>State definition</p>
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.addVariable">
+<code class="descname">addVariable</code><span class="sig-paren">(</span><em>id</em>, <em>value</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.addVariable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a WorkflowVariable to State.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.deleteVariables">
+<code class="descname">deleteVariables</code><span class="sig-paren">(</span><em>ids=[]</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.deleteVariables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a WorkflowVariable from State.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.description">
+<code class="descname">description</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.getAvailableRoles">
+<code class="descname">getAvailableRoles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.getAvailableRoles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.getAvailableTransitionIds">
+<code class="descname">getAvailableTransitionIds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.getAvailableTransitionIds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.getAvailableVarIds">
+<code class="descname">getAvailableVarIds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.getAvailableVarIds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.getGroupInfo">
+<code class="descname">getGroupInfo</code><span class="sig-paren">(</span><em>group</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.getGroupInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of roles to be assigned to a group.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.getId">
+<code class="descname">getId</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.getId" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.getManagedPermissions">
+<code class="descname">getManagedPermissions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.getManagedPermissions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.getPermissionInfo">
+<code class="descname">getPermissionInfo</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.getPermissionInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of roles to be assigned to a permission.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.getTransitionTitle">
+<code class="descname">getTransitionTitle</code><span class="sig-paren">(</span><em>tid</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.getTransitionTitle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.getTransitions">
+<code class="descname">getTransitions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.getTransitions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.getVariableValues">
+<code class="descname">getVariableValues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.getVariableValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get VariableValues for management UI.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.getWorkflow">
+<code class="descname">getWorkflow</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.getWorkflow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.getWorkflowVariables">
+<code class="descname">getWorkflowVariables</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.getWorkflowVariables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all variables that are available from the workflow and
+not handled yet.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.group_roles">
+<code class="descname">group_roles</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.group_roles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.manage_groups">
+<code class="descname">manage_groups</code><em class="property"> = &lt;PageTemplateFile at state_groups&gt;</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.manage_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.manage_groups__roles__">
+<code class="descname">manage_groups__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.manage_groups__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.manage_options">
+<code class="descname">manage_options</code><em class="property"> = ({'action': 'manage_properties', 'label': 'Properties'}, {'action': 'manage_permissions', 'label': 'Permissions'}, {'action': 'manage_groups', 'label': 'Groups'}, {'action': 'manage_variables', 'label': 'Variables'})</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.manage_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.manage_permissions">
+<code class="descname">manage_permissions</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>manage_tabs_message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.manage_permissions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Present TTW UI for managing this State&#8217;s permissions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.manage_permissions__roles__">
+<code class="descname">manage_permissions__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.manage_permissions__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.manage_properties">
+<code class="descname">manage_properties</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>manage_tabs_message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.manage_properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show state properties ZMI form.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.manage_properties__roles__">
+<code class="descname">manage_properties__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.manage_properties__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.manage_variables">
+<code class="descname">manage_variables</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>manage_tabs_message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.manage_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show State variables ZMI form.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.manage_variables__roles__">
+<code class="descname">manage_variables__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.manage_variables__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.meta_type">
+<code class="descname">meta_type</code><em class="property"> = 'Workflow State'</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.meta_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.permission_roles">
+<code class="descname">permission_roles</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.permission_roles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.setGroups">
+<code class="descname">setGroups</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>RESPONSE=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.setGroups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the group to role mappings in REQUEST for this State.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.setPermission">
+<code class="descname">setPermission</code><span class="sig-paren">(</span><em>permission</em>, <em>acquired</em>, <em>roles</em>, <em>REQUEST=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.setPermission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a permission for this State.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.setPermissions">
+<code class="descname">setPermissions</code><span class="sig-paren">(</span><em>REQUEST</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.setPermissions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the permissions in REQUEST for this State.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.setProperties">
+<code class="descname">setProperties</code><span class="sig-paren">(</span><em>title=''</em>, <em>transitions=()</em>, <em>REQUEST=None</em>, <em>description=''</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.setProperties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the properties for this State.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.StateDefinition.setVariables">
+<code class="descname">setVariables</code><span class="sig-paren">(</span><em>ids=[]</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.setVariables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set values for Variables set by this State.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.title">
+<code class="descname">title</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.transitions">
+<code class="descname">transitions</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.transitions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.StateDefinition.var_values">
+<code class="descname">var_values</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.States.StateDefinition.var_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DCWorkflow.States.States">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.States.</code><code class="descname">States</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.States" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Products.DCWorkflow.ContainerTab.ContainerTab" title="Products.DCWorkflow.ContainerTab.ContainerTab"><code class="xref py py-class docutils literal"><span class="pre">Products.DCWorkflow.ContainerTab.ContainerTab</span></code></a></p>
+<p>A container for state definitions</p>
+<dl class="method">
+<dt id="Products.DCWorkflow.States.States.addState">
+<code class="descname">addState</code><span class="sig-paren">(</span><em>id</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.States.addState" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.States.all_meta_types">
+<code class="descname">all_meta_types</code><em class="property"> = ({'action': 'addState', 'name': 'Workflow State', 'permission': 'Manage portal'},)</em><a class="headerlink" href="#Products.DCWorkflow.States.States.all_meta_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.States.deleteStates">
+<code class="descname">deleteStates</code><span class="sig-paren">(</span><em>ids</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.States.deleteStates" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.States.manage_main">
+<code class="descname">manage_main</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>manage_tabs_message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.States.manage_main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.States.manage_main__roles__">
+<code class="descname">manage_main__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.States.States.manage_main__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.States.meta_type">
+<code class="descname">meta_type</code><em class="property"> = 'Workflow States'</em><a class="headerlink" href="#Products.DCWorkflow.States.States.meta_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.States.States.meta_types">
+<code class="descname">meta_types</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.States.States.meta_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.States.States.setInitialState">
+<code class="descname">setInitialState</code><span class="sig-paren">(</span><em>id=None</em>, <em>ids=None</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.States.States.setInitialState" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.Transitions">
+<span id="transitions-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">Transitions</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.Transitions" title="Permalink to this headline">¶</a></h2>
+<p>Transitions in a web-configurable workflow.</p>
+<dl class="class">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.Transitions.</code><code class="descname">TransitionDefinition</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">OFS.SimpleItem.SimpleItem</span></code></p>
+<p>Transition definition</p>
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.actbox_category">
+<code class="descname">actbox_category</code><em class="property"> = 'workflow'</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.actbox_category" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.actbox_icon">
+<code class="descname">actbox_icon</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.actbox_icon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.actbox_name">
+<code class="descname">actbox_name</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.actbox_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.actbox_url">
+<code class="descname">actbox_url</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.actbox_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.addVariable">
+<code class="descname">addVariable</code><span class="sig-paren">(</span><em>id</em>, <em>text</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.addVariable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a variable expression.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.after_script_name">
+<code class="descname">after_script_name</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.after_script_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.deleteVariables">
+<code class="descname">deleteVariables</code><span class="sig-paren">(</span><em>ids=[]</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.deleteVariables" title="Permalink to this definition">¶</a></dt>
+<dd><p>delete a WorkflowVariable from State</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.description">
+<code class="descname">description</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.getAvailableScriptIds">
+<code class="descname">getAvailableScriptIds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.getAvailableScriptIds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.getAvailableStateIds">
+<code class="descname">getAvailableStateIds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.getAvailableStateIds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.getAvailableVarIds">
+<code class="descname">getAvailableVarIds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.getAvailableVarIds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.getGuard">
+<code class="descname">getGuard</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.getGuard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.getGuardSummary">
+<code class="descname">getGuardSummary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.getGuardSummary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.getId">
+<code class="descname">getId</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.getId" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.getVarExprText">
+<code class="descname">getVarExprText</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.getVarExprText" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.getVariableExprs">
+<code class="descname">getVariableExprs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.getVariableExprs" title="Permalink to this definition">¶</a></dt>
+<dd><p>get variable exprs for management UI</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.getWorkflow">
+<code class="descname">getWorkflow</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.getWorkflow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.getWorkflowVariables">
+<code class="descname">getWorkflowVariables</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.getWorkflowVariables" title="Permalink to this definition">¶</a></dt>
+<dd><p>get all variables that are available form
+workflow and not handled yet.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.guard">
+<code class="descname">guard</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.guard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.manage_options">
+<code class="descname">manage_options</code><em class="property"> = ({'action': 'manage_properties', 'label': 'Properties'}, {'action': 'manage_variables', 'label': 'Variables'})</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.manage_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.manage_properties">
+<code class="descname">manage_properties</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>manage_tabs_message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.manage_properties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.manage_properties__roles__">
+<code class="descname">manage_properties__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.manage_properties__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.manage_variables">
+<code class="descname">manage_variables</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>manage_tabs_message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.manage_variables" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.manage_variables__roles__">
+<code class="descname">manage_variables__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.manage_variables__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.meta_type">
+<code class="descname">meta_type</code><em class="property"> = 'Workflow Transition'</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.meta_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.new_state_id">
+<code class="descname">new_state_id</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.new_state_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.script_name">
+<code class="descname">script_name</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.script_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.setProperties">
+<code class="descname">setProperties</code><span class="sig-paren">(</span><em>title</em>, <em>new_state_id</em>, <em>trigger_type=1</em>, <em>script_name=''</em>, <em>after_script_name=''</em>, <em>actbox_name=''</em>, <em>actbox_url=''</em>, <em>actbox_category='workflow'</em>, <em>actbox_icon=''</em>, <em>props=None</em>, <em>REQUEST=None</em>, <em>description=''</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.setProperties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.setVariables">
+<code class="descname">setVariables</code><span class="sig-paren">(</span><em>ids=[]</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.setVariables" title="Permalink to this definition">¶</a></dt>
+<dd><p>set values for Variables set by this state</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.title">
+<code class="descname">title</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.trigger_type">
+<code class="descname">trigger_type</code><em class="property"> = 1</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.trigger_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.TransitionDefinition.var_exprs">
+<code class="descname">var_exprs</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.TransitionDefinition.var_exprs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DCWorkflow.Transitions.Transitions">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.Transitions.</code><code class="descname">Transitions</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.Transitions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Products.DCWorkflow.ContainerTab.ContainerTab" title="Products.DCWorkflow.ContainerTab.ContainerTab"><code class="xref py py-class docutils literal"><span class="pre">Products.DCWorkflow.ContainerTab.ContainerTab</span></code></a></p>
+<p>A container for transition definitions</p>
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.Transitions.addTransition">
+<code class="descname">addTransition</code><span class="sig-paren">(</span><em>id</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.Transitions.addTransition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.Transitions.all_meta_types">
+<code class="descname">all_meta_types</code><em class="property"> = ({'action': 'addTransition', 'name': 'Workflow Transition', 'permission': 'Manage portal'},)</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.Transitions.all_meta_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.Transitions.deleteTransitions">
+<code class="descname">deleteTransitions</code><span class="sig-paren">(</span><em>ids</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.Transitions.deleteTransitions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Transitions.Transitions.manage_main">
+<code class="descname">manage_main</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>manage_tabs_message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Transitions.Transitions.manage_main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.Transitions.manage_main__roles__">
+<code class="descname">manage_main__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.Transitions.manage_main__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.Transitions.meta_type">
+<code class="descname">meta_type</code><em class="property"> = 'Workflow Transitions'</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.Transitions.meta_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Transitions.Transitions.meta_types">
+<code class="descname">meta_types</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.Transitions.Transitions.meta_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.Variables">
+<span id="variables-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">Variables</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.Variables" title="Permalink to this headline">¶</a></h2>
+<p>Variables in a web-configurable workflow.</p>
+<dl class="class">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.Variables.</code><code class="descname">VariableDefinition</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">OFS.SimpleItem.SimpleItem</span></code></p>
+<p>Variable definition</p>
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.default_expr">
+<code class="descname">default_expr</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.default_expr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.default_value">
+<code class="descname">default_value</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.default_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.description">
+<code class="descname">description</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.for_catalog">
+<code class="descname">for_catalog</code><em class="property"> = 1</em><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.for_catalog" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.for_status">
+<code class="descname">for_status</code><em class="property"> = 1</em><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.for_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.getDefaultExprText">
+<code class="descname">getDefaultExprText</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.getDefaultExprText" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.getInfoGuard">
+<code class="descname">getInfoGuard</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.getInfoGuard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.getInfoGuardSummary">
+<code class="descname">getInfoGuardSummary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.getInfoGuardSummary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.info_guard">
+<code class="descname">info_guard</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.info_guard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.manage_options">
+<code class="descname">manage_options</code><em class="property"> = ({'action': 'manage_properties', 'label': 'Properties'},)</em><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.manage_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.manage_properties">
+<code class="descname">manage_properties</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>manage_tabs_message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.manage_properties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.manage_properties__roles__">
+<code class="descname">manage_properties__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.manage_properties__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.meta_type">
+<code class="descname">meta_type</code><em class="property"> = 'Workflow Variable'</em><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.meta_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.setProperties">
+<code class="descname">setProperties</code><span class="sig-paren">(</span><em>description</em>, <em>default_value=''</em>, <em>default_expr=''</em>, <em>for_catalog=0</em>, <em>for_status=0</em>, <em>update_always=0</em>, <em>props=None</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.setProperties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.VariableDefinition.update_always">
+<code class="descname">update_always</code><em class="property"> = 1</em><a class="headerlink" href="#Products.DCWorkflow.Variables.VariableDefinition.update_always" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DCWorkflow.Variables.Variables">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.Variables.</code><code class="descname">Variables</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Variables.Variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Products.DCWorkflow.ContainerTab.ContainerTab" title="Products.DCWorkflow.ContainerTab.ContainerTab"><code class="xref py py-class docutils literal"><span class="pre">Products.DCWorkflow.ContainerTab.ContainerTab</span></code></a></p>
+<p>A container for variable definitions</p>
+<dl class="method">
+<dt id="Products.DCWorkflow.Variables.Variables.addVariable">
+<code class="descname">addVariable</code><span class="sig-paren">(</span><em>id</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Variables.Variables.addVariable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.Variables.all_meta_types">
+<code class="descname">all_meta_types</code><em class="property"> = ({'action': 'addVariable', 'name': 'Workflow Variable', 'permission': 'Manage portal'},)</em><a class="headerlink" href="#Products.DCWorkflow.Variables.Variables.all_meta_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Variables.Variables.deleteVariables">
+<code class="descname">deleteVariables</code><span class="sig-paren">(</span><em>ids</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Variables.Variables.deleteVariables" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Variables.Variables.getStateVar">
+<code class="descname">getStateVar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Variables.Variables.getStateVar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Variables.Variables.manage_main">
+<code class="descname">manage_main</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>manage_tabs_message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Variables.Variables.manage_main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.Variables.manage_main__roles__">
+<code class="descname">manage_main__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.Variables.Variables.manage_main__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.Variables.meta_type">
+<code class="descname">meta_type</code><em class="property"> = 'Workflow Variables'</em><a class="headerlink" href="#Products.DCWorkflow.Variables.Variables.meta_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Variables.Variables.meta_types">
+<code class="descname">meta_types</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.Variables.Variables.meta_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Variables.Variables.setStateVar">
+<code class="descname">setStateVar</code><span class="sig-paren">(</span><em>id</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Variables.Variables.setStateVar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.WorkflowUIMixin">
+<span id="workflowuimixin-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">WorkflowUIMixin</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.WorkflowUIMixin" title="Permalink to this headline">¶</a></h2>
+<p>Web-configurable workflow UI.</p>
+<dl class="class">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.WorkflowUIMixin.</code><code class="descname">WorkflowUIMixin</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.addGroup">
+<code class="descname">addGroup</code><span class="sig-paren">(</span><em>group</em>, <em>RESPONSE=[]</em>, <em>REQUEST=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.addGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a group by name.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.addGroup__roles__">
+<code class="descname">addGroup__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.addGroup__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.addManagedPermission">
+<code class="descname">addManagedPermission</code><span class="sig-paren">(</span><em>p</em>, <em>REQUEST=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.addManagedPermission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds to the list of permissions to manage.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.addManagedPermission__roles__">
+<code class="descname">addManagedPermission__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.addManagedPermission__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.delGroups">
+<code class="descname">delGroups</code><span class="sig-paren">(</span><em>groups</em>, <em>RESPONSE=[]</em>, <em>REQUEST=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.delGroups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes groups by name.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.delGroups__roles__">
+<code class="descname">delGroups__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.delGroups__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.delManagedPermissions">
+<code class="descname">delManagedPermissions</code><span class="sig-paren">(</span><em>ps</em>, <em>REQUEST=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.delManagedPermissions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes from the list of permissions to manage.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.delManagedPermissions__roles__">
+<code class="descname">delManagedPermissions__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.delManagedPermissions__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getAvailableGroups">
+<code class="descname">getAvailableGroups</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getAvailableGroups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of available group names.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getAvailableGroups__roles__">
+<code class="descname">getAvailableGroups__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getAvailableGroups__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getAvailableRoles">
+<code class="descname">getAvailableRoles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getAvailableRoles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the acquired roles mixed with base_cms roles.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getAvailableRoles__roles__">
+<code class="descname">getAvailableRoles__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getAvailableRoles__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getGroups">
+<code class="descname">getGroups</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getGroups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the names of groups managed by this workflow.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getGroups__roles__">
+<code class="descname">getGroups__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getGroups__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getGuard">
+<code class="descname">getGuard</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getGuard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the initiation guard.</p>
+<p>If no init guard has been created, returns a temporary object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getGuard__roles__">
+<code class="descname">getGuard__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getGuard__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getPossiblePermissions">
+<code class="descname">getPossiblePermissions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getPossiblePermissions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of all permissions that can be managed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getPossiblePermissions__roles__">
+<code class="descname">getPossiblePermissions__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getPossiblePermissions__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getRoles">
+<code class="descname">getRoles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getRoles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of roles managed by this workflow.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getRoles__roles__">
+<code class="descname">getRoles__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.getRoles__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.guardExprDocs">
+<code class="descname">guardExprDocs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.guardExprDocs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns documentation on guard expressions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.guardExprDocs__roles__">
+<code class="descname">guardExprDocs__roles__</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.guardExprDocs__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.manage_groups">
+<code class="descname">manage_groups</code><em class="property"> = &lt;PageTemplateFile at workflow_groups&gt;</em><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.manage_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.manage_groups__roles__">
+<code class="descname">manage_groups__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.manage_groups__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.manage_permissions">
+<code class="descname">manage_permissions</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>manage_tabs_message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.manage_permissions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the form for choosing which permissions to manage.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.manage_permissions__roles__">
+<code class="descname">manage_permissions__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.manage_permissions__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.manage_properties">
+<code class="descname">manage_properties</code><em class="property"> = &lt;App.special_dtml.DTMLFile object&gt;</em><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.manage_properties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.manage_properties__roles__">
+<code class="descname">manage_properties__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.manage_properties__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.setProperties">
+<code class="descname">setProperties</code><span class="sig-paren">(</span><em>title</em>, <em>manager_bypass=[]</em>, <em>props=[]</em>, <em>REQUEST=[]</em>, <em>description=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.setProperties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets basic properties.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.setProperties__roles__">
+<code class="descname">setProperties__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.setProperties__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.setRoles">
+<code class="descname">setRoles</code><span class="sig-paren">(</span><em>roles</em>, <em>RESPONSE=[]</em>, <em>REQUEST=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.setRoles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the list of roles mapped to groups by this workflow.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.setRoles__roles__">
+<code class="descname">setRoles__roles__</code><a class="headerlink" href="#Products.DCWorkflow.WorkflowUIMixin.WorkflowUIMixin.setRoles__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.Worklists">
+<span id="worklists-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">Worklists</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.Worklists" title="Permalink to this headline">¶</a></h2>
+<p>Worklists in a web-configurable workflow.</p>
+<dl class="class">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.Worklists.</code><code class="descname">WorklistDefinition</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">OFS.SimpleItem.SimpleItem</span></code></p>
+<p>Worklist definiton</p>
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.actbox_category">
+<code class="descname">actbox_category</code><em class="property"> = 'global'</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.actbox_category" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.actbox_icon">
+<code class="descname">actbox_icon</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.actbox_icon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.actbox_name">
+<code class="descname">actbox_name</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.actbox_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.actbox_url">
+<code class="descname">actbox_url</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.actbox_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.description">
+<code class="descname">description</code><em class="property"> = ''</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.getAvailableCatalogVars">
+<code class="descname">getAvailableCatalogVars</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.getAvailableCatalogVars" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.getGuard">
+<code class="descname">getGuard</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.getGuard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.getGuardSummary">
+<code class="descname">getGuardSummary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.getGuardSummary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.getVarMatch">
+<code class="descname">getVarMatch</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.getVarMatch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.getVarMatchKeys">
+<code class="descname">getVarMatchKeys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.getVarMatchKeys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.getVarMatchText">
+<code class="descname">getVarMatchText</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.getVarMatchText" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.getWorkflow">
+<code class="descname">getWorkflow</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.getWorkflow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.guard">
+<code class="descname">guard</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.guard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.manage_options">
+<code class="descname">manage_options</code><em class="property"> = ({'action': 'manage_properties', 'label': 'Properties'},)</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.manage_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.manage_properties">
+<code class="descname">manage_properties</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>manage_tabs_message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.manage_properties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.manage_properties__roles__">
+<code class="descname">manage_properties__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.manage_properties__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.meta_type">
+<code class="descname">meta_type</code><em class="property"> = 'Worklist'</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.meta_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.search">
+<code class="descname">search</code><span class="sig-paren">(</span><em>info=None</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform the search corresponding to this worklist</p>
+<p>Returns sequence of ZCatalog brains
+- info is a mapping for resolving formatted string variable references
+- additional keyword/value pairs may be used to restrict the query</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.setProperties">
+<code class="descname">setProperties</code><span class="sig-paren">(</span><em>description</em>, <em>actbox_name=''</em>, <em>actbox_url=''</em>, <em>actbox_category='global'</em>, <em>actbox_icon=''</em>, <em>props=None</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.setProperties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.WorklistDefinition.var_matches">
+<code class="descname">var_matches</code><em class="property"> = None</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.WorklistDefinition.var_matches" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DCWorkflow.Worklists.Worklists">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.Worklists.</code><code class="descname">Worklists</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.Worklists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Products.DCWorkflow.ContainerTab.ContainerTab" title="Products.DCWorkflow.ContainerTab.ContainerTab"><code class="xref py py-class docutils literal"><span class="pre">Products.DCWorkflow.ContainerTab.ContainerTab</span></code></a></p>
+<p>A container for worklist definitions</p>
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.Worklists.addWorklist">
+<code class="descname">addWorklist</code><span class="sig-paren">(</span><em>id</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.Worklists.addWorklist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.Worklists.all_meta_types">
+<code class="descname">all_meta_types</code><em class="property"> = ({'action': 'addWorklist', 'name': 'Worklist', 'permission': 'Manage portal'},)</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.Worklists.all_meta_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.Worklists.deleteWorklists">
+<code class="descname">deleteWorklists</code><span class="sig-paren">(</span><em>ids</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.Worklists.deleteWorklists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.Worklists.Worklists.manage_main">
+<code class="descname">manage_main</code><span class="sig-paren">(</span><em>REQUEST</em>, <em>manage_tabs_message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.Worklists.Worklists.manage_main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.Worklists.manage_main__roles__">
+<code class="descname">manage_main__roles__</code><em class="property"> = ('Manager',)</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.Worklists.manage_main__roles__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.Worklists.meta_type">
+<code class="descname">meta_type</code><em class="property"> = 'Worklists'</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.Worklists.meta_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.Worklists.Worklists.meta_types">
+<code class="descname">meta_types</code><em class="property"> = ()</em><a class="headerlink" href="#Products.DCWorkflow.Worklists.Worklists.meta_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.events">
+<span id="events-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">events</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.events" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Products.DCWorkflow.events.AfterTransitionEvent">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.events.</code><code class="descname">AfterTransitionEvent</code><span class="sig-paren">(</span><em>obj</em>, <em>workflow</em>, <em>old_state</em>, <em>new_state</em>, <em>transition</em>, <em>status</em>, <em>kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.events.AfterTransitionEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Products.DCWorkflow.events.TransitionEvent" title="Products.DCWorkflow.events.TransitionEvent"><code class="xref py py-class docutils literal"><span class="pre">Products.DCWorkflow.events.TransitionEvent</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DCWorkflow.events.BeforeTransitionEvent">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.events.</code><code class="descname">BeforeTransitionEvent</code><span class="sig-paren">(</span><em>obj</em>, <em>workflow</em>, <em>old_state</em>, <em>new_state</em>, <em>transition</em>, <em>status</em>, <em>kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.events.BeforeTransitionEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Products.DCWorkflow.events.TransitionEvent" title="Products.DCWorkflow.events.TransitionEvent"><code class="xref py py-class docutils literal"><span class="pre">Products.DCWorkflow.events.TransitionEvent</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DCWorkflow.events.TransitionEvent">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.events.</code><code class="descname">TransitionEvent</code><span class="sig-paren">(</span><em>obj</em>, <em>workflow</em>, <em>old_state</em>, <em>new_state</em>, <em>transition</em>, <em>status</em>, <em>kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.events.TransitionEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">zope.interface.interfaces.ObjectEvent</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.exportimport">
+<span id="exportimport-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">exportimport</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.exportimport" title="Permalink to this headline">¶</a></h2>
+<p>DCWorkflow export / import support.</p>
+<dl class="class">
+<dt id="Products.DCWorkflow.exportimport.DCWorkflowDefinitionBodyAdapter">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.exportimport.</code><code class="descname">DCWorkflowDefinitionBodyAdapter</code><span class="sig-paren">(</span><em>context</em>, <em>environ</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.exportimport.DCWorkflowDefinitionBodyAdapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Products.GenericSetup.utils.BodyAdapterBase</span></code></p>
+<p>Body im- and exporter for DCWorkflowDefinition.</p>
+<dl class="attribute">
+<dt id="Products.DCWorkflow.exportimport.DCWorkflowDefinitionBodyAdapter.body">
+<code class="descname">body</code><a class="headerlink" href="#Products.DCWorkflow.exportimport.DCWorkflowDefinitionBodyAdapter.body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export the object as a file body.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.exportimport.DCWorkflowDefinitionBodyAdapter.mime_type">
+<code class="descname">mime_type</code><em class="property"> = 'text/xml'</em><a class="headerlink" href="#Products.DCWorkflow.exportimport.DCWorkflowDefinitionBodyAdapter.mime_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.exportimport.DCWorkflowDefinitionBodyAdapter.suffix">
+<code class="descname">suffix</code><em class="property"> = '/definition.xml'</em><a class="headerlink" href="#Products.DCWorkflow.exportimport.DCWorkflowDefinitionBodyAdapter.suffix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.exportimport.</code><code class="descname">WorkflowDefinitionConfigurator</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Acquirer</span></code></p>
+<p>Synthesize XML description of site&#8217;s workflows.</p>
+<dl class="method">
+<dt id="Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.generateWorkflowXML">
+<code class="descname">generateWorkflowXML</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.generateWorkflowXML" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pseudo API.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.generateWorkflowXML__roles__">
+<code class="descname">generateWorkflowXML__roles__</code><a class="headerlink" href="#Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.generateWorkflowXML__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.getWorkflowInfo">
+<code class="descname">getWorkflowInfo</code><span class="sig-paren">(</span><em>workflow_id</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.getWorkflowInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a mapping describing a given workflow.</p>
+<p>o Keys in the mappings:</p>
+<blockquote>
+<div><p>&#8216;id&#8217; &#8211; the ID of the workflow within the tool</p>
+<p>&#8216;meta_type&#8217; &#8211; the workflow&#8217;s meta_type</p>
+<p>&#8216;title&#8217; &#8211; the workflow&#8217;s title property</p>
+<p>&#8216;description&#8217; &#8211; the workflow&#8217;s description property</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>o See &#8216;_extractDCWorkflowInfo&#8217; below for keys present only for</dt>
+<dd>DCWorkflow definitions.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.getWorkflowInfo__roles__">
+<code class="descname">getWorkflowInfo__roles__</code><a class="headerlink" href="#Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.getWorkflowInfo__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.getWorkflowScripts">
+<code class="descname">getWorkflowScripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.getWorkflowScripts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get workflow scripts information</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.getWorkflowScripts__roles__">
+<code class="descname">getWorkflowScripts__roles__</code><a class="headerlink" href="#Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.getWorkflowScripts__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.parseWorkflowXML">
+<code class="descname">parseWorkflowXML</code><span class="sig-paren">(</span><em>xml</em>, <em>encoding='utf-8'</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.parseWorkflowXML" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pseudo API.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.parseWorkflowXML__roles__">
+<code class="descname">parseWorkflowXML__roles__</code><a class="headerlink" href="#Products.DCWorkflow.exportimport.WorkflowDefinitionConfigurator.parseWorkflowXML__roles__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PermissionRole C implementation</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.interfaces">
+<span id="interfaces-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">interfaces</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.interfaces" title="Permalink to this headline">¶</a></h2>
+<p>DCWorkflow interfaces.</p>
+<dl class="interface">
+<dt id="Products.DCWorkflow.interfaces.IAfterTransitionEvent">
+<em class="property">interface </em><code class="descclassname">Products.DCWorkflow.interfaces.</code><code class="descname">IAfterTransitionEvent</code><a class="headerlink" href="#Products.DCWorkflow.interfaces.IAfterTransitionEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends: <a class="reference internal" href="#Products.DCWorkflow.interfaces.ITransitionEvent" title="Products.DCWorkflow.interfaces.ITransitionEvent"><code class="xref py py-class docutils literal"><span class="pre">Products.DCWorkflow.interfaces.ITransitionEvent</span></code></a></p>
+<p>An event that&#8217;s fired after a workflow transition.</p>
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.DCWorkflow.interfaces.IBeforeTransitionEvent">
+<em class="property">interface </em><code class="descclassname">Products.DCWorkflow.interfaces.</code><code class="descname">IBeforeTransitionEvent</code><a class="headerlink" href="#Products.DCWorkflow.interfaces.IBeforeTransitionEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends: <a class="reference internal" href="#Products.DCWorkflow.interfaces.ITransitionEvent" title="Products.DCWorkflow.interfaces.ITransitionEvent"><code class="xref py py-class docutils literal"><span class="pre">Products.DCWorkflow.interfaces.ITransitionEvent</span></code></a></p>
+<p>An event fired before a workflow transition.</p>
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.DCWorkflow.interfaces.IDCWorkflowDefinition">
+<em class="property">interface </em><code class="descclassname">Products.DCWorkflow.interfaces.</code><code class="descname">IDCWorkflowDefinition</code><a class="headerlink" href="#Products.DCWorkflow.interfaces.IDCWorkflowDefinition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Web-configurable workflow definition.</p>
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.DCWorkflow.interfaces.ITransitionEvent">
+<em class="property">interface </em><code class="descclassname">Products.DCWorkflow.interfaces.</code><code class="descname">ITransitionEvent</code><a class="headerlink" href="#Products.DCWorkflow.interfaces.ITransitionEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends: <code class="xref py py-class docutils literal"><span class="pre">zope.interface.interfaces.IObjectEvent</span></code></p>
+<p>An event that&#8217;s fired upon a workflow transition.</p>
+<dl class="attribute">
+<dt id="Products.DCWorkflow.interfaces.ITransitionEvent.status">
+<code class="descname">status</code><a class="headerlink" href="#Products.DCWorkflow.interfaces.ITransitionEvent.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>The status dict of the object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.interfaces.ITransitionEvent.new_state">
+<code class="descname">new_state</code><a class="headerlink" href="#Products.DCWorkflow.interfaces.ITransitionEvent.new_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state definition of the workflow state before after transition</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.interfaces.ITransitionEvent.workflow">
+<code class="descname">workflow</code><a class="headerlink" href="#Products.DCWorkflow.interfaces.ITransitionEvent.workflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>The workflow definition triggering the transition</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.interfaces.ITransitionEvent.transition">
+<code class="descname">transition</code><a class="headerlink" href="#Products.DCWorkflow.interfaces.ITransitionEvent.transition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The transition definition taking place. May be None if this is the &#8216;transition&#8217; to the initial state.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.interfaces.ITransitionEvent.kwargs">
+<code class="descname">kwargs</code><a class="headerlink" href="#Products.DCWorkflow.interfaces.ITransitionEvent.kwargs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Any keyword arguments passed to doActionFor() when the transition was invoked</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Products.DCWorkflow.interfaces.ITransitionEvent.old_state">
+<code class="descname">old_state</code><a class="headerlink" href="#Products.DCWorkflow.interfaces.ITransitionEvent.old_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state definition of the workflow state before the transition</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.permissions">
+<span id="permissions-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">permissions</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.permissions" title="Permalink to this headline">¶</a></h2>
+<p>DCWorkflow product permissions</p>
+</div>
+<div class="section" id="module-Products.DCWorkflow.testing">
+<span id="testing-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">testing</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.testing" title="Permalink to this headline">¶</a></h2>
+<p>Unit test layers.</p>
+<dl class="class">
+<dt id="Products.DCWorkflow.testing.ExportImportZCMLLayer">
+<em class="property">class </em><code class="descclassname">Products.DCWorkflow.testing.</code><code class="descname">ExportImportZCMLLayer</code><a class="headerlink" href="#Products.DCWorkflow.testing.ExportImportZCMLLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Testing.ZopeTestCase.layer.ZopeLite</span></code></p>
+<dl class="classmethod">
+<dt id="Products.DCWorkflow.testing.ExportImportZCMLLayer.setUp">
+<em class="property">classmethod </em><code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.testing.ExportImportZCMLLayer.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="Products.DCWorkflow.testing.ExportImportZCMLLayer.tearDown">
+<em class="property">classmethod </em><code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.testing.ExportImportZCMLLayer.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Products.DCWorkflow.utils">
+<span id="utils-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">utils</span></code> Module<a class="headerlink" href="#module-Products.DCWorkflow.utils" title="Permalink to this headline">¶</a></h2>
+<p>Some common utilities.</p>
+<dl class="function">
+<dt id="Products.DCWorkflow.utils.ac_inherited_permissions">
+<code class="descclassname">Products.DCWorkflow.utils.</code><code class="descname">ac_inherited_permissions</code><span class="sig-paren">(</span><em>ob</em>, <em>all=0</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.utils.ac_inherited_permissions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Products.DCWorkflow.utils.modifyRolesForGroup">
+<code class="descclassname">Products.DCWorkflow.utils.</code><code class="descname">modifyRolesForGroup</code><span class="sig-paren">(</span><em>ob</em>, <em>group</em>, <em>grant_roles</em>, <em>managed_roles</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.utils.modifyRolesForGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modifies local roles for one group.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Products.DCWorkflow.utils.modifyRolesForPermission">
+<code class="descclassname">Products.DCWorkflow.utils.</code><code class="descname">modifyRolesForPermission</code><span class="sig-paren">(</span><em>ob</em>, <em>pname</em>, <em>roles</em><span class="sig-paren">)</span><a class="headerlink" href="#Products.DCWorkflow.utils.modifyRolesForPermission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modifies multiple role to permission mappings.  roles is a list to
+acquire, a tuple to not acquire.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DCWorkflow.browser.html">browser Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DCWorkflow.browser.html#id1"><code class="docutils literal"><span class="pre">browser</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DCWorkflow.browser.html#module-Products.DCWorkflow.browser.workflow"><code class="docutils literal"><span class="pre">workflow</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">DCWorkflow Package</a><ul>
+<li><a class="reference internal" href="#id1"><code class="docutils literal"><span class="pre">DCWorkflow</span></code> Package</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.ContainerTab"><code class="docutils literal"><span class="pre">ContainerTab</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.DCWorkflow"><code class="docutils literal"><span class="pre">DCWorkflow</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.Expression"><code class="docutils literal"><span class="pre">Expression</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.Guard"><code class="docutils literal"><span class="pre">Guard</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.Scripts"><code class="docutils literal"><span class="pre">Scripts</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.States"><code class="docutils literal"><span class="pre">States</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.Transitions"><code class="docutils literal"><span class="pre">Transitions</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.Variables"><code class="docutils literal"><span class="pre">Variables</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.WorkflowUIMixin"><code class="docutils literal"><span class="pre">WorkflowUIMixin</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.Worklists"><code class="docutils literal"><span class="pre">Worklists</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.events"><code class="docutils literal"><span class="pre">events</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.exportimport"><code class="docutils literal"><span class="pre">exportimport</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.interfaces"><code class="docutils literal"><span class="pre">interfaces</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.permissions"><code class="docutils literal"><span class="pre">permissions</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.testing"><code class="docutils literal"><span class="pre">testing</span></code> Module</a></li>
+<li><a class="reference internal" href="#module-Products.DCWorkflow.utils"><code class="docutils literal"><span class="pre">utils</span></code> Module</a></li>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="modules.html"
+                        title="previous chapter">DCWorkflow</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="DCWorkflow.browser.html"
+                        title="next chapter">browser Package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/DCWorkflow.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="DCWorkflow.browser.html" title="browser Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="DCWorkflow"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >DCWorkflow</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, CMF Developers.
+      Last updated on May 04, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Transitions Tab &#8212; Products.DCWorkflow 2.4.0.dev0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.4.0.dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Variables Tab" href="Variables.html" />
+    <link rel="prev" title="States Tab" href="States.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Variables.html" title="Variables Tab"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="States.html" title="States Tab"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">DCWorkflow Narrative Documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="transitions-tab">
+<h1>Transitions Tab<a class="headerlink" href="#transitions-tab" title="Permalink to this headline">¶</a></h1>
+<p>Transitions are the actions that move content from one state in the workflow
+to another. From the transitions tab it&#8217;s possible to add new transitions,
+and rename and delete existing transitions.</p>
+<p>The list of existing transitions also displays a summary of each transition&#8217;s
+title, description, destination state, trigger, guards, and action box entry.
+You can click through each transition to access their details.</p>
+<p>Within a transition&#8217;s properties tab you can set the title, and a collection
+of properties the define the transtion&#8217;s behaviour, as follows:</p>
+<dl class="docutils">
+<dt><strong>Destination state</strong> &#8211;</dt>
+<dd>selected from all the states defined in the states tab. A transition can
+remain in state, which is useful for a reviewer adding comments to the review
+history, but not taking any action, updating some variable, or invoking
+scripts.</dd>
+<dt><strong>Trigger type</strong>  &#8211;</dt>
+<dd><p class="first">There are two types:</p>
+<ul class="last simple">
+<li>User actions are the familiar user initiated transitions activated by
+actions in the action box.</li>
+<li>Automatic transitions are executed any time other workflow events occur;
+so if a user action results in the content moving to a state that has
+automatic transitions, they will be executed. (You should use mutually
+exclusive guards to prevent indeterminate behavior.)</li>
+</ul>
+</dd>
+<dt><strong>Scripts</strong> &#8211;</dt>
+<dd>Perform complicated behaviours either before or after the transition takes
+place. Scripts of all kinds are defined in the workflow&#8217;s scripts tab.
+Scripts called from here must accept only one argument; a &#8216;status_change&#8217;
+object. See Expressions for more details.</dd>
+<dt><strong>Guards and Action boxes</strong> &#8211;</dt>
+<dd><p class="first">See the <a class="reference internal" href="Guards.html"><span class="doc">Guards</span></a> and <a class="reference internal" href="ActionBoxes.html"><span class="doc">Action Boxes</span></a> sections for specific details
+about those fields. Note that automatic transitions don&#8217;t need the action box
+fields to be filled out.</p>
+<p class="last">What the action should link to.</p>
+</dd>
+</dl>
+<p>In the transition&#8217;s variables tab, you can add, change and delete variables
+that you want to assign a value to, when the transition is executed. The
+available variables are set in the workflow&#8217;s variables tab, and the value is
+a TALES expression (see Expressions for more details).</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="States.html"
+                        title="previous chapter">States Tab</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Variables.html"
+                        title="next chapter">Variables Tab</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/narrative/Transition.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Variables.html" title="Variables Tab"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="States.html" title="States Tab"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >DCWorkflow Narrative Documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, CMF Developers.
+      Last updated on May 04, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>

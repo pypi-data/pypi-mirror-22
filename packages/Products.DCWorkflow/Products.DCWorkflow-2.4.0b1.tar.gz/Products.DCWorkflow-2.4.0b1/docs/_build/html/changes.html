@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Products.DCWorkflow Changelog &#8212; Products.DCWorkflow 2.4.0.dev0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.4.0.dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DCWorkflow" href="api/modules.html" />
+    <link rel="prev" title="Worklists Tab" href="narrative/Worklists.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api/modules.html" title="DCWorkflow"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="narrative/Worklists.html" title="Worklists Tab"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="products-dcworkflow-changelog">
+<h1>Products.DCWorkflow Changelog<a class="headerlink" href="#products-dcworkflow-changelog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>2.3.0 (2017-05-04)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Export / import workflow-managed groups.</li>
+</ul>
+</div>
+<div class="section" id="beta-2012-03-21">
+<h2>2.3.0-beta (2012-03-21)<a class="headerlink" href="#beta-2012-03-21" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Removed string exceptions.
+(<a class="reference external" href="https://bugs.launchpad.net/zope-cmf/+bug/952301">https://bugs.launchpad.net/zope-cmf/+bug/952301</a>)</li>
+<li>Made sure converted tools are used as utilities.</li>
+<li>StateChangeInfo: Removed support for deprecated &#8216;_isPortalRoot&#8217; marker.</li>
+<li>Hardened XML import parsing against missing boolean attributes.
+(<a class="reference external" href="https://bugs.launchpad.net/zope-cmf/+bug/707927">https://bugs.launchpad.net/zope-cmf/+bug/707927</a>)</li>
+<li>Ensured that emitted XML export has a valid encoding, even when passed
+&#8216;None&#8217;.  (<a class="reference external" href="https://bugs.launchpad.net/zope-cmf/+bug/707927">https://bugs.launchpad.net/zope-cmf/+bug/707927</a>)</li>
+<li>Change default encoding of exports from None to utf-8.</li>
+<li>Require at least Zope 2.13.12.</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>2.2.4 (2011-11-01)<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fixed issue with non-ascii chars in workflow definitions</li>
+<li>Don&#8217;t crash worklist&#8217;s <code class="docutils literal"><span class="pre">manage_main</span></code> if variables are Expression objects.
+(<a class="reference external" href="https://bugs.launchpad.net/zope-cmf/+bug/731394">https://bugs.launchpad.net/zope-cmf/+bug/731394</a>)</li>
+<li>Allow renaming of states, transitions, variables and worklists</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>2.2.3 (2011-01-12)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Explicitly include permissions from CMFCore, which are needed now that
+they aren&#8217;t declared in Five in Zope 2.13.</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>2.2.2 (2010-11-11)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fixed Chameleon compatibility in <cite>state_groups.pt</cite>.</li>
+<li>Workflow states cannot be renamed through the ZMI.
+(<a class="reference external" href="https://bugs.launchpad.net/zope-cmf/+bug/625722">https://bugs.launchpad.net/zope-cmf/+bug/625722</a>)</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>2.2.1 (2010-07-04)<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Deal with deprecation warnings for Zope 2.13.</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>2.2.0 (2010-01-04)<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>no changes from version 2.2.0-beta</li>
+</ul>
+</div>
+<div class="section" id="beta-2009-12-06">
+<h2>2.2.0-beta (2009-12-06)<a class="headerlink" href="#beta-2009-12-06" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>no changes from version 2.2.0-alpha</li>
+</ul>
+</div>
+<div class="section" id="alpha-2009-11-13">
+<h2>2.2.0-alpha (2009-11-13)<a class="headerlink" href="#alpha-2009-11-13" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">moved the Zope dependency to version 2.12.0b3dev</p>
+</li>
+<li><p class="first">Worklists: The catalog variable match setting can now be a
+formatted string (as before), but also a qualified TAL
+expression, meaning it has a prefix like &#8220;string:&#8221;, &#8220;python:&#8221;.
+(<a class="reference external" href="https://bugs.launchpad.net/zope-cmf/+bug/378292">https://bugs.launchpad.net/zope-cmf/+bug/378292</a>)</p>
+</li>
+<li><p class="first">exportimport: Support for instance creation guards and manager
+bypass added.
+(<a class="reference external" href="https://bugs.launchpad.net/zope-cmf/+bug/308947">https://bugs.launchpad.net/zope-cmf/+bug/308947</a>)</p>
+</li>
+<li><p class="first">Cleaned up / normalized imports:</p>
+<p>o Don&#8217;t import from Globals;  instead, use real locations.</p>
+<dl class="docutils">
+<dt>o Make other imports use the actual source module, rather than an</dt>
+<dd><p class="first last">intermediate (e.g., prefer importing &#8216;ClassSecurityInfo&#8217; from
+&#8216;AccessControl.SecurityInfo&#8217; rather than from &#8216;AccessControl&#8217;).</p>
+</dd>
+</dl>
+<p>o Avoid relative imports, which will break in later versions of Python.</p>
+</li>
+<li><p class="first">Strip trailing newlines in order to properly match with a msgid when
+translating transition descriptions.</p>
+</li>
+<li><p class="first">Workflow UI: Remove ancient cruft to accommodate the proprietary
+(and long dead) base_cms product.</p>
+</li>
+<li><p class="first">Worklists and Transitions: Add icon expression properties to worklist
+and transition actions and their GenericSetup profiles.</p>
+</li>
+<li><p class="first">Fixed an import error (Products.PageTemplates.TALES is gone on
+Zope trunk).  Because we require Zope &gt;= 2.10, we don&#8217;t need a
+BBB conditional import.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>2.1.2 (2008-09-13)<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>test fixture: Fix failng tests with GenericSetup &gt; 1.3 by explicitly
+loading GS&#8217; meta.zcml during setup.</li>
+</ul>
+</div>
+<div class="section" id="beta-2008-08-26">
+<h2>2.1.2-beta (2008-08-26)<a class="headerlink" href="#beta-2008-08-26" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>completed devolution from monolithic CMF package into its component
+products that are distributed as eggs from PyPI.</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2>2.1.1 (2008-01-06)<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>no changes</li>
+</ul>
+</div>
+<div class="section" id="beta-2007-12-29">
+<h2>2.1.1-beta(2007-12/29)<a class="headerlink" href="#beta-2007-12-29" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Testing: Derive test layers from ZopeLite layer if available.</li>
+<li>exportimport: Scripts with invalid types imported
+after scripts with valid types will no longer place the valid
+script twice.  Scripts can also now be specified with meta_types
+other than the hard-coded meta_types.</li>
+<li>AfterTransitionEvent now passes along the new status of the
+object, just as StateChangeInfo passes on the new status to
+after-transition scripts.
+(<a class="reference external" href="http://www.zope.org/Collectors/CMF/490">http://www.zope.org/Collectors/CMF/490</a>)</li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h2>2.1.0 (2007-08-08)<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fixed all componentregistry.xml files to use plain object paths and strip
+and slashes. GenericSetup does only support registering objects which are
+in the site root.</li>
+</ul>
+</div>
+<div class="section" id="beta2-2007-07-12">
+<h2>2.1.0-beta2 (2007-07-12)<a class="headerlink" href="#beta2-2007-07-12" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>moved the Zope dependency to version 2.10.4</li>
+<li>Remove antique usage of marker attributes in favor of interfaces,
+leaving BBB behind for places potentially affecting third-party code.
+(<a class="reference external" href="http://www.zope.org/Collectors/CMF/440">http://www.zope.org/Collectors/CMF/440</a>)</li>
+<li>Add POST-only protections to security critical methods.
+<a class="reference external" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-0240">http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-0240</a>)</li>
+<li>Workflow definition instances now have a description field
+(<a class="reference external" href="http://www.zope.org/Collectors/CMF/480">http://www.zope.org/Collectors/CMF/480</a>)</li>
+</ul>
+</div>
+<div class="section" id="beta-2007-03-09">
+<h2>2.1.0-beta (2007-03-09)<a class="headerlink" href="#beta-2007-03-09" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>moved the Zope dependency to verson 2.10.2</li>
+<li>Tool lookup and registration is now done &#8220;the Zope 3 way&#8221; as utilities, see
+<a class="reference external" href="http://svn.zope.org/CMF/branches/2.1/docs/ToolsAreUtilities.stx?view=auto">http://svn.zope.org/CMF/branches/2.1/docs/ToolsAreUtilities.stx?view=auto</a></li>
+<li>Merged patches from Martin Aspeli to enable generating events before
+and after DCWorkflow transitions, and in the &#8216;notify&#8217; methods of the
+workflow tool (<a class="reference external" href="http://www.zope.org/Collectors/CMF/461">http://www.zope.org/Collectors/CMF/461</a>).</li>
+</ul>
+</div>
+<div class="section" id="alpha2-2006-11-23">
+<h2>2.1.0-alpha2 (2006-11-23)<a class="headerlink" href="#alpha2-2006-11-23" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>moved the Zope dependency to version 2.10.1</li>
+<li>Fixed test breakage induced by use of Z3 pagetemplates in Zope 2.10+.</li>
+<li>browser views: Added some zope.formlib based forms.</li>
+<li>testing: Added test layers for setting up ZCML.</li>
+</ul>
+</div>
+<div class="section" id="alpha-2006-10-09">
+<h2>2.1.0-alpha (2006-10-09)<a class="headerlink" href="#alpha-2006-10-09" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>skins: Changed encoding of translated portal_status_messages.
+Now getBrowserCharset is used to play nice with Five forms. Customized
+setRedirect and getMainGlobals scripts have to be updated.</li>
+<li>Profiles: All profiles are now registered by ZCML.</li>
+<li>ZClasses: Removed unmaintained support for ZClasses.
+Marked the &#8216;initializeBases*&#8217; methods as deprecated.</li>
+<li>Content: Added IFactory utilities for all content classes.
+They are now used by default instead of the old constructor methods.</li>
+<li>Content: All content classes are now registered by ZCML.
+ContentInit is still used to register oldstyle constructors.</li>
+<li>setup handlers: Removed support for CMF 1.5 CMFSetup profiles.</li>
+</ul>
+</div>
+<div class="section" id="earlier-releases">
+<h2>Earlier releases<a class="headerlink" href="#earlier-releases" title="Permalink to this headline">¶</a></h2>
+<p>For a complete list of changes before version 2.1.0-alpha, see the HISTORY.txt
+file on the CMF-2.1 branch:
+<a class="reference external" href="http://svn.zope.org/CMF/branches/2.1/HISTORY.txt?view=auto">http://svn.zope.org/CMF/branches/2.1/HISTORY.txt?view=auto</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Products.DCWorkflow Changelog</a><ul>
+<li><a class="reference internal" href="#id1">2.3.0 (2017-05-04)</a></li>
+<li><a class="reference internal" href="#beta-2012-03-21">2.3.0-beta (2012-03-21)</a></li>
+<li><a class="reference internal" href="#id2">2.2.4 (2011-11-01)</a></li>
+<li><a class="reference internal" href="#id3">2.2.3 (2011-01-12)</a></li>
+<li><a class="reference internal" href="#id4">2.2.2 (2010-11-11)</a></li>
+<li><a class="reference internal" href="#id5">2.2.1 (2010-07-04)</a></li>
+<li><a class="reference internal" href="#id6">2.2.0 (2010-01-04)</a></li>
+<li><a class="reference internal" href="#beta-2009-12-06">2.2.0-beta (2009-12-06)</a></li>
+<li><a class="reference internal" href="#alpha-2009-11-13">2.2.0-alpha (2009-11-13)</a></li>
+<li><a class="reference internal" href="#id7">2.1.2 (2008-09-13)</a></li>
+<li><a class="reference internal" href="#beta-2008-08-26">2.1.2-beta (2008-08-26)</a></li>
+<li><a class="reference internal" href="#id8">2.1.1 (2008-01-06)</a></li>
+<li><a class="reference internal" href="#beta-2007-12-29">2.1.1-beta(2007-12/29)</a></li>
+<li><a class="reference internal" href="#id9">2.1.0 (2007-08-08)</a></li>
+<li><a class="reference internal" href="#beta2-2007-07-12">2.1.0-beta2 (2007-07-12)</a></li>
+<li><a class="reference internal" href="#beta-2007-03-09">2.1.0-beta (2007-03-09)</a></li>
+<li><a class="reference internal" href="#alpha2-2006-11-23">2.1.0-alpha2 (2006-11-23)</a></li>
+<li><a class="reference internal" href="#alpha-2006-10-09">2.1.0-alpha (2006-10-09)</a></li>
+<li><a class="reference internal" href="#earlier-releases">Earlier releases</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="narrative/Worklists.html"
+                        title="previous chapter">Worklists Tab</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api/modules.html"
+                        title="next chapter">DCWorkflow</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/changes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api/modules.html" title="DCWorkflow"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="narrative/Worklists.html" title="Worklists Tab"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, CMF Developers.
+      Last updated on May 04, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>

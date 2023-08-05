@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Overview &#8212; Products.DCWorkflow 2.4.0.dev0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.4.0.dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Action Boxes" href="ActionBoxes.html" />
+    <link rel="prev" title="DCWorkflow Narrative Documentation" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ActionBoxes.html" title="Action Boxes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="DCWorkflow Narrative Documentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">DCWorkflow Narrative Documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>DCWorkflows provide workflow objects that are fully customizable via the Zope
+Management Interface. You can specify the states, and the permissions they
+set on content that is in that state, the transitions between those states,
+and other things like variables for things that aren&#8217;t well represented by
+states, work lists for reviewers, and scripts to embody complex guards and to
+extend pre and post transition behaviour.</p>
+<p>The process for creating a workflow runs something
+like this:</p>
+<ul>
+<li><p class="first">Draw a state diagram with the nodes (bubbles) as states and the arcs
+(arrows) as transitions. Remember to consider all the states your content can
+be in, and for each state, consider who should have permission to access and
+change the content. Consider what actions the users will perform to make the
+transitions between states, and not only who will be allowed to perform them,
+but who will be <em>required</em> to perform them.</p>
+<p>It&#8217;s often a good idea to start on paper, then transfer
+the diagram to a digital copy using a diagram/flowchart tool, such as
+&#8216;dia&#8217;, so that you have an image to go with later documentation. This
+process tends to make it easier to spot corner cases before you
+actually create the workflow object.</p>
+</li>
+<li><p class="first">Start by creating an example DCworkflow, rather than a new one, as it&#8217;s
+faster to delete all the states and transitions than it is to create all the
+standard variables that tend to be used by the CMF. [<strong>Note:</strong> Perhaps we
+should have a bare dcworkflow, a workflow with standard variables, and the
+couple of standard examples.]</p>
+</li>
+<li><p class="first">In the permissions tab, select all the permissions that you want the
+workflow to govern. These will be dependent on the types of content you&#8217;ll be
+using with the workflow; &#8216;Access contents information&#8217;, &#8216;Modify portal
+content&#8217;, and &#8216;View&#8217; are the standard permissions for the default portal
+content types.</p>
+</li>
+<li><p class="first">Define any extra variables that you need for information that isn&#8217;t well
+represented by states. [<strong>Note:</strong> generic examples? I can think of a few that
+could appear in some use cases, but they&#8217;re all idiosyncratic of particular
+publishing needs]</p>
+</li>
+<li><p class="first">Set up the states for your workflow, one for each node in your state
+diagram. Try to stick to the standard names for a publication workflow, as
+some badly behaved products have states like &#8216;published&#8217; hardcoded into their
+searches (ie CalendarTool, last I looked) [<strong>Note</strong>: Maybe I should just file
+some bug reports rather than casting aspersions :-)]. Set up the permissions
+on the states now, as well, though see the &#8220;State Tab&#8221; section for advice.</p>
+</li>
+<li><p class="first">Set up any scripts that you will be using in your transitions, such as pre
+and post transition scripts and to handle complex guard conditions. Just set
+up skeletons for now, if you haven&#8217;t though through all the details.</p>
+</li>
+<li><p class="first">Create your transitions from all the arcs on your state diagram. You
+should be able to pick the right destination state as all your states
+are already defined, and set up the right scripts to run, as you&#8217;ve
+defined those as well. It&#8217;s worth noting that the guard behaviour is
+such that if any guard matches, the transition can occur. You can
+specify more than one permission, role or expression by separating
+them with a semicolon.</p>
+</li>
+<li><p class="first">Go back to the states tab and, for each state, set the possible transitions
+from the list of all available transitions in each state.</p>
+</li>
+<li><p class="first">Finally, in the work lists tab, create any work lists for any states that
+need them. Work lists are actions that indicate how many objects of a given
+state are present, and usually link to some search page that lists the actual
+object instances. You typically use them to list all the pending content
+waiting for review. Work lists have several unusual behaviours, however, so
+check the specific notes in the &#8220;Worklists&#8221; section.</p>
+</li>
+</ul>
+<p>By working in this order, you will tend to step through the
+creation process one tab at a time, rather than switching back and
+forth between them, which tends to be slower and somewhat confusing.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">DCWorkflow Narrative Documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ActionBoxes.html"
+                        title="next chapter">Action Boxes</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/narrative/Overview.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ActionBoxes.html" title="Action Boxes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="DCWorkflow Narrative Documentation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >DCWorkflow Narrative Documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, CMF Developers.
+      Last updated on May 04, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>

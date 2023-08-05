@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Variables Tab &#8212; Products.DCWorkflow 2.4.0.dev0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.4.0.dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Worklists Tab" href="Worklists.html" />
+    <link rel="prev" title="Transitions Tab" href="Transition.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Worklists.html" title="Worklists Tab"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Transition.html" title="Transitions Tab"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">DCWorkflow Narrative Documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="variables-tab">
+<h1>Variables Tab<a class="headerlink" href="#variables-tab" title="Permalink to this headline">¶</a></h1>
+<p>Variables are used to handle the state of various workflow related
+information that doesn&#8217;t justify a state of it&#8217;s own. The default CMF
+workflows use variables to track status history comments, and store the the
+last transition, who initiated it and when, for example. From the variables
+tab it&#8217;s possible to add new variables, and rename and delete existing
+variables.</p>
+<p>The list of existing variables also displays a summary of each variable&#8217;s
+description, catalog availability, workflow status, default value or
+expression and any access guards. You can click through to each variable to
+configure it&#8217;s details.</p>
+<p>In each variable&#8217;s property tab you can set the variable&#8217;s description and a
+collection of properties the define the variable&#8217;s behaviour, as follows:</p>
+<dl class="docutils">
+<dt><strong>Make available to catalog</strong> &#8211;</dt>
+<dd>Just as it says, it makes this variable available to the catalog for
+indexing, however it doesn&#8217;t automatically create an index for it - you have
+to create one by hand that reflects the content of the variable. Once
+indexed, you can query the catalog for content that has a particular value in
+is variable, and update the variable by workflow actions.</dd>
+<dt><strong>Store in workflow status</strong> &#8211;</dt>
+<dd>The workflow status is a mapping that exists in the state_change object that
+is passed to scripts and available to expressions.</dd>
+<dt><strong>Variable update mode</strong> &#8211;</dt>
+<dd>Select whether the variable is updated on every transition (in which case,
+you should set a default expression), or whether it should only update if a
+transition or state sets a value.</dd>
+<dt><strong>Default value</strong> &#8211;</dt>
+<dd>Set the default value to some string.</dd>
+<dt><strong>Default expression</strong> &#8211;</dt>
+<dd>This is a TALES expression (as described in Expressions) and overrides the
+default value.</dd>
+<dt><strong>Guards</strong> &#8211;</dt>
+<dd>See the <a class="reference internal" href="Guards.html"><span class="doc">Guards</span></a>.</dd>
+<dt><strong>State variable</strong> &#8211;</dt>
+<dd>stores the name of the variable the current state of the content is stored
+in. CMF uses &#8216;review_state&#8217; by default, and will have already created a
+FieldIndex for it. The state variable is effectively a variable with &#8220;Make
+available to catalog&#8221; set, a default value of whatever the initial state is
+and a default expression that sets to the new state on every transition.</dd>
+</dl>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Transition.html"
+                        title="previous chapter">Transitions Tab</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Worklists.html"
+                        title="next chapter">Worklists Tab</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/narrative/Variables.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Worklists.html" title="Worklists Tab"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Transition.html" title="Transitions Tab"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >DCWorkflow Narrative Documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, CMF Developers.
+      Last updated on May 04, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>

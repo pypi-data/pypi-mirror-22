@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Expressions &#8212; Products.DCWorkflow 2.4.0.dev0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.4.0.dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Guards" href="Guards.html" />
+    <link rel="prev" title="Action Boxes" href="ActionBoxes.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Guards.html" title="Guards"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ActionBoxes.html" title="Action Boxes"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">DCWorkflow Narrative Documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="expressions">
+<h1>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">¶</a></h1>
+<p>Expressions in DCWorkflow are TALES expressions. They are used as access
+guards and for the setting variable values.</p>
+<p>[<strong>Note:</strong> I haven&#8217;t figured out what all these contexts actually are
+and what you can use them for. Explanations are is welcome!]</p>
+<p>Some of the contexts have slightly different meanings from what is provided
+for expressions in page templates:</p>
+<ul class="simple">
+<li>&#8216;here&#8217; &#8211; The content object (rather than the workflow object)</li>
+<li>&#8216;container&#8217; &#8211; The content object&#8217;s container</li>
+</ul>
+<p>Several other contexts are also provided:</p>
+<ul class="simple">
+<li>&#8216;state_change&#8217; &#8211; A special object containing information about the state
+change (see below)</li>
+<li>&#8216;transition&#8217; &#8211; The transition object being executed</li>
+<li>&#8216;status&#8217; &#8211; The former status &#8216;workflow&#8217; &#8211; The workflow definition object</li>
+<li>&#8216;scripts&#8217; &#8211; The scripts in the workflow definition object</li>
+</ul>
+<p>&#8216;state_change&#8217; objects provide the following attributes, some of which
+are duplicates of the above information:</p>
+<ul class="simple">
+<li>&#8216;status&#8217; is a mapping containing the workflow status. This includes all the
+variables defined in the variable tab with &#8220;store in state&#8221; checked.</li>
+<li>&#8216;object&#8217; is the object being modified by workflow.(Same as the &#8216;here&#8217;
+variable above.)</li>
+<li>&#8216;workflow&#8217; is the workflow definition object. (Same as the &#8216;workflow&#8217;
+variable above.)</li>
+<li>transition&#8217; is the transition object being executed. (Same as the
+&#8216;transition&#8217; variable above.)</li>
+<li>&#8216;old_state&#8217; is the former state object. The name of the former state, for
+example &#8220;published&#8221;, is available as &#8216;old_state.getId()&#8217;. (Note that
+DCWorkflow defines &#8216;state&#8217; and &#8216;status&#8217; as different entities; the name of
+the current &#8216;state&#8217; is stored in the &#8216;status&#8217;. The word clash is unfortunate;
+patches welcome.)</li>
+<li>&#8216;new_state&#8217; is the destination state object. Use &#8216;new_state.getId()&#8217; to
+access the new state name.</li>
+<li>&#8216;kwargs&#8217; is the keyword arguments passed to the doActionFor() method.</li>
+<li>&#8216;getHistory()&#8217;, a method that returns a copy of the object&#8217;s workflow
+history.</li>
+<li>&#8216;getPortal()&#8217;, which returns the root of the portal.</li>
+<li>&#8216;ObjectDeleted&#8217; and &#8216;ObjectMoved&#8217;, exceptions that can be raised by scripts
+to indicate to the workflow that an object has been moved or deleted.</li>
+<li>&#8216;getDateTime&#8217; is a method that returns the DateTime of the transition.</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ActionBoxes.html"
+                        title="previous chapter">Action Boxes</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Guards.html"
+                        title="next chapter">Guards</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/narrative/Expressions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Guards.html" title="Guards"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ActionBoxes.html" title="Action Boxes"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.DCWorkflow 2.4.0.dev0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >DCWorkflow Narrative Documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, CMF Developers.
+      Last updated on May 04, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>
