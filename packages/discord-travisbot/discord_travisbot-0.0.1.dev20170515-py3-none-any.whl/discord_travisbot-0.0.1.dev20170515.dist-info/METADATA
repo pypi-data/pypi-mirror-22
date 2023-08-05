@@ -1,0 +1,58 @@
+Metadata-Version: 2.0
+Name: discord-travisbot
+Version: 0.0.1.dev20170515
+Summary: Travis bot for Discord.
+Home-page: UNKNOWN
+Author: Yoan Blanc
+Author-email: yoan@dosimple.ch
+License: https://opensource.org/licenses/BSD-3-Clause
+Keywords: discord asyncio bot
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: aiohttp (>=2.0.0)
+Provides-Extra: fast
+Requires-Dist: aiodns; extra == 'fast'
+Requires-Dist: cchardet; extra == 'fast'
+Provides-Extra: qa
+Requires-Dist: flake8; extra == 'qa'
+Requires-Dist: isort; extra == 'qa'
+Requires-Dist: pycodestyle; extra == 'qa'
+Requires-Dist: pydocstyle; extra == 'qa'
+Requires-Dist: rstcheck; extra == 'qa'
+
+============
+ Travis Bot
+============
+
+.. image:: https://travis-ci.org/greut/travisbot.svg?branch=master
+   :target: https://travis-ci.org/greut/travisbot
+
+A bot for Discord. (Work in progress)
+
+Development
+===========
+
+To setup and run the basic steps of the bot.
+
+Installation
+------------
+
+.. code-block:: console
+
+    $ python -m venv .
+    $ . bin/activate
+    (travisbot)$ pip install -e .[fast]
+
+Running
+-------
+
+.. code-block:: console
+
+    (travisbot)$ python -m travisbot
+
+
