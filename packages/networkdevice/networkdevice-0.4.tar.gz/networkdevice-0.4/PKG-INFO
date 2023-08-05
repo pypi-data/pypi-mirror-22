@@ -1,0 +1,494 @@
+Metadata-Version: 1.0
+Name: networkdevice
+Version: 0.4
+Summary: Python modules to execut command on remote network device based on pexpect.
+Home-page: https://github.com/guoyoooping/networkdevice
+Author: Yongping Guo
+Author-email: guoyoooping@163.com
+License: GPLv3
+Description: networkdevice
+        *************
+        
+        Python modules to execut command on remote network device.
+        
+        1. Introduction
+        ===============
+        
+        networkdevice is a python module that allow you run command on remote network
+        devices just like locally.
+        
+        For example, define a network devices and show the interface on it, it's
+        especially useful for network test automation:
+        
+        .. code-block:: python
+        
+            pc = networkdevice.LinuxDevice(name = "officer",
+                                           host = "10.208.172.12",
+                                           username = "dev",
+                                           password = "1234")
+            print pc.cmd("ifconfig")
+        
+        Use help command show the documents::
+        
+            import from networkdevice import cisco, junos, linux
+            help(cisco)
+            help(junos)
+            help(linux)
+        
+        2. Feature
+        ==========
+        
+            1) Python Based: Plenty of feature
+            2) Environmentally friendly: can run anywhere where there is python and connect to the devices.
+            3) Easy to Learn: Don't need to know anything about Python
+            4) Easy to write: One case only have several to dozens of lines.
+            5) Faster: run the testbed from local and is much faster.
+            6) object oriented: Flexible and Easy to extend
+        
+        3. Test architecture based on networkdevice
+        ===========================================
+        ::
+        
+            +---------------------------------+------------+----------------------+
+            |                                 |            | case1                |
+            |                                 |            +----------------------+
+            |  One case                       | Test Suite | ...                  |
+            |                                 |            +----------------------+
+            |                                 |            | caseN                |
+            +---------------------------------+------------+----------------------+
+            |  networkdevice                                                      |
+            |                                                                     |
+            |  PC1                  DUT                  DUT                      |
+            |  +---------------+    +---------------+    +---------------+        |
+            |  | Linux devices |    | Junos devices |    | Cisco devices |  ...   |
+            |  +---------------+    +---------------+    +---------------+        |
+            |                       | Linux devices |    | Linux devices |  ...   |
+            |                       +---------------+    +---------------+        |
+            +---------------------------------------------------------------------+
+        
+                    test Architecture based on networkdevice
+         
+        4. Object description
+        =====================
+        
+        4.1 LinuxDevice
+        ---------------
+        
+        LinuxDevice is a common abstraction for linux like devices. There are two ways
+        to define a LinuxDevice object:
+        
+        1) use a dictionary:
+        
+        .. code-block:: python
+        
+            ent_vm01 =  {
+                "name": "ent-vm01",
+                "host": "10.208.172.12",
+                "username": "root",
+                "password": "5678"
+                "prompt": "root@ent-vm01 ~",
+                "interface": [
+                    {
+                        "ip": "4.4.4.2/24",
+                        "ip6": "2004::2/64",
+                        "name": "eth1"
+                    }
+                ],
+            }
+            client = linux.LinuxDevice(ent_vm01)
+        
+        2) use the parameter list:
+        
+        .. code-block:: python
+        
+            client = linux.LinuxDevice(name = "ent-vm01",
+                                       host = "ent-vm01",
+                                       prompt = "root@ent-vm01 ~",
+                                       username = "root",
+                                       password = "5678")
+        
+        After the LinuxDevice is created, all the input parameters could be used as its
+        attributes. For example::
+        
+            print client["name"]
+            print client["interface"][0]["ip"]
+        
+        Now LinuxDevice support the following attributes, some are mantodary while the
+        others are optional. If some parameters are not given, the following default
+        value will be used::
+        
+            device0 = {
+                # mandtory, if not given, it will fail to construct a device
+                "name":          "",     # A name of the devices, used for log and
+                                         # shell prompt;
+                "host":          "",     # A ip address or hostname that can connect;
+                "username":      "",     # Usename to login;
+                "password":      "",     # Password to login;
+                "root_password": "",     # Root password, optional for linux devices,
+                                         # mandtory for Junos devices;
+        
+                # Optional, if not given, use the default
+                "prompt":    None,       # A shell prompt, if not given, use
+                                         # username@name, it's not correct, it's better
+                                         # destinate;
+                "fd":        sys.stdout, # log files, default is the stdout;
+                "mode":      "ssh",      # login method, default is ssh, support ssh
+                                         # and telnet now;
+                "interface": [],         # A list interface the device will configure;
+                "preconfig": [],         # A list of cmd/configuration the device will
+                                         # configure;
+                "noconfig":  False,      # If ture, will not configure the interface
+                                         # and preconfig before test;
+                "color":     "blue",     # log color
+                "log_level": LOG_INFO,   # log level
+            }
+        
+        LinuxDevice has the following variable:
+        
+        color support the following name::
+        
+            'black', 'dark_gray', 'light_gray', 'blue', 'light_blue', 'green',
+            'light_green', 'cyan', 'light_cyan', 'red', 'light_red', 'purple',
+            'light_purple', 'brown', 'yellow', 'white', 'default_color', 'red_bold'
+        
+        trace level support the following name::
+        
+                LOG_EMERG = 0
+                LOG_ALERT = 1
+                LOG_CRIT = 2
+                LOG_ERR = 3
+                LOG_WARNING = 4
+                LOG_NOTICE = 5
+                LOG_INFO = 6
+                LOG_DEBUG = 7
+        
+        LinuxDevice support the folowing method:
+        
+            __init__(self, device = None, \*\*kwargs):
+        
+                Constructor, create a pexpect session, configure the preconfig and
+                initialize some variables.
+        
+            __del__(self):
+        
+                Deconstructor, free allocated resources and restore some configuration.
+        
+            cmd(self, cmd, expect = None,  \*\*kwargs):
+            
+                Execute the command @cmd and return the execution result. If the
+                command is non-interactive, the result is returned directly, for
+                example::
+        
+                    print client.cmd('ifconfig')
+        
+                If the command @cmd is interactive, you may input some prompt and
+                command before you get the final result, for example::
+        
+                    client.cmd('ftp 1.1.1.2', expect = "Name")
+                    client.cmd('dev', expect = "Password")
+                    client.cmd('1234', expect = "ftp")
+                    print client.cmd('ls', expect = "ftp")
+                    client.cmd('bye')
+        
+                @ expect: If the remote command couldn't return the system prompt, you
+                need designate the prompt, for example::
+        
+                    client.cmd('ftp 1.1.1.2', expect = "ftp>")
+        
+                @ timeout: Wait how many seconds before the timeout, default value is 3
+                seconds.
+        
+            log (self, message, level = LOG_INFO):
+        
+                record the log to file self["fd"] with the color self["color"].
+        
+                @ message: the log to be write.
+                @ level: log level
+        
+            dumps(self):
+        
+                Dump all its attributes.
+        
+            get_file(self, filename, localname = '.'):
+        
+                Get file @filename from @localname to local. Useful to get log file
+                from remote testbed.
+        
+            put_file(self, filename, remotedir):
+        
+                Put file @filename from local to @remotedir of this linux device.
+                Useful to put the configuration file to remote testbed.
+        
+            __getitem__(self, name):
+        
+                Get certain attribute, for example::
+        
+                    print self["name"]
+        
+            __setitem__(self, name, value):
+        
+                Set certain attribute, for example::
+        
+                    self["color"] = "red"
+        
+        4.2 JunosDevice
+        ---------------
+        
+        JunosDevice is a common abstraction for Juniper network devices. It derives
+        from LinuxDevice so it has every method of LinuxDevice, exception some of them
+        are overrided. You use the similar way to define a JunosDevice, for example::
+        
+            tangshan =  {
+                "name": "tangshan",
+                "username": "dev",
+                "password": "1234"
+                "root_password": "5678",
+                "host": "10.208.128.19",
+                "interface": [
+                    {
+                        "ip": "1.1.1.2/24",
+                        "ip6": "2001::2/64",
+                        "name": "fe-0/0/2.0",
+                        "zone": "untrust"
+                    },
+                    {
+                        "ip": "4.4.4.1/24",
+                        "ip6": "2004::1/64",
+                        "name": "fe-0/0/6.0",
+                        "zone": "trust"
+                    }
+                ],
+                "preconfig": [
+                    "set routing-options static route 1.1.1.0/24 next-hop 2.2.2.1"
+                ],
+            }
+            dut = junos.JunosDevice(tangshan)
+            dut = junos.JunosDevice(name = "tangshan",
+                                    host = "10.208.128.19",
+                                    username = "root",
+                                    password = "5678",
+                                    root_password = "5678",
+                                    interface = [
+                                       {
+                                           "ip": "1.1.1.2/24",
+                                           "ip6": "2001::2/64",
+                                           "name": "fe-0/0/2.0",
+                                           "zone": "untrust" },
+                                       {
+                                           "ip": "4.4.4.1/24",
+                                           "ip6": "2004::1/64",
+                                           "name": "fe-0/0/6.0",
+                                           "zone": "trust" }],
+                                    preconfig = [ "set routing-options static route 1.1.1.0/24 next-hop 2.2.2.1"])
+        
+        JunosDevice support the folowing method:
+        
+            __init__(self, device = None, \*\*kwargs):
+        
+                Constructor, create a pexpect session, configure the preconfig and initialize some variables.
+        
+            __del__(self):
+        
+                Deconstructor, free allocated resources and restore some configuration.
+        
+            def cmd(self, cmd, mode = "shell",  \*\*kwargs):
+            
+                Similar LinuxDevice.cmd, but add some more mode:
+        
+                @ mode == "shell": equal LinuxDevice.cmd
+        
+                @ mode == "cli": execute cli command in Junos, equal cli()
+        
+                @ mode == "configure": execute configure command, equal configure()
+        
+                @ mode == "vty": execute vty command, equal vty()
+        
+            cli(self, cmd, \*\*kwargs):
+        
+                Junos cli command.
+        
+                @timeout: time to wait for the execute command return. default is 5
+                seconds
+        
+                @display: Junos command options, Show additional kinds of information,
+                possible completions are "xml" and "json". Please note that "json" is
+                supported since X49.
+        
+                @format: Which kind object you'd like the cmd return. Options include
+                "text", "dict" and "json". Default is "text" and it's return directly
+                from the cmd result. if "dict" or "json" is selected, the result will
+                be parsed to python dict or json object.
+        
+                @force_list: When we parse the dictionaly from xml output, to force
+                lists to be created even when there is only a single child of a given
+                level of hierarchy. The force_list argument is a tuple of keys. If the
+                key for a given level of hierarchy is in the force_list argument, that
+                level of hierarchy will have a list as a child (even if there is only
+                one sub-element). The index_keys operation takes precendence over this.
+                This is applied after any user-supplied postprocessor has already run.
+        
+                For example, given this input::
+        
+                    <servers>
+                      <server>
+                        <name>host1</name>
+                        <os>Linux</os>
+                        <interfaces>
+                          <interface>
+                            <name>em0</name>
+                            <ip_address>10.0.0.1</ip_address>
+                          </interface>
+                        </interfaces>
+                      </server>
+                    </servers>
+        
+                If called with::
+        
+                    dut.cmd("balabala", display = "xml", force_list=('interface',))
+                          
+                it will produce this dictionary::
+        
+                   {'servers':
+                       {'server':
+                           {'name': 'host1',
+                            'os': 'Linux'},
+                            'interfaces': {'interface': [ {'name': 'em0', 'ip_address': '10.0.0.1' } ] } } }
+        
+                For examples to get the session list on plaintext format::
+        
+                    print dut.cli('show security flow session application ftp')
+        
+                For examples to get the session list on dictionaly format::
+        
+                    displayed = dut.cli('show security flow session application ftp',
+                            format = "dict",
+                            force_list=('flow-session'))
+                    print "Total %s session found" %(displayed['flow-session-information']['displayed-session-count'])
+        
+            configure(self, cmd, \*\*kwargs):
+        
+                Execute a configure command and return the result. For example::
+        
+                    dut.configure('set security flow traceoptions flag all')
+                    dut.configure('set security traceoptions file flow.log size 50m')
+                    dut.configure('set security traceoptions level verbose')
+                    dut.configure('set security traceoptions flag all')
+                    dut.configure('commit')
+        
+            vty(self, cmd, \*\*kwargs):
+        
+                Execute a vty command and return the result.
+        
+                @timeout: time to wait for the execute command return. default is 5
+                         seconds
+        
+                @tnp_addr: tnp address to login.
+        
+                For example::
+        
+                    print dut.vty("show usp flow config", tnp_addr = "node0.fpc0.pic1")
+        
+            install_image (self, image):
+                
+                To be implemented.
+        
+        5. An example
+        =============
+        
+        In this example, we login the client linux device and then ftp the server.
+        Check if there is session generated on the Juniper SRX firewall. Then tear down
+        the connection:
+        
+        .. code-block:: python
+        
+            #!/usr/bin/env python
+            from networkdevice import cisco, junos, linux
+        
+            tangshan =  {
+                "name": "tangshan",
+                "host": "tangshan",
+                "username": "dev",
+                "password": "1234"
+                "root_password": "5678",
+                "interface": [
+                    {
+                        "ip": "1.1.1.2/24",
+                        "ip6": "2001::2/64",
+                        "name": "fe-0/0/2.0",
+                        "zone": "untrust"
+                    },
+                    {
+                        "ip": "4.4.4.1/24",
+                        "ip6": "2004::1/64",
+                        "name": "fe-0/0/6.0",
+                        "zone": "trust"
+                    }
+                ],
+                "preconfig": [
+                    "set routing-options static route 1.1.1.0/24 next-hop 2.2.2.1"
+                ],
+            }
+        
+            ent_vm01 =  {
+                "name": "ent-vm01"
+                "host": "ent-vm01",
+                "username": "root",
+                "password": "5678",
+                "prompt": "root@ent-vm01 ~",
+            }
+        
+            if __name__ == '__main__':
+                '''
+                Topology:
+        
+                                     +----------+
+                                     |  server  |
+                                     +----+-----+
+                                          | int[0]
+                                          |
+                                          | int[0]
+                                     +----+-----+
+                                     |   DUT    |
+                                     +----------+
+                                          | int[1]
+                                          |
+                                          | int[0]
+                                     +----+-----+
+                                     |  client  |
+                                     +----------+
+                '''
+                # Use device descriptor to create a linux and junos device
+                dut = junos.JunosDevice(tangshan)
+                client = linux.LinuxDevice(ent_vm01)
+                # Use parameter list to create a linux device
+                server = linux.LinuxDevice(name = "ent-vm02",
+                                           host = "ent-vm02",
+                                           prompt = "root@ent-vm02 ~",
+                                           username = "root",
+                                           password = "5678")
+        
+                # Dump all the dut's attributes
+                dut.dumps()
+                print dut.cli('show version')
+        
+                # execute a non-interactive command and return the result
+                print client.cmd('date')
+        
+                # execute an interactive command
+                client.cmd('ftp 1.1.1.2', expect = "Name")
+                client.cmd('%s' %(server["username"]), expect = "Password")
+                client.cmd('%s' %(server["password"]), expect = "ftp")
+                print client.cmd('ls', expect = "ftp")
+        
+                # check session on the Juniper srx firewall
+                displayed = dut.cli('show security flow session application ftp',
+                        format = "dict",
+                        force_list=('flow-session'))
+                if int(displayed['flow-session-information']['displayed-session-count']) <= 0:
+                    print "No session found"
+        
+                # tear down the ftp session
+                client.cmd('bye')
+        
+        
+Platform: UNKNOWN
