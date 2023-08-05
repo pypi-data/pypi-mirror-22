@@ -1,0 +1,41 @@
+Metadata-Version: 1.1
+Name: portable-fdsnws-dataselect
+Version: 1.1.1
+Summary: A portable fdsnws-dataselect/1 server
+Home-page: https://iris-edu.github.io/portable-fdsnws-dataselect/
+Author: IRIS DMC
+Author-email: software-owner@iris.washington.edu
+License: LGPL 3.0
+Description: Portable fdsnws-dataselect
+        ==========================
+        
+        This is a portable fdsnws-dataselect/1 implementation which allows users to
+        run a standardized web service to serve their own, arbitrary seismological
+        data sets in miniSEED format.  Users can then take advantage of existing data
+        selection and collection tools to access their own data repository.
+        
+        The system uses a miniSEED data index stored in SQLite.  The index is created
+        with the `mseedindex`_ program.
+        
+        The specification for the `fdsnws-dataselect`_ web service is published by
+        the `International Federation of Digital Seismograph Networks`_.
+        
+        This software is a product of the `IRIS Data Management Center`_.
+        
+        .. _mseedindex: https://github.com/iris-edu/mseedindex
+        .. _fdsnws-dataselect: http://www.fdsn.org/webservices
+        .. _International Federation of Digital Seismograph Networks: http://www.fdsn.org/
+        .. _IRIS Data Management Center: http://ds.iris.edu/
+        
+Keywords: FDSN webservice IRIS miniSEED
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
