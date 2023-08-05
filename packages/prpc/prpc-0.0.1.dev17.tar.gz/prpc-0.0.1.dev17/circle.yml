@@ -1,0 +1,21 @@
+machine:
+  python:
+    version: 3.6.0
+
+dependencies:
+  override:
+    - pip install -r ci-requirements.txt
+    - pyenv local 3.5.2 3.6.0
+
+test:
+  override:
+    - tox
+
+  post:
+    - codecov
+
+deployment:
+  pypi:
+    branch: master
+    commands:
+      - tox -e pypi
