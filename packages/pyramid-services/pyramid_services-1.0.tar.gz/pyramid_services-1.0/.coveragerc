@@ -1,0 +1,14 @@
+[run]
+parallel = true
+source =
+    pyramid_services
+    tests
+
+[paths]
+source =
+    src/pyramid_services
+    */site-packages/pyramid_services
+
+[report]
+show_missing = true
+precision = 2
