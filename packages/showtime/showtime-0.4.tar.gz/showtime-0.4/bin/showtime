@@ -1,0 +1,113 @@
+#!/usr/bin/env python
+
+# Python stuff
+import os
+import subprocess
+import sys
+import re
+import time
+import threading
+
+# External libraries
+import requests
+from bs4 import BeautifulSoup
+
+
+class Showtime:
+
+    search_URL = None # URL Of the Torrent
+    search_query = None # Input by the user
+    magnet_link_for_video = None # Link for the video to stream content
+    name_of_the_video = None # Title of the content
+    src = None # Src of the scraped page
+    final_search_query = None # Final query formed after formatting
+
+    def __init__(self):
+        os.system('rm -rf /tmp/torrent-stream/') # Clear cached content
+        self.clearScreen()
+        self.testRequirements()
+        self.search_URL = 'https://thepiratebay.org/search/'
+        self.getInput()
+
+    def getInput(self):
+        if re.match('s[0-9]+e[0-9]+', sys.argv[-1]):
+            _upperCasedName = sys.argv[-1].upper()
+            self.search_query = '+'.join(sys.argv[1:-1])
+            self.search_query = self.search_query + '+' + _upperCasedName
+        else:
+            self.search_query = '+'.join(sys.argv[1:])
+
+        self.final_search_query = self.search_URL + self.search_query
+
+    def testRequirements(self):
+        print 'Checking for Requirements...'
+
+        if subprocess.check_output(['npm', '--version']) == 0:
+            print 'You must have NPM installed to use Showtime. Visit https://nodejs.org/en/download/'
+            exit()
+
+        if subprocess.check_output(['peerflix', '--version']) == 0:
+            print 'Installing Peerflix. This may take a while.'
+            os.system('npm install -g peerflix')
+
+        self.clearScreen()
+        print 'Requirements satisfied!'
+
+    def _fetchInfoFromPage(self):
+        self.src = ""
+
+        print 'Connecting to Server...'
+
+        while len(self.src) <= 600:
+            page = requests.get(self.final_search_query)
+            self.src = page.text
+        
+        print 'Connected!'   
+
+    def _parseInfoFromPage(self):
+        ob = BeautifulSoup(self.src, 'lxml')
+
+        self.name_of_the_video = ob.find('div', {'class':'detName'}).text
+        hyperlinks = ob.findAll('a')
+        for link in hyperlinks:
+            try:
+                if link['href'].startswith('magnet'):
+                    self.magnet_link_for_video = link['href']
+                    return
+            except:
+                pass
+         
+    def fetchInfo(self):
+        self._fetchInfoFromPage()
+        self._parseInfoFromPage()
+
+    def clearScreen(self):
+        os.system('clear')
+
+    def playFinalMsg(self):
+        self.clearScreen()
+        print 'Playing ' + str(self.name_of_the_video),
+        time.sleep(2)
+        print 'Sit back. Relax. Enjoy.'
+        time.sleep(2)
+        print 'It\'s\033[1m\033[91m Showtime. \033[0m'
+
+    def startPeerflix(self):
+        self.fetchInfo()
+
+        if self.magnet_link_for_video == None:
+            print 'No video found by the given name. Try using some other name or write correctly.'
+            exit()
+
+        threading.Thread(target=self.playFinalMsg).start()
+
+        os.system('peerflix "' + self.magnet_link_for_video + '" --vlc')        
+
+
+def main():
+    ob = Showtime()
+    ob.startPeerflix()
+
+
+if __name__ == '__main__':
+    main()
