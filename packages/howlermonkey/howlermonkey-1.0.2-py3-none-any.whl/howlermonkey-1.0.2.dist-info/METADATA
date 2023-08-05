@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: howlermonkey
+Version: 1.0.2
+Summary: A slack messaging authentication andinterfacing system for the DTG
+Home-page: https://gitlab.dtg.cl.cam.ac.uk/infrastructure/howler-monkey/
+Author: Thomas Bytheway
+Author-email: thomas.bytheway@cl.cam.ac.uk
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: pyyaml (>=3.11)
+Requires-Dist: requests (>=2.10.0)
+
+Howler Monkey
+=============
+A slack messaging authentication and interfacing system for the DTG
+-------------------------------------------------------------------
+Intended to allow for automated messaging to our DTG slack group at a controlled endpoint.
+
+Authentication is provided by only allowing connections over local unix domain sockets on a puppy VM. As such any user that can gain access to the host in order to connect must have sufficient monkeysphere auth and thus be a member of the DTG or at least equivalently privileged. Unauthenticated access by minor services can also be mediated by co-locating them on the same host.
+
+
