@@ -1,0 +1,2285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tool API Reference &#8212; Products.CMFCore 2.4.0b1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.4.0b1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Content API Reference" href="content.html" />
+    <link rel="prev" title="Products.CMFCore Changelog" href="../changes.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="content.html" title="Content API Reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../changes.html" title="Products.CMFCore Changelog"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.CMFCore 2.4.0b1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tool-api-reference">
+<h1>Tool API Reference<a class="headerlink" href="#tool-api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="actions-tool">
+<span id="id1"></span><h2>Actions Tool<a class="headerlink" href="#actions-tool" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the framework used to allow extensible menu actions
+via the actions tool.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IActionProvider">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IActionProvider</code><a class="headerlink" href="#Products.CMFCore.interfaces.IActionProvider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Objects that can be queried for actions.</p>
+<dl class="method">
+<dt id="IActionProvider.listActions">
+<code class="descname">listActions</code><span class="sig-paren">(</span><em>info=None</em>, <em>object=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IActionProvider.listActions" title="Permalink to this definition">¶</a></dt>
+<dd><p>List known actions.</p>
+<p>o Return a sequence of action objects.</p>
+<dl class="docutils">
+<dt>o Both the &#8216;object&#8217; and the &#8216;info&#8217; arguments are deprecated and</dt>
+<dd>ignored (use &#8216;listActionInfos&#8217; to filter actions by context).</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="IActionProvider.listActionInfos">
+<code class="descname">listActionInfos</code><span class="sig-paren">(</span><em>action_chain=None</em>, <em>object=None</em>, <em>check_visibility=True</em>, <em>check_permissions=True</em>, <em>check_condition=True</em>, <em>max=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IActionProvider.listActionInfos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of IActionInfo objects matching given criteria.</p>
+<dl class="docutils">
+<dt>o &#8216;action_chain&#8217; is a sequence of one or more action paths</dt>
+<dd>(e.g. &#8216;object/view&#8217;);  each path is formatted as
+&#8216;category_id/action_id&#8217;.  If specified, only matching actions will
+be returned, and in the given order (paths with no matches are
+ignored silently).</dd>
+<dt>o If &#8216;object&#8217; is specified, only actions specific to that object</dt>
+<dd>are included.</dd>
+<dt>o If &#8216;check_visibility&#8217; is True, return only actions whos &#8220;visible&#8221;</dt>
+<dd>flag is set.</dd>
+<dt>o If &#8216;check_permissions&#8217; is True, return only actions for whose</dt>
+<dd>permissions the current user is authorized.</dd>
+<dt>o If &#8216;check_condition&#8217; is True, return only actions whose condition</dt>
+<dd>expression evaluates True.</dd>
+</dl>
+<p>o If &#8216;max&#8217; is specified, return only the first &#8216;max&#8217; Actions.</p>
+<p>o Permission:  Public (but not URL-publishable)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IActionProvider.getActionInfo">
+<code class="descname">getActionInfo</code><span class="sig-paren">(</span><em>action_chain</em>, <em>object=None</em>, <em>check_visibility=False</em>, <em>check_condition=False</em><span class="sig-paren">)</span><a class="headerlink" href="#IActionProvider.getActionInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the first IActionInfo object matching the given criteria.</p>
+<p>o If no action is found matching the criteria, raise ValueError.</p>
+<dl class="docutils">
+<dt>o &#8216;action_chain&#8217; is a sequence of one or more action paths</dt>
+<dd>(e.g. &#8216;object/view&#8217;);  each path is formatted as
+&#8216;category_id/action_id&#8217;.  If specified, only matching actions will
+be returned, and in the given order (paths with no matches are
+ignored silently).</dd>
+<dt>o If &#8216;check_visibility&#8217; is True, return only actions whos &#8220;visible&#8221;</dt>
+<dd>flag is set.</dd>
+<dt>o If &#8216;check_condition&#8217; is True, return only actions whose condition</dt>
+<dd>expression evaluates True.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IActionCategory">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IActionCategory</code><a class="headerlink" href="#Products.CMFCore.interfaces.IActionCategory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Group of IAction objects and child categories.</p>
+<dl class="method">
+<dt id="IActionCategory.listActions">
+<code class="descname">listActions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IActionCategory.listActions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of IAction objects defined by this category.</p>
+<p>o Include actions defined by subcategories.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IAction">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IAction</code><a class="headerlink" href="#Products.CMFCore.interfaces.IAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specification for an action.</p>
+<dl class="method">
+<dt id="IAction.getInfoData">
+<code class="descname">getInfoData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IAction.getInfoData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return a lazy mapping of the data needed to create an</dt>
+<dd>IActionInfo object.</dd>
+</dl>
+<p>o Returned value is actually a tuple, &#8216;(lazy_map, lazy_keys)&#8217;.</p>
+<dl class="docutils">
+<dt>o Default keys are: &#8216;id&#8217;, &#8216;category&#8217;, &#8216;title&#8217;, &#8216;description&#8217;, &#8216;url&#8217;,</dt>
+<dd>&#8216;icon&#8217;, &#8216;available&#8217;, &#8216;permissions&#8217; and &#8216;visible&#8217;.</dd>
+<dt>o Instead of computed values callable expression objects or methods</dt>
+<dd>are returned. For performance reasons, these objects are called
+later and only if the values are actually needed. The keys for all
+these lazy values are registered in a separate list.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IActionInfo">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IActionInfo</code><a class="headerlink" href="#Products.CMFCore.interfaces.IActionInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>A lazy dictionary for Action infos.</p>
+<p>o Each ActionInfo object has the following keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li>id (string): not unique identifier</li>
+<li>title (string)</li>
+<li>url (string): URL to access the action</li>
+<li>category (string): one of &#8220;user&#8221;, &#8220;folder&#8221;, &#8220;object&#8221;, &#8220;global&#8221;,
+&#8220;workflow&#8221; or a custom category</li>
+<li>visible (boolean)</li>
+<li>available (boolean): the result of checking the condition</li>
+<li>allowed (boolean): the result of checking permissions;
+The user must have at least one of the listed permissions to access
+the action. If the list is empty, the user is allowed.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IActionsTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IActionsTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.IActionsTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the list of &#8220;actions&#8221; which the user is allowed to perform.</p>
+<dl class="docutils">
+<dt>o Synthesize this list from the actions managed by a set of &#8220;action</dt>
+<dd>providers&#8221;.</dd>
+</dl>
+<dl class="method">
+<dt id="IActionsTool.listFilteredActionsFor">
+<code class="descname">listFilteredActionsFor</code><span class="sig-paren">(</span><em>object=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IActionsTool.listFilteredActionsFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map actions available to the user by category.</p>
+<dl class="docutils">
+<dt>o Returned mapping will have category IDs as keys, and sequences</dt>
+<dd>of IActionInfo objects as the corresponding values for each
+category.</dd>
+</dl>
+<p>o Categories may be arbitrarily extended.</p>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IActionsTool.deleteActionProvider">
+<code class="descname">deleteActionProvider</code><span class="sig-paren">(</span><em>provider_name</em><span class="sig-paren">)</span><a class="headerlink" href="#IActionsTool.deleteActionProvider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove an IActionProvider from the set queried by this tool.</p>
+<dl class="docutils">
+<dt>o Return silently if &#8216;provider_name&#8217; is not already registered with</dt>
+<dd>the tool.</dd>
+<dt>o Deprecated: In the future, expect to use &#8216;getUtilitiesFor&#8217; instead</dt>
+<dd>(presuming either that ordering either doesn&#8217;t matter or that
+ordering is supported by the utility registry).</dd>
+</dl>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IActionsTool.addActionProvider">
+<code class="descname">addActionProvider</code><span class="sig-paren">(</span><em>provider_name</em><span class="sig-paren">)</span><a class="headerlink" href="#IActionsTool.addActionProvider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register an IActionProvider to the set queried by this tool.</p>
+<dl class="docutils">
+<dt>o &#8216;provider_name&#8217; is appended to the set of names already registered</dt>
+<dd>with the tool.</dd>
+<dt>o Raise ComponentLookupError if no utility of that name is registered</dt>
+<dd>for IActionProvider.</dd>
+<dt>o Deprecated: In the future, expect to use &#8216;getUtilitiesFor&#8217; instead</dt>
+<dd>(presuming either that ordering either doesn&#8217;t matter or that
+ordering is supported by the utility registry).</dd>
+</dl>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="IActionsTool.id">
+<code class="descname">id</code><a class="headerlink" href="#IActionsTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the tool.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;getUtility(IActionsTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8220;portal_actions&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IActionsTool.listActionProviders">
+<code class="descname">listActionProviders</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IActionsTool.listActionProviders" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return a sequence of names of all IActionProvider utilities</dt>
+<dd>registered with this tool.</dd>
+<dt>o The returned list of names will be a subset of the set available</dt>
+<dd>via &#8216;getUtilitiesFor(IActionProvider)&#8217; (which returns
+&#8216;(name, value)&#8217; tuples).</dd>
+<dt>o Deprecated: In the future, expect to use &#8216;getUtilitiesFor&#8217; instead</dt>
+<dd>(presuming either that ordering either doesn&#8217;t matter or that
+ordering is supported by the utility registry).</dd>
+</dl>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="caching-policy-manager">
+<span id="id2"></span><h2>Caching Policy Manager<a class="headerlink" href="#caching-policy-manager" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the framework used by the cache policy manager tool
+to set caching headers on content views.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ICachingPolicy">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ICachingPolicy</code><a class="headerlink" href="#Products.CMFCore.interfaces.ICachingPolicy" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="ICachingPolicy.getProxyRevalidate">
+<code class="descname">getProxyRevalidate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getProxyRevalidate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getLastModified">
+<code class="descname">getLastModified</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getLastModified" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should we set the last modified header?</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getPublic">
+<code class="descname">getPublic</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getPublic" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getNoTransform">
+<code class="descname">getNoTransform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getNoTransform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getMTimeFunc">
+<code class="descname">getMTimeFunc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getMTimeFunc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getPredicate">
+<code class="descname">getPredicate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getPredicate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getMaxAgeSecs">
+<code class="descname">getMaxAgeSecs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getMaxAgeSecs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.testPredicate">
+<code class="descname">testPredicate</code><span class="sig-paren">(</span><em>expr_context</em><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.testPredicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does this request match our predicate?</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getPostCheck">
+<code class="descname">getPostCheck</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getPostCheck" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getNoCache">
+<code class="descname">getNoCache</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getNoCache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getHeaders">
+<code class="descname">getHeaders</code><span class="sig-paren">(</span><em>expr_context</em><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getHeaders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does this request match our predicate?</p>
+<p>If so, return a sequence of caching headers as (key, value) tuples.
+Otherwise, return an empty sequence.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getSMaxAgeSecs">
+<code class="descname">getSMaxAgeSecs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getSMaxAgeSecs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getPolicyId">
+<code class="descname">getPolicyId</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getPolicyId" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getMustRevalidate">
+<code class="descname">getMustRevalidate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getMustRevalidate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getPreCheck">
+<code class="descname">getPreCheck</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getPreCheck" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getNoStore">
+<code class="descname">getNoStore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getNoStore" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getPrivate">
+<code class="descname">getPrivate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getPrivate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getVary">
+<code class="descname">getVary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getVary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getETagFunc">
+<code class="descname">getETagFunc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getETagFunc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ICachingPolicy.getEnable304s">
+<code class="descname">getEnable304s</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicy.getEnable304s" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ICachingPolicyManager">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ICachingPolicyManager</code><a class="headerlink" href="#Products.CMFCore.interfaces.ICachingPolicyManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute HTTP cache headers for skin methods.</p>
+<dl class="method">
+<dt id="ICachingPolicyManager.getHTTPCachingHeaders">
+<code class="descname">getHTTPCachingHeaders</code><span class="sig-paren">(</span><em>content</em>, <em>view_method</em>, <em>keywords</em>, <em>time=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ICachingPolicyManager.getHTTPCachingHeaders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update HTTP caching headers in REQUEST</p>
+<p>o &#8216;content&#8217; is the content object being published.</p>
+<p>o &#8216;view_method&#8217; is the name of the view being published</p>
+<p>o &#8216;keywords&#8217; is a set of extra keywords modifying the view.</p>
+<dl class="docutils">
+<dt>o If &#8216;time&#8217; is supplied, use it instead of the current time</dt>
+<dd>(for reliable testing).</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ICachingPolicyManager.id">
+<code class="descname">id</code><a class="headerlink" href="#ICachingPolicyManager.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the tool.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;queryUtility(ICachingPolicyManager)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8216;caching_policy_manager&#8217;.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="catalog-tool">
+<span id="id3"></span><h2>Catalog Tool<a class="headerlink" href="#catalog-tool" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the framework used by the catalog tool to index
+and search content.  See also the interfaces for <a class="reference internal" href="content.html#searchable-content"><span class="std std-ref">Searchable Content</span></a>.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IIndexableObject">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IIndexableObject</code><a class="headerlink" href="#Products.CMFCore.interfaces.IIndexableObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Marker interface for objects that can be indexed in
+the portal catalog</p>
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IIndexableObjectWrapper">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IIndexableObjectWrapper</code><a class="headerlink" href="#Products.CMFCore.interfaces.IIndexableObjectWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper for catalogued objects, for indexing &#8220;virtual&#8221; attributes.</p>
+<dl class="method">
+<dt id="IIndexableObjectWrapper.allowedRolesAndUsers">
+<code class="descname">allowedRolesAndUsers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IIndexableObjectWrapper.allowedRolesAndUsers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence roles and users with View permission.</p>
+<dl class="docutils">
+<dt>o PortalCatalog indexes this sequence to allow filtering out items</dt>
+<dd>a user is not allowed to see.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ICatalogTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ICatalogTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.ICatalogTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap the &#8220;stock&#8221; ZCatalog with custom behavior for the CMF.</p>
+<dl class="method">
+<dt id="ICatalogTool.unrestrictedSearchResults">
+<code class="descname">unrestrictedSearchResults</code><span class="sig-paren">(</span><em>REQUEST=None</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogTool.unrestrictedSearchResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls ZCatalog.searchResults() without any CMF-specific processing.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICatalogTool.searchResults">
+<code class="descname">searchResults</code><span class="sig-paren">(</span><em>REQUEST=None</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogTool.searchResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorate ZCatalog.searchResults() with extra arguments</p>
+<dl class="docutils">
+<dt>o The extra arguments that the results to what the user would be</dt>
+<dd>allowed to see.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ICatalogTool.id">
+<code class="descname">id</code><a class="headerlink" href="#ICatalogTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Must be set to &#8220;portal_catalog&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICatalogTool.indexObject">
+<code class="descname">indexObject</code><span class="sig-paren">(</span><em>object</em><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogTool.indexObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add &#8216;object&#8217; to the catalog.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICatalogTool.__call__">
+<code class="descname">__call__</code><span class="sig-paren">(</span><em>REQUEST=None</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogTool.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for searchResults().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICatalogTool.reindexObject">
+<code class="descname">reindexObject</code><span class="sig-paren">(</span><em>object</em>, <em>idxs=[]</em>, <em>update_metadata=True</em><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogTool.reindexObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update &#8216;object&#8217; in catalog.</p>
+<dl class="docutils">
+<dt>o &#8216;idxs&#8217;, if passed, is a list of specific indexes to update</dt>
+<dd>(by default, all indexes are updated).</dd>
+<dt>o If &#8216;update_metadata&#8217; is True, then update the metadata record</dt>
+<dd>in the catalog as well.</dd>
+</dl>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICatalogTool.unindexObject">
+<code class="descname">unindexObject</code><span class="sig-paren">(</span><em>object</em><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogTool.unindexObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove &#8216;object&#8217; from the catalog.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="content-type-registry">
+<span id="id4"></span><h2>Content Type Registry<a class="headerlink" href="#content-type-registry" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the framework used by the content type registry tool
+to determine what kind of content object to create based on a MIME type or
+filename.  This lookup is done when adding new items to
+<a class="reference internal" href="content.html#content-containers"><span class="std std-ref">Content Containers</span></a> via FTP or WebDAV.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IContentTypeRegistryPredicate">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IContentTypeRegistryPredicate</code><a class="headerlink" href="#Products.CMFCore.interfaces.IContentTypeRegistryPredicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Match a given name/typ/body to a portal type.</p>
+<p>The registry will call the predictate&#8217;s &#8216;edit&#8217; method, passing the fields
+of the record.</p>
+<dl class="method">
+<dt id="IContentTypeRegistryPredicate.__call__">
+<code class="descname">__call__</code><span class="sig-paren">(</span><em>name</em>, <em>typ</em>, <em>body</em><span class="sig-paren">)</span><a class="headerlink" href="#IContentTypeRegistryPredicate.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return true if the rule matches, else false.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IContentTypeRegistryPredicate.predicateWidget">
+<code class="descname">predicateWidget</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IContentTypeRegistryPredicate.predicateWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a snippet of HTML suitable for editing the predicate.</p>
+<dl class="docutils">
+<dt>o This method may be defined via DTMLFile or PageTemplateFile</dt>
+<dd>(the tool will call it appropriately, if it is DTML).</dd>
+<dt>o The snippet should arrange for values to be marshalled by</dt>
+<dd>ZPublisher as a &#8216;:record&#8217;, with the ID of the predicate as the
+name of the record.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="IContentTypeRegistryPredicate.getTypeLabel">
+<code class="descname">getTypeLabel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IContentTypeRegistryPredicate.getTypeLabel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a human-readable label for the predicate type.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IContentTypeRegistry">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IContentTypeRegistry</code><a class="headerlink" href="#Products.CMFCore.interfaces.IContentTypeRegistry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply policy mapping PUT arguments to a CMF portal type.</p>
+<dl class="method">
+<dt id="IContentTypeRegistry.findTypeName">
+<code class="descname">findTypeName</code><span class="sig-paren">(</span><em>name</em>, <em>typ</em>, <em>body</em><span class="sig-paren">)</span><a class="headerlink" href="#IContentTypeRegistry.findTypeName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the the portal type (an ID) for a PUT request.</p>
+<dl class="docutils">
+<dt>o &#8216;name&#8217; is the filename supplied as the end of the path of the</dt>
+<dd>PUT request.</dd>
+<dt>o &#8216;typ&#8217; is the MIME type for the request (which may have been guessed</dt>
+<dd>already from the extension or the body).</dd>
+</dl>
+<p>o &#8216;body&#8217; is the actual payload of the PUT request.</p>
+<p>o Return None if no match found.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="discussion-tool">
+<span id="id5"></span><h2>Discussion Tool<a class="headerlink" href="#discussion-tool" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the framework used by the discussion tool to
+determine whether discussion is allowed for particular content objects.
+See also <a class="reference internal" href="content.html#discussable-content"><span class="std std-ref">Discussable Content</span></a>.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IOldstyleDiscussionTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IOldstyleDiscussionTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.IOldstyleDiscussionTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links content to discussions.</p>
+<dl class="method">
+<dt id="IOldstyleDiscussionTool.getDiscussionFor">
+<code class="descname">getDiscussionFor</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#IOldstyleDiscussionTool.getDiscussionFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an IDiscussionItemContainer for &#8216;content&#8217;.</p>
+<p>o Create the IDC if necessary.</p>
+<p>o Raise ValueError if discussion is not allowed on &#8216;content&#8217;.</p>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IOldstyleDiscussionTool.isDiscussionAllowedFor">
+<code class="descname">isDiscussionAllowedFor</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#IOldstyleDiscussionTool.isDiscussionAllowedFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True discussion is allowed for &#8216;content&#8217;, else False.</p>
+<dl class="docutils">
+<dt>o Result may be looked up from an object-specific value, or by place,</dt>
+<dd>or from a site-wide policy.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="IOldstyleDiscussionTool.id">
+<code class="descname">id</code><a class="headerlink" href="#IOldstyleDiscussionTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The tool&#8217;s ID.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;queryUtility(IDiscussionTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8216;portal_discussion&#8217;.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IDiscussionTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IDiscussionTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.IDiscussionTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends: <a class="reference internal" href="#Products.CMFCore.interfaces.IOldstyleDiscussionTool" title="Products.CMFCore.interfaces.IOldstyleDiscussionTool"><code class="xref py py-class docutils literal"><span class="pre">Products.CMFCore.interfaces.IOldstyleDiscussionTool</span></code></a></p>
+<p>Links content to discussions.</p>
+<dl class="method">
+<dt id="IDiscussionTool.overrideDiscussionFor">
+<code class="descname">overrideDiscussionFor</code><span class="sig-paren">(</span><em>content</em>, <em>allowDiscussion</em><span class="sig-paren">)</span><a class="headerlink" href="#IDiscussionTool.overrideDiscussionFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override discussability for the given object or clear the setting.</p>
+<p>o &#8216;allowDiscussion&#8217; may be True, False, or None.</p>
+<dl class="docutils">
+<dt>o If &#8216;allowDiscussion&#8217; is None, then clear any overridden setting for</dt>
+<dd>discussability, letting the site&#8217;s default policy apply.</dd>
+</dl>
+<p>o Otherwise, set the override to match &#8216;allowDiscussion&#8217;.</p>
+<p>o Permission:  PUblic XXX?  Should be ManageContent, or something.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="memberdata-tool">
+<span id="id6"></span><h2>MemberData Tool<a class="headerlink" href="#memberdata-tool" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the framework used by the membedata tool for storing
+and querying information about a registered member.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IMemberData">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IMemberData</code><a class="headerlink" href="#Products.CMFCore.interfaces.IMemberData" title="Permalink to this definition">¶</a></dt>
+<dd><p>MemberData interface.</p>
+<dl class="method">
+<dt id="IMemberData.setProperties">
+<code class="descname">setProperties</code><span class="sig-paren">(</span><em>properties=None</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#IMemberData.setProperties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow the authenticated member to update his/her member data.</p>
+<dl class="docutils">
+<dt>o &#8216;properties&#8217;, if passed, is a mapping of the IDs and values of</dt>
+<dd>the properties to be changed.</dd>
+<dt>o The method may also be invoked via keyword arguments (in this</dt>
+<dd>case, do <em>not</em> pass &#8216;properties&#8217;).</dd>
+</dl>
+<p>o Permission:  Set own properties</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IMemberDataTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IMemberDataTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.IMemberDataTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorate user objects with site-local data.</p>
+<dl class="method">
+<dt id="IMemberDataTool.wrapUser">
+<code class="descname">wrapUser</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="headerlink" href="#IMemberDataTool.wrapUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an IMember instance for the given user object.</p>
+<p>o Permission:  Private (Python-only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMemberDataTool.registerMemberData">
+<code class="descname">registerMemberData</code><span class="sig-paren">(</span><em>m</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#IMemberDataTool.registerMemberData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the given member data to the _members btree.</p>
+<p>o &#8216;m&#8217; is an object whose attributes are the memberdata for the member.</p>
+<p>o &#8216;id&#8217; is the userid of the member.</p>
+<dl class="docutils">
+<dt>o Add the record late as possible to avoid side effect transactions</dt>
+<dd>and to reduce the necessary number of entries.</dd>
+<dt>o XXX: these argument names are silly;  can we use more sensible</dt>
+<dd>ones (i.e., does anyone actually depend on them)?</dd>
+</dl>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMemberDataTool.getMemberDataContents">
+<code class="descname">getMemberDataContents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMemberDataTool.getMemberDataContents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list containing a dictionary with information
+about the _members BTree contents</p>
+<dl class="docutils">
+<dt>o The key &#8216;member_count&#8217; is the total number of member instances</dt>
+<dd>stored in the memberdata-tool</dd>
+<dt>o The key &#8216;orphan_count&#8217; is the number of member instances</dt>
+<dd>that for are no longer in the underlying acl_users user folder.</dd>
+</dl>
+<p>o The result is designed to be iterated over in a dtml-in</p>
+<p>o XXX:  why a sequence?</p>
+<p>o Permission:  Private (Python-only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMemberDataTool.searchMemberData">
+<code class="descname">searchMemberData</code><span class="sig-paren">(</span><em>search_param</em>, <em>search_term</em>, <em>attributes=()</em><span class="sig-paren">)</span><a class="headerlink" href="#IMemberDataTool.searchMemberData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of mappings of memberdata for the given criteria.</p>
+<p>o &#8216;search_param&#8217; is the property ID to be searched.</p>
+<p>o &#8216;search_term&#8217; is the property value to be searched.</p>
+<dl class="docutils">
+<dt>o &#8216;attributes&#8217;, if passed, controls the keys in the returned mappings;</dt>
+<dd>by default the returned keys are &#8216;username&#8217; and &#8216;email&#8217;.</dd>
+<dt>o XXX:  that default is silly;  if it is truly needed, then it should</dt>
+<dd>be the default value of the &#8216;attributes&#8217; argument.</dd>
+</dl>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMemberDataTool.pruneMemberDataContents">
+<code class="descname">pruneMemberDataContents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMemberDataTool.pruneMemberDataContents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete member data of all members not findable in acl_users.</p>
+<dl class="docutils">
+<dt>o Compare the user IDs stored in the member data tool with the</dt>
+<dd>list in the actual underlying acl_users and delete any records whose
+user cannot be found.</dd>
+</dl>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMemberDataTool.deleteMemberData">
+<code class="descname">deleteMemberData</code><span class="sig-paren">(</span><em>member_id</em><span class="sig-paren">)</span><a class="headerlink" href="#IMemberDataTool.deleteMemberData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete member data of specified member.</p>
+<p>o Return True if a record was deleted, else False.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="IMemberDataTool.id">
+<code class="descname">id</code><a class="headerlink" href="#IMemberDataTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The tool&#8217;s ID.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;queryUtility(IMemberDataTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8216;portal_memberdata&#8217;</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="membership-tool">
+<span id="id7"></span><h2>Membership Tool<a class="headerlink" href="#membership-tool" title="Permalink to this headline">¶</a></h2>
+<p>This interface defines the API provided by the membership tool for finding
+site-wide information about a registered member.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IMembershipTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IMembershipTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.IMembershipTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manage policy of how and where to store and retrieve members and
+their member folders.</p>
+<dl class="method">
+<dt id="IMembershipTool.createMemberArea">
+<code class="descname">createMemberArea</code><span class="sig-paren">(</span><em>member_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.createMemberArea" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a member area for the given member, creating if necessary.</p>
+<p>o If member area creation is disabled, return None.</p>
+<dl class="docutils">
+<dt>o &#8216;member_id&#8217;, if passed, is the ID of the member whose folder is</dt>
+<dd>to be created;  if not passed, default to the authenticated member.</dd>
+</dl>
+<p>o Permission:  Public # XXX?</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.addMember">
+<code class="descname">addMember</code><span class="sig-paren">(</span><em>id</em>, <em>password</em>, <em>roles</em>, <em>domains</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.addMember" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new member to the user folder.</p>
+<dl class="docutils">
+<dt>o Security checks will have already been performed. Called by</dt>
+<dd>the registration tool.</dd>
+</dl>
+<p>Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.getHomeUrl">
+<code class="descname">getHomeUrl</code><span class="sig-paren">(</span><em>id=None</em>, <em>verifyPermission=0</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.getHomeUrl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the URL to a member&#8217;s home folder or None.</p>
+<dl class="docutils">
+<dt>o &#8216;id&#8217;, if passed, is the ID of the member whose folder should be</dt>
+<dd>returned;  if not passed, use the currently-authenticated member.</dd>
+<dt>o If &#8216;verifyPermission&#8217; is True, return None when the user</dt>
+<dd>doesn&#8217;t have the View permission on the folder.</dd>
+</dl>
+<p>Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.setLocalRoles">
+<code class="descname">setLocalRoles</code><span class="sig-paren">(</span><em>obj</em>, <em>member_ids</em>, <em>member_role</em>, <em>reindex=True</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.setLocalRoles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign a local role on an item to one or more members.</p>
+<p>o &#8216;obj&#8217; is the object on which to assign the role.</p>
+<p>o &#8216;member_ids&#8217; is a sequence of user IDs to which to assign the role.</p>
+<p>o &#8216;member_role&#8217; is the name of the role to assign.</p>
+<dl class="docutils">
+<dt>o If &#8216;reindex&#8217; is True, then reindex the security-related attributes</dt>
+<dd>of the object and all subobjects.</dd>
+<dt>o Raise Unauthorized if the currently-authenticated member cannot</dt>
+<dd>assign &#8216;member_role&#8217; on &#8216;obj&#8217;.</dd>
+</dl>
+<p>o Permission:  Public # XXX?</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.getMemberById">
+<code class="descname">getMemberById</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.getMemberById" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the IMember instance corresponding to the given id.</p>
+<p>o Permission:  Manage users</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.isAnonymousUser">
+<code class="descname">isAnonymousUser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.isAnonymousUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if no valid credentials are passed in the requeset.</p>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.deleteLocalRoles">
+<code class="descname">deleteLocalRoles</code><span class="sig-paren">(</span><em>obj</em>, <em>member_ids</em>, <em>reindex=True</em>, <em>recursive=False</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.deleteLocalRoles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove local roles of specified members from an object.</p>
+<p>o &#8216;obj&#8217; is the object on which to remove the role.</p>
+<p>o &#8216;member_ids&#8217; is a sequence of user IDs from which to remove the role.</p>
+<dl class="docutils">
+<dt>o If &#8216;reindex&#8217; is True, then reindex the security-related attributes</dt>
+<dd>of the object and all subobjects.</dd>
+</dl>
+<p>o if &#8216;recursive&#8217; is True, recurse over all subobjects of &#8216;object&#8217;.</p>
+<dl class="docutils">
+<dt>o Raise Unauthorized if the currently-authenticated member cannot</dt>
+<dd>assign &#8216;member_role&#8217; on &#8216;obj&#8217;.</dd>
+</dl>
+<p>Permission:  Public</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="IMembershipTool.id">
+<code class="descname">id</code><a class="headerlink" href="#IMembershipTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The tool&#8217;s ID.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;getUtility(IMembershipTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8216;portal_membership&#8217;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.getCandidateLocalRoles">
+<code class="descname">getCandidateLocalRoles</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.getCandidateLocalRoles" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return a sequence local roles assignable by the current user for</dt>
+<dd>a given object.</dd>
+</dl>
+<p>o &#8216;obj&#8217; is the object to which role assignments may be made.</p>
+<p>o Permission:  Public # XXX?</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.listMembers">
+<code class="descname">listMembers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.listMembers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of all IMember instances.</p>
+<dl class="docutils">
+<dt>o This may eventually be replaced with a set of methods for querying</dt>
+<dd>pieces of the list rather than the entire list at once.</dd>
+</dl>
+<p>o Permission:  Manage users</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.deleteMembers">
+<code class="descname">deleteMembers</code><span class="sig-paren">(</span><em>member_ids</em>, <em>delete_memberareas=1</em>, <em>delete_localroles=1</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.deleteMembers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove specified members from the site.</p>
+<p>o Returns a sequence of member_ids of members actually deleted.</p>
+<p>o Remove the members from the user folder.</p>
+<p>o &#8216;member_ids&#8217; is a sequence of one or more user IDs to remove.</p>
+<p>o Remove corresponding member data in the memberdata tool.</p>
+<dl class="docutils">
+<dt>o If &#8216;delete_memberareas&#8217; is True, delete members&#8217; home folders</dt>
+<dd>including all content items.</dd>
+<dt>o If &#8216;delete_localroles&#8217; is true, recursively delete members&#8217; local</dt>
+<dd>roles, starting from the site root.</dd>
+</dl>
+<p>o Permission:  Manage users</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.getMappedRole">
+<code class="descname">getMappedRole</code><span class="sig-paren">(</span><em>portal_role</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.getMappedRole" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Returns a mapped role name corresponding to &#8216;portal_role&#8217;, or</dt>
+<dd>the empty string if no mapping exists.</dd>
+</dl>
+<p>o Mappings are defined via &#8216;setRoleMapping&#8217;.</p>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.getPortalRoles">
+<code class="descname">getPortalRoles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.getPortalRoles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of role names defined by the portal itself.</p>
+<p>o Returned role names are those understood by the portal object.</p>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.setPassword">
+<code class="descname">setPassword</code><span class="sig-paren">(</span><em>password</em>, <em>domains=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.setPassword" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow the authenticated member to set his/her own password.</p>
+<p>Permission:  Set own password</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.getAuthenticatedMember">
+<code class="descname">getAuthenticatedMember</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.getAuthenticatedMember" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the currently authenticated member object</p>
+<dl class="docutils">
+<dt>o If no valid credentials are passed in the request, return</dt>
+<dd>the Anonymous User.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.credentialsChanged">
+<code class="descname">credentialsChanged</code><span class="sig-paren">(</span><em>password</em>, <em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.credentialsChanged" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Notify the authentication mechanism that this user has</dt>
+<dd>changed passwords.</dd>
+<dt>o The authentication mechanism can use this notification to update</dt>
+<dd>the authentication cookie.</dd>
+<dt>o Note that this call should <em>not</em> cause any change at all to user</dt>
+<dd>databases.</dd>
+</dl>
+<p>o XXX:  should be an event.</p>
+<dl class="docutils">
+<dt>o XXX:  should this be in scope for this tool?  Or should it be</dt>
+<dd>done by the view class for the password update view?</dd>
+</dl>
+<p>Permission:  Public # XXX?</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.getMemberareaCreationFlag">
+<code class="descname">getMemberareaCreationFlag</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.getMemberareaCreationFlag" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return True if the membership tool will create a member area for</dt>
+<dd>a user at login.</dd>
+</dl>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.getHomeFolder">
+<code class="descname">getHomeFolder</code><span class="sig-paren">(</span><em>id=None</em>, <em>verifyPermission=False</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.getHomeFolder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a member&#8217;s home folder object or None.</p>
+<dl class="docutils">
+<dt>o &#8216;id&#8217;, if passed, is the ID of the member whose folder should be</dt>
+<dd>returned;  if not passed, use the currently-authenticated member.</dd>
+<dt>o If &#8216;verifyPermission&#8217; is True, return None when the user</dt>
+<dd>doesn&#8217;t have the View permission on the folder.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.isMemberAccessAllowed">
+<code class="descname">isMemberAccessAllowed</code><span class="sig-paren">(</span><em>member_id</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.isMemberAccessAllowed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the authenticated user is this member or an user manager.</p>
+<p>If you don&#8217;t have the &#8216;Manage users&#8217; permission for the membership
+tool, you shouldn&#8217;t have write access to other members.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.deleteMemberArea">
+<code class="descname">deleteMemberArea</code><span class="sig-paren">(</span><em>member_id</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.deleteMemberArea" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete member area of specified member</p>
+<p>o Return True if a member area previously existed for the member.</p>
+<p>o &#8216;member_id&#8217; identifies the member whose member is to be removed.</p>
+<p>o Permission:  Manage users</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.setRoleMapping">
+<code class="descname">setRoleMapping</code><span class="sig-paren">(</span><em>portal_role</em>, <em>userfolder_role</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.setRoleMapping" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Register a mapping of a role defined by the portal to a role</dt>
+<dd>coming from outside user sources.</dd>
+</dl>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.getMembersFolder">
+<code class="descname">getMembersFolder</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.getMembersFolder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the folderish object which contains membmer folders.</p>
+<dl class="docutils">
+<dt>o Return None if no members folder is set or if the specified</dt>
+<dd>folder doesn&#8217;t exist.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.listMemberIds">
+<code class="descname">listMemberIds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.listMemberIds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of ids of all members.</p>
+<dl class="docutils">
+<dt>o This may eventually be replaced with a set of methods for querying</dt>
+<dd>pieces of the list rather than the entire list at once.</dd>
+</dl>
+<p>o Permission:  Manage users</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.setMemberareaCreationFlag">
+<code class="descname">setMemberareaCreationFlag</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.setMemberareaCreationFlag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggle the policy flag for create a member areas at login.</p>
+<dl class="docutils">
+<dt>o XXX:  Toggle is a weak semantic here;  shouldn&#8217;t we be passing</dt>
+<dd>the value we want the flag to have?</dd>
+</dl>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMembershipTool.checkPermission">
+<code class="descname">checkPermission</code><span class="sig-paren">(</span><em>permissionName</em>, <em>object</em>, <em>subobjectName=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IMembershipTool.checkPermission" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return True if the current user has the given permission on</dt>
+<dd>the given object or subobject.</dd>
+</dl>
+<p>o &#8216;permissionName&#8217; is the string identifying the permission.</p>
+<p>o &#8216;object&#8217; is the object being checked.</p>
+<dl class="docutils">
+<dt>o &#8216;subobjectName&#8217;, if passed, is the attribute name to be checked;</dt>
+<dd>if None, test the main object itself.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="metadata-tool">
+<span id="id8"></span><h2>Metadata Tool<a class="headerlink" href="#metadata-tool" title="Permalink to this headline">¶</a></h2>
+<p>This interface defines the API provided by the metadata tool for
+managing / querying policies about content metadata.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IMetadataTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IMetadataTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.IMetadataTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>CMF metadata policies interface.</p>
+<dl class="method">
+<dt id="IMetadataTool.validateMetadata">
+<code class="descname">validateMetadata</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#IMetadataTool.validateMetadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enforce portal-wide policies about metadata.</p>
+<p>o E.g., policies may require non-empty title/description, etc.</p>
+<dl class="docutils">
+<dt>o This method may be called by view / workflow code at &#8220;appropriate&#8221;</dt>
+<dd>times, such as immediately before saving changes to the metadata of
+an object.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMetadataTool.listAllowedSubjects">
+<code class="descname">listAllowedSubjects</code><span class="sig-paren">(</span><em>content=None</em>, <em>content_type=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IMetadataTool.listAllowedSubjects" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the allowed values of the &#8216;Subject&#8217; DCMI element.</p>
+<p>o &#8216;Subject&#8217; elements should be keywords categorizing their resource.</p>
+<dl class="docutils">
+<dt>o Return only values appropriate for content&#8217;s type, or all values if</dt>
+<dd>both &#8216;content&#8217; and &#8216;content_type&#8217; are None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMetadataTool.addSchema">
+<code class="descname">addSchema</code><span class="sig-paren">(</span><em>schema_id</em><span class="sig-paren">)</span><a class="headerlink" href="#IMetadataTool.addSchema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new schema with the given ID.</p>
+<p>o Return the newly-created schema object.</p>
+<p>o Raise KeyError if such a schema already exists.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMetadataTool.listAllowedVocabulary">
+<code class="descname">listAllowedVocabulary</code><span class="sig-paren">(</span><em>schema</em>, <em>element</em>, <em>content=None</em>, <em>content_type=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IMetadataTool.listAllowedVocabulary" title="Permalink to this definition">¶</a></dt>
+<dd><p>List allowed values for a given schema element and content object.</p>
+<p>o List possible keywords if both &#8216;content&#8217; and &#8216;content_type&#8217; are None.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMetadataTool.listAllowedRights">
+<code class="descname">listAllowedRights</code><span class="sig-paren">(</span><em>content=None</em>, <em>content_type=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IMetadataTool.listAllowedRights" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the allowed values of the &#8216;Rights&#8217; DCMI element.</p>
+<dl class="docutils">
+<dt>o The &#8216;Rights&#8217; element describes copyright or other IP declarations</dt>
+<dd>pertaining to a resource.</dd>
+<dt>o Return only values appropriate for content&#8217;s type, or all values if</dt>
+<dd>both &#8216;content&#8217; and &#8216;content_type&#8217; are None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMetadataTool.setInitialMetadata">
+<code class="descname">setInitialMetadata</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#IMetadataTool.setInitialMetadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set initial values for content metatdata.</p>
+<p>o Supply any site-specific defaults.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMetadataTool.listAllowedFormats">
+<code class="descname">listAllowedFormats</code><span class="sig-paren">(</span><em>content=None</em>, <em>content_type=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IMetadataTool.listAllowedFormats" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the allowed values of the &#8216;Format&#8217; DCMI element.</p>
+<p>o These items should be usable as HTTP &#8216;Content-type&#8217; values.</p>
+<dl class="docutils">
+<dt>o Return only values appropriate for content&#8217;s type, or all values if</dt>
+<dd>both &#8216;content&#8217; and &#8216;content_type&#8217; are None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMetadataTool.removeSchema">
+<code class="descname">removeSchema</code><span class="sig-paren">(</span><em>schema_id</em><span class="sig-paren">)</span><a class="headerlink" href="#IMetadataTool.removeSchema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove an existing schema with the given ID.</p>
+<p>o Raise KeyError if no such schema exists.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="IMetadataTool.id">
+<code class="descname">id</code><a class="headerlink" href="#IMetadataTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The tool&#8217;s ID.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;queryUtility(IMetadataTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8216;portal_metadata&#8217;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMetadataTool.getPublisher">
+<code class="descname">getPublisher</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMetadataTool.getPublisher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the &#8220;formal&#8221; name of the publisher of the site.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMetadataTool.getFullName">
+<code class="descname">getFullName</code><span class="sig-paren">(</span><em>userid</em><span class="sig-paren">)</span><a class="headerlink" href="#IMetadataTool.getFullName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an internal userid to a &#8220;formal&#8221; name.</p>
+<dl class="docutils">
+<dt>o Convert only if possible, perhaps using the &#8216;portal_membership&#8217;</dt>
+<dd>tool;  otherwise, return &#8216;userid&#8217;.</dd>
+</dl>
+<p>o Used to map userid&#8217;s for Creator, Contributor DCMI queries.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMetadataTool.listSchemas">
+<code class="descname">listSchemas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMetadataTool.listSchemas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of (id, schema) tuples enumerating our schema.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMetadataTool.listAllowedLanguages">
+<code class="descname">listAllowedLanguages</code><span class="sig-paren">(</span><em>content=None</em>, <em>content_type=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IMetadataTool.listAllowedLanguages" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the allowed values of the &#8216;Language&#8217; DCMI element.</p>
+<dl class="docutils">
+<dt>o &#8216;Language&#8217; element values should be suitable for generating</dt>
+<dd>HTTP headers.</dd>
+<dt>o Return only values appropriate for content&#8217;s type, or all values if</dt>
+<dd>both &#8216;content&#8217; and &#8216;content_type&#8217; are None.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="properties-tool">
+<span id="id9"></span><h2>Properties Tool<a class="headerlink" href="#properties-tool" title="Permalink to this headline">¶</a></h2>
+<p>This interface defines the API provided by the properties tool for
+querying site-wide properties.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IPropertiesTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IPropertiesTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.IPropertiesTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manage properties of the site as a whole.</p>
+<dl class="method">
+<dt id="IPropertiesTool.title">
+<code class="descname">title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IPropertiesTool.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the site&#8217;s title.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IPropertiesTool.smtp_server">
+<code class="descname">smtp_server</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IPropertiesTool.smtp_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the configured SMTP server for the site.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IPropertiesTool.editProperties">
+<code class="descname">editProperties</code><span class="sig-paren">(</span><em>props</em><span class="sig-paren">)</span><a class="headerlink" href="#IPropertiesTool.editProperties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change portal settings.</p>
+<p>o &#8216;props&#8217; is a mapping of values to be updates.</p>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="IPropertiesTool.id">
+<code class="descname">id</code><a class="headerlink" href="#IPropertiesTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The tool&#8217;s ID.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;getUtility(IPropertiesTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8216;portal_properties&#8217;.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="registration-tool">
+<span id="id10"></span><h2>Registration Tool<a class="headerlink" href="#registration-tool" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the framework used by the registration tool for
+managing policies about how users join the site.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IRegistrationTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IRegistrationTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.IRegistrationTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manage policies for member registration.</p>
+<p>o Depends on IMembershipTool component.</p>
+<p>o Is not aware of membership storage details.</p>
+<dl class="method">
+<dt id="IRegistrationTool.isRegistrationAllowed">
+<code class="descname">isRegistrationAllowed</code><span class="sig-paren">(</span><em>REQUEST</em><span class="sig-paren">)</span><a class="headerlink" href="#IRegistrationTool.isRegistrationAllowed" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return True if the current user is allowed to add a member to</dt>
+<dd>the site, else False.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRegistrationTool.afterAdd">
+<code class="descname">afterAdd</code><span class="sig-paren">(</span><em>member</em>, <em>id</em>, <em>password</em>, <em>properties</em><span class="sig-paren">)</span><a class="headerlink" href="#IRegistrationTool.afterAdd" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Notification called by portal_registration.addMember() after a</dt>
+<dd>member has been added successfully.</dd>
+</dl>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRegistrationTool.testPasswordValidity">
+<code class="descname">testPasswordValidity</code><span class="sig-paren">(</span><em>password</em>, <em>confirm=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IRegistrationTool.testPasswordValidity" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return None if the password is valid;  otherwise return a string</dt>
+<dd>explaining why not.</dd>
+</dl>
+<p>o &#8216;password&#8217; is the candidate password string.</p>
+<p>o If &#8216;confirm&#8217; is passed, XXX?</p>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRegistrationTool.addMember">
+<code class="descname">addMember</code><span class="sig-paren">(</span><em>id</em>, <em>password</em>, <em>roles=('Member'</em>, <em>)</em>, <em>domains=''</em>, <em>properties=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IRegistrationTool.addMember" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and return a new member.</p>
+<dl class="docutils">
+<dt>o &#8216;id&#8217; is the user ID of the member to be created;  raise ValueError</dt>
+<dd>if there already exists a member with the given &#8216;id&#8217;.</dd>
+<dt>o &#8216;password&#8217; is the user&#8217;s password;  raise ValueError if the</dt>
+<dd>supplied &#8216;password&#8217; does not comply with the site&#8217;s password policy.</dd>
+<dt>o &#8216;roles&#8217; is a list of roles to grant the new member;  raise</dt>
+<dd><p class="first">Unauthorized if the currently-authenticated user is not
+allowed to grant one of the roles listed</p>
+<ul class="last simple">
+<li>&#8220;Member&#8221; is a special role that can always be granted</li>
+</ul>
+</dd>
+<dt>o &#8216;properties&#8217;, if passed,  is a mapping with additional member</dt>
+<dd>properties;  raise ValueError if one or more properties do not
+comply with the site&#8217;s policies.</dd>
+</dl>
+<p>o Permission:  Add portal member</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="IRegistrationTool.id">
+<code class="descname">id</code><a class="headerlink" href="#IRegistrationTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the tool.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;queryUtility(IRegistrationTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8220;portal_registration&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRegistrationTool.generatePassword">
+<code class="descname">generatePassword</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IRegistrationTool.generatePassword" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return a generated password which is complies with the site&#8217;s</dt>
+<dd>password policy.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRegistrationTool.mailPassword">
+<code class="descname">mailPassword</code><span class="sig-paren">(</span><em>forgotten_userid</em>, <em>REQUEST</em><span class="sig-paren">)</span><a class="headerlink" href="#IRegistrationTool.mailPassword" title="Permalink to this definition">¶</a></dt>
+<dd><p>Email a forgotten password to a member.</p>
+<p>o Raise ValueError if user ID is not found.</p>
+<p>o XXX: should probably <em>not</em> raise, in order to prevent cracking.</p>
+<p>o Permission:  Mail forgotten password</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRegistrationTool.isMemberIdAllowed">
+<code class="descname">isMemberIdAllowed</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#IRegistrationTool.isMemberIdAllowed" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return True if &#8216;id&#8217; is not in use as a member ID and is not</dt>
+<dd>reserved, else False.</dd>
+</dl>
+<p>o Permission:  Add portal member</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRegistrationTool.testPropertiesValidity">
+<code class="descname">testPropertiesValidity</code><span class="sig-paren">(</span><em>new_properties</em>, <em>member=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IRegistrationTool.testPropertiesValidity" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return None if the supplied properties are valid;  otherwise</dt>
+<dd>return a string explaining why not.</dd>
+</dl>
+<p>o &#8216;new_properties&#8217; is a mapping containing the properties to test.</p>
+<dl class="docutils">
+<dt>o &#8216;member&#8217;, if passed, is the ID of the member for whome the</dt>
+<dd>properties are being set;  if not passed, use the currently-
+authenticated member.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="skins-tool">
+<span id="id11"></span><h2>Skins Tool<a class="headerlink" href="#skins-tool" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the framework used by the skins tool for
+layering UI components to create &#8220;skins&#8221; for the site.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IDirectoryView">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IDirectoryView</code><a class="headerlink" href="#Products.CMFCore.interfaces.IDirectoryView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Directory views mount filesystem directories.</p>
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ISkinsContainer">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ISkinsContainer</code><a class="headerlink" href="#Products.CMFCore.interfaces.ISkinsContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object that provides skins.</p>
+<dl class="method">
+<dt id="ISkinsContainer.getSkinPath">
+<code class="descname">getSkinPath</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#ISkinsContainer.getSkinPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a skin name to a skin path.</p>
+<p>o Permission:  Access contents information</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISkinsContainer.getDefaultSkin">
+<code class="descname">getDefaultSkin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ISkinsContainer.getDefaultSkin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the default skin name.</p>
+<p>o Permission:  Access contents information</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISkinsContainer.getRequestVarname">
+<code class="descname">getRequestVarname</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ISkinsContainer.getRequestVarname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the variable name to look for in the REQUEST.</p>
+<p>o Permission:  Access contents information</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISkinsContainer.getSkinByName">
+<code class="descname">getSkinByName</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#ISkinsContainer.getSkinByName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the named skin.</p>
+<p>Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISkinsContainer.getSkinByPath">
+<code class="descname">getSkinByPath</code><span class="sig-paren">(</span><em>path</em>, <em>raise_exc=0</em><span class="sig-paren">)</span><a class="headerlink" href="#ISkinsContainer.getSkinByPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a skin at the given path.</p>
+<p>o XXX:  what are we doing here?</p>
+<dl class="docutils">
+<dt>o A skin path is a search path of layers of the format:</dt>
+<dd>&#8216;some/path, some/other/path, ...&#8217;.</dd>
+</dl>
+<p>o Attributes are looked up in the layers in the named order.</p>
+<dl class="docutils">
+<dt>o A skin is a specially wrapped object that looks through the layers</dt>
+<dd>in the correct order.</dd>
+</dl>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ISkinsTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ISkinsTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.ISkinsTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends: <a class="reference internal" href="#Products.CMFCore.interfaces.ISkinsContainer" title="Products.CMFCore.interfaces.ISkinsContainer"><code class="xref py py-class docutils literal"><span class="pre">Products.CMFCore.interfaces.ISkinsContainer</span></code></a></p>
+<p>An object that provides skins to a portal object.</p>
+<p>O XXX:  This shouldn&#8217;t derive from ISkinsContainer?</p>
+<dl class="method">
+<dt id="ISkinsTool.getSkinSelections">
+<code class="descname">getSkinSelections</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ISkinsTool.getSkinSelections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the sorted list of available skin names.</p>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ISkinsTool.id">
+<code class="descname">id</code><a class="headerlink" href="#ISkinsTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the tool.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;queryUtility(ISkinsTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8216;portal_skins&#8217;.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="syndication-tool">
+<span id="id12"></span><h2>Syndication Tool<a class="headerlink" href="#syndication-tool" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the framework used by the syndication tool for
+managing policies about syndicating content from a given folder or collection.
+See also <a class="reference internal" href="content.html#content-syndication"><span class="std std-ref">Content Syndication</span></a>.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ISyndicationTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ISyndicationTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.ISyndicationTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object that provides content syndication facilities</p>
+<dl class="method">
+<dt id="ISyndicationTool.getUpdateFrequency">
+<code class="descname">getUpdateFrequency</code><span class="sig-paren">(</span><em>obj=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ISyndicationTool.getUpdateFrequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the syndicated feed update frequency</p>
+<p>o falls back to the site-wide value if no object is passed in</p>
+<dl class="docutils">
+<dt>o raises &#8216;Syndication is not Allowed&#8217; if the site-wide policy</dt>
+<dd>does not allow syndication</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISyndicationTool.enableSyndication">
+<code class="descname">enableSyndication</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#ISyndicationTool.enableSyndication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable syndication for the passed-in object</p>
+<p>o raises &#8216;Syndication is Disabled&#8217; if syndication is now allowed</p>
+<p>o raises &#8216;Syndication Information Exists&#8217; if used repeatedly</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISyndicationTool.getUpdateBase">
+<code class="descname">getUpdateBase</code><span class="sig-paren">(</span><em>obj=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ISyndicationTool.getUpdateBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the syndication feed base date for the publishing schedule</p>
+<p>o falls back to the site-wide value if no object is passed in</p>
+<dl class="docutils">
+<dt>o raises &#8216;Syndication is not Allowed&#8217; if the site-wide policy</dt>
+<dd>does not allow syndication</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISyndicationTool.getUpdatePeriod">
+<code class="descname">getUpdatePeriod</code><span class="sig-paren">(</span><em>obj=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ISyndicationTool.getUpdatePeriod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the update period for the syndicated feed</p>
+<p>o falls back to the site-wide value if no object is passed in</p>
+<dl class="docutils">
+<dt>o raises &#8216;Syndication is not Allowed&#8217; if the site-wide policy</dt>
+<dd>does not allow syndication</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISyndicationTool.disableSyndication">
+<code class="descname">disableSyndication</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#ISyndicationTool.disableSyndication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable syndication for the passed-in object</p>
+<dl class="docutils">
+<dt>o raises &#8216;This object does not have Syndication Information&#8217; if</dt>
+<dd>syndication has already been disabled</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ISyndicationTool.period">
+<code class="descname">period</code><a class="headerlink" href="#ISyndicationTool.period" title="Permalink to this definition">¶</a></dt>
+<dd><p>:str
+Syndication period for the site: &#8216;hourly&#8217;, &#8216;daily&#8217;, &#8216;weekly&#8217;, &#8216;monthly&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ISyndicationTool.max_items">
+<code class="descname">max_items</code><a class="headerlink" href="#ISyndicationTool.max_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>:int
+The maximum number of items to be included in a feed</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ISyndicationTool.id">
+<code class="descname">id</code><a class="headerlink" href="#ISyndicationTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the tool.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;queryUtility(ISyndicationTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8220;portal_syndication&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISyndicationTool.getHTML4UpdateBase">
+<code class="descname">getHTML4UpdateBase</code><span class="sig-paren">(</span><em>obj=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ISyndicationTool.getHTML4UpdateBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the HTML-formatted feed publishing base date</p>
+<p>o falls back to the site-wide value if no object is passed in</p>
+<dl class="docutils">
+<dt>o raises &#8216;Syndication is not Allowed&#8217; if the site-wide policy</dt>
+<dd>does not allow syndication</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISyndicationTool.getSyndicatableContent">
+<code class="descname">getSyndicatableContent</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#ISyndicationTool.getSyndicatableContent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve all syndicatable content from the passed-in object</p>
+<dl class="docutils">
+<dt>o will call the hool &#8220;synContentValues&#8221; if it exists to allow</dt>
+<dd>individual customization</dd>
+</dl>
+<p>o falls back to calling contentValues</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ISyndicationTool.frequency">
+<code class="descname">frequency</code><a class="headerlink" href="#ISyndicationTool.frequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>:int
+frequency * period calculates the actual update time</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ISyndicationTool.base">
+<code class="descname">base</code><a class="headerlink" href="#ISyndicationTool.base" title="Permalink to this definition">¶</a></dt>
+<dd><p>:datetime
+The baseline timestamp for site syndication</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISyndicationTool.getSyndicationInfo">
+<code class="descname">getSyndicationInfo</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#ISyndicationTool.getSyndicationInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary of syndication information for an
+an object:
+* period
+* frequency
+* base as a DateTime object
+* max_items</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISyndicationTool.getMaxItems">
+<code class="descname">getMaxItems</code><span class="sig-paren">(</span><em>obj=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ISyndicationTool.getMaxItems" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of items published at any one time in the feed</p>
+<p>o falls back to the site-wide value if no object is passed in</p>
+<dl class="docutils">
+<dt>o raises &#8216;Syndication is not Allowed&#8217; if the site-wide policy</dt>
+<dd>does not allow syndication</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISyndicationTool.isSiteSyndicationAllowed">
+<code class="descname">isSiteSyndicationAllowed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ISyndicationTool.isSiteSyndicationAllowed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the site-wide syndication flag</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ISyndicationTool.isSyndicationAllowed">
+<code class="descname">isSyndicationAllowed</code><span class="sig-paren">(</span><em>obj=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ISyndicationTool.isSyndicationAllowed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the syndication flag for the passed-in object</p>
+<p>o falls back to retrieving the site-wide syndication flag</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="types-tool">
+<span id="id13"></span><h2>Types Tool<a class="headerlink" href="#types-tool" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the framework used by the skins type for defining
+extensible content object types.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ITypeInformation">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ITypeInformation</code><a class="headerlink" href="#Products.CMFCore.interfaces.ITypeInformation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type definition interface.</p>
+<dl class="method">
+<dt id="ITypeInformation.setMethodAliases">
+<code class="descname">setMethodAliases</code><span class="sig-paren">(</span><em>aliases</em><span class="sig-paren">)</span><a class="headerlink" href="#ITypeInformation.setMethodAliases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign method aliases for this type.</p>
+<p>o Return True if the operation changed any aliases, else False.</p>
+<p>o &#8216;aliases&#8217; is the mapping of aliases to be assigned.</p>
+<p>o XXX:  define keys and values of the mapping.</p>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypeInformation.isConstructionAllowed">
+<code class="descname">isConstructionAllowed</code><span class="sig-paren">(</span><em>container</em><span class="sig-paren">)</span><a class="headerlink" href="#ITypeInformation.isConstructionAllowed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the current user is allowed to construct an
+instance of this type in &#8216;container, else False.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypeInformation.Description">
+<code class="descname">Description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ITypeInformation.Description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a textual description of the type</p>
+<p>o This descriptoin is used for display in a &#8220;constructor list&#8221;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypeInformation.Title">
+<code class="descname">Title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ITypeInformation.Title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the &#8220;human readable&#8221; type name</p>
+<dl class="docutils">
+<dt>o Note that it may not map exactly to the &#8216;meta_type&#8217;, e.g.,</dt>
+<dd>for l10n/i18n or where a single content class is being
+used twice, under different names.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypeInformation.Metatype">
+<code class="descname">Metatype</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ITypeInformation.Metatype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Zope &#8216;meta_type&#8217; for this content object.</p>
+<dl class="docutils">
+<dt>o Deprecated (not all objects of a given type may even share</dt>
+<dd>the same meta_type).</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypeInformation.allowType">
+<code class="descname">allowType</code><span class="sig-paren">(</span><em>contentType</em><span class="sig-paren">)</span><a class="headerlink" href="#ITypeInformation.allowType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Can objects of &#8216;contentType&#8217; be added to containers of our type?</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypeInformation.queryMethodID">
+<code class="descname">queryMethodID</code><span class="sig-paren">(</span><em>alias</em>, <em>default=None</em>, <em>context=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ITypeInformation.queryMethodID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the method ID for a given alias.</p>
+<dl class="docutils">
+<dt>o &#8216;context&#8217;, if passed, points to the object calling this method.</dt>
+<dd>It may be used to return dynamic values based on the caller.
+XXX:  this is unclear</dd>
+</dl>
+<p>o &#8216;default&#8217; is returned if no such alias is defined.</p>
+<p>o Permission:  Public</p>
+<p>Returns:  Method ID or default value</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypeInformation.getIconExprObject">
+<code class="descname">getIconExprObject</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ITypeInformation.getIconExprObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the expression object representing the icon for this type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypeInformation.constructInstance">
+<code class="descname">constructInstance</code><span class="sig-paren">(</span><em>container</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#ITypeInformation.constructInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a &#8220;bare&#8221; instance of the appropriate type in &#8216;container&#8217;.</p>
+<p>o Give the new instance an ID of &#8216;id&#8217;.</p>
+<p>o Return the newly-created instance, seated in &#8216;container&#8217;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypeInformation.allowDiscussion">
+<code class="descname">allowDiscussion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ITypeInformation.allowDiscussion" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return True if objects of this type are allowed to support</dt>
+<dd>discussion, else False.</dd>
+</dl>
+<p>o Individual objects may still disable discussion.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypeInformation.getMethodAliases">
+<code class="descname">getMethodAliases</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ITypeInformation.getMethodAliases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a mapping of method aliases for this type.</p>
+<p>o XXX:  define keys and values of the mapping.</p>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ITypesTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ITypesTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.ITypesTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register content types for the site.</p>
+<dl class="method">
+<dt id="ITypesTool.constructContent">
+<code class="descname">constructContent</code><span class="sig-paren">(</span><em>contentType</em>, <em>container</em>, <em>id</em>, <em>RESPONSE=None</em>, <em>*args</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#ITypesTool.constructContent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build an instance of the appropriate type in &#8216;container&#8217;</p>
+<dl class="docutils">
+<dt>o &#8216;contentType&#8217; is the name of the ITypeInformation to be</dt>
+<dd>constructed.</dd>
+</dl>
+<p>o Assign the instance the given &#8216;id&#8217;, if possible.</p>
+<dl class="docutils">
+<dt>o If &#8216;RESPONSE&#8217; is passed, redirect to the new object&#8217;s</dt>
+<dd>&#8220;initial view&#8221;;  otherwise return the new object&#8217;s &#8216;id&#8217; (which
+may have morphed during construction).</dd>
+<dt>o Raise Unauthorized if the current user is not allowed to construct</dt>
+<dd>items of the given type in &#8216;container&#8217;.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ITypesTool.id">
+<code class="descname">id</code><a class="headerlink" href="#ITypesTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the tool.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;getUtility(ITypesTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8220;portal_types&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypesTool.getTypeInfo">
+<code class="descname">getTypeInfo</code><span class="sig-paren">(</span><em>contentType</em><span class="sig-paren">)</span><a class="headerlink" href="#ITypesTool.getTypeInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an ITypeInformation for the given type name / object.</p>
+<dl class="docutils">
+<dt>o If &#8216;contentType&#8217; is actually an object, rather than a string,</dt>
+<dd>attempt to look up the appropriate type info using its &#8216;portal_type&#8217;.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypesTool.listContentTypes">
+<code class="descname">listContentTypes</code><span class="sig-paren">(</span><em>container=None</em>, <em>by_metatype=0</em><span class="sig-paren">)</span><a class="headerlink" href="#ITypesTool.listContentTypes" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return a sequence of IDs of ITypeInformations registered</dt>
+<dd>for the site.</dd>
+<dt>o If &#8216;by_metatype&#8217; is True, return meta_types instead (this variant</dt>
+<dd>is deprecated).</dd>
+<dt>o If &#8216;container&#8217; is passed, filter the list according to the user&#8217;s</dt>
+<dd>permissions to add content in that place.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ITypesTool.listTypeInfo">
+<code class="descname">listTypeInfo</code><span class="sig-paren">(</span><em>container=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ITypesTool.listTypeInfo" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return a sequence of ITypeInformations registered for the</dt>
+<dd>site.</dd>
+<dt>o If &#8216;container&#8217; is passed, filter the list according to the user&#8217;s</dt>
+<dd>permissions to add content in that place.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="undo-tool">
+<span id="id14"></span><h2>Undo Tool<a class="headerlink" href="#undo-tool" title="Permalink to this headline">¶</a></h2>
+<p>This interface defines the API provided undo tool for undoing changes made
+to the site.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IUndoTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IUndoTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.IUndoTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provide access to Zope undo functions.</p>
+<dl class="method">
+<dt id="IUndoTool.undo">
+<code class="descname">undo</code><span class="sig-paren">(</span><em>object</em>, <em>transaction_info</em><span class="sig-paren">)</span><a class="headerlink" href="#IUndoTool.undo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs an undo operation.</p>
+<p>o Permission:  Undo changes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IUndoTool.listUndoableTransactionsFor">
+<code class="descname">listUndoableTransactionsFor</code><span class="sig-paren">(</span><em>object</em>, <em>first_transaction=None</em>, <em>last_transaction=None</em>, <em>PrincipiaUndoBatchSize=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IUndoTool.listUndoableTransactionsFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all transaction IDs the user is allowed to undo on &#8216;object&#8217;.</p>
+<dl class="docutils">
+<dt>o Return a list of &#8220;transaction info&#8221; objects, using the given</dt>
+<dd>parameters to batch the results.</dd>
+</dl>
+<p>o XXX:  this needs documentation / testing.</p>
+<p>o Permission:  Undo changes</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="IUndoTool.id">
+<code class="descname">id</code><a class="headerlink" href="#IUndoTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the tool.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;queryUtility(IUndoTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8220;portal_undo&#8221;</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="url-tool">
+<span id="id15"></span><h2>URL Tool<a class="headerlink" href="#url-tool" title="Permalink to this headline">¶</a></h2>
+<p>This interfaces defines the API provided by the url tool for
+generating and resolving URLs and paths relative to the site root.</p>
+<dl class="interface">
+<dt>
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IUndoTool</code></dt>
+<dd><p>Provide access to Zope undo functions.</p>
+<dl class="method">
+<dt>
+<code class="descname">undo</code><span class="sig-paren">(</span><em>object</em>, <em>transaction_info</em><span class="sig-paren">)</span></dt>
+<dd><p>Performs an undo operation.</p>
+<p>o Permission:  Undo changes</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">listUndoableTransactionsFor</code><span class="sig-paren">(</span><em>object</em>, <em>first_transaction=None</em>, <em>last_transaction=None</em>, <em>PrincipiaUndoBatchSize=None</em><span class="sig-paren">)</span></dt>
+<dd><p>List all transaction IDs the user is allowed to undo on &#8216;object&#8217;.</p>
+<dl class="docutils">
+<dt>o Return a list of &#8220;transaction info&#8221; objects, using the given</dt>
+<dd>parameters to batch the results.</dd>
+</dl>
+<p>o XXX:  this needs documentation / testing.</p>
+<p>o Permission:  Undo changes</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">id</code></dt>
+<dd><p>The ID of the tool.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;queryUtility(IUndoTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8220;portal_undo&#8221;</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="workflow-tool">
+<span id="id16"></span><h2>Workflow Tool<a class="headerlink" href="#workflow-tool" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the framework used by the workflow type for defining
+configurable workflows for content types.  See also <a class="reference internal" href="content.html#content-workflow"><span class="std std-ref">Content Workflow</span></a>.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IWorkflowDefinition">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IWorkflowDefinition</code><a class="headerlink" href="#Products.CMFCore.interfaces.IWorkflowDefinition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plugin interface for workflow definitions managed by IWorkflowTool.</p>
+<dl class="method">
+<dt id="IWorkflowDefinition.notifyCreated">
+<code class="descname">notifyCreated</code><span class="sig-paren">(</span><em>ob</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.notifyCreated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notification that an object has been created and put in its place.</p>
+<p>o &#8216;ob&#8217; is the newly-created object.</p>
+<p>o Invoked by the portal_workflow tool.</p>
+<dl class="docutils">
+<dt>o The workflow may set initial workflow state, etc. for the new</dt>
+<dd>object.</dd>
+</dl>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowDefinition.doActionFor">
+<code class="descname">doActionFor</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em>, <em>comment=''</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.doActionFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform the requested workflow action on a content object.</p>
+<p>o &#8216;ob&#8217; is the content object.</p>
+<p>o &#8216;action&#8217; is the ID of the requested workflow action.</p>
+<p>o &#8216;comment&#8217; is passed to the method corresponding to &#8216;action&#8217;.</p>
+<p>o Invoked by the portal_workflow tool.</p>
+<p>o Allows the user to request a workflow action.</p>
+<p>o This method must perform its own security checks.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowDefinition.listObjectActions">
+<code class="descname">listObjectActions</code><span class="sig-paren">(</span><em>info</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.listObjectActions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of workflow action objects.</p>
+<p>o &#8216;info&#8217; is an OAI (ObjectActionInformation ?) structure.</p>
+<dl class="docutils">
+<dt>o Returned actions are relevant to &#8216;info.content&#8217; (this method is</dt>
+<dd>called only when this workflow is applicable to &#8216;info.content&#8217;).</dd>
+</dl>
+<p>o Invoked by the portal_workflow tool.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowDefinition.notifyException">
+<code class="descname">notifyException</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em>, <em>exc</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.notifyException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notifies this workflow that an action failed.</p>
+<p>o &#8216;ob&#8217; is the target object of the action.</p>
+<dl class="docutils">
+<dt>o &#8216;action&#8217; is a string identifying the failed action;</dt>
+<dd>usually it corresponds to a method name.</dd>
+</dl>
+<p>o &#8216;exc&#8217; is the &#8216;sys.exc_info&#8217; triple for the exception.</p>
+<p>o Invoked by the portal_workflow tool.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowDefinition.getId">
+<code class="descname">getId</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.getId" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the id of the workflow definition.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowDefinition.getCatalogVariablesFor">
+<code class="descname">getCatalogVariablesFor</code><span class="sig-paren">(</span><em>ob</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.getCatalogVariablesFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a mapping of attributes relevant to this workflow.</p>
+<p>o Invoked by the workflow tool.</p>
+<dl class="docutils">
+<dt>o Allows workflows to add variables to the catalog based on workflow</dt>
+<dd>status, making it possible to implement queues.</dd>
+</dl>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowDefinition.isInfoSupported">
+<code class="descname">isInfoSupported</code><span class="sig-paren">(</span><em>ob</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.isInfoSupported" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return True if the given info name is supported by this workflow</dt>
+<dd>for a given content object, else False.</dd>
+</dl>
+<p>o &#8216;ob&#8217; is the content object.</p>
+<p>o &#8216;name&#8217; is the name of the requested workflow information.</p>
+<p>o Invoked by the portal_workflow tool.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowDefinition.updateRoleMappingsFor">
+<code class="descname">updateRoleMappingsFor</code><span class="sig-paren">(</span><em>ob</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.updateRoleMappingsFor" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Update the object permissions according to the current workflow</dt>
+<dd>state of &#8216;ob&#8217;.</dd>
+<dt>o Note that having the same permission(s) controlled by more than one</dt>
+<dd>workflow defintiion for an object results in undefined behavior.</dd>
+</dl>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowDefinition.listGlobalActions">
+<code class="descname">listGlobalActions</code><span class="sig-paren">(</span><em>info</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.listGlobalActions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of workflow action objects.</p>
+<p>o &#8216;info&#8217; is an OAI (ObjectActionInformation ?) structure.</p>
+<dl class="docutils">
+<dt>o Returned actions are &#8220;global&#8221;, i.e. relevant to the user and  the</dt>
+<dd>site, rather than to any particular content object (this method is
+generally called on every request!)</dd>
+</dl>
+<p>o Invoked by the portal_workflow tool.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowDefinition.isActionSupported">
+<code class="descname">isActionSupported</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.isActionSupported" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return True if the given workflow action is supported by this</dt>
+<dd>workfow for a content object, else False.</dd>
+</dl>
+<p>o &#8216;ob&#8217; is the content object.</p>
+<p>o &#8216;action&#8217; is the ID of the requested workflow action.</p>
+<p>o Invoked by the portal_workflow tool.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowDefinition.notifyBefore">
+<code class="descname">notifyBefore</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.notifyBefore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notification of a workflow action before it happens.</p>
+<p>o &#8216;ob&#8217; is the target object of the action.</p>
+<dl class="docutils">
+<dt>o &#8216;action&#8217; is a string identifying the impending action;</dt>
+<dd>usually it corresponds to a method name.</dd>
+</dl>
+<p>o This workflow may veto by raising WorkflowException.</p>
+<dl class="docutils">
+<dt>o Unless some workflow raises WorkflowException is thrown,</dt>
+<dd>the workflow tool will emit either &#8216;notifySuccess&#8217; or
+&#8216;notifyException&#8217; after the action.</dd>
+</dl>
+<p>o Invoked by the portal_workflow tool.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowDefinition.getInfoFor">
+<code class="descname">getInfoFor</code><span class="sig-paren">(</span><em>ob</em>, <em>name</em>, <em>default</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.getInfoFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the requested workflow information for a content object.</p>
+<p>o &#8216;ob&#8217; is the content object.</p>
+<p>o &#8216;name&#8217; is the name of the requested workflow information.</p>
+<p>o &#8216;default&#8217; is returned if &#8216;name&#8217; is not found.</p>
+<p>o Invoked by the portal_workflow tool.</p>
+<p>o This method must perform its own security checks.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowDefinition.notifySuccess">
+<code class="descname">notifySuccess</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em>, <em>result</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowDefinition.notifySuccess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notification that a workflow action has taken place.</p>
+<p>o &#8216;ob&#8217; is the target object of the action.</p>
+<dl class="docutils">
+<dt>o &#8216;action&#8217; is a string identifying the succesful action;</dt>
+<dd>usually it corresponds to a method name.</dd>
+</dl>
+<p>o &#8216;result&#8217; is the return value from the method called.</p>
+<p>o Invoked by the portal_workflow tool.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IWorkflowTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IWorkflowTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.IWorkflowTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>This tool accesses and changes the workflow state of content.</p>
+<dl class="method">
+<dt id="IWorkflowTool.notifyCreated">
+<code class="descname">notifyCreated</code><span class="sig-paren">(</span><em>ob</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowTool.notifyCreated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notify all applicable workflows that an object has been created.</p>
+<dl class="docutils">
+<dt>o &#8216;ob&#8217; is the newly-created object;  it will already be &#8220;seated&#8221;</dt>
+<dd>in its new place.</dd>
+</dl>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowTool.doActionFor">
+<code class="descname">doActionFor</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em>, <em>wf_id=None</em>, <em>*args</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowTool.doActionFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform the given workflow action on &#8216;ob&#8217;.</p>
+<p>o &#8216;ob&#8217; is the target object.</p>
+<p>o &#8216;action&#8217; is the ID of the action to perform.</p>
+<p>o &#8216;wf_id&#8217;, if passed, is the ID of the workflow supplying the action.</p>
+<p>o &#8216;args&#8217; and &#8216;kw&#8217;, if passed, are applied to the invoked action.</p>
+<dl class="docutils">
+<dt>o Invoked by user interface code, allowing the user to request a</dt>
+<dd>workflow action.</dd>
+</dl>
+<p>o The workflow object must perform its own security checks.</p>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowTool.getHistoryOf">
+<code class="descname">getHistoryOf</code><span class="sig-paren">(</span><em>wf_id</em>, <em>ob</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowTool.getHistoryOf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the history of an object for a given workflow.</p>
+<p>o &#8216;wf_id&#8217; is the id of the selected workflow.</p>
+<p>o &#8216;ob&#8217; is the content object.</p>
+<p>o Invoked by workflow definitions.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowTool.getCatalogVariablesFor">
+<code class="descname">getCatalogVariablesFor</code><span class="sig-paren">(</span><em>ob</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowTool.getCatalogVariablesFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a mapping of &#8220;workflow-relevant&#8221; attributes.</p>
+<p>o Invoked by &#8216;portal_catalog&#8217; when indexing content.</p>
+<dl class="docutils">
+<dt>o Allows workflows to add variables to the catalog based on workflow</dt>
+<dd>status, making it possible to implement queues.</dd>
+</dl>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowTool.setStatusOf">
+<code class="descname">setStatusOf</code><span class="sig-paren">(</span><em>wf_id</em>, <em>ob</em>, <em>status</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowTool.setStatusOf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a record to the workflow history of a given workflow.</p>
+<p>o &#8216;wf_id&#8217; is the id of the selected workflow.</p>
+<p>o &#8216;ob&#8217; is the content object.</p>
+<p>o &#8216;status&#8217; is a mapping defining the history item to append.</p>
+<p>o Invoked by workflow definitions.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowTool.notifyException">
+<code class="descname">notifyException</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em>, <em>exc</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowTool.notifyException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notify all applicable workflows that an action failed.</p>
+<p>o &#8216;ob&#8217; is the content object which is the target of the action.</p>
+<p>o &#8216;action&#8217; usually corresponds to a method name.</p>
+<p>o &#8216;exc&#8217; is the &#8216;sys.exec_info&#8217; triple for the exception.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowTool.getStatusOf">
+<code class="descname">getStatusOf</code><span class="sig-paren">(</span><em>wf_id</em>, <em>ob</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowTool.getStatusOf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the last element of a workflow history for a given workflow.</p>
+<p>o &#8216;wf_id&#8217; is the id of the selected workflow.</p>
+<p>o &#8216;ob&#8217; is the content object.</p>
+<p>o Invoked by workflow definitions.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="IWorkflowTool.id">
+<code class="descname">id</code><a class="headerlink" href="#IWorkflowTool.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the tool.</p>
+<dl class="docutils">
+<dt>o BBB:  for use in &#8216;getToolByName&#8217;;  in the future, prefer</dt>
+<dd>&#8216;queryUtility(IWorkflowTool)&#8217;.</dd>
+</dl>
+<p>o Must be set to &#8220;portal_workflow&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowTool.notifySuccess">
+<code class="descname">notifySuccess</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em>, <em>result=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowTool.notifySuccess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notify all applicable workflows that an action has taken place.</p>
+<p>o &#8216;ob&#8217; is the content object which is the target of the action.</p>
+<p>o &#8216;action&#8217; usually corresponds to a method name.</p>
+<p>o &#8216;result&#8217; is the value returned from the action.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowTool.notifyBefore">
+<code class="descname">notifyBefore</code><span class="sig-paren">(</span><em>ob</em>, <em>action</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowTool.notifyBefore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notify all applicable workflows of an action before it happens.</p>
+<p>o &#8216;ob&#8217; is the content object which is the target of the action.</p>
+<p>o &#8216;action&#8217; usually corresponds to a method name.</p>
+<dl class="docutils">
+<dt>o Participating workflows may veto the action by raising</dt>
+<dd>WorkflowException.</dd>
+<dt>o Unless vetoed, the tool will later call either a &#8216;notifySuccess&#8217; or</dt>
+<dd>&#8216;notifyException&#8217;</dd>
+</dl>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IWorkflowTool.getInfoFor">
+<code class="descname">getInfoFor</code><span class="sig-paren">(</span><em>ob</em>, <em>name</em>, <em>default=&lt;object object at 0x1122c2d70&gt;</em>, <em>wf_id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowTool.getInfoFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the given bit of workflow information for the object.</p>
+<p>o &#8216;ob&#8217; is the target object.</p>
+<p>o &#8216;name&#8217; is the name of the information requested.</p>
+<dl class="docutils">
+<dt>o &#8216;default&#8217;, if passed, will be returned if &#8216;name&#8217; is not found;</dt>
+<dd>if &#8216;default&#8217; is not passed, then raise ValueError.</dd>
+</dl>
+<p>o &#8216;wf_id&#8217;, if passed, is the ID of the workflow supplying the action.</p>
+<dl class="docutils">
+<dt>o Invoked by user interface code, allowing the user to request</dt>
+<dd>information provided by the workflow.</dd>
+</dl>
+<p>o The workflow object must perform its own security checks.</p>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IConfigurableWorkflowTool">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IConfigurableWorkflowTool</code><a class="headerlink" href="#Products.CMFCore.interfaces.IConfigurableWorkflowTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends: <a class="reference internal" href="#Products.CMFCore.interfaces.IWorkflowTool" title="Products.CMFCore.interfaces.IWorkflowTool"><code class="xref py py-class docutils literal"><span class="pre">Products.CMFCore.interfaces.IWorkflowTool</span></code></a></p>
+<p>Manage workflow tool settings.</p>
+<dl class="method">
+<dt id="IConfigurableWorkflowTool.getDefaultChain">
+<code class="descname">getDefaultChain</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IConfigurableWorkflowTool.getDefaultChain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the default chain for this tool.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IConfigurableWorkflowTool.listChainOverrides">
+<code class="descname">listChainOverrides</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IConfigurableWorkflowTool.listChainOverrides" title="Permalink to this definition">¶</a></dt>
+<dd><p>List portal type specific chain overrides.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IConfigurableWorkflowTool.setDefaultChain">
+<code class="descname">setDefaultChain</code><span class="sig-paren">(</span><em>default_chain</em><span class="sig-paren">)</span><a class="headerlink" href="#IConfigurableWorkflowTool.setDefaultChain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the default chain for this tool.</p>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IConfigurableWorkflowTool.getChainFor">
+<code class="descname">getChainFor</code><span class="sig-paren">(</span><em>ob</em><span class="sig-paren">)</span><a class="headerlink" href="#IConfigurableWorkflowTool.getChainFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the chain that applies to the given object.</p>
+<p>o If &#8216;ob&#8217; is a string, it is used as portal type name.</p>
+<p>o Permission:  Private (Python only)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IConfigurableWorkflowTool.setChainForPortalTypes">
+<code class="descname">setChainForPortalTypes</code><span class="sig-paren">(</span><em>pt_names</em>, <em>chain</em>, <em>verify=True</em><span class="sig-paren">)</span><a class="headerlink" href="#IConfigurableWorkflowTool.setChainForPortalTypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a chain for specific portal types.</p>
+<dl class="docutils">
+<dt>o If chain is None, set the chain for the portal types to be the</dt>
+<dd>default chain.</dd>
+</dl>
+<p>o Permission:  Manage portal</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tool API Reference</a><ul>
+<li><a class="reference internal" href="#actions-tool">Actions Tool</a></li>
+<li><a class="reference internal" href="#caching-policy-manager">Caching Policy Manager</a></li>
+<li><a class="reference internal" href="#catalog-tool">Catalog Tool</a></li>
+<li><a class="reference internal" href="#content-type-registry">Content Type Registry</a></li>
+<li><a class="reference internal" href="#discussion-tool">Discussion Tool</a></li>
+<li><a class="reference internal" href="#memberdata-tool">MemberData Tool</a></li>
+<li><a class="reference internal" href="#membership-tool">Membership Tool</a></li>
+<li><a class="reference internal" href="#metadata-tool">Metadata Tool</a></li>
+<li><a class="reference internal" href="#properties-tool">Properties Tool</a></li>
+<li><a class="reference internal" href="#registration-tool">Registration Tool</a></li>
+<li><a class="reference internal" href="#skins-tool">Skins Tool</a></li>
+<li><a class="reference internal" href="#syndication-tool">Syndication Tool</a></li>
+<li><a class="reference internal" href="#types-tool">Types Tool</a></li>
+<li><a class="reference internal" href="#undo-tool">Undo Tool</a></li>
+<li><a class="reference internal" href="#url-tool">URL Tool</a></li>
+<li><a class="reference internal" href="#workflow-tool">Workflow Tool</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../changes.html"
+                        title="previous chapter">Products.CMFCore Changelog</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="content.html"
+                        title="next chapter">Content API Reference</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/tools.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="content.html" title="Content API Reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../changes.html" title="Products.CMFCore Changelog"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.CMFCore 2.4.0b1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2010-2017, CMF Developers.
+      Last updated on May 04, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>

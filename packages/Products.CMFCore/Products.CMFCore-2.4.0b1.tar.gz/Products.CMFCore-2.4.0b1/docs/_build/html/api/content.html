@@ -1,0 +1,873 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Content API Reference &#8212; Products.CMFCore 2.4.0b1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.4.0b1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Tool API Reference" href="tools.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tools.html" title="Tool API Reference"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.CMFCore 2.4.0b1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="content-api-reference">
+<h1>Content API Reference<a class="headerlink" href="#content-api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="core-content">
+<span id="id1"></span><h2>Core Content<a class="headerlink" href="#core-content" title="Permalink to this headline">¶</a></h2>
+<p>This interface defines the contract for any content object within the CMF.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IDynamicType">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IDynamicType</code><a class="headerlink" href="#Products.CMFCore.interfaces.IDynamicType" title="Permalink to this definition">¶</a></dt>
+<dd><p>General interface for dynamic items.</p>
+<dl class="method">
+<dt id="IDynamicType.getIconURL">
+<code class="descname">getIconURL</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDynamicType.getIconURL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the absolute URL of the icon for the object.</p>
+<dl class="docutils">
+<dt>o This method is used in the &#8216;folder_contents&#8217; view to generate an</dt>
+<dd>appropriate icon for the items found in the folder.</dd>
+<dt>o If the content item does not define an attribute named &#8220;icon&#8221;</dt>
+<dd>return a &#8220;default&#8221; icon path (e.g., <code class="docutils literal"><span class="pre">/misc_/dtmldoc.gif</span></code>, which is
+the icon used for DTML Documents).</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDynamicType.getPortalTypeName">
+<code class="descname">getPortalTypeName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDynamicType.getPortalTypeName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the name of the type information for this object.</p>
+<p>o If the object is uninitialized, return None.</p>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDynamicType.getTypeInfo">
+<code class="descname">getTypeInfo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDynamicType.getTypeInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the ITypeInformation object for this object.</p>
+<p>o A shortcut to &#8216;getTypeInfo&#8217; of portal_types.</p>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDynamicType.getActionInfo">
+<code class="descname">getActionInfo</code><span class="sig-paren">(</span><em>action_chain</em>, <em>check_visibility=0</em>, <em>check_condition=0</em><span class="sig-paren">)</span><a class="headerlink" href="#IDynamicType.getActionInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an Action info mapping specified by a chain of actions.</p>
+<dl class="docutils">
+<dt>o A shortcut to &#8216;getActionInfo&#8217; of the related ITypeInformation</dt>
+<dd>object.</dd>
+</dl>
+<p>o Permission:  Public</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="searchable-content">
+<span id="id2"></span><h2>Searchable Content<a class="headerlink" href="#searchable-content" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the contract for content objects which can be
+searched using the <a class="reference internal" href="tools.html#catalog-tool"><span class="std std-ref">Catalog Tool</span></a>.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IContentish">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IContentish</code><a class="headerlink" href="#Products.CMFCore.interfaces.IContentish" title="Permalink to this definition">¶</a></dt>
+<dd><p>General interface for &#8220;contentish&#8221; items.</p>
+<dl class="docutils">
+<dt>o These methods need to be implemented by any class that wants to be a</dt>
+<dd>first-class citizen in the CMF world.</dd>
+</dl>
+<p>o CMFCore.PortalContent implements this interface.</p>
+<dl class="method">
+<dt id="IContentish.SearchableText">
+<code class="descname">SearchableText</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IContentish.SearchableText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string containing textual information about the content.</p>
+<dl class="docutils">
+<dt>o This string may be the content of a file, or may be synthesized</dt>
+<dd>by concatenating the string attributes of the instance.</dd>
+</dl>
+<p>o Permissions:  View</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ICatalogAware">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ICatalogAware</code><a class="headerlink" href="#Products.CMFCore.interfaces.ICatalogAware" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface for notifying the catalog tool.</p>
+<dl class="method">
+<dt id="ICatalogAware.reindexObjectSecurity">
+<code class="descname">reindexObjectSecurity</code><span class="sig-paren">(</span><em>skip_self=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogAware.reindexObjectSecurity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reindex security-related indexes on the object.</p>
+<p>Recurses in the children to reindex them too.</p>
+<p>If skip_self is True, only the children will be reindexed. This is a
+useful optimization if the object itself has just been fully
+reindexed, as there&#8217;s no need to reindex its security twice.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICatalogAware.indexObject">
+<code class="descname">indexObject</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogAware.indexObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index the object in the portal catalog.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICatalogAware.reindexObject">
+<code class="descname">reindexObject</code><span class="sig-paren">(</span><em>idxs=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogAware.reindexObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reindex the object in the portal catalog.</p>
+<p>If idxs is present, only those indexes are reindexed. The metadata is
+always updated.</p>
+<p>Also update the modification date of the object, unless specific
+indexes were requested.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICatalogAware.unindexObject">
+<code class="descname">unindexObject</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogAware.unindexObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unindex the object from the portal catalog.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="dublin-core-metadata">
+<span id="id3"></span><h2>Dublin Core Metadata<a class="headerlink" href="#dublin-core-metadata" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the contracts for content objects which provide
+standard Dublin Core metadata.  See also <a class="reference internal" href="tools.html#metadata-tool"><span class="std std-ref">Metadata Tool</span></a>.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IMinimalDublinCore">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IMinimalDublinCore</code><a class="headerlink" href="#Products.CMFCore.interfaces.IMinimalDublinCore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimal set of Dublin Core metadata elements.</p>
+<dl class="method">
+<dt id="IMinimalDublinCore.Description">
+<code class="descname">Description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMinimalDublinCore.Description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DCMI Description element (resource summary).</p>
+<p>o Result is a natural language description of this object.</p>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMinimalDublinCore.Type">
+<code class="descname">Type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMinimalDublinCore.Type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DCMI Type element (resource type).</p>
+<dl class="docutils">
+<dt>o Result a human-readable type name for the resource (typically</dt>
+<dd>the Title of its type info object).</dd>
+</dl>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMinimalDublinCore.Title">
+<code class="descname">Title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IMinimalDublinCore.Title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a single string, the DCMI Title element (resource name).</p>
+<p>o Permission:  View</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IDublinCore">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IDublinCore</code><a class="headerlink" href="#Products.CMFCore.interfaces.IDublinCore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends: <a class="reference internal" href="#Products.CMFCore.interfaces.IMinimalDublinCore" title="Products.CMFCore.interfaces.IMinimalDublinCore"><code class="xref py py-class docutils literal"><span class="pre">Products.CMFCore.interfaces.IMinimalDublinCore</span></code></a></p>
+<p>Dublin Core metadata elements supported by CMF and their semantics.</p>
+<dl class="method">
+<dt id="IDublinCore.Publisher">
+<code class="descname">Publisher</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.Publisher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DCMI Publisher element (resource publisher).</p>
+<dl class="docutils">
+<dt>o Result is the full formal name of the entity or person responsible</dt>
+<dd>for publishing the resource.</dd>
+</dl>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.Identifier">
+<code class="descname">Identifier</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.Identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DCMI Identifier element (resource ID).</p>
+<p>o Result is a unique ID (a URL) for the resource.</p>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.EffectiveDate">
+<code class="descname">EffectiveDate</code><span class="sig-paren">(</span><em>zone=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.EffectiveDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DCMI Date element (date resource becomes effective).</p>
+<dl class="docutils">
+<dt>o Result is a string, formatted &#8216;YYYY-MM-DD H24:MN:SS TZ&#8217;, or</dt>
+<dd>None.</dd>
+<dt>o If &#8216;zone&#8217; is &#8216;None&#8217;, return the time in the system default</dt>
+<dd>timezone.</dd>
+</dl>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.Contributors">
+<code class="descname">Contributors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.Contributors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated alias for &#8216;listContributors&#8217;.</p>
+<p>o &#8216;initial caps&#8217; names are reserved for strings.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.Creator">
+<code class="descname">Creator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.Creator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the first DCMI Creator element, or an empty string.</p>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.listCreators">
+<code class="descname">listCreators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.listCreators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of DCMI Creator elements (resource authors).</p>
+<dl class="docutils">
+<dt>o Depending on the implementation, this returns the full name(s) of the</dt>
+<dd>author(s) of the content object or their ids.</dd>
+</dl>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.listContributors">
+<code class="descname">listContributors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.listContributors" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return a sequence of DCMI Contributor elements (resource</dt>
+<dd>collaborators).</dd>
+<dt>o Return zero or more collaborators (beyond thos returned by</dt>
+<dd>&#8216;listCreators&#8217;).</dd>
+</dl>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.Rights">
+<code class="descname">Rights</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.Rights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DCMI Rights element (resource copyright).</p>
+<dl class="docutils">
+<dt>o Return a string describing the intellectual property status, if</dt>
+<dd>any, of the resource.</dd>
+</dl>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.ModificationDate">
+<code class="descname">ModificationDate</code><span class="sig-paren">(</span><em>zone=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.ModificationDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>DCMI Date element - date resource last modified.</p>
+<p>o Result is a string, formatted &#8216;YYYY-MM-DD H24:MN:SS TZ&#8217;.</p>
+<dl class="docutils">
+<dt>o If &#8216;zone&#8217; is &#8216;None&#8217;, return the time in the system default</dt>
+<dd>timezone.</dd>
+</dl>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.Language">
+<code class="descname">Language</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.Language" title="Permalink to this definition">¶</a></dt>
+<dd><p>DCMI Language element (resource language).</p>
+<dl class="docutils">
+<dt>o Result it the RFC language code (e.g. &#8216;en-US&#8217;, &#8216;pt-BR&#8217;) for the</dt>
+<dd>resource.</dd>
+</dl>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.ExpirationDate">
+<code class="descname">ExpirationDate</code><span class="sig-paren">(</span><em>zone=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.ExpirationDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DCMI Date element (date resource expires).</p>
+<dl class="docutils">
+<dt>o Result is a string, formatted &#8216;YYYY-MM-DD H24:MN:SS TZ&#8217;, or</dt>
+<dd>None.</dd>
+<dt>o If &#8216;zone&#8217; is &#8216;None&#8217;, return the time in the system default</dt>
+<dd>timezone.</dd>
+</dl>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.Date">
+<code class="descname">Date</code><span class="sig-paren">(</span><em>zone=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.Date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DCMI Date element (default resource date).</p>
+<p>o Result is a string, formatted &#8216;YYYY-MM-DD H24:MN:SS TZ&#8217;.</p>
+<dl class="docutils">
+<dt>o If &#8216;zone&#8217; is &#8216;None&#8217;, return the time in the system default</dt>
+<dd>timezone.</dd>
+</dl>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.Format">
+<code class="descname">Format</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.Format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DCMI Format element (resource format).</p>
+<dl class="docutils">
+<dt>o Result is the resource&#8217;s MIME type (e.g. &#8216;text/html&#8217;,</dt>
+<dd>&#8216;image/png&#8217;, etc.).</dd>
+</dl>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.CreationDate">
+<code class="descname">CreationDate</code><span class="sig-paren">(</span><em>zone=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.CreationDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DCMI Date element (date resource created).</p>
+<p>o Result is a string, formatted &#8216;YYYY-MM-DD H24:MN:SS TZ&#8217;.</p>
+<dl class="docutils">
+<dt>o If &#8216;zone&#8217; is &#8216;None&#8217;, return the time in the system default</dt>
+<dd>timezone.</dd>
+</dl>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDublinCore.Subject">
+<code class="descname">Subject</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDublinCore.Subject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of DCMI Subject elements (resource keywords).</p>
+<p>o Result is zero or more keywords associated with the content object.</p>
+<p>o Permission:  View</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ICatalogableDublinCore">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ICatalogableDublinCore</code><a class="headerlink" href="#Products.CMFCore.interfaces.ICatalogableDublinCore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provide Zope-internal date attributes for cataloging purposes.</p>
+<dl class="method">
+<dt id="ICatalogableDublinCore.effective">
+<code class="descname">effective</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogableDublinCore.effective" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DateTime form of EffectiveDate.</p>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICatalogableDublinCore.created">
+<code class="descname">created</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogableDublinCore.created" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DateTime form of CreationDate.</p>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICatalogableDublinCore.expires">
+<code class="descname">expires</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogableDublinCore.expires" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DateTime form of ExpirationDate.</p>
+<p>o Permission:  View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICatalogableDublinCore.modified">
+<code class="descname">modified</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICatalogableDublinCore.modified" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the DateTime form of ModificationDate</p>
+<p>o Permission:  View</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IMutableMinimalDublinCore">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IMutableMinimalDublinCore</code><a class="headerlink" href="#Products.CMFCore.interfaces.IMutableMinimalDublinCore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends: <a class="reference internal" href="#Products.CMFCore.interfaces.IMinimalDublinCore" title="Products.CMFCore.interfaces.IMinimalDublinCore"><code class="xref py py-class docutils literal"><span class="pre">Products.CMFCore.interfaces.IMinimalDublinCore</span></code></a></p>
+<p>Update interface for minimal set of mutable metadata.</p>
+<dl class="method">
+<dt id="IMutableMinimalDublinCore.setDescription">
+<code class="descname">setDescription</code><span class="sig-paren">(</span><em>description</em><span class="sig-paren">)</span><a class="headerlink" href="#IMutableMinimalDublinCore.setDescription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set DCMI Description element - resource summary.</p>
+<p>o Permission:  Modify portal content</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMutableMinimalDublinCore.setTitle">
+<code class="descname">setTitle</code><span class="sig-paren">(</span><em>title</em><span class="sig-paren">)</span><a class="headerlink" href="#IMutableMinimalDublinCore.setTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set DCMI Title element - resource name.</p>
+<p>o Permission:  Modify portal content</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IMutableDublinCore">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IMutableDublinCore</code><a class="headerlink" href="#Products.CMFCore.interfaces.IMutableDublinCore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends: <a class="reference internal" href="#Products.CMFCore.interfaces.IMutableMinimalDublinCore" title="Products.CMFCore.interfaces.IMutableMinimalDublinCore"><code class="xref py py-class docutils literal"><span class="pre">Products.CMFCore.interfaces.IMutableMinimalDublinCore</span></code></a>, <a class="reference internal" href="#Products.CMFCore.interfaces.IDublinCore" title="Products.CMFCore.interfaces.IDublinCore"><code class="xref py py-class docutils literal"><span class="pre">Products.CMFCore.interfaces.IDublinCore</span></code></a></p>
+<p>Update interface for mutable metadata.</p>
+<dl class="method">
+<dt id="IMutableDublinCore.setContributors">
+<code class="descname">setContributors</code><span class="sig-paren">(</span><em>contributors</em><span class="sig-paren">)</span><a class="headerlink" href="#IMutableDublinCore.setContributors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set DCMI Contributor elements - resource collaborators.</p>
+<p>o Permission:  Modify portal content</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMutableDublinCore.setFormat">
+<code class="descname">setFormat</code><span class="sig-paren">(</span><em>format</em><span class="sig-paren">)</span><a class="headerlink" href="#IMutableDublinCore.setFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set DCMI Format element - resource format.</p>
+<p>o Permission:  Modify portal content</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMutableDublinCore.setExpirationDate">
+<code class="descname">setExpirationDate</code><span class="sig-paren">(</span><em>expiration_date</em><span class="sig-paren">)</span><a class="headerlink" href="#IMutableDublinCore.setExpirationDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set DCMI Date element - date resource expires.</p>
+<p>o Permission:  Modify portal content</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMutableDublinCore.setRights">
+<code class="descname">setRights</code><span class="sig-paren">(</span><em>rights</em><span class="sig-paren">)</span><a class="headerlink" href="#IMutableDublinCore.setRights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set DCMI Rights element - resource copyright.</p>
+<p>o Permission:  Modify portal content</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMutableDublinCore.setSubject">
+<code class="descname">setSubject</code><span class="sig-paren">(</span><em>subject</em><span class="sig-paren">)</span><a class="headerlink" href="#IMutableDublinCore.setSubject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set DCMI Subject element - resource keywords.</p>
+<p>o Permission:  Modify portal content</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMutableDublinCore.setCreators">
+<code class="descname">setCreators</code><span class="sig-paren">(</span><em>creators</em><span class="sig-paren">)</span><a class="headerlink" href="#IMutableDublinCore.setCreators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set DCMI Creator elements - resource authors.</p>
+<p>o Permission:  Modify portal content</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMutableDublinCore.setEffectiveDate">
+<code class="descname">setEffectiveDate</code><span class="sig-paren">(</span><em>effective_date</em><span class="sig-paren">)</span><a class="headerlink" href="#IMutableDublinCore.setEffectiveDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set DCMI Date element - date resource becomes effective.</p>
+<p>o Permission:  Modify portal content</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IMutableDublinCore.setLanguage">
+<code class="descname">setLanguage</code><span class="sig-paren">(</span><em>language</em><span class="sig-paren">)</span><a class="headerlink" href="#IMutableDublinCore.setLanguage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set DCMI Language element - resource language.</p>
+<p>o Permission:  Modify portal content</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="discussable-content">
+<span id="id4"></span><h2>Discussable Content<a class="headerlink" href="#discussable-content" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the contracts / framework for content object whose
+discussion can be managed by the <a class="reference internal" href="tools.html#discussion-tool"><span class="std std-ref">Discussion Tool</span></a>.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IDiscussionResponse">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IDiscussionResponse</code><a class="headerlink" href="#Products.CMFCore.interfaces.IDiscussionResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface for objects which are replies to IDiscussable objects.</p>
+<dl class="method">
+<dt id="IDiscussionResponse.parentsInThread">
+<code class="descname">parentsInThread</code><span class="sig-paren">(</span><em>size=0</em><span class="sig-paren">)</span><a class="headerlink" href="#IDiscussionResponse.parentsInThread" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return a sequence of IDiscussables which are this object&#8217;s parents,</dt>
+<dd>from the point of view of the threaded discussion.</dd>
+</dl>
+<p>o Parents are ordered oldest to newest.</p>
+<dl class="docutils">
+<dt>o If &#8216;size&#8217; is not zero, only the closest &#8216;size&#8217; parents will be</dt>
+<dd>returned.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDiscussionResponse.inReplyTo">
+<code class="descname">inReplyTo</code><span class="sig-paren">(</span><em>REQUEST=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IDiscussionResponse.inReplyTo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the IDiscussable object to which this item is a reply.</p>
+<p>o Permission: None assigned</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDiscussionResponse.setReplyTo">
+<code class="descname">setReplyTo</code><span class="sig-paren">(</span><em>reply_to</em><span class="sig-paren">)</span><a class="headerlink" href="#IDiscussionResponse.setReplyTo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make this object a response to the passed object.</p>
+<p>o &#8216;reply_to&#8217; is an IDiscussable, or a path (as a string) to one.</p>
+<dl class="docutils">
+<dt>o Raise ValueError if &#8216;reply_to&#8217; is not an IDiscussable (or doesn&#8217;t</dt>
+<dd>resolve to one as a path).</dd>
+</dl>
+<p>o XXX This does not seem like the right exception.</p>
+<p>o Permission: None assigned</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IOldstyleDiscussable">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IOldstyleDiscussable</code><a class="headerlink" href="#Products.CMFCore.interfaces.IOldstyleDiscussable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Oldstyle discussable interface.</p>
+<dl class="method">
+<dt id="IOldstyleDiscussable.getReplyLocationAndID">
+<code class="descname">getReplyLocationAndID</code><span class="sig-paren">(</span><em>REQUEST</em><span class="sig-paren">)</span><a class="headerlink" href="#IOldstyleDiscussable.getReplyLocationAndID" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method determines where a user&#8217;s reply should be stored, and
+what it&#8217;s ID should be.</p>
+<p>You don&#8217;t really want to force users to have to select a
+unique ID each time they want to reply to something.  The
+present implementation selects a folder in the Member&#8217;s home
+folder called &#8216;Correspondence&#8217; (creating it if it is missing)
+and finds a free ID in that folder.</p>
+<p>createReply should use this method to determine what the reply
+it creates should be called, and where it should be placed.</p>
+<p>This method (and createReply, I expect) do not really belong in
+this interface.  There should be a DiscussionManager singleton
+(probably the portal object itself) which handles this.</p>
+<p>Permissions: None assigned
+Returns: 2-tuple, containing the container object, and a string ID.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IOldstyleDiscussable.getReplies">
+<code class="descname">getReplies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IOldstyleDiscussable.getReplies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of the DiscussionResponse objects which are
+associated with this Discussable</p>
+<p>Permissions: View
+Returns: sequence of DiscussionResponses</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IOldstyleDiscussable.getReplyResults">
+<code class="descname">getReplyResults</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IOldstyleDiscussable.getReplyResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the ZCatalog results that represent this object&#8217;s replies.</p>
+<p>Often, the actual objects are not needed.  This is less expensive
+than fetching the objects.</p>
+<p>Permissions: View
+Returns: sequence of ZCatalog results representing DiscussionResponses</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IOldstyleDiscussable.quotedContents">
+<code class="descname">quotedContents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IOldstyleDiscussable.quotedContents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return this object&#8217;s contents in a form suitable for inclusion
+as a quote in a response.  The default implementation returns
+an empty string.  It might be overridden to return a &#8216;&gt;&#8217; quoted
+version of the item.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IOldstyleDiscussable.createReply">
+<code class="descname">createReply</code><span class="sig-paren">(</span><em>title</em>, <em>text</em>, <em>REQUEST</em>, <em>RESPONSE</em><span class="sig-paren">)</span><a class="headerlink" href="#IOldstyleDiscussable.createReply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a reply in the proper place.</p>
+<p>o Returns: HTML (directly or via redirect) # XXX</p>
+<p>o Permission: Reply to item</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IDiscussable">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IDiscussable</code><a class="headerlink" href="#Products.CMFCore.interfaces.IDiscussable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface for things which can have responses.</p>
+<dl class="method">
+<dt id="IDiscussable.createReply">
+<code class="descname">createReply</code><span class="sig-paren">(</span><em>title</em>, <em>text</em>, <em>Creator=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IDiscussable.createReply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a reply in the proper place.</p>
+<p>o Returns: HTML (directly or via redirect) # XXX</p>
+<p>o Permission: Reply to item</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDiscussable.getReplies">
+<code class="descname">getReplies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDiscussable.getReplies" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return a sequence of IDiscussionResponse objects which are</dt>
+<dd>replies to this IDiscussable</dd>
+</dl>
+<p>o Permission: View</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDiscussable.quotedContents">
+<code class="descname">quotedContents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDiscussable.quotedContents" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return this object&#8217;s contents in a form suitable for inclusion</dt>
+<dd>as a quote in a response.</dd>
+<dt>o The default implementation returns an empty string.  It might be</dt>
+<dd>overridden to return a &#8216;&gt;&#8217; quoted version of the item.</dd>
+</dl>
+<p>o Permission: Reply to item</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IDiscussable._getReplyResults">
+<code class="descname">_getReplyResults</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IDiscussable._getReplyResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the ZCatalog results that represent this object&#8217;s replies.</p>
+<p>o XXX: Huh?</p>
+<dl class="docutils">
+<dt>o Often, the actual objects are not needed.  This is less expensive</dt>
+<dd>than fetching the objects.</dd>
+</dl>
+<p>o Permission: View</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="content-workflow">
+<span id="id5"></span><h2>Content Workflow<a class="headerlink" href="#content-workflow" title="Permalink to this headline">¶</a></h2>
+<p>This interface defines the contract for content objects which can participate
+in the workflow framework provided by the <a class="reference internal" href="tools.html#workflow-tool"><span class="std std-ref">Workflow Tool</span></a>.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IWorkflowAware">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IWorkflowAware</code><a class="headerlink" href="#Products.CMFCore.interfaces.IWorkflowAware" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface for notifying the workflow tool.</p>
+<dl class="method">
+<dt id="IWorkflowAware.notifyWorkflowCreated">
+<code class="descname">notifyWorkflowCreated</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IWorkflowAware.notifyWorkflowCreated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notify the workflow that the object was just created.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="content-containers">
+<span id="id6"></span><h2>Content Containers<a class="headerlink" href="#content-containers" title="Permalink to this headline">¶</a></h2>
+<p>This interface defines the contract for content objects which can contain
+other content as &#8220;normal&#8221; sub-items.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IFolderish">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IFolderish</code><a class="headerlink" href="#Products.CMFCore.interfaces.IFolderish" title="Permalink to this definition">¶</a></dt>
+<dd><p>General interface for &#8220;folderish&#8221; content items.</p>
+<dl class="method">
+<dt id="IFolderish.contentItems">
+<code class="descname">contentItems</code><span class="sig-paren">(</span><em>filter=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IFolderish.contentItems" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return a sequence of (object ID, object) tuples for</dt>
+<dd>IContentish and IFolderish sub-objects.</dd>
+<dt>o Provide a filtered view onto &#8216;objectItems&#8217;, allowing only</dt>
+<dd>&#8220;content space&#8221; objects to show through.</dd>
+</dl>
+<p>o Permission:  Public (not publishable)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IFolderish.contentValues">
+<code class="descname">contentValues</code><span class="sig-paren">(</span><em>filter=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IFolderish.contentValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of IContentish and IFolderish sub-objects.</p>
+<dl class="docutils">
+<dt>o Provide a filtered view onto &#8216;objectValues&#8217;, allowing only</dt>
+<dd>&#8220;content space&#8221; objects to show through.</dd>
+</dl>
+<p>o Permission:  Public (not publishable)</p>
+<p>Returns &#8211; List of objects</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IFolderish.listFolderContents">
+<code class="descname">listFolderContents</code><span class="sig-paren">(</span><em>contentFilter=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IFolderish.listFolderContents" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Return a sequence of IContentish and IFolderish sub-objects,</dt>
+<dd>filtered by the current user&#8217;s possession of the View permission.</dd>
+</dl>
+<p>o Hook around &#8216;contentValues&#8217; to let &#8216;folder_contents&#8217; be protected.</p>
+<p>o Duplicates &#8216;skip_unauthorized&#8217; behavior of &#8216;dtml-in&#8217;.</p>
+<p>o Permission &#8211; List folder contents</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IFolderish.contentIds">
+<code class="descname">contentIds</code><span class="sig-paren">(</span><em>filter=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IFolderish.contentIds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of IDs of IContentish and IFolderish sub-objects.</p>
+<dl class="docutils">
+<dt>o Provide a filtered view onto &#8216;objectIds&#8217;, allowing only</dt>
+<dd>&#8220;content space&#8221; objects to show through.</dd>
+</dl>
+<p>o Permission:  Public (not publishable)</p>
+<p>Returns &#8211; List of object IDs</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="opaque-items">
+<h2>Opaque Items<a class="headerlink" href="#opaque-items" title="Permalink to this headline">¶</a></h2>
+<p>These interfaces define the framework for content objects which can contain
+other content as &#8220;opaque&#8221; sub-items.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ICallableOpaqueItem">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ICallableOpaqueItem</code><a class="headerlink" href="#Products.CMFCore.interfaces.ICallableOpaqueItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface for callable opaque items.</p>
+<dl class="docutils">
+<dt>o Opaque items are subelements that are contained using something that</dt>
+<dd>is not an ObjectManager.</dd>
+<dt>o On add, copy, move and delete operations, a marked opaque items</dt>
+<dd>&#8216;manage_afterAdd&#8217;, &#8216;manage_afterClone&#8217; and &#8216;manage_beforeDelete&#8217;
+hooks get called if available. Unavailable hooks do not throw
+exceptions.</dd>
+</dl>
+<dl class="method">
+<dt id="ICallableOpaqueItem.__call__">
+<code class="descname">__call__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICallableOpaqueItem.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the opaque items value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICallableOpaqueItem.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>obj</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#ICallableOpaqueItem.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the opaque item and assign it to &#8216;obj&#8217; as attr with &#8216;id&#8217;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICallableOpaqueItem.getId">
+<code class="descname">getId</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ICallableOpaqueItem.getId" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the id of the opaque item.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ICallableOpaqueItemEvents">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ICallableOpaqueItemEvents</code><a class="headerlink" href="#Products.CMFCore.interfaces.ICallableOpaqueItemEvents" title="Permalink to this definition">¶</a></dt>
+<dd><p>CMF specific events upon copying, renaming and deletion.</p>
+<dl class="method">
+<dt id="ICallableOpaqueItemEvents.manage_afterAdd">
+<code class="descname">manage_afterAdd</code><span class="sig-paren">(</span><em>item</em>, <em>container</em><span class="sig-paren">)</span><a class="headerlink" href="#ICallableOpaqueItemEvents.manage_afterAdd" title="Permalink to this definition">¶</a></dt>
+<dd><p>After add event hook.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICallableOpaqueItemEvents.manage_beforeDelete">
+<code class="descname">manage_beforeDelete</code><span class="sig-paren">(</span><em>item</em>, <em>container</em><span class="sig-paren">)</span><a class="headerlink" href="#ICallableOpaqueItemEvents.manage_beforeDelete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Before delete event hook.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ICallableOpaqueItemEvents.manage_afterClone">
+<code class="descname">manage_afterClone</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#ICallableOpaqueItemEvents.manage_afterClone" title="Permalink to this definition">¶</a></dt>
+<dd><p>After clone event hook.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.IOpaqueItemManager">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">IOpaqueItemManager</code><a class="headerlink" href="#Products.CMFCore.interfaces.IOpaqueItemManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface for managing opaque items.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="content-syndication">
+<span id="id7"></span><h2>Content Syndication<a class="headerlink" href="#content-syndication" title="Permalink to this headline">¶</a></h2>
+<p>This interface defines the contract for content objects which can participate
+in the syndication framework provided by the <a class="reference internal" href="tools.html#syndication-tool"><span class="std std-ref">Syndication Tool</span></a>.</p>
+<dl class="interface">
+<dt id="Products.CMFCore.interfaces.ISyndicatable">
+<em class="property">interface </em><code class="descclassname">Products.CMFCore.interfaces.</code><code class="descname">ISyndicatable</code><a class="headerlink" href="#Products.CMFCore.interfaces.ISyndicatable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter content for syndication.</p>
+<dl class="method">
+<dt id="ISyndicatable.synContentValues">
+<code class="descname">synContentValues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ISyndicatable.synContentValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of IDublinCore objects to be syndicated.</p>
+<dl class="docutils">
+<dt>o For example, &#8216;IFolderish&#8217; containers might returns a list of</dt>
+<dd>recently-created or modified subobjects.</dd>
+</dl>
+<p>o Topics might return a sequence of objects from a catalog query.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Content API Reference</a><ul>
+<li><a class="reference internal" href="#core-content">Core Content</a></li>
+<li><a class="reference internal" href="#searchable-content">Searchable Content</a></li>
+<li><a class="reference internal" href="#dublin-core-metadata">Dublin Core Metadata</a></li>
+<li><a class="reference internal" href="#discussable-content">Discussable Content</a></li>
+<li><a class="reference internal" href="#content-workflow">Content Workflow</a></li>
+<li><a class="reference internal" href="#content-containers">Content Containers</a></li>
+<li><a class="reference internal" href="#opaque-items">Opaque Items</a></li>
+<li><a class="reference internal" href="#content-syndication">Content Syndication</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tools.html"
+                        title="previous chapter">Tool API Reference</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/content.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tools.html" title="Tool API Reference"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Products.CMFCore 2.4.0b1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2010-2017, CMF Developers.
+      Last updated on May 04, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>
