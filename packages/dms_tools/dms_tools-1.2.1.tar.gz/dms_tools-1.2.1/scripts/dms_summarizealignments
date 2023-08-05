@@ -1,0 +1,409 @@
+#!python
+
+"""Summarizes alignments with plots.
+
+Written by Jesse Bloom."""
+
+
+import sys
+import os
+import time
+import re
+import dms_tools
+import dms_tools.utils
+import dms_tools.parsearguments
+import dms_tools.file_io
+import dms_tools.plot
+
+
+
+def WriteMutFreqs(codon_counts, names, mutfreqstext):
+    """Writes in text format the data plotted by *dms_tools.plot.PairedMutFracs*.
+
+    The first two arguments are the same as to *dms_tools.plot.PairedMutFracs*.
+    *mutfreqstext* is the name of the created text file containing the data.
+    """
+    assert len(codon_counts) == len(names)
+    keys = ['synonymous', 'nonsynonymous', 'stop codon'] + ['1 nucleotide mutation', '2 nucleotide mutations', '3 nucleotide mutations']
+    data = {}
+    for (name, counts) in zip(names, codon_counts):
+        d = {}
+        counts = dms_tools.utils.ClassifyCodonCounts(counts)
+        denom = float(counts['TOTAL_COUNTS'])
+        if not denom:
+            raise ValueError("no counts for a sample")
+        for key in keys:
+            if key == 'nonsynonymous':
+                d[key] = counts['TOTAL_NS'] / denom
+            elif key == 'synonymous':
+                d[key]= counts['TOTAL_SYN'] / denom
+            elif key == 'stop codon':
+                d[key] = counts['TOTAL_STOP'] / denom
+            elif key == '1 nucleotide mutation':
+                d[key] = counts['TOTAL_N_1MUT'] / denom
+            elif key == '2 nucleotide mutations':
+                d[key] = counts['TOTAL_N_2MUT'] / denom
+            elif key == '3 nucleotide mutations':
+                d[key] = counts['TOTAL_N_3MUT'] / denom
+            else:
+                raise ValueError("Invalid key of %s" % key)
+        data[name] = d
+    with open(mutfreqstext, 'w') as f:
+        f.write('#sample %s\n' % ' '.join([key.replace(' ', '_') for key in keys]))
+        for name in names:
+            f.write('%s %s\n' % (name, ' '.join(['%g' % data[name][key] for key in keys])))
+    f.close()
+
+
+def ParseBarcodeData(names, stats, maxperbarcode):
+    """Parses data for ``barcodes.pdf`` plot from summary stats.
+
+    *names* is list of sample names.
+
+    *stats* is list of corresponding summary stats.
+
+    *maxperbarcode* : group barcodes with >= this many reads.
+
+    The return value is *(categories, data)*, which are appropriate
+    for use as the same arguments to *dms_tools.plot.PlotSampleBargraphs*.
+    """
+    assert len(names) == len(stats)
+    barcodematch = re.compile('^(?P<fate>discarded|aligned|un-alignable) barcodes with (?P<nreads>\d+) reads$')
+    data = {}
+    categories = set([])
+    for (name, s) in zip(names, stats):
+        data[name] = {}
+        for (key, n) in s.iteritems():
+            if key not in ['total read pairs', 'read pairs that fail Illumina filter', 'low quality read pairs', 'barcodes randomly purged']:
+                m = barcodematch.search(key)
+                if not m:
+                    raise ValueError("Failed to match key:\n%s" % key)
+                nreads = int(m.group('nreads'))
+                if nreads >= maxperbarcode:
+                    category = '$\ge$%d reads, %s' % (maxperbarcode, m.group('fate'))
+                    nreads = maxperbarcode
+                elif nreads > 1:
+                    category = '%d reads, %s' % (nreads, m.group('fate'))
+                else:
+                    category = '%d read, %s' % (nreads, m.group('fate'))
+                categories.add((nreads + {'aligned':0.3, 'un-alignable':0.2, 'discarded':0.1}[m.group('fate')], category))
+                if category in data[name]:
+                    data[name][category] += n
+                else:
+                    data[name][category] = n
+    categories = list(categories)
+    categories.sort()
+    categories.reverse()
+    return ([tup[1] for tup in categories], data)
+
+
+def ParseReadData(names, stats):
+    """Parses data for ``read.pdf`` from summary stats for *barcodedsubamplicons*.
+
+    *names* is list of sample names.
+
+    *stats* is list of corresponding summary stats.
+
+    The return value is *(categories, data)*, which are appropriate
+    for use as the same arguments to *dms_tools.plot.PlotSampleBargraphs*.
+    """
+    assert len(names) == len(stats)
+    categories = ['failed filter', 'low quality', 'barcoded']
+    data = {}
+    barcodematch = re.compile('^(discarded|aligned|un-alignable) barcodes with (?P<nreads>\d+) reads$')
+    for (name, s) in zip(names, stats):
+        data[name] = {}
+        data[name]['failed filter'] = s['read pairs that fail Illumina filter']
+        data[name]['low quality'] = s['low quality read pairs']
+        data[name]['barcoded'] = 0
+        for (key, n) in s.iteritems():
+            if key not in ['total read pairs', 'read pairs that fail Illumina filter', 'low quality read pairs', 'barcodes randomly purged']:
+                m = barcodematch.search(key)
+                if not m:
+                    raise ValueError("Failed to match key:\n%s" % key)
+                data[name]['barcoded'] += n * int(m.group('nreads'))
+    return (categories, data)
+
+def ParseSubassembleReadData(names, stats):
+    """Parses data for ``read.pdf`` for *subassemble*.
+
+    *names* : list of samle names.
+
+    *stats* : list of corresponding summary stats.
+
+    The return value is *(categories, data)*, which are appropriate
+    for use as the same arguments to *dms_tools.plot.PlotSampleBargraphs*.
+    """
+    assert len(names) == len(stats)
+    categories = ['failed filter', 'low quality', 'unalignable', 'aligns to subassembled', 'aligns to non-subassembled']
+    data = {}
+    for (name, s) in zip(names, stats):
+        data[name] = {}
+        data[name]['failed filter'] = s['read pairs that fail Illumina filter']
+        data[name]['low quality'] = s['read pairs purged due to low quality']
+        data[name]['unalignable'] = s['read pairs that are unalignable']
+        data[name]['aligns to subassembled'] = s['read pairs that are alignable and map to a subassembled barcode']
+        data[name]['aligns to non-subassembled'] = s['read pairs that are alignable'] - s['read pairs that are alignable and map to a subassembled barcode']
+        assert set(categories) == set(data[name].keys()), set(categories).symmetric_difference(set(data[name].keys()))
+    return (categories, data)
+
+
+def main():
+    """Main body of script."""
+
+    # Parse command line arguments
+    parser = dms_tools.parsearguments.SummarizeAlignmentsParser()
+    args = vars(parser.parse_args())
+    prog = parser.prog
+
+    # print initial information
+    versionstring = dms_tools.file_io.Versions() 
+    print 'Beginning execution of %s in directory %s\n' % (prog, os.getcwd())
+    print versionstring
+    print 'Parsed the following arguments:\n%s\n' % '\n'.join(['\t%s = %s' % tup for tup in args.iteritems()])
+
+    # make summaries
+    if args['alignment_type'] == 'barcodedsubamplicons':
+        # define output files and remove if they already exist
+        mutfreqs = '%smutfreqs.pdf' % args['outprefix']
+        mutfreqstext = '%smutfreqs.txt' % args['outprefix']
+        mutcountsall = '%smutcounts_all.pdf' % args['outprefix']
+        mutcountsmulti = '%smutcounts_multi_nt.pdf' % args['outprefix']
+        depth = '%sdepth.pdf' % args['outprefix']
+        mutdepth = '%smutdepth.pdf' % args['outprefix']
+        reads = '%sreads.pdf' % args['outprefix']
+        barcodes = '%sbarcodes.pdf' % args['outprefix']
+        singlemuttypes = '{0}singlemuttypes.pdf'.format(args['outprefix'])
+        for f in [mutfreqs, mutfreqstext, mutcountsall, mutcountsmulti, depth, mutdepth, reads, barcodes, singlemuttypes]:
+            if os.path.isfile(f):
+                os.remove(f)
+                print "Removing existing file %s" % f
+        names = []
+        data = {}
+        print "\nNow reading data from %s alignments..." % (args['alignment_type'])
+        for (prefix, name) in args['alignments']:
+            print "Processing data for %s from files with prefix %s" % (name, prefix)
+            assert name not in names, "Duplicate name of %s" % name
+            names.append(name)
+            data[name] = {}
+            countsfile = '%scounts.txt' % prefix
+            if not os.path.isfile(countsfile):
+                raise IOError("Failed to find counts file %s expected from the specification of the prefix %s" % (countsfile, prefix))
+            data[name]['counts'] = dms_tools.file_io.ReadDMSCounts(countsfile, args['chartype'])
+            statsfile = '%ssummarystats.txt' % prefix
+            if not os.path.isfile(statsfile):
+                raise IOError("Failed to find summary stats file %s expected from the specification of the prefix %s" % (statsfile, prefix))
+            data[name]['stats'] = dms_tools.file_io.ReadSummaryStats(statsfile)
+            (data[name]['all_cumulfracs'], data[name]['all_counts'], data[name]['syn_cumulfracs'], data[name]['syn_counts'], data[name]['multi_nt_all_cumulfracs'], data[name]['multi_nt_all_counts'], data[name]['multi_nt_syn_cumulfracs'], data[name]['multi_nt_syn_counts']) = dms_tools.utils.CodonMutsCumulFracs(data[name]['counts'])
+
+        print "\nNow making plots..."
+        print "Making %s" % mutfreqs
+        dms_tools.plot.PlotPairedMutFracs([data[name]['counts'] for name in names], names, mutfreqs, 'per-%s mutation rate' % args['chartype'])
+        if args['writemutfreqs']:
+            print "Making %s" % mutfreqstext
+            WriteMutFreqs([data[name]['counts'] for name in names], names, mutfreqstext)
+        print "Making %s and %s" % (mutcountsall, mutcountsmulti)
+        dms_tools.plot.PlotMutCountFracs(mutcountsall, 'Single and multi-nucleotide codon mutations', names,\
+            [data[name]['all_cumulfracs'][ : args['maxmutcounts'] + 1] for name in names],\
+            [data[name]['syn_cumulfracs'][ : args['maxmutcounts'] + 1] for name in names],\
+            data[names[0]]['all_counts'], data[names[0]]['syn_counts'], legendloc='right', writecounts=False)
+        dms_tools.plot.PlotMutCountFracs(mutcountsmulti, 'Multi-nucleotide codon mutations', names,\
+            [data[name]['multi_nt_all_cumulfracs'][ : args['maxmutcounts'] + 1] for name in names],\
+            [data[name]['multi_nt_syn_cumulfracs'][ : args['maxmutcounts'] + 1] for name in names],\
+            data[names[0]]['multi_nt_all_counts'], data[names[0]]['multi_nt_syn_counts'], legendloc='right', writecounts=False)
+        print "Making %s" % depth
+        dms_tools.plot.PlotDepth([data[name]['counts'] for name in names], names, depth, y_axis_label='number of barcodes')
+        print "Making %s" % mutdepth
+        dms_tools.plot.PlotDepth([data[name]['counts'] for name in names], names, mutdepth, mutdepth=True)
+        print "Making %s" % reads
+        (categories, plotdata) = ParseReadData(names, [data[name]['stats'][1] for name in names])
+        dms_tools.plot.PlotSampleBargraphs(names, categories, plotdata, reads, 'number of read pairs')
+        print "Making %s" % barcodes
+        (categories, plotdata) = ParseBarcodeData(names, [data[name]['stats'][1] for name in names], args['maxperbarcode'])
+        dms_tools.plot.PlotSampleBargraphs(names, categories, plotdata, barcodes, 'number of barcodes')
+        print("Making {0}".format(singlemuttypes))
+        categories = ['{0}to{1}'.format(nt1, nt2) for nt1 in dms_tools.nts
+                for nt2 in dms_tools.nts if nt2 != nt1]
+        plotdata = {}
+        for name in names:
+            c = dms_tools.utils.ClassifyCodonCounts(data[name]['counts'])
+            plotdata[name] = dict([(cat,
+                    c['TOTAL_1MUT_{0}'.format(cat)] / float(c['TOTAL_COUNTS']))
+                    for cat in categories])
+        dms_tools.plot.PlotSampleBargraphs(names, categories, plotdata, singlemuttypes, 'freq 1-nt mutation')
+
+    elif args['alignment_type'] == 'subassemble':
+        nsubassembled = '%snsubassembled.pdf' % args['outprefix']
+        reads = '%sreads.pdf' % args['outprefix']
+        depth = '%sdepth.pdf' % args['outprefix']
+        for f in [reads, depth, nsubassembled]:
+            if os.path.isfile(f):
+                os.remove(f)
+                print("Removing existing file %s" % f)
+        names = []
+        data = {}
+        print "\nNow reading %s data..." % (args['alignment_type'])
+        for (prefix, name) in args['alignments']:
+            print "Processing data for %s from files with prefix %s" % (name, prefix)
+            assert name not in names, "Duplicate name of %s" % name
+            names.append(name)
+            data[name] = {}
+            summaryfile = '%s_summarystats.txt' % prefix
+            assert os.path.isfile(summaryfile), "Failed to find %s" % summaryfile
+            data[name]['summarystats'] = dms_tools.file_io.ReadSummaryStats(summaryfile)
+            nsubassembledfile = '%s_nmuts_among_subassembled.txt' % prefix
+            assert os.path.isfile(nsubassembledfile), "Failed to find %s" % nsubassembledfile
+            with open(nsubassembledfile) as f:
+                data[name]['nsubassembled'] = dict([(int(line.split()[0]), int(line.split()[1])) for line in f.readlines()[1 : ]])
+            readdepthfile = '%s_refseqstarts.txt' % prefix
+            assert os.path.isfile(readdepthfile), "Failed to find %s" % readdepthfile
+            with open(readdepthfile) as f:
+                data[name]['readdepth'] = dict([(int(line.split()[0]), int(line.split()[1])) for line in f.readlines()[1 : ]])
+        print("Making %s" % reads)
+        (categories, plotdata) = ParseSubassembleReadData(names, [data[name]['summarystats'][1] for name in names])
+        dms_tools.plot.PlotSampleBargraphs(names, categories, plotdata, reads, 'number of read pairs', groupbyfirstword=False)
+        print("Making %s" % depth)
+        dms_tools.plot.PlotReadStarts(names, [data[name]['readdepth'] for name in names], depth)
+        print("Making %s" % nsubassembled)
+        categories = ['no mutations', '1 mutation', '2 mutations', '3 mutations', '4 mutations', '5+ mutations']
+        ndata = {}
+        for name in names:
+            ndata[name] = {}
+            try:
+                ndata[name]['no mutations'] = data[name]['nsubassembled'][0]
+            except KeyError:
+                ndata[name]['no mutations'] = 0
+            for i in range(1, 5):
+                key = '%d mutations' % i
+                if i == 1:
+                    key = key[ : -1] # trim trailing s
+                try:
+                    ndata[name][key] = data[name]['nsubassembled'][i]
+                except KeyError:
+                    ndata[name][key] = 0
+            ndata[name]['5+ mutations'] = 0
+            for (key, value) in data[name]['nsubassembled'].items():
+                if key >= 5:
+                    ndata[name]['5+ mutations'] += value
+        dms_tools.plot.PlotSampleBargraphs(names, categories, ndata, nsubassembled, ylabel='subassembled barcodes', groupbyfirstword=False, ncolumns=3)
+
+    elif args['alignment_type'] == 'matchsubassembledbarcodes':
+        reads = '%sreads.pdf' % args['outprefix']
+        mutspermatched = '%smuts_per_matched_read.pdf' % args['outprefix']
+        singlemutfreqs = '%ssinglemutfreqs.pdf' % args['outprefix']
+        allmutfreqs = '%sallmutfreqs.pdf' % args['outprefix']
+        singlemutfreqstext = '%ssinglemutfreqs.txt' % args['outprefix']
+        allmutfreqstext = '%sallmutfreqs.txt' % args['outprefix']
+        singlemutdepth = '%ssinglemutdepth.pdf' % args['outprefix']
+        allmutdepth = '%sallmutdepth.pdf' % args['outprefix']
+        singlecumul = '%ssinglecumulcounts.pdf' % args['outprefix']
+        allcumul = '%sallcumulcounts.pdf' % args['outprefix']
+        for f in [reads, mutspermatched, singlemutfreqs, allmutfreqs, singlemutfreqstext, allmutfreqstext, singlemutdepth, allmutdepth]:
+            if os.path.isfile(f):
+                os.remove(f)
+                print("Removing existing file %s" % f)
+        names = [name for (prefix, name) in args['alignments']]
+        allmutdepthbyname = dict([(name, args['outprefix'] + 'allmutdepth_' + name + '.pdf') for name in names])
+        singlemutdepthbyname = dict([(name, args['outprefix'] + 'singlemutdepth_' + name + '.pdf') for name in names])
+        for f in allmutdepthbyname.values() + singlemutdepthbyname.values():
+            if os.path.isfile(f):
+                os.remove(f)
+                print("Removing existing file %s" % f)
+        if args['groupbyfirst']:
+            groups = set([name.split('_')[0] for name in names])
+            (prefix, ext) = os.path.splitext(singlemutdepth)
+            singlemutdepth = dict([(group, prefix + '_' + group + ext) for group in groups])
+            (prefix, ext) = os.path.splitext(allmutdepth)
+            allmutdepth = dict([(group, prefix + '_' + group + ext) for group in groups])
+            (prefix, ext) = os.path.splitext(singlecumul)
+            singlecumul = dict([(group, prefix + '_' + group + ext) for group in groups])
+            (prefix, ext) = os.path.splitext(allcumul)
+            allcumul = dict([(group, prefix + '_' + group + ext) for group in groups])
+            for f in singlemutdepth.values() + allmutdepth.values() + singlecumul.values() + allcumul.values():
+                if os.path.isfile(f):
+                    os.remove(f)
+                    print("Removing existing file %s" % f)
+        assert len(names) == len(set(names)), "Duplicate name:\n%s" % '\n'.join(names)
+        data = {}
+        print "\nNow reading %s data..." % (args['alignment_type'])
+        for (prefix, name) in args['alignments']:
+            print "Processing data for %s from files with prefix %s" % (name, prefix)
+            data[name] = {}
+            statsfile = '%s_stats.txt' % prefix
+            assert os.path.isfile(statsfile), "Failed to find %s" % statsfile
+            data[name]['stats'] = dms_tools.file_io.ReadSummaryStats(statsfile)[1]
+        if args['groupbyfirst'] and not all([name.count('_') for name in names]):
+            raise ValueError("Cannot use --groupbyfirst as not all sample names have an underscore")
+        print("Making %s" % reads)
+        readcategories = ['filtered', 'low quality', 'mismatches', 'unrecognized', 'retained']
+        readdata = dict([(name, {}) for name in names])
+        for name in names:
+            readdata[name] = dict([(category, data[name]['stats']['n' + category.replace(' ', '')]) for category in readcategories])
+        dms_tools.plot.PlotSampleBargraphs(names, readcategories, readdata, reads, 'number of read pairs', groupbyfirstword=False)
+        print("Making %s" % mutspermatched)
+        mutpercategories = []
+        mutperdata = dict([(name, {}) for name in names])
+        for nmut in range(0, 5):
+            key = '%d mutations' % nmut
+            if nmut == 1:
+                key = key[ : -1]
+            mutpercategories.append(key)
+            for name in names:
+                statskey = 'n%dmut' % nmut
+                if statskey in data[name]['stats']:
+                    mutperdata[name][key] = data[name]['stats'][statskey]
+                else:
+                    mutperdata[name][key] = 0
+        key = '%d+ mutations' % (nmut + 1)
+        mutpercategories.append(key)
+        for name in names:
+            mutperdata[name][key] = data[name]['stats']['nretained'] - sum(mutperdata[name].values())
+        dms_tools.plot.PlotSampleBargraphs(names, mutpercategories, mutperdata, mutspermatched, 'number of matched read pairs', groupbyfirstword=False)
+        for (plot, depthplot, depthbyname, cumulplot, text, muttype, ylabel, title) in [
+                (allmutfreqs, allmutdepth, allmutdepthbyname, allcumul, allmutfreqstext, 'allmut', 'per-%s mutation rate' % args['chartype'], 'All variants'), 
+                (singlemutfreqs, singlemutdepth, singlemutdepthbyname, singlecumul, singlemutfreqstext, 'singlemut', 'fraction with %s mutation' % args['chartype'], 'Only singly mutated variants')]:
+            plotdata = [dms_tools.file_io.ReadDMSCounts('%s_%scounts.txt' % (prefix, muttype), args['chartype']) for (prefix, name) in args['alignments']]
+            cumuldata = [dms_tools.utils.CodonMutsCumulFracs(iplotdata) for iplotdata in plotdata]
+            if args['groupbyfirst']:
+                for group in groups:
+                    print("Making %s" % depthplot[group])
+                    inames = [name for name in names if name[ : len(group)] == group]
+                    iplotdata = [idata for (name, idata) in zip(names, plotdata) if name[ : len(group)] == group]
+                    dms_tools.plot.PlotDepth(iplotdata, inames, depthplot[group], mutdepth=True)
+                    print("Making %s" % cumulplot[group])
+                    icumuldata = [idata for (name, idata) in zip(names, cumuldata) if name[ : len(group)] == group]
+                    dms_tools.plot.PlotMutCountFracs(cumulplot[group], title, inames, 
+                        [icumuldata[i][0] for (i, name) in enumerate(inames)],
+                        [icumuldata[i][2] for (i, name) in enumerate(inames)],
+                        icumuldata[0][1], icumuldata[0][3], legendloc='right', writecounts=True, nmax=args['maxmutcounts'])
+            else:
+                print("Making %s" % depthplot)
+                dms_tools.plot.PlotDepth(plotdata, names, depthplot, mutdepth=True)
+                print("Making %s" % cumulplot)
+                dms_tools.plot.PlotMutCountFracs(cumulplot, title, names, 
+                    [cumuldata[i][0][ : args['maxmutcounts'] + 1] for (i, name) in enumerate(names)],
+                    [cumuldata[i][2][ : args['maxmutcounts'] + 1] for (i, name) in enumerate(names)],
+                    cumuldata[0][1], cumuldata[0][3], legendloc='right', writecounts=True)
+            for (name, iplotdata) in zip(names, plotdata):
+                print("Making {0}".format(depthbyname[name]))
+                dms_tools.plot.PlotDepth([iplotdata], [name], depthbyname[name], mutdepth=True, separatemuttypes=True)
+            if muttype =='singlemut':
+                for d in plotdata:
+                    # normalize wildtype to be per variant (right now each wildtype is counted nsites times)
+                    nsites = len(d.keys())
+                    for r in d.keys()[1 : ]:
+                        d[r][d[r]['WT']] = 0
+            print("Making %s" % plot)
+            dms_tools.plot.PlotPairedMutFracs(plotdata, names, plot, ylabel)
+            if args['writemutfreqs']:
+                print("Writing the data plotted in %s to %s" % (plot, text))
+                WriteMutFreqs(plotdata, names, text)
+    else:
+        raise ValueError("Invalid alignment_type of %s" % args['alignment_type'])
+
+    print '\nSuccessfully completed %s at %s' % (prog, time.asctime())
+
+
+
+if __name__ == '__main__':
+    main() # run the script

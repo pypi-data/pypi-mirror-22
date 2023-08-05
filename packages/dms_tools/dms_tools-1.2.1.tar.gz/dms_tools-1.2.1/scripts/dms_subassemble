@@ -1,0 +1,269 @@
+#!python
+
+"""Subassembles sequences.
+
+Written by Jesse Bloom."""
+
+
+import sys
+import os
+import re
+import time
+import logging
+import gzip
+import random
+import Bio.SeqIO
+import dms_tools
+import dms_tools.parsearguments
+import dms_tools.file_io
+import dms_tools.utils
+
+
+
+def main():
+    """Main body of script."""
+    random.seed(1)
+
+    # Parse command line arguments
+    parser = dms_tools.parsearguments.SubassembleParser()
+    args = vars(parser.parse_args())
+    prog = parser.prog
+
+    # set up logging
+    logging.shutdown()
+    logfile = "%s.log" % args['outprefix']
+    if os.path.isfile(logfile):
+        os.remove(logfile)
+    logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
+    logger = logging.getLogger(prog)
+    logfile_handler = logging.FileHandler(logfile)
+    logger.addHandler(logfile_handler)
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    logfile_handler.setFormatter(formatter)
+    logger.info("Beginning execution of %s in directory %s\n" % (prog, os.getcwd()))
+    logger.info("Progress will be logged to %s" % logfile)
+
+    # define file names and delete existing files
+    summarystatsfilename = '%s_summarystats.txt' % args['outprefix']
+    subassembledfilename = '%s_subassembled_variants.txt' % args['outprefix']
+    nmutsfilename = '%s_nmuts_among_subassembled.txt' % args['outprefix']
+    readsperbarcodefilename = "%s_alignablereadsperbarcode.txt" % args['outprefix']
+    refseqstartsfilename = '%s_refseqstarts.txt' % args['outprefix']
+    barcodereadsfilename = '%s_all_reads_by_barcode.txt' % args['outprefix']
+    outfilenames = [barcodereadsfilename, refseqstartsfilename, readsperbarcodefilename, subassembledfilename, summarystatsfilename, nmutsfilename]
+    for f in outfilenames:
+        if os.path.isfile(f):
+            os.remove(f)
+            logger.info("Removing existing file %s" % f)
+
+    mutwtconcurrencematch = re.compile('insufficient concurrence between mutant and wildtype identity at (?P<sites>[ ,\d]+)')
+    mutmutconcurrencematch = re.compile('insufficient concurrence between two mutant identities at (?P<sites>[ ,\d]+)')
+
+    # log in try / except loop
+    try:
+        versionstring = dms_tools.file_io.Versions() 
+        logger.info("%s\n" % versionstring)
+        logger.info('Parsed the following arguments:\n%s\n' % '\n'.join(['\t%s = %s' % tup for tup in args.iteritems()]))
+
+        # read refseq
+        refseq = [seq for seq in Bio.SeqIO.parse(open(args['refseq']), 'fasta')]
+        assert len(refseq) == 1, "refseq of %s does not specify exactly one sequence" % args['refseq']
+        refseq = str(refseq[0].seq).upper()
+        if args['chartype'] == 'codon':
+            assert len(refseq) % 3 == 0, "refseq does not specify a sequence of codons since its length of %d nucleotides is not a multiple of 3" % (len(refseq))
+            sites = [i + 1 for i in range(len(refseq) // 3)]
+            refseq_chars = dict([(site, refseq[3 * site - 3 : 3 * site]) for site in sites]) # keyed by sites, values are char at that site
+            logger.info('Read a reference sequence of %d codons from %s\n' % (len(refseq) // 3, args['refseq']))
+        else:
+            raise ValueError("Invalid chartype")
+
+        # do some checking on validity of alignspecs
+        for (refseqstart, r2start) in args['alignspecs']:
+            if r2start < 1:
+                raise ValueError("R2START must be >= 1; you specified %d" % r2start)
+            if (refseqstart < 0 or refseqstart > len(refseq)):
+                raise ValueError("One of the alignspecs specifies REFSEQSTART of %d, which is not valid for a refseq of length %d nucleotides." % (refseqstart, len(refseq)))
+
+        # check on read files
+        assert len(args['r1files']) == len(args['r2files']), "r1files and r2files do not specify the same number of files."
+        if all([os.path.splitext(f)[1].lower() == '.gz' for f in args['r1files'] + args['r2files']]):
+            gzipped = True
+        else:
+            if any([os.path.splitext(f)[1].lower() == '.gz' for f in args['r1files'] + args['r2files']]):
+                raise ValueError("Some but not all of the r1files and r2files are gzipped. Either all or no files can be gzipped.")
+            gzipped = False
+
+        # collect reads by barcode while filtering low quality reads
+        readcategories = ['read pairs (total)', 'read pairs that fail Illumina filter', 'read pairs purged due to low quality', 'read pairs that are unalignable', 'read pairs that are alignable and map to a subassembled barcode', 'read pairs that are alignable', 'sites with insufficient concurrence due to mismatch between two mutant characters', 'sites with insufficient concurrence due to mismatch between mutant and wildtype characters']
+        if args['purgefrac']:
+            readcategories.append('read pairs randomly purged')
+        n = dict([(category, 0) for category in readcategories])
+        barcodes = {} # keyed bar barcode, values are lists of 3'-trimmed R2 reads
+        logger.info('Now parsing reads from the following:\n\tr1files: %s\n\tr2files: %s' % (' '.join(args['r1files']), ' '.join(args['r2files'])))
+        for read_tup in dms_tools.file_io.IteratePairedFASTQ(args['r1files'], args['r2files'], gzipped, applyfilter=True):
+            n['read pairs (total)'] += 1
+            if args['purgefrac'] and args['purgefrac'] > random.random():
+                n['read pairs randomly purged'] += 1
+            elif read_tup:
+                (r1, r2) = dms_tools.utils.CheckReadQuality(read_tup[1], read_tup[2], read_tup[3], read_tup[4], args['minq'], 1, 0) # convert low quality to N
+                assert len(r1) >= args['barcodelength'], "R1 isn't as long as the required barcodelength"
+                barcode = r1[ : args['barcodelength']]
+                if ('N' in barcode) or (r2.count('N') > args['maxlowqfrac'] * len(r2)):
+                    n['read pairs purged due to low quality'] += 1
+                else:
+                    if barcode in barcodes:
+                        barcodes[barcode].append(r2)
+                    else:
+                        barcodes[barcode] = [r2]
+            else:
+                n['read pairs that fail Illumina filter'] += 1
+            if n['read pairs (total)'] % 1e6 == 0:
+                logger.info('Reads parsed so far: %d' % n['read pairs (total)'])
+        logger.info('Finished parsing all %d reads; ended up with %d unique barcodes that passed the quality filters.\n' % (n['read pairs (total)'], len(barcodes)))
+
+        # now align reads to subassemble gene
+        logger.info('Now subassembling barcodes by aligning reads...')
+        if not args['no_write_barcode_reads']:
+            logger.info('All reads for each barcode will be written to %s' % barcodereadsfilename)
+            f_barcodereads = open(barcodereadsfilename, 'w')
+        nwithalignableread = 0 # number of barcodes with at least one alignable reads
+        nreads_per_barcode = {}
+        subassembled_barcodes = {}
+        refseqstarts = dict([(refseqstart, 0) for (refseqstart, r2start) in args['alignspecs']])
+        aligntypes = ['aligned at site %d' % refseqstart for (refseqstart, r2start) in args['alignspecs']] + ['unaligned']
+        r2_3trim = {} # holds end position to trim R2 reads at 3' if using --R2trim of 'auto'
+        args['alignspecs'].sort()
+        for (isubamplicon, (refseqstart, r2start)) in enumerate(args['alignspecs']):
+            if args['chartype'] == 'codon':
+                if isubamplicon + 1 == len(args['alignspecs']): # last subamplicon
+                    first_codon_next_subamplicon = len(refseq) // 3 + 1
+                    assert len(refseq) % 3 == 0
+                else:
+                    first_codon_next_subamplicon = (args['alignspecs'][isubamplicon + 1][0] + 1) // 3 + 1
+                r2_3trim[refseqstart] = 3 * (first_codon_next_subamplicon - 1) - refseqstart + r2start
+            else:
+                raise ValueError("Invalid chartype of %s" % args['chartype'])
+        ibarcode = 0
+        for (ibarcode, barcode) in enumerate(list(barcodes.keys())):
+            readalignments = dict([(aligntype, []) for aligntype in aligntypes])
+            nalignedreads = 0 # number of alignable reads for this barcode
+            counts = dict([(site, {}) for site in sites])
+            if ibarcode % 5e4 == 0 and ibarcode:
+                logger.info('Processed %d barcodes; %d have at least one alignable read; %d successfully subassembled.' % (ibarcode, nwithalignableread, len(subassembled_barcodes)))
+            for read in barcodes[barcode]:
+                for (refseqstart, r2start) in args['alignspecs']:
+                    if args['trimR2'] == 'auto':
+                        readendslice = r2_3trim[refseqstart]
+                    elif args['trimR2'] == 'none':
+                        readendslice = len(read)
+                    if dms_tools.utils.AlignRead(refseq, read[r2start - 1 : readendslice], refseqstart, args['maxmuts'], counts, args['chartype']):
+                        if not nalignedreads:
+                            nwithalignableread += 1
+                        nalignedreads += 1
+                        refseqstarts[refseqstart] += 1
+                        if not args['no_write_barcode_reads']:
+                            readalignments['aligned at site %d' % refseqstart].append(read[ : r2start - 1].lower() + read[r2start - 1 : readendslice] + read[readendslice : ].lower())
+                        break # aligned, go to next read
+                else:
+                    n['read pairs that are unalignable'] += 1
+                    if not args['no_write_barcode_reads']:
+                        readalignments['unaligned'].append(read)
+            try:
+                nreads_per_barcode[nalignedreads] += 1
+            except KeyError:
+                nreads_per_barcode[nalignedreads] = 1
+            n['read pairs that are alignable'] += nalignedreads
+            if nalignedreads:
+                (subassembled, seq, failurestring) = dms_tools.utils.Subassemble(counts, args['minreadspersite'], args['minreadconcurrence'], refseq_chars)
+            else:
+                (subassembled, seq, failurestring) = (False, 'N' * len(refseq), 'no aligned reads')
+            if subassembled:
+                assert 'N' not in seq
+                assert len(seq) == len(refseq)
+                if args['chartype'] == 'codon':
+                    diffs = ['%s%d%s' % (refseq_chars[icodon], icodon, seq[3 * icodon - 3 : 3 * icodon]) for icodon in sites if refseq_chars[icodon] != seq[3 * icodon - 3 : 3 * icodon]]
+                else:
+                    raise ValueError("Invalid codon type of %s" % args['chartype;'])
+                subassembled_barcodes[barcode] = (seq, diffs)
+                n['read pairs that are alignable and map to a subassembled barcode'] += nalignedreads
+            elif nalignedreads:
+                # keep track of how many mismatches are mutant-mutant versus mutant-wildtype
+                for (key, match) in [('sites with insufficient concurrence due to mismatch between two mutant characters', mutmutconcurrencematch), ('sites with insufficient concurrence due to mismatch between mutant and wildtype characters', mutwtconcurrencematch)]:
+                    m = match.search(failurestring)
+                    if m:
+                        n[key] += len(m.group('sites').split(','))
+            if not args['no_write_barcode_reads']:
+                if failurestring:
+                    assert not subassembled
+                    failurestring = '\nreasons subassembly failed: %s' % failurestring
+                f_barcodereads.write('barcode = %s\nsuccessfully subassembled = %r%s\ntotal reads = %d\nalignable reads = %d\n' % (barcode, subassembled, failurestring, len(barcodes[barcode]), nalignedreads))
+                if subassembled:
+                    f_barcodereads.write('number of %s mutations = %d\nlist of %s mutations = %s\n' % (args['chartype'], len(diffs), args['chartype'], ', '.join(diffs)))
+                f_barcodereads.write('%ssubassembled sequence = %s\n' % ({True:'', False:'incompletely '}[subassembled], seq))
+                for aligntype in aligntypes:
+                    if readalignments[aligntype]:
+                        f_barcodereads.write('%s: %d reads\n\t%s\n' % (aligntype, len(readalignments[aligntype]), '\n\t'.join([read for read in readalignments[aligntype]])))
+                    else:
+                        f_barcodereads.write('%s: 0 reads\n' % aligntype)
+                f_barcodereads.write('\n')
+            del barcodes[barcode] # frees some memory
+        for (refseqstart, nrefseqstart) in refseqstarts.items():
+            n['read pairs aligned at site %d' % refseqstart] = nrefseqstart
+        logger.info('Overall, processed %d barcodes. Of these, %d barcodes had at least one alignable read and %d could be successfully subassembled.\n' % (ibarcode + 1, nwithalignableread, len(subassembled_barcodes)))
+        n['barcodes (total)'] = ibarcode + 1
+        n['barcodes with at least one alignable read'] = nwithalignableread
+        n['barcodes successfully subassembled'] = len(subassembled_barcodes)
+        if not args['no_write_barcode_reads']:
+            f_barcodereads.close()
+        nreads_per_barcode_keys = nreads_per_barcode.keys()
+        nreads_per_barcode_keys.sort()
+        logger.info('Here are the number of barcodes with each number of alignable reads (also writing to %s):\n\tnreads\tnbarcodes\n\t%s\n' % (readsperbarcodefilename, '\n\t'.join(['%d\t%d' % (i, nreads_per_barcode[i]) for i in nreads_per_barcode_keys])))
+        with open(readsperbarcodefilename, 'w') as f:
+            f.write('nreads\tnbarcodes\n%s' % '\n'.join(['%d\t%d' % (i, nreads_per_barcode[i]) for i in nreads_per_barcode_keys]))
+        logger.info('Here are the distribution of positions where alignable reads began (also writing to %s):\n\trefseqstart\tnreads\n\t%s\n' % (refseqstartsfilename, '\n\t'.join(['%d\t%d' % (refseqstart, refseqstarts[refseqstart]) for (refseqstart, r2start) in args['alignspecs']])))
+        with open(refseqstartsfilename, 'w') as f:
+            f.write('refseqstart\tnreads\n%s' % '\n'.join(['%d\t%d' % (refseqstart, refseqstarts[refseqstart]) for (refseqstart, r2start) in args['alignspecs']]))
+        logger.info('Writing all of the %d subassembled variants to %s\n' % (len(subassembled_barcodes), subassembledfilename))
+        with open(subassembledfilename, 'w') as f:
+            for (barcode, (variant, diffs)) in subassembled_barcodes.items():
+                if diffs:
+                    f.write('%s %s %s\n' % (barcode, variant, ','.join(diffs)))
+                else:
+                    f.write('%s %s no_mutations\n' % (barcode, variant))
+        summarycategories = n.keys()
+        summarycategories.sort()
+        logger.info('Here are summary stats for the reads and barcodes (also writing to %s):\n\t%s\n' % (summarystatsfilename, '\n\t'.join(["%s = %d" % (x, n[x]) for x in summarycategories])))
+        with open(summarystatsfilename, 'w') as f:
+            f.write('\n'.join(["%s = %d" % (x, n[x]) for x in summarycategories]))
+
+        # count mutations among subassembled
+        mutcounts = {}
+        for (barcode, (variant, diffs)) in subassembled_barcodes.items():
+            try:
+                mutcounts[len(diffs)] += 1
+            except:
+                mutcounts[len(diffs)] = 1
+        mutcountkeys = mutcounts.keys()
+        mutcountkeys.sort()
+        logger.info('Here are the counts of %s mutations per gene among subassembled variants (also writing to %s):\n\tnmuts\tnvariants\n\t%s' % (args['chartype'], nmutsfilename, '\n\t'.join(['%d\t%d' % (m, mutcounts[m]) for m in mutcountkeys])))
+        with open(nmutsfilename, 'w') as f:
+            f.write('nmuts\tnvariants\n%s' % '\n'.join(['%d\t%d' % (m, mutcounts[m]) for m in mutcountkeys]))
+        logger.info('The overall average mutation rate is %.3f\n' % sum([x * float(m) / float(sum(mutcounts.values())) for (x, m) in mutcounts.items()]))
+
+    except:
+        logger.exception('Terminating %s at %s with ERROR' % (prog, time.asctime()))
+        for f in outfilenames:
+            if os.path.isfile(f):
+                os.remove(f)
+                logger.exception('Deleting file %s' % f)
+        raise
+    else:
+        logger.info('Successful completion of %s at %s' % (prog, time.asctime()))
+    finally:
+        logging.shutdown()
+
+
+if __name__ == '__main__':
+#    import cProfile 
+#    cProfile.run('main()', 'pstats') 
+    main() # run the script
