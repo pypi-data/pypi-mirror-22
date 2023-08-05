@@ -1,0 +1,76 @@
+Metadata-Version: 1.1
+Name: flask-logsocketio
+Version: 0.1.0
+Summary: Flask LogSocketIo module
+Home-page: https://github.com/fraoustin/flask-logsocketio.git
+Author: Frédéric Aoustin
+Author-email: fraoustin@gmail.com
+License: UNKNOWN
+Description: Flask-logsocketio
+        =================
+        
+        Flask-logsocketio generate on socketio "log"  log of your application
+        
+        It use flask-socketio module
+        
+        Installation
+        ------------
+        
+        ::
+        
+            pip install flask-logsocketio
+                
+        Or
+        
+        ::
+        
+            git clone https://github.com/fraoustin/flask-logsocketio.git
+            cd flask-logsocketio
+            python setup.py install
+        
+        Usage
+        -----
+        
+        ::
+            
+            from flask import Flask, request, current_app
+            from flask_logsocketio import LogSocketIO
+        
+            app = Flask(__name__)
+            app.secret_key = 'super secret string'
+            app.register_blueprint(LogSocketIo(ui_testing=True))
+        
+            @app.route("/")
+            def hello():
+                current_app.logger.error("error from hello")
+                current_app.logger.info("info from hello")
+                current_app.logger.debug("debug from hello")
+                return "Hello World!"
+        
+            if __name__ == "__main__":
+                app.run(port=8080)
+        
+        
+        Feature
+        =======
+        
+        V. 0.1.0
+        ========
+        
+        - init
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Environment :: Web Environment
