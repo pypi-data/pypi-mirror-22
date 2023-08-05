@@ -1,0 +1,35 @@
+#---*- Makefile -*-------------------------------------------------------------
+#$Author: antanas $
+#$Revision: 4632 $
+#$Date: 2016-05-02 16:15:40 +0300 (Mon, 02 May 2016) $
+#$URL: svn://www.crystallography.net/cod-tools/trunk/makefiles/Makefile-subdirs $
+#------------------------------------------------------------------------------
+
+MAKECONF_FILES = ${filter-out %~, ${wildcard Makeconf*}}
+
+ifneq ("${MAKECONF_FILES}","")
+include ${MAKECONF_FILES}
+endif
+
+# A Makeconfig file might contain a line like the following one:
+# FIRST = f2mtz/
+#
+# The recursive Makefile will first descend to directories mentioned
+# in ${FIRST}, and then into all the rest alphabetically:
+
+DIRS  = ${FIRST} ${filter-out ${FIRST}, ${dir ${wildcard */Makefile}}}
+
+.PHONY: all clean cleanAll distclean check test tests out output outputs
+
+#------------------------------------------------------------------------------
+
+all clean cleanAll distclean check test tests out output outputs listdiff:
+	@for d in ${DIRS}; do test -d $$d && ${MAKE} -C $$d $@; done
+
+#------------------------------------------------------------------------------
+
+MAKELOCAL_FILES = ${filter-out %~, ${wildcard Makelocal*}}
+
+ifneq ("${MAKELOCAL_FILES}","")
+include ${MAKELOCAL_FILES}
+endif

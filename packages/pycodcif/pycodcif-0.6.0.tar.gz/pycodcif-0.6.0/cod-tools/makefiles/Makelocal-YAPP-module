@@ -1,0 +1,46 @@
+#---*- Makefile -*-------------------------------------------------------------
+#$Author: andrius $
+#$Date: 2016-07-07 13:44:39 +0300 (Thu, 07 Jul 2016) $
+#$Revision: 4683 $
+#$URL: svn://www.crystallography.net/cod-tools/trunk/makefiles/Makelocal-YAPP-module $
+#------------------------------------------------------------------------------
+#*
+#  Builds a Perl module from a Yapp grammar file.
+#**
+
+# The following variables should be predefined in the Makeconf file:
+# ${PKG_LIB_DIR}
+#                   Name of the local Perl library directory in which
+#                   the assembled Perl module should be placed.
+# ${PKG_PATH}
+#                   Relative path inside the local Perl library directory
+#                   in which the assembled Perl module should be placed.
+#                   If not defined, the relative path is determined
+#                   from the ${PKG_PREFIX} variable value.
+# ${PKG_PREFIX}
+#                   Prefix of the Perl package name. For example, if
+#                   the desired package name is 'X::Y::Z', then the 
+#                   'X::Y::' value should be passed. Please note, that
+#                   the 'Z' portion of the package name is determined
+#                   automatically and is equal to the name of the
+#                   current working directory.
+
+PKG_LIB_DIR ?= lib
+PKG_PREFIX  ?=
+PKG_PATH    ?= ${patsubst %/,%, ${subst ::,/,${PKG_PREFIX}}}
+
+PKG_NAME := ${notdir $(shell pwd)}.pm
+PM_FILE  := ${PKG_NAME:%.pm=${PKG_LIB_DIR}/${PKG_PATH}/%.pm}
+
+.PRECIOUS: ${PM_FILE}
+.PHONY: all cleanAll cleanAll-YAPP-module
+
+all: ${PM_FILE}
+
+${PKG_LIB_DIR}/${PKG_PATH}/%.pm: grammar.yp
+	yapp -v -m ${PKG_PREFIX}$* -o $@ $<
+
+cleanAll distclean: cleanAll-YAPP-module
+
+cleanAll-YAPP-module:
+	rm -f ${PM_FILE} *.output
