@@ -1,0 +1,22 @@
+Metadata-Version: 1.0
+Name: rkn
+Version: 0.1
+Summary: Check domain/ip address in http://eais.rkn.gov.ru/ database
+Home-page: https://bitbucket.org/pi11/rkncheck/
+Author: pi11
+Author-email: co@defun.co
+License: MIT
+Description: Description
+        -----------
+        
+        This module provide only one function: it check if domain is listed on http://eais.rkn.gov.ru/
+        
+        You need anti-captcha.com API key for using this module.
+        
+        Example usage:
+        
+            >>> from rkn import check_rkn
+            >>> result = check_rkn.query("domain.name", "YOUR_API_KEY_HERE")
+            >>> print (result)
+        
+Platform: UNKNOWN
