@@ -1,0 +1,45 @@
+Metadata-Version: 2.0
+Name: eelale
+Version: 0.3.0.dev0
+Summary: cross-compiles Python wheels
+Home-page: http://github.com/emulbreh/eelale/
+Author: Johannes Dollinger
+Author-email: emulbreh@googlemail.com
+License: BSD License
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: click
+
+eelale
+======
+
+cross-compiles Python wheels inside containers.
+
+Usage
+------
+
+.. code-block:: console
+
+    # build wheel from a single package:
+    $ eelale build gevent
+
+    # or from a set of requirements:
+    $ eelale build -r requirements.txt
+
+    # build portable wheels (PEP 513)
+    $ eelale build --policy manylinux1_x86_64 gevent
+
+    # provide build dependencies via images:
+    $ eelale build --image build-dependency-image psycopg2
+
+
+Installation
+-------------
+
+Simply ``pip install eelale``. You also need Docker.
+
+
