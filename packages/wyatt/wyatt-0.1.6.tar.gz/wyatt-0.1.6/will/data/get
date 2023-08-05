@@ -1,0 +1,7 @@
+
+import will
+import argparse
+parser = argparse.ArgumentParser(description="Get william's messages.")
+parser.add_argument('limit', metavar='limit', type=int, nargs='?', help="The number of messages you want to get." default=5)
+args=parser.parse_args()
+will.display(will.get(limit=args.limit))
