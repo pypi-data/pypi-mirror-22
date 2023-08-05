@@ -1,0 +1,16 @@
+language: python
+python: "2.7"
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+      - oracle-java8-set-default
+
+install:
+  - pip install -r requirements.txt
+  - (cd Applications/SimpleUI; npm install)
+
+script:
+  - py.test
+  - (cd Applications/SimpleUI; grunt)
