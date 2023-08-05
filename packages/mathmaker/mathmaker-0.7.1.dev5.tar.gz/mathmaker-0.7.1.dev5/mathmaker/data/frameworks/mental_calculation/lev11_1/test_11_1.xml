@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DEFAULT MENTAL CALCULATION SHEET -->
+
+
+<sheet header="" title="Mental calculation" subtitle="" text="" answers_title="Answers">
+
+	<!-- Default values: type="std" unit="cm" font_size_offset="0" -->
+	<!-- Available layout types: std|short_test|mini_test|equations|mental -->
+	<layout type="mental" font_size_offset="-1">
+		<exc>
+			<line nb="None">
+				<exercises>all</exercises>
+			</line>
+		</exc>
+		<ans>
+			<line nb="None">
+				<exercises>all</exercises>
+			</line>
+		</ans>
+	</layout>
+
+	<!-- Default value: id='generic' 
+		 No default for kind and subkind, they must be given -->
+	<!-- Available kinds for mental calculation: tabular, slideshow -->
+	<exercise id="mental_calculation" kind="tabular">
+
+		<!-- Default value (planned): context="none" 
+			 No default for kind and subkind, they must be given -->
+		<question kind="multi" subkind="direct">
+			<nb source="intpairs_2to9">1</nb>
+			<nb source="table_11">1</nb>
+			<nb source="decimal_and_one_digit">1</nb>
+		</question>
+		
+		<mix>
+			<question kind="multi" subkind="direct" context="mini_problem"></question>
+			<question kind="divi" subkind="direct" context="mini_problem"></question>
+			<nb source="intpairs_4to9">2</nb>
+		</mix>
+		
+		<mix>
+			<question kind="addi" subkind="direct" context="mini_problem"></question>
+			<question kind="subtr" subkind="direct" context="mini_problem"></question>
+			<nb source="intpairs_10to100">2</nb>
+		</mix>
+
+		<question kind="multi" subkind="reversed">
+			<nb source="intpairs_4to9">2</nb>
+		</question>
+
+		<question kind="multi" subkind="direct" variant="decimal1">
+			<!-- One should be replaced by a problem, later -->
+			<nb source="intpairs_2to9">2</nb>
+		</question>
+
+		<question kind="multi" subkind="direct" variant="decimal2">
+			<nb source="intpairs_2to9">2</nb>
+		</question>
+
+		<question kind="multi" subkind="hole">
+			<nb source="intpairs_2to9">1</nb>
+			<nb source="int_irreducible_frac">1</nb>
+		</question>
+
+		<question kind="divi" subkind="direct">
+			<nb source="intpairs_4to9">2</nb>
+		</question>
+
+		<question kind="rank" subkind="reversed">
+			<nb source="rank_words">1</nb>
+		</question>
+
+		<question kind="rank" subkind="direct">
+			<nb source="rank_words">1</nb>
+		</question>
+
+		<question kind="rank" subkind="numberof" generation_type="default">
+			<nb source="rank_words">1</nb>
+		</question>
+
+		
+
+	</exercise>
+
+</sheet>
