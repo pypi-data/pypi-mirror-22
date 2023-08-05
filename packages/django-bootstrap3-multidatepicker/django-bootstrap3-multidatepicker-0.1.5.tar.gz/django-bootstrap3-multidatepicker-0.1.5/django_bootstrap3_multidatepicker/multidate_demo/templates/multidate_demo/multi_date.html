@@ -1,0 +1,55 @@
+{# multidate.html #}
+
+{# Copyright 2016 Fabian Wenzelmann #}
+{# #}
+{# Licensed under the Apache License, Version 2.0 (the "License"); #}
+{# you may not use this file except in compliance with the License. #}
+{# You may obtain a copy of the License at #}
+{# #}
+{# http://www.apache.org/licenses/LICENSE-2.0 #}
+{#  #}
+{# Unless required by applicable law or agreed to in writing, software #}
+{# distributed under the License is distributed on an "AS IS" BASIS, #}
+{# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. #}
+{# See the License for the specific language governing permissions and #}
+{# limitations under the License. #}
+
+{% extends 'multidate_demo/base.html' %}
+
+{% load bootstrap3 %}
+
+{% block bootstrap3_extra_head %}
+{{ block.super }}
+{{ form.media }}
+<script type="text/javascript">
+  $(document).ready(function() {
+    id_dates_jsvar.afterChange = function() {
+      $('#current_dates li').remove();
+      for (var i = 0; i < id_dates_jsvar.dates.length; i++) {
+        var date = id_dates_jsvar.dates[i];
+        var date_str = '' + date.getUTCFullYear() + '/' + date.getUTCMonth() + '/' + date.getUTCDate();
+        $('#current_dates').append($('<li>').text(date_str));
+      }
+    }
+  });
+</script>
+{% endblock %}
+
+{% block title %}
+    Multidate Picker Demo
+{% endblock %}
+
+{% block heading %}
+<h1>Multidate Picker Demo</h1>
+{% endblock %}
+
+{% block content %}
+<form class="form" method="POST">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  {% bootstrap_button '<span class="glyphicon glyphicon-circle-arrow-right"></span> Save' button_type="submit" button_class="btn-primary" %}
+</form>
+<h2>Currently selected Dates</h2>
+<ul id="current_dates">
+</ul>
+{% endblock %}
