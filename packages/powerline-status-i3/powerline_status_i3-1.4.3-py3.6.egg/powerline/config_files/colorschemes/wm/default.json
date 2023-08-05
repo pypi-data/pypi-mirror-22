@@ -1,0 +1,49 @@
+{
+    "name": "Default",
+    "groups": {
+        "volume_gradient":           { "fg": "green_yellow_red",    "bg": "0x005f87",           "click": {
+            "scroll up": "pactl set-sink-volume 0 +1%",
+            "scroll down": "pactl set-sink-volume 0 -1%"
+        } },
+        "player":                    { "fg": "0xe4e4e4",            "bg": "0x005f87",           "click": {
+            "left": "xdotool key XF86AudioPlay"
+        } },
+        "player:next":               { "fg": "0xe4e4e4",            "bg": "0x005f87",           "click": {
+            "left": "xdotool key XF86AudioNext"
+        } },
+        "player:previous":           { "fg": "0xe4e4e4",            "bg": "0x005f87",           "click": {
+            "left": "xdotool key XF86AudioPrev"
+        } },
+        "workspace":                 { "fg": "0xe4e4e4",            "bg": "0x0087af",           "click": {
+            "left": "i3-msg workspace {workspace_name}",
+            "right": "i3-msg move to workspace {workspace_name}"
+        } },
+        "workspace:focused":         "level:3",
+        "workspace:visible":         "level:1",
+        "workspace:urgent":          { "bg": "0x0087af",            "fg": "0xffaf00",           "click": {
+            "left": "i3-msg workspace {workspace_name}",
+            "right": "i3-msg move to workspace {workspace_name}"
+        } },
+        "scratchpad":                { "fg": "0xe4e4e4",            "bg": "0x0087af",           "click": {
+            "left": "i3-msg scratchpad show",
+            "right": "i3-msg move to scratchpad"
+        } },
+        "scratchpad:focused":        { "fg": "0xe4e4e4",            "bg": "0x005f87",           "click": {
+            "left": "i3-msg scratchpad show",
+            "right": "i3-msg move to scratchpad"
+        } },
+        "scratchpad:visible":        { "fg": "0x585858",            "bg": "0xe4e4e4",           "click": {
+            "left": "i3-msg scratchpad show",
+            "right": "i3-msg move to scratchpad"
+        } },
+        "scratchpad:urgent":         { "bg": "0x005f87",            "fg": "brightorange",       "click": {
+            "left": "i3-msg scratchpad show",
+            "right": "i3-msg move to scratchpad"
+        } },
+        "output":                    { "bg": "0x005f87",            "fg": "mediumpurple" },
+        "appoint":                   "level:3",
+        "appoint:urgent":            "level:2",
+        "mode":                      "level:2",
+        "active_window_title":       "level:2"
+    }
+}
