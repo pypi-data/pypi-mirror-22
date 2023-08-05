@@ -1,0 +1,43 @@
+Metadata-Version: 2.0
+Name: s3touch
+Version: 0.1.3
+Summary: Touch files on S3.
+Home-page: https://github.com/thulio/s3touch
+Author: Thúlio Costa
+Author-email: contact@thul.io
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: awscli (==1.11.82)
+Requires-Dist: click (==6.7)
+
+
+s3touch
+=======
+
+s3touch is a simple script to simulate a "touch" event on S3 keys.
+
+This is useful when you're using a AWS Lambda function monitoring S3 and you
+want to (re)process a bunch of files.
+
+
+Usage
+-----
+
+.. code-block:: bash
+
+   s3touch --path s3://PATH/TO/BUCKET
+
+Installation
+------------
+
+.. code-block:: bash
+
+   pip install s3touch
+
