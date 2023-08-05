@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: easystore
+Version: 1.3.0
+Summary: Redis like syntax to store and retrieve from json files
+Home-page: https://github.com/shomiron/easystore
+Author: Shomiron DAS GUPTA
+Author-email: shomiron@netmonastery.com
+License: Apache
+Description: Easystore is a generic interface to call and write to json files using the
+        abstractions used by redis-client.
+        
+        ## Sample
+        ```
+        import sys
+        sys.path.append("..")
+        import easystore
+        
+        k = easystore.DiskStore("jam")
+        k.hset("system", "metrics", {"cpu": "31"})
+        ```
+        
+Keywords: redis,json
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
