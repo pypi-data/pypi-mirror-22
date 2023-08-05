@@ -1,0 +1,43 @@
+dist: trusty
+sudo: false
+language: python
+python:
+  - 2.7
+  - 3.6
+  - pypy-5.4.1
+  - pypy3.3-5.2-alpha1
+  - 2.6
+  - 3.3
+  - 3.4
+  - 3.5
+  - nightly
+install:
+  - travis_retry pip install coveralls
+  - travis_retry pip install tox-travis
+  - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then travis_retry pip install pyOpenSSL>=16.2.0; fi
+script:
+  - tox
+after_success:
+  - coveralls
+  - python setup.py bdist_wheel sdist
+deploy:
+  - provider: releases
+    api_key:
+      secure: gVBPaSpruqFJ2ehS6gpAItovyvhnREz4XabNeV1Hz2BbFAVXdNz5zWMnwSneR7+wfcCgPMlEPYQbhnMrbb4qAfkOWGb4FJ94ye34aUxyaZiG584Ds7+Z7WFtPZ3A27B8HsZuz/4IsUunG/lheZw9ZPQ7bSeGZjdkKQapJj60lbszJ70OiN8E00EPysVwrE1QJB+jfXYpy+M6DbpEURikZbVhIZfauxTZW1WTlmcJesidUA4ArMN0XU7l3M6ueDLZa8VVe+XJi3YkBKHwzd00veULG+Gs6erssyDgbQQoP/L7YzVHmEDqswlMBSk9y9410ZsgxWIo2P7YOWjmcczIOKiqDxYH8S+iN9KkHiI4tiJBJYG5qg4vBeziXkq3t8fiCqVvl9paezz5dBsNcVRyQsLeKuqfYKVOm+1rZkJIfxu2Gz8MIAMc9IVT8kf26D6xt0IlN4c7nndsxItirT37sOvF/cxVu53deXFaOfiLX683HPT4wKwqumhN909KtOOg6RHDHw+JXHW22MUMMCdOpTLv0zdpfB3cVKqbkvIlpVIbvszjFIKGT+BRbzwELUIt7nN7lQBfhsUfMQISVbVYhey/Q0T31LF/LBiwWPdUFTapXKRVendX8XAq+nTIw8ejEWD4+rPlS2etsy5LXVq/D02caLSm57xSck950sY62lk=
+    skip_cleanup: true
+    file_glob: true
+    file: "dist/byte-*"
+    on:
+      condition: $TRAVIS_PYTHON_VERSION = "2.7"
+      repo: fuzeman/byte
+      tags: true
+  - provider: pypi
+    distributions: "bdist_wheel sdist"
+    user: "fm-build"
+    password:
+      secure: YtYl85vsXPYPlUeiQ8P8H3so7Vcjj5N5+y+vQYR9yo8Dqx86dFMWgxMK/nIy+SS6bffeIxENAjeynlaBW/LPwIZNDOJLfXKAFzn//qkqf904Kg2L6/lXk5y5oHS/pu/ZslpX+LTv84k0kUu+O1hIXgMZWTt0YxLgB0ZLZhqyUMhfOKn+nL7uM3aqi+z0VPfmybpJT627pl6hvESwBBTTaXgE8SwbrpGlwFlk9qV63AOEf9btkBxSrw2Y1lW88+NSQBQkDYjXeJRVT9MuKTqGIMEekv/vxb0OuLIOkAHlTEUc1S3A8ugqTStONwSjA5B9rwmDjW59g/ELxUclJd9P5Zv72hyubraU18XBhKFnjMLZEhiiVkz6YttWwEJGHsn5Hjoe6kebn32d7nuzc5ARz4cDowdqDGcJ5SE4l9RcrCOrj+derD70L18N/yWbIQDhiZREUc0ch6QODS4CGJraoLKXFiZR0OKx7B3rqOIwqJMvz5TkOj6hW7zABZAoFRZuIpAinow2By+Ti6c2UPPlbupIZRvifeEcWVjAH3iCdFWyJ2pwbnNAIzmecPzcLH20wVAe3NTMVL+0luNup3aPnjciE1BUjk8LnzSYJ9UGvBKJoEjJCwOEDktZ3h8vnok46NY2BFJ7ijhk4+FkCvTPjoj/ad7b5mK3MtMmlTod4Ek=
+    skip_cleanup: true
+    on:
+      condition: $TRAVIS_PYTHON_VERSION = "2.7"
+      repo: fuzeman/byte
+      tags: true
