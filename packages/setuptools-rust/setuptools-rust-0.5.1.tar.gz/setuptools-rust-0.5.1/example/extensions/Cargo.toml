@@ -1,0 +1,12 @@
+[package]
+name = "hello-world"
+version = "0.1.0"
+authors = ["Nikolay Kim <fafhrd91@gmail.com>"]
+
+[dependencies.cpython]
+git = "https://github.com/dgrunwald/rust-cpython.git"
+default-features = false
+
+[lib]
+name = "helloworld"
+crate-type = ["cdylib"]
