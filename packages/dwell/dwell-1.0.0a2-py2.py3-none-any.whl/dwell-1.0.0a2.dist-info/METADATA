@@ -1,0 +1,45 @@
+Metadata-Version: 2.0
+Name: dwell
+Version: 1.0.0a2
+Summary: Some Python packages for fft, smoothing, gridding
+Home-page: http://christopherlee.co.uk
+Author: Christopher Lee
+Author-email: lee@aeolisresearch.com
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: argh
+Requires-Dist: nose
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: six
+Requires-Dist: termcolor
+
+pyDwell
+==========================
+
+This package contains a number of independent modules that are used by other packages.
+
+It currently includes the following modules:
+
+- constants : physical constants derived from NIST data
+- fft : interfaces to scipy, anfft, fftw FFT packages that can deal with 2D data
+- io : NetCDF interface to wrap functions in higher level code
+- planck : Black body calculations and integrators
+- rad : development tools, including a colored log package, function deprecation wrapper, file IO debugging wrapper
+- smoothing : vector smoothing interface to scipy smoothing and kernels
+- caselessdict : A case free dictionary
+- testing: internal testing code.
+
+Credits
+-------
+
+- Author: `Christopher Lee`_
+
+.. _Christopher Lee: http://christopherlee.co.uk/
+
+
+
+
