@@ -1,0 +1,111 @@
+#!/usr/bin/env python
+# coding=utf-8
+import argparse
+
+
+def main():
+    parser = argparse.ArgumentParser(description='chinese language tools command line.')
+    parser.add_argument("action", help="action to perform, including extract, cut, learn, doc2vec, similar")
+    parser.add_argument("input", nargs="?", help="input for the action")
+    parser.add_argument("-o", "--output-file", help="file to save output")
+    parser.add_argument("-m", "--stored-model", help="saved word2vec model")
+    parser.add_argument("-s", "--skip-lines", nargs="+", help="skip lines with the specified prefixes when cutting")
+    parser.add_argument("-e", "--encoding", default="utf-8", help="specify file encoding")
+    parser.add_argument("-t", "--source-type", default="qq", help="source type of the input, supported types are qq")
+    args = parser.parse_args()
+
+    if args.action == "extract":
+        from cla.util import chat_util
+        if not args.input:
+            print "Source file is required!"
+            return
+
+        print "Prepare extracting sentences from " + args.input
+        if args.source_type == "qq":
+            result_path = chat_util.process_qq_history(args.input, encoding=args.encoding, output_path=args.output_file)
+            print "Done. Extracted sentences saved to " + result_path
+        else:
+            print "Unsupported type: " + args.source_type
+
+    elif args.action == "cut":
+        from cla.util import file_util
+        if not args.input:
+            print "File contains sentences is required!"
+            return
+
+        print "Cutting sentences in " + args.input
+        result_path = file_util.cut_words_in(args.input,
+                                             encoding=args.encoding,
+                                             output_path=args.output_file,
+                                             skip_prefixes=args.skip_lines)
+        print "Done. Words saved ot " + result_path
+
+    elif args.action == "learn":
+        from cla.learn.word2vec import VectorModel
+        if not args.input:
+            print "File contains words is required!"
+            return
+
+        if args.stored_model:
+            model = VectorModel(source_file_path=args.stored_model)
+            result_file = args.stored_model
+            update = True
+            print "Loaded previous model: " + args.stored_model
+        else:
+            result_file = "model.dat"
+            model = VectorModel()
+            update = False
+
+        print "Learning vector presentation of " + args.input
+        model.train(source_corpus_path=args.input, update=update)
+
+        if args.output_file:
+            result_file = args.output_file
+        model.save(result_file)
+        print "Done. Model saved to " + result_file
+
+    elif args.action == "doc2vec":
+        from cla.learn.word2vec import VectorModel
+        if not args.input:
+            print "File contains words is required!"
+            return
+        if not args.stored_model:
+            print "A stored word2vec model is required! (--stored-model)"
+            return
+
+        model = VectorModel(source_file_path=args.stored_model)
+        if not args.output_file:
+            import os
+            _, filename = os.path.split(args.input)
+            result_path = "vector_of_" + filename
+        else:
+            result_path = args.output_file
+
+        with open(args.input, 'r') as input_file, open(result_path, 'w') as output_file:
+            for line in input_file:
+                line = line.decode(encoding=args.encoding).strip()
+                if not line:
+                    continue
+
+                vector = model.to_vector(line.split(" "))
+                output_file.write(" ".join(map(str, vector)) + "\n")
+        print "Done. Vectors saved to " + result_path
+
+    elif args.action == "similar":
+        from cla.learn.word2vec import VectorModel
+        if not args.input:
+            print "A input word is required!"
+            return
+        if not args.stored_model:
+            print "A stored word2vec model is required! (--stored-model)"
+            return
+
+        model = VectorModel(source_file_path=args.stored_model)
+        for word, similarity in model.model.similar_by_word(args.input.decode(args.encoding)):
+            print word.encode(args.encoding) + "\t%.5f" % similarity
+
+    else:
+        print "Unsupported action: " + args.action
+
+if __name__ == '__main__':
+    main()
