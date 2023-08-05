@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+
+
+from sqlshare_client.util.scripts import get_client
+from sqlshare_client.exceptions import NotFoundException
+from sqlshare_client.exceptions import PermissionDeniedException
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--owner', required=True)
+parser.add_argument('--name', required=True)
+parser.add_argument('--is-public', required=False, action="store_true")
+parser.add_argument('--is-private', required=False, action="store_true")
+parser.add_argument('--unshare', required=False, action="store_true",
+                    help="Unshares the dataset, and makes it not-public")
+parser.add_argument('--account', action='append', required=False,
+                    help="List of accounts that dataset will be shared with")
+
+try:
+    client = get_client(parser)
+    values = vars(parser.parse_args())
+
+    if values['is_public']:
+        client.set_is_public(values['owner'], values['name'])
+
+    if values['is_private']:
+        client.set_is_private(values['owner'], values['name'])
+
+    if values['unshare']:
+        client.remove_sharing(values['owner'], values['name'])
+
+    if values['account']:
+        client.set_shared(values['owner'], values['name'], values['account'])
+
+    permissions = client.get_permissions(values['owner'], values['name'])
+
+    if permissions.is_public:
+        print "Is Public: True"
+    else:
+        print "Is Public: False"
+
+    if permissions.accounts:
+        print "Shared with accounts: "
+        for account in permissions.accounts:
+            print "    %s" % account
+
+    if permissions.accounts:
+        print "Shared with emails: "
+        for email in permissions.emails:
+            print "    %s" % email
+
+
+except PermissionDeniedException:
+    print "Permission denied"
+except NotFoundException:
+    print "Dataset not found"
+except Exception as ex:
+    print "EX: ", ex
+    pass
+

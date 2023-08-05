@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+from sqlshare_client.util.scripts import get_client, dump_dataset
+import argparse
+import sys
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--name', required=True)
+parser.add_argument('--is-public', required=False)
+parser.add_argument('--description', required=False)
+parser.add_argument('--sql', required=False)
+
+try:
+    client = get_client(parser)
+    values = vars(parser.parse_args())
+
+    if values['sql'] == '-':
+        print "Enter SQL: "
+        sql = "".join(sys.stdin.readlines())
+        values['sql'] = sql
+
+    owner = client.get_current_user()
+    dataset = client.create_dataset_from_sql(owner.username,
+                                             values['name'],
+                                             values['sql'],
+                                             values['description'],
+                                             values['is_public'])
+    dump_dataset(dataset)
+except Exception as ex:
+    print "EX: ", ex
+    pass
+

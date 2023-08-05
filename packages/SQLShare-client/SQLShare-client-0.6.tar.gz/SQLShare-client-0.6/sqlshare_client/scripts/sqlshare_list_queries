@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+
+from sqlshare_client.util.scripts import get_client, display_query_list
+
+try:
+    client = get_client()
+    queries = client.get_all_queries()
+
+    print "Recent Queries:"
+    display_query_list(queries)
+
+except Exception as ex:
+    print "EX: ", ex

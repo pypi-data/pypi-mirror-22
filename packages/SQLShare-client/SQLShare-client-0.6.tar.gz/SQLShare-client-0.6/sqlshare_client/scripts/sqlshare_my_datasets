@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+
+from sqlshare_client.util.scripts import get_client, list_datasets
+
+try:
+    datasets = get_client().get_my_datasets()
+    list_datasets(datasets)
+except:
+    pass
+

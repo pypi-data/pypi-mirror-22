@@ -1,0 +1,33 @@
+#!/usr/bin/env python
+
+from sqlshare_client.util.scripts import get_client, display_query
+from sqlshare_client.util.scripts import print_to_file
+import argparse
+import sys
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--sql', required=False)
+parser.add_argument('--output', required=False)
+
+try:
+    client = get_client(parser)
+    values = vars(parser.parse_args())
+
+    if values['sql'] == '-':
+        print "Enter SQL: "
+        sql = "".join(sys.stdin.readlines())
+        values['sql'] = sql
+
+    q = client.run_query(values['sql'])
+
+    if values['output']:
+        if values['output'] == '-':
+            handle = sys.stdout
+        else:
+            handle = open(values['output'], 'w')
+        print_to_file(handle, q)
+    else:
+        display_query(q)
+
+except Exception as ex:
+    print "EX: ", ex
