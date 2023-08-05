@@ -1,0 +1,12 @@
+include *.rst
+include *.py
+include buildout.cfg
+include tox.ini
+include .travis.yml
+include .coveragerc
+
+recursive-include src *.rst *.zcml
+
+global-exclude *.pyc
+global-exclude *.so
+global-exclude *.dll
