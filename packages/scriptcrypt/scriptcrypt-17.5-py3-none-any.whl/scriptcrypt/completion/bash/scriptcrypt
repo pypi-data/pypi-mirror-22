@@ -1,0 +1,38 @@
+_scriptcrypt()
+{
+    local cur prev opt base names
+    COMPREPLY=()
+    position="$COMP_CWORD"
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    opt="--editor --viewer --shell --db --appdir --license --version --help --populate-db --populate-bash --populate-zsh --populate-all"
+
+    case "$prev" in
+        --editor|--viewer|--shell)
+            local entries=$(for j in $(IFS=":"; for i in $PATH ;do echo ${i}; done);do [ -d $j ] && ls -x $j; done)
+                COMPREPLY=( $(compgen -W "${entries}" -- ${cur}) )
+                return 0
+            ;;
+
+        --db|--appdir)
+                complete -o default -F _scriptcrypt scriptcrypt
+                return 0
+            ;;
+        --license|--help|-h|--version|--populate-db|--populate-bash|--populate-zsh|--populate-all)
+            return 0
+            ;;
+ 
+         *)
+                 COMPREPLY=( $(compgen -W "${opt}" -- ${cur}) )
+                 return 0
+             ;;        
+    esac      
+
+    if [[ "$COMP_CWORD" == 1 ]]; then
+        COMPREPLY=( $(compgen -W "${opt}" -- ${cur}) )
+        return 0
+    fi
+
+}
+complete -F _scriptcrypt scriptcrypt
