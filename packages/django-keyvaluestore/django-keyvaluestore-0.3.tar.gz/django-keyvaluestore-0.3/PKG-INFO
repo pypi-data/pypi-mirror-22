@@ -1,0 +1,28 @@
+Metadata-Version: 1.1
+Name: django-keyvaluestore
+Version: 0.3
+Summary: A Key-Value store for Django
+Home-page: https://github.com/vikingco/django-keyvaluestore
+Author: Unleashed NV
+Author-email: operations@unleashed.be
+License: BSD
+Description: ===================================
+        A simple key-value-store for Django
+        ===================================
+        
+        django-keyvaluestore implements a very simple database-based key-value store for Django.
+        
+        Usage
+        =====
+        The interface is straightforward::
+        
+          from keyvaluestore import get_value_for_key, set_key_value
+          set_key_value('foo', 'bar')
+          get_value_for_key('foo')
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
