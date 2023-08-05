@@ -1,0 +1,206 @@
+Metadata-Version: 1.1
+Name: djangorestframework-simplejwt
+Version: 1.2
+Summary: A minimal JSON Web Token authentication plugin for Django REST Framework
+Home-page: https://github.com/davesque/django-rest-framework-simplejwt
+Author: David Sanders
+Author-email: davesque@gmail.com
+License: MIT
+Description: Simple JWT
+        ==========
+        
+        A minimal JSON Web Token authentication plugin for the `Django REST Framework
+        <http://www.django-rest-framework.org/>`_.
+        
+        .. image:: https://travis-ci.org/davesque/django-rest-framework-simplejwt.svg?branch=master
+          :target: https://travis-ci.org/davesque/django-rest-framework-simplejwt
+        .. image:: https://codecov.io/gh/davesque/django-rest-framework-simplejwt/branch/master/graph/badge.svg
+          :target: https://codecov.io/gh/davesque/django-rest-framework-simplejwt
+        
+        ----
+        
+        Simple JWT provides a JSON Web Token authentication backend for the Django REST
+        Framework.  It aims to provide an out-of-the-box solution for JWT
+        authentication which is minimal and avoids some of the common pitfalls of the
+        JWT specification.  Below, we list some of the major goals of the project:
+        
+        Discourage crypto negotiation
+        -----------------------------
+        
+        Protocols which allow for negotiation of crypto algorithms (this includes JWT)
+        are generally considered to be weak by design.  Simple JWT assumes that most
+        use cases will be covered by sha-256 HMAC signing with a shared secret.
+        Customization of which algorithms are used to sign/verify tokens is possible
+        but not intended to be easy.
+        
+        Object oriented API
+        -------------------
+        
+        The implementation of Simple JWT emphasizes an object-oriented design.  The
+        intention is that customization of Simple JWT's funcionality is done mostly
+        through subclassing.  This will hopefully encourage developers to understand
+        the library at a deeper level and possibly reduce the risk of deploying a
+        flawed JWT authentication system.  The classes which comprise the bulk of
+        Simple JWT's functionality are meant to be easy to read and understand.
+        
+        Safe defaults
+        -------------
+        
+        Configurable aspects of Simple JWT should have reasonably safe defaults.  Users
+        of this library should feel free to plug and play without shooting themselves
+        in the foot.
+        
+        Installation
+        ------------
+        
+        Simple JWT can be installed with pip::
+        
+          pip install djangorestframework_simplejwt
+        
+        Then, your django project must be configured to use the library.  In
+        ``settings.py``, add
+        ``rest_framework_simplejwt.authentication.JWTAuthentication`` to the list of
+        authentication classes::
+        
+          REST_FRAMEWORK = {
+              ...
+              'DEFAULT_AUTHENTICATION_CLASSES': (
+                  ...
+                  'rest_framework_simplejwt.authentication.JWTAuthentication',
+              )
+              ...
+          }
+        
+        Also, in your root ``urls.py`` file, include Simple JWT's default urls::
+        
+          urlpatterns = [
+              ...
+              url(r'^api/', include('rest_framework_simplejwt.urls')),
+              ...
+          ]
+        
+        API views to obtain and refresh tokens should be available at
+        ``/api/token/obtain/`` and ``/api/token/refresh/``.
+        
+        Usage
+        -----
+        
+        To verify that Simple JWT is working, you can use curl to issue a couple of
+        test requests::
+        
+          curl \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -d '{"username": "davidattenborough", "password": "boatymcboatface"}' \
+            http://localhost:8000/api/token/obtain/
+        
+          ...
+          {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3BrIjoxLCJjb2xkX3N0dWZmIjoi4piDIiwiZXhwIjoxMjM0NTYsInJlZnJlc2hfZXhwIjoxMjM1MDB9.8po9BafZiPi1aaWTKYCt3q0_2eLlWabj4nfQVYXLCK8"}
+        
+        You can use the returned token to prove authentication for a protected view::
+        
+          curl \
+            -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3BrIjoxLCJjb2xkX3N0dWZmIjoi4piDIiwiZXhwIjoxMjM0NTYsInJlZnJlc2hfZXhwIjoxMjM1MDB9.8po9BafZiPi1aaWTKYCt3q0_2eLlWabj4nfQVYXLCK8" \
+            http://localhost:8000/api/some-protected-view/
+        
+        Or you can refresh the token if it is still refreshable::
+        
+          curl \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -d '{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3BrIjoxLCJjb2xkX3N0dWZmIjoi4piDIiwiZXhwIjoxMjM0NTYsInJlZnJlc2hfZXhwIjoxMjM1MDB9.8po9BafZiPi1aaWTKYCt3q0_2eLlWabj4nfQVYXLCK8"}' \
+            http://localhost:8000/api/token/refresh/
+        
+          ...
+          {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3BrIjoxLCJjb2xkX3N0dWZmIjoi4piDIiwiZXhwIjoxMjM0ODAsInJlZnJlc2hfZXhwIjoxMjM1MDB9.tTXYxsumgb7Odj9NsAAVpSaNnkS8gfAh-yjEnlW0JiQ"}
+        
+        Settings
+        --------
+        
+        Some of Simple JWT's behavior can be customized through settings variables in
+        ``settings.py``::
+        
+          from datetime import timedelta
+        
+          ...
+        
+          SIMPLE_JWT = {
+              'AUTH_HEADER_TYPE': 'Bearer',
+        
+              'USER_ID_FIELD': 'id',
+              'PAYLOAD_ID_FIELD': 'user_id',
+        
+              'TOKEN_LIFETIME': timedelta(days=1),
+              'TOKEN_REFRESH_LIFETIME': timedelta(days=7),
+        
+              'SECRET_KEY': SECRET_KEY,  # Default to the django secret key
+        
+              'TOKEN_BACKEND': 'rest_framework_simplejwt.backends.TokenBackend',
+          }
+        
+        Above, the default values for these settings are shown.
+        
+        -----
+        
+        AUTH_HEADER_TYPE
+          The authorization header type that will be checked for views that require
+          authentication.  For example, a value of ``'Bearer'`` means that views
+          requiring authentication would look for a header with the following format:
+          ``Authorization: Bearer <token>``.
+        
+        USER_ID_FIELD
+          The database field from the user model that will be included in generated
+          tokens to identify users.  It is recommended that the value of this setting
+          specifies a field which does not normally change once its initial value is
+          chosen.  For example, specifying a "username" or "email" field would be a poor
+          choice since an account's username or email might change depending on how
+          account management in a given service is designed.  This could allow a new
+          account to be created with an old username while an existing token is still
+          valid which uses that username as a user identifier.
+        
+        PAYLOAD_ID_FIELD
+          The key name which will be used for the claim that specifies the user
+          identifier in generated tokens.  For example, a setting value of ``'user_id'``
+          would mean generated tokens include a "user_id" claim that contains the user's
+          identifier.
+        
+        TOKEN_LIFETIME
+          A ``datetime.timedelta`` object which specifies how long a generated token is
+          valid.  This ``timedelta`` value is added to the current UTC time while a token
+          is being generated to obtain the token's "exp" claim value.  Once the time
+          specified by this "exp" claim has passed, a token will no longer be valid for
+          authorization and can no longer be refreshed.
+        
+        TOKEN_REFRESH_LIFETIME
+          A ``datetime.timedelta`` object which specifies how long a generated token
+          may be refreshed.  This ``timedelta`` value is added to the current UTC time
+          while a token is being generated to obtain the token's "refresh_exp" claim
+          value.  Once the time specified by this "refresh_exp" claim has passed, a token
+          can no longer be refreshed.  However, if the time specified by a token's "exp"
+          claim still has not passed, it can still be used for authorization.
+        
+        SECRET_KEY
+          The secret key which is used to sign the content of generated tokens.  This
+          setting defaults to the value of the ``SECRET_KEY`` setting for the django
+          project.  Although this is the most reasonable default that Simple JWT can
+          provide, it is recommended that developers change this setting to a value which
+          is independent from the django project secret key.  This will make changing the
+          secret key used for tokens easier in the event that it is compromised or a
+          token exists which must be immediately invalidated.
+        
+        TOKEN_BACKEND
+          Specifies a dot path to a class which implements a set of low-level token
+          operations used by Simple JWT.  For more information, see the "Customization"
+          section below.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet :: WWW/HTTP
