@@ -1,0 +1,61 @@
+TODO: get_maxdepth, extrap_sec, gen_topomask
+TODO: Add as a constructor.
+TODO: Loop edit + velocity_check
+TODO: https://github.com/nilmtk/nilmtk/issues/83
+
+# Pre-processing.
+def data_conversion(hexfile):
+    """TODO: Read SBE hexadecimal file (Option for from_cnv)."""
+    pass
+
+
+def align(conductivity):
+    """TODO: Align conductivity and temperature."""
+    pass
+
+TODO:
+bins = range(0, max(int(depth)))
+binned = pd.cut(cast.index, bins)
+cast.groupby(binned).size().plot(kind='bar')
+
+elif method == 'interpolate':
+    # TODO:
+    newdf = self.copy()
+
+# Pos-processing.
+def pmel_inversion_check():
+    """
+    FIXME: UNFINISHED!.
+    Additional clean-up and flagging of data after the SBE Processing.
+    Look for inversions in the processed, binned via computing the centered
+    square of the buoyancy frequency, N2, for each bin and linearly
+    interpolating temperature, conductivity, and oxygen over those records
+    where N2 <= -1 x 10-5 s-2, where there appear to be density inversions.
+
+    NOTE: While these could be actual inversions in the CTD records, it is much
+    more likely that shed wakes cause these anomalies.  Records that fail the
+    density inversion criteria in the top 20 meters are retained, but flagged
+    as questionable.
+
+    FIXME: The codes also manually remove spikes or glitches from profiles as
+    necessary, and linearly interpolate over them.
+    """
+
+    # TODO
+    pass
+
+if False:  # TODO: +/- Black-and-White version.
+    cs = ax.contour(x, z, data, colors='grey', levels=levels,
+                    extend=extend, linewidths=1., alpha=1., zorder=2)
+    ax.clabel(cs, fontsize=8, colors='grey', fmt=fmt, zorder=1)
+    cb = None
+
+# PostProcessingTests.
+def test_smooth(self):
+    pass  # TODO
+
+def test_mixed_layer_depth(self):
+    pass  # TODO
+
+def test_barrier_layer_thickness(self):
+    pass  # TODO
