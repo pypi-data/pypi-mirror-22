@@ -1,0 +1,170 @@
+Metadata-Version: 1.1
+Name: sistdmyy
+Version: 1.2.4
+Summary: 兰孟飞在深圳标准技术研究部的工作
+Home-page: https://user.qzone.qq.com/865377886
+Author: lanmengfei
+Author-email: 865377886@qq.com
+License: MIT
+Description: #从2016年开始我在深圳市标准技术研究院的工作内容打包如下
+        
+        1 __init__模块：
+        数据库访问,excel表输出
+        
+        2 dz模块
+        地址挖掘分析，地理数据标准化
+        
+        街道逆向迭代
+        
+        
+        
+        3 福田模块
+        类福田模式的数据自动化
+        
+        -------------------------------------------------------documentation------------------------------------------------------------------
+        此部分和地址分析相关
+        
+        dz模块的算法，主要依靠正则、jieba分词，进行规则的堆砌。
+        
+        __init__.py里有 类对象 mine
+        
+        #mine是用来生成dz_dz表的
+        '''
+        这个类主要接口是：
+        dz_dasa 
+            返回地理名词
+            dz_dasa("深圳市盐田区沙深路粤和街13号稳胜大厦A栋五楼左侧503室",'大厦')=稳胜大厦
+        
+        pats()
+            生成一个类变量P,p是一个字典，定义每种建筑类型的提取规则
+             P['大厦']=[关于该名词的正则规则]
+        
+        minedf(df['jgdz']) 
+             return df
+             形成一个 type-word-tag-tf的表
+        
+        
+        数据库中生成 dz_dz表
+        ---------------------------------------------------------------------------------------------------------------------------------------
+        
+        dz_std.py 有分割对象 std
+        
+        #std用于将一个地址分割
+        
+        '''需要dz_dz  dz_qh dz_jd 三张表
+        spl(a) 
+            分解深圳市福田区莲花街道北环大道7045号哈尔滨大厦1-07 成一个dick
+            但是要注意一个词典的问题
+            loadword()是切换成 dz_dz的词
+            这不是做好的设计，此处将来可能要改成,self.words self.word2s分开，切换动作单独做成一个函数
+        tb()
+            集成tb的四个后续处理
+        
+        std类是运用得到的语料将地址标准化
+        z=std(sql)
+        sql="select ztsfdm,jgdz from basedb.dbo.t_zzjgjz where clrq>='2017-05-01'"
+        初始化sql,决定需要处理的df  ztsfdm-jgdz
+        
+        最终结果存在示例的变量df里,z.df
+        
+        
+        
+        
+        
+        依赖：需要dz_dz  dz_qh dz_jd 三张表
+        生成：df
+        
+        jgdz    ztsfdm  区划  村社镇 楼群  街道  路道街 路道街扩展   村社镇扩展
+        深圳市宝安区西乡街道固戍二路泳辉商务大厦510 440300000012017030209766    宝安区     泳辉商务大厦  西乡街道    固戍二路        
+        深圳市龙华新区观澜街道章阁社区环观南路94号德盛昌大厦1501 440300000012017030212091    龙华新区    章阁社区    德盛昌大厦   观澜街道    环观南路    环观南路94号 
+        
+        
+        
+        ---------------------------------------------------------------------------------------------------------------------------------------
+        
+        dz_jd.py中有对象jdtrain,jd_predict
+        
+        jdtrain
+        用来生成 dz_std_jdtrain 表，街道的训练语料
+        p_corpus()
+        
+            生成dz_std_jdcorpus表
+            ztsfdm  jgdz    word    rn
+            440300000012017030209766    深圳市宝安区西乡街道固戍二路泳辉商务大厦510 西乡街道    1
+            440300000012017030212091    深圳市龙华新区观澜街道章阁社区环观南路94号德盛昌大厦1501 观澜街道    1
+            440300000012017030213027    深圳市龙岗区龙岗街道银威路吓岗一区8巷3号701    龙岗街道    1
+        
+        p_stdtrain()
+        
+            用std.mindf() 将dz_Std_jdcorpus
+            生成dz_std_jdtrain表
+        
+            jgdz    ztsfdm  区划  村社镇 楼群  街道  路道街 路道街扩展   村社镇扩展
+            深圳市宝安区西乡街道固戍二路泳辉商务大厦510 440300000012017030209766    宝安区     泳辉商务大厦  西乡街道    固戍二路        
+            深圳市龙华新区观澜街道章阁社区环观南路94号德盛昌大厦1501 440300000012017030212091    龙华新区    章阁社区    德盛昌大厦   观澜街道    环观南路    环观南路94号 
+        p_update()
+        
+            替换dz_std_jdtrain中的街道为 dz_std_jdcorpus中的街道
+        
+        
+        涉及表
+        dz_std_jdcorpus /dz_std_jdtrain
+        
+        
+        jd_predict
+        运用dz_std_jdtrain，来你逆向迭代那些地址中不包含标准街道名称的。
+        
+        p_df(sql)
+        
+            sql决定，需要转换的对象
+            select  ztsfdm,jgdz from basedb.dbo.t_zzjgjz where ztsfdm is not null and jgdz is not null 
+        
+            对于对象，能用地址名中包含标准街道名称的会直接给出，不含的会通过train数据预测
+            return df:columns=ztsfdm-jgdz-word
+        
+        
+        p_write(name=None,sql=None)
+            包含转换和写入
+            写到name=dz_sist_jd
+        
+        p_update(udate)
+            udate='2017-05-01'
+            针对每次全部重写太慢，这个函数只更新udate以后成立和地址变更的企业
+            在更新地址变更部分，会用到dz_sist_jdAlterTmp表
+            这张表记录udate后做了地址变更的对象，用以重新更新
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        涉及表：dz_sist_jd  dz_sist_jdAlterTmp
+        
+        
+        ---------------------------------------------------------------------------------------------------------------------------------------
+        
+        
+        ----------------------------------------------数据库表总结-----------------------------------------------------------------------------
+        
+        dz_dz  dz_qh dz_jd
+        
+        dz_std_jdcorpus /dz_std_jdtrain
+        
+        dz_sist_jd  dz_sist_jdAlterTmp
+        ---------------------------------------------------------------------------------------------------------------------------------------
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Text Processing :: Indexing
+Classifier: Topic :: Utilities
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
