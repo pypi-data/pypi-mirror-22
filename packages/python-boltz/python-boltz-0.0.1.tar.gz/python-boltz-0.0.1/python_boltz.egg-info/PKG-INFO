@@ -1,0 +1,39 @@
+Metadata-Version: 1.1
+Name: python-boltz
+Version: 0.0.1
+Summary: API for authenticating modem users with bolt account.
+Home-page: UNKNOWN
+Author: Yanwar Solahudin
+Author-email: yanwarsolah@gmail.com
+License: MIT License
+Description: =======
+        PyBoltz
+        =======
+        
+        API for authenticating modem users with bolt account::
+        
+        	from pyboltz.boltz import Boltz
+        
+        	bolt = Boltz("bolt modem phone number", "password")
+        
+        	if bolt.authenticate():
+        		print("authentication success !")
+        		# profile bolt account
+        		if bolt.myprofile():
+        			print(bolt.data_post())
+        			print(bolt.get_profile())
+        	else:
+        		print("authentication failed !")
+        
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
