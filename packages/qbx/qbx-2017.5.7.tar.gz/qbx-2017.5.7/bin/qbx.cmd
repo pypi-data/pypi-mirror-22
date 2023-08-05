@@ -1,0 +1,1 @@
+python -c "import qbx; qbx.run('%*')"
