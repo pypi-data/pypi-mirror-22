@@ -1,0 +1,155 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/fixes.html' as fixes %}
+
+{% block title %}d3cryp7.py{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Documentation</h1>
+      <a href="/" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-home"></span>
+        <span>Home</span>
+      </a>
+    </div>
+    <!-- These code blocks are cancer. -->
+    <!-- I mean, just look at how badly formatted they are. -->
+    <!-- Why does such badly formatted code look good when rendered? -->
+    <div class="row center-block">
+      <h2>Examples</h2>
+      <h3>Curl</h3>
+      <pre><code>$ curl http://{{ host }}:{{ port }}/api/statistics
+$ curl http://{{ host }}:{{ port }}/api/cost
+$ curl http://{{ host }}:{{ port }}/api/recognize -F "image=&lt;base64 encoded image&gt;" -X POST
+$ curl http://{{ host }}:{{ port }}/api/tag -F "image=&lt;base64 encoded image&gt;" -X POST
+$ curl http://{{ host }}:{{ port }}/api/set_success -F "id=&lt;request id&gt;" -X POST
+$ curl http://{{ host }}:{{ port }}/api/set_fail -F "id=&lt;request id&gt;" -X POST</pre></code>
+      <h3>Python Requests</h3>
+      <pre><code>import requests
+
+requests.get('http://{{ host }}:{{ port }}/api/statistics').json()
+requests.get('http://{{ host }}:{{ port }}/api/cost').json()
+requests.post('http://{{ host }}:{{ port }}/api/recognize', data = {'image': '&lt;base64 encoded image&gt;'}).json()
+requests.post('http://{{ host }}:{{ port }}/api/tag', data = {'image': '&lt;base64 encoded image&gt;'}).json()
+requests.post('http://{{ host }}:{{ port }}/api/set_success', data = {'id': '&lt;request id&gt;'}).json()
+requests.post('http://{{ host }}:{{ port }}/api/set_fail', data = {'id': '&lt;request id&gt;'}).json()</code></pre>
+      <p>The result of these examples is as follows:</p>
+      <hr>
+      <h2>Version</h2>
+      <h3>GET</h3>
+      <p>Returns the version of the application</p>
+      <pre><code>{
+  "version": "0.5.0"
+}</code></pre>
+      <a href="/api/version">http://{{ host }}:{{ port }}/api/version</a>
+      <h2>Statistics</h2>
+      <h3>GET</h3>
+      <p>Returns statistics about the application and the Python interpreter</p>
+      <pre><code>{
+  "python": {
+    "platform": "linux",
+    "version": "3.5.2"
+  },
+  "d3cryp7": {
+    "status_code": 1,
+    "version": "0.5.0",
+    "status": "WORKING",
+    "total_tasks": 29,
+    "running_tasks": 1
+  },
+  "time": {
+    "running": 39,
+    "start": 1482208973,
+    "current": 1482209012
+  }
+}</code></pre>
+      <a href="/api/statistics">http://{{ host }}:{{ port }}/api/statistics</a>
+      <h2>Cost</h2>
+      <h3>GET</h3>
+      <p>Returns the cost of using the application</p>
+      <pre><code>{
+  "tag": 0.0,
+  "recognize": 0.0
+}</code></pre>
+      <a href="/api/cost">http://{{ host }}:{{ port }}/api/cost</a>
+      <h2>Recognize</h2>
+      <h3>POST</h3>
+      <p>Uses optical character recognition to extract text from an image</p>
+      <h4>Arguments</h4>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>image</td>
+          <td>A base64 encoded image</td>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td>The ID of the request</td>
+        </tr>
+      </table>
+      <pre><code>{
+  "result": "The quick brown fox jumps over the lazy dog.",
+  "id": 42
+}</code></pre>
+      <a href="/api/recognize">http://{{ host }}:{{ port }}/api/recognize</a>
+
+      <h2>Tag</h2>
+      <h3>POST</h3>
+      <p>Uses machine learning to tag the contents of an image</p>
+      <h4>Arguments</h4>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>image</td>
+          <td>A base64 encoded image</td>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td>The ID of the request</td>
+        </tr>
+      </table>
+      <pre><code>{
+  "result": {
+    "drive": 0.9986156,
+    "bumper": 0.97442794,
+    "coupe": 0.9619592,
+    "transportation system": 0.9958581,
+    "public show": 0.9867297,
+    "hood": 0.9648874,
+    "sedan": 0.97975063,
+    "fast": 0.9912327,
+    "engine": 0.9864018,
+    "wheel": 0.99912167,
+    "speed": 0.98680496,
+    "automotive": 0.9953874,
+    "horsepower": 0.9845407,
+    "roadster": 0.96291375,
+    "car": 0.99995154,
+    "headlight": 0.96830994,
+    "driver": 0.96466327,
+    "super": 0.9590338,
+    "vehicle": 0.9970878,
+    "hurry": 0.99164534
+  },
+  "id": 42
+}</code></pre>
+      <a href="/api/recognize">http://{{ host }}:{{ port }}/api/tag</a>
+
+    </div>
+  </div>
+  <footer style="margin-top: 1cm; text-align: center">
+    <p>Copyright 2016 Justin Willis</p>
+    <a href="https://bitbucket.org/bkvaluemeal/d3cryp7.py" class="btn btn-link" role="button">Bitbucket</a>
+  </footer>
+{% endblock %}

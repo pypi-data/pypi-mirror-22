@@ -1,0 +1,48 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/fixes.html' as fixes %}
+
+{% block title %}d3cryp7.py{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Configuration</h1>
+      <a href="/" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-home"></span>
+        <span>Home</span>
+      </a>
+    </div>
+    <div class="row center-block">
+      <form action="/config/save" method="post">
+        <h2>Default</h2>
+        <div class="form-group">
+          <label for="host">Host</label>
+          <input type="text" class="form-control" value="{{ config['DEFAULT']['host'] }}" name="host">
+        </div>
+        <div class="form-group">
+          <label for="port">Port</label>
+          <input type="number" class="form-control" value="{{ config['DEFAULT']['port'] }}" name="port">
+        </div>
+        <h2>Clarifai</h2>
+        <div class="form-group">
+          <label for="host">App ID</label>
+          <input type="text" class="form-control" value="{{ config['Clarifai']['app_id'] }}" name="clarifai_id">
+        </div>
+        <div class="form-group">
+          <label for="host">App secret</label>
+          <input type="text" class="form-control" value="{{ config['Clarifai']['app_secret'] }}" name="clarifai_secret">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+  </div>
+  <footer style="margin-top: 1cm; text-align: center">
+    <p>Copyright 2016 Justin Willis</p>
+    <a href="https://bitbucket.org/bkvaluemeal/d3cryp7.py" class="btn btn-link" role="button">Bitbucket</a>
+  </footer>
+{% endblock %}

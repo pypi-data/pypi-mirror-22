@@ -1,0 +1,41 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/fixes.html' as fixes %}
+
+{% block title %}d3cryp7.py{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
+    <script src="/charts/static/chartkick.js"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="jumbotron">
+      <h1>d3cryp7.py</h1>
+      <p>A Python module for image analysis and recognition</p>
+    </div>
+    <div class="row center-block">
+      <a href="/api" class="btn btn-default col-sm-4 center-block" role="button">
+        <h3>Documentation</h3>
+        <p>A list of all functions provided by the application</p>
+      </a>
+      <a href="/config" class="btn btn-default col-sm-4 center-block" role="button">
+        <h3>Configuration</h3>
+        <p>Edit the settings for the application</p>
+      </a>
+      <a href="/activity" class="btn btn-default col-sm-4 center-block" role="button">
+        <h3>Activity Log</h3>
+        <p>See all requests made through the application</p>
+      </a>
+    </div>
+    <div class="text-center" style="margin-top: 30px">
+      {% line_chart data %}
+    </div>
+  </div>
+  <footer style="margin-top: 1cm; text-align: center">
+    <p>Copyright 2016 Justin Willis</p>
+    <a href="https://bitbucket.org/bkvaluemeal/d3cryp7.py" class="btn btn-link" role="button">Bitbucket</a>
+  </footer>
+{% endblock %}
