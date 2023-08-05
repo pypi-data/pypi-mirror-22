@@ -1,0 +1,40 @@
+Metadata-Version: 1.0
+Name: pydorita
+Version: 0.1
+Summary: Python client for controlling a iRobot Roomba 980 (via rest980)
+Home-page: https://github.com/pschmitt/pydorita
+Author: Philipp Schmitt
+Author-email: philipp@schmitt.co
+License: GPL3
+Description: pydorita
+        ============
+        
+        This library provides Python bindings for the iRobot Roomba 980 REST gateway
+        from https://github.com/koalazak/rest980
+        
+        Example
+        --------------
+        .. code:: python
+        
+            from pydorita import PyDoritaClient
+            # Connect to the REST980 gateway
+            pd = PyDoritaClient(
+                hostname='rest980-gw.lan',
+                port=3000,
+                username='roomba',
+                password='R0mB!'
+            )
+            # Get the current state (ie. "run", "stuck" etc.)
+            pd.phase
+            # Get the current error code
+            pd.error
+            # Get the current battery percentage
+            pd.battery
+            # Get the current position
+            pd.position
+            # Start cleaning
+            pd.clean()
+            # Stop and dock
+            pd.stop_and_dock()
+        
+Platform: UNKNOWN
