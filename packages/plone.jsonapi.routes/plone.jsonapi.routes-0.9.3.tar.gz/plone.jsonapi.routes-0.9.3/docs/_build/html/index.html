@@ -1,0 +1,212 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>plone.jsonapi.routes &mdash; plone.jsonapi.routes 0.8.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.8.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="plone.jsonapi.routes 0.8.3 documentation" href="#" />
+    <link rel="next" title="Installation" href="installation.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">plone.jsonapi.routes 0.8.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="plone-jsonapi-routes">
+<h1>plone.jsonapi.routes<a class="headerlink" href="#plone-jsonapi-routes" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to <cite>plone.jsonapi.routes</cite> documentation. This documentation is divided
+in different parts. I recommend that you get started with <a class="reference internal" href="installation.html"><em>Installation</em></a>
+and then head over to the <a class="reference internal" href="quickstart.html"><em>Quickstart</em></a>. Please check out the <a class="reference internal" href="api.html"><em>API</em></a>
+documentation for internals about <cite>plone.jsonapi.routes</cite>.</p>
+<p>Table of Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#buildout">Buildout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#jsonview">JSONView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#advanced-rest-client">Advanced Rest Client</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#environment">Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#version">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#content-routes">Content Routes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#documents">Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#folders">Folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#events">Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#files">Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#images">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#links">Links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#news-items">News Items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#topics">Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#collections">Collections</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#concept">Concept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#base-url">Base URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#operations">Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#special-resources">Special Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#response-format">Response Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#the-api-module">The API Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#logout">Logout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#basic-authentication">Basic Authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="customizing.html">Customizing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="customizing.html#adding-a-custom-route-provider">Adding a custom route provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customizing.html#adding-a-custom-data-adapter">Adding a custom  data adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customizing.html#adding-a-custom-data-manager">Adding a custom  data manager</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="crud.html">CRUD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="crud.html#unified-api">Unified API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crud.html#response-format">Response Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crud.html#get">GET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crud.html#create">CREATE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crud.html#update">UPDATE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crud.html#delete">DELETE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crud.html#cut">CUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crud.html#copy">COPY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crud.html#paste">PASTE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dexterity.html">Dexterity Content</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dexterity.html#security">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#get-content-by-uid">Get content by uid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#get-content-by-path">Get content by path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#get-content-by-parent-path-and-id">Get content by parent_path and id</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#copy-cut-paste-content">Copy/Cut/Paste content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#search-contents">Search contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#delete-contents">Delete contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#get-the-portal-object">Get the portal object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#get-folder-contents">Get folder contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#get-the-full-object">Get the full object</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Useful Links</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="links.html#plone">Plone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="links.html#plone-jsonapi-routes">plone.jsonapi.routes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="links.html#plone-jsonapi-core">plone.jsonapi.core</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTORS.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HISTORY.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="HISTORY.html#unreleased">0.8.3 - unreleased</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HISTORY.html#id2">0.8.2 - 2015-09-09</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HISTORY.html#id3">0.8.1 - 2015-09-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HISTORY.html#id4">0.8 - 2015-07-20</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HISTORY.html#id5">0.7 - 2015-07-09</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HISTORY.html#id6">0.6 - 2015-02-22</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HISTORY.html#id7">0.5 - 2015-02-20</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HISTORY.html#id8">0.4 - 2015-01-13</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HISTORY.html#id9">0.3 - 2014-10-14</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HISTORY.html#id10">0.2 - 2014-03-05</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HISTORY.html#id11">0.1 - 2014-01-23</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">Installation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             >next</a> |</li>
+        <li><a href="#">plone.jsonapi.routes 0.8.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Ramon Bartl.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

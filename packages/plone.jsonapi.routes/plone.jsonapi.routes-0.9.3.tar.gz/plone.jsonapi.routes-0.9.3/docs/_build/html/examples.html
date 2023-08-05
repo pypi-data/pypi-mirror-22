@@ -1,0 +1,230 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Example &mdash; plone.jsonapi.routes 0.8.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.8.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="plone.jsonapi.routes 0.8.3 documentation" href="index.html" />
+    <link rel="next" title="Useful Links" href="links.html" />
+    <link rel="prev" title="Dexterity Content" href="dexterity.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="links.html" title="Useful Links"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dexterity.html" title="Dexterity Content"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">plone.jsonapi.routes 0.8.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h1>
+<p>This section provides some common examples how to use <cite>plone.jsonapi.routes</cite>.</p>
+<div class="section" id="get-content-by-uid">
+<h2>Get content by uid<a class="headerlink" href="#get-content-by-uid" title="Permalink to this headline">¶</a></h2>
+<p>Getting an object by its <strong>UID</strong>:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/get/3762908a5d2c4917b9d2dbaf2a9be1cc">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/get/3762908a5d2c4917b9d2dbaf2a9be1cc</a></p>
+</div>
+<div class="section" id="get-content-by-path">
+<h2>Get content by path<a class="headerlink" href="#get-content-by-path" title="Permalink to this headline">¶</a></h2>
+<p>Getting a content by its <strong>physical path</strong>:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/get?path=/Plone/folder">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/get?path=/Plone/folder</a></p>
+</div>
+<div class="section" id="get-content-by-parent-path-and-id">
+<h2>Get content by parent_path and id<a class="headerlink" href="#get-content-by-parent-path-and-id" title="Permalink to this headline">¶</a></h2>
+<p>Get a content by specifying the <strong>parent path</strong> and the <strong>id</strong>:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/get?parent_path=/Plone&amp;id=folder">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/get?parent_path=/Plone&amp;id=folder</a></p>
+</div>
+<div class="section" id="copy-cut-paste-content">
+<h2>Copy/Cut/Paste content<a class="headerlink" href="#copy-cut-paste-content" title="Permalink to this headline">¶</a></h2>
+<p>Contents can be copied or cutted to the clipboard to paste it later somewhere
+else. This example shows how to copy a folder located in Plone with the
+physical path <cite>/Plone/folder</cite>.</p>
+<p>You can either cut or copy by the <cite>parent_path</cite> &amp; <cite>id</cite> pair:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/copy?parent_path=/Plone&amp;id=folder">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/copy?parent_path=/Plone&amp;id=folder</a></p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/cut?parent_path=/Plone&amp;id=folder">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/cut?parent_path=/Plone&amp;id=folder</a></p>
+<p>Or you can simply take the physical path by specifying the <cite>path</cite>:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/copy?path=/Plone/folder">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/copy?path=/Plone/folder</a></p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/cut?path=/Plone/folder">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/cut?path=/Plone/folder</a></p>
+<p>Or if you know the UID, you can use the <cite>uid</cite> parameter:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/copy/3762908a5d2c4917b9d2dbaf2a9be1cc">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/copy/3762908a5d2c4917b9d2dbaf2a9be1cc</a></p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/cut/3762908a5d2c4917b9d2dbaf2a9be1cc">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/cut/3762908a5d2c4917b9d2dbaf2a9be1cc</a></p>
+<p>After you cutted or copied the content, you can paste it by providing the
+target folder in the known way.</p>
+<p>If you would like to paste it in the portal root, just use the UID 0 or the path of
+your Plone site:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/paste/0">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/paste/0</a></p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/paste?path=/Plone">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/paste?path=/Plone</a></p>
+</div>
+<div class="section" id="search-contents">
+<h2>Search contents<a class="headerlink" href="#search-contents" title="Permalink to this headline">¶</a></h2>
+<p>To search <strong>all</strong> contents of the portal, you can utilize the <cite>search</cite> route:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/search">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/search</a></p>
+<p>The search results can be refined by using request parameters, e.g.:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/search?q=test">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/search?q=test</a></p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/search?q=test&amp;limit=10">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/search?q=test&amp;limit=10</a></p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/search?q=test&amp;limit=10&amp;portal_type=Folder">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/search?q=test&amp;limit=10&amp;portal_type=Folder</a></p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/search?q=test&amp;limit=10&amp;portal_type=Folder&amp;Creator=admin">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/search?q=test&amp;limit=10&amp;portal_type=Folder&amp;Creator=admin</a></p>
+<p>Basically, you can use any defined index of your Plone site.</p>
+<p>There are some convenience keys like <cite>q</cite> for the SearchableText index.
+See <a class="reference internal" href="api.html#parameters"><em>Parameters</em></a> for further details.</p>
+</div>
+<div class="section" id="delete-contents">
+<h2>Delete contents<a class="headerlink" href="#delete-contents" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to delete contents from your Plone site with the <cite>delete</cite> route.
+See <a class="reference internal" href="crud.html"><em>CRUD</em></a> for details.</p>
+<p>You can either delete by the <cite>parent_path</cite> &amp; <cite>id</cite> pair:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/delete?parent_path=/Plone&amp;id=folder">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/delete?parent_path=/Plone&amp;id=folder</a></p>
+<p>Or you can simply take the physical path by specifying the <cite>path</cite>:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/delete?path=/Plone/folder">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/delete?path=/Plone/folder</a></p>
+<p>Or if you know the UID, you can use the <cite>uid</cite> parameter:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/delete/3762908a5d2c4917b9d2dbaf2a9be1cc">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/delete/3762908a5d2c4917b9d2dbaf2a9be1cc</a></p>
+<p>It is even possible to delete multiple objects. This can be done by sending the
+data in a list within the POST body. See <a class="reference internal" href="crud.html"><em>CRUD</em></a> for mode details.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The API do not allow to delete the portal object (UID=0)</p>
+</div>
+</div>
+<div class="section" id="get-the-portal-object">
+<h2>Get the portal object<a class="headerlink" href="#get-the-portal-object" title="Permalink to this headline">¶</a></h2>
+<p>To fetch the portal object you can use the <cite>plonesites</cite> route. Despite the
+pluralized name, there can be only one responsible plone site for the API at a
+time.</p>
+<p>There are two ways to fetch the portal, either as a single record or in the default
+response format specified by <a class="reference internal" href="api.html#response-format"><em>Response Format</em></a>.</p>
+<p>To get a single result record, you have to use the <cite>portal</cite> route:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/portal">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/portal</a></p>
+<p>To get the known <cite>items</cite> response format as specified in <a class="reference internal" href="api.html#response-format"><em>Response Format</em></a>, you
+have to use the <cite>plonesites</cite> route:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/plonesites">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/plonesites</a></p>
+</div>
+<div class="section" id="get-folder-contents">
+<h2>Get folder contents<a class="headerlink" href="#get-folder-contents" title="Permalink to this headline">¶</a></h2>
+<p>If you are interested in the contents of a folderish content type, you can
+append the <cite>children=yes</cite> request parameter to the url:</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/plonesites?children=yes">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/plonesites?children=yes</a></p>
+<p>this will add a <cite>children</cite> list to the response which includes all contents of
+the requested object. This can actually be done with any route provider.</p>
+</div>
+<div class="section" id="get-the-full-object">
+<h2>Get the full object<a class="headerlink" href="#get-the-full-object" title="Permalink to this headline">¶</a></h2>
+<p>The API is designed in a two step architecture, see the API doc:<cite>Concept</cite>. Therefore
+only the catlog brain results are returned in the first step.</p>
+<p>You can bypass this step by specifying the <cite>complete=yes</cite> request parameter.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <cite>complete=yes</cite> parameter also affects the child nodes</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is not recommended to use the complete flag, as it is significant slower.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Example</a><ul>
+<li><a class="reference internal" href="#get-content-by-uid">Get content by uid</a></li>
+<li><a class="reference internal" href="#get-content-by-path">Get content by path</a></li>
+<li><a class="reference internal" href="#get-content-by-parent-path-and-id">Get content by parent_path and id</a></li>
+<li><a class="reference internal" href="#copy-cut-paste-content">Copy/Cut/Paste content</a></li>
+<li><a class="reference internal" href="#search-contents">Search contents</a></li>
+<li><a class="reference internal" href="#delete-contents">Delete contents</a></li>
+<li><a class="reference internal" href="#get-the-portal-object">Get the portal object</a></li>
+<li><a class="reference internal" href="#get-folder-contents">Get folder contents</a></li>
+<li><a class="reference internal" href="#get-the-full-object">Get the full object</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dexterity.html"
+                        title="previous chapter">Dexterity Content</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="links.html"
+                        title="next chapter">Useful Links</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/examples.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="links.html" title="Useful Links"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dexterity.html" title="Dexterity Content"
+             >previous</a> |</li>
+        <li><a href="index.html">plone.jsonapi.routes 0.8.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Ramon Bartl.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Customizing &mdash; plone.jsonapi.routes 0.8.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.8.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="plone.jsonapi.routes 0.8.3 documentation" href="index.html" />
+    <link rel="next" title="CRUD" href="crud.html" />
+    <link rel="prev" title="Authentication" href="auth.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="crud.html" title="CRUD"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="auth.html" title="Authentication"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">plone.jsonapi.routes 0.8.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="customizing">
+<h1>Customizing<a class="headerlink" href="#customizing" title="Permalink to this headline">¶</a></h1>
+<p>This package is built to be extended. You can either use the <cite>Zope Component
+Architecture</cite> and provide an specific Adapter to control what is being returned
+by the API or you simply write your own route provider.</p>
+<p>This section will show how to build a custom route provider for an example
+content type. It will also show how to write and register a custom data adapter
+for this content type. It is even possible to customize how the fields of a
+specific content type can be accessed or modified.</p>
+<div class="section" id="adding-a-custom-route-provider">
+<span id="route-provider"></span><h2>Adding a custom route provider<a class="headerlink" href="#adding-a-custom-route-provider" title="Permalink to this headline">¶</a></h2>
+<p>Each route provider shipped with this package, provides the basic CRUD
+functionality to <cite>get</cite>, <cite>create</cite>, <cite>delete</cite> and <cite>update</cite> the resource handled.</p>
+<p>The same functionality can be used to provide this behavior for custom content
+types. All neccessary functions are located in the <cite>api</cite> module within this
+package.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># CRUD</span>
+<span class="kn">from</span> <span class="nn">plone.jsonapi.routes.api</span> <span class="kn">import</span> <span class="n">get_batched</span>
+<span class="kn">from</span> <span class="nn">plone.jsonapi.routes.api</span> <span class="kn">import</span> <span class="n">create_items</span>
+<span class="kn">from</span> <span class="nn">plone.jsonapi.routes.api</span> <span class="kn">import</span> <span class="n">update_items</span>
+<span class="kn">from</span> <span class="nn">plone.jsonapi.routes.api</span> <span class="kn">import</span> <span class="n">delete_items</span>
+
+<span class="c"># route dispatcher</span>
+<span class="kn">from</span> <span class="nn">plone.jsonapi.core.browser.router</span> <span class="kn">import</span> <span class="n">add_route</span>
+
+<span class="c"># GET</span>
+<span class="nd">@add_route</span><span class="p">(</span><span class="s">&quot;/todos&quot;</span><span class="p">,</span> <span class="s">&quot;todos&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;GET&quot;</span><span class="p">])</span>
+<span class="nd">@add_route</span><span class="p">(</span><span class="s">&quot;/todos/&lt;string:uid&gt;&quot;</span><span class="p">,</span> <span class="s">&quot;todos&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; get all todos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get_batched</span><span class="p">(</span><span class="s">&quot;Todo&quot;</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s">&quot;todo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.3: </span>The standard GET route returns now the results for all resoures batched.
+This behavior is provided by the <cite>get_batched</cite> function.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The prior <cite>get_items</cite> function, which returns all items in an array,
+is still provided, but not recommended due to performance issues.</p>
+</div>
+<p>The upper example registers a function named <cite>get</cite> with the <cite>add_route</cite>
+decorator. This ensures that this function gets called when the <cite>/todos</cite> route
+is called, e.g. <cite>http://localhost:8080/Plone/&#64;&#64;API/todo</cite>.</p>
+<p>The second argument of the decorator is the endpoint, which is kind of the
+registration key for our function. The last argument is the methods we would
+like to handle here. In this case we&#8217;re only interested in GET requests.</p>
+<p>All route providers get always the <cite>context</cite> and the <cite>request</cite> as the first two
+arguments.  The <cite>uid</cite> keyword argument is passed in, when a UID was appended to
+the URL, e.g <cite>http://localhost:8080/Plone/&#64;&#64;API/todo/a3f3f9efd0b4df190d16ea63d</cite>.</p>
+<p>The <cite>get_batched</cite> function we call inside our function will do all the heavy
+lifting for us.  We simply need to pass in the <cite>portal_type</cite> as the first
+argument, the <cite>UID</cite> and the <cite>endpoint</cite>.</p>
+<p>To be able to create, update and delete our <cite>Todo</cite> content type, it is
+neccessary to provide the following functions as well. The behavior is analogue
+to the upper example but as there is no need for batching, the functions return
+a Python <cite>&lt;list&gt;</cite> instead of a complete mapping as above.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># CREATE</span>
+<span class="nd">@add_route</span><span class="p">(</span><span class="s">&quot;/todos/create&quot;</span><span class="p">,</span> <span class="s">&quot;todos_create&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;POST&quot;</span><span class="p">])</span>
+<span class="nd">@add_route</span><span class="p">(</span><span class="s">&quot;/todos/create/&lt;string:uid&gt;&quot;</span><span class="p">,</span> <span class="s">&quot;todos_create&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; create todos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">create_items</span><span class="p">(</span><span class="s">&quot;Todo&quot;</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s">&quot;todos&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="n">url_for</span><span class="p">(</span><span class="s">&quot;todos_create&quot;</span><span class="p">),</span>
+        <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">),</span>
+        <span class="s">&quot;items&quot;</span><span class="p">:</span> <span class="n">items</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<span class="c"># UPDATE</span>
+<span class="nd">@add_route</span><span class="p">(</span><span class="s">&quot;/todos/update&quot;</span><span class="p">,</span> <span class="s">&quot;todos_update&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;POST&quot;</span><span class="p">])</span>
+<span class="nd">@add_route</span><span class="p">(</span><span class="s">&quot;/todos/update/&lt;string:uid&gt;&quot;</span><span class="p">,</span> <span class="s">&quot;todos_update&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; update todos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">update_items</span><span class="p">(</span><span class="s">&quot;Todo&quot;</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s">&quot;todos&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="n">url_for</span><span class="p">(</span><span class="s">&quot;todos_update&quot;</span><span class="p">),</span>
+        <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">),</span>
+        <span class="s">&quot;items&quot;</span><span class="p">:</span> <span class="n">items</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<span class="c"># DELETE</span>
+<span class="nd">@add_route</span><span class="p">(</span><span class="s">&quot;/todos/delete&quot;</span><span class="p">,</span> <span class="s">&quot;todos_delete&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;POST&quot;</span><span class="p">])</span>
+<span class="nd">@add_route</span><span class="p">(</span><span class="s">&quot;/todos/delete/&lt;string:uid&gt;&quot;</span><span class="p">,</span> <span class="s">&quot;todos_delete&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; delete todos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">delete_items</span><span class="p">(</span><span class="s">&quot;Todo&quot;</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s">&quot;todos&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="n">url_for</span><span class="p">(</span><span class="s">&quot;todos_delete&quot;</span><span class="p">),</span>
+        <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">),</span>
+        <span class="s">&quot;items&quot;</span><span class="p">:</span> <span class="n">items</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-a-custom-data-adapter">
+<h2>Adding a custom  data adapter<a class="headerlink" href="#adding-a-custom-data-adapter" title="Permalink to this headline">¶</a></h2>
+<p>The data returned by the API for each content type is extracted by the <cite>IInfo</cite>
+Adapter. This Adapter simply extracts all field values from the content.</p>
+<p>To customize how the data is extracted from the content, you have to register an
+adapter for a more specific interface on the content.</p>
+<p>This adapter has to implement the <cite>IInfo</cite> interface.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">plone.jsonapi.routes.interfaces</span> <span class="kn">import</span> <span class="n">IInfo</span>
+
+<span class="k">class</span> <span class="nc">TodoAdapter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A custom adapter for Todo content types</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">interface</span><span class="o">.</span><span class="n">implements</span><span class="p">(</span><span class="n">IInfo</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context</span> <span class="o">=</span> <span class="n">context</span>
+
+    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{}</span> <span class="c"># whatever data you need</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># just implement it like this, don&#39;t ask x_X</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Register the adapter in your <cite>configure.zcml</cite> file for your special interface:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;configure</span>
+    <span class="na">xmlns=</span><span class="s">&quot;http://namespaces.zope.org/zope&quot;</span><span class="nt">&gt;</span>
+
+    <span class="c">&lt;!-- Adapter for my custom content type --&gt;</span>
+    <span class="nt">&lt;adapter</span>
+        <span class="na">for=</span><span class="s">&quot;plone.todo.interfaces.ITodo&quot;</span>
+        <span class="na">factory=</span><span class="s">&quot;.adapters.TodoAdapter&quot;</span>
+        <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/configure&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-a-custom-data-manager">
+<span id="data-manager"></span><h2>Adding a custom  data manager<a class="headerlink" href="#adding-a-custom-data-manager" title="Permalink to this headline">¶</a></h2>
+<p>The data sent by the API for each content type is set by the <cite>IDataManager</cite>
+Adapter. This Adapter has a simple interface:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">IDataManager</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">Interface</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Field Interface</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">name</span><span class="p">):</span> <span class="s">&quot;&quot;&quot; Get the value of the named field with</span>
+<span class="s">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Set the value of the named field</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>To customize how the data is set to each field of the content, you have to
+register an adapter for a more specific interface on the content.
+This adapter has to implement the <cite>IDataManager</cite> interface.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Please be aware that you have to implement security for field
+level access by your own.</p>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">zope.annotation</span> <span class="kn">import</span> <span class="n">IAnnotations</span>
+<span class="kn">from</span> <span class="nn">persistent.dict</span> <span class="kn">import</span> <span class="n">PersistentDict</span>
+<span class="kn">from</span> <span class="nn">plone.jsonapi.routes.interfaces</span> <span class="kn">import</span> <span class="n">IDataManager</span>
+
+<span class="k">class</span> <span class="nc">TodoDataManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A custom data manager for Todo content types</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">interface</span><span class="o">.</span><span class="n">implements</span><span class="p">(</span><span class="n">IDataManager</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context</span> <span class="o">=</span> <span class="n">context</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">IAnnotations</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">&#39;plone.todo&#39;</span><span class="p">,</span> <span class="n">PersistentDict</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p>Register the adapter in your <cite>configure.zcml</cite> file for your special interface:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;configure</span>
+    <span class="na">xmlns=</span><span class="s">&quot;http://namespaces.zope.org/zope&quot;</span><span class="nt">&gt;</span>
+
+    <span class="c">&lt;!-- Adapter for my custom content type --&gt;</span>
+    <span class="nt">&lt;adapter</span>
+        <span class="na">for=</span><span class="s">&quot;plone.todo.interfaces.ITodo&quot;</span>
+        <span class="na">factory=</span><span class="s">&quot;.adapters.TodoDataManager&quot;</span>
+        <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/configure&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Customizing</a><ul>
+<li><a class="reference internal" href="#adding-a-custom-route-provider">Adding a custom route provider</a></li>
+<li><a class="reference internal" href="#adding-a-custom-data-adapter">Adding a custom  data adapter</a></li>
+<li><a class="reference internal" href="#adding-a-custom-data-manager">Adding a custom  data manager</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="auth.html"
+                        title="previous chapter">Authentication</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="crud.html"
+                        title="next chapter">CRUD</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/customizing.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="crud.html" title="CRUD"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="auth.html" title="Authentication"
+             >previous</a> |</li>
+        <li><a href="index.html">plone.jsonapi.routes 0.8.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Ramon Bartl.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
