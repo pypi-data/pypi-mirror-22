@@ -1,0 +1,70 @@
+Copyright (c) 2017 Mehmet Korkmaz <mehmet@mkorkmaz.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Description: Flight Radar 24
+        ===============
+        
+        Data library for Flight Radar 24 written in Python 3.
+        
+        
+        Installing flightradar24
+        =====================
+        
+        .. code-block:: bash
+        
+            pip3 install flightradar24
+        
+        
+        Getting airports list
+        
+        .. code-block:: python
+        
+            import flightradar24
+            fr = flightradar24.Api()
+            airlines = fr.get_airports()
+        
+        Getting airlines
+        
+        .. code-block:: python
+        
+            import flightradar24
+            fr = flightradar24.Api()
+            airlines = fr.get_airlines()
+        
+        Getting flights list
+        
+        .. code-block:: python
+        
+            import flightradar24
+            fr = flightradar24.Api()
+            flights = fr.get_flights('THY')
+        
+        
+        Getting flight details
+        
+        .. code-block:: python
+        
+            import flightradar24
+            flight_id = 'TK1'
+            fr = flightradar24.Api()
+            flight = fr.get_flight(flight_id)
+        
+        
+        Notes
+        =====
+        
+        * flightradar24 will not follow the `semantic versioning scheme <http://semver.org/>`_ until the version 1.0.0. So there may be BC breaks.
+        
+        
+        Credits
+        =======
+        
+        * `Mehmet Korkmaz <http://github.com/mkorkmaz>`_
+        
+        
+        
+Platform: UNKNOWN
