@@ -1,0 +1,15 @@
+include *.rst
+include *.txt
+include *.py
+include *.sh
+include .gitreview
+include tox.ini
+include MANIFEST.in
+include pylint.conf
+recursive-include docs *.py
+recursive-include docs *.rst
+recursive-include karaage *.sql
+recursive-include sbin *
+recursive-include conf *
+recursive-include docs Makefile
+recursive-exclude karaage *.pyc
