@@ -1,0 +1,25 @@
+custodia >= 0.4.0
+ipalib >= 4.5.0
+ipaclient >= 4.5.0
+six
+
+[:python_version<"3.3"]
+mock
+
+[test]
+coverage
+pytest
+
+[test_docs]
+docutils
+markdown
+
+[test_pep8]
+flake8
+flake8-import-order
+pep8-naming
+
+[test_pylint]
+pylint
+coverage
+pytest
