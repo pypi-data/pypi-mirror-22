@@ -1,0 +1,25 @@
+[DEFAULT]
+loglevel:10
+logfile:/dev/stdout
+period:10
+
+[matrix]
+uri:https://matrix.org
+username:username
+password:password
+rooms:!room:matrix.org,
+domain:matrix.org
+
+[ldap]
+server:ldap://ldap.local
+base:ou=People,dc=example,dc=com
+groups:group1,group2,persons
+groups_base:ou=Group,dc=example,dc=com
+groups_filter:(objectClass=posixGroup)
+groups_id:cn
+persons:(objectClass=person)
+
+[aliases]
+aliases:simple_invite,simple_kick
+simple_invite:invite +group1 +group2
+simple_kick:invite +group1 +group2
