@@ -1,0 +1,9 @@
+global-include *.py
+
+include *.txt CHANGELOG.md LICENSE README.md pixelpin_auth_core/tests/testkey.pem
+recursive-include pixelpin_auth_core/tests *.txt
+
+graft examples
+
+recursive-exclude .tox *
+recursive-exclude pixelpin_auth_core *.pyc
