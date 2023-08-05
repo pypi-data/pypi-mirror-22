@@ -1,0 +1,36 @@
+Metadata-Version: 2.0
+Name: spsim
+Version: 0.0.7
+Summary: A spelling similarity measure for cognate identification.
+Home-page: https://github.com/luismsgomes/spsim
+Author: Luís Gomes
+Author-email: luismsgomes@gmail.com
+License: MIT
+Keywords: text bilingual cognate mt machine translation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Text Processing :: Linguistic
+Requires-Dist: docopt
+Requires-Dist: munkres
+Requires-Dist: openfile
+Requires-Dist: stringology
+
+=======
+ spsim
+=======
+
+``spsim`` is a Python module that implements a spelling similarity measure
+for identifying cognates across languages, taking into account spelling
+differences that are characteristic of each language pair, as described
+in [Gomes2011]_.
+
+
+.. [Gomes2011] Measuring Spelling Similarity for Cognate Identification,
+    Luís Gomes and Gabriel Pereira Lopes
+    in *Progress in Artificial Intelligence, 15th Portuguese Conference in
+    Artificial Intelligence, EPIA 2011, Lisboa, Portugal, October 2011*,
+    http://www.springerlink.com/content/gtl56j3l06906020/
+
+
