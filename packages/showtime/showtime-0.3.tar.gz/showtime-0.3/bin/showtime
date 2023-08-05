@@ -1,0 +1,67 @@
+#!/usr/bin/env python
+
+# Python stuff
+import os
+import subprocess
+import sys
+
+# External libraries
+import requests
+from bs4 import BeautifulSoup
+
+
+def getMagnetLink(search_query):
+    search_URL = 'https://thepiratebay.org/search/'
+    final_search_query = search_URL + search_query
+    src = ""
+
+    print 'Connecting to Server...'
+
+    while len(src) <= 600:
+        page = requests.get(final_search_query)
+        src = page.text
+    
+    print 'Connected!'
+
+    ob = BeautifulSoup(src, 'lxml')
+
+    hyperlinks = ob.findAll('a')
+    for link in hyperlinks:
+        try:
+            if link['href'].startswith('magnet'):
+                return link['href']
+                break
+        except:
+            pass
+
+    return None
+
+
+def main():
+    if subprocess.check_output(['npm', '--version']) == 0:
+        print 'Install NPM to use showtime'
+        exit()
+
+    if subprocess.check_output(['peerflix', '--version']) == 0:
+        print 'Installing Peerflix...'
+        os.system('npm install -g peerflix')
+
+    search_query = '+'.join(sys.argv[1:])
+
+    try:
+        magnet_link_for_video = getMagnetLink(search_query)
+    except:
+        print 'Something went wrong. Please try again.'
+        exit()
+
+    if magnet_link_for_video == None:
+        print 'No video found by the given name. Try using some other name or write correctly.'
+        exit()
+
+    print 'Starting video stream...'
+
+    os.system('peerflix "' + magnet_link_for_video + '" --vlc')
+
+
+if __name__ == '__main__':
+    main()
