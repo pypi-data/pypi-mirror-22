@@ -1,0 +1,89 @@
+Metadata-Version: 2.0
+Name: django-template-theming
+Version: 0.7.10
+Summary: Django application, implement theming concept, flexible and configurable.
+Home-page: https://github.com/wtayyeb/django-template-theming
+Author: w.Tayyeb
+Author-email: tayyeb@tsaze.com
+License: MIT
+Keywords: django template theme theming host
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Requires-Dist: django
+
+Django Template Theming
+***********************
+
+.. image:: https://travis-ci.org/wtayyeb/django-template-theming.svg?branch=master
+    :target: https://travis-ci.org/wtayyeb/django-template-theming
+
+Django application, implement theming concept for templates, flexible and configurable from admin interface.
+
+Installation
+============
+
+You can install the most recent **Django Template Theming** version using pip: ::
+
+    pip install django-template-theming
+
+Setup
+=====
+
+**NOTE**: The following settings should be added to the project file `settings.py`.
+
+1. Add 'theming' to ``INSTALLED_APPS``: ::
+
+    INSTALLED_APPS += ( 'theming', )
+
+    if using django-compressor make sure put theming before compressor
+
+2. Add 'theming.middleware.ThemingMiddleware' to ``MIDDLEWARE_CLASSES``: ::
+
+    MIDDLEWARE_CLASSES += ( 'theming.middleware.ThemingMiddleware', )
+
+3. Add 'theming.template.Loader' to ``TEMPLATE_LOADERS``: ::
+
+    TEMPLATE_LOADERS += ( 'theming.template.Loader', )
+
+Usage
+=====
+
+It should create a folder ``themes`` at the project with the following structure: ::
+
+    django_project/
+    | -- themes/
+        | -- default/  ** theme name
+            | -- static/  ** will collected by `collectstatic` management command
+            |   | -- styles/
+            |   | -- scripts/
+            |   | -- images/
+            | -- templatefiles and folders
+
+Contributing
+============
+
+Development of **django-template-theming** happens at github and any idea and contribution is wellcome.  
+https://github.com/wtayyeb/django-template-theming
+
+Credits
+=======
+
+* w.Tayyeb: https://github.com/wtayyeb
+
+
