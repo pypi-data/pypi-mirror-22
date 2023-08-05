@@ -1,0 +1,105 @@
+/* reset */
+html { min-height: 100%; }
+
+body
+{
+	font-size: 75%;
+	line-height: 1.6em;
+}
+
+body,form,ol,ul,dl,li,dt,dd,td,th,tr
+{
+	margin: 0;
+	padding: 0;
+}
+
+h1,h2,h3,h4,h5,h6,p,pre,code,blockquote,address
+{
+	margin: 0 0 1em 0;
+	padding: 0;
+}
+
+h1
+{
+	font-size: 22px;
+}
+
+h2
+{
+	font-size: 18px;
+}
+
+h3
+{
+	font-size: 14px;
+}
+
+ul { list-style: none; }
+ol { margin-bottom: 1em; }
+ol li { margin-left: 2em; }
+
+img { border: 0; }
+
+fieldset
+{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+input,select,textarea
+{
+	/*font-size: 100%;*/
+	vertical-align: middle;
+}
+
+table
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+	empty-cells: show;
+}
+
+address,caption,cite,code,dfn,em,strong,th,var
+{
+	font-style: normal;
+	font-weight :normal;
+}
+
+strong { font-weight: bold; }
+em { font-style: italic; }
+
+/* lists */
+ul.bullet,ul.circle,ul.square,ul.lower-alpha
+{
+	margin: 0 0 1em 0;
+	padding: 0 0 0 1.5em;
+}
+ul.bullet li
+{
+	list-style: disc;
+	padding: 0 0 0.2em 0;
+}
+ul.circle li
+{
+	list-style: circle;
+	padding: 0 0 0.2em 0;
+}
+ul.square li
+{
+	list-style: square;
+	padding: 0 0 0.2em 0;
+}
+ul.padded li
+{
+	padding: 0 0 0.4em 0;
+}
+ul.extraPadded li
+{
+	padding: 0 0 1em 0;
+}
+ul.lower-alpha li
+{
+    list-style: lower-alpha;
+	padding: 0 0 0.2em 0;
+}
