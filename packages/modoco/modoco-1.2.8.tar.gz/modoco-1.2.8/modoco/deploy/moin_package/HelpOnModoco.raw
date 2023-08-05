@@ -1,0 +1,34 @@
+<<TableOfContents>>
+
+Modoco<<FootNote("'''Mo'''in as '''Do'''cument '''Co'''ntrol")>> is a document control system based on the [[MoinMoin]] wiki software.
+
+The main goal is to replicate the functionality of paper-based document control system for protocols and SOPs, as required for example by the NATA accreditation process.
+
+In particular:
+ 1. There will only ever be one "current" version of a document.
+ 1. The current version of a document will not be editable by anyone.
+ 1. Draft pages will be editable by any known (logged-in) user, but can only be published (i.e. made the "current" version) by a user with the role of document control officer.
+
+In practice the way this works:
+ * Logged-in users can create and edit only pages named `*_DRAFT`.
+ * Members of the [[PublisherGroup]] can publish any page called `"<title>_DRAFT"`, at which point the contents of `"<title>_DRAFT"` are copied to the page named `"<title>"`, which is immutable.
+
+= Accounts =
+Anonymous account creation has been disabled, and only superusers may [[CreateAccount|create accounts]]
+
+= Permissions =
+After page acls are applied, a custom security policy (see `$MOIN_HOME/CustomSecurityPolicy.py`) applies the following further restrictions on write permissions:
+ * pages with a title ending in '_DRAFT' are editable by logged-in users
+ * pages with a title ending in 'Group' are editable by superusers as defined in `wikiconfig.py` — in particular this means PublisherGroup members may only be added by a superuser.
+ * all pages are editable by the 'publisher agent' bot user — this is not a login user but a special privileged account used by the [[HelpOnPublishPage|PublishPage]] action. Its read permissions on all pages are disabled by acl in `wikiconfig.py`
+ * specific pages in a whitelist (by default, just FrontPage) are editable by all logged-in users
+Note that because these rules are applied ''after'' acls, they override them — so even a superuser with all `acl_rights_before` cannot edit a page that doesn't fall into one of the special categories: draft, group page, or whitelist.  
+
+= Workflow =
+{{attachment:document_control.png}}
+
+= See Also =
+
+ * HelpOnPublishPage
+
+----

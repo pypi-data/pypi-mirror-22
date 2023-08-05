@@ -1,0 +1,25 @@
+MoinMoinPackage|1
+# install most packs except templates 
+InstallPackage|LanguageSetup|English--admin_pages.zip
+InstallPackage|LanguageSetup|English--all_category_pages.zip
+InstallPackage|LanguageSetup|English--all_system_pages.zip
+InstallPackage|LanguageSetup|English--all_help_pages.zip
+# modoco custom plugins
+InstallPlugin|History.py|local|macro|History.py
+InstallPlugin|PublishPage.py|local|action|PublishPage.py
+# overrides core newaccount.py to require superuser
+InstallPlugin|newaccount.py|local|action|newaccount.py
+# simpler to tweak one theme than make a whole new one
+SetThemeName|modernized
+CopyThemeFile|draft-not-sop.png|img|draft-not-sop.png
+CopyThemeFile|draft-not-sop.css|css|draft-not-sop.css
+CopyThemeFile|modoco-logo.png|img|modoco-logo.png
+# modoco custom pages
+AddRevision|CategorySOP.raw|CategorySOP
+AddRevision|FrontPage.raw|FrontPage
+AddRevision|HelpOnModoco.raw|HelpOnModoco
+AddAttachment|HelpOnModoco.attachment1|document_control.png|HelpOnModoco
+AddRevision|HelpOnPublishPage.raw|HelpOnPublishPage
+AddRevision|PublisherGroup.raw|PublisherGroup
+AddRevision|SOPTemplate.raw|SOPTemplate
+AddRevision|CreateAccount.raw|CreateAccount

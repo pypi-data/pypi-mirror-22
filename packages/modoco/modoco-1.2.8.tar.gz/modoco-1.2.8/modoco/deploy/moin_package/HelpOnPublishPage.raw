@@ -1,0 +1,20 @@
+<<TableOfContents>>
+
+= What does it do? =
+The `PublishPage` action is used to deploy a document from draft state to production SOP. In practice this means:
+ 1. The contents (including attachments) of the page `<SOP>_DRAFT` are copied to the page `<SOP>`. If `<SOP>` did not exist before, it is created. If it did exist, its contents are replaced.
+ 1. `<SOP>` is added to the [[CategorySOP]] category. Since this is done automatically, there is no need to manually add draft pages to [[CategorySOP]] by adding the special footer block — indeed draft pages should NOT be added to [[CategorySOP]], which is properly reserved for production SOPs. 
+ 1. `<SOP>` is made immutable to all users, including superusers.
+
+= How do I use it? =
+The action is available in the last block of the 'More Actions' drop-down menu. If you are authorized to publish the current draft page, selecting the action takes you to a confirmation dialog where you are required to enter a comment. The comment should summarize the reason for publication — a very brief summary of the new SOP or deployed changes.
+
+= Which pages can be published? =
+Only pages with a title ending in '_DRAFT'.
+
+= Who can use it? =
+Only users explicitly listed on the [[PublisherGroup]] page are authorized to use the action.
+
+= See Also =
+
+ * HelpOnModoco
