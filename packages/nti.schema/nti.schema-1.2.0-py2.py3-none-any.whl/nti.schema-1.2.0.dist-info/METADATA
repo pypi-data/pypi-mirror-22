@@ -1,0 +1,73 @@
+Metadata-Version: 2.0
+Name: nti.schema
+Version: 1.2.0
+Summary: Zope schema related support
+Home-page: https://github.com/NextThought/nti.schema
+Author: Jason Madden
+Author-email: open-source@nextthought.com
+License: Apache
+Keywords: zope schema
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Framework :: Zope3
+Requires-Dist: Acquisition
+Requires-Dist: setuptools
+Requires-Dist: six
+Requires-Dist: zope.deferredimport
+Requires-Dist: zope.event
+Requires-Dist: zope.i18n
+Requires-Dist: zope.i18nmessageid
+Requires-Dist: zope.schema
+Requires-Dist: zope.vocabularyregistry
+Requires-Dist: plone.i18n (<3.0); python_version == "2.7"
+Requires-Dist: zope.browserresource; python_version == "2.7"
+Provides-Extra: test
+Requires-Dist: nti.testing; extra == 'test'
+Requires-Dist: pyhamcrest; extra == 'test'
+Requires-Dist: zope.testrunner; extra == 'test'
+
+============
+ nti.schema
+============
+
+.. image:: https://travis-ci.org/NextThought/nti.schema.svg?branch=master
+  :target: https://travis-ci.org/NextThought/nti.schema
+
+.. image:: https://coveralls.io/repos/github/NextThought/nti.schema/badge.svg
+  :target: https://coveralls.io/github/NextThought/nti.schema
+
+nti.schema offers a set of classes and functions that make
+schema-based development with zope.schema easier.
+
+For complete details and the changelog, see the `documentation <http://ntischema.readthedocs.io/>`_.
+
+Overview
+========
+
+Some of the most useful features include:
+
+- ``nti.schema.interfaces.find_most_derived_interface`` for finding a
+  bounded interface.
+- ``nti.schema.eqhash.EqHash`` is a class-decorator for creating
+  efficient, correct implementations of equality and hashing.
+- ``nti.schema.field`` contains various schema fields, including a
+  ``Variant`` type and more flexible collection types, all of which
+  produce better validation errors.
+- ``nti.schema.fieldproperty`` contains field properties that can
+  adapt to interfaces or decode incoming text. The function
+  ``createDirectFieldProperties`` can assign just the necessary
+  properties automatically.
+
+

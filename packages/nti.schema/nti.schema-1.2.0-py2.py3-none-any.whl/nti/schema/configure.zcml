@@ -1,0 +1,27 @@
+<!-- -*- mode: nxml -*- -->
+<configure  xmlns="http://namespaces.zope.org/zope"
+            xmlns:i18n="http://namespaces.zope.org/i18n"
+            xmlns:zcml="http://namespaces.zope.org/zcml">
+
+    <include package="zope.component" file="meta.zcml" />
+    <include package="zope.component" />
+
+    <configure zcml:condition="installed plone.i18n">
+        <!-- browser:resourceDirectory directive, used by plone.i18n -->
+        <include package="zope.browserresource" file="meta.zcml" />
+        <include package="plone.i18n" />
+    </configure>
+    <include package="zope.vocabularyregistry" />
+
+    <!-- I18N -->
+    <include package="zope.i18n" file="meta.zcml" />
+    <i18n:registerTranslations directory="locales" />
+
+    <subscriber handler=".subscribers.before_object_assigned_event_dispatcher" />
+
+    <utility component=".vocabulary.CountryVocabularyFactory"
+             provides="zope.schema.interfaces.IVocabularyFactory"
+             name="Countries"
+              />
+
+</configure>
