@@ -1,0 +1,838 @@
+CHANGES
+=======
+
+* Added README
+* Updated setup.cfg for correct file import in pbr
+* faraday-simpleui now works!
+* faraday-aprs working!
+* Initial faraday-telemetry command line working
+* WORKING FARADAY-PROXY AFTER PIP INSTALL!
+* Proxy.ini now imports
+* Fixed logging.ini import error
+* pbr Based setup.cfg so far so good
+* Initial Faraday pbr configuration
+* Minimal pbr setup.py
+* Moved setup.py to setup.old.py for pbr
+* Removed bad Proxy folder from packages list
+* Added requirements files
+* Initial pypi files that sucessfully upload
+* Updated setup.py to register with pypi
+* Updated setup.py for Faraday
+* Added setup.py
+* Fixed PEP8 Inline Comment Error
+* Quick Fix To Update Proxy.py To sys.exit(1)
+* Fixed PEP8 Inline Comment Error
+* Exit With Status Code 1
+* Removed Space Between try/except per @reillyeon
+* Added try/except statement for units config
+* Fix script permissions and #! lines
+* Updated .travis.yml for NPM and Grunt
+* Cleaned up Flask app parameters
+* Moved templates folder back to Applications
+* Moved template folder back to Applications/
+* Moved static folder back to Applications folder
+* Removed unused os path insert
+* Added license header to faraday/hermesflaskserver
+* Added initial hermesflaskserver.py
+* Moved hermesflaskserver.py to faraday/ folder
+* Updated travis.yml for grunt and npm
+* Updated farada/simpleui.py license block
+* Removed unused sys import
+* Moved static and template files over to farady/
+* Updated license code block
+* Added new simpleui.py
+* Moved simpleui.py to faraday/simpleui.py
+* Updated Applications/Telemetry/telemetry.py code block
+* Updated license code block of faraday/aprs.py
+* Added license code block to aprs.py
+* Added initial aprs.py Application file
+* Moved aprs.py from Applications to faraday folder
+* Fixed PEP8 violations
+* Removed unused sys path code
+* Added GPLv3.0 block to telemetry.py files
+* Added new Telemetry/telemetry.py file
+* Moved telemetry.py Flask application to faraday/
+* Removed unnecessary sys path code
+* Update Proxy/proxy.py for faraday/proxy.py
+* Moved proxy.py from /faraday/proxy to /fararaday
+* Added space between imports
+* Renamed proxyapp.py to proxy.py
+* Added newline
+* Added __init__.py and working faraday/proxy.py
+* Added proxyapp.py and faraday/proxy init
+* Boots Proxy with faraday/proxy/proxy.py
+* Moved proxy.py to faraday/proxy/proxy.py
+* Basic Typographical and Gramatical Fixes to SimpleUI/readme.md
+* changed Proxy references
+* Removed unused Flask-Bootstrap
+* Fixed readme.md Proxy folder links
+* Update Telemetry Proxy Links
+* Swapped GPIO0-GPIO2 in FaradayIO gpioallocations.py which resolved the 0-2 Digital Out commanding flip
+* Move proxy/examplelogs to Proxy/examplelogs
+* Updated readme.md for Proxy with new log filename
+* Renamed initial log file for sorting
+* Fix typo in logs.txt
+* fixed typos in Proxy/readme.md
+* Updated Proxy readme.me for log and test modes
+* Added initial proxy log repository folder
+* Run Grunt tasks in .travis.yml
+* Add grunt-contrib-jshint to package.json
+* Updated .gitingore to ignore nodejs folder
+* Removed second GPIO8 dropdown item
+* Reversed GPIO array to correct output
+* Removed simpleui.ini from Git
+* Added SimpleUI config file to gitignore
+* fix typo per issue #165
+* Fixed gif image error
+* Deleted unused reverse
+* Added documentation image and text for use
+* Removed GPIO9 as it doesn't exists
+* Removed reverse of GPIO field to fix
+* Updated grunt linting for javascript
+* Simpleui.js now passes jslint
+* Updated Gruntfile to perform jshint and html error
+* Extra bootstrap theme deleted
+* Adding grunt files
+* Moved Javascript into it's own file
+* Removed unused hidden HTML form items
+* Updated debug info and command dropdowns
+* Added logging debug info to commands
+* Removed print statements and fixed formatting
+* Fixed all known HAB and MOSFET remote Non-working
+* Organized IO display
+* Moved GPIOSTATE, RFSTATE, and IOSTATE parsing
+* Updated GPIO parsing and display
+* Updated IOSTATE parsing and display
+* Parse RFSTATE into 8-bit binary number & update
+* Moved simpleui.py to new faraday proxyio location
+* Remove unused os imports
+* Move the Faraday UART library into the faraday module
+* Removed extra code comments
+* Fixed travisCI issues
+* Fixed merge conflict and verify test mode and normal multi unit proxy works with telemetry at least
+* Added logging to uart stack layer 4 and removed some old code
+* Adding logging config ini and adding to layer 2 service. Removed old commented code as well
+* Add logging to uart layer 2 protocol
+* Updated from review notes Bryce
+* Update proxy review notes for issue 138
+* Fix incorrect appending of raw packet to deque, rather append dictionary containing packet associated with key 'data'.  Standardise names in ini file to REPLACEME.  Wrap config getters in main to fail gracefully (some in remainder of code still).  Force int by use of getint() when obtaining TESTRATE and TESTNODEID from config ini file
+* Move the Hermes library into the faraday module
+* Add faraday/__init__.py
+* Fixed travisCI issues
+* Fixes to conform to FLAKE8
+* Issue #152 - First pass at enabling Proxy playback of logged data.  Reads at rate TESTRATE packets per second from [TESTDATABASE] when TESTMODE=1, otherwise functions as before
+* Added key to createTelemetryList() function
+* Added IOSTATE column into Telemetry db
+* Updated readme to include basic config and use
+* Changed redirect to just go to root page
+* Updated Javascript comments
+* Cleaned up and commented code a bit
+* Fixed all currently reported Flake8 errors
+* Separated Telemetry displayed from station command
+* Removed need for URL station identification
+* Removed need for URL callsign for commanding
+* Added boilerplate RF station input
+* Slowed down main TX/RX run loop in uart layer 2
+* Slowed UART TX main run loop down
+* Updated TX layer 2 uart encapsulation loop to slower loop time and to tx ALL known items in queue on a single cycle
+* Removed unecessary HTML form table
+* Updated uart layer 2 tx and rx loop timing to 10ms from 1 ms
+* Added space between boardtemp and ADC data in UI
+* Updated TX queue in layer 2 UART to send all data known in queue by .qsize()
+* Rounded GPS speed to two decimal places
+* Added Remote HAB Timer Control
+* Updated Layer 2 UART RX to get all data available from a single cycle rather than iterate through one by one on each cycle
+* Change proxy loop delay to a single location and from 1ms to 10ms
+* Added HAB Timer to UI Page
+* Update RX proxy loop to get all items from a port as available and known during each cycle
+* Added local HAB Timer Commanding
+* Added simple queue size function to layer 4 UART class object
+* Most Remote commands now work
+* Updated proxy.py TX to only check for new data on known open ports. Ports are opened if data has been sent to them
+* Initial Local and Remote Commanding Added
+* Removed commented code
+* Addedd function to return list of open ports from Layer 4 UART and updated the Proxy.py check for new data in ports to only check the OPEN ports
+* Committing the removal of a rogue pass in RxPortHasItem
+* Proxy no longer creates a queue for each port after a failed .empty() check and instead on does so when needing to place data into a non-existing queue
+* Some basic ability to command LEDs
+* Added simple GPIO command radio buttons
+* Modified proxy to start a single thread for each unit connected and modified UART WORKER to focus only on the unit contained in the thread
+* Commented out IOState Items
+* Added HAB Timer Back In
+* Added IO Signals, commented out HAB
+* Remove unused import to stop CI build failing
+* Move Faraday_Proxy_Tools/FaradayIO to faraday/proxyio
+* Fix for issue #148 - add CORS support to Telemetry
+* Removed flake8 two line error
+* Added hyphen to error callsign nodeid
+* Added warning text when station note found
+* Check for both callsign and nodeid
+* Converteed Knots to m/s
+* Formatted Callsign
+* Added ability to specify station
+* Converted Epoch to Date
+* Fixed up Bootstrap Formatting
+* Added Bootstrap Panels
+* Correct Javascript/CSS File Loading
+* Added Bootstrap Javascript library
+* Basic JQuery updated user interface
+* Working CORS Requests to get JSON Telemetry
+* Moved getJSON to function and used interval
+* Added getJSON() JQuery Function
+* Removed Console Log Test
+* Moved python to server index.html, added alert
+* Moved to layout and index html files
+* Load JQuery library from index.html
+* Fixed Flake8 E231 Violations
+* Initial Simple UI Application
+* Removed unecessary rollback()
+* Fixed sqlinsert() function docstring
+* Removed unecessary comment
+* Moved item sql insertion after try/except
+* Updated start documentation for proxy SQLite3
+* Updated gitignore to ignore database
+* Updated Comments
+* Py.test Updates
+* Added correct Logic and INI sample file
+* Added SQLinsert function and Implemented Logging
+* Added SQLite Database Initialization
+* Added db.sql file for database creation
+* Added database section to proxy.sample.ini
+* Added initial log boolean to uartworker
+* Fix: E261 at least two spaces before inline comment
+* Fix: E251 unexpected spaces around keyword / parameter equals
+* Fix: E231 missing whitespace after ','
+* Fix: E228 missing whitespace around modulo operator
+* Fix: E227 missing whitespace around bitwise or shift operator
+* Fix: E226 missing whitespace around arithmetic operator
+* Fix: E225 missing whitespace around operator
+* Fix: E222 multiple spaces after operator
+* Fix: E221 multiple spaces before operator
+* Fix: E211 whitespace before '('
+* Fix: E203 whitespace before ':'
+* Fix: E202 whitespace before ')'
+* Fix: E201 whitespace after '('
+* Fix code style violations in hermesflaskserver.py
+* Passing flake8 presubmit.sh tests
+* Replaced cPickle with json
+* Fixed bug that caused second packet to failed. This was a random Nonetype where it should be False
+* Fix: E128 continuation line under-indented for visual indent
+* Fix: E127 continuation line over-indented for visual indent
+* Fix: E126 continuation line over-indented for hanging indent
+* Fix: E124 closing bracket does not match visual indentation
+* Fix: E123 closing bracket does not match indentation of opening bracket's line
+* Fix: E116 unexpected indentation (comment)
+* Fix: E111 indentation is not a multiple of four
+* Fixing Travis CI errors for blank lines
+* Use pytest to manage running flake8
+* Adding 2 new lines EOF for travisCI again for flask server
+* Adding 2 new lines EOF for travisCI
+* Finished review item update for hermesobject.py
+* Finished updating review for hermesflaskserver.py
+* Removed extra print and globalvar lines
+* Removed all needs for Cpickle and using only JSON
+* Fixing more review errors. Added createnodename() function
+* Fixed review errors/typos/cleaning in hermesflaskserver. Almost done
+* Basic PEP8 update for formatting
+* Added description text in top part of script
+* Adding simple read config program to application device config program folder
+* Fix: E30 number of blank lines
+* Fix: E401 multiple imports on one line
+* Fix: E703 statement ends with a semicolon
+* Fix: E711 comparison to None
+* Fix: E712 comparison to True and False
+* Fix: E713 test for membership should be 'not in'
+* Fix: W391 blank line at end of file
+* Fix: W293 blank line contains whitespace
+* Fix: W292 no newline at end of file
+* Fix: W191 indentation contains tabs
+* Explicitly disable all generated flake8 errors
+* Add Travis CI build status to README.md
+* Remove unused dbFilename in telemetry.py
+* Fixed error recently commited to telemetry
+* Updated typo's and other modifications to the readme.md
+* Updated docstring with return
+* Placed sqlData initialization and returns back in
+* Removed Unnecessary sqlData Returns
+* Removed sqlData initialization
+* Added Rollback()
+* Fixed typo station to stations
+* Update Presubmit.py Filename
+* Updated Presubmit Filename
+* Fix all undefined variable warnings
+* Remove unused variables
+* Add first presubmit checks with Travis CI integration
+* Fixed image paths in README
+* Added prompt to RX example boot. Deleted old images in image folder, added relavent images for README, inserted images into README regarding program operation
+* Updated doc and scripts to use UNIT0 as transmitter
+* Added quick README.md
+* Uppercase REPLACEME in .ini file
+* PEP8 pass for hermesmessage.py
+* PEP8 pass on TX example
+* PEP8 pass on RX example
+* PEP8 pass for hermes object script
+* PEP8 format pass on Flask server
+* Added docstring to flask server
+* Renamed getMessage to message to better indicate POST/GET functionality
+* Removed unneeded import as statement
+* Fixed indentation bug in RX example
+* Renamed getQueueSize()
+* Added docstrings to RX example
+* Added doctrings to TX example
+* Fixed incomplete use of configuration variables in RX
+* Added needed imports to TX
+* Added config parsing to TX. Also slightly edited the message prmpt text
+* Renamed TX/RX examples. Added config parsing for unit identification in RX
+* Renamed tx/rx examples with clearer names
+* Removed non-flask example TX/RX
+* Cleaned some dict inits
+* Improved code commenting
+* Renamed callsign2COM to configparse
+* Added global keyword in all functions
+* Removed commented old code and variables (global)
+* Removed flask server print statements
+* Updated the transmit example for flask to get user input
+* Removed unneeded print for queue in rx Flask example
+* TX now working with flask class objects!
+* Adding TX script for Flask
+* Got RX working in kludgy but seeming correct FLASK fashion
+* Heavy update that moved the flask server to a global dictionary of device message objects given a proxy like configuration file. I have queury for RX example working with non-flask TX proving functionality
+* Refactored name and added another flask server object in attempt to use flask functions by reference to argumetns
+* Cleaned and added data field to request arguments for POST
+* I think I got tx working on the hermes object! Very kludgy but seems to work
+*  renamed server
+* Renamned objects to general faraday names to remove receiver only references. Looking to make object RX and TX
+* Added request arguments for callsign and node ID
+* Added POST functionallity in basic hello world fashion
+* Updated names closer to intended convention
+* Updated names of Flask programs
+* Reduced sleep time in while loop
+* Queue items check now directly uses the defined function and while loops the check to get ALL items from buffer
+* Queuesize function returns only the queusize from dictionary
+* Made a main function to run on start
+* Moved queuesize get to specific function
+* Removed old code
+* adding sleep statement
+*  Modified user rx application to while 1 loop that checks for items in queue. Simplified output print as well
+* Updated receiver flask user app to return queue in base 64 encoding
+* Updated the get queue length function to return a dictionary and base 64 encoded
+* Receiver user script decoding full base64 and JSON with better display
+* Receiver user application now decoding full encoded JSON elemetn from message
+* Now Cpickling and BASE64 entire dictionary received from proxy for message
+* script now gets both queue and message as JSON
+* Queue flask function now returns JSON element
+* Adding basic receive flask program as user side flask interface example
+* Now returning basic JSON element as message
+* Now returning the message portion of data from queue
+* Adding simple function to return size of receiver queue
+* Adding Flask configuration info to INI file
+* Adding initial Flask server example RX script
+* Added both TX and RX config parses back into rx script for completeness
+* Removing old application example
+* Adding split TX and RX scripts for ease of use
+* Updated README to indicate it is outdated at top
+* Updated configuration parsing line to pull into correct hermes.ini
+* Added hermes.ini to gitignore
+* Renamed configuration file to hermes.sample.ini
+* Updated FaradayIO toolset path import to valid path
+* updated hermes object script to new name for message script import
+* Adding renamed files to hermes suffix for real. Aslo updated application example to hermesobject import
+* Renamed message files to suffix hermes
+* Renamed configuration file with proper .sample.ini format
+* Added basic messenger program from older developer tutorials as-is
+* Fixed spelling error "then" to "when"
+* Added Slack channel info and fixed Overview header
+* Fixed spelling as well as formatting errors
+* Added configuration files section link in TOC and updated linkes to each main section
+* Moved configuration files section between Python and Documentation
+* Updated name and heading of Configuration Files section
+* Removed old documentation section
+* Added C standards section
+* Updated jQuery link in JavaScript section
+* Added HTML section
+* Added JavaScript section and fixed JavaScript link name in table of contents
+* Quick update with git layout and logical comment
+* Added Python section with subsection Naming Conventions
+* Added Documentation section
+* Added writing section
+* Added Merges section and related items
+* Updated Style Guide heading and also reformatted headings for Howe to Contribute section
+* Updated Pull Requests section with link to GIF creator and reordered text
+* Updated gif to GIF in Reporting a Bug section
+* Update Enhancement Requests section to Feature Requests and reworded
+* Updated Beginners section to Beginners Start Here and added the Help Wanted link
+* Added LICap link in Suggested Tools
+* Updated bug reporting section and renamed it to Reporting a Bug
+* Fixed formatting of some headlines
+* Added Suggested Tools and Core Principles sections
+* Added Overview section and subsection Code of Conduct
+* Renamed proxy folder
+* Renamed proxy folder
+* Renamed proxy folder
+* Added 'Before Getting Started' section which replaced the prior'What Should I Know Before I Get Started' section. This also cleaned up and renamed several sections to better capture project objectives for consistency
+* Updated contribution introduction to clearly state what this project is, who started it, and the goals that drive decisions
+* Renamed proxy folder to Proxy
+* Removed commented out starttime code
+* Updated generateStartStopTimes() to query for starttime only correctly. Updted /stations to use generateStartStopTimes()
+* Updated /stations to properly query nodeid and removed unused timetuple update from callsign specific query
+* Updated global python code, telemworker(), and root app.route()
+* Updated detection of error and None response from proxy.GET() call. Last commit had non-working code by accident. This seems much more thorough
+* Added try/except statemement to telemetryworker so a bad configuration file callsign-nodeid fails softly
+* Updated remainder of Telemetry.py including main() with proper configparser exception handling
+* Updated stations and raw app routs and related fuctions
+* Updated /raw and queryDb() sections of telemetry.py
+* More typographical corrections for pull request #124
+* Typographical corrections for pull request #124
+* Updated configuration section formatting
+* Added or updated documentation for configuration files in the guides and readmes
+* Removed old .ini configs and added them to the .gitignore list
+* Created new .sample.ini configs as copies of the latest .ini files
+* Removed the old proxy-template.ini file
+* Updated wording and spelling in readme for remote RF commanding
+* Fixed formatting and spelling errors in readme.md as well as ini configuration file
+* Removed another stray **
+* Spelling and formatting fixes
+* Removed extra **
+* Reseting proxy.ini back to master manually..
+* Changed exception to KeyError as it should be instead of generic error and added more detailed description to error print statement
+* Added how to run tutorial and moved bug note to top of document
+* Pad callsign for APRS passcode generation
+* Added logger identification to IOError exceptions to help with further improvements as we test the APRS application more
+* Changed logging around to remove extra lines by printing as debug only. Also print the number of stations being tracked everytime an APRS-IS update is sent
+* Remove extra print statements
+* Updated main tutorial readme to remove outdated note
+* Updated main tutorial readme to remove outdated note on RF command
+* Removed spaces from both sides of the equal sign and checked the files per the standards in #112
+* Updated the config to have valid GPS coordinates by default (all zeros)  Also, updated the file per #112
+* Added missing USB connection image to main quickstart readme
+* removed extra radio text
+* Updated main readme.md
+* Implemented @jbemenheiser comments as well as updated wording. Changed the front-page readme to clarify project description and flow better with quickstart workflow
+* Updated readme link in conclusion
+* Massive update to RF configuration and use quickstart guide
+* Added a rollback() into the SQL insertion for telemetry insertion to see if that helps any insertion errors from causing database data to no longer be inserted post error
+* Fixed telemetry application which returned a limit of 1 station at all times from /stations app route. Callsign was never checked as a parameter before modifying the SQL query which was changed sometime between Dec 7th 2016 and February 25th, 2017. This resulted in Issue #113 which is now mitigated. Additionally, Telemetry uses a conn.ProgrammingError exception in an effort to capture bad input telemetry causing Telemetry to exit. The APRS symbol for a RF node was also updated
+* Added remote commanding INI to gitignore
+* Updated script to use correct configuration file and successfully ran tutorial
+* Ran through readme.md and fixed typo's
+* General typo update
+* Added initial updated files and updated to .sample.ini
+* Removed to-do
+* Updated typo's and wording from final review push
+* Reverted to general exception
+* Update git ignore for developer turorial
+* Updated readme.md with .sample INI
+* Updated INI to new .sample.ini
+* Finished general update to script
+* Added gitint(), need to verify working
+* Started writing a RF transmission quickstart guide. Not yet complete, committing for the night
+* Added ECHO exception in readme.md
+* Added ECHO exception
+* Reviewed and updated wording in script
+* PEP8 Quick + minor fixes in script
+* Removed period in bullet point
+* Fixed wording in intro
+* Fixed wording
+* Fixed typo's per second review
+* Updating wording in readme halfway
+* Fixed basic Readme.md Typo's
+* Initial Copy - Command Local
+* Updated per review notes
+* Use format method instead of printf-style subs
+* fix typo in previous commit
+* Fix altitude bounds check (#81)
+* Spelling error
+* Added newline between image and text
+* Moved readme for dev tutorials into dev tutorials folder
+* Fixed typos
+* Reorganized Folder + Names
+* Quick fix to allow Telemetry and APRS to work
+* Spellcheck/typofixes
+* Add links to github label filters
+* Spelling error and formatting fix
+* Created issue template file
+* Changed socket exception checking from socket.error to ERRORIO in an effort to more cleanly and cross-platform detect socket errors and fail gracefully
+* Check for generic REPLACEME as callsign to warn user if they forgot to update the callsign field in the configuration file. Also updated screenshot documentation image
+* Updated Readme to account for passcode generaton
+* Updated APRS application to no longer use a login.ini file and instead calculate the APRS passcode automatically. Does this expose the algorith? Yes. Does that matter? No. It's super easy and already online. Hiding the algorithm serves no purpose. If APRS-IS doesn't like it then they need to move to a public/private key based system, it's 2017
+* Cleaned up telemetry to use a % SQL wildcard instead of a None type for callsign queries. Therefore, I also removed the check for None and simply always generate an SQL querying for either the supplied callsign or a % which has the same effect as not specifying a callsign but will always survive an upper() python conversion
+* Cleaned up some upper() statements and forced upper on configuration file callsign read
+* Updated Mac OS X instructions
+* Added APRS example image
+* Added applications section and new links to TOC
+* Clarifited timespan documentation
+* Code now prints out formatted bitmasks
+* Updated hello-world.md to account for REPLACEME text in the example file. Also updated some formatting
+* Updated quickstart guide to include telemetry web browser interfacing prior to LED commanding. This should quickly show off the telemetry capabilities providing remote data prior to immediately learning how to remotely command the unit. I also fixed the hard-coded callsign and node-ID in the hello-world.py script
+* Updated configuring faraday readme to clarify device configuration and simpleconfig applications and use of them
+* Updated simpleconfig.py to print response configuration data when programming is successful and help indicate what went wrong just a little better when it isn't successful
+* Added initial documentation to quickstart for basic Mac OS X installation. Definitely needs some rounding out but operated Faraday on a Macbook Air with it!
+* Adding check for frequency
+* Added basic info check and errors
+* Removed stray pad = pad
+* Fixed padding function examples
+* Updated readme with instructions for configuration and use (web browser) of Telemetry
+* Changed INI file over to non-callsign
+* Adding updated telemetry files to use uppercase INI configurations. I know I committed my own callsign. My B
+* Updated readme with configuration and changed INI files to uppercase other than logger ini
+* Cleaned up code
+* Changed server and port to rotate.aprs.net, seemed better
+* Commented functions in aprs.py
+* Fixed APRS NMEA conversion for latitude and longitude positions. Output is now compliant with APRS protocol Version 1.0 position strings
+* Generic config
+* Replaced with generic configuration
+* All checks for GPS formatting work
+* GPS checking format working
+* Cleaned
+* Format GPS default flash NMEA
+* Updating with formatting check
+* Fixed Bryces comments
+* Updated image link for USB connection
+* Added new Rev D1 images and updates quickstart guide to use only Rev D images
+* Cleaned Tutorial 2
+* Tutorial 0 Generic
+* Fixed Tutorial 0
+* Generic proxy settins tutorial
+* Basic folder structure cleaning
+* Fixed README images
+* Finalized
+* Cleaned up single BAT
+* Firmware Folder
+* Cleaned a bit
+* Deleted Old Files
+* Test programming
+* Added cmd ARGUMENTS
+* Com port variable
+* Cleaned version creating TI script
+* New scripts creating memory checks
+* Generic
+* Generic configuration
+* Removed prints and added comments
+* Completed initial effort
+* Correctly checking and erroring on config to long lengths
+* Adding temp proxy settings
+* Basic checks updates in device configuration files
+* Revert "Revert "Updated Proxy.ini with generic REPLACEME information""
+* Revert "Updated Proxy.ini with generic REPLACEME information"
+* Updated Proxy.ini with generic REPLACEME information
+* Revision telem and Tutorial Bug
+* Added image of new overview to Readme.md
+* Adding initial packet parsing update
+* Added new Faraday Rev D1 overview image
+* Fixed APRS and Telemetry links in Congratulations
+* Moved code overview section to top of page
+* Added GPS Present Bit and frequency comments
+* Added Jake's Comments
+* Added note about blinking LEDs
+* Updated install packages link and text
+* Added missing period
+* Fixed Critical Device Config Bitmask Bug
+* Deleted rogue print
+* Update deviceconfiguration.ini
+* Update faraday_config.ini
+* GPS Present Bit Added To Device Configuration
+* Converted Faraday configuration INI to all uppercase and confirmed working
+* Updated device configuration INI to all uppercase
+* Removed login.ini from APRS and added REPLACEME to fields in telemetry and proxy INI files to force individual users to update these files
+* Updated INI files for proxy and telemetry. In proxy I removed the second Faraday config and defaulted to 1 unit connected. This has bugged me for a while
+* Updated readme.md in Device tests to remove old text. Pulled in latest master changes
+* Updated contributing link
+* Added updated main README.md document as well as new images
+* Adding updated readme for telemetry application. Lots of work left to do
+* Updated Proxy documentation
+* Moved Telemetry and APRS applications into Applications folder and edited the Faraday Proxy Tools relative path to work correctly with the physical move
+* Update LED Hello World to work
+* Updated contributing link
+* Added updated main README.md document as well as new images
+* Adding updated readme for telemetry application. Lots of work left to do
+* Updated Proxy documentation
+* Moved Telemetry and APRS applications into Applications folder and edited the Faraday Proxy Tools relative path to work correctly with the physical move
+* Update LED Hello World to work
+* quick addition of work in progress disclaimer
+* Added max power note of 152 from @kb1lqd answering my email
+* Big update to start which added the configuring Faraday guide. I also updated all configuration INI files with all upper-case. Additionally, I wrote simpleconfig.py to help simplify the process of configuring Faraday
+* Updated tips for installing DB Browser
+* Saved some updates on readme for telemetry
+* Updates initial information for telemetry and aprs application documentation
+* Cleaned up zip file tutorials
+* Added Windows Git clone guide
+* Updated installing packages link
+* Adding hello-world.py and merging in the markdown changes from GitHub
+* Added running comments
+* Code and text cleanup
+* Updated hello world link
+* Updated proxy links
+* Adding readme files for programs
+* Removed old tutorial Getting Started and created a start folder for the new getting started documentation. Moved stuff over to start
+* Cleaned up workflow from Linux Perspective
+* Quick movemement of files... maybe good?
+* Adding tonights work, moving towards extremely simple LED ON for getting started
+* Updated proxy configuration markdown file and added some new images. Also yet again changed the configuration filename code in proxy.py to work well on Windows for absolute paths
+* Updated logging configuration files with os.path.dirname() to help with windows to Linux use
+* Updated config link
+* Adding tutorials so far, need to add Linux Configuration and configuration links
+* Updated directions up to linux based plugging in of the units. Need to go back and document how to install drivers on Linux
+* Added requirements.txt and fixed the VCC bug in telemetry.py. I thought @kb1lqd already fixed this in master? Guess not... Hmmm
+* Update gitignore to ignore virtualenvironment folder
+* Fixing broken link
+* Added getting started readme. Initial work, definitely not done
+* Updated BSL to RF Testing post Firmware Bug #59
+* Added HARD Flash RESET and RF test updates
+* Changed telemetry ADC6 to VCC, added working TEST RF DUT remote commend RF telem
+* Adding basic functional test scripts for unit checkout
+* Adding device test module and script and moved BSL loader back to 1-11-17 firmware
+* Added ideal diode short vcc test
+* Added device test adc and vcc
+* Added GPIO Test
+* Added REV D1 Boot Firmwasre BSL and added config flash hard reset command
+* Added GPS Test (UART)
+* Added temperature parse and test
+* Get telem test
+* Fixed #25 Issue - Update Telem 3 Parsing Dict
+* Fixed telem packet 3 parsing bug
+* Renamed VCC Telemetry Parse Packet 3
+* Device Test - LED's
+* Made debug flash reset function
+* Added simple pass/fail check
+* Fixing Bug #47
+* Fixed parsing debug telemetry bug
+* Fixed Debug Flash Parsing Bug
+* Adding device test
+* Readme started for device reset
+* Updated factory reset tutorial
+* Adding factory reset tutorial
+* Added factory reset
+* Fixed Bug #43 in software
+* Fixed device configuration encoding bug
+* Updating BSL to firmware that includes lower power RF
+* Telemetry now creates a proper db if it starts up without a db file present
+* Fixed telemetry problem from proxyIO commit which broke use of indexed list for SQL insertion. We now use a dictionary to pass parsed data around
+* BSL boot loaderwith REV D1 working firmware script
+* Adding bootloader working with REV D1
+* Merging from master
+* Cleaned up code and also commented it for push to master soon
+* Updated links in main tutorial page
+* Renamed folder
+* Finish initial Pass
+* Cleaning
+* Renamed application
+* Return docstring
+* Documentation
+* Cleaning for PEP8
+* Working main class object
+* Dual threaded
+* Threaded Class
+* Made basic threading queue
+* Fixed function argument bug
+* Finished implementing telemetry, labels, parameters, and scaling for APRS functions. I need to clean up this code and implement the flask server. Will need to leave some left to do as more testing is needed and there's lots of work left to streamline it
+* Added application simple message
+* Finished simple message first pass
+* APRS positioning now reports multiple stations and reads from config files. Added limit support for telemetry API too
+* Massive update to tutorial Simple Message
+* Updated simple message with INI files
+* Fixed image link
+* Created simple message tutorial
+* Started APRS application development. Also fixed a small error in telemetry application
+* Updated readme link
+* Finished first pass Experimental RF Packet Forward
+* Basic experimental rf tutorial done
+* Added troubleshooting to RF commanding
+* Updated tutorial link for RF commanding
+* Completed remote command initial pass
+* Updated RF command to user DIGITAL_IO_0 instead of RED LED
+* Added need for tutorial callsign/ID update in tutorial
+* For realz
+* Updated comments
+* Added RF command tutorial and updated device config
+* Updated main tutorial link overview
+* Fixed image link error
+* Finished up device config tutorial
+* Fixed bug in deviceconfig.py
+* Major update to device config tutorial
+* Updated device configuration tutorial
+* Finished telemetry parsing tutorial
+* Updated datagram unpack
+* Made massive telemetry update parsing
+* Removed redundant telemetry parser
+* Working on Tutorial 2
+* Updating code documentation
+* Updated file names and added device config tutorial start
+* Updated the second tutorial
+* Added comments, started tutorial 2
+* Updated tutorial
+* Updated proxy IO
+* Typo fix
+* Added application simplemessage
+* Updated Proxy Config - Multiple Units
+* Fixing link again
+* Fixing links
+* Heavy update to tutorials
+* Adding link
+* Massive update to starting proxy
+* Adding configuring proxy
+* Fixing second link
+* Fixing link
+* Adding overview page
+* Finishing up tutorial for command local
+* Heavy update to GPIO
+* Adding second tutorial start
+* Finished adding image output
+* Finished initial code description blocks
+* Colde block descriptions
+* Fixed bolding syntax errors
+* Seperated code
+* Updating code in tutorial
+* Updating tutorial organization
+* Updated docstrings for Faraday_msg
+* PEP 8 Update - Faraday_msg
+* Fixed byte dropping bug!
+* Cleaned up and made a TX/RX for each unit
+* Formatting update
+* Basic addressing implemented
+* Cleaned up Test TX User Input
+* Moved message app tutorial
+* Got TX and RX working!
+* Single packet tutorial message Done
+* Fixed case sensitive EXP RF Bug
+* Got tx/rx working!
+* Tutorial 3 tx/rx and debug program
+* Verified tutorial 2 working
+* Verified Issue #32 Testing
+* Fixe bugs with device configuration
+* Copied updates from tutorials into FaradayIO
+* Devide configuration works
+* Fixed No connection adapters were found for '127.0.0.1:8002'
+* Tutorial Device Config
+* Tutorial 1b and 2 likely work
+* Tutorial 1b working
+* Tutorial 1b Working
+* Updated format of tutorial 0
+* Tutorial 0 Running
+* Fixed Tutorial 0 GetWait()
+* Updated Tutorials Proxy
+* Removing .idea folder
+* Updating Gitnore
+* Updated PEP8
+* Updated Readme
+* RESTful API calls '/'
+* Cleaned up to PEP 8
+* Removed extra RESTful call not needed
+* GET and POST working
+* Get config now parsing and returning JSON
+* Get device config started
+* Cleaned up a bit
+* Device programming working!
+* Basic packet formatting
+* Configuration file added
+* Sending a correct command packet!
+* Posting data to Proxy
+* Getting proxy data
+* Basic Setup
+* Device Configuration Added
+* Updated .gitignore to not save .db or .db-journal files in the telemetry folder
+* Removed two databse files accidentally added to git repository!
+* adding .gitignore, apparently it too hasn't been committing..
+* Committing before rebasing with master. Realized I forgot to commit tlemetryparser.py for a few commits so some of my past commits may error!
+* Quickly deleted some extra items in telemetry.ini
+* Cleaned up code and commented. Still needs some cleanign up like making more functions to clean up the actual flask functions
+* Fixed a bug in my last commit that didn't allow /raw to limit to return a single limit of 1
+* Updated /raw URL to return all local radio collected telemetry if stations are unspecified. Also improved how limits are obtained. Should consider changing dictionary keys from proxy from 'CallsignId' to 'Callsign-Id'..
+* Finished implementing a first pass attempt at searching for a station in /stations and returning the last time it was heard
+* Lots of progress with ISO 8601 time format searching. Even my timespan in now based on it. Updated URL / with new time querying using epoch times. I don't even use limit anymore and also return last 5 minutes of data for / now by default
+* Implemented basic ISO8601 to EPOCH converter and successfully query database for time ranges for stations heard!
+* Basic /stations with basic time support added
+* Successfully search for nodeid
+* Correct packing of query results so I dont keep overwriting the same reference resulting in all result index values being the same dictionary. Woops!
+* querying database with SELECT function on / URL using SQLite3.Row items to build up dictionary results and return JSON without need for SQLchemy or Marshmallow!
+* Finished up /raw with data processing and error messages
+* Correctly returns JSON formatted data dictionaries from /raw queries. Need to cover all return cases and errors as well as implement sqlite queries on / but that's for tomorrow
+* Pragmatically inserting data into the SQLite3 database!
+* Added database file and schema. Not totally working yet but saving it for now
+* Added some comments to clarify how the telemetry worker is performing it's function
+* Updated telemetry.py to unpack BASE64 data. Also started updating telemetryparser code to return a dictionary instead of index
+* Flask server is working at grabbing the BASE64 packets from the queue being updated by the telemetry_worker. Next up is to save decoded JSON to the dequeue instead of BASE64 and make the Flask app polished. After that implement a way to save data to SQLite... might mean using two deqeues
+* Working threaded telemetry_worker
+* Updated faraday proxy tools GET and POST functions for better operation with new Proxy. Also made basic telemetry_worker application. Need to send it to a thread and start working on Flask app
+* Fixed tutorial 0 as well as tutorial faradaybasicproxyio.py to use new proxy implementation
+* Removed unused serial proxy configuration code from proxy.ini as well as proxy.py
+* Updated readme.md
+* Added updated files which are needed for previous commit, forgot to add them via git!
+* merged gitignore and jquery conflicts
+* Removed _build directory
+* Added git ignore
+* Removed all .pyc files
+* Removed _build from docs git tracking because it really shouldn't be tracked and is causing lots of merging issues
+* Fixed text regarding 163 bytes of packet data expected to be 164 (zero indexed 0-163)
+* Updated logging configuration for minimal output yet show some useful information during startup and warning/errors. Updated proxy.rst for full API documenation
+* Fixed stalling request after a POST when trying to GET by threading flask. Adding threaded=True to app.run() fixed it! Also fixed some PEP8 issues for code clarity
+* Contribution Document TOC Update
+* Contribution Document
+* GitIgnore
+* Drastic improvement to POST behavior. However, still seeing that after a POST the GET is super slow/never responds... Not sure if in code or weird interaction of my free UCSF Mission Bay Wifi right now..
+* Updated proxy post to start moving towards working POST code again. Updated API documentation .rst page
+* Updated logging config to reduce interface messages to only warnings or higher. Added check for limit value <= 0
+* Updated Proxy with good error messages and checking for mose user input that would cause an error on the GET side of operation. Way more stable and overall polished. Need to update some POST error checking next
+* Fixed up error mesages and returned good JSON responses! Much better.... Much much much better
+* Updated getting started with resource links initial
+* Updated naming and added basic information to all files. Added GUI
+* Added getting started tutorial markdown files
+* Updated to PEP8 style code with one warning left over..
+* Fixed typo's in readme.md's
+* Removed readme.txt's and added readme.md's
+* Removed multiple FaradayIO folders to support a single FaradayIO module in Tutorials. Also I added support for adding the relative path in PATH to the import of the module in Tutorials
+* Tutorial 3 working with PEP8 push FaradayIO
+* Tutorials 0-2 all work with minor name update after PEP8 push
+* Ran with tutorial 0 after mini name update
+* Updated the proxy to use dictionaries of callsigns as keys and values being instances of the Faraday UART driver. Then each unit get's a dictionary with a queu for each port. Added better failure cases with try/except use as well
+* Started implementing basic functionality to create multiple buffer qeues for local units. I do not currently use them and need to figure out how to relate COM port to a datastream
+* Added POST support but have not implemented multi-unit support or actual use of the com port selection
+* Updated gpioallocations.py to PEP8
+* Updated faradaycommands.pf PEP8 items. Got most but some are likley false failures?
+* Updated the PEP8 basics for faradaycommands.pf
+* Updated telemetryparser.py to mostly PEP8
+* Mostly updated commandmodule.py to PEP8, a few stragglers left
+* Updated checksum to PEP8
+* Updated cc430radioconfig.py to PEP8
+* Updated Code to PEP8
+* Adding Message #2 tutorial application
+* Updated a few parts of the basic message application. Going to branch it into another tutorial for part 2
+* Fixed checksum import error
+* Adding parent level FaradayIO but still need to figure out PATH's
+* Removed pyc files for real now
+* Removed pyc files
+* Basic message application working in bare bones sending about 1-2kbps using the super janky and underutilizing setup, I'm committing pyc files, I'm sorry!
+* Updated proxy documentation to provide high level overview of code and image showing code structure. Need to add API and link to this proxy.rst instead of proxy-api.rst
+* Fixed some of the fragmenting code issues. Better but still not a perfect string in the end..
+* Removing unneeded folders
+* Adding updated messaging tutorial application
+* Added a basic high level file to operate the message objects
+* Updating readme
+* Adding initial message application
+* Proxy Configuration
+* Updating with better format
+* Added tutorial 1b, trying a more simplistic style
+* Created tutorial 1 documentation for example 1a
+* Initial commit of Proxy
+* Updated faradayio optional port in documentation and moved updated version back into the Tutorials
+* Updated tutorial 3 to working. Created a default argument for flask port in FaradayIO
+* Updated a working tutorial 2 and back added a function name update to prior tutorial FaradayIO's
+* Tutorials 1b and 1c now working with FaradayIO
+* Updated tutorial 1a
+* Tutorial 0 updated to working
+* Replaced proxy library with documented version
+* Fixed missed function in telemetry parser
+* Updated overall structure of the documentation
+* Finished updating documenation for Faraday Proxy IO. Also removed PYC files
+* Removed compiled files
+* Adding forgotten index document update
+* Added commandmodule documentation
+* Added return documentation to faradaycommands
+* Adding faradaycommands autodocumentation as well as some formating for proxyio
+* Fix typo's in Tutorial 0
+* Finished first pass of Tutorial 0
+* Adding Tutorials
+* Added FaradayIO and first auto documentation attempt
+* Adding basic proxy IO tool and folder
+* Updated Docs and License
+* Created README.md
+* Created license.md
