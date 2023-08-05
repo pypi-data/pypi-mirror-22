@@ -1,0 +1,450 @@
+.. currentmodule:: cf
+.. default-role:: obj
+
+.. _field_creation:
+ 
+Creating `cf.Field` objects
+===========================
+
+A new field is created by initializing a new `cf.Field` instance:
+
+>>> f = cf.Field()
+
+Some data and metadata may be provided via initialisation parameters,
+but in general it is preferable to create an empty field and then add
+data and metadata with the techniques described here.
+
+Inserting data and metadata
+---------------------------
+
+Inserting attributes
+~~~~~~~~~~~~~~~~~~~~
+
+An attribute set directly on a `cf.Field` instance is either a CF
+property, if its name is defined by the CF conventions, or an instance
+attribute. For example:
+
+>>> f.foo = 'bar'
+>>> f.standard_name = 'air_temperature'
+
+Attributes and CF properties may be also be set with the following methods:
+
+.. autosummary::
+   :nosignatures:
+   :template: method.rst
+
+   cf.Field.attributes
+   cf.Field.properties
+   cf.Field.setprop
+
+For example:
+
+>>> f.attributes({'foo': 'bar'})
+>>> f.properties({'foo': 'bar', 'long_name': 'temperature'})
+>>> f.setprop('foo', 'bar')
+
+Inserting domain components
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Domain components may be provided with the following methods:
+
+.. autosummary::
+   :nosignatures:
+   :template: method.rst
+
+   cf.Field.insert_aux
+   cf.Field.insert_axis
+   cf.Field.insert_cell_methods
+   cf.Field.insert_dim
+   cf.Field.insert_domain_anc
+   cf.Field.insert_field_anc
+   cf.Field.insert_measure
+   cf.Field.insert_ref
+
+For example:
+
+>>> coord
+<CF DimensionCoordinate: latitude(73) degrees_north>,
+>>> f.insert_dim(coord)
+
+Inserting data
+~~~~~~~~~~~~~~
+
+The field's data array may be provided with the following method:
+
+.. autosummary::
+   :nosignatures:
+   :template: method.rst
+
+   cf.Field.insert_data
+
+For example:
+
+>>> data
+<CF Data: [[[271.31, ..., 298.56]]] K>
+>>> f.insert_data(data)
+
+Removing data and metadata
+--------------------------
+
+Removing attributes
+~~~~~~~~~~~~~~~~~~~
+
+An attribute deleted directly from a `cf.Field` instance is either a
+CF property, if its name is defined by the CF conventions, or an
+instance attribute. For example:
+
+>>> del f.foo = 'bar'
+>>> del f.standard_name
+
+CF properties may be also be removed with the following methods:
+
+.. autosummary::
+   :nosignatures:
+   :template: method.rst
+
+   cf.Field.properties
+   cf.Field.delprop
+
+For example:
+
+>>> f.delprop('foo')
+>>> f.delprop('standard_name')
+>>> f.properties(clear=True)
+
+Removing domain components
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Removing field components is done with the following methods:
+
+.. autosummary::
+   :nosignatures:
+   :template: method.rst
+
+   cf.Field.remove_item
+   cf.Field.remove_axis
+   cf.Field.remove_items
+   cf.Field.remove_axes
+
+For example:
+
+>>> f.remove_item('longitude')
+<CF AuxiliaryCoordinate: longitude(111, 106) degrees_east>
+
+Removing data
+~~~~~~~~~~~~~
+
+Removing the data is done with the following method:
+
+.. autosummary::
+   :nosignatures:
+   :template: method.rst
+
+   cf.Field.remove_data
+
+For example:
+
+>>> f.remove_data()
+<CF Data: [[[271.31, ..., 298.56]]] K>
+
+.. _field-creation_examples:
+
+Examples
+--------
+
+.. _fc-example1:
+
+Example 1
+~~~~~~~~~
+
+An empty field:
+
+>>> f = cf.Field()
+>>> print f
+ field summary
+--------------
+
+.. _fc-example2:
+
+Example 2
+~~~~~~~~~
+
+A field with just CF properties:
+
+>>> f = cf.Field()
+>>> f.standard_name = 'air_temperature'
+>>> f.properties({'long_name': 'temperature of air',
+...               'foo'      : 'bar'})
+>>> print f
+air_temperature field summary
+-----------------------------
+
+.. _fc-example3:
+
+Example 3
+~~~~~~~~~
+
+A field with two dimensionsal data array and a simple domain
+comprising two dimension coordinate objects. Note that in this example
+the data and coordinates are generated using :py:obj:`range` and
+`numpy.arange` simply for the sake of having some numbers to play
+with. In practice it is likely the values would have been read from a
+file in some arbitrary format:
+
+>>> import numpy
+>>> f = cf.Field()
+>>> f.standard_name = 'eastward_wind'
+>>> y = cf.DimensionCoordinate(data=cf.Data(range(10), 'degrees_north'),
+...                            properties={'standard_name': 'latitude'})
+>>> x = cf.DimensionCoordinate(data=cf.Data(range(9), 'degrees_east'))
+>>> x.standard_name = 'longitude'
+>>> f.insert_dim(y)
+'dim0'
+>>> f.insert_dim(x)
+'dim1'
+>>> data = cf.Data(numpy.arange(90.).reshape(9, 10), 'm s-1')
+>>> f.insert_data(data)
+>>> print f
+eastward_wind field summary
+---------------------------
+Data           : eastward_wind(longitude(9), latitude(10)) m s-1
+Axes           : latitude(10) = [0, ..., 9] degrees_north
+               : longitude(9) = [0, ..., 8] degrees_east
+
+Note that when inserting dimension coordinates, domain axes will
+automatically be created if there is no ambiguity. Similarly, the data
+array dimensions are automatically assigned to domain axes if
+possible. The `~cf.Field.insert_dim` method returns the field's
+internal identifier for the inserted item.
+
+Adding an auxiliary coordinate to the "latitude" axis and a cell
+method may be done with the :ref:`relevant method
+<inserting-and-removing-components>` and by simple assignment
+respectively (note that these coordinate values are just for
+illustration):
+
+>>> aux = cf.AuxiliaryCoordinate(data=cf.Data(['alpha','beta','gamma','delta','epsilon',
+...                                             'zeta','eta','theta','iota','kappa']))
+...				       
+>>> aux.long_name = 'extra'
+>>> f.items()
+{'dim0': <CF DimensionCoordinate: latitude(10) degrees_north>,
+ 'dim1': <CF DimensionCoordinate: longitude(9) degrees_east>}
+>>> f.insert_aux(aux)
+'aux0'
+>>> f.cell_methods = cf.CellMethods('latitude: point')
+>>> print f
+eastward_wind field summary
+---------------------------
+Data           : eastward_wind(longitude(9), latitude(10)) m s-1
+Cell methods   : latitude: point
+Axes           : latitude(10) = [0, ..., 9] degrees_north
+               : longitude(9) = [0, ..., 8] degrees_east
+Aux coords     : long_name:extra(latitude(10)) = ['alpha', ..., 'kappa'] 
+
+Removing the auxiliary coordinate and the cell method that were just
+added is also done with the :ref:`relevant method
+<inserting-and-removing-components>` and by simple deletion
+respectively:
+
+>>> f.remove_item({'long_name': 'extra'})
+<CF AuxiliaryCoordinate: long_name:extra(10)>
+>>> del f.cell_methods
+>>> print f
+eastward_wind field summary
+---------------------------
+Data            : eastward_wind(latitude(10), longitude(9)) m s-1
+Dimensions      : latitude(10) = [0, ..., 9] degrees_north
+                : longitude(9) = [0, ..., 8] degrees_east
+
+.. _fc-example4:
+
+Example 4
+~~~~~~~~~
+
+.. highlight:: guess
+
+A more complicated field is created by the following script. Note that
+in this example the data and coordinates are generated using
+`numpy.arange` simply for the sake of having some numbers to play
+with. In practice it is likely the values would have been read from a
+file in some arbitrary format::
+
+   import cf
+   import numpy
+   
+   #---------------------------------------------------------------------
+   # 1. CREATE the field's domain items
+   #---------------------------------------------------------------------
+   # Create a grid_latitude dimension coordinate
+   Y = cf.DimensionCoordinate(properties={'standard_name': 'grid_latitude'},
+                                 data=cf.Data(numpy.arange(10.), 'degrees'))
+   
+   # Create a grid_longitude dimension coordinate
+   X = cf.DimensionCoordinate(data=cf.Data(numpy.arange(9.), 'degrees'))
+   X.standard_name = 'grid_longitude'
+   
+   # Create a time dimension coordinate (with bounds)
+   bounds = cf.CoordinateBounds(
+       data=cf.Data([0.5, 1.5], cf.Units('days since 2000-1-1', calendar='noleap')))
+   T = cf.DimensionCoordinate(properties=dict(standard_name='time'),
+                              data=cf.Data(1, cf.Units('days since 2000-1-1',
+                                                       calendar='noleap')),
+                              bounds=bounds)
+   
+   # Create a longitude auxiliary coordinate
+   lat = cf.AuxiliaryCoordinate(data=cf.Data(numpy.arange(90).reshape(10, 9),
+                                             'degrees_north'))
+   lat.standard_name = 'latitude'
+   
+   # Create a latitude auxiliary coordinate
+   lon = cf.AuxiliaryCoordinate(properties=dict(standard_name='longitude'),
+                                data=cf.Data(numpy.arange(1, 91).reshape(9, 10),
+                                             'degrees_east'))
+   
+   # Create a rotated_latitude_longitude grid mapping coordinate reference
+   grid_mapping = cf.CoordinateReference('rotated_latitude_longitude',
+                                         grid_north_pole_latitude=38.0,
+                                         grid_north_pole_longitude=190.0)
+   
+   # --------------------------------------------------------------------
+   # 2. Create the field's domain from the previously created items
+   # --------------------------------------------------------------------
+   domain = cf.Domain(dim=[T, Y, X],
+                      aux=[lat, lon],
+                      ref=grid_mapping)
+
+   #---------------------------------------------------------------------
+   # 3. Create the field
+   #---------------------------------------------------------------------
+   # Create CF properties
+   properties = {'standard_name': 'eastward_wind',
+                 'long_name'    : 'East Wind',
+                 'cell_methods' : cf.CellMethods('latitude: point')}
+   
+   # Create the field's data array
+   data = cf.Data(numpy.arange(90.).reshape(9, 10), 'm s-1')
+   
+   # Finally, create the field
+   f = cf.Field(properties=properties,
+                domain=domain,
+                data=data)
+    
+   print "The new field:\n"
+   print f
+
+.. highlight:: none
+
+Running this script produces the following output::
+
+   The new field:
+
+   eastward_wind field summary
+   ---------------------------
+   Data           : eastward_wind(grid_longitude(9), grid_latitude(10)) m s-1
+   Cell methods   : latitude: point
+   Axes           : time(1) = [2000-01-02 00:00:00] noleap
+                  : grid_longitude(9) = [0.0, ..., 8.0] degrees
+                  : grid_latitude(10) = [0.0, ..., 9.0] degrees
+   Aux coords     : latitude(grid_latitude(10), grid_longitude(9)) = [[0, ..., 89]] degrees_north
+                  : longitude(grid_longitude(9), grid_latitude(10)) = [[1, ..., 90]] degrees_east
+   Coord refs     : <CF CoordinateReference: rotated_latitude_longitude>
+
+.. highlight:: guess
+
+.. _fc-example5:
+
+Example 5
+~~~~~~~~~
+
+:ref:`Example 4 <fc-example4>` would be slightly more complicated if
+the ``grid_longitude`` and ``grid_latitude`` axes were to have the
+same size. In this case the domain needs be told which axes, and in
+which order, are spanned by the two dimensional auxiliary coordinates
+(``latitude`` and ``longitude``) and the field needs to know which
+axes span the data array::
+
+   import cf
+   import numpy
+   
+
+   #---------------------------------------------------------------------
+   # 1. CREATE the field's domain items
+   #---------------------------------------------------------------------
+   # Create a grid_latitude dimension coordinate
+   Y = cf.DimensionCoordinate(properties={'standard_name': 'grid_latitude'},
+                                 data=cf.Data(numpy.arange(10.), 'degrees'))
+   
+   # Create a grid_longitude dimension coordinate
+   X = cf.DimensionCoordinate(data=cf.Data(numpy.arange(10.), 'degrees'))
+   X.standard_name = 'grid_longitude'
+   
+   # Create a time dimension coordinate (with bounds)
+   bounds = cf.CoordinateBounds(
+       data=cf.Data([0.5, 1.5], cf.Units('days since 2000-1-1', calendar='noleap')))
+   T = cf.DimensionCoordinate(properties=dict(standard_name='time'),
+                              data=cf.Data(1, cf.Units('days since 2000-1-1',
+                                                       calendar='noleap')),
+                              bounds=bounds)
+   
+   # Create a longitude auxiliary coordinate
+   lat = cf.AuxiliaryCoordinate(data=cf.Data(numpy.arange(100).reshape(10, 10),
+                                             'degrees_north'))
+   lat.standard_name = 'latitude'
+   
+   # Create a latitude auxiliary coordinate
+   lon = cf.AuxiliaryCoordinate(properties=dict(standard_name='longitude'),
+                                data=cf.Data(numpy.arange(1, 101).reshape(10, 10),
+                                             'degrees_east'))
+   
+   # Create a rotated_latitude_longitude grid mapping coordinate reference
+   grid_mapping = cf.CoordinateReference('rotated_latitude_longitude',
+                                         grid_north_pole_latitude=38.0,
+                                         grid_north_pole_longitude=190.0)
+   
+   # --------------------------------------------------------------------
+   # 2. Create the field's domain from the previously created items
+   # --------------------------------------------------------------------
+   domain = cf.Domain(dim=[T, Y, X],
+                      aux={'aux0': lat, 'aux1': lon},
+                      ref=grid_mapping,
+		      assign_axes={'aux0': ['grid_latitude', 'grid_longitude'],
+                          	   'aux1': ['grid_longitude', 'grid_latitude']})
+
+   #---------------------------------------------------------------------
+   # 3. Create the field
+   #---------------------------------------------------------------------
+   # Create CF properties
+   properties = {'standard_name': 'eastward_wind',
+                 'long_name'    : 'East Wind',
+                 'cell_methods' : cf.CellMethods('latitude: point')}
+   
+   # Create the field's data array
+   data = cf.Data(numpy.arange(90.).reshape(9, 10), 'm s-1')
+   
+   # Finally, create the field
+   f = cf.Field(properties=properties,
+                domain=domain,
+                data=data,
+                axes=['grid_latitude', 'grid_longitude'])
+    
+   print "The new field:\n"
+   print f
+
+
+.. highlight:: none
+
+Running this script produces the following output::
+
+   eastward_wind field summary
+   ---------------------------
+   Data           : eastward_wind(grid_latitude(10), grid_longitude(10)) m s-1
+   Cell methods   : latitude: point
+   Axes           : time(1) = [2000-01-02 00:00:00] noleap
+                  : grid_longitude(10) = [0.0, ..., 9.0] degrees
+                  : grid_latitude(10) = [0.0, ..., 9.0] degrees
+   Aux coords     : latitude(grid_latitude(10), grid_longitude(10)) = [[0, ..., 99]] degrees_north
+                  : longitude(grid_longitude(10), grid_latitude(10)) = [[1, ..., 100]] degrees_east
+   Coord refs     : <CF CoordinateReference: rotated_latitude_longitude>
+
+.. highlight:: guess
