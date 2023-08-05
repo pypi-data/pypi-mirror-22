@@ -1,0 +1,18 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+COLORS	main.py	/^    COLORS = {$/;"	v	class:ColoredFormatter
+ColoredFormatter	main.py	/^class ColoredFormatter(logging.Formatter):$/;"	c
+NullPieCrust	main.py	/^class NullPieCrust:$/;"	c
+PreParsedChefArgs	main.py	/^class PreParsedChefArgs(object):$/;"	c
+__init__	main.py	/^    def __init__(self):$/;"	m	class:NullPieCrust
+__init__	main.py	/^    def __init__(self, fmt=None, datefmt=None):$/;"	m	class:ColoredFormatter
+__init__	main.py	/^    def __init__(self, root=None, cache=True, debug=False, quiet=False,$/;"	m	class:PreParsedChefArgs
+_pre_parse_chef_args	main.py	/^def _pre_parse_chef_args(argv):$/;"	f
+_run_chef	main.py	/^def _run_chef(pre_args):$/;"	f
+format	main.py	/^    def format(self, record):$/;"	m	class:ColoredFormatter
+logger	main.py	/^logger = logging.getLogger(__name__)$/;"	v
+main	main.py	/^def main():$/;"	f
