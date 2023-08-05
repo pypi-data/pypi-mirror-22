@@ -1,0 +1,66 @@
+# README #
+
+Plinq is a library for python, implementing the Language Integrated Query (LINQ) from the C# language.
+Of course it is not a full port of the feature, it is only working with in memory iterable objects, including:
+* lists
+* sets
+* dictionaries
+* files
+* xml elements
+* generators
+* and every class which implements the iterable/iterator protocol ( \_\_iter\_\_ and \_\_next\_\_)
+
+Plinq tries to mimic the Enumerable<T> interface from C# as much as possible.
+* It has the same method names, wherever possible, and the same parameters too
+
+Plinq operators are lazy, meaning calling one, will not start the actual work. It will only happen, when the iteration over the returned object is started.
+
+Plinq operators returning a new Linq object, so operator calls can be chained into a fluent API like call.
+
+### What is this repository for? ###
+
+* This repository contains the code for the plinq library and its unit tests 
+* Version
+    * 0.2
+* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+
+### How do I get set up? ###
+
+* Summary of set up
+    * Just check out the repository, and add the directory to your python path
+    * Alternatively you can create a distribution package by invoking python setup.py <sdist/bdist_wheel>
+        * After that just invoke python -m pip install <path/to/the/generated/distribution/package>
+    * After these steps you can simply import plinq and start using the library
+* Configuration
+    * No additional configuration is needed
+* Dependencies
+    * plinq has no external dependencies. The only requirement is to have Python 3.5.2
+* How to run tests
+    * After you have checked out the repository, you can run the python unit tests by invoking the following command from the root directory of the repository:
+        * python -m unittest discover test/
+* Deployment instructions
+    * NA
+
+### Contribution guidelines ###
+
+* Writing tests
+* Code review
+* Other guidelines
+
+### Who do I talk to? ###
+
+* Repo owner and admin
+    * Heszele Rudolf <heszele@gmail.com> 
+* Other community or team contact
+
+### Example usage ###
+
+    import plinq
+    linq = plinq.from_iterable([1, 2, 3, 4, 5]).where(lambda item, index: item % 2 == 0).select(lambda item, index: item ** 2)
+    for item in linq:
+        print(item)
+
+This will result in the following output:
+
+    4
+    16
