@@ -1,0 +1,32 @@
+Metadata-Version: 1.1
+Name: jonsnow
+Version: 1.0
+Summary: A simple tool to run a shell command when files change.
+Home-page: https://github.com/galbacarys/jonsnow
+Author: Gabriel Albacarys
+Author-email: nameless912@gmail.com
+License: MIT
+Description: 
+        jonsnow is a tool to make running unit tests, etc. easier. Run it in a separate
+        terminal from where you're doing your editing and it will run an arbitrary shell
+        comand whenever you change a file in a specified directory.
+        
+        Usage:
+           jonsnow ./fight_white_walkers.sh
+           jonsnow -r ../ echo "You know nothing..."
+        
+        Arguments:
+        -r, --root PATH: specify the root directory you want {} to format.
+                         Defaults to the current working directory.
+        --rtp PATH: Set the runtime path of the command you want to execute
+                
+Keywords: development build buildtools automation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python :: 3
