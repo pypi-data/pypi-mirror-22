@@ -1,0 +1,59 @@
+Metadata-Version: 2.0
+Name: mocp
+Version: 0.3.3
+Summary: A Python library to control the MOC (music on console) audio player
+Home-page: https://github.com/kenjyco/mocp
+Author: Jonas Haag, Ken
+Author-email: kenjyco@gmail.com
+License: BSD
+Download-URL: https://github.com/kenjyco/mocp/tarball/v0.3.3
+Keywords: moc,mocp,console audio,mp3 player
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Multimedia :: Sound/Audio :: Players
+Classifier: Intended Audience :: Developers
+Requires-Dist: input-helper
+
+The `actual player <https://moc.daper.net/>`__ must be installed on the
+system (i.e. ``sudo apt-get install moc`` or ``brew install moc``).
+
+    Note: if using a Mac, you need to run
+    `jack <http://www.jackaudio.org/>`__ in another terminal (i.e.
+    ``jackd -d coreaudio``). If moc was installed with
+    `homebrew <http://brew.sh/>`__, jack should have been installed as a
+    requirement.
+
+Install
+^^^^^^^
+
+::
+
+    % pip install mocp
+
+Usage
+^^^^^
+
+::
+
+    % ipython
+    ...
+
+    In [1]: import moc
+
+    In [2]: moc.find_and_play('~/music-dir/blah*')
+
+    In [3]: moc.go('12:15')         # jump to particular point in current track
+
+    In [4]: moc.go('1h23m12s')      # jump to particular point in current track
+
+    In [5]: moc.go(500)             # jump to particular point in current track
+
+    In [6]: moc.info_string()
+    Out[6]: '08:21 (501) of 95:35 into /home/user/music-dir/blah-thing/file.mp3'
+
+
