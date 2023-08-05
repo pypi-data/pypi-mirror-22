@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>{{ title }}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ bootstrap_min_css }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ jumbotron_css }}" rel="stylesheet">
+    <!-- Guttenberg CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/gutenberg-css@0.4" media="print">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse no-print">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="{{ index_address }}">{{ name }}</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          {% if index %}
+          <li class="nav-item active">
+          {% else %}
+          <li class="nav-item">
+          {% endif %}
+
+            <a class="nav-link" href="{{ index_address }}">{{ home_page_name }}<span class="sr-only">(current)</span></a>
+          </li>
+          {% for section in sections[1:] %}
+          {% set outer_loop = loop %}
+            {% if pages_len[outer_loop.index0 + 1] == 1 %}
+            
+              {% if section == current_section %}
+              <li class="nav-item active">
+              {% else %}
+              <li class="nav-item">
+              {% endif %}
+
+              <a class="nav-link" href="{{ address_prefix }}/{{ section }}/Page 1.html">{{ section }}</a>
+            </li>
+            {% else %}
+
+              {% if section == current_section %}
+              <li class="nav-item dropdown active">
+              {% else %}
+              <li class="nav-item dropdown">
+              {% endif %}
+
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ section }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            {% for page in pages[outer_loop.index0 + 1] %}
+            <a class="dropdown-item" href="{{ address_prefix }}/{{ section }}/{{ page }}.html">{{ page }}</a>
+            {% endfor %}
+          </div>
+          </li>
+
+            {% endif %}
+          {% endfor %}
+        </ul>
+        <span class="navbar-text">
+        {{ nav_bar_right_side }}
+        </span>
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    {% if index %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">{{ main_display }}</h1>
+        <p>{{ display_message }}</p>
+      </div>
+    </div>
+    {% else %}
+    <br>
+    <br>
+    {% endif %}
+
+    <div class="container">
+    {% for row in layout %}
+    {% set outer_loop = loop %}
+    
+      <!-- Example row of columns -->
+      <div class="row">
+        {% for width in layout[outer_loop.index0] %}
+        {% set inner_loop = loop %}
+        <div class="col-md-{{ width }}">
+          {% if headings[outer_loop.index0][inner_loop.index0] %}
+          <h2 class = "text-center">{{ headings[outer_loop.index0][inner_loop.index0] }}</h2>
+          {% endif %}
+
+          {% if comments_above[outer_loop.index0][inner_loop.index0] %}
+          <p class = "text-center">{{ comments_above[outer_loop.index0][inner_loop.index0] }}</p>
+          {% endif %}
+
+          {% if plots[outer_loop.index0][inner_loop.index0] %}
+          <a href="#" class ="no-reformat">
+          <img src="{{ address_prefix }}/{{ current_section }}/{{ plots[outer_loop.index0][inner_loop.index0] }}.svg" alt="A nice graph" class="img-fluid mx-auto d-block">
+          </a>
+          {% endif %}
+
+          {% if tables[outer_loop.index0][inner_loop.index0] %}
+          {{ tables[outer_loop.index0][inner_loop.index0] }}
+          {% endif %}
+
+          {% if comments_below[outer_loop.index0][inner_loop.index0] %}
+          <p class = "text-center">{{ comments_below[outer_loop.index0][inner_loop.index0] }}</p>
+          {% endif %}
+
+        </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+      </div>
+      <hr>
+
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ name }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          </div>
+          <div class="modal-body">
+          <img src="#" alt="A nice graph" class="img-fluid mx-auto d-block" id = "my-image">
+          
+          </div>
+          <div class="modal-footer">
+            
+            
+          </div>
+          </div>  
+        </div>
+      </div>
+
+      <div class ="no-print">
+        <footer>
+          <p>{{ footer }}</p>
+          
+        </footer>
+      </div>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{{ bootstrap_js }}"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script>
+      $(document).ready(function(){
+          
+          $(".no-reformat").click(function(){
+              var cat =  $(this).children("img").attr("src");
+              $(".modal-body").children("img").attr("src", cat)
+
+              var newButton = document.createElement('button');
+              newButton.id = "modButton";
+              newButton.className = ("btn btn-primary element-to-hide");
+              newButton.setAttribute("data-toggle", "modal");
+              newButton.setAttribute("data-target", ".bd-example-modal-lg");
+              newButton.innerHTML = "Large modal";
+
+              document.getElementById('theFooter').appendChild(newButton);
+
+              $('.element-to-hide').each(function(){
+                $(this).hide();
+              });
+
+              $('#modButton').trigger('click');
+              
+          });
+      });
+    </script>
+  </body>
+</html>
