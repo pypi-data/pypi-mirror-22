@@ -1,0 +1,39 @@
+version: '{branch}-{build}'
+build: off
+cache:
+  - '%LOCALAPPDATA%\pip\Cache'
+environment:
+  matrix:
+    - TOXENV: check
+    - TOXENV: 'py26-27-37,py26-27-40,py26-27-41,py26-27-42,py26-27-43,py26-28-37,py26-28-40,py26-28-41,py26-28-42,py26-28-43,py26-29-37,py26-29-40,py26-29-41,py26-29-42,py26-29-43,py26-30-37,py26-30-40,py26-30-41,py26-30-42,py26-30-43'
+    - TOXENV: 'py27-27-37,py27-27-40,py27-27-41,py27-27-42,py27-27-43,py27-28-37,py27-28-40,py27-28-41,py27-28-42,py27-28-43,py27-29-37,py27-29-40,py27-29-41,py27-29-42,py27-29-43,py27-30-37,py27-30-40,py27-30-41,py27-30-42,py27-30-43,py27-27-43,py27-27-44,py27-28-43,py27-28-44,py27-29-43,py27-29-44,py27-30-43,py27-30-44'
+    - TOXENV: 'py34-27-37,py34-27-40,py34-27-41,py34-27-42,py34-27-43,py34-28-37,py34-28-40,py34-28-41,py34-28-42,py34-28-43,py34-29-37,py34-29-40,py34-29-41,py34-29-42,py34-29-43,py34-30-37,py34-30-40,py34-30-41,py34-30-42,py34-30-43,py34-27-43,py34-27-44,py34-28-43,py34-28-44,py34-29-43,py34-29-44,py34-30-43,py34-30-44'
+    - TOXENV: 'py35-27-37,py35-27-40,py35-27-41,py35-27-42,py35-27-43,py35-28-37,py35-28-40,py35-28-41,py35-28-42,py35-28-43,py35-29-37,py35-29-40,py35-29-41,py35-29-42,py35-29-43,py35-30-37,py35-30-40,py35-30-41,py35-30-42,py35-30-43,py35-27-43,py35-27-44,py35-28-43,py35-28-44,py35-29-43,py35-29-44,py35-30-43,py35-30-44'
+    - TOXENV: 'pypy-27-37,pypy-27-40,pypy-27-41,pypy-27-42,pypy-27-43,pypy-28-37,pypy-28-40,pypy-28-41,pypy-28-42,pypy-28-43,pypy-29-37,pypy-29-40,pypy-29-41,pypy-29-42,pypy-29-43,pypy-30-37,pypy-30-40,pypy-30-41,pypy-30-42,pypy-30-43,pypy-27-43,pypy-27-44,pypy-28-43,pypy-28-44,pypy-29-43,pypy-29-44,pypy-30-43,pypy-30-44'
+
+init:
+  - ps: echo $env:TOXENV
+  - ps: ls C:\Python*
+install:
+  # install pypy using choco (redirect to a file and write to console in case
+  # choco install returns non-zero, because choco install python.pypy is too
+  # noisy)
+  - choco install python.pypy > pypy-inst.log 2>&1 || (type pypy-inst.log & exit /b 1)
+  - set PATH=C:\tools\pypy\pypy;%PATH% # so tox can find pypy
+  - echo PyPy installed
+  - pypy --version
+
+  - C:\Python35\python -m pip install tox
+
+test_script:
+  - C:\Python35\python -m tox
+
+on_failure:
+  - ps: dir "env:"
+  - ps: get-content .tox\*\log\*
+artifacts:
+  - path: dist\*
+
+### To enable remote debugging uncomment this (also, see: http://www.appveyor.com/docs/how-to/rdp-to-build-worker):
+# on_finish:
+#   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
