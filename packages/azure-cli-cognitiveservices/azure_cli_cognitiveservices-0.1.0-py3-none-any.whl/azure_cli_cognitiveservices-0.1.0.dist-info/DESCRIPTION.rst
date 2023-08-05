@@ -1,0 +1,20 @@
+Microsoft Azure CLI 'cognitive services' Command Module
+=============================================
+
+This package is for the 'cognitive services' module.
+i.e. 'az cognitiveservices'
+
+
+
+
+.. :changelog:
+
+Release History
+===============
+
+0.1.0 (2017-05-05)
+------------------
+* inital cognitive services CLI
+
+
+
