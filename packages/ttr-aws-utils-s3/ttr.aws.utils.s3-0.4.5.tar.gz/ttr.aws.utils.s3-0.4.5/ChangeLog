@@ -1,0 +1,45 @@
+CHANGES
+=======
+
+0.4.5
+-----
+
+* Rewritten to boto3
+* Rewritten to pbr. getlsvers rewritten to boto3
+* s3lsvers fixed to list proper key and parse time properly. Tests
+* s3lsvers rewriten to boto3, docstring simplified
+* s3tmpgen allows -http flag to generate http urls (instead of https)
+* Version bumbped to 4.3
+* Resolves bug #2 - s3tmpgen generating shifted expiration time in url
+* Updated repo url, bumpbed version to 0.4.2.2
+* Bumped version to 0.4.2.1
+* Corrected README.rst and NEWS.txt (was breaking rendering RST)
+* Version bumped to 0.4.2
+* Reformatted tmpgen.py
+* Reformatted setup.py
+* Removed obsolete references from MANIFEST.in
+* s3tmpgen now serves url for latest version without specific VersionId
+* Version changed to 0.4.0
+* Removed obsolete files
+* Removed buildout install, README explains key aliases definition in .s3lsvers
+* s3tmpget strongly simplified and finally it works
+* s3lsvers and s3getvers allows explicit id and secret key or boto profile
+* TODO added
+* chart.html template added into packaging
+* refactoring
+* added aliases for bucket/key\_name
+* Optimized creation of html chart - calculating datetime from epoch in milis
+* added command s3tmpgen, version 0.3.0 released
+* checking, if txt ext of readme works or not
+* Correctint copyright substitution in rst
+* continue experiments with formating readme
+* experimenting with readme format
+* ver 2.3, corrected doc, released to PyPi
+* Adding copyright notices before releasing to PyPi
+* cleaning up version 0.2.1
+* debugged - scripts now starting as they should
+* lsvers.py now uses plac and not directly argparse. Unused option -period removed
+* added command s3getvers, fetching versions according to csv file
+* before reinstalling notebook
+* repaired dependencies
+* Initial commit
