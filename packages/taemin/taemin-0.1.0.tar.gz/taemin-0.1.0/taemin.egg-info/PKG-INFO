@@ -1,0 +1,66 @@
+Metadata-Version: 1.1
+Name: taemin
+Version: 0.1.0
+Summary: Le plus bot du monde
+Home-page: http://github.com/ningirsu/taemin
+Author: Sélim Menouar
+Author-email: selim.menouar@rez-gif.supelec.fr
+License: MIT
+Description: 
+        # Taemin
+        
+        A beautiful IRC bot
+        
+        [![Build Status](https://travis-ci.org/ningirsu/taemin.svg?branch=master)](https://travis-ci.org/ningirsu/taemin)
+        
+        ## Setup
+        
+        The usual way:
+        
+            cd taemin
+            python setup.py install
+         
+        Now just run the bot with
+        
+            /usr/local/bin/taemin
+        
+        Or if /usr/local/bin is in your path:
+        
+            taemin
+         
+        ## Run taemin as a service
+        If you're running on debian, just copy the file located in the inid.d folder in /etc/init.d/taemin
+        
+        Then run:
+        
+            service taemin start
+            
+        ## Configuration
+        
+        To adjust the configuration of taemin, just edit the configuration file:
+        
+            vim /etc/taemin/taemin.yml
+        
+        ## Contribute
+        
+        To add a plugin, just copy the example folder:
+        
+            cp -r taemin/plugins/example taemin/plugins/yourplugin
+        
+        Change the class TaeminExample to YourPluginClass in the file:
+        
+            taemin/plugins/yourplugin/plugin.py
+        
+        You can now add the functions of your choice in the different handlers (on_pubmsg, on_join, on_privmsg, on_quit, on_part)
+        
+        To enable your plugin just add in the plugins section on your configuration file:
+        
+            plugins.yourplugin.plugin: "YourPluginClass"
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Games/Entertainment
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
