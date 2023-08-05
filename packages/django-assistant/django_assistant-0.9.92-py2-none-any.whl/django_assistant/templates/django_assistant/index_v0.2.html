@@ -1,0 +1,221 @@
+<html>
+
+<head>
+    {% load static %}
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" type="image/png" href="/static/new/images/edu_gsLogo.ico">
+    <title>api manager</title>
+
+<!--
+    <link href="fonts/fonts.css" rel="stylesheet" type="text/css">
+-->
+    <link href="{% static 'codebase/style/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'codebase/style/bootstrap-theme.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'codebase/style/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'codebase/style/style.css' %}" rel="stylesheet" type="text/css">
+
+    <link href="{% static 'codebase/style/jquery-ui.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'codebase/style/bootstrap-select.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'codebase/style/animate/animate.css' %}" rel="stylesheet" type="text/css">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans:600,700,100|Merriweather+Sans:400,700|Roboto:400,100,300|Lato:400,400i,700,700i,900,900i' rel='stylesheet' type='text/css'>
+
+
+    <script type="text/javascript" src="{% static 'codebase/js/jquery-1.7.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'codebase/js/jquery-ui.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'codebase/js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'codebase/js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'codebase/js/notify/bootstrap-notify.js' %}"></script>
+    
+    <script  src="{% static 'codebase/index.js' %}" ></script>
+    
+    <style>
+
+	.api-result{
+	    white-space: pre;
+	}
+
+</style>
+</head>
+
+    <body class="edu_body">
+	
+	<div class="container">
+	    <br>
+	    <div class="row">
+		<button>Code Base</button>
+		<button>APi collector</button>
+		<button class="create_api_btn">Create API</button>
+		<button class="create_api2_btn">Create API2</button>
+	    </div>
+	    <div class="row">
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+		    <ul class="api_list">
+			<a><li>dffasdeewfg</li></a>
+			<a><li>dddfsdfxvfv </li></a>
+			<a><li>dffdrfzxcsefg</li></a>
+		    </ul>
+		</div>
+		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		    <div class="row">
+			<input type="button" style="width:50px;" value="GET">
+			<input type="text" style="width:400px;" class="api_url">
+			<input type="button" class="hit_api" style="width:50px;" value="Send">
+		    </div>
+		    <div class="row">
+			<span>Body</span><br>
+			<div class="row">
+			    <div class="key_value_pair_outer">
+				
+<!--
+				<div class="key_value_pair_each">
+				    <input type="text" class="key" placeholder="key">
+				    <input type="text" class="value" placeholder="value">
+				    <input type="button" value="X">
+				</div>
+				
+				<div class="key_value_pair_each">
+				    <input type="text"  class="key" placeholder="key">
+				    <input type="text"  class="value" placeholder="value">
+				    <input type="button" value="X">
+				</div>
+				
+				<div class="key_value_pair_each">
+				    <input type="text"  class="key" placeholder="key">
+				    <input type="text"  class="value" placeholder="value">
+				    <input type="button" value="X">
+				</div>
+				
+-->
+			    </div>
+			</div>
+		    </div>
+		    
+		    <br>
+		    <br>
+		    <br>
+		    
+		    <div class="row api_result">
+			data display heere
+		    </div>
+		</div>
+	    </div>
+	</div>
+	    
+	    
+<!--  modal for create a api - Start-->
+
+<div class="modal fade create_api1" id="createAPI_1" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+	<div class="modal-content">
+	    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title"></h4>
+	    </div>
+	    <div class="modal-body">
+		<div class="create_api_outer">
+		    <div>
+			<select>
+			    <option>GET</option>
+			    <option>POST</option>
+			</select>
+			<input type="text" placeholder="URL" style="width:300px;"><br><br>
+			<textarea placeholder="Description" style="width:366px; resize:none; height: 100px;"></textarea>
+		    </div>
+		</div>
+	    </div>
+	    <div class="modal-footer">
+		 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-default btn-sm btn_green" data-dismiss="modal">Save API</button>
+	    </div>
+	</div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--  modal for create a api - End -->
+
+<!--  modal for create a api 2- Start-->
+
+<div class="modal fade create_api2" id="createAPI_2" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+	<div class="modal-content">
+	    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title"></h4>
+	    </div>
+	    <div class="modal-body">
+		<div class="create_api_outer">
+		    <div>
+			<select>
+			    <option>GET</option>
+			    <option>POST</option>
+			</select>
+			<input type="text" placeholder="URL" style="width:300px;"><br><br>
+		    </div>
+		
+		    <div class="tab_belt">
+			<ul class="list-inline">
+			    <li class="data_descr">Description</li>
+<!--
+			    {% if False %}
+			    {% for loop %}
+			    <li class="input1">Input 1</li>
+			    {% endfor %}
+			    {% else %}
+-->
+			    <li class="add_input">Add Input</li>
+<!--
+			    {% endif %}
+-->
+			</ul>
+		    </div>
+		    <div class="tab_belt_data">
+			<div id="id_data_descr" class="each_tab_belt_data">
+			    <p>description render here</p>
+			</div>
+			
+			{% for %}
+			
+			<div id="id_add_input" class="each_tab_belt_data" style="display:none;">
+			    <div class="key_val_pair_outer">
+				<div class="each_key_val_pair">  <!-- repeating unit -->
+				    <input type="text" placeholder="key" style="width:200px;">
+				    <input type="text" placeholder="value" style="width:200px;">
+				</div>
+			    </div>
+			</div>
+			
+		    </div>
+		</div>
+	    </div>
+	    <div class="modal-footer">
+		 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-default btn-sm btn_green" data-dismiss="modal">Save API</button>
+	    </div>
+	</div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--  modal for create a api 2- End -->
+
+
+
+	<script>
+	    $(document).ready(function(){
+		
+		$('body').on('click','.create_api_btn',function(){
+		    //~ alert()
+		    $('#createAPI_1').modal('show')
+		});
+		
+		$('body').on('click','.create_api2_btn',function(){
+		    //~ alert()
+		    $('#createAPI_2').modal('show')
+		});
+		
+	    });
+	</script>
+    </body>
+</html>

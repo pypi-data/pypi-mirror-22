@@ -1,0 +1,389 @@
+<html>
+
+<head>
+    {% load static %}
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" type="image/png" href="http://www.fabgrad.com/static/new/images/edu_gsLogo.ico">
+    <title>Django Assistant</title>  
+
+<!--
+    <link href="fonts/fonts.css" rel="stylesheet" type="text/css">
+-->
+    <link href="/static/django_assistant/style/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <link href="{% static 'django_assistant/style/bootstrap-theme.css' %}" rel="stylesheet" type="text/css">
+
+    <link href="{% static 'django_assistant/style/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'django_assistant/style/style.css' %}" rel="stylesheet" type="text/css">
+
+    <link href="{% static 'django_assistant/style/jquery-ui.css' %}" rel="stylesheet" type="text/css">
+    
+    <link href="{% static 'django_assistant/style/bootstrap-select.css' %}" rel="stylesheet" type="text/css">
+
+    <link href="{% static 'django_assistant/style/animate/animate.css' %}" rel="stylesheet" type="text/css">
+    
+    <link href="{% static 'django_assistant/style/chosen/chosen.css' %}" rel="stylesheet" type="text/css">
+    
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans:600,700,100|Merriweather+Sans:400,700|Roboto:400,100,300|Lato:400,400i,700,700i,900,900i' rel='stylesheet' type='text/css'>
+
+    
+    <script type="text/javascript" src="{% static 'django_assistant/js/jquery-1.7.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'django_assistant/js/jquery-ui.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'django_assistant/js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'django_assistant/js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'django_assistant/js/notify/bootstrap-notify.js' %}"></script>
+    
+    <script type="text/javascript" src="{% static 'django_assistant/js/chosen/chosen.jquery.js' %}"></script>
+    
+    <script  src="{% static 'django_assistant/index.js' %}" ></script>
+    
+    <style>
+	.api_result{
+	    white-space: pre;
+	}
+    </style>
+</head>
+
+    <body class="edu_body">
+	<div class="container">
+	    <br>
+	    <div class="row">
+		<button class="pull-right" style="background:none; border:none; text-decoration:underline; outline:none; color:blue;">Code Base</button>
+		<button class="pull-right" style="background:none; border:none; text-decoration:underline; outline:none; color:blue;">APi collector</button>
+	    </div>
+	    <br>
+	    <div class="row">
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 paddingLeftZero">
+		    
+		    <div class="left_sec_api">
+			<div class="left_tabs">
+			    <ul class="list-inline">
+				<li id="created_api" class="active"> API Collection</li>
+				<li id="create_api"> Create API  </li>
+				
+			    </ul>
+			</div>
+			
+<!--
+			<button class="btn btn-default create_api_modal_btn">Create API</button><br><br>
+-->
+			
+			<div id="id_created_api" class="left_tab_data">
+			    <input type="text" id="search_api_collection" placeholder="search in URL collection" class="url_search form-control" style="width:90%; border-radius: 20px; margin: auto;"/>
+			    <div class="api_stat">
+				<ul class="list-inline text-center">
+				    <li> <p class="api_status_1"></p> 11</li>
+				    <li> <p class="api_status_2"></p> 34</li>
+				    <li> <p class="api_status_3"></p> 34</li>
+				    <li> <p class="api_status_4"></p> 43</li>
+				</ul>
+			    </div>
+			    <ul class="api_list" ></ul>
+			</div>
+			
+			<div id="id_create_api" class="left_tab_data" style="display:none;">
+			    <div class="create_api_container">
+				<select class="httptype_value form-control pull-left" style="width:28%;">
+				    <option value="get">GET</option>
+				    <option  value="post">POST</option>
+				</select><br>
+				
+				<input type="text" placeholder="URL" class="api_url form-control" style="width:100%;"><br>
+				
+				<textarea placeholder="Description" class="descr_value" style="width:100%; resize:none; height: 100px;"></textarea><br><br>
+				
+<!--
+				<select type="text"  id="id_tags" style="width:50%" 
+				    data-placeholder="Search for designations" class="chosen-select .custom_dropdown form-control" >
+				</select>
+				
+-->
+			    </div>
+			    <div>
+				<button  class="btn btn-default btn-sm btn_green create_api_btn pull-right" >Save API</button>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	
+		<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 paddingRightZero">
+		    <div class="row api_details_top" > 
+			<select class="http_type form-control pull-left" style="width:15%;">
+			    <option value="get">GET</option>
+			    <option value="post">POST</option>
+			</select>
+			<input type="text" style="width:70%;" class="api_url form-control pull-left " >
+			<input type="button" class="hit_api form-control" style="width:15%;" value="Send">
+			<a class="edit_api pull-right">Edit</a><br><br>
+		    </div>
+		    <div class="row">
+			<div class="row">
+			    <div class="api_details_outer">
+			    
+				<div class="tab_belt">
+				    <ul class="list-inline">
+					<li class="data_info active" tab="level1" target="id_info">Info</li>
+
+					<li class="add_input" tab="level1" target="id_inputs">Inputs</li>
+					<li id ="api_status" class=" pull-right" tab="level1" target="id_inputs" data-toggle="popover" data-html="true" 
+					data-content="	<form id='api_status_form'>
+							    <input type='radio' name='api_status' value='1'>Under Construction<br>
+							    <input type='radio' name='api_status' value='2'>Leaking<br>
+							    <input type='radio' name='api_status' value='3'>Renovation<br>
+							    <input type='radio' name='api_status' value='4'>Usable<br>
+							</form>" 
+							data-trigger="hover" data-placement="auto top">Status
+					</li>					
+<!--
+					<li><a class="edit_api">Edit</a></li>
+-->
+				    </ul>
+				</div>
+				
+				<div class="tab_belt_data">
+				    <div id="id_info" class="each_tab_belt_data">
+					<div>
+					    <ul class="list-inline">
+
+						<li class="description active" tab="level2" target="create_container">Description</li>
+
+					    </ul>
+					</div>
+					<div id="info_tab_data_container" >
+
+					    <div id="description_container">
+						<p class="api_descr">Info render here</p>
+					    </div>
+					    
+					</div>
+				    	
+				    </div>
+				    <div id="id_inputs" class="each_tab_belt_data" style="display:none;">
+					<div>
+					    <ul class="list-inline">
+
+						<li class="add_input active" tab="level2" target="create_container">Add Input</li>
+
+					    </ul>
+					</div>
+					<div id="input_tab_data_container">
+					    <div id="create_container" class="add_new_input">
+						<div id ="param_container" class="key_value_pair_outer">
+						    
+						    <div class="each_key_val_pair">  <!-- repeating unit -->
+							<input type="text" placeholder="key" class="key" style="width:200px;">
+							<input type="text" placeholder="value" class="value" style="width:200px;">
+						    </div>
+						    <div class="each_key_val_pair">  <!-- repeating unit -->
+							<input type="text" placeholder="key" class="key" style="width:200px;">
+							<input type="text" placeholder="value" class="value" style="width:200px;">
+						    </div>
+						    <div class="each_key_val_pair">  <!-- repeating unit -->
+							<input type="text" placeholder="key" class="key" style="width:200px;">
+							<input type="text" placeholder="value" class="value" style="width:200px;">
+						    </div>
+						    <div class="each_key_val_pair">  <!-- repeating unit -->
+							<input type="text" placeholder="key" class="key" style="width:200px;">
+							<input type="text" placeholder="value" class="value" style="width:200px;">
+						    </div>
+						    <div class="each_key_val_pair">  <!-- repeating unit -->
+							<input type="text" placeholder="key" class="key" style="width:200px;">
+							<input type="text" placeholder="value" class="value" style="width:200px;">
+						    </div>
+						    <div class="each_key_val_pair">  <!-- repeating unit -->
+							<input type="text" placeholder="key" class="key" style="width:200px;">
+							<input type="text" placeholder="value" class="value" style="width:200px;">
+						    </div>
+						    <div class="each_key_val_pair">  <!-- repeating unit -->
+							<input type="text" placeholder="key" class="key" style="width:200px;">
+							<input type="text" placeholder="value" class="value" style="width:200px;">
+						    </div>
+						    <div class="each_key_val_pair">  <!-- repeating unit -->
+							<input type="text" placeholder="key" class="key" style="width:200px;">
+							<input type="text" placeholder="value" class="value" style="width:200px;">
+						    </div>
+						    <div class="each_key_val_pair">  <!-- repeating unit -->
+							<input type="text" placeholder="key" class="key" style="width:200px;">
+							<input type="text" placeholder="value" class="value" style="width:200px;">
+						    </div>
+						    <div class="each_key_val_pair">  <!-- repeating unit -->
+							<input type="text" placeholder="key" class="key" style="width:200px;">
+							<input type="text" placeholder="value" class="value" style="width:200px;">
+						    </div>
+						    <div>
+							<select type="text"  id="id_tags"  
+							    data-placeholder="Search for tags" class="chosen-select" multiple>
+							</select>
+						    </div>
+						    <br>
+						    <div>
+							<button class="btn add_params" edit_mode="add" api_id="">SAVE</button>
+						    </div>
+						</div>
+					    </div>
+					</div>
+					
+				    </div>
+				    
+				</div>
+			    
+			    </div>
+			    
+			</div>
+		    </div>
+		    
+		    <br>
+		    <br>
+		    <br>
+		    
+		    <div class="row api_result pull-right">
+			
+		    </div>
+		</div>
+	    </div>
+	
+	</div>
+	    
+	    
+<!--  modal for create a api - Start-->
+
+<div class="modal fade create_api1" id="createAPI_1" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+	<div class="modal-content">
+	    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title"></h4>
+	    </div>
+	    <div class="modal-body">
+		<div class="create_api_outer">
+		    <div>
+			<select class="httptype_value">
+			    <option value="get">GET</option>
+			    <option  value="post">POST</option>
+			</select>
+			<input type="text" placeholder="URL" class="api_url" style="width:300px;"><br><br>
+			<textarea placeholder="Description" class="descr_value" style="width:366px; resize:none; height: 100px;"></textarea>
+		    </div>
+		</div>
+	    </div>
+	    <div class="modal-footer">
+		 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+		<button  class="btn btn-default btn-sm btn_green create_api_btn" >Save API</button>
+	    </div>
+	</div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--  modal for create a api - End -->
+
+<!--  modal for edit api - Start-->
+
+<div class="modal fade " id="edit_api" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+	<div class="modal-content">
+	    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title">Edit API</h4>
+	    </div>
+	    <div class="modal-body">
+		<div class="nav_options">
+		    <ul class="list-inline">
+			<li target="basic_info" class="active">Basic Info</li>
+			<li target="info">Info</li>
+			<li target="inputs">Inputs</li>
+		    </ul>
+		</div>
+		<div>
+		    <div id="basic_info">
+			<input type="text" class="edit_api_url form-control"><br>
+			<input type="text" class="edit_api_http_type form-control"><br><br>
+			
+			<input type="button" class="btn save_api" edit_element="basic_info" value="Save Basic Info">
+		    </div>
+		    
+		    <div id="info" style="display:none;">
+			<div>
+			    <ul class="list-inline">
+
+				<li class="description active" tab="level2" target="edit_descr">Description</li>
+
+			    </ul>
+			</div>
+			<div>
+			    <div id="edit_descr">
+				<div>
+				    <textarea class="edit_api_descr"></textarea><br><br>
+				    <input type="button" edit_element="info" class="btn save_api" value="Save Description">
+				</div>
+			    </div>
+			
+			</div>
+		    </div>
+		 
+		    <div id="inputs" style="display:none;">
+			<div class="nav_options">
+			    <ul class="list-inline">
+			       
+			    </ul>
+			</div>
+			<div id="edit_inputs_container">
+			
+			</div>
+		    </div>
+		</div>
+	    </div>
+	    
+	</div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--  modal for edit api - End -->
+
+<!--  modal for edit api - Start-->
+
+<div class="modal fade " id="delete_inputset" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+	<div class="modal-content">
+	    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title">Edit API</h4>
+	    </div>
+	    <div class="modal-body">
+		
+		Are you sure you want to delete <span class="input_name"></span>
+		
+	    </div>
+	    <div class="modal-footer">
+		<button class="btn delete_inputset_confirm btn-danger">YES</button>
+		<button class="btn">No</button>
+	    </div>
+	</div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--  modal for edit api - End -->
+
+
+
+
+	<script>
+	    $(document).ready(function(){
+		
+		$('body').on('click','.create_api_modal_btn',function(){
+		    //~ alert()
+		    $('#createAPI_1').modal('show')
+		});
+	
+		
+		$('body').on('click','.edit_api',function(){
+		    //~ alert()
+		    $('#edit_api').modal('show')
+		});
+		
+	    });
+	</script>
+    </body>
+</html>

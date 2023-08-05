@@ -1,0 +1,383 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+ul li{
+    list-style:none;
+}
+.paddingLeftZero{
+    padding-left:0px;
+}
+.paddingRightZero{
+    padding-right:0px;
+}
+.api_list{
+    padding:0px;
+    margin:0;
+    margin-top:2%;
+}
+.api_item{
+    padding:0px;
+    margin:0;
+/*
+    margin-bottom:4%;
+*/
+    border-bottom:1px solid #ccc;
+    padding: 3% 2%;
+}
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.tab_belt{
+    padding:2% 1% 1% 1%;
+    width:100%;
+    box-shadow: 0px 2px 3px 0px #ccc;
+}
+.tab_belt li.active{
+    border-bottom: 3px solid #f90;
+}
+#id_inputs{
+    margin-top:1%;
+}
+#id_inputs >div >ul > li{
+    border: 1px solid #ccc;
+    padding: 1% 1%;
+    width: 110px;
+    position: relative;
+}
+#id_inputs ul li p{
+    margin: 0px;
+    background: #999;
+    color:#fff;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 7px;
+    cursor:pointer;
+}
+#id_inputs ul li.active{
+    background:#ddd;
+}
+.api_item button{
+    border:none;
+    background:none;
+    outline:none;
+}
+.api_result{
+    border: 1px solid #ccc;
+    width: 100%;
+    display:none;
+    height: 400px;
+    overflow-y:auto;
+    padding:1% 2%;
+}
+
+.api_status{
+    border-radius: 50%;
+/*
+    padding: 5px 5px;
+*/
+    height:15px;
+    width:10px;
+    margin-right: 4px;
+}
+.api_status_1{background:grey}
+.api_status_2{background:red}
+.api_status_3{background:orange}
+.api_status_4{background:#39a385}
+.api_status_5{background:black}
+.tab_belt .popover{
+    top: 82px;
+    width: 28%;
+} 
+.tab_belt .popover #api_status_form input{
+    margin-right: 4px !important;
+    vertical-align: top;
+} 
+.edit_api{
+    text-decoration:underline;
+    margin-top:3px;
+}
+#edit_api .nav_options ul{
+    padding:0% 0%;
+/*
+    background:#ccc;
+*/
+}
+#edit_api .nav_options li{
+    font-size:17px;
+    padding:1.5% 2%;
+    font-family:'Roboto', sans-serif;
+    font-weight:300;
+    border-bottom:2px solid #fff;
+}
+#edit_api .nav_options li.active{
+    border-bottom:2px solid #f90;
+}
+#edit_api .modal-header{
+    background:#39a385;
+}
+#edit_api .modal-header h4{
+    color:#fff;
+}
+#edit_api .modal-content{
+    border-radius:0px;
+    min-height:160px;
+}
+#edit_api .modal-content .modal-body{
+    border-radius:0px;
+    min-height:330px;
+}
+#edit_api #basic_info input{
+    width:70%;
+    margin:auto;
+}
+#edit_api #basic_info, #edit_api #info{
+    margin-top:5%;
+}
+#edit_api #basic_info .save_api{
+    width:40% !important;
+    margin-left:30%;
+}
+#edit_api #info textarea{
+    width:70%;
+    margin-left:15%;
+    height:130px; 
+    resize:none;
+}
+#edit_api #info .save_api{
+    width:40% !important;
+    margin-left:30%;
+}
+#edit_api #info .description{
+    margin-left:15%;
+}
+.left_sec_api{
+    background:#eaeaea;
+    min-height:100vh;
+
+}
+.create_api_modal_btn{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#delete_inputset .modal-content{
+    border-radius:0px;
+    margin-top:20%;
+}
+#delete_inputset .modal-content .modal-header{
+    background:#39a385;
+    color:#fff;
+} 
+#delete_inputset .modal-content .modal-body{
+    font-size:16px;
+    min-height:100px;
+} 
+ul li{
+    list-style:none;
+}
+.paddingLeftZero{
+    padding-left:0px;
+}
+.paddingRightZero{
+    padding-right:0px;
+}
+.api_list{
+    padding: 0px 10px;
+    margin: 0;
+    margin-top: 2%;
+    height: 70vh;
+    overflow-y: auto;
+}
+
+.api_list::-webkit-scrollbar {
+    width: 8px;
+}
+ 
+.api_list::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2); 
+    border-radius: 10px;
+}
+ 
+.api_list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+.api_item{
+    padding:0px;
+    margin: 0;
+    margin-bottom: 0%;
+    border-bottom: 1px solid #ccc;
+    padding: 1.3% 0%;
+}
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.tab_belt{
+    padding:2% 1% 1% 1%;
+    width:100%;
+    box-shadow: 0px 2px 3px 0px #ccc;
+}
+.tab_belt li.active{
+    border-bottom: 3px solid #f90;
+}
+#id_inputs{
+    margin-top:1%;
+}
+#id_inputs >div >ul > li{
+    border:1px solid #ccc;
+    padding:1% 2%;
+}
+
+#id_inputs >div >ul > li.active{
+    background:#ddd;
+}
+.api_item button{
+    border:none;
+    background:none;
+    outline:none;
+}
+.api_result{
+    border: 1px solid #ccc;
+    width: 100%;
+    display:none;
+    height: 400px;
+    overflow-y:auto;
+    padding:1% 2%;
+}
+
+.api_status{
+    border-radius: 50%;
+    padding: 0px 7px;
+    margin-right: 4px;
+}
+.api_status_1{background:grey}
+.api_status_2{background:red}
+.api_status_3{background:orange}
+.api_status_4{background:#39a385}
+.api_status_5{background:black}
+.tab_belt .popover{
+    top: 82px;
+    width: 28%;
+} 
+.tab_belt .popover #api_status_form input{
+    margin-right: 4px !important;
+    vertical-align: top;
+} 
+.edit_api{
+    text-decoration:underline;
+    margin-top:3px;
+}
+#edit_api .nav_options ul{
+    padding:0% 0%;
+/*
+    background:#ccc;
+*/
+}
+#edit_api .nav_options li{
+    font-size:17px;
+    padding:1.5% 2%;
+    font-family:'Roboto', sans-serif;
+    font-weight:300;
+    border-bottom:2px solid #fff;
+}
+#edit_api .nav_options li.active{
+    border-bottom:2px solid #f90;
+}
+#edit_api .modal-header{
+    background:#39a385;
+}
+#edit_api .modal-header h4{
+    color:#fff;
+}
+#edit_api .modal-content{
+    border-radius:0px;
+    min-height:160px;
+}
+#edit_api .modal-content .modal-body{
+    border-radius:0px;
+    min-height:330px;
+}
+#edit_api #basic_info input{
+    width:70%;
+    margin:auto;
+}
+#edit_api #basic_info, #edit_api #info{
+    margin-top:5%;
+}
+#edit_api #basic_info .save_api{
+    width:40% !important;
+    margin-left:30%;
+}
+#edit_api #info textarea{
+    width:70%;
+    margin-left:15%;
+    height:130px; 
+    resize:none;
+}
+#edit_api #info .save_api{
+    width:40% !important;
+    margin-left:30%;
+}
+#edit_api #info .description{
+    margin-left:15%;
+}
+.left_sec_api{
+    background:#eaeaea;
+    min-height:88vh;
+}
+.left_tabs ul{
+    margin-left:1px;
+}
+.left_tabs ul li{
+    margin-top:1px;
+    margin-bottom:10px;
+    padding:3% 0px;
+    background:#fff;
+    border-bottom:3px solid #fff;
+    float:left;
+    cursor:pointer;
+    width:50%;
+    text-align:center;
+}
+.left_tabs ul li.active{
+    border-bottom:3px solid #f90;
+}
+#id_create_api{
+    margin-top:20px;
+    padding:0px 3%;
+}
+.api_stat{
+    padding: 3% 0% 0% 0%;
+}
+.api_stat li{
+    font-size:11px;
+    position:relative;
+    width:55px;    
+    padding-top: 2px;
+}
+.api_stat li p{
+    border-radius:50%;
+    padding:8px 8px;
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+.api_url_value{
+    font-size: 12px;
+}
+
+
+.create_api_container {
+
+    padding-top:80px;
+
+}
+
+.create_api_container> input,.create_api_container > select,.create_api_container > textarea{
+
+    margin-bottom:20px;
+
+}
