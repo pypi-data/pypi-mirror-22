@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% block title %} About {% endblock %}
+
+{% block main %}
+    <style type="text/css"> p {font-size: 14px;}</style>
+    <title>WaveGliDA : About</title>
+    <div class='container' style="width: 70%">
+        <h1 align="center">Wave Glider Data Analysis</h1>
+        <hr>
+        {{ about_text | safe }}
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            {% for c, ttl, txt in info_text %}
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading{{c}}">
+                        <h5 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{c}}" aria-expanded="false" aria-controls="collapse{{c}}">
+                            {{ ttl | safe }}
+                        </a>
+                        </h5>
+                    </div>
+                    <div id="collapse{{c}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{c}}">
+                        <div class="panel-body">
+                            {{ txt | safe }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
