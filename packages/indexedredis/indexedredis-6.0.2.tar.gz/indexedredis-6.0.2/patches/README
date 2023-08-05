@@ -1,0 +1,36 @@
+IndexedRedis Optional Patches
+=============================
+
+
+This directory contains some optional patches which you may wish to apply to your deployment of IndexedRedis.
+
+Each patch includes a description at the top of the patch file, and can be applied with the "diff" util.
+
+This document will give a SHORT summary of the patch. You must check the patch itself for full details.
+
+
+**Applying Patches**
+
+You can apply the patches manually via \-p1, or use the helper "apply_patch.sh" script ( passed patch name(s) )
+
+
+**Legal**
+
+Applything these patches should NOT be considered a modification (in regards to the LGPL's redistribution terms), but should be considered part of the base source code.
+
+
+Patches
+-------
+
+**factory.patch** - This patch causes IndexedRedisSave and IndexedRedisDelete objects to become singletons per model via the Factory design paradigm.
+
+  Normally, every call to ".save" or ".delete" ( and several other places ) will create a new IndexedRedisSave / IndexedRedisDelete object, referencing the model. This has some overhead associated with it, that this patch aims to remove.
+
+  There are, however, usage patterns ( albeit uncommon ) that require a slightly different pattern than the core IndexedRedis (See patch for details).
+
+
+**extra_lua_filters.patch** - This patch adds numeric filters ( lt, le/lte , gt, ge/gte ) to Redis-side filtering, using LUA. It's not super efficent and can be improved, but for some use cases this is better than client-side filtering.
+
+
+**single_pipeline_foreign.patch** - This patch fetches all related models in a single transaction when using cascadeFetch=True, using the builtin redis lua engine. The performance is slightly lower, but cascade fetches are atomic on full datasets.
+
