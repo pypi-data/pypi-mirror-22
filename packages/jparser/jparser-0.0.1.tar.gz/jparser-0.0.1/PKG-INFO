@@ -1,0 +1,19 @@
+Metadata-Version: 1.0
+Name: jparser
+Version: 0.0.1
+Summary: A parser which can extract title, content, images from html pages
+Home-page: UNKNOWN
+Author: Sun, Junyi
+Author-email: UNKNOWN
+License: MIT
+Description: 
+        Usage Example:
+        
+        import urllib2
+        from jparser import PageModel
+        html = urllib2.urlopen("http://news.ifeng.com/a/20170512/51084814_0.shtml").read().decode('utf8')
+        pm = PageModel(html)
+        print pm.extract()
+        
+                        
+Platform: UNKNOWN
