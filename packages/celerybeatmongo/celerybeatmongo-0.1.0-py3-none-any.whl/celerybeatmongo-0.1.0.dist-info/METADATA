@@ -1,0 +1,31 @@
+Metadata-Version: 2.0
+Name: celerybeatmongo
+Version: 0.1.0
+Summary: A very simple Celery Beat Scheduler that stores status information in a MongoDB database.
+Home-page: https://github.com/sm11963/celerybeatmongo
+Author: Sam Miller
+Author-email: sm11963@gmail.com
+License: MIT
+Keywords: celery beat scheduler mongo python
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Object Brokering
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: OS Independent
+Requires-Dist: celery
+Requires-Dist: marshmallow
+Requires-Dist: pymongo
+Requires-Dist: python-dateutil
+Requires-Dist: setuptools
+Provides-Extra: test
+Requires-Dist: pytest; extra == 'test'
+
+# celerybeatmongo
+A very simple Celery Beat Scheduler that stores status information in a MongoDB database.
+
+
