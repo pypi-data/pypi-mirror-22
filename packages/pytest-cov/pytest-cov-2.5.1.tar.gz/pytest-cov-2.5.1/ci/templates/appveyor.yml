@@ -1,0 +1,39 @@
+version: '{branch}-{build}'
+build: off
+cache:
+  - '%LOCALAPPDATA%\pip\Cache'
+environment:
+  matrix:
+    - TOXENV: check
+    - TOXENV: '{{ py26_environments|join(",") }}'
+    - TOXENV: '{{ py27_environments|join(",") }}'
+    - TOXENV: '{{ py34_environments|join(",") }}'
+    - TOXENV: '{{ py35_environments|join(",") }}'
+    - TOXENV: '{{ pypy_environments|join(",") }}'
+
+init:
+  - ps: echo $env:TOXENV
+  - ps: ls C:\Python*
+install:
+  # install pypy using choco (redirect to a file and write to console in case
+  # choco install returns non-zero, because choco install python.pypy is too
+  # noisy)
+  - choco install python.pypy > pypy-inst.log 2>&1 || (type pypy-inst.log & exit /b 1)
+  - set PATH=C:\tools\pypy\pypy;%PATH% # so tox can find pypy
+  - echo PyPy installed
+  - pypy --version
+
+  - C:\Python35\python -m pip install tox
+
+test_script:
+  - C:\Python35\python -m tox
+
+on_failure:
+  - ps: dir "env:"
+  - ps: get-content .tox\*\log\*
+artifacts:
+  - path: dist\*
+
+### To enable remote debugging uncomment this (also, see: http://www.appveyor.com/docs/how-to/rdp-to-build-worker):
+# on_finish:
+#   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
