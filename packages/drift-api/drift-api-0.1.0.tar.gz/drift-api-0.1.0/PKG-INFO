@@ -1,0 +1,81 @@
+Metadata-Version: 1.1
+Name: drift-api
+Version: 0.1.0
+Summary: A wrapper for the Drift API
+Home-page: https://github.com/15five/drift-api
+Author: Paul Logston
+Author-email: paul@15five.com
+License: MIT
+Download-URL: https://github.com/15five/drift-api/archive/master.zip
+Description: Drift API
+        =========
+        
+        This package wraps the Drift API. It only wraps the 'track' and 
+        'identify' endpoints offered by the HTTP API.
+        
+        https://www.drift.com/
+        
+        Installation
+        ------------
+        
+        Install with pip::
+        
+        $ pip install drift-api
+        
+        Usage
+        -----
+        
+            from drift_api import Drift
+        
+            company_data = {
+                'companyId': company_id,
+                'attributes': {'revenue': 'bajillions'},
+            }
+        
+            user_data = {
+                'userId': user_id,
+                'attributes': {'hair_color': 'red'},
+            }
+        
+            drift = Drift(DRIFT_ORG_ID)
+            drift.identify(company_data)
+            drift.identify(user_data)
+        
+        
+        The package also exposes a `drift.track` method and `multi` methods for both
+        `track` and `identify`.
+        
+        
+        PyPI
+        ----
+        
+        https://pypi.python.org/pypi/drift-api
+        
+        Source
+        ------
+        
+        https://github.com/15five/drift-api
+        
+        
+        License
+        -------
+        
+        This library is released under the terms of the **MIT license**.
+        Full details in ``LICENSE.txt`` file.
+        
+        
+Keywords: drift http api
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
