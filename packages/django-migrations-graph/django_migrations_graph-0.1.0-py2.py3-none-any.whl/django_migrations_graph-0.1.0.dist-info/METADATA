@@ -1,0 +1,95 @@
+Metadata-Version: 2.0
+Name: django-migrations-graph
+Version: 0.1.0
+Summary: Django-admin command to display migrations with dependencies.
+Home-page: https://github.com/dizballanze/django-migrations-graph
+Author: Iurii Shikanov
+Author-email: dizballanze@gmail.com
+License: MIT
+Keywords: django-migrations-graph
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.8
+Classifier: Framework :: Django :: 1.9
+Classifier: Framework :: Django :: 1.10
+Classifier: Framework :: Django :: 1.11
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: Django (>=1.7)
+
+=============================
+django-migrations-graph
+=============================
+
+.. image:: https://badge.fury.io/py/django-migrations-graph.svg
+    :target: https://badge.fury.io/py/django-migrations-graph
+
+.. image:: https://travis-ci.org/dizballanze/django-migrations-graph.svg?branch=master
+    :target: https://travis-ci.org/dizballanze/django-migrations-graph
+
+.. image:: https://codecov.io/gh/dizballanze/django-migrations-graph/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/dizballanze/django-migrations-graph
+
+Django-admin command to display migrations with dependencies.
+
+Documentation
+-------------
+
+
+Quickstart
+----------
+
+Install django-migrations-graph::
+
+    pip install django-migrations-graph
+
+Add it to your `INSTALLED_APPS`:
+
+.. code-block:: python
+
+    INSTALLED_APPS = (
+        ...
+        'migraph',
+        ...
+    )
+
+Screenshot
+--------
+
+.. image:: screenshot.png
+
+Running Tests
+-------------
+
+Does the code actually work?
+
+::
+
+    source <YOURVIRTUALENV>/bin/activate
+    (myenv) $ pip install tox
+    (myenv) $ tox
+
+Credits
+-------
+
+Tools used in rendering this package:
+
+*  Cookiecutter_
+*  `cookiecutter-djangopackage`_
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`cookiecutter-djangopackage`: https://github.com/pydanny/cookiecutter-djangopackage
+
+License
+-----
+
+MIT
+
+
