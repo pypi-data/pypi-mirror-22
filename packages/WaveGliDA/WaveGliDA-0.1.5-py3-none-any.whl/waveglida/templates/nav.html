@@ -1,0 +1,54 @@
+{% set navigation_bar =
+[
+('/import_data/', 'import', 'IMPORT', "Import files and process all data"),
+('/plots_map/', 'plots_map', 'MAP', 'View data as a map'),
+('/plots_timeseries/', 'plots_timeseries', 'TIME SERIES', 'Plot data as time series'),
+('/config_page/', 'config_page', 'CONFIGURATION', 'Change sensor configuration here')
+]
+%}
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" style="font-size: 24px" href="/" data-toggle="tooltip" title="Click here for more information about the program" data-placement='bottom' href="#">WaveGliDA</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            {% for href, id, caption, hovertip in navigation_bar %}
+                <li {% if href == request.path %} class="active"{% endif %}
+                style="padding: 0px 20px; text-align: center; border: 1px #CCC;">
+                <a title="{{hovertip}}"
+                    data-placement='bottom'
+                    data-toggle='tooltip'
+                    style="font-size: 14px"
+                    href="{{ href|e }}">{{ caption|e }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <form action='/shutdown/' method=GET>
+            <input id='exit' style="border: 0px; color: #AAA; background-color: transparent; margin: 7px; font-size: 20px; font-weight: normal; float: right;" value="EXIT" type="submit" onclick="return confirm('Are you sure?')" />
+        </form>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+</div>
+</nav>
+
+
+<script>
+$(document).ready(function(){
+$('[data-toggle="tooltip"]').tooltip();
+console.log($('#'))
+});
+</script>
+
