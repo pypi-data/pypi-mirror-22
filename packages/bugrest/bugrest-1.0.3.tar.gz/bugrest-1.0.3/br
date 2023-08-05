@@ -1,0 +1,680 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
+import os
+import sys
+import codecs
+import datetime
+
+import docutils
+from docutils.core import publish_string
+from docutils.frontend import OptionParser
+from docutils.utils import new_document
+from docutils.parsers.rst import Parser
+
+# black background:
+YELLOW = 'yellow'
+
+try:
+    if not sys.stdout.isatty():
+        raise ImportError
+    import pygments
+    import pygments.console
+except ImportError:
+    # stubs
+    def colorize(txt, *a):
+        return txt
+    styled = colorize
+else:
+    def colorize(txt):
+        """ Colorize *ReStructuredText* for a Terminal
+
+        :arg str txt: The *ReStructuredText* content
+        :returns: Colorized string"""
+        col_lex = pygments.lexers.get_lexer_by_name('rst')
+        col_fmt = pygments.formatters.get_formatter_by_name('terminal')
+        return pygments.highlight(txt, col_lex, col_fmt)
+
+    def styled(txt, how):
+        """ Apply a list of styles to some text
+
+        :arg str txt: text to be styled
+        :arg list(str) how: list of styles to apply
+        :returns: colorized string for terminal
+        """
+        if not how:
+            return txt
+        if isinstance(how, (list, tuple)):
+            mine = how.pop(0)
+        else:
+            mine = how
+            how = None
+        return styled(pygments.console.colorize(mine, txt), how)
+
+
+try:
+    raw_input
+except NameError:  # if python3
+    unicode = str
+else:
+    input = raw_input
+
+try:
+    import dateutil.parser
+except ImportError:
+    print("python-dateutil package not installed, start & stop commands will not work!")
+
+CFGDIR = os.path.expanduser('~/.config/bugrest/')
+if not os.path.exists(CFGDIR):
+    os.mkdir(CFGDIR)
+
+STYLEFILE = os.path.join(CFGDIR, 'style.css')
+if not os.path.exists(STYLEFILE):
+    import shutil
+    import bugrest
+    shutil.copy(
+        os.path.join(os.path.dirname(bugrest.__file__), 'style.css'),
+        STYLEFILE)
+
+CFGFILE = os.path.join(CFGDIR, 'config.py')
+
+GLOBAL_COUNTER_NAME = 'total-count'
+REVERSE_ORDER = False
+HTTP_PORT = 5555
+BUGFILE = 'bugs.rst'
+DONEFILE = 'fixed_bugs.rst'
+DEBUG = False
+SOURCE_MGR = True
+TIMER_ATOM = 3600  # number of seconds to add "1" to timer, defaults to 1h
+WHITE_BACKGROUND = False
+
+if not os.path.exists(CFGFILE):
+    open(CFGFILE, 'w').write('''# sample config, Python syntax
+BUGFILE="%s"
+DONEFILE="%s"
+DEBUG=%s
+SOURCE_MGR=%s
+REVERSE_ORDER=%s
+HTTP_PORT=%s
+CSS=%s
+WHITE_BACKGROUND=%s
+''' % (
+    BUGFILE,
+    DONEFILE,
+    DEBUG,
+    SOURCE_MGR,
+    REVERSE_ORDER,
+    HTTP_PORT,
+    STYLEFILE,
+    WHITE_BACKGROUND,
+    ))
+
+exec(open(CFGFILE).read())
+
+
+if WHITE_BACKGROUND:
+    YELLOW = 'red'
+
+def now(iso=True):
+    """ Returns a string representing current time """
+    r = datetime.datetime.now()
+    if iso:
+        r = r.isoformat().rsplit('.', 1)[0]
+    return r
+
+
+def read_paragraph(prefix=''):
+    """ Reads a paragraph """
+    blanklines = 0
+    for _ in range(200):
+        text = input(prefix)
+        if not text:
+            blanklines += 1
+            if blanklines == 2:
+                break
+            yield ''
+            continue
+        blanklines = 0
+        yield text
+
+# For later if needed ? to create documents from nodes...
+# http://agateau.com/2015/docutils-snippets/
+
+
+class Bug:
+    """ Bug object, also used to store infos
+    A Bug .rst file is a list of Bug objects
+
+    The conversion happens in the :func:`load` method, called on init.
+    """
+    line_start = 0
+    field_line = 0
+    nb_comments = 0
+    original_text = ''
+    title_char = '='
+
+    def __init__(self, title):
+        self.title = title.strip()
+        self.description = ''
+        self.comments = []
+        self.attributes = {}
+
+    @property
+    def id(self):
+        return int(self['bugid'] or -42)
+
+    @property
+    def started(self):
+        return 'started' in self.attributes
+
+    def string_as_list(self, i):
+        return "%s%3s %s #%d%s" % (
+            styled('*', 'bold') if self.started else ' ',
+            styled(str(i+1), 'bold'),
+            styled(self.title, ['standout', YELLOW if self.started else 'blue']),
+            self.id,
+            styled(self['tags'].replace('#', ' ') + ''*(20-len(self['tags'])), 'teal'),
+            )
+
+    def __str__(self):
+        r = []
+        r.append(self.title)
+        r.append(self.title_char*len(self.title))
+        r.append('')
+        for k, v in sorted(self.attributes.items()):
+            r.append(':%s: %s' % (k, v))
+        stripped = self.field_line - self.line_start
+        r.append('\n'.join(self.original_text.split('\n')[stripped:]))
+        return '\n'.join(r).rstrip('\n')
+
+    def add_tag(self, tagname):
+        mytags = self['tags'].split('#')
+        tags = set(x.strip() for x in mytags if x)
+        tags.add(tagname)
+        self['tags'] = '#' + '#'.join(tags)
+
+    def rm_tag(self, tagname):
+        mytags = self['tags'].split('#')
+        tags = set(x.strip() for x in mytags if x)
+        tags.remove(tagname)
+        if tags:
+            self['tags'] = '#' + '#'.join(tags)
+        else:
+            self['tags'] = ''
+
+    @property
+    def priority(self):
+        return int(self.attributes.get('priority', 0))
+
+    def __delitem__(self, name):
+        try:
+            del self.attributes[name]
+        except KeyError:
+            raise RuntimeError('No such attribute "%s"' % name)
+
+    def __getitem__(self, name):
+        return self.attributes.get(name, '')
+
+    def __setitem__(self, name, val):
+        self.attributes[name.rstrip().lower()] = str(val).rstrip()
+
+
+class Visitor(docutils.nodes.GenericNodeVisitor):
+
+    default_departure = None
+
+    def __init__(self, doc, bugs):
+        line_mapping = {}
+        previous = None
+
+        for i, pos in enumerate(b.line_stop+1 for b in bugs):
+            if i:
+                r = range(previous, pos)
+            else:
+                r = range(pos)
+            for line in r:
+                line_mapping[line] = bugs[i]
+            previous = pos
+
+        self.line_mapping = line_mapping
+        docutils.nodes.GenericNodeVisitor.__init__(self, doc)
+
+    def visit_definition_list_item(self, node):
+        b = self.line_mapping[node.line]
+        b.nb_comments += 1
+
+    def visit_field(self, node):  # attributes
+        b = self.line_mapping[node.line]
+        b[node.children[0].astext().strip()] = node.children[1].astext().strip()
+        b.field_line = max(getattr(self, 'field_line', 0), node.line)
+
+    def default_visit(self, node):
+        if DEBUG:
+            print("=", node.tagname)
+            print("[[%s]]" % node.rawsource)
+
+
+class FileHandler:
+
+    def __init__(self):
+        self.bugs = []
+        self.fixed_bugs = []
+        self.info = None
+        self.bugs_text = []
+        self.mixed_priorities = False
+        self.load()
+        self.line_stop = None
+        self.line_start = None
+
+    @property
+    def single_priority(self):
+        return all(x.priority == 0 for x in self)
+
+    def get(self, nr):
+        if not nr:
+            raise RuntimeError('Wrong bug id')
+        if isinstance(nr, str) and nr[0] == '#':
+            bugid = nr[1:]
+            for bug in self:
+                if bug['bugid'] == bugid:
+                    return bug
+        else:
+            nr = int(nr) - 1
+            return self.bugs[nr]
+
+        raise RuntimeError('Wrong bug id')
+
+    def save(self, done=False):
+        if done:
+            fname = DONEFILE
+            source = self.fixed_bugs
+        else:
+            fname = BUGFILE
+            source = [self.info] + self.bugs
+
+        data = []
+        for i, bug in enumerate(source):
+            data.append(str(bug))
+            if i+1 != len(source):
+                data.append("\n\n%s\n\n" % ("-"*80))  # separator on single line
+        # save only if didn't except before
+        data.append('\n')
+        o = codecs.open(fname, 'w', encoding='utf-8')
+        o.writelines(data)
+        o.close()
+
+    def load(self, done=False):
+        if done:
+            fname = DONEFILE
+            source = self.fixed_bugs
+        else:
+            fname = BUGFILE
+            source = self.bugs
+
+        if os.path.exists(fname):
+            parser = Parser()
+            settings = OptionParser(components=(Parser,)).get_default_values()
+            document = new_document(fname, settings)
+            text = codecs.open(fname, encoding='utf-8').read()
+            text_lines = text.split('\n')
+            parser.parse(text, document)
+            indices = [i for i, l in enumerate(text_lines) if l.startswith('------')]
+
+            start = 0
+            for i in range(len(document)):
+                if i:
+                    start = indices[i - 1] + 2
+                    title = text_lines[start]
+                else:
+                    title = text_lines[0]
+                start += 3
+                if i+1 == len(document):
+                    stop = len(text_lines) - 1
+                else:
+                    stop = indices[i] - 1
+                orig_text = text_lines[start:stop]
+                b = Bug(title)
+                b.original_text = '\n'.join(orig_text).strip()
+                if b.original_text.endswith('-----'):
+                    b.original_text = b.original_text.rstrip('-')
+                b.line_start = start
+                b.line_stop = stop
+
+                if not i and not done:
+                    self.info = b
+                else:
+                    if done:
+                        self.fixed_bugs.append(b)
+                    else:
+                        self.bugs.append(b)
+
+            if done:
+                visitor = Visitor(document, self.fixed_bugs)
+            else:
+                visitor = Visitor(document, [self.info] + self.bugs)
+            document.walk(visitor)
+
+            if not done:  # sort bugs
+                if REVERSE_ORDER:
+                    def sorting(x):
+                        return (-x.priority, x.id)
+                else:
+                    def sorting(x):
+                        return (x.priority, x.id)
+                source.sort(key=sorting)
+
+        if not self.info:
+            self.info = Bug('Tickets')
+            self.info[GLOBAL_COUNTER_NAME] = 0
+
+    def new_bug(self, bug):
+        bug['created'] = now()
+        bug['bugid'] = self.info[GLOBAL_COUNTER_NAME]
+        self.info[GLOBAL_COUNTER_NAME] = int(self.info[GLOBAL_COUNTER_NAME]) + 1
+        self.bugs.append(bug)
+        self.save()
+
+    def mark_started(self, bugid):
+        bug = self.get(bugid)
+        bug['started'] = now()
+        self.save()
+
+    def mark_stopped(self, bugid):
+        bug = self.get(bugid)
+        if bug['started']:
+            if not bug['timer']:
+                old = 0
+            else:
+                old = int(bug['timer'])
+
+            last_date = dateutil.parser.parse(bug['started'])
+            old += ((now(False) - last_date).seconds/TIMER_ATOM)
+            del bug['started']
+            bug['timer'] = int(old)
+            self.save()
+        else:
+            print('Already stopped')
+
+    def mark_fixed(self, bugid):
+        bug = self.get(bugid)
+        self.bugs.pop(self.bugs.index(bug))
+        if bug['started']:
+            self.mark_stopped(bug)
+        bug['fixed'] = now()
+        self.fixed_bugs.insert(0, bug)
+        self.save()
+        self.save(True)
+
+    def __iter__(self):
+        return iter(self.bugs)
+
+    def __len__(self):
+        return len(self.bugs)
+
+# All commands
+
+
+def cmd_list(handler):
+    priority = None
+    show_priorities = not handler.single_priority
+    for i, bug in enumerate(handler):
+        if show_priorities and bug['priority'] != priority:
+            priority = bug['priority']
+            print(styled("P%s:" % priority, YELLOW))
+        print(bug.string_as_list(i))
+
+
+cmd_ls = cmd_list
+
+
+def cmd_show(handler, nr=None):
+    if nr is None:
+        for bug in reversed(list(handler)):
+            print(colorize(unicode(bug)))
+            print('')
+    else:
+        bug = handler.get(nr)
+        print(colorize(unicode(bug)))
+
+
+def cmd_grep(handler, *args):
+    for i, bug in enumerate(handler):
+        text = str(bug).lower()
+        count = 0
+        for pattern in args:
+            if pattern.lower() in text:
+                count += 1
+        if count == len(args):
+            print(bug.string_as_list(i))
+
+
+def cmd_untag(handler, bug_nr, tagname):
+    handler.get(bug_nr).rm_tag(tagname)
+    handler.save()
+
+
+def cmd_tag(handler, bug_nr, tagname=None):
+    if not tagname:
+        tagname = bug_nr
+        bug_nr = None
+
+    if bug_nr is not None:
+        bug = handler.get(bug_nr)
+        bug.add_tag(tagname)
+        handler.save()
+    else:
+        for i, bug in enumerate(handler):
+            if tagname in bug['tags']:
+                print(bug.string_as_list(i))
+
+
+def cmd_start(handler, nr=None):
+    if nr is None:
+        nr = input('nr: ')
+    handler.mark_started(nr)
+
+
+def cmd_stop(handler, nr=None):
+    if nr is None:
+        nr = input('nr: ')
+    handler.mark_stopped(nr)
+
+
+def cmd_remove(handler, nr=None):
+    if nr is None:
+        nr = input('nr: ')
+    handler.load(True)  # loads current fixed bugs list too
+    handler.mark_fixed(nr)
+
+
+cmd_fix = cmd_delete = cmd_rm = cmd_remove
+
+
+def cmd_add(handler, nr=None):
+    if nr is None:
+        nr = input('nr: ')
+    bug = handler.get(nr)
+
+    description = input('Title: ').rstrip()
+    comment_text = [description]
+    for line in read_paragraph('Comment: '):
+        comment_text.append('    ' + line)
+    bug.original_text += '\n\n' + ('\n'.join(comment_text).rstrip())
+    handler.save()
+
+
+def cmd_html(handler):
+    text = codecs.open(BUGFILE, encoding='utf-8').read()
+    text = text.rstrip().rstrip('-')
+    print(publish_string(text, writer_name='html', settings_overrides={
+        'stylesheet_path': STYLEFILE  # Replace with a pkg_resource thing or another hack to get data
+        }))
+
+
+def cmd_new(handler, title=None, description=None):
+    if title is None:
+        title = input('Title: ').rstrip()
+    bug = Bug(title)
+    if description:
+        full_description= description
+    else:
+        full_description = []
+        for line in read_paragraph('Description: '):
+            full_description.append(line)
+    full_description.append('')
+    bug.original_text = '\n' + '\n'.join(full_description)
+    bug['priority'] = '0'
+    handler.new_bug(bug)
+
+
+def cmd_unset(handler, nr, name=None):
+    bug = handler.get(nr)
+    if name is None:
+        name = input('Attribute name: ').strip()
+    if not bug:
+        raise RuntimeError("Bug not found")
+    del bug[name]
+    handler.save()
+    print(colorize(unicode(bug)))
+
+
+def cmd_get(handler, nr, name=None):
+    bug = handler.get(nr)
+    if name is None:
+        name = input('Attribute name: ').strip()
+    print("%s: %s" % (styled(name, YELLOW), styled(bug[name], 'bold')))
+
+
+def cmd_set(handler, nr, name=None, value=None):
+    bug = handler.get(nr)
+
+    if name is None:
+        name = input('Attribute name: ').strip()
+    if value is None:
+        value = input('Value: ').strip()
+
+    bug[name] = value
+    handler.save()
+    print(colorize(unicode(bug)))
+
+
+def cmd_serve(*_):
+    import socket
+    # python3 first:
+    try:
+        import socketserver
+    except ImportError:
+        import SocketServer as socketserver
+
+    try:
+        import http.server as SimpleHTTPServer
+    except ImportError:
+        import SimpleHTTPServer # python2
+
+
+    class BasicTCPServer(socketserver.ThreadingTCPServer):
+        def server_bind(self):
+            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            socketserver.ThreadingTCPServer.server_bind(self)
+
+    class HTTPHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
+        def do_GET(self):
+
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+
+            handler = FileHandler()
+            handler.info.title_char = '#'
+            text = []
+
+            text.append(unicode(handler.info))
+            text.append(u'')
+
+            for bug in reversed(list(handler)):
+                text.append(unicode(bug))
+                text.append(u'')
+
+            self.wfile.write(publish_string('\n'.join(text), writer_name='html', settings_overrides={
+                'stylesheet_path': STYLEFILE  # Replace with a pkg_resource thing or another hack to get data
+                }))
+            return
+
+    httpd = BasicTCPServer(('0.0.0.0', HTTP_PORT), HTTPHandler)
+    try:
+        print("HTTP server on port %s" % HTTP_PORT)
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("... bye bye!")
+
+
+def main():
+    if SOURCE_MGR: # track .<vcs> files as root if option enabled
+        fold = os.path.abspath(os.path.curdir)
+        found = None
+        current_path = ''
+        for fold in fold.split(os.path.sep):
+            if fold:
+                current_path += fold + os.path.sep
+                # norm
+            else:
+                current_path += os.path.sep
+            for scm in 'svn hg git bzr'.split():
+                if os.path.isdir("%s.%s" % (current_path, scm)):
+                    found = current_path
+        if found:
+            os.chdir(found)
+
+    handler = FileHandler()
+
+    try:
+        cmd = sys.argv[1]
+    except IndexError:
+        cmd = 'list'
+        args = []
+    else:
+        args = sys.argv[2:]
+
+    fn = globals().get('cmd_' + cmd) # find function matching command
+
+    if fn is not None:
+        fn(handler, *args)
+    else:
+        print("\nSyntax: %s [command]\n" % sys.argv[0])
+
+        docs = """\
+    list: short listing of bugs (default action)
+    show: [bug nr] | detailed listing of bugs, ReStructuredText format (save as .rst or .txt)
+    html: same as above, but in html format
+   serve: publish the html content using HTTP server
+     new: open a new bug
+      rm: [bug nr] | remove some bug (mark as fixed)
+     add: [bug nr] | add some comment to a bug
+   start: [bug nr] | starts counting elapsed time for this bug
+    stop: [bug nr] | stops counting elapsed time for this bug
+     tag: [bug nr] [tag name] OR [tag name] | adds a tag to a bug OR list matching tickets
+   untag: [bug nr] [tag name] | removes a tag
+     get: [bug nr] [attr name] | prints an attribute value
+     set: [bug nr] [attr name] [value] | adds an attribute to a bug
+   unset: [bug nr] [attr name] | removes an attribute
+    grep: [pattern] | list bugs containing given pattern(s)"""
+        for doc in docs.split('\n'):
+            name, desc = doc.split(': ', 1)
+            if ' | ' in desc:
+                args, desc = desc.split(' | ', 1)
+                args = args
+                desc = ' ' + desc
+            else:
+                args = ''
+            print("%s %s%s" % (styled(name, YELLOW), args, styled(desc, 'blue')))
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except RuntimeError as e:
+        print(u'ERROR: ' + u' '.join(e.args))
+    except ValueError as e:
+        print(u'ERROR: Argument have incorrect value')
+    except TypeError as e:
+        print(u'ERROR: %s' % e.args[0].split(' ', 1)[1])
