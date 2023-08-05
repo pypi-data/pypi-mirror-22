@@ -1,0 +1,35 @@
+Metadata-Version: 1.1
+Name: pyAlarm
+Version: 1.0.0
+Summary: Run Alarm on cli or in Background.
+Home-page: https://github.com/famishedrover/AlarmClock
+Author: Angryziber
+Author-email: mudit.verma2014@gmail.com
+License: MIT
+Description: Alarm in Python.
+        
+        ## INSTALLATION 
+        pip install pyAlarm
+        
+        Functions :
+        getInput() :: returns Alarm and current Time.
+        runInBackground(Time,Alarm) :: Alarm & Time of type time.strftime("%H:%M")
+        checkYTfile() :: returns False if File not found , True if found.
+        runInteractive()
+        
+        Import :
+        from alarm import begin
+        
+        Use :
+        a,t = begin.getInput()
+        begin.runInBackground(t,a)
+        begin.checkYTfile()
+        begin.runInteractive()
+Keywords: Alarm Python Threading
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
