@@ -1,0 +1,68 @@
+CHANGES
+=======
+
+0.1.0
+-----
+
+* add support for capturing server state
+* add support for available volumes
+* add reno release notes to the doc build
+* link to docs from readme
+* add keypairs to resources initialized by default
+* add documentation
+* allow export to set up a different key to use for the server
+* support querying available volumes by name
+* add --version argument handling
+* automatically grab the ssh key needed for each server exported
+* clean up query blocks to make them consistent
+* support querying images by name
+* add --server-flavor to query command
+* rename server name query arg
+* refactory query to use resource editor class
+* handle query for server by name
+* support writing new resource file
+* allow for missing resource file
+* move cli setup into each command file
+* update contributing instructions
+* add image to demo input file
+* add support for ssh keypairs
+* todo note
+* prettier uuid mapping messages
+* flake8 fixes
+* add pretty name to security group rule tasks
+* add support for subnets
+* add support for networks
+* memoize creating volumes
+* update default image name
+* ignore missing docstrings in pep8
+* map UUIDs of new objects to old
+* expand instructions for running the demo
+* add a simple playbook to launch an instance
+* use dist name os-downpour to avoid conflict
+* rename aerostat to downpour
+* add options to control whether progress bar appears
+* use logging for multiple levels of verbosity
+* remove copyright headers
+* pep8 cleanups
+* split main app into export and query subcommands
+* add save\_state flag for expensive resources
+* read list of resources to export from data file
+* add input and output args; write playbook to file
+* refer to os-client-config docs for auth setup
+* add simple instructions for running
+* download all servers and private images
+* update the readme
+* move downloader into its own class
+* experiment with downloading images
+* show some basic server data
+* add support for volumes attached to servers
+* move production rules into Resolver class
+* include all servers
+* cleanup
+* start a command line app
+* tell tox to pass OS\_\* variables used for authentication
+* tell tox to use python 3 for everything
+* set default tox envs to py35 and pep8
+* ignore clouds.yaml
+* declare that this project work only with python 3
+* Initial Cookiecutter Commit
