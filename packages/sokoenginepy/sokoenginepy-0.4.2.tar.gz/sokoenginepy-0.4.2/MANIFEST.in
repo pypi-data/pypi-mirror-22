@@ -1,0 +1,19 @@
+graft docs
+graft src
+graft tests
+graft scripts
+
+include .bumpversion.cfg
+include .coveragerc
+include .editorconfig
+
+include LICENSE
+include README.rst
+include .pylintrc
+
+include tox.ini .travis.yml
+
+global-exclude *.py[cod] __pycache__ *.so *.dylib
+
+global-exclude .ipynb_checkpoints/*
+prune docs/_build
