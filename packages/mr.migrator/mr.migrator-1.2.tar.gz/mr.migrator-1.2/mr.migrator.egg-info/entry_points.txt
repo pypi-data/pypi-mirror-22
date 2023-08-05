@@ -1,0 +1,9 @@
+[console_scripts]
+migrate = mr.migrator.runner:runner
+
+[z3c.autoinclude.plugin]
+target = plone
+
+[zc.buildout]
+default = mr.migrator.recipe:Recipe
+

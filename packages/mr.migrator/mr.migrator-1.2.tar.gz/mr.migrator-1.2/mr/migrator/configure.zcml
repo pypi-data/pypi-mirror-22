@@ -1,0 +1,48 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="mr.migrator">
+
+  <include package="collective.transmogrifier" file="meta.zcml" />
+
+  <i18n:registerTranslations directory="locales" />
+
+  <!-- Plone UI -->
+  <include package=".browser" zcml:condition="installed Products.CMFCore"/>
+
+  <!-- BBB -->
+  <include
+      zcml:condition="installed zope.app.component"
+      package="zope.app.component"
+      file="meta.zcml"
+      />
+  <include
+      zcml:condition="not-installed zope.app.component"
+      package="zope.component"
+      file="meta.zcml"
+      />
+
+  <genericsetup:registerProfile
+      zcml:condition="installed Products.GenericSetup"
+      name="default"
+      title="mr.migrator: default"
+      directory="profiles/default"
+      description='Adds ability to run transmogrifier into any folder'
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  <genericsetup:registerProfile
+      zcml:condition="installed Products.GenericSetup"
+      name="uninstall"
+      title="mr.migrator: uninstall"
+      directory="profiles/uninstall"
+      description='Uninstalls mr.migrator'
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <!-- Load ZCML for blueprints that declare ``transmogrify`` entry point -->
+  <include package="z3c.autoinclude" file="meta.zcml" />
+  <includePlugins package="transmogrify" zcml:condition="installed transmogrify" />
+
+</configure>
