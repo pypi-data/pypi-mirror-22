@@ -1,0 +1,278 @@
+Metadata-Version: 1.0
+Name: PyMedium
+Version: 1.0.1
+Summary: PyMedium - Unofficial Medium API
+Home-page: https://github.com/enginebai/PyMedium
+Author: Engine Bai
+Author-email: enginebai@gmail.com
+License: The MIT License (MIT) Copyright © 2017 Engine Bai.
+Description: PyMedium - Unofficial Medium API
+        ================================
+        
+        |License: MIT| |PyPI|
+        
+        .. figure:: https://raw.githubusercontent.com/enginebai/PyMedium/master/art/graphic.png
+           :alt: PyMedium
+        
+           PyMedium
+        
+        *PyMedium* is an unofficial Medium API written in python flask. It
+        provides developers to access to user, post list and detail information
+        from `Medium <https://medium.com/>`__ website. This is a read-only API
+        to access public information from Medium, you can customize this API to
+        fit your requirements and deploy on your own server.
+        
+        Now we provide another way: python client SDK to let you integrate into
+        your application. More detail go to `wiki
+        page <https://github.com/enginebai/PyMedium/wiki/Python-SDK>`__.
+        
+        Installation
+        ------------
+        
+        Before running PyMedium API, you have to clone the code from this
+        repository, install requirements at first.
+        
+        .. code:: shell
+        
+            $ git clone git@github.com:enginebai/PyMedium.git
+            $ cd PyMedium
+            $ pip install -r requirements.txt
+        
+        Then download web driver to ``driver`` folder from
+        `Selenium <http://selenium-python.readthedocs.io/>`__ or via the
+        command-line with ``curl`` (update ``{VERSION}`` with the latest version
+        code and ``{OS}`` with your server operating system.
+        
+        .. code:: shell
+        
+            $ mkdir driver | cd driver
+            $ curl -O https://chromedriver.storage.googleapis.com/{VERSION}/chromedriver_{OS}.zip
+            $ unzip chromedriver_{OS}.zip
+        
+        Usage
+        -----
+        
+        To run this API application, use the ``flask`` command as same as `Flask
+        Quickstart <http://flask.pocoo.org/docs/0.12/quickstart/>`__
+        
+        .. code:: shell
+        
+            $ export FLASK_APP=./pymedium/api.py
+            $ export FLASK_DEBUG=1 ## if you run in debug mode.
+            $ flask run
+             * Running on http://localhost:5000/
+        
+        Documentation
+        -------------
+        
+        Users
+        ~~~~~
+        
+        -  ``GET /@{username}`` - Get user profile
+        
+        Response
+        ^^^^^^^^
+        
+        .. code:: json
+        
+            {
+              "avatar": "1*Y7zH0UM975YmchIO86uIGA.jpeg",
+              "bio": "Mixtape of developer, designer and startup. Cofounder and developer of DualCores Studio. Follow my technical blog: http://enginebai.logdown.com/",
+              "display_name": "Engine Bai",
+              "facebook": "789985027713671",
+              "followedby_count": 445,
+              "following_count": 238,
+              "publications": [
+                {
+                  "creator_user_id": "3301d32a6bba",
+                  "description": "Stories from the mix of designer and developer. 設計與工程的交織，混搭激盪出不同的想像。",
+                  "display_name": "DualCores Studio",
+                  "follower_count": 302,
+                  "image": {
+                    "image_id": "1*DLixNgsMpK5B74na3EDucQ.png",
+                    "original_height": 591,
+                    "original_width": 591
+                  },
+                  "logo": {
+                    "image_id": "1*DLixNgsMpK5B74na3EDucQ.png",
+                    "original_height": 591,
+                    "original_width": 591
+                  },
+                  "name": "dualcores-studio",
+                  "post_count": 0,
+                  "publication_id": "275e26e7c1b2",
+                  "url": "https://medium.com/dualcores-studio"
+                },
+                ...more
+              ],
+              "twitter": "enginebai",
+              "user_id": "3301d32a6bba",
+              "username": "enginebai"
+            }
+        
+        Publication
+        ~~~~~~~~~~~
+        
+        -  ``GET /{publication_name}`` - Get publication profile
+        
+        .. code:: json
+        
+            {
+              "creator_user_id": "3301d32a6bba",
+              "description": "Stories from the mix of designer and developer. 設計與工程的交織，混搭激盪出不同的想像。",
+              "display_name": "DualCores Studio",
+              "follower_count": 302,
+              "image": {
+                "image_id": "1*DLixNgsMpK5B74na3EDucQ.png",
+                "original_height": 591,
+                "original_width": 591
+              },
+              "logo": {
+                "image_id": "1*DLixNgsMpK5B74na3EDucQ.png",
+                "original_height": 591,
+                "original_width": 591
+              },
+              "name": "dualcores-studio",
+              "post_count": 0,
+              "publication_id": "275e26e7c1b2",
+              "url": "https://medium.com/dualcores-studio"
+            }
+        
+        Post
+        ~~~~
+        
+        -  ``GET /@{username}/posts`` - Get user latest posts
+        -  ``GET /{publication_name}/posts`` - Get publication latest posts
+        -  ``GET /top`` - Get most popular today posts
+        -  ``GET /tag/{tag}`` - Get tagged in popular posts
+        -  ``GET /tag/{tag}/latest`` - Get tagged in latest posts
+        
+        Parameters
+        ^^^^^^^^^^
+        
+        +--------+-----------+------------------------------------------------+
+        | Name   | Type      | Description                                    |
+        +========+===========+================================================+
+        | n      | integer   | The count of posts to return. Default is 10.   |
+        +--------+-----------+------------------------------------------------+
+        
+        Response
+        ^^^^^^^^
+        
+        .. code:: json
+        
+            [
+              {
+                "image_count": 14,
+                "post_date": 1478533474858,
+                "post_id": "99a3d86df228",
+                "preview_image": {
+                  "image_id": "1*zhnQJhNzp-Oal1-GU1EUKw.png",
+                  "original_height": 412,
+                  "original_width": 608
+                },
+                "read_time": 7.74811320754717,
+                "recommend_count": 351,
+                "response_count": 10,
+                "title": "Make an android custom view, publish and open source.",
+                "url": "https://medium.com/dualcores-studio/make-an-android-custom-view-publish-and-open-source-99a3d86df228",
+                "word_count": 1669
+              },
+              ...more
+            ]
+        
+        Post detail
+        ~~~~~~~~~~~
+        
+        -  ``GET /post`` - Get the post content
+        
+        Parameters
+        ^^^^^^^^^^
+        
+        +------+------+------+
+        | Name | Type | Desc |
+        |      |      | ript |
+        |      |      | ion  |
+        +======+======+======+
+        | u    | stri | The  |
+        |      | ng   | post |
+        |      |      | url  |
+        |      |      | to   |
+        |      |      | pars |
+        |      |      | e    |
+        |      |      | cont |
+        |      |      | ent. |
+        +------+------+------+
+        | form | stri | (opt |
+        | at   | ng   | iona |
+        |      |      | l)   |
+        |      |      | The  |
+        |      |      | form |
+        |      |      | at   |
+        |      |      | of   |
+        |      |      | resp |
+        |      |      | onse |
+        |      |      | ,    |
+        |      |      | the  |
+        |      |      | valu |
+        |      |      | e    |
+        |      |      | coul |
+        |      |      | d    |
+        |      |      | be   |
+        |      |      | ``te |
+        |      |      | xt`` |
+        |      |      | ,    |
+        |      |      | ``ht |
+        |      |      | ml`` |
+        |      |      | ,    |
+        |      |      | ``md |
+        |      |      | ``,  |
+        |      |      | ``js |
+        |      |      | on`` |
+        |      |      | ,    |
+        |      |      | defa |
+        |      |      | ult  |
+        |      |      | is   |
+        |      |      | ``te |
+        |      |      | xt`` |
+        |      |      | .    |
+        +------+------+------+
+        
+        Response
+        ^^^^^^^^
+        
+        ::
+        
+            ## Simple text, json, html, markdown format
+        
+        Issues
+        ------
+        
+        Feel free to submit bug reports or feature requests and make sure you
+        read the contribution guideline before opening any issue.
+        
+        Contributing
+        ------------
+        
+        1. Check the open/close issues or open a fresh issue for feature request
+           or bug report with different labels (``feature``/``bug``).
+        2. Fork this `repository <https://github.com/enginebai/PyMedium>`__ on
+           GitHub to start customizing on master or new branch.
+        3. Write a test which shows that the feature works as expected or the
+           bug was fixeed.
+        4. Send a pull request and wait for code review.
+        
+        `Read more on contributing <./CONTRIBUTING.md>`__.
+        
+        License
+        -------
+        
+        Copyright (c) 2017 Engine Bai Licensed under the `MIT
+        license <http://opensource.org/licenses/MIT>`__.
+        
+        .. |License: MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
+           :target: https://opensource.org/licenses/MIT
+        .. |PyPI| image:: https://badge.fury.io/py/PyMedium.svg
+           :target: https://badge.fury.io/py/PyMedium
+        
+Platform: UNKNOWN
