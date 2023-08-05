@@ -1,0 +1,28 @@
+sudo: false
+language: python
+python:
+- 2.6
+- 2.7
+- 3.3
+- 3.4
+- 3.5
+- 3.6
+install:
+- pip install tox "setuptools>=28.2"
+script:
+- tox
+branches:
+  except:
+  - skeleton
+deploy:
+  provider: pypi
+  server: https://upload.pypi.org/legacy/
+  on:
+    tags: true
+    all_branches: true
+    python: 3.6
+  user: jaraco
+  distributions: dists
+  skip_upload_docs: true
+  password:
+    secure: E4j+rzy+ckT5kGWcp8tNbOY8cImzLIvZSQ/a4kTTXokqOMcPddlGGER32p43N2nkWuJXAjYjujQxUxThj6y7dYyo7XPHDAdp/2g2Bh7M2ZG5vAjiVAYYEff/Htybf+2CMa4DN8NndB8PMb80nb/TL3WdQraxOWlZ7vKnEpwz1MVDRBbhOaFDEH11/SRG9zcKHN1R76HiuKxNIARZO7phD8+cyprXfUbZb80pGF4AFa8nhMrV0EKiV1xX7qQnuAYDp4OIRTdAyBSRI/4XyxBIxFmWVhaddOHxUYS87iQlsj31L9fjdEbGHXTtw4qDmVrJa4XgY59xinNXM4uVYQAMafjg9eW79lYoikmmTmZ8zm0Nw+Qb2sB/z9cNR5gdg6VC4M3xESb4YJzVZjC8yAYxFFv9I3Q/1aKD/FhvsvtpsUzbj04e4wB3qi7sA5lS2BqKK0cAznBQE7ctTfp5n0JCKitdSbFCm5WVZdrr2QVzSU8DyH80lAUA55TQK2UUOCnW5a2OcuTa1/RfAjrivpPc5fzAqRD+bak83+DccYdpD8MqDyfQ26rDWnBxQ6zm9wwYqaDjM/FheF9/4k5N/eiPJ+8lU4AcNMWzobpgSDpBQDf9o208AlCEqjfhIYk4JeC/dCKBf41h2ZV0Dx9BkmXU7Ss5C0KPlaauruPe0zdBPf8=
