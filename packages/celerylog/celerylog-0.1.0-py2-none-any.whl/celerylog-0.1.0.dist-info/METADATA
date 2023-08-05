@@ -1,0 +1,29 @@
+Metadata-Version: 2.0
+Name: celerylog
+Version: 0.1.0
+Summary: Listens all the Celery events and forwards them to (Kinesis Firehose/EventPipe/Local log file)
+Home-page: https://github.com/bcambel/celery-log/
+Author: Bahadir Cambel
+Author-email: bcambel@gmail.com
+License: MIT
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Monitoring
+Requires-Dist: celery (>=4.0.2)
+Requires-Dist: requests (>=2.13.0)
+Requires-Dist: Flask (==0.12.1)
+Requires-Dist: Flask-Failsafe (==0.2)
+Requires-Dist: Flask-Script (==2.0.5)
+
+UNKNOWN
+
+
