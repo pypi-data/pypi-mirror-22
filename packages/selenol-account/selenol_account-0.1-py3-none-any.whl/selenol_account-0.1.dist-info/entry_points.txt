@@ -1,0 +1,20 @@
+[selenol.fixtures]
+admin_user_public_group = selenol_account.fixtures:create_admin_user_public_group
+
+[selenol.services]
+account_group_info = selenol_account.services:AccountGroupInfo
+group_accept_pending_requests = selenol_account.services:AccountGroupAcceptPendingRequest
+group_all = selenol_account.services:AccountGroupAll
+group_create = selenol_account.services:AccountGroupCreate
+group_pending_requests = selenol_account.services:AccountGroupPendingRequests
+group_request = selenol_account.services:AccountGroupRequest
+group_waiting_requests = selenol_account.services:AccountGroupWaitingRequests
+groups_user = selenol_account.services:AccountGroupUser
+notification_saw = selenol_account.services:AccountNotificationSaw
+notifications_active = selenol_account.services:AccountNotificationsActive
+oauth_list = selenol_account.services:AccountOAuthListOptions
+oauth_login = selenol_account.services:AccountOAuthLogin
+token_login = selenol_account.services:AccountTokenLogin
+user_all = selenol_account.services:AccountUserAll
+user_info = selenol_account.services:AccountUserInfo
+
