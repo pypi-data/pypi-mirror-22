@@ -1,0 +1,1102 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>plone.jsonapi.routes.api &mdash; plone.jsonapi.routes 0.8.3 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.8.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="plone.jsonapi.routes 0.8.3 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">plone.jsonapi.routes 0.8.3 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for plone.jsonapi.routes.api</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">plone</span> <span class="kn">import</span> <span class="n">api</span> <span class="k">as</span> <span class="n">ploneapi</span>
+<span class="kn">from</span> <span class="nn">plone.jsonapi.core</span> <span class="kn">import</span> <span class="n">router</span>
+
+<span class="kn">from</span> <span class="nn">AccessControl</span> <span class="kn">import</span> <span class="n">Unauthorized</span>
+
+<span class="kn">from</span> <span class="nn">Products.CMFCore.interfaces</span> <span class="kn">import</span> <span class="n">ISiteRoot</span>
+<span class="kn">from</span> <span class="nn">Products.CMFCore.interfaces</span> <span class="kn">import</span> <span class="n">IFolderish</span>
+<span class="kn">from</span> <span class="nn">Products.ZCatalog.interfaces</span> <span class="kn">import</span> <span class="n">ICatalogBrain</span>
+<span class="kn">from</span> <span class="nn">Products.CMFPlone.PloneBatch</span> <span class="kn">import</span> <span class="n">Batch</span>
+
+<span class="c"># search helpers</span>
+<span class="kn">from</span> <span class="nn">query</span> <span class="kn">import</span> <span class="n">search</span>
+<span class="kn">from</span> <span class="nn">query</span> <span class="kn">import</span> <span class="n">make_query</span>
+
+<span class="c"># request helpers</span>
+<span class="kn">from</span> <span class="nn">plone.jsonapi.routes</span> <span class="kn">import</span> <span class="n">request</span> <span class="k">as</span> <span class="n">req</span>
+<span class="kn">from</span> <span class="nn">plone.jsonapi.routes.exceptions</span> <span class="kn">import</span> <span class="n">APIError</span>
+
+<span class="kn">from</span> <span class="nn">plone.jsonapi.routes.interfaces</span> <span class="kn">import</span> <span class="n">IInfo</span>
+<span class="kn">from</span> <span class="nn">plone.jsonapi.routes.interfaces</span> <span class="kn">import</span> <span class="n">IBatch</span>
+<span class="kn">from</span> <span class="nn">plone.jsonapi.routes.interfaces</span> <span class="kn">import</span> <span class="n">IDataManager</span>
+<span class="kn">from</span> <span class="nn">plone.jsonapi.routes</span> <span class="kn">import</span> <span class="n">underscore</span> <span class="k">as</span> <span class="n">_</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Ramon Bartl &lt;ramon.bartl@googlemail.com&gt;&#39;</span>
+<span class="n">__docformat__</span> <span class="o">=</span> <span class="s">&#39;plaintext&#39;</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&quot;plone.jsonapi.routes&quot;</span><span class="p">)</span>
+
+<span class="n">_marker</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+
+<span class="n">PORTAL_IDS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;0&quot;</span><span class="p">,</span> <span class="s">&quot;portal&quot;</span><span class="p">,</span> <span class="s">&quot;site&quot;</span><span class="p">,</span> <span class="s">&quot;plone&quot;</span><span class="p">,</span> <span class="s">&quot;root&quot;</span><span class="p">]</span>
+
+
+<span class="c"># -----------------------------------------------------------------------------</span>
+<span class="c">#   Json API (CRUD) Functions</span>
+<span class="c"># -----------------------------------------------------------------------------</span>
+
+
+<span class="c"># GET RECORD</span>
+<div class="viewcode-block" id="get_record"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_record">[docs]</a><span class="k">def</span> <span class="nf">get_record</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; returns a single record</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">if</span> <span class="n">uid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_by_uid</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_form</span><span class="p">()</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_by_record</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="s">&quot;No object found&quot;</span><span class="p">)</span>
+    <span class="n">complete</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_complete</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">_marker</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">complete</span> <span class="ow">is</span> <span class="n">_marker</span><span class="p">:</span>
+        <span class="n">complete</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">make_items_for</span><span class="p">([</span><span class="n">obj</span><span class="p">],</span> <span class="n">complete</span><span class="o">=</span><span class="n">complete</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+
+
+<span class="c"># GET</span></div>
+<div class="viewcode-block" id="get_items"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_items">[docs]</a><span class="k">def</span> <span class="nf">get_items</span><span class="p">(</span><span class="n">portal_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; returns a list of items</span>
+
+<span class="sd">    1. If the UID is given, fetch the object directly =&gt; should return 1 item</span>
+<span class="sd">    2. If no UID is given, search for all items of the given portal_type</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># fetch the catalog results</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">get_search_results</span><span class="p">(</span><span class="n">portal_type</span><span class="o">=</span><span class="n">portal_type</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">)</span>
+
+    <span class="c"># check for existing complete flag</span>
+    <span class="n">complete</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_complete</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">_marker</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">complete</span> <span class="ow">is</span> <span class="n">_marker</span><span class="p">:</span>
+        <span class="c"># if the uid is given, get the complete information set</span>
+        <span class="n">complete</span> <span class="o">=</span> <span class="n">uid</span> <span class="ow">and</span> <span class="bp">True</span> <span class="ow">or</span> <span class="bp">False</span>
+
+    <span class="k">return</span> <span class="n">make_items_for</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">complete</span><span class="o">=</span><span class="n">complete</span><span class="p">)</span>
+
+
+<span class="c"># GET BATCHED</span></div>
+<div class="viewcode-block" id="get_batched"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_batched">[docs]</a><span class="k">def</span> <span class="nf">get_batched</span><span class="p">(</span><span class="n">portal_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; returns a batched result record (dictionary)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># fetch the catalog results</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">get_search_results</span><span class="p">(</span><span class="n">portal_type</span><span class="o">=</span><span class="n">portal_type</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">)</span>
+
+    <span class="c"># fetch the batch params from the request</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_batch_size</span><span class="p">()</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_batch_start</span><span class="p">()</span>
+
+    <span class="c"># check for existing complete flag</span>
+    <span class="n">complete</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_complete</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">_marker</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">complete</span> <span class="ow">is</span> <span class="n">_marker</span><span class="p">:</span>
+        <span class="c"># if the uid is given, get the complete information set</span>
+        <span class="n">complete</span> <span class="o">=</span> <span class="n">uid</span> <span class="ow">and</span> <span class="bp">True</span> <span class="ow">or</span> <span class="bp">False</span>
+
+    <span class="c"># return a batched record</span>
+    <span class="k">return</span> <span class="n">get_batch</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+                     <span class="n">complete</span><span class="o">=</span><span class="n">complete</span><span class="p">)</span>
+
+
+<span class="c"># CREATE</span></div>
+<div class="viewcode-block" id="create_items"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.create_items">[docs]</a><span class="k">def</span> <span class="nf">create_items</span><span class="p">(</span><span class="n">portal_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; create items</span>
+
+<span class="sd">    1. If the uid is given, get the object and create the content in there</span>
+<span class="sd">       (assumed that it is folderish)</span>
+<span class="sd">    2. If the uid is 0, the target folder is assumed the portal.</span>
+<span class="sd">    3. If there is no uid given, the payload is checked for either a key</span>
+<span class="sd">        - `parent_uid`  specifies the *uid* of the target folder</span>
+<span class="sd">        - `parent_path` specifies the *physical path* of the target folder</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># destination where to create the content</span>
+    <span class="n">dest</span> <span class="o">=</span> <span class="n">uid</span> <span class="ow">and</span> <span class="n">get_object_by_uid</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">None</span>
+
+    <span class="c"># extract the data from the request</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_request_data</span><span class="p">()</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dest</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c"># find the container for content creation</span>
+            <span class="n">dest</span> <span class="o">=</span> <span class="n">find_target_container</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">portal_type</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">portal_type</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;portal_type&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;title&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">create_object_in_container</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">portal_type</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+        <span class="c"># update the object</span>
+        <span class="n">update_object_with_data</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s">&quot;No Objects could be created&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">make_items_for</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">)</span>
+
+
+<span class="c"># UPDATE</span></div>
+<div class="viewcode-block" id="update_items"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.update_items">[docs]</a><span class="k">def</span> <span class="nf">update_items</span><span class="p">(</span><span class="n">portal_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; update items</span>
+
+<span class="sd">    1. If the uid is given, the user wants to update the object with the data</span>
+<span class="sd">       given in request body</span>
+<span class="sd">    2. If no uid is given, the user wants to update a bunch of objects.</span>
+<span class="sd">       -&gt; each record contains either an UID, path or parent_path + id</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># the data to update</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_request_data</span><span class="p">()</span>
+
+    <span class="c"># we have an uid -&gt; try to get an object for it</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_by_uid</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">obj</span><span class="p">:</span>
+        <span class="n">record</span> <span class="o">=</span> <span class="n">records</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c"># ignore other records if we got an uid</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">update_object_with_data</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">make_items_for</span><span class="p">([</span><span class="n">obj</span><span class="p">],</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">)</span>
+
+    <span class="c"># no uid -&gt; go through the record items</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_by_record</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+        <span class="c"># no object found for this record</span>
+        <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="c"># update the object with the given record data</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">update_object_with_data</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s">&quot;No Objects could be updated&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">make_items_for</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">)</span>
+
+
+<span class="c"># DELETE</span></div>
+<div class="viewcode-block" id="delete_items"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.delete_items">[docs]</a><span class="k">def</span> <span class="nf">delete_items</span><span class="p">(</span><span class="n">portal_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; delete items</span>
+
+<span class="sd">    1. If the uid is given, we can ignore the request body and delete the</span>
+<span class="sd">       object with the given uid (if the uid was valid).</span>
+<span class="sd">    2. If no uid is given, the user wants to delete more than one item.</span>
+<span class="sd">       =&gt; go through each item and extract the uid. Delete it afterwards.</span>
+<span class="sd">       // we should do this kind of transaction base. So if we can not get an</span>
+<span class="sd">       // object for an uid, no item will be deleted.</span>
+<span class="sd">    3. we could check if the portal_type matches, just to be sure the user</span>
+<span class="sd">       wants to delete the right content.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># try to find the requested objects</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">find_objects</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">)</span>
+
+    <span class="c"># We don&#39;t want to delete the portal object</span>
+    <span class="k">if</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">o</span><span class="p">:</span> <span class="n">is_root</span><span class="p">(</span><span class="n">o</span><span class="p">),</span> <span class="n">objects</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s">&quot;Can not delete the portal object&quot;</span><span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">IInfo</span><span class="p">(</span><span class="n">obj</span><span class="p">)()</span>
+        <span class="n">info</span><span class="p">[</span><span class="s">&quot;deleted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">delete_object</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="s">&quot;No Objects could be found&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+
+
+<span class="c"># CUT</span></div>
+<div class="viewcode-block" id="cut_items"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.cut_items">[docs]</a><span class="k">def</span> <span class="nf">cut_items</span><span class="p">(</span><span class="n">portal_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; cut items</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># try to find the requested objects</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">find_objects</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">)</span>
+
+    <span class="c"># No objects could be found, bail out</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">objects</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="s">&quot;No Objects could be found&quot;</span><span class="p">)</span>
+
+    <span class="c"># We support only to cut a single object</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">objects</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s">&quot;Can only cut one object at a time&quot;</span><span class="p">)</span>
+
+    <span class="c"># We don&#39;t want to cut the portal object</span>
+    <span class="k">if</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">o</span><span class="p">:</span> <span class="n">is_root</span><span class="p">(</span><span class="n">o</span><span class="p">),</span> <span class="n">objects</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s">&quot;Can not cut the portal object&quot;</span><span class="p">)</span>
+
+    <span class="c"># cut the object</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">objects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">obj</span><span class="o">.</span><span class="n">aq_parent</span><span class="o">.</span><span class="n">manage_cutObjects</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">getId</span><span class="p">(),</span> <span class="n">REQUEST</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="s">&quot;application/json&quot;</span><span class="p">)</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">IInfo</span><span class="p">(</span><span class="n">obj</span><span class="p">)()</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">info</span><span class="p">]</span>
+
+
+<span class="c"># COPY</span></div>
+<div class="viewcode-block" id="copy_items"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.copy_items">[docs]</a><span class="k">def</span> <span class="nf">copy_items</span><span class="p">(</span><span class="n">portal_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; copy items</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># try to find the requested objects</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">find_objects</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">)</span>
+
+    <span class="c"># No objects could be found, bail out</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">objects</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="s">&quot;No Objects could be found&quot;</span><span class="p">)</span>
+
+    <span class="c"># We support only to copy a single object</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">objects</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s">&quot;Can only copy one object at a time&quot;</span><span class="p">)</span>
+
+    <span class="c"># We don&#39;t want to copy the portal object</span>
+    <span class="k">if</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">o</span><span class="p">:</span> <span class="n">is_root</span><span class="p">(</span><span class="n">o</span><span class="p">),</span> <span class="n">objects</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s">&quot;Can not copy the portal object&quot;</span><span class="p">)</span>
+
+    <span class="c"># cut the object</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">objects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">obj</span><span class="o">.</span><span class="n">aq_parent</span><span class="o">.</span><span class="n">manage_copyObjects</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">getId</span><span class="p">(),</span> <span class="n">REQUEST</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="s">&quot;application/json&quot;</span><span class="p">)</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">IInfo</span><span class="p">(</span><span class="n">obj</span><span class="p">)()</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">info</span><span class="p">]</span>
+
+
+<span class="c"># PASTE</span></div>
+<div class="viewcode-block" id="paste_items"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.paste_items">[docs]</a><span class="k">def</span> <span class="nf">paste_items</span><span class="p">(</span><span class="n">portal_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; paste items</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># try to find the requested objects</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">find_objects</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">)</span>
+
+    <span class="c"># No objects could be found, bail out</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">objects</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="s">&quot;No Objects could be found&quot;</span><span class="p">)</span>
+
+    <span class="c"># check if the cookie is there</span>
+    <span class="n">cookie</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_cookie</span><span class="p">(</span><span class="s">&quot;__cp&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cookie</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s">&quot;No data found to paste&quot;</span><span class="p">)</span>
+
+    <span class="c"># We support only to copy a single object</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">objects</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s">&quot;Can only paste to one location&quot;</span><span class="p">)</span>
+
+    <span class="c"># cut the object</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">objects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c"># paste the object</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">manage_pasteObjects</span><span class="p">(</span><span class="n">cookie</span><span class="p">)</span>
+
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="n">new_id</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;new_id&quot;</span><span class="p">)</span>
+        <span class="n">pasted</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">new_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pasted</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">IInfo</span><span class="p">(</span><span class="n">pasted</span><span class="p">)())</span>
+
+    <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="c"># -----------------------------------------------------------------------------</span>
+<span class="c">#   Data Functions</span>
+<span class="c"># -----------------------------------------------------------------------------</span>
+</div>
+<div class="viewcode-block" id="get_search_results"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_search_results">[docs]</a><span class="k">def</span> <span class="nf">get_search_results</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Search the catalog and return the results</span>
+
+<span class="sd">    :returns: Catalog search results</span>
+<span class="sd">    :rtype: list/Products.ZCatalog.Lazy.LazyMap</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># allow to search for the Plone site</span>
+    <span class="k">if</span> <span class="n">kw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;portal_type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&quot;Plone Site&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">get_portal</span><span class="p">()]</span>
+    <span class="k">elif</span> <span class="n">kw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">PORTAL_IDS</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">get_portal</span><span class="p">()]</span>
+    <span class="k">elif</span> <span class="n">kw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;uid&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">PORTAL_IDS</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">get_portal</span><span class="p">()]</span>
+
+    <span class="c"># build and execute a catalog query</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">make_query</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="make_items_for"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.make_items_for">[docs]</a><span class="k">def</span> <span class="nf">make_items_for</span><span class="p">(</span><span class="n">brains_or_objects</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">complete</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate API compatible data items for the given list of brains/objects</span>
+
+<span class="sd">    :param brains_or_objects: List of objects or brains</span>
+<span class="sd">    :type brains_or_objects: list/Products.ZCatalog.Lazy.LazyMap</span>
+<span class="sd">    :param endpoint: The named URL endpoint for the root of the items</span>
+<span class="sd">    :type endpoint: str/unicode</span>
+<span class="sd">    :param complete: Flag to wake up the object and fetch all data</span>
+<span class="sd">    :type complete: bool</span>
+<span class="sd">    :returns: A list of extracted data items</span>
+<span class="sd">    :rtype: list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># check if the user wants to include children</span>
+    <span class="n">include_children</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_children</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">extract_data</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">get_info</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">complete</span><span class="o">=</span><span class="n">complete</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">include_children</span> <span class="ow">and</span> <span class="n">is_folderish</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+            <span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">get_children_info</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">,</span> <span class="n">complete</span><span class="o">=</span><span class="n">complete</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">info</span>
+
+    <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="n">extract_data</span><span class="p">,</span> <span class="n">brains_or_objects</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="get_info"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_info">[docs]</a><span class="k">def</span> <span class="nf">get_info</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">complete</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract the data from the catalog brain or object</span>
+
+<span class="sd">    :param brain_or_object: A single catalog brain or content object</span>
+<span class="sd">    :type brain_or_object: ATContentType/DexterityContentType/CatalogBrain</span>
+<span class="sd">    :param endpoint: The named URL endpoint for the root of the items</span>
+<span class="sd">    :type endpoint: str/unicode</span>
+<span class="sd">    :param complete: Flag to wake up the object and fetch all data</span>
+<span class="sd">    :type complete: bool</span>
+<span class="sd">    :returns: Data mapping for the object/catalog brain</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># extract the data from the initial object with the proper adapter</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">IInfo</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+    <span class="c"># update with url info (always included)</span>
+    <span class="n">url_info</span> <span class="o">=</span> <span class="n">get_url_info</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">)</span>
+    <span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">url_info</span><span class="p">)</span>
+
+    <span class="c"># include the parent url info</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">get_parent_info</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+    <span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+    <span class="c"># add the complete data of the object if requested</span>
+    <span class="c"># -&gt; requires to wake up the object if it is a catalog brain</span>
+    <span class="k">if</span> <span class="n">complete</span><span class="p">:</span>
+        <span class="c"># ensure we have a full content object</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+        <span class="c"># get the compatible adapter</span>
+        <span class="n">adapter</span> <span class="o">=</span> <span class="n">IInfo</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="c"># update the data set with the complete information</span>
+        <span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">adapter</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+
+        <span class="c"># add workflow data if the user requested it</span>
+        <span class="c"># -&gt; only possible if `?complete=yes`</span>
+        <span class="k">if</span> <span class="n">req</span><span class="o">.</span><span class="n">get_workflow</span><span class="p">(</span><span class="bp">False</span><span class="p">):</span>
+            <span class="n">workflow</span> <span class="o">=</span> <span class="n">get_workflow_info</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+            <span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s">&quot;workflow&quot;</span><span class="p">:</span> <span class="n">workflow</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">info</span>
+
+</div>
+<div class="viewcode-block" id="get_url_info"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_url_info">[docs]</a><span class="k">def</span> <span class="nf">get_url_info</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate url information for the content object/catalog brain</span>
+
+<span class="sd">    :param brain_or_object: A single catalog brain or content object</span>
+<span class="sd">    :type brain_or_object: ATContentType/DexterityContentType/CatalogBrain</span>
+<span class="sd">    :param endpoint: The named URL endpoint for the root of the items</span>
+<span class="sd">    :type endpoint: str/unicode</span>
+<span class="sd">    :returns: URL information mapping</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># If no endpoint was given, guess the endpoint by portal type</span>
+    <span class="k">if</span> <span class="n">endpoint</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">endpoint</span> <span class="o">=</span> <span class="n">get_endpoint</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+
+    <span class="n">uid</span> <span class="o">=</span> <span class="n">get_uid</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s">&quot;uid&quot;</span><span class="p">:</span> <span class="n">uid</span><span class="p">,</span>
+        <span class="s">&quot;url&quot;</span><span class="p">:</span> <span class="n">get_url</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">),</span>
+        <span class="s">&quot;api_url&quot;</span><span class="p">:</span> <span class="n">url_for</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">),</span>
+    <span class="p">}</span>
+
+</div>
+<div class="viewcode-block" id="get_workflow_info"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_workflow_info">[docs]</a><span class="k">def</span> <span class="nf">get_workflow_info</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate workflow information of the (first) assigned workflow</span>
+
+<span class="sd">    :param brain_or_object: A single catalog brain or content object</span>
+<span class="sd">    :type brain_or_object: ATContentType/DexterityContentType/CatalogBrain</span>
+<span class="sd">    :param endpoint: The named URL endpoint for the root of the items</span>
+<span class="sd">    :type endpoint: str/unicode</span>
+<span class="sd">    :returns: Workflow information mapping</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># ensure we have a full content object</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+
+    <span class="c"># get the portal workflow tool</span>
+    <span class="n">wf_tool</span> <span class="o">=</span> <span class="n">get_tool</span><span class="p">(</span><span class="s">&quot;portal_workflow&quot;</span><span class="p">)</span>
+
+    <span class="c"># the assigned workflows of this object</span>
+    <span class="n">wfs</span> <span class="o">=</span> <span class="n">wf_tool</span><span class="o">.</span><span class="n">getWorkflowsFor</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="c"># no worfkflows assigned -&gt; return</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">wfs</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{}</span>
+
+    <span class="c"># get the first one</span>
+    <span class="n">workflow</span> <span class="o">=</span> <span class="n">wfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c"># get the status info of the current state (dictionary)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">wf_tool</span><span class="o">.</span><span class="n">getStatusOf</span><span class="p">(</span><span class="n">workflow</span><span class="o">.</span><span class="n">getId</span><span class="p">(),</span> <span class="n">obj</span><span class="p">)</span>
+
+    <span class="c"># https://github.com/collective/plone.jsonapi.routes/issues/33</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">status</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{}</span>
+
+    <span class="c"># get the current review_status</span>
+    <span class="n">current_state_id</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;review_state&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+    <span class="c"># get the wf status object</span>
+    <span class="n">current_status</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">states</span><span class="p">[</span><span class="n">current_state_id</span><span class="p">]</span>
+
+    <span class="c"># get the title of the current status</span>
+    <span class="n">current_state_title</span> <span class="o">=</span> <span class="n">current_status</span><span class="o">.</span><span class="n">title</span>
+
+    <span class="k">def</span> <span class="nf">to_transition_info</span><span class="p">(</span><span class="n">transition</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; return the transition information</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s">&quot;value&quot;</span><span class="p">:</span>   <span class="n">transition</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">],</span>
+            <span class="s">&quot;display&quot;</span><span class="p">:</span> <span class="n">transition</span><span class="p">[</span><span class="s">&quot;description&quot;</span><span class="p">],</span>
+            <span class="s">&quot;url&quot;</span><span class="p">:</span>     <span class="n">transition</span><span class="p">[</span><span class="s">&quot;url&quot;</span><span class="p">],</span>
+        <span class="p">}</span>
+
+    <span class="c"># get the transition informations</span>
+    <span class="n">transitions</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">to_transition_info</span><span class="p">,</span> <span class="n">wf_tool</span><span class="o">.</span><span class="n">getTransitionsFor</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s">&quot;workflow&quot;</span><span class="p">:</span>     <span class="n">workflow</span><span class="o">.</span><span class="n">getId</span><span class="p">(),</span>
+        <span class="s">&quot;status&quot;</span><span class="p">:</span>       <span class="n">current_state_title</span><span class="p">,</span>
+        <span class="s">&quot;review_state&quot;</span><span class="p">:</span> <span class="n">current_state_id</span><span class="p">,</span>
+        <span class="s">&quot;transitions&quot;</span><span class="p">:</span>  <span class="n">transitions</span>
+    <span class="p">}</span>
+
+</div>
+<div class="viewcode-block" id="get_parent_info"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_parent_info">[docs]</a><span class="k">def</span> <span class="nf">get_parent_info</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate url information for the parent object</span>
+
+<span class="sd">    :param brain_or_object: A single catalog brain or content object</span>
+<span class="sd">    :type brain_or_object: ATContentType/DexterityContentType/CatalogBrain</span>
+<span class="sd">    :param endpoint: The named URL endpoint for the root of the items</span>
+<span class="sd">    :type endpoint: str/unicode</span>
+<span class="sd">    :returns: URL information mapping</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># special case for the portal object</span>
+    <span class="k">if</span> <span class="n">is_root</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{}</span>
+
+    <span class="c"># get the parent object</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">get_parent</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+
+    <span class="c"># fall back if no endpoint specified</span>
+    <span class="k">if</span> <span class="n">endpoint</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">endpoint</span> <span class="o">=</span> <span class="n">get_endpoint</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+    <span class="c"># return portal information</span>
+    <span class="k">if</span> <span class="n">is_root</span><span class="p">(</span><span class="n">parent</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s">&quot;parent_id&quot;</span><span class="p">:</span> <span class="n">get_id</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span>
+            <span class="s">&quot;parent_uid&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s">&quot;parent_url&quot;</span><span class="p">:</span> <span class="n">url_for</span><span class="p">(</span><span class="s">&quot;plonesites&quot;</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="p">}</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s">&quot;parent_id&quot;</span><span class="p">:</span> <span class="n">get_id</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span>
+        <span class="s">&quot;parent_uid&quot;</span><span class="p">:</span> <span class="n">get_uid</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span>
+        <span class="s">&quot;parent_url&quot;</span><span class="p">:</span> <span class="n">url_for</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="n">get_uid</span><span class="p">(</span><span class="n">parent</span><span class="p">))</span>
+    <span class="p">}</span>
+
+</div>
+<div class="viewcode-block" id="get_children_info"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_children_info">[docs]</a><span class="k">def</span> <span class="nf">get_children_info</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">,</span> <span class="n">complete</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate data items of the contained contents</span>
+
+<span class="sd">    :param brain_or_object: A single catalog brain or content object</span>
+<span class="sd">    :type brain_or_object: ATContentType/DexterityContentType/CatalogBrain</span>
+<span class="sd">    :param complete: Flag to wake up the object and fetch all data</span>
+<span class="sd">    :type complete: bool</span>
+<span class="sd">    :returns: info mapping of contained content items</span>
+<span class="sd">    :rtype: list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># fetch the contents (if folderish)</span>
+    <span class="n">children</span> <span class="o">=</span> <span class="n">get_contents</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">extract_data</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">get_info</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">,</span> <span class="n">complete</span><span class="o">=</span><span class="n">complete</span><span class="p">)</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">extract_data</span><span class="p">,</span> <span class="n">children</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s">&quot;children_count&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">),</span>
+        <span class="s">&quot;children&quot;</span><span class="p">:</span> <span class="n">items</span>
+    <span class="p">}</span>
+
+
+<span class="c"># -----------------------------------------------------------------------------</span>
+<span class="c">#   Batching Helpers</span>
+<span class="c"># -----------------------------------------------------------------------------</span>
+</div>
+<div class="viewcode-block" id="get_batch"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_batch">[docs]</a><span class="k">def</span> <span class="nf">get_batch</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">complete</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; create a batched result record out of a sequence (catalog brains)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># we call an adapter here to allow backwards compatibility hooks</span>
+    <span class="n">batch</span> <span class="o">=</span> <span class="n">IBatch</span><span class="p">(</span><span class="n">Batch</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">start</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s">&quot;pagesize&quot;</span><span class="p">:</span> <span class="n">batch</span><span class="o">.</span><span class="n">get_pagesize</span><span class="p">(),</span>
+        <span class="s">&quot;next&quot;</span><span class="p">:</span>     <span class="n">batch</span><span class="o">.</span><span class="n">make_next_url</span><span class="p">(),</span>
+        <span class="s">&quot;previous&quot;</span><span class="p">:</span> <span class="n">batch</span><span class="o">.</span><span class="n">make_prev_url</span><span class="p">(),</span>
+        <span class="s">&quot;page&quot;</span><span class="p">:</span>     <span class="n">batch</span><span class="o">.</span><span class="n">get_pagenumber</span><span class="p">(),</span>
+        <span class="s">&quot;pages&quot;</span><span class="p">:</span>    <span class="n">batch</span><span class="o">.</span><span class="n">get_numpages</span><span class="p">(),</span>
+        <span class="s">&quot;count&quot;</span><span class="p">:</span>    <span class="n">batch</span><span class="o">.</span><span class="n">get_sequence_length</span><span class="p">(),</span>
+        <span class="s">&quot;items&quot;</span><span class="p">:</span>    <span class="n">make_items_for</span><span class="p">([</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">batch</span><span class="o">.</span><span class="n">get_batch</span><span class="p">()],</span>
+                                   <span class="n">endpoint</span><span class="p">,</span> <span class="n">complete</span><span class="o">=</span><span class="n">complete</span><span class="p">),</span>
+    <span class="p">}</span>
+
+
+<span class="c"># -----------------------------------------------------------------------------</span>
+<span class="c">#   Functional Helpers</span>
+<span class="c"># -----------------------------------------------------------------------------</span>
+</div>
+<div class="viewcode-block" id="get_portal"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_portal">[docs]</a><span class="k">def</span> <span class="nf">get_portal</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; get the Plone site</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ploneapi</span><span class="o">.</span><span class="n">portal</span><span class="o">.</span><span class="n">getSite</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="get_tool"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_tool">[docs]</a><span class="k">def</span> <span class="nf">get_tool</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; get a tool by name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ploneapi</span><span class="o">.</span><span class="n">portal</span><span class="o">.</span><span class="n">get_tool</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="get_portal_catalog"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_portal_catalog">[docs]</a><span class="k">def</span> <span class="nf">get_portal_catalog</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; get the portal_catalog tool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get_tool</span><span class="p">(</span><span class="s">&quot;portal_catalog&quot;</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="get_portal_reference_catalog"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_portal_reference_catalog">[docs]</a><span class="k">def</span> <span class="nf">get_portal_reference_catalog</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; return reference_catalog tool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get_tool</span><span class="p">(</span><span class="s">&quot;reference_catalog&quot;</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="get_portal_workflow"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_portal_workflow">[docs]</a><span class="k">def</span> <span class="nf">get_portal_workflow</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; return portal_workflow tool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get_tool</span><span class="p">(</span><span class="s">&quot;portal_workflow&quot;</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="is_brain"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.is_brain">[docs]</a><span class="k">def</span> <span class="nf">is_brain</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; checks if the object is a catalog brain</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ICatalogBrain</span><span class="o">.</span><span class="n">providedBy</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="is_root"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.is_root">[docs]</a><span class="k">def</span> <span class="nf">is_root</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; checks if the object is the site root</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ISiteRoot</span><span class="o">.</span><span class="n">providedBy</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="is_folderish"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.is_folderish">[docs]</a><span class="k">def</span> <span class="nf">is_folderish</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; checks if the object is folderish</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">is_brain</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">brain_or_object</span><span class="o">.</span><span class="n">is_folderish</span>
+    <span class="k">return</span> <span class="n">IFolderish</span><span class="o">.</span><span class="n">providedBy</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="get_locally_allowed_types"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_locally_allowed_types">[docs]</a><span class="k">def</span> <span class="nf">get_locally_allowed_types</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; get the locally allowed types of this object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_folderish</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s">&quot;getLocallyAllowedTypes&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">method</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="n">method</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="url_for"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.url_for">[docs]</a><span class="k">def</span> <span class="nf">url_for</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="o">**</span><span class="n">values</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; returns the api url</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">router</span><span class="o">.</span><span class="n">url_for</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">force_external</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="c"># XXX plone.jsonapi.core should catch the BuildError of Werkzeug and</span>
+        <span class="c">#     throw another error which can be handled here.</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Could not build API URL for endpoint &#39;</span><span class="si">%s</span><span class="s">&#39;. &quot;</span>
+                     <span class="s">&quot;No route provider registered?&quot;</span> <span class="o">%</span> <span class="n">endpoint</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+</div>
+<div class="viewcode-block" id="get_url"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_url">[docs]</a><span class="k">def</span> <span class="nf">get_url</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; get the absolute url for this object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">is_brain</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">getURL</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">absolute_url</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="get_id"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_id">[docs]</a><span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; get the ID of the brain/object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">is_brain</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">brain_or_object</span><span class="o">.</span><span class="n">getId</span>
+    <span class="k">return</span> <span class="n">brain_or_object</span><span class="o">.</span><span class="n">getId</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="get_uid"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_uid">[docs]</a><span class="k">def</span> <span class="nf">get_uid</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; get the UID of the brain/object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">is_brain</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">UID</span>
+    <span class="k">if</span> <span class="n">is_root</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">UID</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="get_portal_type"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_portal_type">[docs]</a><span class="k">def</span> <span class="nf">get_portal_type</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; return the portal type of this object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">brain_or_object</span><span class="o">.</span><span class="n">portal_type</span>
+
+</div>
+<div class="viewcode-block" id="get_object"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_object">[docs]</a><span class="k">def</span> <span class="nf">get_object</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; return the referenced object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">is_brain</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">brain_or_object</span><span class="o">.</span><span class="n">getObject</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">brain_or_object</span>
+
+</div>
+<div class="viewcode-block" id="get_parent"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_parent">[docs]</a><span class="k">def</span> <span class="nf">get_parent</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Locate the parent object of the content/catalog brain</span>
+
+<span class="sd">    :param brain_or_object: A single catalog brain or content object</span>
+<span class="sd">    :type brain_or_object: ATContentType/DexterityContentType/CatalogBrain</span>
+<span class="sd">    :returns: parent object</span>
+<span class="sd">    :rtype: ATContentType/DexterityContentType/PloneSite/CatalogBrain</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">is_brain</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+        <span class="n">parent_path</span> <span class="o">=</span> <span class="n">get_parent_path</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+
+        <span class="c"># parent is the portal object</span>
+        <span class="k">if</span> <span class="n">parent_path</span> <span class="o">==</span> <span class="n">get_path</span><span class="p">(</span><span class="n">get_portal</span><span class="p">()):</span>
+            <span class="k">return</span> <span class="n">get_portal</span><span class="p">()</span>
+
+        <span class="c"># query for the parent path</span>
+        <span class="n">pc</span> <span class="o">=</span> <span class="n">get_portal_catalog</span><span class="p">()</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">pc</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="p">{</span>
+            <span class="s">&quot;query&quot;</span><span class="p">:</span> <span class="n">parent_path</span><span class="p">,</span>
+            <span class="s">&quot;depth&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+
+        <span class="c"># fallback to the object</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">get_object</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span><span class="o">.</span><span class="n">aq_parent</span>
+        <span class="c"># return the brain</span>
+        <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">brain_or_object</span><span class="o">.</span><span class="n">aq_parent</span>
+
+</div>
+<div class="viewcode-block" id="get_parent_path"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_parent_path">[docs]</a><span class="k">def</span> <span class="nf">get_parent_path</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the parent path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">is_brain</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">get_path</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">rpartition</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">get_path</span><span class="p">(</span><span class="n">brain_or_object</span><span class="o">.</span><span class="n">aq_parent</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="get_path"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_path">[docs]</a><span class="k">def</span> <span class="nf">get_path</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; return the physical path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">is_brain</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">brain_or_object</span><span class="o">.</span><span class="n">getPath</span><span class="p">()</span>
+    <span class="k">return</span> <span class="s">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">brain_or_object</span><span class="o">.</span><span class="n">getPhysicalPath</span><span class="p">())</span>
+
+</div>
+<div class="viewcode-block" id="get_contents"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_contents">[docs]</a><span class="k">def</span> <span class="nf">get_contents</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; return the folder contents</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pc</span> <span class="o">=</span> <span class="n">get_portal_catalog</span><span class="p">()</span>
+    <span class="n">contents</span> <span class="o">=</span> <span class="n">pc</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">&quot;query&quot;</span><span class="p">:</span> <span class="n">get_path</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">),</span>
+        <span class="s">&quot;depth&quot;</span><span class="p">:</span> <span class="n">depth</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">contents</span>
+
+</div>
+<div class="viewcode-block" id="get_endpoint"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_endpoint">[docs]</a><span class="k">def</span> <span class="nf">get_endpoint</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; get the endpoint for this object</span>
+
+<span class="sd">        The endpoint is used to generate the api url for this content.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">portal_type</span> <span class="o">=</span> <span class="n">get_portal_type</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+    <span class="c"># handle portal types with dots</span>
+    <span class="n">portal_type</span> <span class="o">=</span> <span class="n">portal_type</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="c"># remove whitespaces</span>
+    <span class="n">portal_type</span> <span class="o">=</span> <span class="n">portal_type</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="c"># lower and pluralize</span>
+    <span class="n">portal_type</span> <span class="o">=</span> <span class="n">portal_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;s&quot;</span>
+
+    <span class="k">return</span> <span class="n">portal_type</span>
+
+</div>
+<div class="viewcode-block" id="find_objects"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.find_objects">[docs]</a><span class="k">def</span> <span class="nf">find_objects</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; locate objects</span>
+
+<span class="sd">    1. get the object from the given uid</span>
+<span class="sd">    2. fetch objects specified in the request parameters</span>
+<span class="sd">    3. fetch objects located in the request body</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># The objects to cut</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c"># get the object by the given uid or try to find it by the request</span>
+    <span class="c"># parameters</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_by_uid</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span> <span class="ow">or</span> <span class="n">get_object_by_request</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">obj</span><span class="p">:</span>
+        <span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c"># no uid -&gt; go through the record items</span>
+        <span class="n">records</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_request_data</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+            <span class="c"># try to get the object by the given record</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_by_record</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+            <span class="c"># no object found for this record</span>
+            <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">objects</span>
+
+</div>
+<div class="viewcode-block" id="get_object_by_request"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_object_by_request">[docs]</a><span class="k">def</span> <span class="nf">get_object_by_request</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; locate the object by the request parameters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_form</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">get_object_by_record</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="get_object_by_record"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_object_by_record">[docs]</a><span class="k">def</span> <span class="nf">get_object_by_record</span><span class="p">(</span><span class="n">record</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; locate the object by the given record (dictionary).</span>
+<span class="sd">    The record is usually contained in the request.body or in the request.form</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># nothing to do here</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">record</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="k">if</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;uid&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">get_object_by_uid</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&quot;uid&quot;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;path&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">get_object_by_path</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&quot;path&quot;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;parent_path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">record</span><span class="p">[</span><span class="s">&quot;parent_path&quot;</span><span class="p">],</span> <span class="n">record</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]])</span>
+        <span class="k">return</span> <span class="n">get_object_by_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&quot;get_object_by_record::No object found! record=&#39;</span><span class="si">%r</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">record</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">None</span>
+
+</div>
+<div class="viewcode-block" id="get_object_by_uid"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_object_by_uid">[docs]</a><span class="k">def</span> <span class="nf">get_object_by_uid</span><span class="p">(</span><span class="n">uid</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Fetches an object by uid</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># nothing to do here</span>
+    <span class="k">if</span> <span class="n">uid</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="c"># define uid 0 as the portal object</span>
+    <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">PORTAL_IDS</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_portal</span><span class="p">()</span>
+
+    <span class="c"># we try to find the object with both catalogs</span>
+    <span class="n">pc</span> <span class="o">=</span> <span class="n">get_portal_catalog</span><span class="p">()</span>
+    <span class="n">rc</span> <span class="o">=</span> <span class="n">get_portal_reference_catalog</span><span class="p">()</span>
+
+    <span class="c"># try to find the object with the reference catalog first</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">lookupObject</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">obj</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="c"># try to find the object with the portal catalog</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">pc</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">UID</span><span class="o">=</span><span class="n">uid</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s">&quot;More than one object found for UID </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">uid</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="k">return</span> <span class="n">get_object</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+</div>
+<div class="viewcode-block" id="get_object_by_path"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_object_by_path">[docs]</a><span class="k">def</span> <span class="nf">get_object_by_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; fetch the object by physical path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># nothing to do here</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="n">pc</span> <span class="o">=</span> <span class="n">get_portal_catalog</span><span class="p">()</span>
+    <span class="n">portal</span> <span class="o">=</span> <span class="n">get_portal</span><span class="p">()</span>
+    <span class="n">portal_path</span> <span class="o">=</span> <span class="n">get_path</span><span class="p">(</span><span class="n">portal</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">portal_path</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="s">&quot;Not a physical path inside the portal&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">path</span> <span class="o">==</span> <span class="n">portal_path</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">portal</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">pc</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="n">get_object</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+</div>
+<div class="viewcode-block" id="mkdir"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.mkdir">[docs]</a><span class="k">def</span> <span class="nf">mkdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; creates a folder structure by a given path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">container</span> <span class="o">=</span> <span class="n">get_portal</span><span class="p">()</span>
+    <span class="n">segments</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+    <span class="n">curpath</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">segment</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">segments</span><span class="p">):</span>
+        <span class="c"># skip the first element</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">segment</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">curpath</span> <span class="o">=</span> <span class="s">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">segments</span><span class="p">[:</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_by_path</span><span class="p">(</span><span class="n">curpath</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="n">container</span> <span class="o">=</span> <span class="n">obj</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_folderish</span><span class="p">(</span><span class="n">container</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s">&quot;Object at </span><span class="si">%s</span><span class="s"> is not a folder&quot;</span> <span class="o">%</span> <span class="n">curpath</span><span class="p">)</span>
+
+        <span class="c"># create the folder on the go</span>
+        <span class="n">container</span> <span class="o">=</span> <span class="n">ploneapi</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">container</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&quot;Folder&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">segment</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">container</span>
+
+</div>
+<div class="viewcode-block" id="find_target_container"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.find_target_container">[docs]</a><span class="k">def</span> <span class="nf">find_target_container</span><span class="p">(</span><span class="n">record</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; find the target container for this record</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">parent_uid</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;parent_uid&quot;</span><span class="p">)</span>
+    <span class="n">parent_path</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;parent_path&quot;</span><span class="p">)</span>
+
+    <span class="n">target</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="c"># Try to find the target object</span>
+    <span class="k">if</span> <span class="n">parent_uid</span><span class="p">:</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">get_object_by_uid</span><span class="p">(</span><span class="n">parent_uid</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">parent_path</span><span class="p">:</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">get_object_by_path</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span>
+        <span class="c"># Issue 18</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">mkdir</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="s">&quot;No target UID/PATH information found&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">target</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="s">&quot;No target container found&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">target</span>
+
+</div>
+<div class="viewcode-block" id="do_action_for"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.do_action_for">[docs]</a><span class="k">def</span> <span class="nf">do_action_for</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">,</span> <span class="n">transition</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; perform wf transition &quot;&quot;&quot;</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ploneapi</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">transition</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">transition</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="delete_object"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.delete_object">[docs]</a><span class="k">def</span> <span class="nf">delete_object</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; delete the object &quot;&quot;&quot;</span>
+
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object</span><span class="p">(</span><span class="n">brain_or_object</span><span class="p">)</span>
+    <span class="c"># we do not want to delete the site root!</span>
+    <span class="k">if</span> <span class="n">is_root</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">401</span><span class="p">,</span> <span class="s">&quot;Removing the Portal is not allowed&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ploneapi</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">True</span> <span class="ow">or</span> <span class="bp">False</span>
+    <span class="k">except</span> <span class="n">Unauthorized</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">401</span><span class="p">,</span> <span class="s">&quot;Not allowed to delete object &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">obj</span><span class="o">.</span><span class="n">getId</span><span class="p">())</span>
+
+</div>
+<div class="viewcode-block" id="get_current_user"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.get_current_user">[docs]</a><span class="k">def</span> <span class="nf">get_current_user</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; return the current logged in user &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ploneapi</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">get_current</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="create_object_in_container"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.create_object_in_container">[docs]</a><span class="k">def</span> <span class="nf">create_object_in_container</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">portal_type</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; creates an object with the given data in the container</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">allowed_types</span> <span class="o">=</span> <span class="n">get_locally_allowed_types</span><span class="p">(</span><span class="n">container</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_root</span><span class="p">(</span><span class="n">container</span><span class="p">)</span> <span class="ow">and</span> <span class="n">portal_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_types</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="s">&quot;Creation of this portal type&quot;</span>
+                            <span class="s">&quot;is not allowed in this context.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">create_object</span><span class="p">(</span><span class="n">container</span><span class="o">=</span><span class="n">container</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+                         <span class="nb">type</span><span class="o">=</span><span class="n">portal_type</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="create_object"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.create_object">[docs]</a><span class="k">def</span> <span class="nf">create_object</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;save_id&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
+    <span class="n">defaults</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ploneapi</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">defaults</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">Unauthorized</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">401</span><span class="p">,</span> <span class="s">&quot;You are not allowed to create this content&quot;</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="update_object_with_data"><a class="viewcode-back" href="../../../../api.html#plone.jsonapi.routes.api.update_object_with_data">[docs]</a><span class="k">def</span> <span class="nf">update_object_with_data</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; update the content with the values from records</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">IDataManager</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">dm</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s">&quot;Update on this object is not allowed&quot;</span><span class="p">)</span>
+
+    <span class="c"># Iterate through record items</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">success</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="o">**</span><span class="n">record</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">Unauthorized</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="mi">401</span><span class="p">,</span> <span class="s">&quot;Not allowed to set the field &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">k</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&quot;update_object_with_data::skipping key=</span><span class="si">%r</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;update_object_with_data::field </span><span class="si">%r</span><span class="s"> updated&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+
+    <span class="c"># do a wf transition</span>
+    <span class="k">if</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;transition&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;transition&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;&gt;&gt;&gt; Do Transition &#39;</span><span class="si">%s</span><span class="s">&#39; for Object </span><span class="si">%s</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">content</span><span class="o">.</span><span class="n">getId</span><span class="p">())</span>
+        <span class="n">do_action_for</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+    <span class="c"># reindex the object</span>
+    <span class="n">content</span><span class="o">.</span><span class="n">reindexObject</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">content</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">plone.jsonapi.routes 0.8.3 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Ramon Bartl.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

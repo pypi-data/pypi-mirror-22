@@ -1,0 +1,1337 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API &mdash; plone.jsonapi.routes 0.8.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.8.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="plone.jsonapi.routes 0.8.3 documentation" href="index.html" />
+    <link rel="next" title="Authentication" href="auth.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="auth.html" title="Authentication"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="Quickstart"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">plone.jsonapi.routes 0.8.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<p>This part of the documentation covers all resources (routes) provided by
+plone.jsonapi.routes. It also covers all the request parameters that can be
+applied to these resources to refine the results.</p>
+<div class="section" id="concept">
+<span id="id1"></span><h2>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h2>
+<p>The API aims to be <strong>as fast as possible</strong>. So the concept of the API is to
+postpone <em>expensive operations</em> until the user really requests it. To do so,
+the API was built with a <strong>two step architecture</strong>.</p>
+<p>An <em>expensive operation</em> is basically given, when the API needs to wake up an
+object to retrieve all its field values.</p>
+<p>The <em>two step architecture</em> retrieves only the fields of the catalog results
+in the first step. Only if the user requests the API URL of a specific object,
+the object will be loaded and all the fields of the object will be returned.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since version 0.3, you can add a <cite>complete=yes</cite> paramter to bypass
+the two step behavior and retrieve the full object data immediately.</p>
+</div>
+</div>
+<div class="section" id="base-url">
+<span id="id2"></span><h2>Base URL<a class="headerlink" href="#base-url" title="Permalink to this headline">¶</a></h2>
+<p>After installation, the Plone API routes are available below the
+plone.jsonapi.core root URL (<tt class="docutils literal"><span class="pre">&#64;&#64;API</span></tt>) with the base <tt class="docutils literal"><span class="pre">/plone/api/1.0</span></tt>.</p>
+<p>Example: <tt class="docutils literal"><span class="pre">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/api.json</span></tt></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please see the documentation of plone.jsonapi.core for the root URL.</p>
+</div>
+<p>There is also an overview of the registered routes, e.g.</p>
+<p><tt class="docutils literal"><span class="pre">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/api.json</span></tt></p>
+</div>
+<div class="section" id="operations">
+<span id="id3"></span><h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
+<p>The API understands the basic <a class="reference external" href="http://en.wikipedia.org/wiki/CRUD">CRUD</a>
+operations on the <em>content resources</em>.  Only the VIEW operation is accessible
+via a HTTP GET request. All other operations have to be sent via a HTTP POST
+request.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="70%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">OPERATION</th>
+<th class="head">URL</th>
+<th class="head">METHOD</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>VIEW</td>
+<td>&lt;BASE URL&gt;/&lt;RESOURCE&gt;/&lt;uid:optional&gt;</td>
+<td>GET</td>
+</tr>
+<tr class="row-odd"><td>CREATE</td>
+<td>&lt;BASE URL&gt;/&lt;RESOURCE&gt;/create/&lt;uid:optional&gt;</td>
+<td>POST</td>
+</tr>
+<tr class="row-even"><td>UPDATE</td>
+<td>&lt;BASE URL&gt;/&lt;RESOURCE&gt;/update/&lt;uid:optional&gt;</td>
+<td>POST</td>
+</tr>
+<tr class="row-odd"><td>DELETE</td>
+<td>&lt;BASE URL&gt;/&lt;RESOURCE&gt;/delete/&lt;uid:optional&gt;</td>
+<td>POST</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="resources">
+<span id="id4"></span><h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URL Schema:</th><td class="field-body"><tt class="docutils literal"><span class="pre">&lt;BASE</span> <span class="pre">URL&gt;/&lt;RESOURCE&gt;/&lt;OPERATION&gt;/&lt;uid:optional&gt;</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>The API registers the routes to the resources during the Plone startup
+process. Each of the following resources is bound to a distinct <em>portal type</em>
+within Plone. So the <em>folders</em> resource will only return content informations
+of <em>Folders</em>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Resource</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>folders</td>
+<td>Resource for all Folder contents</td>
+</tr>
+<tr class="row-odd"><td>documents</td>
+<td>Resource for all Page contents</td>
+</tr>
+<tr class="row-even"><td>events</td>
+<td>Resource for all Event contents</td>
+</tr>
+<tr class="row-odd"><td>files</td>
+<td>Resource for all File contents</td>
+</tr>
+<tr class="row-even"><td>images</td>
+<td>Resource for all Image contents</td>
+</tr>
+<tr class="row-odd"><td>links</td>
+<td>Resource for all Link contents</td>
+</tr>
+<tr class="row-even"><td>newsitems</td>
+<td>Resource for all News Item contents</td>
+</tr>
+<tr class="row-odd"><td>topics</td>
+<td>Resource for all Collection (old style) contents</td>
+</tr>
+<tr class="row-even"><td>collections</td>
+<td>Resource for all Collection contents</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please see the section <cite>Parameters</cite> on how to refine the returned
+results</p>
+</div>
+</div>
+<div class="section" id="special-resources">
+<h2>Special Resources<a class="headerlink" href="#special-resources" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URL Schema:</th><td class="field-body"><tt class="docutils literal"><span class="pre">&lt;BASE</span> <span class="pre">URL&gt;/&lt;RESOURCE&gt;/&lt;ACTION:optional&gt;</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>Beside the <em>content resources</em>, there are some special resources available.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="29%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Resource</th>
+<th class="head">Action</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>users</td>
+<td>&lt;username&gt;,current</td>
+<td>Resource for Plone Users</td>
+</tr>
+<tr class="row-odd"><td>search</td>
+<td>&nbsp;</td>
+<td>Search over all standard content types</td>
+</tr>
+<tr class="row-even"><td>version</td>
+<td>&nbsp;</td>
+<td>Get the current Version</td>
+</tr>
+<tr class="row-odd"><td>auth</td>
+<td>&nbsp;</td>
+<td>Basic Authentication</td>
+</tr>
+<tr class="row-even"><td>login</td>
+<td>&nbsp;</td>
+<td>Login with __ac_name and __ac_password</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="parameters">
+<span id="id5"></span><h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URL Schema:</th><td class="field-body"><tt class="docutils literal"><span class="pre">&lt;BASE</span> <span class="pre">URL&gt;/&lt;RESOURCE&gt;?&lt;KEY&gt;=&lt;VALUE&gt;&amp;&lt;KEY&gt;=&lt;VALUE&gt;</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>All content resources accept to be filtered by request parameters.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="20%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>q</td>
+<td>searchterm</td>
+<td>Search the SearchableText index for the given query string</td>
+</tr>
+<tr class="row-odd"><td>path</td>
+<td>/physical/path</td>
+<td>Specifiy a physical path to only return results below it.
+See how to <a class="reference external" href="http://docs.plone.org/develop/plone/searching_and_indexing/query.html#query-by-path">Query by path</a> in the <a class="reference external" href="http://docs.plone.org/develop/plone/searching_and_indexing/query.html#query-by-path">Plone docs</a> for details.</td>
+</tr>
+<tr class="row-even"><td>depth</td>
+<td>0..n</td>
+<td>Specify the depth of a path query. Only relevant when using
+the path parameter.</td>
+</tr>
+<tr class="row-odd"><td>limit</td>
+<td>1..n</td>
+<td>Limit the results to the given <cite>limit</cite> number.
+This will return batched results with <cite>x</cite> pages and <cite>n</cite> items per page</td>
+</tr>
+<tr class="row-even"><td>sort_on</td>
+<td>catalog index</td>
+<td>Sort the results by the given index</td>
+</tr>
+<tr class="row-odd"><td>sort_order</td>
+<td>asc / desc</td>
+<td>Sort ascending or descending (default: ascending)</td>
+</tr>
+<tr class="row-even"><td>sort_limit</td>
+<td>1..n</td>
+<td>Limit the result set to n items.
+The portal catalog will only return n items.</td>
+</tr>
+<tr class="row-odd"><td>complete</td>
+<td>yes/y/1/True</td>
+<td>Flag to return the full object results immediately.
+Bypasses the <em>two step</em> behavior of the API</td>
+</tr>
+<tr class="row-even"><td>children</td>
+<td>yes/y/1/True</td>
+<td>Flag to return the folder contents of a folder below the <cite>children</cite> key
+Only visible if complete flag is true or if an UID is provided</td>
+</tr>
+<tr class="row-odd"><td>recent_created</td>
+<td>today, yesterday
+this-week, this-month
+this-year</td>
+<td>Specify a recent created date range, to find all items created within
+this date range until today.
+This uses internally <cite>&#8216;range&#8217;: &#8216;min&#8217;</cite> query.</td>
+</tr>
+<tr class="row-even"><td>recent_modified</td>
+<td>today, yesterday
+this-week, this-month
+this-year</td>
+<td>Specify a recent modified date range, to find all items modified within
+this date range until today.
+This uses internally <cite>&#8216;range&#8217;: &#8216;min&#8217;</cite> query.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="using-plone-indexes">
+<h3>Using Plone Indexes<a class="headerlink" href="#using-plone-indexes" title="Permalink to this headline">¶</a></h3>
+<p>It is also possible to use the Plone catalog indexes directly as request
+parameters.</p>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.4: </span>Support for DateIndex, KeywordIndex and BooleanIndex.
+Support for &#8216;recent_modified&#8217; and &#8216;recent_created&#8217; literals.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Custom added indexes can also be used, as long as they accept a
+single string value as query.</p>
+</div>
+</div>
+<div class="section" id="query-records">
+<h3>Query Records<a class="headerlink" href="#query-records" title="Permalink to this headline">¶</a></h3>
+<p>It is also possible to use the ZPublisher query record format.</p>
+<p>Example</p>
+<p><tt class="docutils literal"><span class="pre">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/folders?created.query:record:list:date=2015-01-02&amp;created.range:record=min</span></tt></p>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.5: </span>Support for ZPublisher query record format added.</p>
+</div>
+</div>
+<div class="section" id="response-format">
+<span id="id6"></span><h2>Response Format<a class="headerlink" href="#response-format" title="Permalink to this headline">¶</a></h2>
+<p>The response format is for all resources the same.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nx">count</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// number of found items</span>
+    <span class="nx">pagesize</span><span class="o">:</span> <span class="mi">25</span><span class="p">,</span> <span class="c1">// items per page</span>
+    <span class="nx">items</span><span class="o">:</span> <span class="p">[</span>  <span class="c1">// List of all item objexts</span>
+        <span class="p">{</span>
+            <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;front-page&quot;</span><span class="p">,</span> <span class="c1">// item data</span>
+            <span class="p">...</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// current page</span>
+    <span class="nx">_runtime</span><span class="o">:</span> <span class="mf">0.00381</span><span class="p">,</span>  <span class="c1">// calculation time to generate the data</span>
+    <span class="nx">next</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>  <span class="c1">// URL to the next batch</span>
+    <span class="nx">pages</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1">//  number of total pages</span>
+    <span class="nx">previous</span><span class="o">:</span> <span class="kc">null</span>  <span class="c1">// URL to the previous batch</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><strong>count</strong></dt>
+<dd>The number of found items &#8211; can be more than displayed on one site</dd>
+<dt><strong>pagesize</strong></dt>
+<dd>Number of items per page</dd>
+<dt><strong>items</strong></dt>
+<dd>List of found items &#8211; only catalog brain keys unless you add a
+<cite>complete=yes</cite> parameter to the request or request an URL with an UID at
+the end.</dd>
+<dt><strong>page</strong></dt>
+<dd>The current page of the batched result set</dd>
+<dt><strong>_runtime</strong></dt>
+<dd>The time in milliseconds needed to generate the data</dd>
+<dt><strong>next</strong></dt>
+<dd>The URL to the next batch</dd>
+<dt><strong>pages</strong></dt>
+<dd>The number of pages in the batch</dd>
+<dt><strong>previous</strong></dt>
+<dd>The URL to the previous batch</dd>
+</dl>
+</div>
+<div class="section" id="the-api-module">
+<h2>The API Module<a class="headerlink" href="#the-api-module" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">import:</th><td class="field-body"><cite>from plone.jsonapi.routes import api</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">doc:</th><td class="field-body">Provides core functionality to all other modules</td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-plone.jsonapi.routes.api"></span><dl class="function">
+<dt id="plone.jsonapi.routes.api.copy_items">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">copy_items</tt><big>(</big><em>portal_type=None</em>, <em>request=None</em>, <em>uid=None</em>, <em>endpoint=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#copy_items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.copy_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>copy items</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.create_items">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">create_items</tt><big>(</big><em>portal_type=None</em>, <em>request=None</em>, <em>uid=None</em>, <em>endpoint=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#create_items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.create_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>create items</p>
+<ol class="arabic">
+<li><p class="first">If the uid is given, get the object and create the content in there
+(assumed that it is folderish)</p>
+</li>
+<li><p class="first">If the uid is 0, the target folder is assumed the portal.</p>
+</li>
+<li><dl class="first docutils">
+<dt>If there is no uid given, the payload is checked for either a key</dt>
+<dd><ul class="first last simple">
+<li><cite>parent_uid</cite>  specifies the <em>uid</em> of the target folder</li>
+<li><cite>parent_path</cite> specifies the <em>physical path</em> of the target folder</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.create_object">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">create_object</tt><big>(</big><em>**kw</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#create_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.create_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The new created content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.create_object_in_container">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">create_object_in_container</tt><big>(</big><em>container</em>, <em>portal_type</em>, <em>id=None</em>, <em>title=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#create_object_in_container"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.create_object_in_container" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a content object in the specified container</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>container</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single folderish catalog brain or content object</li>
+<li><strong>portal_type</strong> (<em>string</em>) &#8211; The portal type to create</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The new content object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">object</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.cut_items">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">cut_items</tt><big>(</big><em>portal_type=None</em>, <em>request=None</em>, <em>uid=None</em>, <em>endpoint=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#cut_items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.cut_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>cut items</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.delete_items">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">delete_items</tt><big>(</big><em>portal_type=None</em>, <em>request=None</em>, <em>uid=None</em>, <em>endpoint=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#delete_items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.delete_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>delete items</p>
+<ol class="arabic simple">
+<li>If the uid is given, we can ignore the request body and delete the
+object with the given uid (if the uid was valid).</li>
+<li>If no uid is given, the user wants to delete more than one item.
+=&gt; go through each item and extract the uid. Delete it afterwards.
+// we should do this kind of transaction base. So if we can not get an
+// object for an uid, no item will be deleted.</li>
+<li>we could check if the portal_type matches, just to be sure the user
+wants to delete the right content.</li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.delete_object">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">delete_object</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#delete_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.delete_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete the given object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Nothing</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.do_action_for">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">do_action_for</tt><big>(</big><em>brain_or_object</em>, <em>transition</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#do_action_for"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.do_action_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a workflow transition</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</li>
+<li><strong>transition</strong> (<em>string</em>) &#8211; The workflow transition to perform, e.g. <cite>publish</cite></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Nothing</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.find_objects">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">find_objects</tt><big>(</big><em>uid=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#find_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.find_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the object by its UID</p>
+<ol class="arabic simple">
+<li>get the object from the given uid</li>
+<li>fetch objects specified in the request parameters</li>
+<li>fetch objects located in the request body</li>
+</ol>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uid</strong> (<em>string</em>) &#8211; The UID of the object to find</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of found objects</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.find_target_container">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">find_target_container</tt><big>(</big><em>record</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#find_target_container"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.find_target_container" title="Permalink to this definition">¶</a></dt>
+<dd><p>Locates a target container for the given record</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>record</strong> (<em>dict</em>) &#8211; The dictionary representation of a content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">folder which contains the object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_batch">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_batch</tt><big>(</big><em>sequence</em>, <em>size</em>, <em>start=0</em>, <em>endpoint=None</em>, <em>complete=False</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>create a batched result record out of a sequence (catalog brains)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_batched">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_batched</tt><big>(</big><em>portal_type=None</em>, <em>request=None</em>, <em>uid=None</em>, <em>endpoint=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_batched"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_batched" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a batched result record (dictionary)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_children_info">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_children_info</tt><big>(</big><em>brain_or_object</em>, <em>complete=False</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_children_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_children_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate data items of the contained contents</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</li>
+<li><strong>complete</strong> (<em>bool</em>) &#8211; Flag to wake up the object and fetch all data</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">info mapping of contained content items</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_contents">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_contents</tt><big>(</big><em>brain_or_object</em>, <em>depth=1</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_contents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_contents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lookup folder contents for this object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of contained contents</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list/Products.ZCatalog.Lazy.LazyMap</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_current_user">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_current_user</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_current_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_current_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current logged in user</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Member</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_endpoint">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_endpoint</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_endpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the endpoint for this object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Endpoint for this object (pluralized portal type)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_id">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_id</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the Plone ID for this object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Plone ID</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_info">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_info</tt><big>(</big><em>brain_or_object</em>, <em>endpoint=None</em>, <em>complete=False</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the data from the catalog brain or object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</li>
+<li><strong>endpoint</strong> (<em>str/unicode</em>) &#8211; The named URL endpoint for the root of the items</li>
+<li><strong>complete</strong> (<em>bool</em>) &#8211; Flag to wake up the object and fetch all data</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Data mapping for the object/catalog brain</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_items">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_items</tt><big>(</big><em>portal_type=None</em>, <em>request=None</em>, <em>uid=None</em>, <em>endpoint=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a list of items</p>
+<ol class="arabic simple">
+<li>If the UID is given, fetch the object directly =&gt; should return 1 item</li>
+<li>If no UID is given, search for all items of the given portal_type</li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_locally_allowed_types">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_locally_allowed_types</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_locally_allowed_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_locally_allowed_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the passed in object is folderish</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of locally allowed content types</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_object">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_object</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the full content object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Content object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_object_by_path">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_object_by_path</tt><big>(</big><em>path</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_object_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_object_by_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find an object by a given physical path</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>string</em>) &#8211; The physical path of the object to find</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Found Object or None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_object_by_record">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_object_by_record</tt><big>(</big><em>record</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_object_by_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_object_by_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find an object by a given record</p>
+<p>Inspects request the record to locate an object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>record</strong> (<em>dict</em>) &#8211; A dictionary representation of an object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Found Object or None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_object_by_request">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_object_by_request</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_object_by_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_object_by_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find an object by request parameters</p>
+<p>Inspects request parameters to locate an object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Found Object or None</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_object_by_uid">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_object_by_uid</tt><big>(</big><em>uid</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_object_by_uid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_object_by_uid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find an object by a given UID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uid</strong> (<em>string</em>) &#8211; The UID of the object to find</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Found Object or None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_parent">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_parent</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_parent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Locate the parent object of the content/catalog brain</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">parent object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ATContentType/DexterityContentType/PloneSite/CatalogBrain</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_parent_info">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_parent_info</tt><big>(</big><em>brain_or_object</em>, <em>endpoint=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_parent_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_parent_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate url information for the parent object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</li>
+<li><strong>endpoint</strong> (<em>str/unicode</em>) &#8211; The named URL endpoint for the root of the items</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">URL information mapping</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_parent_path">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_parent_path</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_parent_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_parent_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the physical parent path of this object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Physical path of the parent object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_path">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_path</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the physical path of this object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Physical path of the object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_portal">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_portal</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_portal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_portal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the portal object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Portal object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_portal_catalog">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_portal_catalog</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_portal_catalog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_portal_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the portal catalog tool</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Portal Catalog Tool</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_portal_reference_catalog">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_portal_reference_catalog</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_portal_reference_catalog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_portal_reference_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the portal reference catalog tool</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Portal Reference Catalog Tool</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_portal_type">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_portal_type</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_portal_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_portal_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the portal type for this object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Portal type</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_portal_workflow">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_portal_workflow</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_portal_workflow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_portal_workflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the portal workflow tool</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Portal Workflow Tool</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_record">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_record</tt><big>(</big><em>uid=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a single record</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_search_results">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_search_results</tt><big>(</big><em>**kw</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_search_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_search_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search the catalog and return the results</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Catalog search results</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list/Products.ZCatalog.Lazy.LazyMap</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_tool">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_tool</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_tool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_tool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a portal tool by name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) &#8211; The name of the tool, e.g. <cite>portal_catalog</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Portal Tool</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_uid">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_uid</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_uid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_uid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the Plone UID for this object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Plone UID</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_url">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_url</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the absolute Plone URL for this object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Plone URL</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_url_info">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_url_info</tt><big>(</big><em>brain_or_object</em>, <em>endpoint=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_url_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_url_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate url information for the content object/catalog brain</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</li>
+<li><strong>endpoint</strong> (<em>str/unicode</em>) &#8211; The named URL endpoint for the root of the items</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">URL information mapping</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.get_workflow_info">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">get_workflow_info</tt><big>(</big><em>brain_or_object</em>, <em>endpoint=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#get_workflow_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.get_workflow_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate workflow information of the (first) assigned workflow</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</li>
+<li><strong>endpoint</strong> (<em>str/unicode</em>) &#8211; The named URL endpoint for the root of the items</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Workflow information mapping</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.is_brain">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">is_brain</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#is_brain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.is_brain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the passed in object is a portal catalog brain</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if the object is a catalog brain</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.is_folderish">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">is_folderish</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#is_folderish"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.is_folderish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the passed in object is folderish</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if the object is folderish</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.is_root">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">is_root</tt><big>(</big><em>brain_or_object</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#is_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.is_root" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the passed in object is the portal root object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brain_or_object</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single catalog brain or content object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if the object is the portal root object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.make_items_for">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">make_items_for</tt><big>(</big><em>brains_or_objects</em>, <em>endpoint=None</em>, <em>complete=False</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#make_items_for"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.make_items_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate API compatible data items for the given list of brains/objects</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>brains_or_objects</strong> (<em>list/Products.ZCatalog.Lazy.LazyMap</em>) &#8211; List of objects or brains</li>
+<li><strong>endpoint</strong> (<em>str/unicode</em>) &#8211; The named URL endpoint for the root of the items</li>
+<li><strong>complete</strong> (<em>bool</em>) &#8211; Flag to wake up the object and fetch all data</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A list of extracted data items</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.mkdir">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">mkdir</tt><big>(</big><em>path</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#mkdir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.mkdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crate a folder structure by a given path</p>
+<p>Behavior is similar to <cite>mkdir -p</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>string</em>) &#8211; The physical path of the folder</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">folder located at the path</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.paste_items">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">paste_items</tt><big>(</big><em>portal_type=None</em>, <em>request=None</em>, <em>uid=None</em>, <em>endpoint=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#paste_items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.paste_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>paste items</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.update_items">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">update_items</tt><big>(</big><em>portal_type=None</em>, <em>request=None</em>, <em>uid=None</em>, <em>endpoint=None</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#update_items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.update_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>update items</p>
+<ol class="arabic simple">
+<li>If the uid is given, the user wants to update the object with the data
+given in request body</li>
+<li>If no uid is given, the user wants to update a bunch of objects.
+-&gt; each record contains either an UID, path or parent_path + id</li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.update_object_with_data">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">update_object_with_data</tt><big>(</big><em>content</em>, <em>record</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#update_object_with_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.update_object_with_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the content with the record data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>content</strong> (<em>ATContentType/DexterityContentType/CatalogBrain</em>) &#8211; A single folderish catalog brain or content object</li>
+<li><strong>record</strong> (<em>dict</em>) &#8211; The data to update</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The updated content object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">object</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="plone.jsonapi.routes.api.url_for">
+<tt class="descclassname">plone.jsonapi.routes.api.</tt><tt class="descname">url_for</tt><big>(</big><em>endpoint</em>, <em>**values</em><big>)</big><a class="reference internal" href="_modules/plone/jsonapi/routes/api.html#url_for"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#plone.jsonapi.routes.api.url_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Looks up the API URL for the given endpoint</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>endpoint</strong> (<em>string</em>) &#8211; The name of the registered route (aka endpoint)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">External URL for this endpoint</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string/None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">API</a><ul>
+<li><a class="reference internal" href="#concept">Concept</a></li>
+<li><a class="reference internal" href="#base-url">Base URL</a></li>
+<li><a class="reference internal" href="#operations">Operations</a></li>
+<li><a class="reference internal" href="#resources">Resources</a></li>
+<li><a class="reference internal" href="#special-resources">Special Resources</a></li>
+<li><a class="reference internal" href="#parameters">Parameters</a><ul>
+<li><a class="reference internal" href="#using-plone-indexes">Using Plone Indexes</a></li>
+<li><a class="reference internal" href="#query-records">Query Records</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#response-format">Response Format</a></li>
+<li><a class="reference internal" href="#the-api-module">The API Module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="quickstart.html"
+                        title="previous chapter">Quickstart</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="auth.html"
+                        title="next chapter">Authentication</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/api.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="auth.html" title="Authentication"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="Quickstart"
+             >previous</a> |</li>
+        <li><a href="index.html">plone.jsonapi.routes 0.8.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Ramon Bartl.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

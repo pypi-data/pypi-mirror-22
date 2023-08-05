@@ -1,0 +1,432 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Quickstart &mdash; plone.jsonapi.routes 0.8.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.8.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="plone.jsonapi.routes 0.8.3 documentation" href="index.html" />
+    <link rel="next" title="API" href="api.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="api.html" title="API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">plone.jsonapi.routes 0.8.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<p>This section gives a good introduction about <cite>plone.jsonapi.routes</cite> It assumes
+you already have <cite>Plone</cite> and <cite>plone.jsonapi.routes</cite> installed. Since all the
+coming examples are executed directly in Google Chrome, it assumes that you
+have also installed JSONView and the Advanced Rest Client Application (see
+<a class="reference internal" href="installation.html"><em>Installation</em></a> for details)</p>
+<div class="section" id="environment">
+<h2>Environment<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h2>
+<p>The Plone site is hosted on <cite>http://localhost:8080/Plone</cite>. The JSON API is thus
+located at <cite>http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0</cite>. Make sure your Plone
+site is located on the same URL, so you can directly click on the links within the
+exapmles.</p>
+</div>
+<div class="section" id="version">
+<h2>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>version</cite> route prints out the current version of <cite>plone.jsonapi.routes</cite>.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/version">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/version</a></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/version&quot;</span><span class="p">,</span>
+    <span class="nx">date</span><span class="o">:</span> <span class="s2">&quot;2014-12-21&quot;</span><span class="p">,</span>
+    <span class="nx">version</span><span class="o">:</span> <span class="s2">&quot;0.4&quot;</span><span class="p">,</span>
+    <span class="nx">build</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="nx">_runtime</span><span class="o">:</span> <span class="mf">0.0001528865814208984</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>api.json</cite> route gives you an overview over all registered routes.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/api.json">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/api.json</a></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/api.json&quot;</span><span class="p">,</span>
+    <span class="nx">count</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="nx">_runtime</span><span class="o">:</span> <span class="mf">0.0027348995208740234</span><span class="p">,</span>
+    <span class="nx">items</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/collections&quot;</span><span class="p">,</span>
+            <span class="nx">info</span><span class="o">:</span> <span class="s2">&quot;get collections&quot;</span><span class="p">,</span>
+            <span class="nx">methods</span><span class="o">:</span> <span class="s2">&quot;HEAD,GET&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/documents&quot;</span><span class="p">,</span>
+            <span class="nx">info</span><span class="o">:</span> <span class="s2">&quot;No description available&quot;</span><span class="p">,</span>
+            <span class="nx">methods</span><span class="o">:</span> <span class="s2">&quot;HEAD,GET&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/newsitems&quot;</span><span class="p">,</span>
+            <span class="nx">info</span><span class="o">:</span> <span class="s2">&quot;get newsitems&quot;</span><span class="p">,</span>
+            <span class="nx">methods</span><span class="o">:</span> <span class="s2">&quot;HEAD,GET&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/folders&quot;</span><span class="p">,</span>
+            <span class="nx">info</span><span class="o">:</span> <span class="s2">&quot;get folders&quot;</span><span class="p">,</span>
+            <span class="nx">methods</span><span class="o">:</span> <span class="s2">&quot;HEAD,GET&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/version&quot;</span><span class="p">,</span>
+            <span class="nx">info</span><span class="o">:</span> <span class="s2">&quot;get the current version of this package&quot;</span><span class="p">,</span>
+            <span class="nx">methods</span><span class="o">:</span> <span class="s2">&quot;HEAD,GET&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/events&quot;</span><span class="p">,</span>
+            <span class="nx">info</span><span class="o">:</span> <span class="s2">&quot;get events&quot;</span><span class="p">,</span>
+            <span class="nx">methods</span><span class="o">:</span> <span class="s2">&quot;HEAD,GET&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/images&quot;</span><span class="p">,</span>
+            <span class="nx">info</span><span class="o">:</span> <span class="s2">&quot;get images&quot;</span><span class="p">,</span>
+            <span class="nx">methods</span><span class="o">:</span> <span class="s2">&quot;HEAD,GET&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/topics&quot;</span><span class="p">,</span>
+            <span class="nx">info</span><span class="o">:</span> <span class="s2">&quot;get topics&quot;</span><span class="p">,</span>
+            <span class="nx">methods</span><span class="o">:</span> <span class="s2">&quot;HEAD,GET&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/files&quot;</span><span class="p">,</span>
+            <span class="nx">info</span><span class="o">:</span> <span class="s2">&quot;get files&quot;</span><span class="p">,</span>
+            <span class="nx">methods</span><span class="o">:</span> <span class="s2">&quot;HEAD,GET&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/links&quot;</span><span class="p">,</span>
+            <span class="nx">info</span><span class="o">:</span> <span class="s2">&quot;get links&quot;</span><span class="p">,</span>
+            <span class="nx">methods</span><span class="o">:</span> <span class="s2">&quot;HEAD,GET&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/users&quot;</span><span class="p">,</span>
+            <span class="nx">info</span><span class="o">:</span> <span class="s2">&quot;Plone users route&quot;</span><span class="p">,</span>
+            <span class="nx">methods</span><span class="o">:</span> <span class="s2">&quot;HEAD,GET&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="content-routes">
+<h2>Content Routes<a class="headerlink" href="#content-routes" title="Permalink to this headline">¶</a></h2>
+<p>Coming now to a more interesting section, the <cite>content routes</cite>. These
+<a class="reference internal" href="api.html#resources"><em>Resources</em></a> represent the data of the standard Plone content types.</p>
+<p>Each resource is located at the <a class="reference internal" href="api.html#base-url"><em>Base URL</em></a>, e.g.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/folders">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/folders</a></p>
+<p>The following sections describe each resource in detail.</p>
+</div>
+<div class="section" id="documents">
+<h2>Documents<a class="headerlink" href="#documents" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>documents</cite> route will rule all contents of the portal type <cite>Document</cite>.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/documents">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/documents</a></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nx">count</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">pagesize</span><span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="nx">items</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nx">uid</span><span class="o">:</span> <span class="s2">&quot;7455c9b14e3c48c9b0be19ca6a142d50&quot;</span><span class="p">,</span>
+            <span class="nx">tags</span><span class="o">:</span> <span class="p">[</span> <span class="p">],</span>
+            <span class="nx">portal_type</span><span class="o">:</span> <span class="s2">&quot;Document&quot;</span><span class="p">,</span>
+            <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;front-page&quot;</span><span class="p">,</span>
+            <span class="nx">description</span><span class="o">:</span> <span class="s2">&quot;Herzlichen Glückwunsch! Sie haben das professionelle Open-Source Content-Management-System Plone erfolgreich installiert.&quot;</span><span class="p">,</span>
+            <span class="nx">api_url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/documents/7455c9b14e3c48c9b0be19ca6a142d50&quot;</span><span class="p">,</span>
+            <span class="nx">effective</span><span class="o">:</span> <span class="s2">&quot;1000-01-01T00:00:00+02:00&quot;</span><span class="p">,</span>
+            <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Willkommen bei Plone&quot;</span><span class="p">,</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/front-page&quot;</span><span class="p">,</span>
+            <span class="nx">created</span><span class="o">:</span> <span class="s2">&quot;2014-10-14T20:22:19+02:00&quot;</span><span class="p">,</span>
+            <span class="nx">modified</span><span class="o">:</span> <span class="s2">&quot;2014-10-14T20:22:19+02:00&quot;</span><span class="p">,</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;Document&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">_runtime</span><span class="o">:</span> <span class="mf">0.0038590431213378906</span><span class="p">,</span>
+    <span class="nx">next</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">pages</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">previous</span><span class="o">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="api.html#response-format"><em>Response Format</em></a> in <cite>plone.jsonapi.routes</cite> content URLs is always
+the same.  The top level keys (data after the first <tt class="docutils literal"><span class="pre">{</span></tt>) are meta
+informations about the gathered data.</p>
+<p>Within the <strong>items</strong> list, you get all the results listed. It is important to
+know, that these records contain only the minimum set of data from the catalog
+brains. This is because of the APIs <strong>two step</strong> concept, which postpones
+expensive opreations, until the user really wants it.</p>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.3: </span>The result is now always batched. This means you get
+the items split up into batches onto multiple sites.</p>
+<div class="section" id="getting-all-the-data">
+<h3>Getting all the data<a class="headerlink" href="#getting-all-the-data" title="Permalink to this headline">¶</a></h3>
+<p>To get all data from the object, you can either add the <tt class="docutils literal"><span class="pre">complete=True</span></tt> parameter,
+or you can request the data with the object <tt class="docutils literal"><span class="pre">UID</span></tt>.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/documents?complete=True">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/documents?complete=True</a></p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/documents/7455c9b14e3c48c9b0be19ca6a142d50">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/documents/7455c9b14e3c48c9b0be19ca6a142d50</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The UID will probably be different on your machine.</p>
+</div>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nx">count</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">pagesize</span><span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="nx">items</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nx">uid</span><span class="o">:</span> <span class="s2">&quot;7455c9b14e3c48c9b0be19ca6a142d50&quot;</span><span class="p">,</span>
+            <span class="nx">contributors</span><span class="o">:</span> <span class="p">[</span> <span class="p">],</span>
+            <span class="nx">tags</span><span class="o">:</span> <span class="p">[</span> <span class="p">],</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;&lt;p class=&quot;</span><span class="nx">discreet</span><span class="s2">&quot;&gt;Wenn Sie diese Seite anstelle des von Ihnen erwarteten Inhalts sehen, hat der Betreiber dieser Website gerade erst Plone installiert. Bitte benachrichtigen Sie NICHT das Plone Team, sondern den Betreiber dieser Website.&lt;/p&gt;&lt;h2&gt;So starten Sie!&lt;/h2&gt;&lt;p&gt;Bevor Sie sich mit Ihrer neuen Plone-Website vertraut machen, stellen Sie bitte sicher, dass&lt;/p&gt;&lt;ol&gt; &lt;li&gt;Sie als Administrator angemeldet sind. &lt;span class=&quot;</span><span class="nx">discreet</span><span class="s2">&quot;&gt;(Sie müssten im Menü oben rechts den Eintrag &#39;Konfiguration&#39; finden.)&lt;/span&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;</span><span class="nx">http</span><span class="o">:</span><span class="c1">//localhost:8080/Plone/@@mail-controlpanel&quot;&gt;Sie den E-Mail-Dienst konfiguriert haben&lt;/a&gt;. &lt;span class=&quot;discreet&quot;&gt;(Plone benötigt einen SMTP-Server zur Benutzerregistrierung und um Benutzern die Möglichkeit zu geben, ein vergessenes Passwort neu zu setzen.)&lt;/span&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;http://localhost:8080/Plone/@@security-controlpanel&quot;&gt;Sie wissen, welche Sicherheitseinstellungen für Ihre Website gültig sind&lt;/a&gt;. &lt;span class=&quot;discreet&quot;&gt;(Das betrifft zum Beispiel die Selbstregistrierung und das Setzen von Passwörtern)&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h2&gt;Machen Sie sich mit Plone vertraut!&lt;/h2&gt;&lt;p&gt;Anschließend empfehlen wir Ihnen Folgendes:&lt;/p&gt;&lt;ul&gt; &lt;li&gt;Lesen Sie, &lt;a class=&quot;link-plain&quot; href=&quot;http://plone.org/documentation/whatsnew&quot;&gt;welche neuen Funktionen Plone&lt;/a&gt; enthält (in Englisch),&lt;/li&gt; &lt;li&gt;Lesen Sie die &lt;a class=&quot;link-plain&quot; href=&quot;http://plone.org/documentation&quot;&gt;Dokumentation&lt;/a&gt; (in Englisch), insbesondere &lt;a class=&quot;link-plain&quot; href=&quot;http://plone.org/documentation/phc_topic_area?topic=Basic+Use&quot;&gt;die grundlegenden Kapitel&lt;/a&gt; und &lt;a class=&quot;link-plain&quot; href=&quot;http://plone.org/documentation/faq/server-recommendations&quot;&gt;die Empfehlungen zur Server-Konfiguration&lt;/a&gt;. &lt;/li&gt; &lt;li&gt;Lernen Sie die grundlegenden &lt;a href=&quot;http://www.hasecke.com/plone-white-paper&quot;&gt;Leistungsmerkmale&lt;/a&gt; von Plone kennen.&lt;/li&gt; &lt;li&gt;Lesen Sie das deutschsprachige &lt;a href=&quot;http://www.hasecke.com/plone-benutzerhandbuch/&quot;&gt;Plone-Benutzerhandbuch&lt;/a&gt;.&lt;/li&gt; &lt;li&gt;Nutzen Sie das deutschsprachige &lt;a href=&quot;http://www.plone-entwicklerhandbuch.de&quot;&gt;Plone-Entwicklerhandbuch&lt;/a&gt;, wenn Sie Erweiterungen für Plone programmieren möchten.&lt;/li&gt; &lt;li&gt;Entdecken Sie &lt;a class=&quot;link-plain&quot; href=&quot;http://plone.org/products&quot;&gt;die verfügbaren Erweiterungen&lt;/a&gt; für Plone.&lt;/li&gt; &lt;li&gt;Lesen oder abonnieren Sie &lt;a class=&quot;link-plain&quot; href=&quot;http://plone.org/support&quot;&gt;die englischsprachigen&lt;/a&gt; oder &lt;a class=&quot;link-plain&quot; href=&quot;https://mail.dzug.org/mailman/listinfo/zope&quot;&gt;die deutschsprachigen Mailinglisten&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Individualisieren Sie Plone!&lt;/h2&gt;&lt;p&gt;Plone kann sehr individuell konfiguriert werden. Hier einige Beispiele:&lt;/p&gt;&lt;ul&gt; &lt;li&gt; Wählen Sie unter den &lt;a href=&quot;http://localhost:8080/Plone/@@skins-controlpanel&quot;&gt;installierten Designs&lt;/a&gt; ein neues aus, oder installieren Sie &lt;a class=&quot;link-plain&quot; href=&quot;http://plone.org/products/by-category/themes&quot;&gt;eins der verfügbaren Designs von plone.org&lt;/a&gt;. &lt;span class=&quot;discreet&quot;&gt;(Bitte stellen Sie sicher, dass das Design mit der Plone-Version, die Sie installiert haben, kompatibel ist)&lt;/span&gt; &lt;/li&gt; &lt;li&gt; &lt;a href=&quot;http://localhost:8080/Plone/@@types-controlpanel&quot;&gt; Bestimmen Sie die Arbeitsabläufe in Ihrer Website.&lt;/a&gt; &lt;span class=&quot;discreet&quot;&gt;(Standardmäßig ist ein Arbeitsablauf für öffentliche Websites eingestellt, wenn Sie Plone als geschlossenes Intranet betreiben wollen, können Sie den Arbeitsablauf entsprechend ändern.)&lt;/span&gt; &lt;/li&gt; &lt;li&gt; Standardmäßig bearbeiten Sie die Inhalte mit einem visuellem Texteditor. &lt;span class=&quot;discreet&quot;&gt;(Wenn Sie eine textbasierte Syntax oder Wiki-Markup bevorzugen, können Sie dies in den &lt;a href=&quot;http://localhost:8080/Plone/@@markup-controlpanel&quot;&gt;Einstellungen für Textauszeichnung&lt;/a&gt; auswählen)&lt;/span&gt; &lt;/li&gt; &lt;li&gt;Weitere Optionen stehen Ihnen in der &lt;a href=&quot;http://localhost:8080/Plone/plone_control_panel&quot;&gt;Website-Konfiguration&lt;/a&gt; zur Verfügung. &lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Sagen Sie uns, wie Sie Plone nutzen!&lt;/h2&gt;&lt;p&gt;Haben Sie mit Plone etwas Interessantes vor? Möchten Sie eine große Website betreiben,oder haben Sie einen außergewöhnlichen Anwendungsfall? Bieten Sie als Unternehmen Lösungen auf Basis von Plone an?&lt;/p&gt;&lt;ul&gt; &lt;li&gt;Tragen Sie Ihr Unternehmen in die Liste der &lt;a class=&quot;link-plain&quot; href=&quot;http://plone.net/providers&quot;&gt;Plone Dienstleister&lt;/a&gt; ein.&lt;/li&gt; &lt;li&gt;Tragen Sie Ihre Website in die Liste der &lt;a class=&quot;link-plain&quot; href=&quot;http://plone.net/sites&quot;&gt;Plone Websites&lt;/a&gt; ein. &lt;span class=&quot;discreet&quot;&gt;(Entdecken Sie, welche Websites bereits mit Plone betrieben werden!)&lt;/span&gt; &lt;/li&gt; &lt;li&gt;Beschreiben Sie in einer &lt;a class=&quot;link-plain&quot; href=&quot;http://plone.net/case-studies&quot;&gt;Fallstudie&lt;/a&gt; Ihr Projekt und Ihren Kunden.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Lernen Sie mehr über die Software-Architektur!&lt;/h2&gt;&lt;p&gt;Plone ist eine Anwendung für den Zope Applikationsserver und wurde in der objektorientierten Programmiersprache Python entwickelt. Mehr über diese Technologien erfahren Sie:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;auf der Website der &lt;a class=&quot;link-plain&quot; href=&quot;http://plone.org&quot;&gt;Plone Community &lt;/a&gt;&lt;/li&gt;&lt;li&gt;auf der Website für den &lt;a class=&quot;link-plain&quot; href=&quot;http://zope2.zope.org&quot;&gt;Zope Applikationsserver&lt;/a&gt;&lt;/li&gt;&lt;li&gt;auf der Website der &lt;a class=&quot;link-plain&quot; href=&quot;http://www.python.org&quot;&gt;Python-Community&lt;/a&gt;. &lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Spenden Sie an die Plone Foundation!&lt;/h2&gt;&lt;p&gt;Zahllose engagierte Personen und Unternehmen haben Plone möglich gemacht. Die Plone Foundation:&lt;/p&gt;&lt;ul&gt; &lt;li&gt;...schützt und unterstützt Plone,&lt;/li&gt; &lt;li&gt;...ist eine gemeinnützige Organisation nach dem US-Gesetz 501(c)(3) und&lt;/li&gt; &lt;li&gt;...kann Spendenquittungen ausstellen.&lt;/li&gt;&lt;/ul&gt; &lt;p&gt;&lt;a href=&quot;http://plone.org/foundation/foundation-donations&quot;&gt;Helfen Sie mit!&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Danke, dass Sie Plone einsetzen. Wir hoffen, dass Sie begeistert sein werden!&lt;/p&gt;&lt;p&gt;Ihr Plone-Team&lt;/p&gt;&quot;,</span>
+            <span class="nx">portal_type</span><span class="o">:</span> <span class="s2">&quot;Document&quot;</span><span class="p">,</span>
+            <span class="nx">subject</span><span class="o">:</span> <span class="p">[</span> <span class="p">],</span>
+            <span class="nx">creation_date</span><span class="o">:</span> <span class="s2">&quot;2014-10-14T20:22:19+02:00&quot;</span><span class="p">,</span>
+            <span class="nx">language</span><span class="o">:</span> <span class="s2">&quot;de&quot;</span><span class="p">,</span>
+            <span class="nx">creators</span><span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;admin&quot;</span>
+            <span class="p">],</span>
+            <span class="nx">expirationDate</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nx">tableContents</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;front-page&quot;</span><span class="p">,</span>
+            <span class="nx">description</span><span class="o">:</span> <span class="s2">&quot;Herzlichen Glückwunsch! Sie haben das professionelle Open-Source Content-Management-System Plone erfolgreich installiert.&quot;</span><span class="p">,</span>
+            <span class="nx">parent_id</span><span class="o">:</span> <span class="s2">&quot;Plone&quot;</span><span class="p">,</span>
+            <span class="nx">rights</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nx">api_url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/@@API/plone/api/1.0/documents/7455c9b14e3c48c9b0be19ca6a142d50&quot;</span><span class="p">,</span>
+            <span class="nx">effective</span><span class="o">:</span> <span class="s2">&quot;1000-01-01T00:00:00+02:00&quot;</span><span class="p">,</span>
+            <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Willkommen bei Plone&quot;</span><span class="p">,</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/front-page&quot;</span><span class="p">,</span>
+            <span class="nx">presentation</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">created</span><span class="o">:</span> <span class="s2">&quot;2014-10-14T20:22:19+02:00&quot;</span><span class="p">,</span>
+            <span class="nx">modified</span><span class="o">:</span> <span class="s2">&quot;2014-10-14T20:22:19+02:00&quot;</span><span class="p">,</span>
+            <span class="nx">parent_uid</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nx">modification_date</span><span class="o">:</span> <span class="s2">&quot;2014-10-14T20:22:19+02:00&quot;</span><span class="p">,</span>
+            <span class="nx">effectiveDate</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nx">relatedItems</span><span class="o">:</span> <span class="p">[</span> <span class="p">],</span>
+            <span class="nx">location</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nx">allowDiscussion</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">excludeFromNav</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;Document&quot;</span><span class="p">,</span>
+            <span class="nx">workflow_info</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">status</span><span class="o">:</span> <span class="s2">&quot;Published&quot;</span><span class="p">,</span>
+            <span class="nx">review_state</span><span class="o">:</span> <span class="s2">&quot;published&quot;</span><span class="p">,</span>
+            <span class="nx">transitions</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/front-page/content_status_modify?workflow_action=retract&quot;</span><span class="p">,</span>
+                    <span class="nx">display</span><span class="o">:</span> <span class="s2">&quot;If you submitted the item by mistake or want to perform additional edits, this will take it back.&quot;</span><span class="p">,</span>
+                    <span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;retract&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/Plone/front-page/content_status_modify?workflow_action=reject&quot;</span><span class="p">,</span>
+                    <span class="nx">display</span><span class="o">:</span> <span class="s2">&quot;Sending the item back will return the item to the original author instead of publishing it. You should preferably include a reason for why it was not published.&quot;</span><span class="p">,</span>
+                    <span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;reject&quot;</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="nx">workflow</span><span class="o">:</span> <span class="s2">&quot;simple_publication_workflow&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">_runtime</span><span class="o">:</span> <span class="mf">0.15096807479858398</span><span class="p">,</span>
+    <span class="nx">next</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">pages</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">previous</span><span class="o">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The requested object was now loaded by the API and all fields were gathered.
+But not all data is coming directly from the object fields. Some of them have
+been augmented by the API, such as <tt class="docutils literal"><span class="pre">transitions</span></tt>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please keep in mind that large data sets with the <cite>?complete=True</cite>
+Parameter might increase the loading time significantly.</p>
+</div>
+</div>
+</div>
+<div class="section" id="folders">
+<h2>Folders<a class="headerlink" href="#folders" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>folders</cite> route will rule all contents of the portal type <cite>Folder</cite>.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/folders">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/folders</a></p>
+</div>
+<div class="section" id="events">
+<h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>events</cite> route will rule all contents of the portal type <cite>Events</cite>.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/events">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/events</a></p>
+</div>
+<div class="section" id="files">
+<h2>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>files</cite> route will rule all contents of the portal type <cite>File</cite>.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/files">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/files</a></p>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.2: </span>The object data contains now the base64 encoded file with the size and
+mimetype information.</p>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.7: </span>You can pass in a <cite>filename</cite> in the JSON body to set the name of the file
+created. If omitted, the id or title will be used.</p>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.8: </span>You can pass in a <cite>mimetype</cite> key to manually set the content type of the
+file. If omitted, the content type will be guessed by the filename.
+Default: <cite>application/octet-stream</cite></p>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.8: </span>The response data contains now the <cite>filename</cite> and the <cite>download</cite> url.</p>
+<p>To create a new file in the portal, you have to append <cite>create</cite> to the route.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/files/create">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/files/create</a></p>
+<p>The POST payload can look like this:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;Test.docx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;A Word File&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;filename&quot;</span><span class="o">:</span> <span class="s2">&quot;test.docx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;parent_path&quot;</span><span class="o">:</span> <span class="s2">&quot;/Plone/folder&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;file&quot;</span><span class="o">:</span><span class="s2">&quot;UEsDBBQABgAIAAA...&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="images">
+<h2>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>images</cite> route will rule all contents of the portal type <cite>Image</cite>.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/images">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/images</a></p>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.2: </span>The object data contains now the base64 encoded image with the size and
+mimetype information.</p>
+<p class="versionadded">
+<span class="versionmodified">New in version 0.8: </span>The response data contains now the <cite>filename</cite> and the <cite>download</cite> url.</p>
+</div>
+<div class="section" id="links">
+<h2>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>links</cite> route will rule all contents of the portal type <cite>Link</cite>.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/links">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/links</a></p>
+</div>
+<div class="section" id="news-items">
+<h2>News Items<a class="headerlink" href="#news-items" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>newsitems</cite> route will rule all contents of the portal type <cite>News Item</cite>.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/newsitems">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/newsitems</a></p>
+</div>
+<div class="section" id="topics">
+<h2>Topics<a class="headerlink" href="#topics" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>topics</cite> route will rule all contents of the portal type <cite>Topic</cite>.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/topics">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/topics</a></p>
+</div>
+<div class="section" id="collections">
+<h2>Collections<a class="headerlink" href="#collections" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>collections</cite> route will rule all contents of the portal type <cite>Collection</cite>.</p>
+<p><a class="reference external" href="http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/collections">http://localhost:8080/Plone/&#64;&#64;API/plone/api/1.0/collections</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Quickstart</a><ul>
+<li><a class="reference internal" href="#environment">Environment</a></li>
+<li><a class="reference internal" href="#version">Version</a></li>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#content-routes">Content Routes</a></li>
+<li><a class="reference internal" href="#documents">Documents</a><ul>
+<li><a class="reference internal" href="#getting-all-the-data">Getting all the data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#folders">Folders</a></li>
+<li><a class="reference internal" href="#events">Events</a></li>
+<li><a class="reference internal" href="#files">Files</a></li>
+<li><a class="reference internal" href="#images">Images</a></li>
+<li><a class="reference internal" href="#links">Links</a></li>
+<li><a class="reference internal" href="#news-items">News Items</a></li>
+<li><a class="reference internal" href="#topics">Topics</a></li>
+<li><a class="reference internal" href="#collections">Collections</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="previous chapter">Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="next chapter">API</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/quickstart.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="api.html" title="API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             >previous</a> |</li>
+        <li><a href="index.html">plone.jsonapi.routes 0.8.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Ramon Bartl.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
