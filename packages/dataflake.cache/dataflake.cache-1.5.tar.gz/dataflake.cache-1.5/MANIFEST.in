@@ -1,0 +1,9 @@
+include *.txt
+include *.rst
+include tox.ini
+
+recursive-include docs *.rst
+recursive-include dataflake *
+
+global-exclude *.pyc
+global-exclude *.pyo
