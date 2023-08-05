@@ -1,0 +1,56 @@
+======
+pYezzi
+======
+
+Compute the thickness of a solid using Anthony J. Yezzi's method described in
+the article "An Eulerian PDE Approach for Computing Tissue Thickness, IEEE
+TRANSACTIONS ON MEDICAL IMAGING, VOL. 22, NO. 10, OCTOBER 2003":
+http://dx.doi.org/10.1109/tmi.2003.817775
+
+A C implementation by Rubén Cárdenes can be found at
+http://www.dtic.upf.edu/~rcardenes/Ruben_Cardenes/Software.html and helped me
+write this, especially the anisotropic part.
+
+Requirements
+============
+
+numpy, cython, scikit-image. Tested with Debian Jessie and Fedora 24-25,
+miniconda-python 3.5.2, cython 0.24, numpy 1.11.2, scikit image 0.12.3
+
+
+Installation instruction
+========================
+
+Available on pypi: https://pypi.python.org/pypi/pyezzi .
+Use pip: ``pip install pyezzi``
+
+Alternatively, clone the repository and build cython modules with
+``python setup.py build_ext --inplace``.
+
+Usage
+=====
+
+.. code:: python
+
+    from pyezzi.thickness import compute_thickness
+    thickness = compute_thickness(labeled_image, debug=True)
+
+``labeled_image`` is a 3 dimensional numpy array where the wall is labeled 2 and
+the interior is labeled 1.
+
+A ``spacing`` parameter specifying the spacing between voxels along the axes can
+optionnaly be specified.
+
+Check out the included jupyter notebooks in the ``example`` folder for more
+details.
+
+Contributions
+=============
+Feel free to submit pull requests.
+I know the code is nowhere near optimal as it is.
+
+License
+=======
+
+You're free to use and modify the code, but please cite the original paper and
+me.
