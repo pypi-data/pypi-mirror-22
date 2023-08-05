@@ -1,0 +1,123 @@
+<script src="https://cdn.staticfile.org/Plupload/2.1.1/moxie.js"></script>
+<script src="https://cdn.staticfile.org/Plupload/2.1.1/plupload.dev.js"></script>
+<script src="https://cdn.staticfile.org/qiniu-js-sdk/1.0.14-beta/qiniu.js"></script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <input type="text" class="form-control" id="qiniu-hidden-input" name="{{ qiniu_field_name }}" value="{{ qiniu_field_value }}">
+        </div>
+        <button type="button" data-loading-text="正在上传中..." class="btn btn-info col-md-1" id="qiniu-upload-btn">{{ btn_title|default:'上传文件' }}</button>
+        <span class="text-success" hidden style="line-height: 33px; margin-left: 10px;">上传完成</span>
+        <span class="text-danger" hidden style="line-height: 33px; margin-left: 10px;">上传失败</span>
+    </div>
+</div>
+
+<div class="progress" id="progress-box" style="display: none; margin-top: 10px;">
+    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+        0%
+        </div>
+    </div>
+<script>
+'use strict';
+$(function () {
+    var hyqiniu = {
+        'setUp': function(args) {
+            var domain = "{{ qiniu_domain }}";
+            var params = {
+                browse_button:args['browse_btn'],
+                runtimes: 'html5,flash,html4', //上传模式，依次退化
+                max_file_size: '500mb', //文件最大允许的尺寸
+                dragdrop: false, //是否开启拖拽上传
+                chunk_size: '4mb', //分块上传时，每片的大小
+                uptoken_url: '{% url 'qiniu_token' %}', //ajax请求token的url
+                domain: domain, //图片下载时候的域名
+                get_new_uptoken: false, //是否每次上传文件都要从业务服务器获取token
+                auto_start: true, //如果设置了true,只要选择了图片,就会自动上传
+                unique_names: true,
+                multi_selection: false,
+                filters: {
+                    mime_types :[
+                        {title:'Image files',extensions: 'jpg,gif,png'},
+                        {title:'Video files',extensions: 'flv,mpg,mpeg,avi,wmv,mov,asf,rm,rmvb,mkv,m4v,mp4'}
+                    ]
+                },
+                log_level: 5, //log级别
+                init: {
+                    'FileUploaded': function(up,file,info) {
+                        if(args['success']){
+                            var success = args['success'];
+                            file.name = domain + file.target_name;
+                            success(up,file,info);
+                        }
+                    },
+                    'Error': function(up,err,errTip) {
+                        if(args['error']){
+                            var error = args['error'];
+                            error(up,err,errTip);
+                        }
+                    },
+                    'UploadProgress': function (up,file) {
+                        if(args['progress']){
+                            args['progress'](up,file);
+                        }
+                    },
+                    'FilesAdded': function (up,files) {
+                        if(args['fileadded']){
+                            args['fileadded'](up,files);
+                        }
+                    },
+                    'UploadComplete': function () {
+                        if(args['complete']){
+                            args['complete']();
+                        }
+                    }
+                },
+            };
+
+            // 把args中的参数放到params中去
+            for(var key in args){
+                params[key] = args[key];
+            }
+            var uploader = Qiniu.uploader(params);
+            return uploader;
+        }
+    };
+
+
+    var progressBox = $('#progress-box');
+    var progressBar = progressBox.children(0);
+    var uploadBtn = $('#qiniu-upload-btn');
+    hyqiniu.setUp({
+       'browse_btn': 'qiniu-upload-btn',
+       'success': function (up,file,info) {
+           var fileUrl = file.name;
+           $("#qiniu-hidden-input").val(fileUrl);
+           $('span.text-success').show();
+           $('span.text-danger').hide();
+       },
+       'fileadded': function () {
+           progressBox.show();
+           uploadBtn.button('loading');
+       },
+       'progress': function (up,file) {
+           var percent = file.percent;
+           progressBar.attr('aria-valuenow',percent);
+           progressBar.css('width',percent+'%');
+           progressBar.text(percent+'%');
+       },
+       'complete': function () {
+           progressBox.hide();
+           progressBar.attr('aria-valuenow',0);
+           progressBar.css('width','0%');
+           progressBar.text('0%');
+           uploadBtn.button('reset');
+       },
+        'error': function () {
+            $('span.text-success').hide();
+            $('span.text-danger').show();
+        }
+   });
+});
+
+</script>
