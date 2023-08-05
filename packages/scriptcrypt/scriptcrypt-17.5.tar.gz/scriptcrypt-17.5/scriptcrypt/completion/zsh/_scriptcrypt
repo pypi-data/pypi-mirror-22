@@ -1,0 +1,19 @@
+#compdef scriptcrypt
+_scriptcrypt() {
+    _arguments -s : \
+    "--appdir[Installation directory envvar]:directory:_path_files" \
+    "--db[Database location]:directory:_path_files" \
+    "--editor[Command line text editor]:prg:_command_names" \
+    "--viewer[Command line text pager]:prg:_command_names" \
+    "--shell[Shell to run scripts]:prg:_command_names" \
+    "--populate-db[Populate db with defaults]:optn:" \
+    "--populate-bash[Add bash completion commands]:optn:" \
+    "--populate-zsh[Add zsh completion commands (oh-my-zsh only)]:optn:" \
+    "--populate-all[Populate db, bash and zsh]:optn:" \
+    "--license[Print license]:lic:" \
+    "--version[Version of program]:vers:" \
+    "--help[Help]:h:" \
+    "-h[Help]:h:" && ret=0
+}
+
+_scriptcrypt "$@"
