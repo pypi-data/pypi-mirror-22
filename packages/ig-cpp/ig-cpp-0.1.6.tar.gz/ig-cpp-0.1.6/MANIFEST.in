@@ -1,0 +1,8 @@
+include *.md
+include LICENSE
+
+recursive-include www *
+recursive-include * Makefile
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude www/sigma/sigma.js/ *
