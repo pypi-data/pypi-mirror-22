@@ -1,0 +1,113 @@
+{
+	"organisation": "",
+	"tokens": {
+		"github": "",
+		"slack": "",
+		"jenkins": ""
+	},
+	"dev_ops_team": "@p1 @p2",
+	"JENKINS_BASE": "http://YOUR_JENKINS_DOMAIN.com/",
+	"repo_list": [
+		"REPO_1",
+		"REPO_2"
+	],
+	"debug": true,
+	"debug_alice": {
+		"debug_channel": "#tmp",
+		"debug_folks": "@pooja"
+	},
+	"user_map": {
+		"p00ja": "pooja",
+		"abhi": "abhinav"
+	},
+	"release_notes_link": "",
+	"repo": {
+		"REPO_1": {
+			"checks": [
+				"close_dangerous_pr",
+				"tech_review",
+				"product_review",
+				"comment_guidelines",
+				"notify_lead_on_given_action",
+				"notify_channel_on_merge",
+				"notify_on_sensitive_files_touched",
+				"notify_qa_sign_off",
+				"remind_direct_release_guideline_on_merge"
+			],
+			"sensitive_branches": [
+				"dev",
+				"qa",
+				"master"
+			],
+			"sensitive_files": [
+				"f1",
+				"f2"
+			],
+			"product_team": "@p1 @p2 @p3",
+			"product_plus_required_dir_pattern": "dashboard",
+			"product_team_github_names": [
+				"p1",
+				"p2",
+				"p3"
+			],
+			"cc_members": "@p1 @p2",
+			"code_channel": "#repo1-code",
+			"alert_channel": "#weekly-releases",
+			"notify_direct": {
+				"person_to_be_notified": "@yashwanth",
+				"action_to_be_notified_on": "opened",
+				"branch_list_to_be_notified": [
+					"dev",
+					"qa"
+				],
+				"tech_leads_to_be_notified_on_release_freeze": [
+					"@p1",
+					"@p2"
+				]
+			},
+			"main_branch": "master",
+			"test_branch": "qa",
+			"super_git_members": [
+				"p1",
+				"p2"
+			]
+		},
+		"REPO_2": {
+			"checks": [
+				"tech_review"
+			],
+			"sensitive_branches": [
+				"dev",
+				"qa",
+				"master"
+			],
+			"sensitive_files": [
+				"f1",
+				"f2"
+			],
+			"product_team": "@p1",
+			"product_plus_required_dir_pattern": "dashboard",
+			"cc_members": "@p1 @p2 @p3",
+			"code_channel": "#repo2-code",
+			"alert_channel": "#weekly-releases",
+			"notify_direct": {
+				"person_to_be_notified": "@p",
+				"action_to_be_notified_on": "opened",
+				"branch_list_to_be_notified": [
+					"dev",
+					"qa"
+				],
+				"tech_leads_to_be_notified_on_release_freeze": [
+					"@p1",
+					"@p2"
+				]
+			},
+			"main_branch": "master",
+			"test_branch": "qa",
+			"super_git_members": [
+				"p1",
+				"p2"
+			]
+		}
+	}
+}
