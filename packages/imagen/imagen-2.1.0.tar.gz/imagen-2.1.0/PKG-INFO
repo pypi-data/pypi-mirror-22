@@ -1,0 +1,70 @@
+Metadata-Version: 1.1
+Name: imagen
+Version: 2.1.0
+Summary: Generic Python library for 0D, 1D, and 2D pattern distributions.
+Home-page: http://ioam.github.com/imagen/
+Author: IOAM
+Author-email: developers@topographica.org
+License: BSD
+Description: |BuildStatus|_ |imagenDocs|_ |Package|_ |License|_ |Downloads|_
+        
+        ImaGen
+        ======
+        
+        ImaGen is a generic Python library for 0D, 1D, and 2D pattern
+        distributions.
+        
+        Please see `ImaGen's website <http://ioam.github.com/imagen/>`_ for
+        documentation and examples.
+        
+        
+        Installation
+        ============
+        
+        ImaGen requires `Holoviews <https://github.com/ioam/holoviews>`_,
+        `Param <https://github.com/ioam/param>`_, and
+        `NumPy <http://numpy.scipy.org/>`_.  
+        
+        If you want to use the image-loading features in imagen.image, you
+        will also need either `Pillow
+        <https://github.com/python-pillow/Pillow>`_ (recommended) or `PIL
+        <http://www.pythonware.com/products/pil/>`_.
+        
+        Official releases of ImaGen are available at `PyPI
+        <http://pypi.python.org/pypi/imagen>`_, and can be installed along
+        with dependencies via ``pip install --user imagen``.  More recent
+        changes can be obtained by cloning the git repository.
+        
+        
+        .. |Package| image:: https://img.shields.io/pypi/v/imagen.svg
+        .. _Package: https://pypi.python.org/pypi/imagen
+        
+        .. |License| image:: https://img.shields.io/pypi/l/imagen.svg
+        .. _License: https://github.com/ioam/imagen/blob/master/LICENSE.txt
+        
+        .. |BuildStatus| image:: https://travis-ci.org/ioam/imagen.svg?branch=master
+        .. _BuildStatus: https://travis-ci.org/ioam/imagen
+        
+        .. |imagenDocs| image:: http://doozy.inf.ed.ac.uk:8010/png?builder=imagen_docs
+        .. _imagenDocs: http://doozy.inf.ed.ac.uk:8010/waterfall
+        
+        .. |Downloads| image:: https://img.shields.io/pypi/dm/imagen.svg
+        .. _Downloads: https://pypi.python.org/pypi/imagen
+        
+Platform: Windows
+Platform: Mac OS X
+Platform: Linux
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries
+Requires: numpy (>=1.0)
+Requires: param (>=1.3.1)
+Requires: holoviews (>=1.0.1)
