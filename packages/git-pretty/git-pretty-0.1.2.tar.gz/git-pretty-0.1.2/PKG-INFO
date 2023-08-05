@@ -1,0 +1,58 @@
+Metadata-Version: 1.1
+Name: git-pretty
+Version: 0.1.2
+Summary: An implementation of Justin Hileman's chart from "Changing History, or How to Git Pretty"
+Home-page: https://github.com/draperunner/git-pretty
+Author: Mats Byrkjeland
+Author-email: matsbyr@gmail.com
+License: MIT
+Description: git-pretty
+        ==========
+        
+        An implementation of Justin Hileman's handy chart from
+        http://justinhileman.info/article/git-pretty/
+        
+        .. figure:: http://justinhileman.info/article/git-pretty/git-pretty.png
+           :alt: Git Pretty Chart
+        
+           Git Pretty Chart
+        
+        Install
+        -------
+        
+        .. code:: bash
+        
+            pip install git-pretty
+        
+        Use
+        ---
+        
+        Just run
+        
+        .. code:: bash
+        
+            git-pretty
+        
+        This opens an interactive session like this:
+        
+        .. code:: bash
+        
+            So you have a mess on your hands. What sort of mess?
+        
+            1: An uncommitted mess
+            2: I accidentally committed something
+            3: My Git history is ugly
+            > 
+        
+Keywords: git
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Version Control :: Git
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
