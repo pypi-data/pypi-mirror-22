@@ -1,0 +1,140 @@
+Using Principal Folders
+=======================
+
+Principal folders are Pluggable-Authentication plugins that manage
+principal information, especially authentication credentials.  To use
+a principal folder, you need add a principal folder plugin to the PAU
+and to configure the PAU to use plugin.
+
+Let's look at an example, in which we'll define a new manager named
+Bob.  Initially, attempts to log in as Bob fail:
+
+  >>> from zope.testbrowser.wsgi import Browser
+  >>> bob_browser = Browser()
+  >>> bob_browser.handleErrors = True
+  >>> bob_browser.addHeader("Authorization", "Basic Ym9iOjEyMw==")
+
+  >>> bob_browser.open("http://localhost/+")
+  Traceback (most recent call last):
+  ...
+  urllib.error.HTTPError: HTTP Error 401: Unauthorized
+
+
+To allow Bob to log in, we'll start by adding a principal folder to PAU:
+
+We need to create and register a pluggable authentication utility.
+
+  >>> manager_browser = Browser()
+  >>> manager_browser.handleErrors = False
+  >>> manager_browser.addHeader("Authorization", "Basic bWdyOm1ncnB3")
+  >>> manager_browser.post("http://localhost/++etc++site/default/@@contents.html",
+  ...   "type_name=BrowserAdd__zope.pluggableauth.authentication.PluggableAuthentication&new_value=PAU")
+
+
+  >>> manager_browser.getLink("Registration").click()
+
+Register PAU. First we get the registration page:
+
+  >>> manager_browser.getControl("Register this object").click()
+
+And then we can fill out and submit the form:
+
+  >>> manager_browser.getControl("Register").click()
+
+Add a Principal folder plugin to PAU. Again, we get the page, and then submit the form:
+
+  >>> manager_browser.getLink("Principal Folder").click()
+  >>> manager_browser.getControl(name="field.prefix").value = "users"
+  >>> manager_browser.getControl(name="add_input_name").value = "users"
+  >>> manager_browser.getControl("Add").click()
+
+We specify a prefix, ``users``.  This is used to make sure that ids
+used by this plugin don't conflict with ids of other plugins.  We also
+name ths plugin ``users``.  This is the name we'll use when we configure
+the pluggable authentiaction service.
+
+Next we'll view the contents page of the principal folder:
+
+  >>> manager_browser.open("http://localhost/++etc++site/default/PAU/users/@@contents.html")
+  >>> 'users' in manager_browser.contents
+  True
+
+And we'll add a principal, Bob:
+
+  >>> manager_browser.getLink("Principal Information").click()
+  >>> manager_browser.getControl(name="field.login").value = 'bob'
+  >>> manager_browser.getControl(name="field.passwordManagerName").value = 'SHA1'
+  >>> manager_browser.getControl(name="field.password").value = 'bob'
+  >>> manager_browser.getControl(name="field.title").value = 'Bob Smith'
+  >>> manager_browser.getControl(name="field.description").value = 'This is Bob'
+  >>> manager_browser.getControl(name="add_input_name").value = 'bob'
+  >>> manager_browser.getControl(name="UPDATE_SUBMIT").click()
+  >>> manager_browser.open("http://localhost/++etc++site/default/PAU/users/@@contents.html")
+  >>> u'bob' in manager_browser.contents
+  True
+
+Note that we didn't pick a name.  The name, together with the folder
+prefix. If we don't choose a name, a numeric id is chosen.
+
+Now we have a principal folder with a principal.
+
+Configure PAU, with registered principal folder plugin and
+select any one credentials. Unfortunately, the option lists are computed dynamically in JavaScript, so
+we can't fill the form out directly. Instead we must send a complete POST body. We're choosing
+the users folder as the authenticator plugin, and the session utility as the credentials plugin.
+
+  >>> manager_browser.open("http://localhost/++etc++site/default/PAU/@@configure.html")
+  >>> manager_browser.post("http://localhost/++etc++site/default/PAU/@@configure.html",
+  ...  r"""UPDATE_SUBMIT=Change&field.credentialsPlugins=U2Vzc2lvbiBDcmVkZW50aWFscw==&field.authenticatorPlugins=dXNlcnM="""
+  ...  """&field.credentialsPlugins.to=U2Vzc2lvbiBDcmVkZW50aWFscw==&field.authenticatorPlugins.to=dXNlcnM=""")
+
+Now, with this in place, Bob can log in (incidentally , if Bob
+accidentally sends two values for the ``camefrom`` parameter, only the
+first is respected):
+
+  >>> bob_browser.open("/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F&camefrom=foo")
+  >>> bob_browser.getControl(name="login").value = 'bob'
+  >>> bob_browser.getControl(name="password").value = 'bob'
+  >>> bob_browser.getControl(name="SUBMIT").click()
+  >>> print(bob_browser.url)
+  http://localhost/
+
+
+However, Bob isn't allowed to access the management interface. When he
+attempts to do so, the PAU issues a challenge to let bob login as a
+different user:
+
+  >>> bob_browser.open("/+")
+  >>> print(bob_browser.url)
+  http://localhost/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B
+  >>> 'not authorized' in bob_browser.contents
+  True
+
+We go to the granting interface and search for and find a principal named Bob
+(the form control names are magic and generated by zope.formlib; this is searching the PAU):
+
+  >>> manager_browser.open("/@@contents.html")
+  >>> manager_browser.open("/@@grant.html")
+  >>> '/++etc++site/default/PAU/users' in manager_browser.contents
+  True
+  >>> manager_browser.getControl(name="field.principal.MC51c2Vycw__.field.search").value = 'bob'
+  >>> manager_browser.getControl(name='field.principal.MC51c2Vycw__.search').click()
+
+Once we've found him, we see what roles are available:
+
+  >>> manager_browser.getControl(name="field.principal.MC51c2Vycw__.selection").displayValue = ['Bob Smith']
+  >>> manager_browser.getControl(name="field.principal.MC51c2Vycw__.apply").click()
+  >>> 'Site Manager' in manager_browser.contents
+  True
+
+We can grant Bob the manager role now:
+
+  >>> allow = manager_browser.getControl(name='field.dXNlcnNib2I_.role.zope.Manager', index=0)
+  >>> allow.value = ['allow']
+  >>> manager_browser.getControl(name="GRANT_SUBMIT", index=1).click()
+
+At which point, Bob can access the management interface:
+
+  >>> bob_browser.open("http://localhost/@@contents.html")
+  >>> print(bob_browser.url)
+  http://localhost/@@contents.html
