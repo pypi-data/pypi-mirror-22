@@ -1,0 +1,95 @@
+Metadata-Version: 2.0
+Name: sokoenginepy
+Version: 0.4.2
+Summary: Sokoban and variants game engine
+Home-page: https://github.com/tadamic/sokoenginepy
+Author: Tomislav Adamic
+Author-email: tomislav.adamic@gmail.com
+License: GPLv3
+Keywords: game,sokoban,hexoban,octoban,trioban
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Games/Entertainment :: Puzzle Games
+Requires-Dist: cached-property (>=1.2.0)
+Requires-Dist: networkx (>=1.11)
+Requires-Dist: pyparsing (>=2.1.0)
+Requires-Dist: pytz (>=2016.6.1)
+Provides-Extra: dev
+Requires-Dist: bumpversion; extra == 'dev'
+Requires-Dist: check-manifest; extra == 'dev'
+Requires-Dist: colored-traceback; extra == 'dev'
+Requires-Dist: coverage; extra == 'dev'
+Requires-Dist: factory-boy; extra == 'dev'
+Requires-Dist: faker; extra == 'dev'
+Requires-Dist: ipdb; extra == 'dev'
+Requires-Dist: ipython; extra == 'dev'
+Requires-Dist: isort; extra == 'dev'
+Requires-Dist: jupyter; extra == 'dev'
+Requires-Dist: mccabe; extra == 'dev'
+Requires-Dist: pycodestyle; extra == 'dev'
+Requires-Dist: pylint; extra == 'dev'
+Requires-Dist: pytest (>=3.0.0); extra == 'dev'
+Requires-Dist: pytest-benchmark; extra == 'dev'
+Requires-Dist: pytest-colordots; extra == 'dev'
+Requires-Dist: pytest-cov; extra == 'dev'
+Requires-Dist: pytest-mock; extra == 'dev'
+Requires-Dist: pytest-runner; extra == 'dev'
+Requires-Dist: pytest-spec; extra == 'dev'
+Requires-Dist: sphinx; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme; extra == 'dev'
+Requires-Dist: yapf; extra == 'dev'
+
+sokoenginepy - Sokoban and variants game engine
+***********************************************
+
+
+
+sokoenginepy is game engine for Sokoban and variants written in Python and
+loaded with features:
+
+- implements game logic for ``Sokoban``, ``Hexoban``, ``Trioban`` and ``Octoban`` variants
+    - supports ``Sokoban+`` for all implemented variants
+    - supports ``Multiban`` (muliple pushers on board) for all variants
+- two game engines implementations
+    - fast and memory lightweight with single step undo/redo
+    - somewhat slower and larger with unlimited movement undo/redo
+- reading and writing level collections
+    - fully compatible with `SokobanYASC`_ .sok file format and variants (.xsb, .tsb, .hsb, .txt)
+
+sokoenginepy was inspired by `SokobanYASC`_, `JSoko`_, MazezaM
+
+Installing
+----------
+
+Installing sokoenginepy should be as simple as
+
+.. code-block:: sh
+
+    pip install sokoenginepy
+
+Using
+-----
+
+- For quick glance of features and usage check the `Tutorial`_.
+- For in-depth docs of whole package see `API Reference`_.
+
+
+.. _SokobanYASC: https://sourceforge.net/projects/sokobanyasc/
+.. _JSoko: http://www.sokoban-online.de/jsoko.html
+.. _Sokobano: http://sokobano.de/en/index.php
+.. _Sokoban for Windows: http://www.sourcecode.se/sokoban/
+.. _Tutorial: https://sokoenginepy.readthedocs.io/en/development/tutorial.html
+.. _API reference: https://sokoenginepy.readthedocs.io/en/development/api.html
+
+
