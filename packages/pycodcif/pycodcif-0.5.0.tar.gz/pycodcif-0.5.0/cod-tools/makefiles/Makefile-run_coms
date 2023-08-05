@@ -1,0 +1,39 @@
+#---*- Makefile -*-------------------------------------------------------------
+#$Author: antanas $
+#$Revision: 4632 $
+#$Date: 2016-05-02 16:15:40 +0300 (Mon, 02 May 2016) $
+#$URL: svn://www.crystallography.net/cod-tools/trunk/makefiles/Makefile-run_coms $
+#------------------------------------------------------------------------------
+
+COMS   = ${wildcard *.com}
+LOGS   = ${COMS:%.com=%.log}
+DEPEND = ${COMS:%.com=.%.d}
+
+#------------------------------------------------------------------------------
+
+.PHONY: all run clean cleanAll
+
+all: run
+
+include ${DEPEND}
+
+run: ${LOGS}
+
+#------------------------------------------------------------------------------
+
+%.log: %.com
+	./$< 2>&1 | tee $@
+
+.%.d: %.com
+	mkcomdepend $< > $@
+
+%: %.log;
+
+#------------------------------------------------------------------------------
+
+clean:
+	rm -f ${LOGS}
+
+cleanAll: clean
+	rm -f ${DEPEND}
+	rm -f ${CLEAN_FILES}
