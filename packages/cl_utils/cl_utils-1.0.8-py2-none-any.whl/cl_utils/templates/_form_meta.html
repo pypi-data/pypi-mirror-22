@@ -1,0 +1,14 @@
+{% load i18n util %}
+{% for f in form %}
+    <x:form-field-meta
+            x:ref="{{ f.auto_id }}"
+            x:name="{{ f.html_name }}"
+            x:label="{{ f.label }}"
+            x:required="{{ f.field.required|yesno:"true,false" }}"
+            {% if f.field|classname == 'EmailField' %}
+                x:type="email"
+            {% else %}
+                x:type="text"
+            {% endif %}
+            />
+{% endfor %}
