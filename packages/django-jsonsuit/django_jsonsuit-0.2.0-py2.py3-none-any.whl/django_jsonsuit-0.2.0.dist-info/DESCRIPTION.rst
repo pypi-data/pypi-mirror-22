@@ -1,0 +1,160 @@
+django-jsonsuit
+===============
+
+|image| |image| |image|
+
+Django goodies to dress JSON data in a suit.
+
+Documentation
+-------------
+
+The full documentation is at https://tooreht.github.io/django-jsonsuit.
+
+Features
+--------
+
+-  Change JSON syntax highlighter themes
+-  Set custom widget media (JS & CSS) files
+-  Use custom HTML template
+
+Quickstart
+----------
+
+Install django-jsonsuit:
+
+::
+
+    pip install django-jsonsuit
+
+Add it to your ``INSTALLED_APPS``:
+
+.. code:: sourcecode
+
+    INSTALLED_APPS = (
+        ...
+        'jsonsuit.apps.JSONSuitConfig',
+        ...
+    )
+
+Usage
+-----
+
+Widget
+~~~~~~
+
+In a form or model admin, enable a JSON suit for a particular field:
+
+.. code:: python
+
+    from jsonsuit.widgets import JSONSuit
+
+    class JSONForm(forms.ModelForm):
+      class Meta:
+        model = Test
+        fields = '__all__'
+        widgets = {
+          'myjsonfield': JSONSuit(),
+        }
+
+    class JSONAdmin(admin.ModelAdmin):
+      form = JSONForm
+
+Enable JSON suit for every JSONField of a model:
+
+.. code:: python
+
+    from django.contrib.postgres.fields import JSONField
+
+    class JSONAdmin(admin.ModelAdmin):
+      formfield_overrides = {
+        JSONField: {'widget': JSONSuit }
+      }
+
+Theme
+~~~~~
+
+Set JSON syntax highlighter theme in settings:
+
+.. code:: python
+
+    JSONSUIT_WIDGET_THEME = 'twilight'
+
+Available themes: coy, dark, default, funky, okaidia, solarizedlight,
+twilight
+
+Custom Widget Media
+~~~~~~~~~~~~~~~~~~~
+
+Set custom widget media (JS & CSS) files:
+
+.. code:: python
+
+    JSONSUIT_WIDGET_MEDIA_JS = (
+        'jsonsuit/js/mysyntaxhighlighter.js', 'jsonsuit/js/myscripts.js'
+    )
+
+    JSONSUIT_WIDGET_MEDIA_CSS = {
+        'all': ('jsonsuit/css/mytheme.css', 'jsonsuit/css/mystyles.css')
+    }
+
+Custom HTML template
+~~~~~~~~~~~~~~~~~~~~
+
+Override ``jsonsuit/widget.html`` template:
+
+.. code:: bash
+
+    jsonsuit/templates
+    └── jsonsuit
+        └── widget.html
+
+Running Tests
+-------------
+
+Does the code actually work?
+
+::
+
+    source <YOURVIRTUALENV>/bin/activate
+    (myenv) $ pip install tox
+    (myenv) $ tox
+
+Credits
+-------
+
+Project dependencies:
+
+-  `prism <http://prismjs.com/>`__
+-  `vanilla-js <http://vanilla-js.com/>`__
+
+Project documentation:
+
+-  `MkDocs <http://www.mkdocs.org/>`__
+
+Tools used in rendering this package:
+
+-  `Cookiecutter <https://github.com/audreyr/cookiecutter>`__
+-  `cookiecutter-djangopackage <https://github.com/pydanny/cookiecutter-djangopackage>`__
+
+.. |image| image:: https://badge.fury.io/py/django-jsonsuit.svg
+.. |image| image:: https://travis-ci.org/tooreht/django-jsonsuit.svg?branch=master
+.. |image| image:: https://codecov.io/gh/tooreht/django-jsonsuit/branch/master/graph/badge.svg
+
+
+
+History
+-------
+
+Version 0.2.0 (2017-05-14)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Change JSON syntax highlighter themes
+-  Set custom widget media (JS & CSS) files
+-  Use custom HTML template
+
+Version 0.1.0 (2017-05-13)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  First release on PyPI.
+
+
