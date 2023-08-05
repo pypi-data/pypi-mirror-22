@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    i18n:domain="spirit.plone.sitemanagement">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title i18n:translate="">Plone Site Management</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" type="text/css" href="/++resource++plone-admin-ui.css"
+        tal:attributes="href string:${context/absolute_url}/++resource++plone-admin-ui.css" />
+    <link rel="stylesheet" type="text/css" href="/++resource++sitemanagement.css"
+        tal:attributes="href string:${context/absolute_url}/++resource++sitemanagement.css" />
+    <link rel="stylesheet" type="text/css" href="/++resource++bootstrap.min.css"
+        tal:attributes="href string:${context/absolute_url}/++resource++bootstrap.min.css" />
+  </head>
+
+  <body tal:define="sites view/sites">
+    <div id="box">
+      <header>
+        <h1>
+          <img src="/++resource++plone-logo.png" width="108" height="28" alt="Plone"
+              tal:attributes="src string:${context/absolute_url}/++resource++plone-logo.png"
+              i18n:attributes="alt" />
+        </h1>
+      </header>
+
+      <article>
+        <div id="text">
+          <h1 i18n:translate="">Plone Site Management</h1>
+          <form name="form" id="form" action="" method="post"
+              tal:attributes="action string:${context/absolute_url}/@@plone-sitemanagement-upgrade-addons">
+            <tal:block tal:condition="sites">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th i18n:translate="">Site ID</th>
+                    <th i18n:translate="">Plone</th>
+                    <th i18n:translate="">Add-Ons</th>
+                    <th i18n:translate="">Theming</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr tal:repeat="site sites">
+                    <th>
+                      <a href="#" target="_blank"
+                          tal:attributes="href site/absolute_url;
+                                          title site/Title;"
+                          tal:content="site/getId">Site ID</a>
+                    </th>
+                    <td tal:define="outdated python:view.outdated(site);
+                                    klass python:outdated and 'danger' or ''"
+                        tal:attributes="class klass">
+                      <ul>
+                        <li i18n:translate="" tal:condition="not:outdated">This site is up to date</li>
+                        <li class="upgrade-warning"
+                            tal:condition="outdated">
+                          <span i18n:translate="">This site configuration is outdated and needs to be upgraded:</span>
+                          <a i18n:translate="" href="" tal:attributes="href python:view.upgrade_url(site)">Upgrade</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td tal:define="updates python:view.get_upgrades(site);
+                                    klass python:updates and 'warning' or ''"
+                        tal:attributes="class klass">
+                      <ul>
+                        <tal:updates tal:condition="updates">
+                          <li tal:repeat="addon updates">
+                            <div class="checkbox">
+                              <label>
+                                <input name="addons" value="" type="checkbox"
+                                  tal:attributes="value string:${site/getId}__${addon}" />
+                                <span tal:replace="addon">[addon]</span>
+                              </label>
+                            </div>
+                          </li>
+                        </tal:updates>
+                        <li i18n:translate="" tal:condition="not:updates">No Add-On updates available</li>
+                      </ul>
+                    </td>
+                    <td tal:define="theming python:view.get_theming(site)">
+                      <ul>
+                        <tal:theming tal:condition="theming">
+                          <tal:theme tal:define="theme theming/data | nothing" tal:condition="theme">
+                            <li>
+                              <a href="" target="_blank"
+                                  tal:content="theme/title | theme/name | string:Theme"
+                                  tal:attributes="href string:${site/getId}/@@theming-controlpanel">[theme name]</a>
+                            </li>
+                            <li tal:condition="theme/editable | nothing">
+                              <div class="alert alert-warning" role="alert">
+                                <strong i18n:translate="">Warning!</strong>
+                                <p i18n:translate="">Theme was uploaded or modified.</p>
+                              </div>
+                            </li>
+                          </tal:theme>
+                          <li tal:condition="not:theming/current | nothing"><a href="" target="_blank"
+                              tal:attributes="href string:${site/getId}/@@theming-controlpanel"
+                              i18n:translate="">No Diazo Theme Selected</a>
+                          </li>
+                        </tal:theming>
+                        <li i18n:translate="" tal:condition="not:theming | nothing">No Diazo Support available</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </tal:block>
+            <input i18n:attributes="value" type="button" name="check_all" class="btn btn-default" value="Select All" onClick="CheckAll(document.form.addons)" />
+            <input i18n:attributes="value" type="button" name="uncheck_all" class="btn btn-default" value="Unselect All" onClick="UnCheckAll(document.form.addons)" />
+            <input i18n:attributes="value" type="submit" name="submit" class="btn btn-primary" value="Update selected Add-Ons" />
+          </form>
+        </div>
+      </article>
+      <footer>
+        <p>
+          <a href="#" title="Go to the ZMI"
+              tal:attributes="href string:${context/absolute_url}/manage_main"
+              i18n:attributes="title;"
+              i18n:translate="label_zmi_link">Management Interface</a>
+          <span i18n:translate="label_zmi_link_description">&#151; low-level technical configuration.</span>
+        </p>
+      </footer>
+    </div>
+    <script type="text/javascript">
+      function CheckAll(chk) {
+        for (i=0; i<chk.length; i++) {
+          chk[i].checked = true;
+        }
+      }
+
+      function UnCheckAll(chk) {
+        for (i=0; i<chk.length; i++) {
+          chk[i].checked = false;
+        }
+      }
+    </script>
+  </body>
+</html>
