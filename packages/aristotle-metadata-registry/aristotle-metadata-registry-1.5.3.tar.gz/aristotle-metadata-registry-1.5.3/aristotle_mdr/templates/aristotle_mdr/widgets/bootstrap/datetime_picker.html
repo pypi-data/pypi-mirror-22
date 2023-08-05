@@ -1,0 +1,14 @@
+<script>
+  $(function(){
+    $("#%(picker_id)s:has(input:not([readonly],[disabled]))").datetimepicker(%(options)s);
+  });
+</script>
+
+<div%(div_attrs)s>
+  <input%(input_attrs)s/>
+  <span class="input-group-addon">
+    <span%(icon_attrs)s></span>
+  </span>
+</div>
+
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %} value="{{ widget.value }}"{% endif %}{% include "django/forms/widgets/attrs.html" %} />
