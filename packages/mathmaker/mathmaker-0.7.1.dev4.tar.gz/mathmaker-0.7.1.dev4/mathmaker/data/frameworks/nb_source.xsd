@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:simpleType name="nonNullPositiveInteger">
+		<xs:restriction  base="xs:integer">
+			<xs:minInclusive  value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="nbSourceType">
+        <xs:simpleContent>
+            <xs:extension base="nonNullPositiveInteger">
+				<xs:attribute name="source"				type="xs:string"	    use="required"/>
+				<xs:attribute name="context"			type="xs:string"		use="optional"/>
+				<xs:attribute name="variant"			type="xs:string"		use="optional"/>
+				<xs:attribute name="generation_type"	type="xs:string"		use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+	</xs:complexType>
+
+	<xs:element name="nb" type="nbSourceType"></xs:element>
+
+</xs:schema>

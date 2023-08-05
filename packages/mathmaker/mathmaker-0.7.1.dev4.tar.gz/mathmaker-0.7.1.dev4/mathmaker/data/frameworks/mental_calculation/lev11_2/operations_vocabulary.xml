@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DEFAULT MENTAL CALCULATION SHEET -->
+
+
+<sheet header="" title="Mental calculation" subtitle="Vocabulary of operations" text="" answers_title="Answers">
+
+	<!-- Default values: type="std" unit="cm" font_size_offset="0" -->
+	<!-- Available layout types: std|short_test|mini_test|equations|mental -->
+	<layout type="mental" font_size_offset="-1">
+		<exc>
+			<line nb="None">
+				<exercises>all</exercises>
+			</line>
+		</exc>
+		<ans>
+			<line nb="None">
+				<exercises>all</exercises>
+			</line>
+		</ans>
+	</layout>
+
+	<!-- Default value: id='generic' 
+		 No default for kind and subkind, they must be given -->
+	<!-- Available kinds for mental calculation: tabular, slideshow -->
+	<exercise id="mental_calculation" kind="tabular">
+
+		<!-- Default value (planned): context="none" 
+			 No default for kind and subkind, they must be given -->
+
+		<question kind="vocabulary" subkind="half">
+			<nb source="table_2">1</nb>
+		</question>
+
+		<question kind="vocabulary" subkind="third">
+			<nb source="table_3">1</nb>
+		</question>
+
+		<question kind="vocabulary" subkind="quarter">
+			<nb source="table_4">1</nb>
+		</question>
+
+		<question kind="vocabulary" subkind="double">
+			<nb source="table_2">1</nb>
+		</question>
+
+		<question kind="vocabulary" subkind="triple">
+			<nb source="table_3">1</nb>
+		</question>
+
+		<question kind="vocabulary" subkind="quadruple">
+			<nb source="table_4">1</nb>
+		</question>
+
+		<question kind="vocabulary" subkind="simple_parts_of_a_number">
+			<nb source="auto_11_50">1</nb>
+		</question>
+
+		<question kind="vocabulary" subkind="simple_multiples_of_a_number">
+			<nb source="auto_11_50">1</nb>
+		</question>
+
+		<question kind="vocabulary" subkind="multi">
+			<nb source="intpairs_2to9">1</nb>
+			<nb source="table_15">1</nb>
+			<nb source="table_25">1</nb>
+			<nb source="table_11">1</nb>
+		</question>
+
+		<question kind="vocabulary" subkind="divi">
+			<nb source="intpairs_2to9">3</nb>
+		</question>
+		
+		<question kind="vocabulary" subkind="addi">
+			<!--<nb source="integers_10_100_for_sums_diffs">1</nb>
+			<nb source="table_2_9_for_sums_diffs">1</nb>-->
+			<nb source="intpairs_10to100">1</nb>
+			<nb source="intpairs_2to9">1</nb>
+		</question>
+
+		<question kind="vocabulary" subkind="subtr">
+			<nb source="intpairs_10to100">1</nb>
+			<nb source="intpairs_2to200" variant="decimal2">1</nb>
+		</question>
+		
+		<question kind="vocabulary" subkind="operation">
+			<nb source="auto_vocabulary">1</nb>
+		</question>
+
+	</exercise>
+
+</sheet>

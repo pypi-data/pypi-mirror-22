@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DEFAULT MENTAL CALCULATION SHEET -->
+
+
+<sheet header="" title="Mental calculation: areas and perimeters of rectangles" subtitle="" text="" answers_title="Answers">
+
+	<!-- Default values: type="std" unit="cm" font_size_offset="0" -->
+	<!-- Available layout types: std|short_test|mini_test|equations|mental -->
+	<layout type="mental" font_size_offset="-1">
+		<exc>
+			<line nb="None">
+				<exercises>all</exercises>
+			</line>
+		</exc>
+		<ans>
+			<line nb="None">
+				<exercises>all</exercises>
+			</line>
+		</ans>
+	</layout>
+
+	<!-- Default value: id='generic'
+		 No default for kind and subkind, they must be given -->
+	<!-- Available kinds for mental calculation: tabular, slideshow -->
+	<exercise id="mental_calculation" kind="tabular">
+
+        <mix>
+			<question kind="area" subkind="rectangle" picture="true"></question>
+			<question kind="area" subkind="rectangle" picture="true"></question>
+			<question kind="area" subkind="rectangle" picture="true" ></question>
+			<question kind="area" subkind="rectangle"></question>
+			<question kind="area" subkind="rectangle"></question>
+			<nb source="table_25">1</nb>
+			<nb source="intpairs_2to9">1</nb>
+			<nb source="table_15">1</nb>
+			<nb source="table_11">1</nb>
+			<nb source="intpairs_2to9" variant="decimal">1</nb>
+		</mix>
+
+		<mix>
+			<question kind="perimeter" subkind="rectangle" picture="true"></question>
+			<question kind="perimeter" subkind="rectangle" picture="true"></question>
+			<question kind="perimeter" subkind="rectangle"></question>
+			<nb source="intpairs_2to9" variant="decimal">1</nb>
+			<nb source="table_25">1</nb>
+			<nb source="intpairs_5to20" variant="decimal1">1</nb>
+		</mix>
+			
+		<question kind="rectangle" subkind="length_or_width" context="from_area">
+			<nb source="intpairs_2to9">1</nb>
+		</question>
+
+		<question kind="rectangle" subkind="length_or_width" context="from_perimeter" picture="true">
+			<nb source="intpairs_5to20">1</nb>
+		</question>
+		
+	</exercise>
+
+</sheet>

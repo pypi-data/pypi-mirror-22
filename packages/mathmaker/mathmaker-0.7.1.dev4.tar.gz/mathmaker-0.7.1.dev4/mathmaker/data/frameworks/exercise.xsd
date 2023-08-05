@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="question.xsd"/>
+	<xs:include schemaLocation="mix.xsd"/>
+
+	<xs:element name="exercise">
+		<xs:complexType>
+			<xs:sequence minOccurs="1" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element ref="mix"/>
+					<xs:element ref="question"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="id"				type="xs:string"	use="optional"	default="generic"/>
+			<xs:attribute name="kind"			type="xs:string"	use="optional"/>
+			<xs:attribute name="subkind"		type="xs:string"	use="optional"	default=""/>
+			<xs:attribute name="text_exc"			type="xs:string"	use="optional"	default=""/>
+			<xs:attribute name="text_ans"			type="xs:string"	use="optional"	default=""/>
+			<xs:attribute name="layout"			type="xs:string"	use="optional"	default="default"/>
+			<xs:attribute name="q_numbering"			type="xs:string"	use="optional"	default="disabled"/>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>
