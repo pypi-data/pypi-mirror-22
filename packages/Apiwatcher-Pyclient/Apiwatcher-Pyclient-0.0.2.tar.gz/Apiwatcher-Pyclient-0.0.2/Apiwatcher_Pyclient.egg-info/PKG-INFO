@@ -1,0 +1,54 @@
+Metadata-Version: 1.1
+Name: Apiwatcher-Pyclient
+Version: 0.0.2
+Summary: A simple client for Apiwatcher platform
+Home-page: https://github.com/apiwatcher/apiwatcher-pyclient
+Author: Karel Jakubec
+Author-email: karel@jakubec.name
+License: MIT
+Description: Apiwatcher python client
+        ================================
+        
+        This project aims to be a simple python client for interaction with
+        Apiwatcher platform.
+        
+        It solves authentication against platform's ouath2 workflow and thus can be
+        used as a base for more complex applications.
+        
+        Installation
+        =============
+        
+        Best way is to use *pip*.
+        
+        .. code-block:: shell
+        
+          pip install apiwatcher-pyclient
+        
+        
+        Usage
+        ======
+        
+        .. code-block:: python
+        
+          from apiwatcher_pyclient.client import Client
+        
+          cl = Client()
+          cl.authorize_client_credentials(
+            "your_client_id", "your_client_secret", scope="apilisk"
+          )
+          cl.post(
+              "/api/projects/xxx/testcase/123456/results",
+              {
+                  "some": "data"
+              }
+          )
+        
+Keywords: http client apiwatcher
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
