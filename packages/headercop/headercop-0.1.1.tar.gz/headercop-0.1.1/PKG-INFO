@@ -1,0 +1,65 @@
+Metadata-Version: 1.1
+Name: headercop
+Version: 0.1.1
+Summary: Enforce license headers in files
+Home-page: https://gitlab.com/kaffi/headercop
+Author: Kaffi LLC
+Author-email: paul.collins@kaffi.io
+License: BSD license
+Description: headercop
+        =========
+        
+        |build status| |coverage report|
+        
+        Enforce license headers in files.
+        
+        Features
+        --------
+        
+        -  Check to see if file headers are present in files. Useful for CI
+           pipelines.
+        -  Inject file headers if missing to files
+        -  Built in support for Python and Terraform files, easy to add support
+           for others.
+        
+        TODO
+        ----
+        
+        -  Proper documentation...
+        -  Remove headers (in prepareation to change headers, e.g. copyright
+           year)
+        
+        Credits
+        -------
+        
+        This package was created with
+        `Cookiecutter <https://github.com/audreyr/cookiecutter>`__ and the
+        `audreyr/cookiecutter-pypackage <https://github.com/audreyr/cookiecutter-pypackage>`__
+        project template.
+        
+        History
+        =======
+        
+        0.1.0 (2017-04-22)
+        ------------------
+        
+        -  First release.
+        
+        0.1.1 (2017-05-16)
+        ------------------
+        
+        -  Include licenses in package (bsd3 for now)
+        
+        .. |build status| image:: https://gitlab.com/kaffi/headercop/badges/master/build.svg
+           :target: https://gitlab.com/kaffi/headercop/commits/master
+        .. |coverage report| image:: https://gitlab.com/kaffi/headercop/badges/master/coverage.svg
+           :target: https://gitlab.com/kaffi/headercop/commits/master
+        
+Keywords: headercop
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
