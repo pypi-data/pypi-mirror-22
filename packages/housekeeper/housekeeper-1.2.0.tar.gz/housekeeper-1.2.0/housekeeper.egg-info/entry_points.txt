@@ -1,0 +1,27 @@
+[console_scripts]
+housekeeper = housekeeper.cli:root
+
+[housekeeper.subcommands.1]
+add = housekeeper.pipelines.cli:add
+add-case = housekeeper.store.cli:add_case
+add-sample = housekeeper.store.cli:add_sample
+archive = housekeeper.archive.cli:archive
+cases = housekeeper.store.cli:cases
+clean = housekeeper.store.cli:clean
+compile = housekeeper.compile.cli:compile
+delete = housekeeper.store.cli:delete
+export = housekeeper.export:export
+extend = housekeeper.pipelines.cli:extend
+get = housekeeper.store.cli:get
+getsha1 = housekeeper.store.cli:getsha1
+init = housekeeper.initiate:init
+ls = housekeeper.store.cli:ls
+migrate = housekeeper.store.cli:migrate
+postpone = housekeeper.store.cli:postpone
+restore = housekeeper.compile.cli:restore
+runs = housekeeper.store.cli:runs
+sample = housekeeper.store.cli:sample
+samples = housekeeper.store.cli:samples
+scout = housekeeper.pipelines.cli:scout
+status = housekeeper.store.cli:status
+
