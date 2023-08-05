@@ -1,0 +1,118 @@
+#comment header
+#with comma separated values
+name, alias, type, units, missing_value, items
+spacecraft_clock_start_count, sclk_time, float, none, -9.e36, 1
+surface_pressure, srf_pressure, float, mbar, 444.4, 1
+nadir_temperature_profile, nadir_pt, float, degK, 444.4, 38
+co2_continuum_temp, co2_cont_temp, float, degK, -9.e36, 1
+spectral_surface_temperature, srf_temp_est, float, degK, -9.e36, 1
+temperature_profile_residual, rms_pt, float, watts cm-2 steradian-1 wavenumber-1, 444.4, 1
+nadir_opacity, best_fit_opacities, float, none, 22.22, 9
+nadir_opacity1, best_fit_opacities1, float, none, 22.22, 1
+nadir_opacity2, best_fit_opacities2, float, none, 22.22, 1
+nadir_opacity3, best_fit_opacities3, float, none, 22.22, 1
+nadir_opacity_residual, rms_opacities, float, 1e-8 watts cm-2 steradian-1 wavenumber-1, 444.4, 1
+co2_downwelling_flux, co2_dw_flux, float, watts cm-2, 444.4, 1
+total_downwelling_flux, total_dw_flux, float, watts cm-2, 444.4, 1
+atm_quality, quality, int, none, none, 1
+surface_radiance, srf_radiance, float, watts cm-2 steradian-1 wavenumber-1, none, 1
+atmospheric_calibration_id, version_id, str, none, none, 1
+detector_number, detector, int, none, none, 1
+temporal_integration_scan_number, tic_count, int, none, none, 1
+raw_visual_bolometer, vbol, float, volts, none, 1
+raw_thermal_bolometer, tbol, float, volts, none, 1
+calibrated_visual_bolometer, cal_vbol, float, watt cm-2 stradian-1, none, 1
+lambert_albedo, lambert_alb, float, none, none, 1
+bolometric_thermal_inertia, ti_bol, float, J m-2 s-1/2 K-1, none, 1
+bolometric_brightness_temp, brightness_temp_bol, float, k, none, 1
+visual_bol_calibration_id, vbol_version_id, str, none, none, 1
+thermal_bol_calibration_id, tbol_version_id, str, none, none, 1
+bol_quality, quality, int, none, none, 1
+detector_number, detector, int, none, none, 1
+longitude, longitude, float, degree, none, 1
+longitude_iau2000, longitude_iau2000, float, degree, none, 1
+latitude, latitude, float, degree, none, 1
+phase_angle, phase, float, degree, none, 1
+emission_angle, emission, float, degree, none, 1
+incidence_angle, incidence, float, degree, none, 1
+planetary_phase_angle, planetary_phase, float, degree, none, 1
+solar_longitude, heliocentric_lon, float, degree, none, 1
+sub_spacecraft_longitude, sub_sc_lon, float, degree, none, 1
+sub_spacecraft_latitude, sub_sc_lat, float, degree, none, 1
+sub_solar_longitude, sub_solar_lon, float, degree, none, 1
+sub_solar_latitude, sub_solar_lat, float, degree, none, 1
+target_distance, target_distance, float, km, none, 1
+target_altitude, height, float, km, none, 1
+spacecraft_altitude, altitude, float, km, none, 1
+local_time, local_time, float, none, none, 1
+solar_distance, solar_distance, float, km, none, 1
+planetary_angular_radius, angular_semidiameter, float, none, none, 1
+geometry_calibration_id, version_id, str, none, none, 1
+detector_number, detector, int, none, none, 1
+interferogram_data, ifgm, float, volts, none, 1
+orbit_number, orbit, int, none, none, 1
+orbit_counter_keeper, ock, int, none, none, 1
+instrument_time_count, ick, int, none, none, 1
+temporal_average_count, tic, int, none, none, 1
+mirror_pointing_angle, pnt_angle, float, degree, none, 1
+imc_count, pnt_imc, int, none, none, 1
+observation_type, pnt_view, str, none, none, 1
+scan_length, scan_len, int, none, none, 1
+obs.scan_length, scan_len, int, none, none, 1
+data_packet_type, pckt_type, str, none, none, 1
+schedule_type, schedule_type, str, none, none, 1
+spectrometer_gain, spc_gain, str, none, none, 1
+visual_bolometer_gain, vbol_gain, str, none, none, 1
+thermal_bolometer_gain, tbol_gain, str, none, none, 1
+preprocessor_detector_number, comp_pp, int, none, none, 1
+detector_mask, det_mask, int, none, none, 1
+observation_classification, class, str, none, none, 1
+quality, quality, int, int, none, 1
+primary_diagnostic_temperatures, temps, float, k, none, 4
+fft_start_index, ffti, float, none, none, 1
+ephemeris_time, et, double, seconds, none, 1
+spacecraft_position, pos, float, km, none, 3
+sun_position, sun, float, km, none, 3
+spacecraft_quaternion, quat, float, none, none, 4
+position_source_id, id, str, none, none, 1
+detector_number, detector, int, none, none, 1
+spectral_mask, spectral_mask, int, none, none, 1
+compression_mode, cmode, int, none, none, 1
+raw_radiance, raw_rad, float, transformed volts, none, 1
+rad.calibrated_radiance, cal_rad, float, watts cm-2 steradian-1 wavenumber-1, none, 1
+calibrated_radiance, cal_rad, float, watts cm-2 steradian-1 wavenumber-1, none, 1
+detector_temperature, tdet, float, k, none, 1
+target_temperature, target_temp, float, k, none, 1
+spectral_thermal_inertia, ti_spc, float, J m-2 s-1/2 K-1, none, 1
+radiance_calibration_id, version_id, str, none, none, 1
+rad_quality, quality, int, none, none, 1
+auxiliary_diagnostic_temps, aux_temps, float, k, none, 12
+interferogram_maximum, ifgm_max, float, volts, none, 1
+interferogram_minimum, ifgm_min, float, volts, none, 1
+onboard_processing_event_log, dsp_log, int, none, none, 6
+diagnostic_telemetry_1, v1, float, ma, none, 1
+diagnostic_telemetry_2, v2, float, ma, none, 1
+diagnostic_telemetry_3, v3, float, volts, none, 1
+diagnostic_telemetry_4, v4, float, volts, none, 1
+diagnostic_telemetry_5, v5, float, ma, none, 1
+diagnostic_telemetry_6, v6, float, ma, none, 1
+diagnostic_telemetry_7, v7, float, volts, none, 1
+diagnostic_telemetry_8, v8, float, volts, none, 1
+diagnostic_telemetry_9, v9, float, volts, none, 1
+diagnostic_telemetry_10, v10, float, volts, none, 1
+diagnostic_telemetry_11, v11, float, volts, none, 1
+diagnostic_telemetry_12, v12, float, volts, none, 1
+diagnostic_telemetry_13, v13, float, ma, none, 1
+diagnostic_telemetry_14, v14, float, ma, none, 1
+diagnostic_telemetry_15, v15, float, volts, none, 1
+diagnostic_telemetry_16, v16, float, volts, none, 1
+diagnostic_telemetry_17, v17, float, volts, none, 1
+diagnostic_telemetry_18, v18, float, volts, none, 1
+diagnostic_telemetry_19, v19, float, volts, none, 1
+diagnostic_telemetry_20, v20, float, volts, none, 1
+neon_lamp, neon_lamp, int, none, none, 1
+neon_gain, neon_gain, str, none, none, 1
+neon_amplitude, neon_amp, int, none, none, 1
+neon_zpd, neon_zpd, int, none, none, 1
+interferogram_zpd, ifgm_zpd, int, none, none, 1
+interferogram_end, ifgm_end, int, none, none, 1
