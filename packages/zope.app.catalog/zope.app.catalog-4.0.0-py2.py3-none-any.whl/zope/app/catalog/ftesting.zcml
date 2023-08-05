@@ -1,0 +1,223 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="zope">
+  <include package="zope.component" file="meta.zcml" />
+  <!-- view directive -->
+  <include package="zope.browserpage" file="meta.zcml" />
+  <!-- resource directive -->
+  <include package="zope.browserresource" file="meta.zcml" />
+  <!-- publisher directivie -->
+  <include package="zope.app.publication" file="meta.zcml" />
+  <!-- grant directives -->
+  <include package="zope.securitypolicy" file="meta.zcml" />
+  <!-- principal directives -->
+  <include package="zope.security" file="meta.zcml" />
+  <include package="zope.principalregistry" file="meta.zcml" />
+
+  <!-- defaultView directive -->
+  <include package="zope.publisher" file="meta.zcml" />
+
+  <!-- menu/addMenuItem directive -->
+  <include package="zope.browsermenu" file="meta.zcml" />
+
+  <!-- editform/addform directive; required by
+       zope.app.authentication.browser -->
+  <include package="zope.app.form.browser" file="meta.zcml" />
+
+  <!-- containerViews directive; required by
+       zope.app.authentication.browser -->
+  <include package="zope.app.container.browser" file="meta.zcml" />
+
+  <include package="zope.componentvocabulary" />
+  <utility factory="zope.app.schema.vocabulary.ZopeVocabularyRegistry" />
+
+
+  <include package="zope.annotation" />
+  <include package="zope.authentication" />
+  <include package="zope.browsermenu" />
+  <include package="zope.container" />
+  <include package="zope.component" />
+  <include package="zope.location" />
+  <include package="zope.login" />
+  <include package="zope.password" />
+  <include package="zope.principalannotation" />
+  <include package="zope.principalregistry" />
+  <include package="zope.publisher" />
+  <include package="zope.security" />
+  <include package="zope.securitypolicy" />
+  <include package="zope.session" />
+  <!-- Must have intid subscribers -->
+  <include package="zope.intid" />
+  <!-- must be adaptable to keyreference -->
+  <include package="zope.keyreference" />
+
+  <!-- adapters from zope.schema fields to IInputWidget -->
+  <include package="zope.formlib" />
+  <include package="zope.site" />
+  <include package="zope.traversing" />
+  <include package="zope.traversing.browser" />
+
+  <!-- These normally come from zope.app.zcmlfiles/menus.zcml -->
+  <browser:menu
+      id="zmi_views"
+      title="Views"
+      description="Menu for displaying alternate representations of an object"
+      />
+
+  <browser:menu
+      id="zmi_actions"
+      title="Actions"
+      description="Menu for displaying actions to be performed"
+      />
+
+
+  <!-- Normally done in zope.app.principalannotation's bootstrap
+       subscriber -->
+  <utility
+      factory="zope.principalannotation.utility.PrincipalAnnotationUtility"
+      provides="zope.principalannotation.interfaces.IPrincipalAnnotationUtility"
+      />
+
+  <!-- Register the Application folder -->
+  <include package="zope.app.appsetup" />
+
+  <!-- @@standard_macros -->
+  <include package="zope.app.basicskin" />
+
+
+  <!-- Normally from zope.app.folder -->
+  <browser:addMenuItem
+      class="zope.site.folder.Folder"
+      title="Folder"
+      description="Minimal folder"
+      permission="zope.ManageContent"
+      />
+  <browser:containerViews
+      for="zope.site.interfaces.IFolder"
+      contents="zope.ManageContent"
+      index="zope.View"
+      add="zope.ManageContent"
+      />
+
+  <include package="zope.app.catalog" />
+  <include package="zope.app.publication" />
+  <include package="zope.app.form.browser" />
+  <include package="zope.app.container" />
+  <include package="zope.app.component" />
+  <include package="zope.app.container.browser" />
+  <include package="zope.app.component.browser" />
+
+  <browser:defaultView name="index.html" />
+
+  <!-- Normally from zope.app.intid -->
+  <browser:addMenuItem
+      title="Unique Id Utility"
+      description="A utility that provides unique ids to objects"
+      class="zope.intid.IntIds"
+      permission="zope.ManageSite"
+      />
+
+  <!-- normally from zope.app.zptpage -->
+  <browser:addMenuItem
+      class=".tests.ZPTPage"
+      title="ZPT Page"
+      description="A simple, content-based Page Template"
+      permission="zope.ManageContent"
+      />
+
+  <browser:addform
+      schema=".tests.IZPTPage"
+      label="Add a ZPT Page"
+      content_factory=".tests.ZPTPage"
+      name="zope.app.zptpage.ZPTPage"
+      permission="zope.ManageContent"
+      />
+
+  <!-- Security setup -->
+
+  <class class="zope.site.folder.Folder">
+    <allow attributes="items __getitem__ get __contains__ __setitem__" />
+  </class>
+  <class class=".tests.ZPTPage">
+    <factory
+        id="zope.app.content.ZPTPage"
+        title="ZPT Page"
+        description="A simple, content-based Page Template"
+        />
+    <require
+        permission="zope.View"
+        attributes="__call__ macros _p_jar _p_oid"
+        />
+    <require
+        permission="zope.ManageContent"
+        interface=".tests.IZPTPage"
+        set_attributes="source expand evaluateInlineCode content_type"
+        />
+    <implements
+        interface="zope.annotation.interfaces.IAttributeAnnotatable"
+        />
+  </class>
+  <class class="BTrees.OOBTree.OOTreeIterator">
+	<allow attributes="next __next__" />
+  </class>
+  <class class="ZODB.Connection.Connection">
+    <allow attributes="db" />
+  </class>
+  <class class="ZODB.DB.DB">
+    <allow attributes="database_name" />
+  </class>
+
+  <!-- workaround for
+   https://github.com/zopefoundation/zope.keyreference/pull/6 -->
+  <class
+      class="zope.keyreference.persistent.KeyReferenceToPersistent">
+    <allow attributes="object" />
+  </class>
+
+  <securityPolicy
+    component="zope.securitypolicy.zopepolicy.ZopeSecurityPolicy" />
+
+  <role id="zope.Anonymous" title="Everybody"
+        description="All users have this role implicitly" />
+  <role id="zope.Manager" title="Site Manager" />
+
+  <!-- Replace the following directive if you don't want public access
+       -->
+  <grant permission="zope.View"
+         role="zope.Anonymous" />
+
+  <grantAll role="zope.Manager" />
+
+  <!-- Principals -->
+
+  <unauthenticatedPrincipal
+      id="zope.anybody"
+      title="Unauthenticated User" />
+
+  <unauthenticatedGroup
+    id="zope.Anybody"
+    title="Unauthenticated Users"
+    />
+
+  <authenticatedGroup
+    id="zope.Authenticated"
+    title="Authenticated Users"
+    />
+
+  <everybodyGroup
+    id="zope.Everybody"
+    title="All Users"
+    />
+
+  <!-- Principal that tests generally run as -->
+  <principal
+      id="zope.mgr"
+      title="Manager"
+      login="mgr"
+      password="mgrpw" />
+
+  <grant role="zope.Manager" principal="zope.mgr" />
+
+
+</configure>
