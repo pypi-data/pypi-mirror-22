@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:upgradeStep
+      source="0.9.11"
+      destination="0.9.12"
+      title="Upgrade collective.behavior.sql"
+      description=""
+      handler=".upgrade0912"
+      profile="collective.behavior.sql:default"
+      />
+
+</configure>
