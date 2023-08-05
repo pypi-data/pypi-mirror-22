@@ -1,0 +1,27 @@
+OnlineCA Server Tests
+=====================
+Test Server with no auth
+------------------------
+$ python onlineca_server.py
+
+or with waitress:
+
+$ pip install waitress
+$ waitress-serve --host=127.0.0.1 --port=10443 onlineca_server.py:application
+
+Load trustroots:
+
+curl https://127.0.0.1:10443/trustroots/
+
+Get certificate
+
+curl https://127.0.0.1:10443/certificate/
+
+Test with HTTP Basic Auth
+-------------------------
+$ python onlineca_server_with_httpbasicauth.py
+
+or with waitress:
+
+$ pip install waitress
+$ waitress-serve --host=127.0.0.1 --port=10443 onlineca_server_with_httpbasicauth.py:application
