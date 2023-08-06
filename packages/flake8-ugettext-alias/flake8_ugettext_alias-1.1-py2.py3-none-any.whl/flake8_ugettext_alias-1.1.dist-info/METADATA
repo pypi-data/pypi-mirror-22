@@ -1,0 +1,49 @@
+Metadata-Version: 2.0
+Name: flake8-ugettext-alias
+Version: 1.1
+Summary: ugettext alias checker plugin for flake8
+Home-page: https://github.com/unleashed/flake8-ugettext-alias
+Author: Unleashed NV
+Author-email: development@unleashed.be
+License: MIT
+Keywords: flake8 ugettext alias
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Quality Assurance
+Requires-Dist: flake8
+
+Flake8 ugettext alias plugin
+============================
+
+Check for imports of ugettext with the _ alias.
+
+This module provides a plugin for ``flake8``, the Python code checker.
+
+
+Installation
+------------
+
+You can install or upgrade ``flake8-ugettext-alias`` with these commands::
+
+  $ pip install flake8-ugettext-alias
+  $ pip install --upgrade flake8-ugettext-alias
+
+
+Plugin for Flake8
+-----------------
+
+When both ``flake8`` and ``flake8-ugettext-alias`` are installed, the plugin is
+available in ``flake8``::
+
+    $ flake8 --version
+    2.0 (pep8: 1.4.5, flake8-ugettext-alias: 1.0, pyflakes: 0.6.1)
+
+
