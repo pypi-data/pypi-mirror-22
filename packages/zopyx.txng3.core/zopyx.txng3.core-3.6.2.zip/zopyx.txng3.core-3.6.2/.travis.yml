@@ -1,0 +1,14 @@
+language:  python
+distro: trusty
+
+python:
+  - "2.7"
+
+before_script:
+  - sudo apt-get install -qq pdftk
+  - sudo apt-get install -qq poppler-utils
+
+script: 
+  - bash build_test.sh python-$TRAVIS_PYTHON_VERSION
+
+
