@@ -1,0 +1,65 @@
+Metadata-Version: 2.0
+Name: Products.OFSP
+Version: 4.0.1
+Summary: General Zope 2 help screens.
+Home-page: http://pypi.python.org/pypi/Products.OFSP
+Author: Zope Foundation and Contributors
+Author-email: zope-dev@zope.org
+License: ZPL 2.1
+Platform: UNKNOWN
+Classifier: Development Status :: 6 - Mature
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Zope2
+Classifier: License :: OSI Approved :: Zope Public License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: setuptools
+
+Overview
+========
+
+OFSP registers the Zope 2 OFS content types.
+
+Changelog
+=========
+
+4.0.1 (2017-06-11)
+------------------
+
+- Mark as compatible with Python 2 and 3.
+
+4.0 (2016-07-23)
+----------------
+
+- Removed code from project, which got merged back into Zope2 itself.
+
+3.0 (2016-07-19)
+----------------
+
+- Remove HelpSys support.
+
+2.13.2 (2010-07-25)
+-------------------
+
+- Moved the registration of OFS types back into this packages `initialize`
+  function to avoid test setup problems with installPackage in ZopeTestCase.
+
+2.13.1 (2010-07-11)
+-------------------
+
+- Added a ``configure.zcml`` to automatically load the OFS package.
+
+2.13.0 (2010-07-10)
+-------------------
+
+- Released as separate package.
+
+
