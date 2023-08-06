@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tt.satisfiability.picosat &#8212; tt 0.6.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.6.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for tt.satisfiability.picosat</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Python wrapper around the _clibs PicoSAT extension.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">tt.errors.arguments</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">InvalidArgumentTypeError</span><span class="p">,</span>
+    <span class="n">InvalidArgumentValueError</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;READTHEDOCS&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;True&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">tt._clibs</span> <span class="k">import</span> <span class="n">picosat</span> <span class="k">as</span> <span class="n">_c_picosat</span>
+    <span class="n">VERSION</span> <span class="o">=</span> <span class="n">_c_picosat</span><span class="o">.</span><span class="n">VERSION</span>
+
+
+<div class="viewcode-block" id="sat_one"><a class="viewcode-back" href="../../../api/satisfiability.html#tt.satisfiability.picosat.sat_one">[docs]</a><span class="k">def</span> <span class="nf">sat_one</span><span class="p">(</span><span class="n">clauses</span><span class="p">,</span> <span class="n">assumptions</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Find a solution that satisfies the specified clauses and assumptions.</span>
+
+<span class="sd">    This provides a light Python wrapper around the same method in the PicoSAT</span>
+<span class="sd">    C-extension. While completely tested and usable, this method is probably</span>
+<span class="sd">    not as useful as the interface provided through the</span>
+<span class="sd">    :func:`sat_one &lt;tt.expressions.bexpr.BooleanExpression.sat_one&gt;` method in</span>
+<span class="sd">    the :class:`BooleanExpression &lt;tt.expressions.bexpr.BooleanExpression&gt;`</span>
+<span class="sd">    class.</span>
+
+<span class="sd">    :param clauses: CNF (AND of ORs) clauses; positive integers represent</span>
+<span class="sd">        non-negated terms and negative integers represent negated terms.</span>
+<span class="sd">    :type clauses: List[List[:class:`int &lt;python:int&gt;`]]</span>
+
+<span class="sd">    :param assumptions: Assumed terms; same negation logic from ``clauses``</span>
+<span class="sd">        applies here. Note that assumptions *cannot* be an empty list; leave it</span>
+<span class="sd">        as ``None`` if there are no assumptions to include.</span>
+<span class="sd">    :type assumptions: List[:class:`int &lt;python:int&gt;`]</span>
+
+<span class="sd">    :returns: If solution is found, a list of ints representing the terms of</span>
+<span class="sd">        the solution; otherwise, if no solution found, ``None``.</span>
+<span class="sd">    :rtype: List[:class:`int &lt;python:int&gt;`] or ``None``</span>
+
+<span class="sd">    :raises InvalidArgumentTypeError: If ``clauses`` is not a list of lists of</span>
+<span class="sd">        ints or ``assumptions`` is not a list of ints.</span>
+<span class="sd">    :raises InvalidArgumentValueError: If any literal ints are equal to zero.</span>
+
+<span class="sd">    Let&#39;s look at a simple example with no satisfiable solution::</span>
+
+<span class="sd">        &gt;&gt;&gt; from tt import picosat</span>
+<span class="sd">        &gt;&gt;&gt; picosat.sat_one([[1], [-1]]) is None</span>
+<span class="sd">        True</span>
+
+<span class="sd">    Here&#39;s an example where a solution exists::</span>
+
+<span class="sd">        &gt;&gt;&gt; picosat.sat_one([[1, 2, 3], [-2, -3], [1, -2], [2, -3], [-2]])</span>
+<span class="sd">        [1, -2, -3]</span>
+
+<span class="sd">    Finally, here&#39;s an example using assumptions::</span>
+
+<span class="sd">        &gt;&gt;&gt; picosat.sat_one([[1, 2, 3], [2, 3]], assumptions=[-1, -3])</span>
+<span class="sd">        [-1, 2, -3]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_c_picosat</span><span class="o">.</span><span class="n">sat_one</span><span class="p">(</span><span class="n">clauses</span><span class="p">,</span> <span class="n">assumptions</span><span class="o">=</span><span class="n">assumptions</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InvalidArgumentTypeError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InvalidArgumentValueError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="sat_all"><a class="viewcode-back" href="../../../api/satisfiability.html#tt.satisfiability.picosat.sat_all">[docs]</a><span class="k">def</span> <span class="nf">sat_all</span><span class="p">(</span><span class="n">clauses</span><span class="p">,</span> <span class="n">assumptions</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Find all solutions that satisfy the specified clauses and assumptions.</span>
+
+<span class="sd">    This provides a light Python wrapper around the same method in the PicoSAT</span>
+<span class="sd">    C-extension. While completely tested and usable, this method is probably</span>
+<span class="sd">    not as useful as the interface provided through the</span>
+<span class="sd">    :func:`sat_all &lt;tt.expressions.bexpr.BooleanExpression.sat_all&gt;` method in</span>
+<span class="sd">    the :class:`BooleanExpression &lt;tt.expressions.bexpr.BooleanExpression&gt;`</span>
+<span class="sd">    class.</span>
+
+<span class="sd">    :param clauses: CNF (AND of ORs) clauses; positive integers represent</span>
+<span class="sd">        non-negated terms and negative integers represent negated terms.</span>
+<span class="sd">    :type clauses: List[List[:class:`int &lt;python:int&gt;`]]</span>
+
+<span class="sd">    :param assumptions: Assumed terms; same negation logic from ``clauses``</span>
+<span class="sd">        applies here. Note that assumptions *cannot* be an empty list; leave it</span>
+<span class="sd">        as ``None`` if there are no assumptions to include.</span>
+<span class="sd">    :type assumptions: List[:class:`int &lt;python:int&gt;`]</span>
+
+<span class="sd">    :returns: An iterator of solutions; if no satisfiable solutions exist, the</span>
+<span class="sd">        iterator will be empty.</span>
+<span class="sd">    :rtype: Iterator[List[:class:`int &lt;python:int&gt;`]]</span>
+
+<span class="sd">    :raises InvalidArgumentTypeError: If ``clauses`` is not a list of lists of</span>
+<span class="sd">        ints or ``assumptions`` is not a list of ints.</span>
+<span class="sd">    :raises InvalidArgumentValueError: If any literal ints are equal to zero.</span>
+
+<span class="sd">    Here&#39;s an example showing the basic usage::</span>
+
+<span class="sd">        &gt;&gt;&gt; from tt import picosat</span>
+<span class="sd">        &gt;&gt;&gt; for solution in picosat.sat_all([[1], [2, 3, 4], [2, 3]]):</span>
+<span class="sd">        ...     print(solution)</span>
+<span class="sd">        ...</span>
+<span class="sd">        [1, 2, 3, 4]</span>
+<span class="sd">        [1, 2, 3, -4]</span>
+<span class="sd">        [1, 2, -3, 4]</span>
+<span class="sd">        [1, 2, -3, -4]</span>
+<span class="sd">        [1, -2, 3, 4]</span>
+<span class="sd">        [1, -2, 3, -4]</span>
+
+<span class="sd">    We can cut down on some of the above solutions by including an assumption::</span>
+
+<span class="sd">        &gt;&gt;&gt; for solution in picosat.sat_all([[1], [2, 3, 4], [2, 3]],</span>
+<span class="sd">        ...                                 assumptions=[-3]):</span>
+<span class="sd">        ...     print(solution)</span>
+<span class="sd">        ...</span>
+<span class="sd">        [1, 2, -3, 4]</span>
+<span class="sd">        [1, 2, -3, -4]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_c_picosat</span><span class="o">.</span><span class="n">sat_all</span><span class="p">(</span><span class="n">clauses</span><span class="p">,</span> <span class="n">assumptions</span><span class="o">=</span><span class="n">assumptions</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InvalidArgumentTypeError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InvalidArgumentValueError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../../index.html">
+    <img class="logo" src="../../../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">the Boolean expression toolbox</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=welchbj&repo=tt&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../prior_art.html">Prior Art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../special_thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../author.html">Author</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/cli.html"><code class="docutils literal"><span class="pre">cli</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/definitions.html"><code class="docutils literal"><span class="pre">definitions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/errors.html"><code class="docutils literal"><span class="pre">errors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/expressions.html"><code class="docutils literal"><span class="pre">expressions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/satisfiability.html"><code class="docutils literal"><span class="pre">satisfiability</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/tables.html"><code class="docutils literal"><span class="pre">tables</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/transformations.html"><code class="docutils literal"><span class="pre">transformations</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/trees.html"><code class="docutils literal"><span class="pre">trees</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Brian Welch.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

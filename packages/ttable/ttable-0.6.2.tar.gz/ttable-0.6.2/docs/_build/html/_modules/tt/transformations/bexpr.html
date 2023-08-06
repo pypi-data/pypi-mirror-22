@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tt.transformations.bexpr &#8212; tt 0.6.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.6.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for tt.transformations.bexpr</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Transformation functions for expressions.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">tt.errors</span> <span class="k">import</span> <span class="n">InvalidArgumentTypeError</span>
+<span class="kn">from</span> <span class="nn">tt.expressions</span> <span class="k">import</span> <span class="n">BooleanExpression</span>
+
+
+<span class="k">def</span> <span class="nf">_ensure_bexpr</span><span class="p">(</span><span class="n">expr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a BooleanExpression object or raise an error.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">BooleanExpression</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">expr</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InvalidArgumentTypeError</span><span class="p">(</span>
+            <span class="s1">&#39;Transformations accept either a string or BooleanExpression &#39;</span>
+            <span class="s1">&#39;argument&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="apply_de_morgans"><a class="viewcode-back" href="../../../api/transformations.html#tt.transformations.bexpr.apply_de_morgans">[docs]</a><span class="k">def</span> <span class="nf">apply_de_morgans</span><span class="p">(</span><span class="n">expr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert an expression to a form with De Morgan&#39;s Law applied.</span>
+
+<span class="sd">    :returns: A new expression object, transformed so that De Morgan&#39;s Law has</span>
+<span class="sd">        been applied to negated *ANDs* and *ORs*.</span>
+<span class="sd">    :rtype: :class:`BooleanExpression &lt;tt.expressions.bexpr.BooleanExpression&gt;`</span>
+
+<span class="sd">    :raises InvalidArgumentTypeError: If ``expr`` is not a valid type.</span>
+
+<span class="sd">    Here&#39;s a couple of simple examples showing De Morgan&#39;s Law being applied</span>
+<span class="sd">    to a negated AND and a negated OR::</span>
+
+<span class="sd">        &gt;&gt;&gt; from tt import apply_de_morgans</span>
+<span class="sd">        &gt;&gt;&gt; apply_de_morgans(r&#39;~(A /\ B)&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;~A \/ ~B&quot;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; apply_de_morgans(r&#39;~(A \/ B)&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;~A /\ ~B&quot;&gt;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bexpr</span> <span class="o">=</span> <span class="n">_ensure_bexpr</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="n">bexpr</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">apply_de_morgans</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="coalesce_negations"><a class="viewcode-back" href="../../../api/transformations.html#tt.transformations.bexpr.coalesce_negations">[docs]</a><span class="k">def</span> <span class="nf">coalesce_negations</span><span class="p">(</span><span class="n">expr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert an expression to a form with all negations condensed.</span>
+
+<span class="sd">    :returns: A new expression object, transformed so that all &quot;runs&quot; of</span>
+<span class="sd">        logical *NOTs* are condensed into the minimal equivalent number.</span>
+<span class="sd">    :rtype: :class:`BooleanExpression &lt;tt.expressions.bexpr.BooleanExpression&gt;`</span>
+
+<span class="sd">    :raises InvalidArgumentTypeError: If ``expr`` is not a valid type.</span>
+
+<span class="sd">    Here&#39;s a simple example showing the basic premise of this transformation::</span>
+
+<span class="sd">        &gt;&gt;&gt; from tt import coalesce_negations</span>
+<span class="sd">        &gt;&gt;&gt; coalesce_negations(&#39;~~A or ~B or ~~~C or ~~~~D&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;A or ~B or ~C or D&quot;&gt;</span>
+
+<span class="sd">    This transformation works on expressions, too::</span>
+
+<span class="sd">        &gt;&gt;&gt; coalesce_negations(&#39;!!(A -&gt; not not B) or ~(~(A xor B))&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;(A -&gt; B) or (A xor B)&quot;&gt;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bexpr</span> <span class="o">=</span> <span class="n">_ensure_bexpr</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="n">bexpr</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">coalesce_negations</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="distribute_ands"><a class="viewcode-back" href="../../../api/transformations.html#tt.transformations.bexpr.distribute_ands">[docs]</a><span class="k">def</span> <span class="nf">distribute_ands</span><span class="p">(</span><span class="n">expr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert an expression to distribute ANDs over ORed clauses.</span>
+
+<span class="sd">    :param expr: The expression to transform.</span>
+<span class="sd">    :type expr: :class:`str &lt;python:str&gt;` or :class:`BooleanExpression \</span>
+<span class="sd">    &lt;tt.expressions.bexpr.BooleanExpression&gt;`</span>
+
+<span class="sd">    :returns: A new expression object, transformed to distribute ANDs over ORed</span>
+<span class="sd">        clauses.</span>
+<span class="sd">    :rtype: :class:`BooleanExpression &lt;tt.expressions.bexpr.BooleanExpression&gt;`</span>
+
+<span class="sd">    :raises InvalidArgumentTypeError: If ``expr`` is not a valid type.</span>
+
+<span class="sd">    Here&#39;s a couple of simple examples::</span>
+
+<span class="sd">        &gt;&gt;&gt; from tt import distribute_ands</span>
+<span class="sd">        &gt;&gt;&gt; distribute_ands(&#39;A and (B or C or D)&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;(A and B) or (A and C) or (A and D)&quot;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; distribute_ands(&#39;(A or B) and C&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;(A and C) or (B and C)&quot;&gt;</span>
+
+<span class="sd">    And an example involving distributing a sub-expression::</span>
+
+<span class="sd">        &gt;&gt;&gt; distribute_ands(&#39;(A and B) and (C or D or E)&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;(A and B and C) or (A and B and D) or \</span>
+<span class="sd">(A and B and E)&quot;&gt;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bexpr</span> <span class="o">=</span> <span class="n">_ensure_bexpr</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="n">bexpr</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">distribute_ands</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="distribute_ors"><a class="viewcode-back" href="../../../api/transformations.html#tt.transformations.bexpr.distribute_ors">[docs]</a><span class="k">def</span> <span class="nf">distribute_ors</span><span class="p">(</span><span class="n">expr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert an expression to distribute ORs over ANDed clauses.</span>
+
+<span class="sd">    :param expr: The expression to transform.</span>
+<span class="sd">    :type expr: :class:`str &lt;python:str&gt;` or :class:`BooleanExpression \</span>
+<span class="sd">    &lt;tt.expressions.bexpr.BooleanExpression&gt;`</span>
+
+<span class="sd">    :returns: A new expression object, transformed to distribute ORs over ANDed</span>
+<span class="sd">        clauses.</span>
+<span class="sd">    :rtype: :class:`BooleanExpression &lt;tt.expressions.bexpr.BooleanExpression&gt;`</span>
+
+<span class="sd">    :raises InvalidArgumentTypeError: If ``expr`` is not a valid type.</span>
+
+<span class="sd">    Here&#39;s a couple of simple examples::</span>
+
+<span class="sd">        &gt;&gt;&gt; from tt import distribute_ors</span>
+<span class="sd">        &gt;&gt;&gt; distribute_ors(&#39;A or (B and C and D and E)&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;(A or B) and (A or C) and (A or D) and (A or E)&quot;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; distribute_ors(&#39;(A and B) or C&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;(A or C) and (B or C)&quot;&gt;</span>
+
+<span class="sd">    And an example involving distributing a sub-expression::</span>
+
+<span class="sd">        &gt;&gt;&gt; distribute_ors(&#39;(A or B) or (C and D)&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;(A or B or C) and (A or B or D)&quot;&gt;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bexpr</span> <span class="o">=</span> <span class="n">_ensure_bexpr</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="n">bexpr</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">distribute_ors</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="to_cnf"><a class="viewcode-back" href="../../../api/transformations.html#tt.transformations.bexpr.to_cnf">[docs]</a><span class="k">def</span> <span class="nf">to_cnf</span><span class="p">(</span><span class="n">expr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert an expression to conjunctive normal form (CNF).</span>
+
+<span class="sd">    This transformation only guarantees to produce an equivalent form of the</span>
+<span class="sd">    passed expression in conjunctive normal form; the transformed expression</span>
+<span class="sd">    may be an inefficent representation of the passed expression.</span>
+
+<span class="sd">    :param expr: The expression to transform.</span>
+<span class="sd">    :type expr: :class:`str &lt;python:str&gt;` or :class:`BooleanExpression \</span>
+<span class="sd">    &lt;tt.expressions.bexpr.BooleanExpression&gt;`</span>
+
+<span class="sd">    :returns: A new expression object, transformed to be in CNF.</span>
+<span class="sd">    :rtype: :class:`BooleanExpression &lt;tt.expressions.bexpr.BooleanExpression&gt;`</span>
+
+<span class="sd">    :raises InvalidArgumentTypeError: If ``expr`` is not a valid type.</span>
+
+<span class="sd">    Here are a few examples::</span>
+
+<span class="sd">        &gt;&gt;&gt; from tt import to_cnf</span>
+<span class="sd">        &gt;&gt;&gt; b = to_cnf(&#39;(A nor B) impl C&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; b</span>
+<span class="sd">        &lt;BooleanExpression &quot;A or B or C&quot;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; b.is_cnf</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; b = to_cnf(r&#39;~(~(A /\ B) /\ C /\ D)&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; b</span>
+<span class="sd">        &lt;BooleanExpression &quot;(A \/ ~C \/ ~D) /\ (B \/ ~C \/ ~D)&quot;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; b.is_cnf</span>
+<span class="sd">        True</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bexpr</span> <span class="o">=</span> <span class="n">_ensure_bexpr</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="n">bexpr</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">to_cnf</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="to_primitives"><a class="viewcode-back" href="../../../api/transformations.html#tt.transformations.bexpr.to_primitives">[docs]</a><span class="k">def</span> <span class="nf">to_primitives</span><span class="p">(</span><span class="n">expr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert an expression to a form with only primitive operators.</span>
+
+<span class="sd">    All operators will be transformed equivalent form composed only of the</span>
+<span class="sd">    logical AND, OR,and NOT operators. Symbolic operators in the passed</span>
+<span class="sd">    expression will remain symbolic in the transformed expression and the same</span>
+<span class="sd">    applies for plain English operators.</span>
+
+<span class="sd">    :param expr: The expression to transform.</span>
+<span class="sd">    :type expr: :class:`str &lt;python:str&gt;` or :class:`BooleanExpression \</span>
+<span class="sd">    &lt;tt.expressions.bexpr.BooleanExpression&gt;`</span>
+
+<span class="sd">    :returns: A new expression object, transformed to contain only primitive</span>
+<span class="sd">        operators.</span>
+<span class="sd">    :rtype: :class:`BooleanExpression &lt;tt.expressions.bexpr.BooleanExpression&gt;`</span>
+
+<span class="sd">    :raises InvalidArgumentTypeError: If ``expr`` is not a valid type.</span>
+
+<span class="sd">    Here&#39;s a simple transformation of exclusive-or::</span>
+
+<span class="sd">        &gt;&gt;&gt; from tt import to_primitives</span>
+<span class="sd">        &gt;&gt;&gt; to_primitives(&#39;A xor B&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;(A and not B) or (not A and B)&quot;&gt;</span>
+
+<span class="sd">    And another example of if-and-only-if (using symbolic operators)::</span>
+
+<span class="sd">        &gt;&gt;&gt; to_primitives(&#39;A &lt;-&gt; B&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;(A /\ B) \/ (~A /\ ~B)&quot;&gt;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bexpr</span> <span class="o">=</span> <span class="n">_ensure_bexpr</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="n">bexpr</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">to_primitives</span><span class="p">())</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../../index.html">
+    <img class="logo" src="../../../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">the Boolean expression toolbox</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=welchbj&repo=tt&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../prior_art.html">Prior Art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../special_thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../author.html">Author</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/cli.html"><code class="docutils literal"><span class="pre">cli</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/definitions.html"><code class="docutils literal"><span class="pre">definitions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/errors.html"><code class="docutils literal"><span class="pre">errors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/expressions.html"><code class="docutils literal"><span class="pre">expressions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/satisfiability.html"><code class="docutils literal"><span class="pre">satisfiability</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/tables.html"><code class="docutils literal"><span class="pre">tables</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/transformations.html"><code class="docutils literal"><span class="pre">transformations</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/trees.html"><code class="docutils literal"><span class="pre">trees</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Brian Welch.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

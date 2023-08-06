@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Expression basics &#8212; tt 0.6.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.6.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Table basics" href="table_basics.html" />
+    <link rel="prev" title="User Guide" href="../user_guide.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="expression-basics">
+<h1>Expression basics<a class="headerlink" href="#expression-basics" title="Permalink to this headline">¶</a></h1>
+<p>At tt&#8217;s core is the concept of the Boolean expression, encapsulated in this library with the <a class="reference internal" href="../api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a> class. Let&#8217;s take look at what we can do with expressions.</p>
+<div class="section" id="creating-an-expression-object">
+<h2>Creating an expression object<a class="headerlink" href="#creating-an-expression-object" title="Permalink to this headline">¶</a></h2>
+<p>The top-level class for interacting with boolean expressions in tt is, fittingly named, <a class="reference internal" href="../api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a>. Let&#8217;s start by importing it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">BooleanExpression</span>
+</pre></div>
+</div>
+<p>This class accepts boolean expressions as strings and provides the interface for parsing and tokenizing string expressions into a sequence of tokens and symbols, as we see here:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;(A nand B) or (C and D)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">tokens</span>
+<span class="go">[&#39;(&#39;, &#39;A&#39;, &#39;nand&#39;, &#39;B&#39;, &#39;)&#39;, &#39;or&#39;, &#39;(&#39;, &#39;C&#39;, &#39;and&#39;, &#39;D&#39;, &#39;)&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">symbols</span>
+<span class="go">[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;]</span>
+</pre></div>
+</div>
+<p>We can also always retrieve the original string we passed in via the <code class="docutils literal"><span class="pre">raw_expr</span></code> attribute:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">raw_expr</span>
+<span class="go">&#39;(A nand B) or (C and D)&#39;</span>
+</pre></div>
+</div>
+<p>During initialization, the <a class="reference internal" href="../api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a> also does some work behind the scenes to build a basic understanding of the expression&#8217;s structure. It re-orders the tokens into postfix order, and uses this representation to build a <a class="reference internal" href="../api/trees.html#tt.trees.tree_node.ExpressionTreeNode" title="tt.trees.tree_node.ExpressionTreeNode"><code class="xref py py-class docutils literal"><span class="pre">ExpressionTreeNode</span></code></a>. We can see this with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">postfix_tokens</span>
+<span class="go">[&#39;A&#39;, &#39;B&#39;, &#39;nand&#39;, &#39;C&#39;, &#39;D&#39;, &#39;and&#39;, &#39;or&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span>
+<span class="go">or</span>
+<span class="go">`----nand</span>
+<span class="go">|    `----A</span>
+<span class="go">|    `----B</span>
+<span class="go">`----and</span>
+<span class="go">     `----C</span>
+<span class="go">     `----D</span>
+</pre></div>
+</div>
+<p>This expression tree represents tt&#8217;s understanding of the structure of your expression. If you are receiving an unexpected error for a more complicated expression, inspecting the <code class="docutils literal"><span class="pre">tree</span></code> attribute on the <a class="reference internal" href="../api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a> instance can be a good starting point for debugging the issue.</p>
+</div>
+<div class="section" id="evaluating-expressions">
+<h2>Evaluating expressions<a class="headerlink" href="#evaluating-expressions" title="Permalink to this headline">¶</a></h2>
+<p>Looking at expression symbols and tokens is nice, but we need some real functionality for our expressions; a natural starting point is the ability to evaluate expressions. A <a class="reference internal" href="../api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a> object provides an interface to this evaluation functionality; use it like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Notice that we can use <code class="docutils literal"><span class="pre">0</span></code> or <code class="docutils literal"><span class="pre">False</span></code> to represent low values and <code class="docutils literal"><span class="pre">1</span></code> or <code class="docutils literal"><span class="pre">True</span></code> to represent high values. tt makes sure that only valid Boolean-esque values are accepted for evaluation. For example, if we tried something like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="s1">&#39;not a Boolean value&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="o">...</span>
+<span class="gr">tt.errors.evaluation.InvalidBooleanValueError</span>: <span class="n">&quot;not a Boolean value&quot; passed as value for &quot;B&quot; is not a valid Boolean value</span>
+</pre></div>
+</div>
+<p>or if we didn&#8217;t include a value for each of the symbols:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="o">...</span>
+<span class="gr">tt.errors.symbols.MissingSymbolError</span>: <span class="n">Did not receive value for the following symbols: &quot;D&quot;</span>
+</pre></div>
+</div>
+<p>These exceptions can be nice if you aren&#8217;t sure about your input, but if you think this safety is just adding overhead for you, there&#8217;s a way to skip those extra checks:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">evaluate_unchecked</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="handling-malformed-expressions">
+<h2>Handling malformed expressions<a class="headerlink" href="#handling-malformed-expressions" title="Permalink to this headline">¶</a></h2>
+<p>So far, we&#8217;ve only seen one example of a <a class="reference internal" href="../api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a> instance, and we passed a valid expression string to it. What happens when we pass in a malformed expression? And what does tt even consider to be a malformed expression?</p>
+<p>While there is no explicit grammar for expressions in tt, using your best judgement will work most of the time. Most well-known Boolean expression operators are available in plain-English and symbolic form. You can see the list of available operators like so:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">OPERATOR_MAPPING</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">OPERATOR_MAPPING</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+<span class="go">!, &amp;, &amp;&amp;, -&gt;, /\, &lt;-&gt;, AND, IFF, IMPL, NAND, NOR, NOT, NXOR, OR, XNOR, XOR, \/, and, iff, impl, nand, nor, not, nxor, or, xnor, xor, |, ||, ~</span>
+</pre></div>
+</div>
+<p>Another possible source of errors in your expressions will be invalid symbol names. Due to some functionality based on accessing symbol names from <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">namedtuple</span></code></a>-like objects, symbol names must meet the following criteria:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Must be a valid <a class="reference external" href="https://docs.python.org/3/reference/lexical_analysis.html#identifiers">Python identifiers</a>.</li>
+<li>Cannot be a <a class="reference external" href="https://docs.python.org/3/reference/lexical_analysis.html#keywords">Python keyword</a>.</li>
+<li>Cannot begin with an underscore</li>
+</ol>
+</div></blockquote>
+<p>An exception will be raised if a symbol name in your expression does not meet the above criteria. Fortunately, tt provides a way for us to check if our symbols are valid. Let&#8217;s take a look:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">is_valid_identifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid_identifier</span><span class="p">(</span><span class="s1">&#39;False&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid_identifier</span><span class="p">(</span><span class="s1">&#39;_bad&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid_identifier</span><span class="p">(</span><span class="s1">&#39;not$good&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid_identifier</span><span class="p">(</span><span class="s1">&#39;a_good_symbol_name&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;_A or B&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="o">...</span>
+<span class="gr">tt.errors.grammar.InvalidIdentifierError</span>: <span class="n">Invalid operand name &quot;_A&quot;</span>
+</pre></div>
+</div>
+<p>As we saw in the above example, we caused an error from the <code class="docutils literal"><span class="pre">tt.errors.grammar</span></code> module. If you play around with invalid expressions, you&#8217;ll notice that all of these errors come from that module; that&#8217;s because errors in this logical group are all descendants of <a class="reference internal" href="../api/errors.html#tt.errors.grammar.GrammarError" title="tt.errors.grammar.GrammarError"><code class="xref py py-exc docutils literal"><span class="pre">GrammarError</span></code></a>. This is the type of error that lexical expression errors will fall under:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">GrammarError</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">invalid_expressions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A xor or B&#39;</span><span class="p">,</span> <span class="s1">&#39;A or ((B nand C)&#39;</span><span class="p">,</span> <span class="s1">&#39;A or B B&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">expr</span> <span class="ow">in</span> <span class="n">invalid_expressions</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+<span class="gp">... </span>            <span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">GrammarError</span><span class="p">))</span>
+<span class="gp">...</span>
+<span class="go">&lt;class &#39;tt.errors.grammar.ExpressionOrderError&#39;&gt;</span>
+<span class="go">True</span>
+<span class="go">&lt;class &#39;tt.errors.grammar.UnbalancedParenError&#39;&gt;</span>
+<span class="go">True</span>
+<span class="go">&lt;class &#39;tt.errors.grammar.ExpressionOrderError&#39;&gt;</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../api/errors.html#tt.errors.grammar.GrammarError" title="tt.errors.grammar.GrammarError"><code class="xref py py-exc docutils literal"><span class="pre">GrammarError</span></code></a> is a unique type of exception in tt, as it provides attributes for accessing the specific position in the expression string that caused an error. This is best illustrated with an example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;A or or B&#39;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="n">GrammarError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Here&#39;s what happened:&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Here&#39;s where it happened:&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">expr_str</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">*</span><span class="n">e</span><span class="o">.</span><span class="n">error_pos</span> <span class="o">+</span> <span class="s1">&#39;^&#39;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">Here&#39;s what happened:</span>
+<span class="go">Unexpected binary operator &quot;or&quot;</span>
+<span class="go">Here&#39;s where it happened:</span>
+<span class="go">A or or B</span>
+<span class="go">     ^</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">the Boolean expression toolbox</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=welchbj&repo=tt&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../user_guide.html">User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Expression basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-an-expression-object">Creating an expression object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evaluating-expressions">Evaluating expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#handling-malformed-expressions">Handling malformed expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="table_basics.html">Table basics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prior_art.html">Prior Art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../author.html">Author</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/cli.html"><code class="docutils literal"><span class="pre">cli</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/definitions.html"><code class="docutils literal"><span class="pre">definitions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/errors.html"><code class="docutils literal"><span class="pre">errors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/expressions.html"><code class="docutils literal"><span class="pre">expressions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/satisfiability.html"><code class="docutils literal"><span class="pre">satisfiability</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/tables.html"><code class="docutils literal"><span class="pre">tables</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/transformations.html"><code class="docutils literal"><span class="pre">transformations</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/trees.html"><code class="docutils literal"><span class="pre">trees</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../user_guide.html">User Guide</a><ul>
+      <li>Previous: <a href="../user_guide.html" title="previous chapter">User Guide</a></li>
+      <li>Next: <a href="table_basics.html" title="next chapter">Table basics</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Brian Welch.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/user_guide/expression_basics.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

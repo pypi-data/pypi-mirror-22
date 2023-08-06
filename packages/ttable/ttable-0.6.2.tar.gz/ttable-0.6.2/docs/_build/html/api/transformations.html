@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>transformations &#8212; tt 0.6.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.6.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="trees" href="trees.html" />
+    <link rel="prev" title="tables" href="tables.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-tt.transformations">
+<span id="transformations"></span><h1><code class="docutils literal"><span class="pre">transformations</span></code><a class="headerlink" href="#module-tt.transformations" title="Permalink to this headline">¶</a></h1>
+<p>Interfaces for transforming representations of expressions.</p>
+<div class="section" id="module-tt.transformations.bexpr">
+<span id="transformations-bexpr-module"></span><h2><code class="docutils literal"><span class="pre">transformations.bexpr</span></code> module<a class="headerlink" href="#module-tt.transformations.bexpr" title="Permalink to this headline">¶</a></h2>
+<p>Transformation functions for expressions.</p>
+<dl class="function">
+<dt id="tt.transformations.bexpr.apply_de_morgans">
+<code class="descclassname">tt.transformations.bexpr.</code><code class="descname">apply_de_morgans</code><span class="sig-paren">(</span><em>expr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/transformations/bexpr.html#apply_de_morgans"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.transformations.bexpr.apply_de_morgans" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an expression to a form with De Morgan&#8217;s Law applied.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A new expression object, transformed so that De Morgan&#8217;s Law has
+been applied to negated <em>ANDs</em> and <em>ORs</em>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="errors.html#tt.errors.arguments.InvalidArgumentTypeError" title="tt.errors.arguments.InvalidArgumentTypeError"><strong>InvalidArgumentTypeError</strong></a> &#8211; If <code class="docutils literal"><span class="pre">expr</span></code> is not a valid type.</td>
+</tr>
+</tbody>
+</table>
+<p>Here&#8217;s a couple of simple examples showing De Morgan&#8217;s Law being applied
+to a negated AND and a negated OR:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">apply_de_morgans</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">apply_de_morgans</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;~(A /\ B)&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;~A \/ ~B&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">apply_de_morgans</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;~(A \/ B)&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;~A /\ ~B&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="tt.transformations.bexpr.coalesce_negations">
+<code class="descclassname">tt.transformations.bexpr.</code><code class="descname">coalesce_negations</code><span class="sig-paren">(</span><em>expr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/transformations/bexpr.html#coalesce_negations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.transformations.bexpr.coalesce_negations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an expression to a form with all negations condensed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A new expression object, transformed so that all &#8220;runs&#8221; of
+logical <em>NOTs</em> are condensed into the minimal equivalent number.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="errors.html#tt.errors.arguments.InvalidArgumentTypeError" title="tt.errors.arguments.InvalidArgumentTypeError"><strong>InvalidArgumentTypeError</strong></a> &#8211; If <code class="docutils literal"><span class="pre">expr</span></code> is not a valid type.</td>
+</tr>
+</tbody>
+</table>
+<p>Here&#8217;s a simple example showing the basic premise of this transformation:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">coalesce_negations</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coalesce_negations</span><span class="p">(</span><span class="s1">&#39;~~A or ~B or ~~~C or ~~~~D&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;A or ~B or ~C or D&quot;&gt;</span>
+</pre></div>
+</div>
+<p>This transformation works on expressions, too:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">coalesce_negations</span><span class="p">(</span><span class="s1">&#39;!!(A -&gt; not not B) or ~(~(A xor B))&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;(A -&gt; B) or (A xor B)&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="tt.transformations.bexpr.distribute_ands">
+<code class="descclassname">tt.transformations.bexpr.</code><code class="descname">distribute_ands</code><span class="sig-paren">(</span><em>expr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/transformations/bexpr.html#distribute_ands"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.transformations.bexpr.distribute_ands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an expression to distribute ANDs over ORed clauses.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>expr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a> or <a class="reference internal" href="expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a>) &#8211; The expression to transform.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A new expression object, transformed to distribute ANDs over ORed
+clauses.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="errors.html#tt.errors.arguments.InvalidArgumentTypeError" title="tt.errors.arguments.InvalidArgumentTypeError"><strong>InvalidArgumentTypeError</strong></a> &#8211; If <code class="docutils literal"><span class="pre">expr</span></code> is not a valid type.</td>
+</tr>
+</tbody>
+</table>
+<p>Here&#8217;s a couple of simple examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">distribute_ands</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distribute_ands</span><span class="p">(</span><span class="s1">&#39;A and (B or C or D)&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;(A and B) or (A and C) or (A and D)&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distribute_ands</span><span class="p">(</span><span class="s1">&#39;(A or B) and C&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;(A and C) or (B and C)&quot;&gt;</span>
+</pre></div>
+</div>
+<p>And an example involving distributing a sub-expression:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">distribute_ands</span><span class="p">(</span><span class="s1">&#39;(A and B) and (C or D or E)&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;(A and B and C) or (A and B and D) or (A and B and E)&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="tt.transformations.bexpr.distribute_ors">
+<code class="descclassname">tt.transformations.bexpr.</code><code class="descname">distribute_ors</code><span class="sig-paren">(</span><em>expr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/transformations/bexpr.html#distribute_ors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.transformations.bexpr.distribute_ors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an expression to distribute ORs over ANDed clauses.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>expr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a> or <a class="reference internal" href="expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a>) &#8211; The expression to transform.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A new expression object, transformed to distribute ORs over ANDed
+clauses.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="errors.html#tt.errors.arguments.InvalidArgumentTypeError" title="tt.errors.arguments.InvalidArgumentTypeError"><strong>InvalidArgumentTypeError</strong></a> &#8211; If <code class="docutils literal"><span class="pre">expr</span></code> is not a valid type.</td>
+</tr>
+</tbody>
+</table>
+<p>Here&#8217;s a couple of simple examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">distribute_ors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distribute_ors</span><span class="p">(</span><span class="s1">&#39;A or (B and C and D and E)&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;(A or B) and (A or C) and (A or D) and (A or E)&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distribute_ors</span><span class="p">(</span><span class="s1">&#39;(A and B) or C&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;(A or C) and (B or C)&quot;&gt;</span>
+</pre></div>
+</div>
+<p>And an example involving distributing a sub-expression:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">distribute_ors</span><span class="p">(</span><span class="s1">&#39;(A or B) or (C and D)&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;(A or B or C) and (A or B or D)&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="tt.transformations.bexpr.to_cnf">
+<code class="descclassname">tt.transformations.bexpr.</code><code class="descname">to_cnf</code><span class="sig-paren">(</span><em>expr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/transformations/bexpr.html#to_cnf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.transformations.bexpr.to_cnf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an expression to conjunctive normal form (CNF).</p>
+<p>This transformation only guarantees to produce an equivalent form of the
+passed expression in conjunctive normal form; the transformed expression
+may be an inefficent representation of the passed expression.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>expr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a> or <a class="reference internal" href="expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a>) &#8211; The expression to transform.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A new expression object, transformed to be in CNF.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="errors.html#tt.errors.arguments.InvalidArgumentTypeError" title="tt.errors.arguments.InvalidArgumentTypeError"><strong>InvalidArgumentTypeError</strong></a> &#8211; If <code class="docutils literal"><span class="pre">expr</span></code> is not a valid type.</td>
+</tr>
+</tbody>
+</table>
+<p>Here are a few examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">to_cnf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">to_cnf</span><span class="p">(</span><span class="s1">&#39;(A nor B) impl C&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">&lt;BooleanExpression &quot;A or B or C&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">is_cnf</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">to_cnf</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;~(~(A /\ B) /\ C /\ D)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">&lt;BooleanExpression &quot;(A \/ ~C \/ ~D) /\ (B \/ ~C \/ ~D)&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">is_cnf</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="tt.transformations.bexpr.to_primitives">
+<code class="descclassname">tt.transformations.bexpr.</code><code class="descname">to_primitives</code><span class="sig-paren">(</span><em>expr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/transformations/bexpr.html#to_primitives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.transformations.bexpr.to_primitives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an expression to a form with only primitive operators.</p>
+<p>All operators will be transformed equivalent form composed only of the
+logical AND, OR,and NOT operators. Symbolic operators in the passed
+expression will remain symbolic in the transformed expression and the same
+applies for plain English operators.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>expr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a> or <a class="reference internal" href="expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a>) &#8211; The expression to transform.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A new expression object, transformed to contain only primitive
+operators.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="errors.html#tt.errors.arguments.InvalidArgumentTypeError" title="tt.errors.arguments.InvalidArgumentTypeError"><strong>InvalidArgumentTypeError</strong></a> &#8211; If <code class="docutils literal"><span class="pre">expr</span></code> is not a valid type.</td>
+</tr>
+</tbody>
+</table>
+<p>Here&#8217;s a simple transformation of exclusive-or:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">to_primitives</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">to_primitives</span><span class="p">(</span><span class="s1">&#39;A xor B&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;(A and not B) or (not A and B)&quot;&gt;</span>
+</pre></div>
+</div>
+<p>And another example of if-and-only-if (using symbolic operators):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_primitives</span><span class="p">(</span><span class="s1">&#39;A &lt;-&gt; B&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;(A /\ B) \/ (~A /\ ~B)&quot;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">the Boolean expression toolbox</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=welchbj&repo=tt&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prior_art.html">Prior Art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../author.html">Author</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cli.html"><code class="docutils literal"><span class="pre">cli</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="definitions.html"><code class="docutils literal"><span class="pre">definitions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="errors.html"><code class="docutils literal"><span class="pre">errors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html"><code class="docutils literal"><span class="pre">expressions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="satisfiability.html"><code class="docutils literal"><span class="pre">satisfiability</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html"><code class="docutils literal"><span class="pre">tables</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">transformations</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees.html"><code class="docutils literal"><span class="pre">trees</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="tables.html" title="previous chapter"><code class="docutils literal"><span class="pre">tables</span></code></a></li>
+      <li>Next: <a href="trees.html" title="next chapter"><code class="docutils literal"><span class="pre">trees</span></code></a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Brian Welch.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/api/transformations.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

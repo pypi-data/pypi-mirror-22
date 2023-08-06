@@ -1,0 +1,1047 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tt.expressions.bexpr &#8212; tt 0.6.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.6.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for tt.expressions.bexpr</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Tools for interacting with Boolean expressions.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="k">import</span> <span class="n">contextmanager</span>
+
+<span class="kn">from</span> <span class="nn">tt._assertions</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">assert_all_valid_keys</span><span class="p">,</span>
+    <span class="n">assert_iterable_contains_all_expr_symbols</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">tt.definitions</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">boolean_variables_factory</span><span class="p">,</span>
+    <span class="n">CONSTANT_VALUES</span><span class="p">,</span>
+    <span class="n">DELIMITERS</span><span class="p">,</span>
+    <span class="n">is_valid_identifier</span><span class="p">,</span>
+    <span class="n">OPERATOR_MAPPING</span><span class="p">,</span>
+    <span class="n">SYMBOLIC_OPERATOR_MAPPING</span><span class="p">,</span>
+    <span class="n">TT_NOT_OP</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">tt.errors</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">AlreadyConstrainedSymbolError</span><span class="p">,</span>
+    <span class="n">BadParenPositionError</span><span class="p">,</span>
+    <span class="n">EmptyExpressionError</span><span class="p">,</span>
+    <span class="n">ExpressionOrderError</span><span class="p">,</span>
+    <span class="n">InvalidArgumentTypeError</span><span class="p">,</span>
+    <span class="n">InvalidArgumentValueError</span><span class="p">,</span>
+    <span class="n">InvalidIdentifierError</span><span class="p">,</span>
+    <span class="n">NoEvaluationVariationError</span><span class="p">,</span>
+    <span class="n">UnbalancedParenError</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">tt.satisfiability</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">picosat</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">tt.trees</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">BinaryOperatorExpressionTreeNode</span><span class="p">,</span>
+    <span class="n">ExpressionTreeNode</span><span class="p">,</span>
+    <span class="n">OperandExpressionTreeNode</span><span class="p">,</span>
+    <span class="n">UnaryOperatorExpressionTreeNode</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="BooleanExpression"><a class="viewcode-back" href="../../../api/expressions.html#tt.expressions.bexpr.BooleanExpression">[docs]</a><span class="k">class</span> <span class="nc">BooleanExpression</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;An interface for interacting with a Boolean expression.</span>
+
+<span class="sd">    Instances of ``BooleanExpression`` are meant to be immutable and can be</span>
+<span class="sd">    instantiated from a few different representations of expressions. The</span>
+<span class="sd">    simplest way to make an expression object is from a string::</span>
+
+<span class="sd">        &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">        &gt;&gt;&gt; BooleanExpression(&#39;(A or B) iff (C and D)&#39;)</span>
+<span class="sd">        &lt;BooleanExpression &quot;(A or B) iff (C and D)&quot;&gt;</span>
+
+<span class="sd">    If you already have an instance of :class:`ExpressionTreeNode \</span>
+<span class="sd">    &lt;tt.trees.tree_node.ExpressionTreeNode&gt;` laying around, you can make a</span>
+<span class="sd">    new expression object from that, too::</span>
+
+<span class="sd">        &gt;&gt;&gt; from tt import ExpressionTreeNode</span>
+<span class="sd">        &gt;&gt;&gt; tree_root = ExpressionTreeNode.build_tree(</span>
+<span class="sd">        ...     [&#39;A&#39;, &#39;B&#39;, &#39;or&#39;,</span>
+<span class="sd">        ...      &#39;C&#39;, &#39;D&#39;, &#39;and&#39;,</span>
+<span class="sd">        ...      &#39;iff&#39;])</span>
+<span class="sd">        &gt;&gt;&gt; BooleanExpression(tree_root)</span>
+<span class="sd">        &lt;BooleanExpression &quot;(A or B) iff (C and D)&quot;&gt;</span>
+
+<span class="sd">    Additionally, any sub-tree node can be used to build an expression object.</span>
+<span class="sd">    Continuing from above, let&#39;s make a new expression object for each of the</span>
+<span class="sd">    sub-expressions wrapped in parentheses::</span>
+
+<span class="sd">        &gt;&gt;&gt; BooleanExpression(tree_root.l_child)</span>
+<span class="sd">        &lt;BooleanExpression &quot;A or B&quot;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; BooleanExpression(tree_root.r_child)</span>
+<span class="sd">        &lt;BooleanExpression &quot;C and D&quot;&gt;</span>
+
+<span class="sd">    Expressions also implement the equality and inequality operators (``==``</span>
+<span class="sd">    and ``!=``). Equality is determined by the same semantic structure and the</span>
+<span class="sd">    same operand names; the string used to represent the operators in two</span>
+<span class="sd">    expressions is not taken into account. Here&#39;s a few examples::</span>
+
+<span class="sd">        &gt;&gt;&gt; from tt import BooleanExpression as be</span>
+<span class="sd">        &gt;&gt;&gt; be(&#39;A or B or C&#39;) == be(&#39;A or B or C&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; be(&#39;A or B or C&#39;) == be(&#39;A || B || C&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; be(&#39;A or B or C&#39;) == be(&#39;A or C or B&#39;)</span>
+<span class="sd">        False</span>
+
+<span class="sd">    :param expr: The expression representation from which this object is</span>
+<span class="sd">        derived.</span>
+<span class="sd">    :type expr: :class:`str &lt;python:str&gt;` or :class:`ExpressionTreeNode \</span>
+<span class="sd">        &lt;tt.trees.tree_node.ExpressionTreeNode&gt;`</span>
+
+<span class="sd">    :raises BadParenPositionError: If the passed expression contains a</span>
+<span class="sd">        parenthesis in an invalid position.</span>
+<span class="sd">    :raises EmptyExpressionError: If the passed expressions contains nothing</span>
+<span class="sd">        other than whitespace.</span>
+<span class="sd">    :raises ExpressionOrderError: If the expression contains invalid</span>
+<span class="sd">        consecutive operators or operands.</span>
+<span class="sd">    :raises InvalidArgumentTypeError: If ``expr`` is not an acceptable type.</span>
+<span class="sd">    :raises InvalidIdentifierError: If any parsed variable symbols in the</span>
+<span class="sd">        expression are invalid identifiers.</span>
+<span class="sd">    :raises UnbalancedParenError: If any parenthesis pairs remain unbalanced.</span>
+
+<span class="sd">    It is important to note that aside from :exc:`InvalidArgumentTypeError \</span>
+<span class="sd">    &lt;tt.errors.arguments.InvalidArgumentTypeError&gt;`, all exceptions raised in</span>
+<span class="sd">    expression initialization will be descendants of :exc:`GrammarError \</span>
+<span class="sd">    &lt;tt.errors.grammar.GrammarError&gt;`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">ExpressionTreeNode</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="n">InvalidArgumentTypeError</span><span class="p">(</span>
+                <span class="s1">&#39;expr must be a str or ExpressionTreeNode&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_symbols</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_postfix_tokens</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_init_from_str</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">ExpressionTreeNode</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_init_from_expr_node</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_vals_factory</span> <span class="o">=</span> <span class="n">boolean_variables_factory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_symbols</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tree</span> <span class="o">=</span> <span class="n">ExpressionTreeNode</span><span class="o">.</span><span class="n">build_tree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_postfix_tokens</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constrained_symbol_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_init_from_expr_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr_node</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initalize this object from an expression node.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set_includes_constant_values</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_init_from_expr_node_recursive_helper</span><span class="p">(</span><span class="n">expr_node</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_init_from_expr_node_recursive_helper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr_node</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Recursive helper for initializing from an expression node.</span>
+
+<span class="sd">        This method will populate the ``_symbols``, ``_symbol_set``,</span>
+<span class="sd">        ``_postfix_tokens``, ``_tokens``, and ``_raw_expr`` attributes of this</span>
+<span class="sd">         object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr_node</span><span class="p">,</span> <span class="n">OperandExpressionTreeNode</span><span class="p">):</span>
+            <span class="n">operand_str</span> <span class="o">=</span> <span class="n">expr_node</span><span class="o">.</span><span class="n">symbol_name</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operand_str</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_postfix_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operand_str</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span> <span class="o">+=</span> <span class="n">operand_str</span>
+            <span class="k">if</span> <span class="n">operand_str</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operand_str</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">operand_str</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr_node</span><span class="p">,</span> <span class="n">UnaryOperatorExpressionTreeNode</span><span class="p">):</span>
+            <span class="n">operator_str</span> <span class="o">=</span> <span class="n">expr_node</span><span class="o">.</span><span class="n">symbol_name</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operator_str</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span> <span class="o">+=</span> <span class="n">operator_str</span>
+            <span class="k">if</span> <span class="n">operator_str</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">SYMBOLIC_OPERATOR_MAPPING</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_init_from_expr_node_recursive_helper</span><span class="p">(</span>
+                <span class="n">expr_node</span><span class="o">.</span><span class="n">l_child</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">expr_node</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_postfix_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operator_str</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr_node</span><span class="p">,</span> <span class="n">BinaryOperatorExpressionTreeNode</span><span class="p">):</span>
+            <span class="n">operator_str</span> <span class="o">=</span> <span class="n">expr_node</span><span class="o">.</span><span class="n">symbol_name</span>
+            <span class="n">include_parens</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">include_parens</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">BinaryOperatorExpressionTreeNode</span><span class="p">):</span>
+                <span class="n">this_operator</span> <span class="o">=</span> <span class="n">OPERATOR_MAPPING</span><span class="p">[</span><span class="n">operator_str</span><span class="p">]</span>
+                <span class="n">parent_operator</span> <span class="o">=</span> <span class="n">OPERATOR_MAPPING</span><span class="p">[</span><span class="n">parent</span><span class="o">.</span><span class="n">symbol_name</span><span class="p">]</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">expr_node</span> <span class="ow">is</span> <span class="n">parent</span><span class="o">.</span><span class="n">r_child</span> <span class="ow">and</span>
+                        <span class="n">this_operator</span> <span class="o">==</span> <span class="n">parent_operator</span><span class="p">):</span>
+                    <span class="n">include_parens</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">elif</span> <span class="p">(</span><span class="n">expr_node</span> <span class="ow">is</span> <span class="n">parent</span><span class="o">.</span><span class="n">l_child</span> <span class="ow">and</span>
+                        <span class="n">this_operator</span> <span class="o">==</span> <span class="n">parent_operator</span> <span class="ow">and</span>
+                        <span class="p">(</span><span class="n">parent</span><span class="o">.</span><span class="n">r_child</span><span class="o">.</span><span class="n">is_really_unary</span> <span class="ow">or</span>
+                            <span class="n">this_operator</span> <span class="o">==</span> <span class="n">parent</span><span class="o">.</span><span class="n">r_child</span><span class="o">.</span><span class="n">operator</span><span class="p">)):</span>
+                    <span class="n">include_parens</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">if</span> <span class="n">include_parens</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span> <span class="o">+=</span> <span class="s1">&#39;(&#39;</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_init_from_expr_node_recursive_helper</span><span class="p">(</span>
+                <span class="n">expr_node</span><span class="o">.</span><span class="n">l_child</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">expr_node</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operator_str</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span> <span class="o">+=</span> <span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">operator_str</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_init_from_expr_node_recursive_helper</span><span class="p">(</span>
+                <span class="n">expr_node</span><span class="o">.</span><span class="n">r_child</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">expr_node</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">include_parens</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span> <span class="o">+=</span> <span class="s1">&#39;)&#39;</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_postfix_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operator_str</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_init_from_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_expr_str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initalize this object from a raw expression string.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span> <span class="o">=</span> <span class="n">raw_expr_str</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set_includes_constant_values</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tokenize</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_to_postfix</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_cnf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Whether this expression is in conjunctive norma form or not.</span>
+
+<span class="sd">        :type: :class:`bool &lt;python:bool&gt;`</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;(A or ~B) and (~C or D or E) and F&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; b.is_cnf</span>
+<span class="sd">            True</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;A nand B&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; b.is_cnf</span>
+<span class="sd">            False</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree</span><span class="o">.</span><span class="n">is_cnf</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_dnf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Whether this expression is in conjunctive normal form or not.</span>
+
+<span class="sd">        :type: :class:`bool &lt;python:bool&gt;`</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;(A and B) or (~C and D)&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; b.is_dnf</span>
+<span class="sd">            True</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;(op1 or !op2) and (op3 or op4)&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; b.is_dnf</span>
+<span class="sd">            False</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree</span><span class="o">.</span><span class="n">is_dnf</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">raw_expr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The raw string expression, parsed upon initialization.</span>
+
+<span class="sd">        This is what you pass into the ``BooleanExpression`` constructor; it is</span>
+<span class="sd">        kept on the object as an attribute for convenience.</span>
+
+<span class="sd">        :type: :class:`str &lt;python:str&gt;`</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;A nand B&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; b.raw_expr</span>
+<span class="sd">            &#39;A nand B&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The list of unique symbols present in this expression.</span>
+
+<span class="sd">        The order of the symbols in this list matches the order of symbol</span>
+<span class="sd">        appearance in the original expression.</span>
+
+<span class="sd">        :type: List[:class:`str &lt;python:str&gt;`]</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;A xor (B or C)&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; b.symbols</span>
+<span class="sd">            [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbols</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The parsed, non-whitespace tokens of an expression.</span>
+
+<span class="sd">        :type: List[:class:`str &lt;python:str&gt;`]</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;A xor (B or C)&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; b.tokens</span>
+<span class="sd">            [&#39;A&#39;, &#39;xor&#39;, &#39;(&#39;, &#39;B&#39;, &#39;or&#39;, &#39;C&#39;, &#39;)&#39;]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">postfix_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Similar to the ``tokens`` attribute, but in postfix order.</span>
+
+<span class="sd">        :type: List[:class:`str &lt;python:str&gt;`]</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;A xor (B or C)&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; b.postfix_tokens</span>
+<span class="sd">            [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;or&#39;, &#39;xor&#39;]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_postfix_tokens</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The tree node representing the root of the tree of this expression.</span>
+
+<span class="sd">        :type: :class:`ExpressionTreeNode \</span>
+<span class="sd">            &lt;tt.trees.tree_node.ExpressionTreeNode&gt;`</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;A xor (B or C)&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; print(b.tree)</span>
+<span class="sd">            xor</span>
+<span class="sd">            `----A</span>
+<span class="sd">            `----or</span>
+<span class="sd">                 `----B</span>
+<span class="sd">                 `----C</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BooleanExpression</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_tree</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span> <span class="o">==</span> <span class="n">other</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;&lt;BooleanExpression &quot;</span><span class="si">{}</span><span class="s1">&quot;&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">)</span>
+
+    <span class="nd">@contextmanager</span>
+<div class="viewcode-block" id="BooleanExpression.constrain"><a class="viewcode-back" href="../../../api/expressions.html#tt.expressions.bexpr.BooleanExpression.constrain">[docs]</a>    <span class="k">def</span> <span class="nf">constrain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A context manager to impose satisfiability constraints.</span>
+
+<span class="sd">        This is the interface for adding assumptions to the satisfiability</span>
+<span class="sd">        solving functionality provided through the :func:`sat_one` and</span>
+<span class="sd">        :func:`sat_all` methods.</span>
+
+<span class="sd">        It should be noted that this context manager is only designed to work</span>
+<span class="sd">        with the satisfiability-related functionality of this class.</span>
+<span class="sd">        Constrained symbol values will not have an effect on non-sat methods of</span>
+<span class="sd">        this class. For example::</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;(A or B) and (C or D)&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; with b.constrain(A=1):</span>
+<span class="sd">            ...     b.evaluate(A=0, B=1, C=1, D=0)</span>
+<span class="sd">            ...</span>
+<span class="sd">            True</span>
+
+<span class="sd">        This context manager returns a reference to the same object upon which</span>
+<span class="sd">        it is called. This behavior is designed with the following use case in</span>
+<span class="sd">        mind::</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; with BooleanExpression(&#39;A or B&#39;).constrain(A=1, B=0) as b:</span>
+<span class="sd">            ...     b.sat_one()</span>
+<span class="sd">            ...</span>
+<span class="sd">            &lt;BooleanValues [A=1, B=0]&gt;</span>
+
+<span class="sd">        :param kwargs: Keys are names of symbols in this expression; the</span>
+<span class="sd">            specified value for each of these keys will be added to the</span>
+<span class="sd">            ``constraints`` attribute of this object for the duration of the</span>
+<span class="sd">            context manager.</span>
+
+<span class="sd">        :returns: A reference to the same object that called this method</span>
+<span class="sd">            (i.e., ``self`` in the context of this method).</span>
+<span class="sd">        :rtype: :class:`BooleanExpression`</span>
+
+<span class="sd">        :raises AlreadyConstrainedSymbolError: If trying to constrain this</span>
+<span class="sd">            expression with multiple context managers.</span>
+<span class="sd">        :raises ExtraSymbolError: If a symbol not in this expression is passed</span>
+<span class="sd">            through ``kwargs``.</span>
+<span class="sd">        :raises InvalidArgumentValueError: If no contraints are specified</span>
+<span class="sd">            (i.e., ``kwargs`` is empty).</span>
+<span class="sd">        :raises InvalidBooleanValueError: If any values from ``kwargs`` are not</span>
+<span class="sd">            valid Boolean inputs.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidArgumentValueError</span><span class="p">(</span>
+                <span class="s1">&#39;Must specify at least one constraint&#39;</span><span class="p">)</span>
+
+        <span class="n">assert_all_valid_keys</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span><span class="p">)</span>
+
+        <span class="n">kwarg_key_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">conflicts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constrained_symbol_set</span> <span class="o">&amp;</span> <span class="n">kwarg_key_set</span>
+        <span class="k">if</span> <span class="n">conflicts</span><span class="p">:</span>
+            <span class="n">symbols_str</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span>
+                                    <span class="nb">sorted</span><span class="p">(</span><span class="n">conflicts</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="n">AlreadyConstrainedSymbolError</span><span class="p">(</span>
+                <span class="s1">&#39;Symbol&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">conflicts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s1">&#39;s &#39;</span><span class="p">)</span> <span class="o">+</span>
+                <span class="n">symbols_str</span> <span class="o">+</span> <span class="s1">&#39; cannot be constrained multiple times&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constrained_symbol_set</span> <span class="o">|=</span> <span class="n">kwarg_key_set</span>
+        <span class="k">yield</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constrained_symbol_set</span> <span class="o">-=</span> <span class="n">kwarg_key_set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+<div class="viewcode-block" id="BooleanExpression.sat_one"><a class="viewcode-back" href="../../../api/expressions.html#tt.expressions.bexpr.BooleanExpression.sat_one">[docs]</a>    <span class="k">def</span> <span class="nf">sat_one</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find a combination of inputs that satisfies this expression.</span>
+
+<span class="sd">        Under the hood, this method is using the functionality exposed in tt&#39;s</span>
+<span class="sd">        :mod:`satisfiability.picosat &lt;tt.satisfiability.picosat&gt;` module.</span>
+
+<span class="sd">        Here&#39;s a simple example of satisfying an expression::</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;A xor 1&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; b.sat_one()</span>
+<span class="sd">            &lt;BooleanValues [A=0]&gt;</span>
+
+<span class="sd">        Don&#39;t forget about the utility provided by the :func:`constrain`</span>
+<span class="sd">        context manager::</span>
+
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;(A nand B) iff C&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; with b.constrain(A=1, C=1):</span>
+<span class="sd">            ...     b.sat_one()</span>
+<span class="sd">            ...</span>
+<span class="sd">            &lt;BooleanValues [A=1, B=0, C=1]&gt;</span>
+
+<span class="sd">        Finally, here&#39;s an example when the expression cannot be satisfied::</span>
+
+<span class="sd">            &gt;&gt;&gt; with BooleanExpression(&#39;A xor 1&#39;).constrain(A=1) as b:</span>
+<span class="sd">            ...     b.sat_one() is None</span>
+<span class="sd">            ...</span>
+<span class="sd">            True</span>
+
+<span class="sd">        :returns: :func:`namedtuple &lt;python:collections.namedtuple&gt;`-like</span>
+<span class="sd">            object representing a satisfying set of values (see</span>
+<span class="sd">            :func:`boolean_variables_factory \</span>
+<span class="sd">            &lt;tt.definitions.operands.boolean_variables_factory&gt;` for more</span>
+<span class="sd">            information about the type of object returned); ``None``</span>
+<span class="sd">            will be returned if no satisfiable set of inputs exists.</span>
+<span class="sd">        :rtype: :func:`namedtuple &lt;python:collections.namedtuple&gt;`-like object</span>
+<span class="sd">            or ``None``</span>
+
+<span class="sd">        :raises NoEvaluationVariationError: If this is an expression of only</span>
+<span class="sd">            constants.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbols</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoEvaluationVariationError</span><span class="p">(</span>
+                <span class="s1">&#39;Cannot attempt to satisfy an expression of only constants&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constrained_symbol_set</span><span class="p">):</span>
+            <span class="c1"># shortcut if all symbols are constrained</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate_unchecked</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_vals_factory</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">clauses</span><span class="p">,</span> <span class="n">assumptions</span><span class="p">,</span> <span class="n">symbol_to_index_map</span><span class="p">,</span> <span class="n">index_to_symbol_map</span> <span class="o">=</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">_to_picosat_clauses_assumptions_and_symbol_mappings</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">assumptions</span><span class="p">:</span>
+            <span class="c1"># cannot pass empty list of assumptions to picosat</span>
+            <span class="n">assumptions</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">picosat_result</span> <span class="o">=</span> <span class="n">picosat</span><span class="o">.</span><span class="n">sat_one</span><span class="p">(</span><span class="n">clauses</span><span class="p">,</span> <span class="n">assumptions</span><span class="o">=</span><span class="n">assumptions</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">picosat_result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">result_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_picosat_result_as_dict</span><span class="p">(</span>
+            <span class="n">picosat_result</span><span class="p">,</span> <span class="n">symbol_to_index_map</span><span class="p">,</span> <span class="n">index_to_symbol_map</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_vals_factory</span><span class="p">(</span><span class="o">**</span><span class="n">result_dict</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BooleanExpression.sat_all"><a class="viewcode-back" href="../../../api/expressions.html#tt.expressions.bexpr.BooleanExpression.sat_all">[docs]</a>    <span class="k">def</span> <span class="nf">sat_all</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find all combinations of inputs that satisfy this expression.</span>
+
+<span class="sd">        Under the hood, this method is using the functionality exposed in tt&#39;s</span>
+<span class="sd">        :mod:`satisfiability.picosat &lt;tt.satisfiability.picosat&gt;` module.</span>
+
+<span class="sd">        Here&#39;s a simple example of iterating through a few SAT solutions::</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;(A xor B) and (C xor D)&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; for solution in b.sat_all():</span>
+<span class="sd">            ...     print(solution)</span>
+<span class="sd">            ...</span>
+<span class="sd">            A=0, B=1, C=0, D=1</span>
+<span class="sd">            A=0, B=1, C=1, D=0</span>
+<span class="sd">            A=1, B=0, C=1, D=0</span>
+<span class="sd">            A=1, B=0, C=0, D=1</span>
+
+<span class="sd">        We can also constrain away a few of those solutions::</span>
+
+<span class="sd">            &gt;&gt;&gt; with b.constrain(A=1, C=0):</span>
+<span class="sd">            ...     for solution in b.sat_all():</span>
+<span class="sd">            ...         print(solution)</span>
+<span class="sd">            ...</span>
+<span class="sd">            A=1, B=0, C=0, D=1</span>
+
+<span class="sd">        :returns: An iterator of</span>
+<span class="sd">            :func:`namedtuple &lt;python:collections.namedtuple&gt;`-like objects</span>
+<span class="sd">            representing satisfying combinations of inputs; if no satisfying</span>
+<span class="sd">            solutions exist, the iterator will be empty.</span>
+<span class="sd">        :rtype: Iterator[:func:`namedtuple &lt;python:collections.namedtuple&gt;`</span>
+<span class="sd">            -like objects]</span>
+
+<span class="sd">        :raises NoEvaluationVariationError: If this is an expression of only</span>
+<span class="sd">            constants.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbols</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoEvaluationVariationError</span><span class="p">(</span>
+                <span class="s1">&#39;Cannot attempt to satisfy an expression of only constants&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constrained_symbol_set</span><span class="p">):</span>
+            <span class="c1"># shortcut if all symbols are constrained</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate_unchecked</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_vals_factory</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># empty iterator</span>
+                <span class="k">while</span> <span class="kc">False</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="kc">None</span>
+            <span class="k">return</span>
+
+        <span class="n">clauses</span><span class="p">,</span> <span class="n">assumptions</span><span class="p">,</span> <span class="n">symbol_to_index_map</span><span class="p">,</span> <span class="n">index_to_symbol_map</span> <span class="o">=</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">_to_picosat_clauses_assumptions_and_symbol_mappings</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">assumptions</span><span class="p">:</span>
+            <span class="c1"># cannot pass empty list of assumptions to picosat</span>
+            <span class="n">assumptions</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">picosat_sol</span> <span class="ow">in</span> <span class="n">picosat</span><span class="o">.</span><span class="n">sat_all</span><span class="p">(</span><span class="n">clauses</span><span class="p">,</span> <span class="n">assumptions</span><span class="o">=</span><span class="n">assumptions</span><span class="p">):</span>
+            <span class="n">result_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_picosat_result_as_dict</span><span class="p">(</span>
+                <span class="n">picosat_sol</span><span class="p">,</span> <span class="n">symbol_to_index_map</span><span class="p">,</span> <span class="n">index_to_symbol_map</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_vals_factory</span><span class="p">(</span><span class="o">**</span><span class="n">result_dict</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_picosat_result_as_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">symbol_to_index_map</span><span class="p">,</span>
+                                <span class="n">index_to_symbol_map</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert a PicoSAT result into a BooleanValues tuple.&quot;&quot;&quot;</span>
+        <span class="n">result_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">signed_symbol_indices</span> <span class="o">=</span> <span class="p">(</span><span class="n">index</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="ow">in</span>
+                                 <span class="n">index_to_symbol_map</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">signed_symbol_indices</span><span class="p">:</span>
+            <span class="n">symbol_name</span> <span class="o">=</span> <span class="n">index_to_symbol_map</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">index</span><span class="p">)]</span>
+            <span class="n">result_dict</span><span class="p">[</span><span class="n">symbol_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+        <span class="k">return</span> <span class="n">result_dict</span>
+
+    <span class="k">def</span> <span class="nf">_to_picosat_clauses_assumptions_and_symbol_mappings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a PicoSAT-compatible representation and helpful metadata.&quot;&quot;&quot;</span>
+        <span class="n">cnf_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_cnf</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">to_cnf</span><span class="p">()</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">symbol_to_index_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">index_to_symbol_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">clauses</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">assumptions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">clause_root</span> <span class="ow">in</span> <span class="n">cnf_tree</span><span class="o">.</span><span class="n">iter_cnf_clauses</span><span class="p">():</span>
+            <span class="n">clause_indices</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">clause_root</span><span class="o">.</span><span class="n">iter_dnf_clauses</span><span class="p">():</span>
+                <span class="n">is_negated</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">UnaryOperatorExpressionTreeNode</span><span class="p">)</span>
+                <span class="n">symbol_str</span> <span class="o">=</span> <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">l_child</span><span class="o">.</span><span class="n">symbol_name</span> <span class="k">if</span> <span class="n">is_negated</span> <span class="k">else</span>
+                              <span class="n">node</span><span class="o">.</span><span class="n">symbol_name</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">symbol_str</span> <span class="ow">in</span> <span class="n">symbol_to_index_map</span><span class="p">:</span>
+                    <span class="n">pos</span> <span class="o">=</span> <span class="n">symbol_to_index_map</span><span class="p">[</span><span class="n">symbol_str</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">is_negated</span><span class="p">:</span>
+                        <span class="n">clause_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">pos</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">clause_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">symbol_str</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span>
+                    <span class="n">clause_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">is_negated</span><span class="p">:</span>
+                        <span class="n">assumptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">assumptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">index</span><span class="p">)</span>
+                    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">symbol_str</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+                    <span class="n">clause_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">is_negated</span><span class="p">:</span>
+                        <span class="n">assumptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">index</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">assumptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+                    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">symbol_to_index_map</span><span class="p">[</span><span class="n">symbol_str</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span>
+                    <span class="n">index_to_symbol_map</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">symbol_str</span>
+                    <span class="k">if</span> <span class="n">is_negated</span><span class="p">:</span>
+                        <span class="n">clause_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">index</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">clause_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+                    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="n">clauses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clause_indices</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">symbol_str</span><span class="p">,</span> <span class="n">assumed_val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">symbol_to_index_map</span><span class="p">[</span><span class="n">symbol_str</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">assumed_val</span><span class="p">:</span>
+                <span class="n">assumptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">assumptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">index</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">clauses</span><span class="p">,</span> <span class="n">assumptions</span><span class="p">,</span> <span class="n">symbol_to_index_map</span><span class="p">,</span> <span class="n">index_to_symbol_map</span>
+
+<div class="viewcode-block" id="BooleanExpression.evaluate"><a class="viewcode-back" href="../../../api/expressions.html#tt.expressions.bexpr.BooleanExpression.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Evaluate the Boolean expression for the passed keyword arguments.</span>
+
+<span class="sd">        This is a checked wrapper around the :func:`evaluate_unchecked`</span>
+<span class="sd">        function.</span>
+
+<span class="sd">        :param kwargs: Keys are names of symbols in this expression; the</span>
+<span class="sd">            specified value for each of these keys will be substituted into the</span>
+<span class="sd">            expression for evaluation.</span>
+
+<span class="sd">        :returns: The result of evaluating the expression.</span>
+<span class="sd">        :rtype: :class:`bool &lt;python:bool&gt;`</span>
+
+<span class="sd">        :raises ExtraSymbolError: If a symbol not in this expression is passed</span>
+<span class="sd">            through ``kwargs``.</span>
+<span class="sd">        :raises MissingSymbolError: If any symbols in this expression are not</span>
+<span class="sd">            passed through ``kwargs``.</span>
+<span class="sd">        :raises InvalidBooleanValueError: If any values from ``kwargs`` are not</span>
+<span class="sd">            valid Boolean inputs.</span>
+<span class="sd">        :raises InvalidIdentifierError: If any symbol names are invalid</span>
+<span class="sd">            identifiers.</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;A or B&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; b.evaluate(A=0, B=0)</span>
+<span class="sd">            False</span>
+<span class="sd">            &gt;&gt;&gt; b.evaluate(A=1, B=0)</span>
+<span class="sd">            True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">assert_all_valid_keys</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span><span class="p">)</span>
+        <span class="n">assert_iterable_contains_all_expr_symbols</span><span class="p">(</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate_unchecked</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BooleanExpression.evaluate_unchecked"><a class="viewcode-back" href="../../../api/expressions.html#tt.expressions.bexpr.BooleanExpression.evaluate_unchecked">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate_unchecked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Evaluate the Boolean expression without checking the input.</span>
+
+<span class="sd">        This is used for evaluation by the :func:`evaluate` method, which</span>
+<span class="sd">        validates the input ``kwargs`` before passing them to this method.</span>
+
+<span class="sd">        :param kwargs: Keys are names of symbols in this expression; the</span>
+<span class="sd">            specified value for each of these keys will be substituted into the</span>
+<span class="sd">            expression for evaluation.</span>
+
+<span class="sd">        :returns: The Boolean result of evaluating the expression.</span>
+<span class="sd">        :rtype: :class:`bool &lt;python:bool&gt;`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">truthy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">truthy</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BooleanExpression.iter_clauses"><a class="viewcode-back" href="../../../api/expressions.html#tt.expressions.bexpr.BooleanExpression.iter_clauses">[docs]</a>    <span class="k">def</span> <span class="nf">iter_clauses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Iterate over the clauses in this expression.</span>
+
+<span class="sd">        An expression must be in conjunctive normal form (CNF) or disjunctive</span>
+<span class="sd">        normal form (DNF) in order to iterate over its clauses. Here&#39;s a simple</span>
+<span class="sd">        example::</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;(~A or B) and (C or D) and (~E or ~F)&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; for clause in b.iter_clauses():</span>
+<span class="sd">            ...     clause</span>
+<span class="sd">            ...</span>
+<span class="sd">            &lt;BooleanExpression &quot;~A or B&quot;&gt;</span>
+<span class="sd">            &lt;BooleanExpression &quot;C or D&quot;&gt;</span>
+<span class="sd">            &lt;BooleanExpression &quot;~E or ~F&quot;&gt;</span>
+
+<span class="sd">        In the case of an ambiguous expression form (between CNF and DNF), the</span>
+<span class="sd">        clauses will be interpreted to be in CNF form. For example::</span>
+
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;A and ~B and C&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; b.is_cnf</span>
+<span class="sd">            True</span>
+<span class="sd">            &gt;&gt;&gt; b.is_dnf</span>
+<span class="sd">            True</span>
+<span class="sd">            &gt;&gt;&gt; print(&#39;, &#39;.join(str(clause) for clause in b.iter_clauses()))</span>
+<span class="sd">            A, ~B, C</span>
+
+<span class="sd">        If you want to enforce a specific CNF or DNF interpretation of the</span>
+<span class="sd">        clauses, take a look at :func:`iter_cnf_clauses` and</span>
+<span class="sd">        :func:`iter_dnf_clauses`.</span>
+
+<span class="sd">        :returns: An iterator of expression objects, each representing a</span>
+<span class="sd">            separate clause of this expression.</span>
+<span class="sd">        :rtype: Iterator[:class:`BooleanExpression`]</span>
+
+<span class="sd">        :raises RequiresNormalFormError: If this expression is not in</span>
+<span class="sd">            conjunctive or disjunctive normal form.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree</span><span class="o">.</span><span class="n">iter_clauses</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="n">node</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BooleanExpression.iter_cnf_clauses"><a class="viewcode-back" href="../../../api/expressions.html#tt.expressions.bexpr.BooleanExpression.iter_cnf_clauses">[docs]</a>    <span class="k">def</span> <span class="nf">iter_cnf_clauses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Iterate over the CNF clauses in this expression.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;(A or B) and ~C&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; for clause in b.iter_cnf_clauses():</span>
+<span class="sd">            ...     print(clause)</span>
+<span class="sd">            ...</span>
+<span class="sd">            A or B</span>
+<span class="sd">            ~C</span>
+
+<span class="sd">        :returns: An iterator of expression objects, each representing a</span>
+<span class="sd">            separate CNF clause of this expression.</span>
+<span class="sd">        :rtype: Iterator[:class:`BooleanExpression`]</span>
+
+<span class="sd">        :raises RequiresNormalFormError: If this expression is not in</span>
+<span class="sd">            conjunctive normal form.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree</span><span class="o">.</span><span class="n">iter_cnf_clauses</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="n">node</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BooleanExpression.iter_dnf_clauses"><a class="viewcode-back" href="../../../api/expressions.html#tt.expressions.bexpr.BooleanExpression.iter_dnf_clauses">[docs]</a>    <span class="k">def</span> <span class="nf">iter_dnf_clauses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Iterate over the DNF clauses in this expression.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; from tt import BooleanExpression</span>
+<span class="sd">            &gt;&gt;&gt; b = BooleanExpression(&#39;(A and ~B) or (C and D and E)&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; for clause in b.iter_dnf_clauses():</span>
+<span class="sd">            ...     print(clause)</span>
+<span class="sd">            ...</span>
+<span class="sd">            A and ~B</span>
+<span class="sd">            C and D and E</span>
+
+<span class="sd">        :returns: An iterator of expression objects, each representing a</span>
+<span class="sd">            separate DNF clause of this expression.</span>
+<span class="sd">        :rtype: Iterator[:class:`BooleanExpression`]</span>
+
+<span class="sd">        :raises RequiresNormalFormError: If this expression is not in</span>
+<span class="sd">            disjunctive normal form.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree</span><span class="o">.</span><span class="n">iter_dnf_clauses</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="n">node</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_tokenize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make the first pass through the expression, tokenizing it.</span>
+
+<span class="sd">        This method is a helper for initializing an expression object from a</span>
+<span class="sd">        string and will populate the ``_symbols``, ``_symbol_set``, and</span>
+<span class="sd">        ``_tokens`` attributes of this object.</span>
+
+<span class="sd">        :raises GrammarError: If a malformed expression is received.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">operator_strs</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">OPERATOR_MAPPING</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+        <span class="n">is_symbolic</span> <span class="o">=</span> <span class="p">{</span><span class="n">op</span><span class="p">:</span> <span class="ow">not</span> <span class="n">op</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span> <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">operator_strs</span><span class="p">}</span>
+        <span class="n">operator_search_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">operator_strs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">delimiters</span> <span class="o">=</span> <span class="n">DELIMITERS</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">is_symbolic</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                                      <span class="k">if</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">EXPECTING_OPERAND</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">EXPECTING_OPERATOR</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">grammar_state</span> <span class="o">=</span> <span class="n">EXPECTING_OPERAND</span>
+
+        <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">open_paren_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">num_chars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="n">num_chars</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">c</span><span class="p">:</span>
+                <span class="c1"># do nothing</span>
+                <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">grammar_state</span> <span class="o">!=</span> <span class="n">EXPECTING_OPERAND</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">BadParenPositionError</span><span class="p">(</span><span class="s1">&#39;Unexpected parenthesis&#39;</span><span class="p">,</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+
+                <span class="n">open_paren_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+                <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">grammar_state</span> <span class="o">!=</span> <span class="n">EXPECTING_OPERATOR</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">BadParenPositionError</span><span class="p">(</span><span class="s1">&#39;Unexpected parenthesis&#39;</span><span class="p">,</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="ow">not</span> <span class="n">open_paren_count</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">UnbalancedParenError</span><span class="p">(</span><span class="s1">&#39;Unbalanced parenthesis&#39;</span><span class="p">,</span>
+                                               <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+
+                <span class="n">open_paren_count</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+                <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">is_operator</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">num_chars_remaining</span> <span class="o">=</span> <span class="n">num_chars</span> <span class="o">-</span> <span class="n">idx</span>
+
+                <span class="n">matching_operators</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">operator</span> <span class="k">for</span> <span class="n">operator</span> <span class="ow">in</span> <span class="n">operator_search_list</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">operator</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">num_chars_remaining</span> <span class="ow">and</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">[</span><span class="n">idx</span><span class="p">:(</span><span class="n">idx</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">operator</span><span class="p">))]</span> <span class="o">==</span> <span class="n">operator</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="n">matching_operators</span><span class="p">:</span>
+                    <span class="n">match</span> <span class="o">=</span> <span class="n">matching_operators</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">match_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+                    <span class="n">next_c_pos</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">+</span> <span class="n">match_length</span>
+                    <span class="n">next_c</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span> <span class="k">if</span> <span class="n">next_c_pos</span> <span class="o">&gt;=</span> <span class="n">num_chars</span> <span class="k">else</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="n">match_length</span><span class="p">])</span>
+
+                    <span class="k">if</span> <span class="n">next_c</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="c1"># trailing operator</span>
+                        <span class="k">raise</span> <span class="n">ExpressionOrderError</span><span class="p">(</span>
+                            <span class="s1">&#39;Unexpected operator &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">match</span><span class="p">),</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">next_c</span> <span class="ow">in</span> <span class="n">delimiters</span> <span class="ow">or</span> <span class="n">is_symbolic</span><span class="p">[</span><span class="n">match</span><span class="p">]:</span>
+                        <span class="k">if</span> <span class="n">OPERATOR_MAPPING</span><span class="p">[</span><span class="n">match</span><span class="p">]</span> <span class="o">==</span> <span class="n">TT_NOT_OP</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">grammar_state</span> <span class="o">!=</span> <span class="n">EXPECTING_OPERAND</span><span class="p">:</span>
+                                <span class="k">raise</span> <span class="n">ExpressionOrderError</span><span class="p">(</span>
+                                    <span class="s1">&#39;Unexpected unary operator &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                        <span class="n">match</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">grammar_state</span> <span class="o">!=</span> <span class="n">EXPECTING_OPERATOR</span><span class="p">:</span>
+                                <span class="k">raise</span> <span class="n">ExpressionOrderError</span><span class="p">(</span>
+                                    <span class="s1">&#39;Unexpected binary operator &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                        <span class="n">match</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+                            <span class="n">grammar_state</span> <span class="o">=</span> <span class="n">EXPECTING_OPERAND</span>
+
+                        <span class="n">is_operator</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+                        <span class="n">idx</span> <span class="o">+=</span> <span class="n">match_length</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">is_operator</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">grammar_state</span> <span class="o">!=</span> <span class="n">EXPECTING_OPERAND</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="n">ExpressionOrderError</span><span class="p">(</span><span class="s1">&#39;Unexpected operand&#39;</span><span class="p">,</span>
+                                                   <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+
+                    <span class="n">operand_end_idx</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="k">while</span> <span class="p">(</span><span class="n">operand_end_idx</span> <span class="o">&lt;</span> <span class="n">num_chars</span> <span class="ow">and</span>
+                           <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">[</span><span class="n">operand_end_idx</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">delimiters</span><span class="p">):</span>
+                        <span class="n">operand_end_idx</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                    <span class="n">operand</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">operand_end_idx</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">operand</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">CONSTANT_VALUES</span> <span class="ow">and</span>
+                            <span class="ow">not</span> <span class="n">is_valid_identifier</span><span class="p">(</span><span class="n">operand</span><span class="p">)):</span>
+                        <span class="k">raise</span> <span class="n">InvalidIdentifierError</span><span class="p">(</span>
+                            <span class="s1">&#39;Invalid operand name &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">operand</span><span class="p">),</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operand</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">operand</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operand</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">operand</span><span class="p">)</span>
+
+                    <span class="n">idx</span> <span class="o">=</span> <span class="n">operand_end_idx</span>
+                    <span class="n">grammar_state</span> <span class="o">=</span> <span class="n">EXPECTING_OPERATOR</span>
+
+        <span class="k">if</span> <span class="n">open_paren_count</span><span class="p">:</span>
+            <span class="n">left_paren_positions</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span>
+                                    <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\(&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">)]</span>
+            <span class="k">raise</span> <span class="n">UnbalancedParenError</span><span class="p">(</span>
+                <span class="s1">&#39;Unbalanced left parenthesis&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw_expr</span><span class="p">,</span>
+                <span class="n">left_paren_positions</span><span class="p">[</span><span class="n">open_paren_count</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">EmptyExpressionError</span><span class="p">(</span><span class="s1">&#39;Empty expression is invalid&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_to_postfix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Populate the ``_postfix_tokens`` attribute.&quot;&quot;&quot;</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_postfix_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">OPERATOR_MAPPING</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">stack</span><span class="p">:</span>
+                    <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">while</span> <span class="p">(</span><span class="n">stack</span> <span class="ow">and</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;(&#39;</span> <span class="ow">and</span>
+                            <span class="n">OPERATOR_MAPPING</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">precedence</span> <span class="o">&gt;</span>
+                            <span class="n">OPERATOR_MAPPING</span><span class="p">[</span><span class="n">token</span><span class="p">]</span><span class="o">.</span><span class="n">precedence</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_postfix_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+                    <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span><span class="p">:</span>
+                <span class="k">while</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_postfix_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+                <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">stack</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_postfix_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+
+    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">_symbol_set_includes_constant_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Context manager to include CONSTANT_VALUES in _symbol_set.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span> <span class="o">|=</span> <span class="n">CONSTANT_VALUES</span>
+        <span class="k">yield</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_symbol_set</span> <span class="o">-=</span> <span class="n">CONSTANT_VALUES</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../../index.html">
+    <img class="logo" src="../../../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">the Boolean expression toolbox</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=welchbj&repo=tt&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../prior_art.html">Prior Art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../special_thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../author.html">Author</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/cli.html"><code class="docutils literal"><span class="pre">cli</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/definitions.html"><code class="docutils literal"><span class="pre">definitions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/errors.html"><code class="docutils literal"><span class="pre">errors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/expressions.html"><code class="docutils literal"><span class="pre">expressions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/satisfiability.html"><code class="docutils literal"><span class="pre">satisfiability</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/tables.html"><code class="docutils literal"><span class="pre">tables</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/transformations.html"><code class="docutils literal"><span class="pre">transformations</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/trees.html"><code class="docutils literal"><span class="pre">trees</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Brian Welch.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

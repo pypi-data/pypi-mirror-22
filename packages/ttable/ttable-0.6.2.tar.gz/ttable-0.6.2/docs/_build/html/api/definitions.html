@@ -1,0 +1,612 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>definitions &#8212; tt 0.6.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.6.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="errors" href="errors.html" />
+    <link rel="prev" title="cli" href="cli.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-tt.definitions">
+<span id="definitions"></span><h1><code class="docutils literal"><span class="pre">definitions</span></code><a class="headerlink" href="#module-tt.definitions" title="Permalink to this headline">¶</a></h1>
+<p>Definitions for tt&#8217;s expression grammar, operands, and operators.</p>
+<div class="section" id="module-tt.definitions.grammar">
+<span id="definitions-grammar-module"></span><h2><code class="docutils literal"><span class="pre">definitions.grammar</span></code> module<a class="headerlink" href="#module-tt.definitions.grammar" title="Permalink to this headline">¶</a></h2>
+<p>Definitions related to expression grammar.</p>
+<dl class="data">
+<dt id="tt.definitions.grammar.CONSTANT_VALUES">
+<code class="descclassname">tt.definitions.grammar.</code><code class="descname">CONSTANT_VALUES</code><em class="property"> = {'1', '0'}</em><a class="headerlink" href="#tt.definitions.grammar.CONSTANT_VALUES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set of tokens that act as constant values in expressions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Set[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.grammar.DELIMITERS">
+<code class="descclassname">tt.definitions.grammar.</code><code class="descname">DELIMITERS</code><em class="property"> = {'(', ' ', ')'}</em><a class="headerlink" href="#tt.definitions.grammar.DELIMITERS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set of tokens that act as delimiters in expressions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Set[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tt.definitions.operands">
+<span id="definitions-operands-module"></span><h2><code class="docutils literal"><span class="pre">definitions.operands</span></code> module<a class="headerlink" href="#module-tt.definitions.operands" title="Permalink to this headline">¶</a></h2>
+<p>Definitions related to operands.</p>
+<dl class="data">
+<dt id="tt.definitions.operands.BOOLEAN_VALUES">
+<code class="descclassname">tt.definitions.operands.</code><code class="descname">BOOLEAN_VALUES</code><em class="property"> = {0, 1}</em><a class="headerlink" href="#tt.definitions.operands.BOOLEAN_VALUES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set of truthy values valid to submit for evaluation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Set[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">bool</span></code></a>]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operands.DONT_CARE_VALUE">
+<code class="descclassname">tt.definitions.operands.</code><code class="descname">DONT_CARE_VALUE</code><em class="property"> = 'x'</em><a class="headerlink" href="#tt.definitions.operands.DONT_CARE_VALUE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The don&#8217;t care string identifier.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tt.definitions.operands.boolean_variables_factory">
+<code class="descclassname">tt.definitions.operands.</code><code class="descname">boolean_variables_factory</code><span class="sig-paren">(</span><em>symbols</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/definitions/operands.html#boolean_variables_factory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.definitions.operands.boolean_variables_factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a class for namedtuple-like objects for holding boolean values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>symbols</strong> (List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>]) &#8211; A list of the symbol names for which instances of this
+class will hold an entry.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An object where the passed <code class="docutils literal"><span class="pre">symbols</span></code> can be accessed as
+attributes.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">namedtuple</span></code></a>-like object</td>
+</tr>
+</tbody>
+</table>
+<p>This functionality is best demonstrated with an example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">boolean_variables_factory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">factory</span> <span class="o">=</span> <span class="n">boolean_variables_factory</span><span class="p">([</span><span class="s1">&#39;op1&#39;</span><span class="p">,</span> <span class="s1">&#39;op2&#39;</span><span class="p">,</span> <span class="s1">&#39;op3&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="n">op1</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">op2</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">op3</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span><span class="o">.</span><span class="n">op1</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span><span class="o">.</span><span class="n">op2</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+<span class="go">op1=1, op2=0, op3=0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="n">op1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">op2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">op3</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span><span class="o">.</span><span class="n">op3</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+<span class="go">op1=0, op2=0, op3=1</span>
+</pre></div>
+</div>
+<p>It should be noted that this function is used internally within
+functionality where the validity of inputs is already checked. As such,
+this class won&#8217;t enforce the Boolean-ness of input values:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">factory</span> <span class="o">=</span> <span class="n">boolean_variables_factory</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="n">A</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+<span class="go">A=-1, B=value</span>
+</pre></div>
+</div>
+<p>Instances produced from the generated factory are descendants of
+<a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">namedtuple</span></code></a> generated classes; some
+of the inherited attributes may be useful:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span><span class="o">.</span><span class="n">_fields</span>
+<span class="go">(&#39;A&#39;, &#39;B&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span>
+<span class="go">OrderedDict([(&#39;A&#39;, True), (&#39;B&#39;, False)])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="tt.definitions.operands.is_valid_identifier">
+<code class="descclassname">tt.definitions.operands.</code><code class="descname">is_valid_identifier</code><span class="sig-paren">(</span><em>identifier_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/definitions/operands.html#is_valid_identifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.definitions.operands.is_valid_identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the string is a valid symbol identifier.</p>
+<p>Valid identifiers are those that follow Python variable naming conventions,
+are not Python keywords, and do not begin with an underscore.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>identifier_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>) &#8211; The string to test.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True if the passed string is valid identifier, otherwise False.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">bool</span></code></a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="errors.html#tt.errors.arguments.InvalidArgumentTypeError" title="tt.errors.arguments.InvalidArgumentTypeError"><strong>InvalidArgumentTypeError</strong></a> &#8211; If <code class="docutils literal"><span class="pre">identifier_name</span></code> is not a string.</li>
+<li><a class="reference internal" href="errors.html#tt.errors.arguments.InvalidArgumentValueError" title="tt.errors.arguments.InvalidArgumentValueError"><strong>InvalidArgumentValueError</strong></a> &#8211; If <code class="docutils literal"><span class="pre">identifier_name</span></code> is an empty
+string.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>As an example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">is_valid_identifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid_identifier</span><span class="p">(</span><span class="s1">&#39;$var&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid_identifier</span><span class="p">(</span><span class="s1">&#39;va#r&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid_identifier</span><span class="p">(</span><span class="s1">&#39;for&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid_identifier</span><span class="p">(</span><span class="s1">&#39;False&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid_identifier</span><span class="p">(</span><span class="s1">&#39;var&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid_identifier</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="o">...</span>
+<span class="gr">tt.errors.arguments.InvalidArgumentValueError</span>: <span class="n">identifier_name cannot be empty</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid_identifier</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="o">...</span>
+<span class="gr">tt.errors.arguments.InvalidArgumentTypeError</span>: <span class="n">identifier_name must be a string</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tt.definitions.operators">
+<span id="definitions-operators-module"></span><h2><code class="docutils literal"><span class="pre">definitions.operators</span></code> module<a class="headerlink" href="#module-tt.definitions.operators" title="Permalink to this headline">¶</a></h2>
+<p>Definitions for tt&#8217;s built-in Boolean operators.</p>
+<dl class="data">
+<dt id="tt.definitions.operators.BINARY_OPERATORS">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">BINARY_OPERATORS</code><em class="property"> = {&lt;BooleanOperator &quot;xnor&quot;&gt;, &lt;BooleanOperator &quot;impl&quot;&gt;, &lt;BooleanOperator &quot;nand&quot;&gt;, &lt;BooleanOperator &quot;and&quot;&gt;, &lt;BooleanOperator &quot;or&quot;&gt;, &lt;BooleanOperator &quot;nor&quot;&gt;, &lt;BooleanOperator &quot;xor&quot;&gt;}</em><a class="headerlink" href="#tt.definitions.operators.BINARY_OPERATORS" title="Permalink to this definition">¶</a></dt>
+<dd><p>The set of all binary operators available in tt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Set{<a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a>}</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="tt.definitions.operators.BooleanOperator">
+<em class="property">class </em><code class="descclassname">tt.definitions.operators.</code><code class="descname">BooleanOperator</code><span class="sig-paren">(</span><em>precedence</em>, <em>eval_func</em>, <em>default_symbol_str</em>, <em>default_plain_english_str</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/definitions/operators.html#BooleanOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.definitions.operators.BooleanOperator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>A thin wrapper around a Boolean operator.</p>
+<dl class="attribute">
+<dt id="tt.definitions.operators.BooleanOperator.default_plain_english_str">
+<code class="descname">default_plain_english_str</code><a class="headerlink" href="#tt.definitions.operators.BooleanOperator.default_plain_english_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default plain English string representation of this operator.</p>
+<p>Unlike <a class="reference internal" href="#tt.definitions.operators.BooleanOperator.default_symbol_str" title="tt.definitions.operators.BooleanOperator.default_symbol_str"><code class="xref py py-data docutils literal"><span class="pre">default_symbol_str</span></code></a>, this attribute should never be
+<code class="docutils literal"><span class="pre">None</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt.definitions</span> <span class="kn">import</span> <span class="n">TT_AND_OP</span><span class="p">,</span> <span class="n">TT_NAND_OP</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">TT_AND_OP</span><span class="o">.</span><span class="n">default_plain_english_str</span><span class="p">)</span>
+<span class="go">and</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">TT_NAND_OP</span><span class="o">.</span><span class="n">default_plain_english_str</span><span class="p">)</span>
+<span class="go">nand</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tt.definitions.operators.BooleanOperator.default_symbol_str">
+<code class="descname">default_symbol_str</code><a class="headerlink" href="#tt.definitions.operators.BooleanOperator.default_symbol_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default symbolic string representation of this operator.</p>
+<p>Some operators may not have a recognized symbol str, in which case
+this attribute will be <code class="docutils literal"><span class="pre">None</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a> or <code class="docutils literal"><span class="pre">None</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt.definitions</span> <span class="kn">import</span> <span class="n">TT_AND_OP</span><span class="p">,</span> <span class="n">TT_NAND_OP</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">TT_AND_OP</span><span class="o">.</span><span class="n">default_symbol_str</span><span class="p">)</span>
+<span class="go">/\</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">TT_NAND_OP</span><span class="o">.</span><span class="n">default_symbol_str</span><span class="p">)</span>
+<span class="go">None</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tt.definitions.operators.BooleanOperator.eval_func">
+<code class="descname">eval_func</code><a class="headerlink" href="#tt.definitions.operators.BooleanOperator.eval_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>The evaluation function wrapped by this operator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.6)"><code class="xref py py-data docutils literal"><span class="pre">Callable</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt.definitions</span> <span class="kn">import</span> <span class="n">TT_XOR_OP</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TT_XOR_OP</span><span class="o">.</span><span class="n">eval_func</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TT_XOR_OP</span><span class="o">.</span><span class="n">eval_func</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tt.definitions.operators.BooleanOperator.precedence">
+<code class="descname">precedence</code><a class="headerlink" href="#tt.definitions.operators.BooleanOperator.precedence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Precedence of this operator, relative to other operators.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">int</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt.definitions</span> <span class="kn">import</span> <span class="n">TT_AND_OP</span><span class="p">,</span> <span class="n">TT_OR_OP</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TT_AND_OP</span><span class="o">.</span><span class="n">precedence</span> <span class="o">&gt;</span> <span class="n">TT_OR_OP</span><span class="o">.</span><span class="n">precedence</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.MAX_OPERATOR_STR_LEN">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">MAX_OPERATOR_STR_LEN</code><em class="property"> = 4</em><a class="headerlink" href="#tt.definitions.operators.MAX_OPERATOR_STR_LEN" title="Permalink to this definition">¶</a></dt>
+<dd><p>The length of the longest operator from <a class="reference internal" href="#tt.definitions.operators.OPERATOR_MAPPING" title="tt.definitions.operators.OPERATOR_MAPPING"><code class="xref py py-data docutils literal"><span class="pre">OPERATOR_MAPPING</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">int</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.NON_PRIMITIVE_OPERATORS">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">NON_PRIMITIVE_OPERATORS</code><em class="property"> = {&lt;BooleanOperator &quot;xnor&quot;&gt;, &lt;BooleanOperator &quot;impl&quot;&gt;, &lt;BooleanOperator &quot;nand&quot;&gt;, &lt;BooleanOperator &quot;nor&quot;&gt;, &lt;BooleanOperator &quot;xor&quot;&gt;}</em><a class="headerlink" href="#tt.definitions.operators.NON_PRIMITIVE_OPERATORS" title="Permalink to this definition">¶</a></dt>
+<dd><p>The set of non-primitive operators available in tt.</p>
+<p>This includes all binary operators other than AND and OR.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Set{<a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a>}</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.OPERATOR_MAPPING">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">OPERATOR_MAPPING</code><em class="property"> = {'not': &lt;BooleanOperator &quot;not&quot;&gt;, 'NOT': &lt;BooleanOperator &quot;not&quot;&gt;, 'xor': &lt;BooleanOperator &quot;xor&quot;&gt;, 'XOR': &lt;BooleanOperator &quot;xor&quot;&gt;, 'impl': &lt;BooleanOperator &quot;impl&quot;&gt;, 'IMPL': &lt;BooleanOperator &quot;impl&quot;&gt;, 'iff': &lt;BooleanOperator &quot;xnor&quot;&gt;, 'IFF': &lt;BooleanOperator &quot;xnor&quot;&gt;, 'xnor': &lt;BooleanOperator &quot;xnor&quot;&gt;, 'XNOR': &lt;BooleanOperator &quot;xnor&quot;&gt;, 'nxor': &lt;BooleanOperator &quot;xnor&quot;&gt;, 'NXOR': &lt;BooleanOperator &quot;xnor&quot;&gt;, 'and': &lt;BooleanOperator &quot;and&quot;&gt;, 'AND': &lt;BooleanOperator &quot;and&quot;&gt;, 'nand': &lt;BooleanOperator &quot;nand&quot;&gt;, 'NAND': &lt;BooleanOperator &quot;nand&quot;&gt;, 'or': &lt;BooleanOperator &quot;or&quot;&gt;, 'OR': &lt;BooleanOperator &quot;or&quot;&gt;, 'nor': &lt;BooleanOperator &quot;nor&quot;&gt;, 'NOR': &lt;BooleanOperator &quot;nor&quot;&gt;, '~': &lt;BooleanOperator &quot;not&quot;&gt;, '!': &lt;BooleanOperator &quot;not&quot;&gt;, '-&gt;': &lt;BooleanOperator &quot;impl&quot;&gt;, '&lt;-&gt;': &lt;BooleanOperator &quot;xnor&quot;&gt;, '&amp;&amp;': &lt;BooleanOperator &quot;and&quot;&gt;, '&amp;': &lt;BooleanOperator &quot;and&quot;&gt;, '/\\': &lt;BooleanOperator &quot;and&quot;&gt;, '||': &lt;BooleanOperator &quot;or&quot;&gt;, '|': &lt;BooleanOperator &quot;or&quot;&gt;, '\\/': &lt;BooleanOperator &quot;or&quot;&gt;}</em><a class="headerlink" href="#tt.definitions.operators.OPERATOR_MAPPING" title="Permalink to this definition">¶</a></dt>
+<dd><p>A mapping of all available Boolean operators.</p>
+<p>This dictionary is the concatentation of the
+<a class="reference internal" href="#tt.definitions.operators.PLAIN_ENGLISH_OPERATOR_MAPPING" title="tt.definitions.operators.PLAIN_ENGLISH_OPERATOR_MAPPING"><code class="xref py py-data docutils literal"><span class="pre">PLAIN_ENGLISH_OPERATOR_MAPPING</span></code></a> and <a class="reference internal" href="#tt.definitions.operators.SYMBOLIC_OPERATOR_MAPPING" title="tt.definitions.operators.SYMBOLIC_OPERATOR_MAPPING"><code class="xref py py-data docutils literal"><span class="pre">SYMBOLIC_OPERATOR_MAPPING</span></code></a>
+dictionaries.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Dict{<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>: <a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a>}</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.PLAIN_ENGLISH_OPERATOR_MAPPING">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">PLAIN_ENGLISH_OPERATOR_MAPPING</code><em class="property"> = {'not': &lt;BooleanOperator &quot;not&quot;&gt;, 'NOT': &lt;BooleanOperator &quot;not&quot;&gt;, 'xor': &lt;BooleanOperator &quot;xor&quot;&gt;, 'XOR': &lt;BooleanOperator &quot;xor&quot;&gt;, 'impl': &lt;BooleanOperator &quot;impl&quot;&gt;, 'IMPL': &lt;BooleanOperator &quot;impl&quot;&gt;, 'iff': &lt;BooleanOperator &quot;xnor&quot;&gt;, 'IFF': &lt;BooleanOperator &quot;xnor&quot;&gt;, 'xnor': &lt;BooleanOperator &quot;xnor&quot;&gt;, 'XNOR': &lt;BooleanOperator &quot;xnor&quot;&gt;, 'nxor': &lt;BooleanOperator &quot;xnor&quot;&gt;, 'NXOR': &lt;BooleanOperator &quot;xnor&quot;&gt;, 'and': &lt;BooleanOperator &quot;and&quot;&gt;, 'AND': &lt;BooleanOperator &quot;and&quot;&gt;, 'nand': &lt;BooleanOperator &quot;nand&quot;&gt;, 'NAND': &lt;BooleanOperator &quot;nand&quot;&gt;, 'or': &lt;BooleanOperator &quot;or&quot;&gt;, 'OR': &lt;BooleanOperator &quot;or&quot;&gt;, 'nor': &lt;BooleanOperator &quot;nor&quot;&gt;, 'NOR': &lt;BooleanOperator &quot;nor&quot;&gt;}</em><a class="headerlink" href="#tt.definitions.operators.PLAIN_ENGLISH_OPERATOR_MAPPING" title="Permalink to this definition">¶</a></dt>
+<dd><p>A mapping of Boolean operators.</p>
+<p>This mapping includes the plain-English variants of the available Boolean
+operators.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Dict{<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>: <a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a>}</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.SYMBOLIC_OPERATOR_MAPPING">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">SYMBOLIC_OPERATOR_MAPPING</code><em class="property"> = {'~': &lt;BooleanOperator &quot;not&quot;&gt;, '!': &lt;BooleanOperator &quot;not&quot;&gt;, '-&gt;': &lt;BooleanOperator &quot;impl&quot;&gt;, '&lt;-&gt;': &lt;BooleanOperator &quot;xnor&quot;&gt;, '&amp;&amp;': &lt;BooleanOperator &quot;and&quot;&gt;, '&amp;': &lt;BooleanOperator &quot;and&quot;&gt;, '/\\': &lt;BooleanOperator &quot;and&quot;&gt;, '||': &lt;BooleanOperator &quot;or&quot;&gt;, '|': &lt;BooleanOperator &quot;or&quot;&gt;, '\\/': &lt;BooleanOperator &quot;or&quot;&gt;}</em><a class="headerlink" href="#tt.definitions.operators.SYMBOLIC_OPERATOR_MAPPING" title="Permalink to this definition">¶</a></dt>
+<dd><p>A mapping of Boolean operators.</p>
+<p>This mapping includes the symbolic variants of the available Boolean
+operators.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Dict{<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>: <a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a>}</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.TT_AND_OP">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">TT_AND_OP</code><em class="property"> = &lt;BooleanOperator &quot;and&quot;&gt;</em><a class="headerlink" href="#tt.definitions.operators.TT_AND_OP" title="Permalink to this definition">¶</a></dt>
+<dd><p>tt&#8217;s operator implementation of a Boolean AND.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.TT_IMPL_OP">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">TT_IMPL_OP</code><em class="property"> = &lt;BooleanOperator &quot;impl&quot;&gt;</em><a class="headerlink" href="#tt.definitions.operators.TT_IMPL_OP" title="Permalink to this definition">¶</a></dt>
+<dd><p>tt&#8217;s operator implementation of a Boolean IMPLIES.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.TT_NAND_OP">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">TT_NAND_OP</code><em class="property"> = &lt;BooleanOperator &quot;nand&quot;&gt;</em><a class="headerlink" href="#tt.definitions.operators.TT_NAND_OP" title="Permalink to this definition">¶</a></dt>
+<dd><p>tt&#8217;s operator implementation of a Boolean NAND.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.TT_NOR_OP">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">TT_NOR_OP</code><em class="property"> = &lt;BooleanOperator &quot;nor&quot;&gt;</em><a class="headerlink" href="#tt.definitions.operators.TT_NOR_OP" title="Permalink to this definition">¶</a></dt>
+<dd><p>tt&#8217;s operator implementation of a Boolean NOR.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.TT_NOT_OP">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">TT_NOT_OP</code><em class="property"> = &lt;BooleanOperator &quot;not&quot;&gt;</em><a class="headerlink" href="#tt.definitions.operators.TT_NOT_OP" title="Permalink to this definition">¶</a></dt>
+<dd><p>tt&#8217;s operator implementation of a Boolean NOT.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.TT_OR_OP">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">TT_OR_OP</code><em class="property"> = &lt;BooleanOperator &quot;or&quot;&gt;</em><a class="headerlink" href="#tt.definitions.operators.TT_OR_OP" title="Permalink to this definition">¶</a></dt>
+<dd><p>tt&#8217;s operator implementation of a Boolean OR.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.TT_XNOR_OP">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">TT_XNOR_OP</code><em class="property"> = &lt;BooleanOperator &quot;xnor&quot;&gt;</em><a class="headerlink" href="#tt.definitions.operators.TT_XNOR_OP" title="Permalink to this definition">¶</a></dt>
+<dd><p>tt&#8217;s operator implementation of a Boolean XNOR.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="tt.definitions.operators.TT_XOR_OP">
+<code class="descclassname">tt.definitions.operators.</code><code class="descname">TT_XOR_OP</code><em class="property"> = &lt;BooleanOperator &quot;xor&quot;&gt;</em><a class="headerlink" href="#tt.definitions.operators.TT_XOR_OP" title="Permalink to this definition">¶</a></dt>
+<dd><p>tt&#8217;s operator implementation of a Boolean XOR.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">the Boolean expression toolbox</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=welchbj&repo=tt&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prior_art.html">Prior Art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../author.html">Author</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cli.html"><code class="docutils literal"><span class="pre">cli</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">definitions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="errors.html"><code class="docutils literal"><span class="pre">errors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html"><code class="docutils literal"><span class="pre">expressions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="satisfiability.html"><code class="docutils literal"><span class="pre">satisfiability</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html"><code class="docutils literal"><span class="pre">tables</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations.html"><code class="docutils literal"><span class="pre">transformations</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees.html"><code class="docutils literal"><span class="pre">trees</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="cli.html" title="previous chapter"><code class="docutils literal"><span class="pre">cli</span></code></a></li>
+      <li>Next: <a href="errors.html" title="next chapter"><code class="docutils literal"><span class="pre">errors</span></code></a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Brian Welch.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/api/definitions.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

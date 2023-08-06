@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Release Notes &#8212; tt 0.6.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.6.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Development" href="development.html" />
+    <link rel="prev" title="Table basics" href="user_guide/table_basics.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="release-notes">
+<h1>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<p>Check below for new features added in each release. Please note that release notes were not recorded before version 0.5.0.</p>
+<div class="section" id="x">
+<h2>0.6.x<a class="headerlink" href="#x" title="Permalink to this headline">¶</a></h2>
+<p>Features in the 0.6.x series of releases are focused on expanding functionality to include expression satisfiability and transformations.</p>
+<div class="section" id="id1">
+<h3>0.6.2<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Remove class <code class="docutils literal"><span class="pre">BooleanExpressionTree</span></code> in favor of working exclusively with instances of <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode" title="tt.trees.tree_node.ExpressionTreeNode"><code class="xref py py-class docutils literal"><span class="pre">ExpressionTreeNode</span></code></a></li>
+<li>Add <a class="reference internal" href="api/errors.html#tt.errors.state.AlreadyConstrainedSymbolError" title="tt.errors.state.AlreadyConstrainedSymbolError"><code class="xref py py-exc docutils literal"><span class="pre">AlreadyConstrainedSymbolError</span></code></a></li>
+<li>Add <a class="reference internal" href="api/satisfiability.html#tt.satisfiability.picosat.sat_all" title="tt.satisfiability.picosat.sat_all"><code class="xref py py-func docutils literal"><span class="pre">sat_all</span></code></a> to <a class="reference internal" href="api/satisfiability.html#module-tt.satisfiability.picosat" title="tt.satisfiability.picosat"><code class="xref py py-mod docutils literal"><span class="pre">picosat</span></code></a> interface</li>
+<li>Add <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression.constrain" title="tt.expressions.bexpr.BooleanExpression.constrain"><code class="xref py py-func docutils literal"><span class="pre">constrain</span></code></a>, <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression.sat_one" title="tt.expressions.bexpr.BooleanExpression.sat_one"><code class="xref py py-func docutils literal"><span class="pre">sat_one</span></code></a>, and <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression.sat_all" title="tt.expressions.bexpr.BooleanExpression.sat_all"><code class="xref py py-func docutils literal"><span class="pre">sat_all</span></code></a> to <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a></li>
+<li>Move the implementation logic of the <a class="reference internal" href="api/transformations.html#tt.transformations.bexpr.to_cnf" title="tt.transformations.bexpr.to_cnf"><code class="xref py py-func docutils literal"><span class="pre">to_cnf</span></code></a> transformation to the <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode.to_cnf" title="tt.trees.tree_node.ExpressionTreeNode.to_cnf"><code class="xref py py-func docutils literal"><span class="pre">to_cnf</span></code></a> method of the <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode" title="tt.trees.tree_node.ExpressionTreeNode"><code class="xref py py-class docutils literal"><span class="pre">ExpressionTreeNode</span></code></a> class</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h3>0.6.1<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Add iff (<code class="docutils literal"><span class="pre">iff</span></code>, <code class="docutils literal"><span class="pre">-&gt;</span></code>) and implies (<code class="docutils literal"><span class="pre">impl</span></code>, <code class="docutils literal"><span class="pre">&lt;-&gt;</span></code>) Boolean operators</li>
+<li>Add <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression.is_cnf" title="tt.expressions.bexpr.BooleanExpression.is_cnf"><code class="xref py py-data docutils literal"><span class="pre">is_cnf</span></code></a> and <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression.is_dnf" title="tt.expressions.bexpr.BooleanExpression.is_dnf"><code class="xref py py-data docutils literal"><span class="pre">is_dnf</span></code></a> attributes to <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a></li>
+<li>Add functionality to initialize <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a> objects from instances of <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode" title="tt.trees.tree_node.ExpressionTreeNode"><code class="xref py py-class docutils literal"><span class="pre">ExpressionTreeNode</span></code></a> or <code class="docutils literal"><span class="pre">BooleanExpressionTree</span></code></li>
+<li>Update __str__ and __repr__ for <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a></li>
+<li>Add <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode.is_really_unary" title="tt.trees.tree_node.ExpressionTreeNode.is_really_unary"><code class="xref py py-data docutils literal"><span class="pre">is_really_unary</span></code></a> attribute to <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode" title="tt.trees.tree_node.ExpressionTreeNode"><code class="xref py py-class docutils literal"><span class="pre">ExpressionTreeNode</span></code></a></li>
+<li>Add <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode.iter_clauses" title="tt.trees.tree_node.ExpressionTreeNode.iter_clauses"><code class="xref py py-func docutils literal"><span class="pre">iter_clauses</span></code></a>, <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode.iter_cnf_clauses" title="tt.trees.tree_node.ExpressionTreeNode.iter_cnf_clauses"><code class="xref py py-func docutils literal"><span class="pre">iter_cnf_clauses</span></code></a>, and <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode.iter_dnf_clauses" title="tt.trees.tree_node.ExpressionTreeNode.iter_dnf_clauses"><code class="xref py py-func docutils literal"><span class="pre">iter_dnf_clauses</span></code></a> to <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode" title="tt.trees.tree_node.ExpressionTreeNode"><code class="xref py py-class docutils literal"><span class="pre">ExpressionTreeNode</span></code></a></li>
+<li>Add <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression.iter_clauses" title="tt.expressions.bexpr.BooleanExpression.iter_clauses"><code class="xref py py-func docutils literal"><span class="pre">iter_clauses</span></code></a>, <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression.iter_cnf_clauses" title="tt.expressions.bexpr.BooleanExpression.iter_cnf_clauses"><code class="xref py py-func docutils literal"><span class="pre">iter_cnf_clauses</span></code></a>, and <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression.iter_dnf_clauses" title="tt.expressions.bexpr.BooleanExpression.iter_dnf_clauses"><code class="xref py py-func docutils literal"><span class="pre">iter_dnf_clauses</span></code></a> to <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a></li>
+<li>Add <a class="reference internal" href="api/errors.html#tt.errors.state.RequiresNormalFormError" title="tt.errors.state.RequiresNormalFormError"><code class="xref py py-exc docutils literal"><span class="pre">RequiresNormalFormError</span></code></a></li>
+<li>Add attributes <a class="reference internal" href="api/definitions.html#tt.definitions.operators.BooleanOperator.default_symbol_str" title="tt.definitions.operators.BooleanOperator.default_symbol_str"><code class="xref py py-data docutils literal"><span class="pre">default_symbol_str</span></code></a> and <a class="reference internal" href="api/definitions.html#tt.definitions.operators.BooleanOperator.default_plain_english_str" title="tt.definitions.operators.BooleanOperator.default_plain_english_str"><code class="xref py py-data docutils literal"><span class="pre">default_plain_english_str</span></code></a> to <a class="reference internal" href="api/definitions.html#tt.definitions.operators.BooleanOperator" title="tt.definitions.operators.BooleanOperator"><code class="xref py py-class docutils literal"><span class="pre">BooleanOperator</span></code></a>, in place of removed <code class="docutils literal"><span class="pre">name</span></code> attribute</li>
+<li>Add <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode.to_primitives" title="tt.trees.tree_node.ExpressionTreeNode.to_primitives"><code class="xref py py-func docutils literal"><span class="pre">to_primitives</span></code></a>, <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode.coalesce_negations" title="tt.trees.tree_node.ExpressionTreeNode.coalesce_negations"><code class="xref py py-func docutils literal"><span class="pre">coalesce_negations</span></code></a>, <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode.distribute_ands" title="tt.trees.tree_node.ExpressionTreeNode.distribute_ands"><code class="xref py py-func docutils literal"><span class="pre">distribute_ands</span></code></a>, <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode.distribute_ors" title="tt.trees.tree_node.ExpressionTreeNode.distribute_ors"><code class="xref py py-func docutils literal"><span class="pre">distribute_ors</span></code></a>, and <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode.apply_de_morgans" title="tt.trees.tree_node.ExpressionTreeNode.apply_de_morgans"><code class="xref py py-func docutils literal"><span class="pre">apply_de_morgans</span></code></a> to <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode" title="tt.trees.tree_node.ExpressionTreeNode"><code class="xref py py-class docutils literal"><span class="pre">ExpressionTreeNode</span></code></a></li>
+<li>Introduce high-level <a class="reference internal" href="api/transformations.html#module-tt.transformations" title="tt.transformations"><code class="xref py py-mod docutils literal"><span class="pre">transformations</span></code></a> interface, including transformation functions <a class="reference internal" href="api/transformations.html#tt.transformations.bexpr.to_primitives" title="tt.transformations.bexpr.to_primitives"><code class="xref py py-func docutils literal"><span class="pre">to_primitives</span></code></a>, <a class="reference internal" href="api/transformations.html#tt.transformations.bexpr.coalesce_negations" title="tt.transformations.bexpr.coalesce_negations"><code class="xref py py-func docutils literal"><span class="pre">coalesce_negations</span></code></a>, <a class="reference internal" href="api/transformations.html#tt.transformations.bexpr.distribute_ands" title="tt.transformations.bexpr.distribute_ands"><code class="xref py py-func docutils literal"><span class="pre">distribute_ands</span></code></a>, <a class="reference internal" href="api/transformations.html#tt.transformations.bexpr.distribute_ors" title="tt.transformations.bexpr.distribute_ors"><code class="xref py py-func docutils literal"><span class="pre">distribute_ors</span></code></a>, <a class="reference internal" href="api/transformations.html#tt.transformations.bexpr.to_cnf" title="tt.transformations.bexpr.to_cnf"><code class="xref py py-func docutils literal"><span class="pre">to_cnf</span></code></a>, and <a class="reference internal" href="api/transformations.html#tt.transformations.bexpr.apply_de_morgans" title="tt.transformations.bexpr.apply_de_morgans"><code class="xref py py-func docutils literal"><span class="pre">apply_de_morgans</span></code></a></li>
+<li>Add <a class="reference internal" href="api/definitions.html#tt.definitions.operators.BINARY_OPERATORS" title="tt.definitions.operators.BINARY_OPERATORS"><code class="xref py py-data docutils literal"><span class="pre">BINARY_OPERATORS</span></code></a> and <a class="reference internal" href="api/definitions.html#tt.definitions.operators.NON_PRIMITIVE_OPERATORS" title="tt.definitions.operators.NON_PRIMITIVE_OPERATORS"><code class="xref py py-data docutils literal"><span class="pre">NON_PRIMITIVE_OPERATORS</span></code></a>  sets to <a class="reference internal" href="api/definitions.html#module-tt.definitions" title="tt.definitions"><code class="xref py py-mod docutils literal"><span class="pre">definitions</span></code></a> module</li>
+<li>Add <code class="docutils literal"><span class="pre">__eq__</span></code> and <code class="docutils literal"><span class="pre">__ne__</span></code> implementations for <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a> and derivatives of <a class="reference internal" href="api/trees.html#tt.trees.tree_node.ExpressionTreeNode" title="tt.trees.tree_node.ExpressionTreeNode"><code class="xref py py-class docutils literal"><span class="pre">ExpressionTreeNode</span></code></a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h3>0.6.0<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Add <a class="reference internal" href="api/definitions.html#tt.definitions.operands.is_valid_identifier" title="tt.definitions.operands.is_valid_identifier"><code class="xref py py-func docutils literal"><span class="pre">is_valid_identifier</span></code></a> helper method for checking if symbol names are valid</li>
+<li>Add checking of valid symbol names to <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a> and <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable" title="tt.tables.truth_table.TruthTable"><code class="xref py py-class docutils literal"><span class="pre">TruthTable</span></code></a> initalization logic, with corresponding new exception type <a class="reference internal" href="api/errors.html#tt.errors.grammar.InvalidIdentifierError" title="tt.errors.grammar.InvalidIdentifierError"><code class="xref py py-exc docutils literal"><span class="pre">InvalidIdentifierError</span></code></a></li>
+<li>Add <a class="reference internal" href="api/definitions.html#tt.definitions.operands.boolean_variables_factory" title="tt.definitions.operands.boolean_variables_factory"><code class="xref py py-func docutils literal"><span class="pre">boolean_variables_factory</span></code></a> helper for generating more intuitive collections of symbol inputs</li>
+<li>Update <code class="docutils literal"><span class="pre">__iter__</span></code> in  <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable" title="tt.tables.truth_table.TruthTable"><code class="xref py py-class docutils literal"><span class="pre">TruthTable</span></code></a> to yield inputs as a <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">namedtuple</span></code></a>-like object rather than a plain <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></a></li>
+<li>Re-organize <a class="reference internal" href="user_guide.html"><span class="doc">User Guide</span></a> into different sections instead of one long page</li>
+<li>Remove PyPy support, due to addition of C-extensions</li>
+<li>Add OS X builds to Travis</li>
+<li>Include both 32-bit and 64-bit builds on AppVeyor</li>
+<li>Add initial wrapper around <a class="reference external" href="http://fmv.jku.at/picosat/">PicoSAT</a> library for future satisfiability interface; namely, the <a class="reference internal" href="api/satisfiability.html#tt.satisfiability.picosat.sat_one" title="tt.satisfiability.picosat.sat_one"><code class="xref py py-func docutils literal"><span class="pre">sat_one</span></code></a> method</li>
+<li>Add automated deployment to PyPI on tagged commits from CI services</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>0.5.x<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>Features in the 0.5.x series of releases were focused on expanding the top-level interface and improving optimizations under the hood. See below for specific features and fixes.</p>
+<div class="section" id="id5">
+<h3>0.5.1<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">from_values</span></code> option to the <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable" title="tt.tables.truth_table.TruthTable"><code class="xref py py-class docutils literal"><span class="pre">TruthTable</span></code></a> initializer, allowing for table creation directly from values</li>
+<li>Add ability to store <em>don&#8217;t cares</em> in a <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable" title="tt.tables.truth_table.TruthTable"><code class="xref py py-class docutils literal"><span class="pre">TruthTable</span></code></a></li>
+<li>Add <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable.equivalent_to" title="tt.tables.truth_table.TruthTable.equivalent_to"><code class="xref py py-func docutils literal"><span class="pre">equivalent_to</span></code></a> method to <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable" title="tt.tables.truth_table.TruthTable"><code class="xref py py-class docutils literal"><span class="pre">TruthTable</span></code></a> to check for equivalence of sources of truth</li>
+<li>Convert <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable.generate_symbols" title="tt.tables.truth_table.TruthTable.generate_symbols"><code class="xref py py-func docutils literal"><span class="pre">generate_symbols</span></code></a> and <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable.input_combos" title="tt.tables.truth_table.TruthTable.input_combos"><code class="xref py py-func docutils literal"><span class="pre">input_combos</span></code></a> to be static methods of the <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable" title="tt.tables.truth_table.TruthTable"><code class="xref py py-class docutils literal"><span class="pre">TruthTable</span></code></a> class</li>
+<li>Add <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable.is_full" title="tt.tables.truth_table.TruthTable.is_full"><code class="xref py py-data docutils literal"><span class="pre">is_full</span></code></a> to <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable" title="tt.tables.truth_table.TruthTable"><code class="xref py py-class docutils literal"><span class="pre">TruthTable</span></code></a></li>
+<li>Add __iter__ and __getitem__ functionality to <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable" title="tt.tables.truth_table.TruthTable"><code class="xref py py-class docutils literal"><span class="pre">TruthTable</span></code></a></li>
+<li>Add nice-looking __str__ to <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a></li>
+<li>Add new exception types: <a class="reference internal" href="api/errors.html#tt.errors.state.AlreadyFullTableError" title="tt.errors.state.AlreadyFullTableError"><code class="xref py py-exc docutils literal"><span class="pre">AlreadyFullTableError</span></code></a>, <a class="reference internal" href="api/errors.html#tt.errors.arguments.ConflictingArgumentsError" title="tt.errors.arguments.ConflictingArgumentsError"><code class="xref py py-exc docutils literal"><span class="pre">ConflictingArgumentsError</span></code></a>, and <a class="reference internal" href="api/errors.html#tt.errors.arguments.RequiredArgumentError" title="tt.errors.arguments.RequiredArgumentError"><code class="xref py py-exc docutils literal"><span class="pre">RequiredArgumentError</span></code></a></li>
+<li>Re-organize exception hierarchy so each group of exceptions extends from the same base class</li>
+<li>Re-organize the test file structure into more-focused files</li>
+<li>Add <a class="reference internal" href="user_guide.html"><span class="doc">User Guide</span></a>, acting as tutorial-style documentation</li>
+<li>Remove CLI example from the README</li>
+<li>Update documentation color palette</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id6">
+<h3>0.5.0<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Added the Release Notes section to the project&#8217;s documentation (how fitting for this page)</li>
+<li>Publically exposed the <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable.input_combos" title="tt.tables.truth_table.TruthTable.input_combos"><code class="xref py py-func docutils literal"><span class="pre">input_combos</span></code></a> method in the <a class="reference internal" href="api/tables.html#tt.tables.truth_table.TruthTable" title="tt.tables.truth_table.TruthTable"><code class="xref py py-class docutils literal"><span class="pre">TruthTable</span></code></a> class</li>
+<li>Added test coverage for the CPython 3.6, PyPy, and PyPy3 runtimes</li>
+<li>Migrated all documentation to from <a class="reference external" href="http://www.sphinx-doc.org/en/stable/ext/napoleon.html">Napoleon</a> docstrings to standard <a class="reference external" href="http://www.sphinx-doc.org/en/stable/index.html">Sphinx</a> docstrings</li>
+<li>Added <a class="reference external" href="https://docs.python.org/3/library/doctest.html">doctest</a> tests to the documentation</li>
+<li>Added type-checking to the <a class="reference internal" href="api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a> class&#8217;s initialization</li>
+<li>Fixed a bug in the handling of empty expressions in the CLI</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="pre-0-5">
+<h2>pre-0.5<a class="headerlink" href="#pre-0-5" title="Permalink to this headline">¶</a></h2>
+<p>Unfortunately, release notes were not kept before the 0.5.0 release.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">the Boolean expression toolbox</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=welchbj&repo=tt&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#x">0.6.x</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">0.6.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">0.6.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">0.6.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">0.5.x</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">0.5.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">0.5.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pre-0-5">pre-0.5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prior_art.html">Prior Art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="special_thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="author.html">Author</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/cli.html"><code class="docutils literal"><span class="pre">cli</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/definitions.html"><code class="docutils literal"><span class="pre">definitions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/errors.html"><code class="docutils literal"><span class="pre">errors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/expressions.html"><code class="docutils literal"><span class="pre">expressions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/satisfiability.html"><code class="docutils literal"><span class="pre">satisfiability</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/tables.html"><code class="docutils literal"><span class="pre">tables</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/transformations.html"><code class="docutils literal"><span class="pre">transformations</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/trees.html"><code class="docutils literal"><span class="pre">trees</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="user_guide/table_basics.html" title="previous chapter">Table basics</a></li>
+      <li>Next: <a href="development.html" title="next chapter">Development</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Brian Welch.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/release_notes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

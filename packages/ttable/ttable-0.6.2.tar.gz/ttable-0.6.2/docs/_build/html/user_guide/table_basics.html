@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Table basics &#8212; tt 0.6.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.6.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Release Notes" href="../release_notes.html" />
+    <link rel="prev" title="Expression basics" href="expression_basics.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="table-basics">
+<h1>Table basics<a class="headerlink" href="#table-basics" title="Permalink to this headline">¶</a></h1>
+<p>Truth tables are a nice way of showing the behavior of an expression for each permutation of possible inputs and are nice tool to pair with expressions. Let&#8217;s examine the interface provided by tt for working with truth tables.</p>
+<div class="section" id="creating-a-table-object-from-an-expression">
+<h2>Creating a table object from an expression<a class="headerlink" href="#creating-a-table-object-from-an-expression" title="Permalink to this headline">¶</a></h2>
+<p>Surprisingly, the top-level class for dealing with truth tables in tt is called <a class="reference internal" href="../api/tables.html#tt.tables.truth_table.TruthTable" title="tt.tables.truth_table.TruthTable"><code class="xref py py-class docutils literal"><span class="pre">TruthTable</span></code></a>. Let&#8217;s begin by importing it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">TruthTable</span>
+</pre></div>
+</div>
+<p>There are a few ways we can fill up a truth table in tt. One of them is to pass in an expression, either as an already-created <a class="reference internal" href="../api/expressions.html#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a> object or as a string:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="s1">&#39;A xor B&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| A | B |   |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 0 | 0 | 0 |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 0 | 1 | 1 |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 1 | 0 | 1 |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 1 | 1 | 0 |</span>
+<span class="go">+---+---+---+</span>
+</pre></div>
+</div>
+<p>As we we in the above example, printing tables produces a nicely-formatted text table. Tables will scale to fit the size of the symbol names, too:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="s1">&#39;operand_1 and operand_2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">+-----------+-----------+---+</span>
+<span class="go">| operand_1 | operand_2 |   |</span>
+<span class="go">+-----------+-----------+---+</span>
+<span class="go">|     0     |     0     | 0 |</span>
+<span class="go">+-----------+-----------+---+</span>
+<span class="go">|     0     |     1     | 0 |</span>
+<span class="go">+-----------+-----------+---+</span>
+<span class="go">|     1     |     0     | 0 |</span>
+<span class="go">+-----------+-----------+---+</span>
+<span class="go">|     1     |     1     | 1 |</span>
+<span class="go">+-----------+-----------+---+</span>
+</pre></div>
+</div>
+<p>By default, tt will order the symbols in the top row of of the table to match the order of their appearance in the original expression; however, you can impose your own order, too:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="s1">&#39;A xor B&#39;</span><span class="p">,</span> <span class="n">ordering</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| B | A |   |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 0 | 0 | 0 |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 0 | 1 | 1 |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 1 | 0 | 1 |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 1 | 1 | 0 |</span>
+<span class="go">+---+---+---+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-a-table-object-from-values">
+<h2>Creating a table object from values<a class="headerlink" href="#creating-a-table-object-from-values" title="Permalink to this headline">¶</a></h2>
+<p>The tables we looked at above were populated by evaluating the expression for each combination of input values, but let&#8217;s say that you already have the values you want in your truth table. You&#8217;d populate your table like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="n">from_values</span><span class="o">=</span><span class="s1">&#39;00x1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| A | B |   |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 0 | 0 | 0 |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 0 | 1 | 0 |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 1 | 0 | x |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 1 | 1 | 1 |</span>
+<span class="go">+---+---+---+</span>
+</pre></div>
+</div>
+<p>Notice that populating tables like this allows for <em>don&#8217;t cares</em> (indicated by <code class="docutils literal"><span class="pre">'x'</span></code>) to be present in your table. Additionally, we can see that symbol names were automatically generated for us. That&#8217;s nice sometimes, but what if we want to specify them ourselves? We return to the <code class="docutils literal"><span class="pre">ordering</span></code> keyword argument:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="n">from_values</span><span class="o">=</span><span class="s1">&#39;1x01&#39;</span><span class="p">,</span> <span class="n">ordering</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;op1&#39;</span><span class="p">,</span> <span class="s1">&#39;op2&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">+-----+-----+---+</span>
+<span class="go">| op1 | op2 |   |</span>
+<span class="go">+-----+-----+---+</span>
+<span class="go">|  0  |  0  | 1 |</span>
+<span class="go">+-----+-----+---+</span>
+<span class="go">|  0  |  1  | x |</span>
+<span class="go">+-----+-----+---+</span>
+<span class="go">|  1  |  0  | 0 |</span>
+<span class="go">+-----+-----+---+</span>
+<span class="go">|  1  |  1  | 1 |</span>
+<span class="go">+-----+-----+---+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="accessing-values-from-a-table">
+<h2>Accessing values from a table<a class="headerlink" href="#accessing-values-from-a-table" title="Permalink to this headline">¶</a></h2>
+<p>So far, we&#8217;ve only been able to examine the results stored in our tables by printing them. This is nice for looking at an end result, but we need programmatic methods of accessing the values in our tables. There&#8217;s a few ways to do this in tt; one such example is the <a class="reference internal" href="../api/tables.html#tt.tables.truth_table.TruthTable.results" title="tt.tables.truth_table.TruthTable.results"><code class="xref py py-data docutils literal"><span class="pre">results</span></code></a> attribute present on <a class="reference internal" href="../api/tables.html#tt.tables.truth_table.TruthTable" title="tt.tables.truth_table.TruthTable"><code class="xref py py-class docutils literal"><span class="pre">TruthTable</span></code></a> objects, which stores all results in the table:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="s1">&#39;!A &amp;&amp; B&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">results</span>
+<span class="go">[False, True, False, False]</span>
+</pre></div>
+</div>
+<p>Results in the table are also available by indexing the table:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">(False, True, False, False)</span>
+</pre></div>
+</div>
+<p>Accessing results by index is also an intuitive time to use binary literals:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="mb">0b00</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mb">0b01</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mb">0b10</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mb">0b11</span><span class="p">]</span>
+<span class="go">(False, True, False, False)</span>
+</pre></div>
+</div>
+<p>Tables in tt are also iterable. There are a couple of important items to note. First, iterating through the entries in a table will skip over the entries that would have appeared as <code class="docutils literal"><span class="pre">None</span></code> in the <a class="reference internal" href="../api/tables.html#tt.tables.truth_table.TruthTable.results" title="tt.tables.truth_table.TruthTable.results"><code class="xref py py-data docutils literal"><span class="pre">results</span></code></a> list. Second, in addition to the result, each iteration through the table yields a <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">namedtuple</span></code></a>-like object representing the inputs associated with that result. Let&#8217;s take a look:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">inputs</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">inputs</span><span class="o">.</span><span class="n">B</span>
+<span class="gp">... </span>    <span class="nb">str</span><span class="p">(</span><span class="n">inputs</span><span class="p">),</span> <span class="n">result</span>
+<span class="gp">...</span>
+<span class="go">(False, False)</span>
+<span class="go">(&#39;A=0, B=0&#39;, False)</span>
+<span class="go">(False, True)</span>
+<span class="go">(&#39;A=0, B=1&#39;, True)</span>
+<span class="go">(True, False)</span>
+<span class="go">(&#39;A=1, B=0&#39;, False)</span>
+<span class="go">(True, True)</span>
+<span class="go">(&#39;A=1, B=1&#39;, False)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="partially-filling-tables">
+<h2>Partially filling tables<a class="headerlink" href="#partially-filling-tables" title="Permalink to this headline">¶</a></h2>
+<p>Up to this point, we&#8217;ve only taken a look at tables with all of their results filled in, but we don&#8217;t have to completely fill up our tables to start working with them. Here&#8217;s an example of iteratively filling a table:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="s1">&#39;A nor B&#39;</span><span class="p">,</span> <span class="n">fill_all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">is_full</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">Empty!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">is_full</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| A | B |   |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 0 | 0 | 1 |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 0 | 1 | 0 |</span>
+<span class="go">+---+---+---+</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">fill</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">is_full</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| A | B |   |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 0 | 0 | 1 |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 0 | 1 | 0 |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 1 | 0 | 0 |</span>
+<span class="go">+---+---+---+</span>
+<span class="go">| 1 | 1 | 0 |</span>
+<span class="go">+---+---+---+</span>
+</pre></div>
+</div>
+<p>Empty slots in the table will be represented with a corresponding <code class="docutils literal"><span class="pre">None</span></code> entry for their result:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="s1">&#39;A or B&#39;</span><span class="p">,</span> <span class="n">fill_all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">results</span>
+<span class="go">[None, None, None, None]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">B</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">results</span>
+<span class="go">[False, None, True, None]</span>
+</pre></div>
+</div>
+<p>Make sure not to try to keep filling an already-full table, though:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="n">from_values</span><span class="o">=</span><span class="s1">&#39;0110&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">is_full</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">fill</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="o">...</span>
+<span class="gr">tt.errors.state.AlreadyFullTableError</span>: <span class="n">Cannot fill an already-full table</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="logical-equivalence">
+<h2>Logical equivalence<a class="headerlink" href="#logical-equivalence" title="Permalink to this headline">¶</a></h2>
+<p>Another neat feature provided by tt&#8217;s tables is the checking of logical equivalence:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="s1">&#39;A xor B&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t2</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="n">from_values</span><span class="o">=</span><span class="s1">&#39;0110&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span><span class="o">.</span><span class="n">equivalent_to</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span><span class="o">.</span><span class="n">equivalent_to</span><span class="p">(</span><span class="s1">&#39;C xor D&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Note that this equivalence comparison looks only at the result values of the tables and doesn&#8217;t examine at the symbols of either table.</p>
+<p>Next, let&#8217;s examine how <em>don&#8217;t cares</em> function within tt&#8217;s concept of logical equivalence. <em>Don&#8217;t cares</em> in the calling table will be considered to equal to any value in the comparison table, but any explicity value in the calling table must be matched in the comparison table to be considered equal.</p>
+<p>In this sense, a fully-specified table (i.e., one without any <em>don&#8217;t cares</em>) will never be logically equivalent to one which contains <em>don&#8217;t cares</em>, but the converse may be true. Let&#8217;s see an example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="s1">&#39;C nand D&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t2</span> <span class="o">=</span> <span class="n">TruthTable</span><span class="p">(</span><span class="n">from_values</span><span class="o">=</span><span class="s1">&#39;xx10&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span><span class="o">.</span><span class="n">equivalent_to</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t2</span><span class="o">.</span><span class="n">equivalent_to</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">the Boolean expression toolbox</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=welchbj&repo=tt&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../user_guide.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="expression_basics.html">Expression basics</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Table basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-table-object-from-an-expression">Creating a table object from an expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-table-object-from-values">Creating a table object from values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-values-from-a-table">Accessing values from a table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#partially-filling-tables">Partially filling tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logical-equivalence">Logical equivalence</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prior_art.html">Prior Art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../author.html">Author</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/cli.html"><code class="docutils literal"><span class="pre">cli</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/definitions.html"><code class="docutils literal"><span class="pre">definitions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/errors.html"><code class="docutils literal"><span class="pre">errors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/expressions.html"><code class="docutils literal"><span class="pre">expressions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/satisfiability.html"><code class="docutils literal"><span class="pre">satisfiability</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/tables.html"><code class="docutils literal"><span class="pre">tables</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/transformations.html"><code class="docutils literal"><span class="pre">transformations</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/trees.html"><code class="docutils literal"><span class="pre">trees</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../user_guide.html">User Guide</a><ul>
+      <li>Previous: <a href="expression_basics.html" title="previous chapter">Expression basics</a></li>
+      <li>Next: <a href="../release_notes.html" title="next chapter">Release Notes</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Brian Welch.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/user_guide/table_basics.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

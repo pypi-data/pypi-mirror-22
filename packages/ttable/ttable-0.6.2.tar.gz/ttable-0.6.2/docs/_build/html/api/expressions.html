@@ -1,0 +1,700 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>expressions &#8212; tt 0.6.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.6.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="satisfiability" href="satisfiability.html" />
+    <link rel="prev" title="errors" href="errors.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-tt.expressions">
+<span id="expressions"></span><h1><code class="docutils literal"><span class="pre">expressions</span></code><a class="headerlink" href="#module-tt.expressions" title="Permalink to this headline">¶</a></h1>
+<p>Tools for working with Boolean expressions.</p>
+<div class="section" id="module-tt.expressions.bexpr">
+<span id="expressions-bexpr-module"></span><h2><code class="docutils literal"><span class="pre">expressions.bexpr</span></code> module<a class="headerlink" href="#module-tt.expressions.bexpr" title="Permalink to this headline">¶</a></h2>
+<p>Tools for interacting with Boolean expressions.</p>
+<dl class="class">
+<dt id="tt.expressions.bexpr.BooleanExpression">
+<em class="property">class </em><code class="descclassname">tt.expressions.bexpr.</code><code class="descname">BooleanExpression</code><span class="sig-paren">(</span><em>expr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/expressions/bexpr.html#BooleanExpression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>An interface for interacting with a Boolean expression.</p>
+<p>Instances of <code class="docutils literal"><span class="pre">BooleanExpression</span></code> are meant to be immutable and can be
+instantiated from a few different representations of expressions. The
+simplest way to make an expression object is from a string:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;(A or B) iff (C and D)&#39;</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;(A or B) iff (C and D)&quot;&gt;</span>
+</pre></div>
+</div>
+<p>If you already have an instance of <a class="reference internal" href="trees.html#tt.trees.tree_node.ExpressionTreeNode" title="tt.trees.tree_node.ExpressionTreeNode"><code class="xref py py-class docutils literal"><span class="pre">ExpressionTreeNode</span></code></a> laying around, you can make a
+new expression object from that, too:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">ExpressionTreeNode</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree_root</span> <span class="o">=</span> <span class="n">ExpressionTreeNode</span><span class="o">.</span><span class="n">build_tree</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span>
+<span class="gp">... </span>     <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span>
+<span class="gp">... </span>     <span class="s1">&#39;iff&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BooleanExpression</span><span class="p">(</span><span class="n">tree_root</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;(A or B) iff (C and D)&quot;&gt;</span>
+</pre></div>
+</div>
+<p>Additionally, any sub-tree node can be used to build an expression object.
+Continuing from above, let&#8217;s make a new expression object for each of the
+sub-expressions wrapped in parentheses:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">BooleanExpression</span><span class="p">(</span><span class="n">tree_root</span><span class="o">.</span><span class="n">l_child</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;A or B&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BooleanExpression</span><span class="p">(</span><span class="n">tree_root</span><span class="o">.</span><span class="n">r_child</span><span class="p">)</span>
+<span class="go">&lt;BooleanExpression &quot;C and D&quot;&gt;</span>
+</pre></div>
+</div>
+<p>Expressions also implement the equality and inequality operators (<code class="docutils literal"><span class="pre">==</span></code>
+and <code class="docutils literal"><span class="pre">!=</span></code>). Equality is determined by the same semantic structure and the
+same operand names; the string used to represent the operators in two
+expressions is not taken into account. Here&#8217;s a few examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">BooleanExpression</span> <span class="k">as</span> <span class="n">be</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">be</span><span class="p">(</span><span class="s1">&#39;A or B or C&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">be</span><span class="p">(</span><span class="s1">&#39;A or B or C&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">be</span><span class="p">(</span><span class="s1">&#39;A or B or C&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">be</span><span class="p">(</span><span class="s1">&#39;A || B || C&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">be</span><span class="p">(</span><span class="s1">&#39;A or B or C&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">be</span><span class="p">(</span><span class="s1">&#39;A or C or B&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>expr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a> or <a class="reference internal" href="trees.html#tt.trees.tree_node.ExpressionTreeNode" title="tt.trees.tree_node.ExpressionTreeNode"><code class="xref py py-class docutils literal"><span class="pre">ExpressionTreeNode</span></code></a>) &#8211; The expression representation from which this object is
+derived.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="errors.html#tt.errors.grammar.BadParenPositionError" title="tt.errors.grammar.BadParenPositionError"><strong>BadParenPositionError</strong></a> &#8211; If the passed expression contains a
+parenthesis in an invalid position.</li>
+<li><a class="reference internal" href="errors.html#tt.errors.grammar.EmptyExpressionError" title="tt.errors.grammar.EmptyExpressionError"><strong>EmptyExpressionError</strong></a> &#8211; If the passed expressions contains nothing
+other than whitespace.</li>
+<li><a class="reference internal" href="errors.html#tt.errors.grammar.ExpressionOrderError" title="tt.errors.grammar.ExpressionOrderError"><strong>ExpressionOrderError</strong></a> &#8211; If the expression contains invalid
+consecutive operators or operands.</li>
+<li><a class="reference internal" href="errors.html#tt.errors.arguments.InvalidArgumentTypeError" title="tt.errors.arguments.InvalidArgumentTypeError"><strong>InvalidArgumentTypeError</strong></a> &#8211; If <code class="docutils literal"><span class="pre">expr</span></code> is not an acceptable type.</li>
+<li><a class="reference internal" href="errors.html#tt.errors.grammar.InvalidIdentifierError" title="tt.errors.grammar.InvalidIdentifierError"><strong>InvalidIdentifierError</strong></a> &#8211; If any parsed variable symbols in the
+expression are invalid identifiers.</li>
+<li><a class="reference internal" href="errors.html#tt.errors.grammar.UnbalancedParenError" title="tt.errors.grammar.UnbalancedParenError"><strong>UnbalancedParenError</strong></a> &#8211; If any parenthesis pairs remain unbalanced.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>It is important to note that aside from <a class="reference internal" href="errors.html#tt.errors.arguments.InvalidArgumentTypeError" title="tt.errors.arguments.InvalidArgumentTypeError"><code class="xref py py-exc docutils literal"><span class="pre">InvalidArgumentTypeError</span></code></a>, all exceptions raised in
+expression initialization will be descendants of <a class="reference internal" href="errors.html#tt.errors.grammar.GrammarError" title="tt.errors.grammar.GrammarError"><code class="xref py py-exc docutils literal"><span class="pre">GrammarError</span></code></a>.</p>
+<dl class="method">
+<dt id="tt.expressions.bexpr.BooleanExpression.constrain">
+<code class="descname">constrain</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/expressions/bexpr.html#BooleanExpression.constrain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.constrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>A context manager to impose satisfiability constraints.</p>
+<p>This is the interface for adding assumptions to the satisfiability
+solving functionality provided through the <a class="reference internal" href="#tt.expressions.bexpr.BooleanExpression.sat_one" title="tt.expressions.bexpr.BooleanExpression.sat_one"><code class="xref py py-func docutils literal"><span class="pre">sat_one()</span></code></a> and
+<a class="reference internal" href="#tt.expressions.bexpr.BooleanExpression.sat_all" title="tt.expressions.bexpr.BooleanExpression.sat_all"><code class="xref py py-func docutils literal"><span class="pre">sat_all()</span></code></a> methods.</p>
+<p>It should be noted that this context manager is only designed to work
+with the satisfiability-related functionality of this class.
+Constrained symbol values will not have an effect on non-sat methods of
+this class. For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;(A or B) and (C or D)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">b</span><span class="o">.</span><span class="n">constrain</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">b</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>This context manager returns a reference to the same object upon which
+it is called. This behavior is designed with the following use case in
+mind:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;A or B&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">constrain</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">as</span> <span class="n">b</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">b</span><span class="o">.</span><span class="n">sat_one</span><span class="p">()</span>
+<span class="gp">...</span>
+<span class="go">&lt;BooleanValues [A=1, B=0]&gt;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>kwargs</strong> &#8211; Keys are names of symbols in this expression; the
+specified value for each of these keys will be added to the
+<code class="docutils literal"><span class="pre">constraints</span></code> attribute of this object for the duration of the
+context manager.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A reference to the same object that called this method
+(i.e., <code class="docutils literal"><span class="pre">self</span></code> in the context of this method).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference internal" href="#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="errors.html#tt.errors.state.AlreadyConstrainedSymbolError" title="tt.errors.state.AlreadyConstrainedSymbolError"><strong>AlreadyConstrainedSymbolError</strong></a> &#8211; If trying to constrain this
+expression with multiple context managers.</li>
+<li><a class="reference internal" href="errors.html#tt.errors.symbols.ExtraSymbolError" title="tt.errors.symbols.ExtraSymbolError"><strong>ExtraSymbolError</strong></a> &#8211; If a symbol not in this expression is passed
+through <code class="docutils literal"><span class="pre">kwargs</span></code>.</li>
+<li><a class="reference internal" href="errors.html#tt.errors.arguments.InvalidArgumentValueError" title="tt.errors.arguments.InvalidArgumentValueError"><strong>InvalidArgumentValueError</strong></a> &#8211; If no contraints are specified
+(i.e., <code class="docutils literal"><span class="pre">kwargs</span></code> is empty).</li>
+<li><a class="reference internal" href="errors.html#tt.errors.evaluation.InvalidBooleanValueError" title="tt.errors.evaluation.InvalidBooleanValueError"><strong>InvalidBooleanValueError</strong></a> &#8211; If any values from <code class="docutils literal"><span class="pre">kwargs</span></code> are not
+valid Boolean inputs.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tt.expressions.bexpr.BooleanExpression.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/expressions/bexpr.html#BooleanExpression.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the Boolean expression for the passed keyword arguments.</p>
+<p>This is a checked wrapper around the <a class="reference internal" href="#tt.expressions.bexpr.BooleanExpression.evaluate_unchecked" title="tt.expressions.bexpr.BooleanExpression.evaluate_unchecked"><code class="xref py py-func docutils literal"><span class="pre">evaluate_unchecked()</span></code></a>
+function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>kwargs</strong> &#8211; Keys are names of symbols in this expression; the
+specified value for each of these keys will be substituted into the
+expression for evaluation.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The result of evaluating the expression.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">bool</span></code></a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="errors.html#tt.errors.symbols.ExtraSymbolError" title="tt.errors.symbols.ExtraSymbolError"><strong>ExtraSymbolError</strong></a> &#8211; If a symbol not in this expression is passed
+through <code class="docutils literal"><span class="pre">kwargs</span></code>.</li>
+<li><a class="reference internal" href="errors.html#tt.errors.symbols.MissingSymbolError" title="tt.errors.symbols.MissingSymbolError"><strong>MissingSymbolError</strong></a> &#8211; If any symbols in this expression are not
+passed through <code class="docutils literal"><span class="pre">kwargs</span></code>.</li>
+<li><a class="reference internal" href="errors.html#tt.errors.evaluation.InvalidBooleanValueError" title="tt.errors.evaluation.InvalidBooleanValueError"><strong>InvalidBooleanValueError</strong></a> &#8211; If any values from <code class="docutils literal"><span class="pre">kwargs</span></code> are not
+valid Boolean inputs.</li>
+<li><a class="reference internal" href="errors.html#tt.errors.grammar.InvalidIdentifierError" title="tt.errors.grammar.InvalidIdentifierError"><strong>InvalidIdentifierError</strong></a> &#8211; If any symbol names are invalid
+identifiers.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;A or B&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tt.expressions.bexpr.BooleanExpression.evaluate_unchecked">
+<code class="descname">evaluate_unchecked</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/expressions/bexpr.html#BooleanExpression.evaluate_unchecked"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.evaluate_unchecked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the Boolean expression without checking the input.</p>
+<p>This is used for evaluation by the <a class="reference internal" href="#tt.expressions.bexpr.BooleanExpression.evaluate" title="tt.expressions.bexpr.BooleanExpression.evaluate"><code class="xref py py-func docutils literal"><span class="pre">evaluate()</span></code></a> method, which
+validates the input <code class="docutils literal"><span class="pre">kwargs</span></code> before passing them to this method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>kwargs</strong> &#8211; Keys are names of symbols in this expression; the
+specified value for each of these keys will be substituted into the
+expression for evaluation.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The Boolean result of evaluating the expression.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">bool</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tt.expressions.bexpr.BooleanExpression.is_cnf">
+<code class="descname">is_cnf</code><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.is_cnf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this expression is in conjunctive norma form or not.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">bool</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="kn">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;(A or ~B) and (~C or D or E) and F&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">is_cnf</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;A nand B&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">is_cnf</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tt.expressions.bexpr.BooleanExpression.is_dnf">
+<code class="descname">is_dnf</code><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.is_dnf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this expression is in conjunctive normal form or not.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">bool</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="kn">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;(A and B) or (~C and D)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">is_dnf</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;(op1 or !op2) and (op3 or op4)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">is_dnf</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tt.expressions.bexpr.BooleanExpression.iter_clauses">
+<code class="descname">iter_clauses</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/expressions/bexpr.html#BooleanExpression.iter_clauses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.iter_clauses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over the clauses in this expression.</p>
+<p>An expression must be in conjunctive normal form (CNF) or disjunctive
+normal form (DNF) in order to iterate over its clauses. Here&#8217;s a simple
+example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;(~A or B) and (C or D) and (~E or ~F)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">clause</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">iter_clauses</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">clause</span>
+<span class="gp">...</span>
+<span class="go">&lt;BooleanExpression &quot;~A or B&quot;&gt;</span>
+<span class="go">&lt;BooleanExpression &quot;C or D&quot;&gt;</span>
+<span class="go">&lt;BooleanExpression &quot;~E or ~F&quot;&gt;</span>
+</pre></div>
+</div>
+<p>In the case of an ambiguous expression form (between CNF and DNF), the
+clauses will be interpreted to be in CNF form. For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;A and ~B and C&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">is_cnf</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">is_dnf</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">clause</span><span class="p">)</span> <span class="k">for</span> <span class="n">clause</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">iter_clauses</span><span class="p">()))</span>
+<span class="go">A, ~B, C</span>
+</pre></div>
+</div>
+<p>If you want to enforce a specific CNF or DNF interpretation of the
+clauses, take a look at <a class="reference internal" href="#tt.expressions.bexpr.BooleanExpression.iter_cnf_clauses" title="tt.expressions.bexpr.BooleanExpression.iter_cnf_clauses"><code class="xref py py-func docutils literal"><span class="pre">iter_cnf_clauses()</span></code></a> and
+<a class="reference internal" href="#tt.expressions.bexpr.BooleanExpression.iter_dnf_clauses" title="tt.expressions.bexpr.BooleanExpression.iter_dnf_clauses"><code class="xref py py-func docutils literal"><span class="pre">iter_dnf_clauses()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An iterator of expression objects, each representing a
+separate clause of this expression.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Iterator[<a class="reference internal" href="#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a>]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="errors.html#tt.errors.state.RequiresNormalFormError" title="tt.errors.state.RequiresNormalFormError"><strong>RequiresNormalFormError</strong></a> &#8211; If this expression is not in
+conjunctive or disjunctive normal form.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tt.expressions.bexpr.BooleanExpression.iter_cnf_clauses">
+<code class="descname">iter_cnf_clauses</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/expressions/bexpr.html#BooleanExpression.iter_cnf_clauses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.iter_cnf_clauses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over the CNF clauses in this expression.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="kn">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;(A or B) and ~C&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">clause</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">iter_cnf_clauses</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">clause</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">A or B</span>
+<span class="go">~C</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An iterator of expression objects, each representing a
+separate CNF clause of this expression.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Iterator[<a class="reference internal" href="#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a>]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="errors.html#tt.errors.state.RequiresNormalFormError" title="tt.errors.state.RequiresNormalFormError"><strong>RequiresNormalFormError</strong></a> &#8211; If this expression is not in
+conjunctive normal form.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tt.expressions.bexpr.BooleanExpression.iter_dnf_clauses">
+<code class="descname">iter_dnf_clauses</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/expressions/bexpr.html#BooleanExpression.iter_dnf_clauses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.iter_dnf_clauses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over the DNF clauses in this expression.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="kn">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;(A and ~B) or (C and D and E)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">clause</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">iter_dnf_clauses</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">clause</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">A and ~B</span>
+<span class="go">C and D and E</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An iterator of expression objects, each representing a
+separate DNF clause of this expression.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Iterator[<a class="reference internal" href="#tt.expressions.bexpr.BooleanExpression" title="tt.expressions.bexpr.BooleanExpression"><code class="xref py py-class docutils literal"><span class="pre">BooleanExpression</span></code></a>]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="errors.html#tt.errors.state.RequiresNormalFormError" title="tt.errors.state.RequiresNormalFormError"><strong>RequiresNormalFormError</strong></a> &#8211; If this expression is not in
+disjunctive normal form.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tt.expressions.bexpr.BooleanExpression.postfix_tokens">
+<code class="descname">postfix_tokens</code><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.postfix_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Similar to the <code class="docutils literal"><span class="pre">tokens</span></code> attribute, but in postfix order.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>]</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="kn">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;A xor (B or C)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">postfix_tokens</span>
+<span class="go">[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;or&#39;, &#39;xor&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tt.expressions.bexpr.BooleanExpression.raw_expr">
+<code class="descname">raw_expr</code><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.raw_expr" title="Permalink to this definition">¶</a></dt>
+<dd><p>The raw string expression, parsed upon initialization.</p>
+<p>This is what you pass into the <code class="docutils literal"><span class="pre">BooleanExpression</span></code> constructor; it is
+kept on the object as an attribute for convenience.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="kn">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;A nand B&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">raw_expr</span>
+<span class="go">&#39;A nand B&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tt.expressions.bexpr.BooleanExpression.sat_all">
+<code class="descname">sat_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/expressions/bexpr.html#BooleanExpression.sat_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.sat_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find all combinations of inputs that satisfy this expression.</p>
+<p>Under the hood, this method is using the functionality exposed in tt&#8217;s
+<a class="reference internal" href="satisfiability.html#module-tt.satisfiability.picosat" title="tt.satisfiability.picosat"><code class="xref py py-mod docutils literal"><span class="pre">satisfiability.picosat</span></code></a> module.</p>
+<p>Here&#8217;s a simple example of iterating through a few SAT solutions:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;(A xor B) and (C xor D)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">solution</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">sat_all</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">A=0, B=1, C=0, D=1</span>
+<span class="go">A=0, B=1, C=1, D=0</span>
+<span class="go">A=1, B=0, C=1, D=0</span>
+<span class="go">A=1, B=0, C=0, D=1</span>
+</pre></div>
+</div>
+<p>We can also constrain away a few of those solutions:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">b</span><span class="o">.</span><span class="n">constrain</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">solution</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">sat_all</span><span class="p">():</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">A=1, B=0, C=0, D=1</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An iterator of
+<a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">namedtuple</span></code></a>-like objects
+representing satisfying combinations of inputs; if no satisfying
+solutions exist, the iterator will be empty.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Iterator[<a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">namedtuple</span></code></a>
+-like objects]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="errors.html#tt.errors.evaluation.NoEvaluationVariationError" title="tt.errors.evaluation.NoEvaluationVariationError"><strong>NoEvaluationVariationError</strong></a> &#8211; If this is an expression of only
+constants.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tt.expressions.bexpr.BooleanExpression.sat_one">
+<code class="descname">sat_one</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tt/expressions/bexpr.html#BooleanExpression.sat_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.sat_one" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a combination of inputs that satisfies this expression.</p>
+<p>Under the hood, this method is using the functionality exposed in tt&#8217;s
+<a class="reference internal" href="satisfiability.html#module-tt.satisfiability.picosat" title="tt.satisfiability.picosat"><code class="xref py py-mod docutils literal"><span class="pre">satisfiability.picosat</span></code></a> module.</p>
+<p>Here&#8217;s a simple example of satisfying an expression:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="k">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;A xor 1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">sat_one</span><span class="p">()</span>
+<span class="go">&lt;BooleanValues [A=0]&gt;</span>
+</pre></div>
+</div>
+<p>Don&#8217;t forget about the utility provided by the <a class="reference internal" href="#tt.expressions.bexpr.BooleanExpression.constrain" title="tt.expressions.bexpr.BooleanExpression.constrain"><code class="xref py py-func docutils literal"><span class="pre">constrain()</span></code></a>
+context manager:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;(A nand B) iff C&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">b</span><span class="o">.</span><span class="n">constrain</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">b</span><span class="o">.</span><span class="n">sat_one</span><span class="p">()</span>
+<span class="gp">...</span>
+<span class="go">&lt;BooleanValues [A=1, B=0, C=1]&gt;</span>
+</pre></div>
+</div>
+<p>Finally, here&#8217;s an example when the expression cannot be satisfied:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;A xor 1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">constrain</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">b</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">b</span><span class="o">.</span><span class="n">sat_one</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="gp">...</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">namedtuple</span></code></a>-like
+object representing a satisfying set of values (see
+<a class="reference internal" href="definitions.html#tt.definitions.operands.boolean_variables_factory" title="tt.definitions.operands.boolean_variables_factory"><code class="xref py py-func docutils literal"><span class="pre">boolean_variables_factory</span></code></a> for more
+information about the type of object returned); <code class="docutils literal"><span class="pre">None</span></code>
+will be returned if no satisfiable set of inputs exists.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">namedtuple</span></code></a>-like object
+or <code class="docutils literal"><span class="pre">None</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="errors.html#tt.errors.evaluation.NoEvaluationVariationError" title="tt.errors.evaluation.NoEvaluationVariationError"><strong>NoEvaluationVariationError</strong></a> &#8211; If this is an expression of only
+constants.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tt.expressions.bexpr.BooleanExpression.symbols">
+<code class="descname">symbols</code><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.symbols" title="Permalink to this definition">¶</a></dt>
+<dd><p>The list of unique symbols present in this expression.</p>
+<p>The order of the symbols in this list matches the order of symbol
+appearance in the original expression.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>]</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="kn">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;A xor (B or C)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">symbols</span>
+<span class="go">[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tt.expressions.bexpr.BooleanExpression.tokens">
+<code class="descname">tokens</code><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parsed, non-whitespace tokens of an expression.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>]</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="kn">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;A xor (B or C)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">tokens</span>
+<span class="go">[&#39;A&#39;, &#39;xor&#39;, &#39;(&#39;, &#39;B&#39;, &#39;or&#39;, &#39;C&#39;, &#39;)&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tt.expressions.bexpr.BooleanExpression.tree">
+<code class="descname">tree</code><a class="headerlink" href="#tt.expressions.bexpr.BooleanExpression.tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>The tree node representing the root of the tree of this expression.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="trees.html#tt.trees.tree_node.ExpressionTreeNode" title="tt.trees.tree_node.ExpressionTreeNode"><code class="xref py py-class docutils literal"><span class="pre">ExpressionTreeNode</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tt</span> <span class="kn">import</span> <span class="n">BooleanExpression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">BooleanExpression</span><span class="p">(</span><span class="s1">&#39;A xor (B or C)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span>
+<span class="go">xor</span>
+<span class="go">`----A</span>
+<span class="go">`----or</span>
+<span class="go">     `----B</span>
+<span class="go">     `----C</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">the Boolean expression toolbox</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=welchbj&repo=tt&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prior_art.html">Prior Art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../special_thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../author.html">Author</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cli.html"><code class="docutils literal"><span class="pre">cli</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="definitions.html"><code class="docutils literal"><span class="pre">definitions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="errors.html"><code class="docutils literal"><span class="pre">errors</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">expressions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="satisfiability.html"><code class="docutils literal"><span class="pre">satisfiability</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html"><code class="docutils literal"><span class="pre">tables</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations.html"><code class="docutils literal"><span class="pre">transformations</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees.html"><code class="docutils literal"><span class="pre">trees</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="errors.html" title="previous chapter"><code class="docutils literal"><span class="pre">errors</span></code></a></li>
+      <li>Next: <a href="satisfiability.html" title="next chapter"><code class="docutils literal"><span class="pre">satisfiability</span></code></a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Brian Welch.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/api/expressions.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
