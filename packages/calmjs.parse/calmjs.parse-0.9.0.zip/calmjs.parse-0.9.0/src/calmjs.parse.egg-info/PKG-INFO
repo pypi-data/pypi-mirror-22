@@ -1,0 +1,326 @@
+Metadata-Version: 1.1
+Name: calmjs.parse
+Version: 0.9.0
+Summary: Various parsers for ECMA standards.
+Home-page: https://github.com/calmjs/calmjs.parse
+Author: Tommy Yu
+Author-email: tommy.yu@auckland.ac.nz
+License: mit
+Description: calmjs.parse
+        ============
+        
+        A collection of parsers and helper libraries for understanding
+        ECMAScript; a partial fork of |slimit|_.
+        
+        .. image:: https://travis-ci.org/calmjs/calmjs.parse.svg?branch=master
+            :target: https://travis-ci.org/calmjs/calmjs.parse
+        .. image:: https://ci.appveyor.com/api/projects/status/5dj8dnu9gmj02msu/branch/master?svg=true
+            :target: https://ci.appveyor.com/project/metatoaster/calmjs-parse/branch/master
+        .. image:: https://coveralls.io/repos/github/calmjs/calmjs.parse/badge.svg?branch=master
+            :target: https://coveralls.io/github/calmjs/calmjs.parse?branch=master
+        
+        .. |calmjs.parse| replace:: ``calmjs.parse``
+        .. |ply| replace:: ``ply``
+        .. |slimit| replace:: ``slimit``
+        .. _ply: https://pypi.python.org/pypi/ply
+        .. _slimit: https://pypi.python.org/pypi/slimit
+        
+        
+        Introduction
+        ------------
+        
+        For any kind of build system that operates with JavaScript code in
+        conjunction with a module system, the ability to understand what modules
+        a given set of sources require or provide is paramount.  As the Calmjs
+        project provides a framework that produces and consume these module
+        definitions, the the ability to have a comprehensive understanding of
+        given JavaScript sources is a given.  This goal was originally achieved
+        using |slimit|_, a JavaScript minifier library that also provided a
+        comprehensive parser class that was built using Python Lex-Yacc (i.e.
+        |ply|_).
+        
+        However, as of mid-2017, it was noted that |slimit| remained in a
+        minimum state of maintenance for more than four years (its most recent
+        release, 0.8.1, was made 2013-03-26), along with a number of serious
+        outstanding issues have left unattended and unresolved for the duration
+        of that timespan.  As the development of the Calmjs framework require
+        those issues to be rectified as soon as possible, a decision to fork the
+        parser portion of |slimit| was made. This was done in order to cater to
+        the interests current to Calmjs project at that moment in time.
+        
+        The fork was initial cut from another fork of |slimit| (specifically
+        `lelit/slimit <https://github.com/lelit/slimit>`_), as it introduced and
+        aggregated a number of bug fixes from various sources.  To ensure a
+        better quality control and assurance, a number of problematic changes
+        introduced by that fork were removed.   Also, new tests were created to
+        bring coverage to full, and issues reported on the |slimit| tracker were
+        noted and formalized into test cases where applicable.  Finally, grammar
+        rules were updated to ensure better conformance with the ECMA-262 (ES5)
+        specification.
+        
+        The goal of |calmjs.parse| is to provide a similar parser API as the
+        parser that |slimit| had provided.  The mangling and minification
+        functionalities as provided by the original has been omitted as they are
+        not relevant to code parsing.  A separate package containing those
+        mangling and minifying features as provided by |slimit| may be released
+        in the future.
+        
+        
+        Installation
+        ------------
+        
+        The following command may be executed to source the |calmjs.parse| wheel
+        from PyPI for installation into the current Python environment.
+        
+        .. code:: sh
+        
+            $ pip install calmjs.parse
+        
+        As this package uses |ply|, which produces auto-generated modules that
+        are shipped with the Python wheel for this package, this results in some
+        caveats.  The modules at hand contain generated tables for |ply|; the
+        wheel for this package will be compatible up to ``ply-3.10``, or the
+        latest release available at the time of release of |calmjs.parse|.  If a
+        more recent version of |ply| becomes available and is installed, the
+        generated tables in this package may become incompatible, thus a manual
+        optimization step outlined later in this document may be required.
+        Alternatively, |ply| may be downgraded to version 3.10.
+        
+        Alternative installation methods (for developers, advanced users)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        Development is still ongoing with |calmjs.parse|, for the latest
+        features and bug fixes, the development version may be installed through
+        git like so:
+        
+        .. code:: sh
+        
+            $ pip install git+https://github.com/calmjs/calmjs.parse.git#egg=calmjs.parse
+        
+        Alternatively, the git repository can be cloned directly and execute
+        ``python setup.py develop`` while inside the root of the source
+        directory.
+        
+        A manual optimization step may need to be performed for platforms and
+        systems that do not have utf8 as their default encoding.
+        
+        Manual optimization
+        ~~~~~~~~~~~~~~~~~~~
+        
+        As lex and yacc require the generation of symbol tables, a way to
+        optimize the performance is to cache the results.  For |ply|, this is
+        done using an autogenerated module.  However, the generated file is
+        marked with a version number, as the results may be specific to the
+        installed version of |ply|.  In |calmjs.parse| this is handled by giving
+        them a name specific to the version of |ply| and the major Python
+        version, as both together does result in subtle differences in the
+        outputs and expectations of the auto-generated modules.
+        
+        Typically, the process for this optimization is automatic and a correct
+        symbol table will be generated, however there are cases where this will
+        fail, so for this reason |calmjs.parse| provide a helper module and
+        executable that can be optionally invoked to ensure that the correct
+        encoding be used to generate that file.  Other reasons where this may be
+        necessary is to allow system administrators to do so for their end
+        users, as they may not have write privileges at that level.
+        
+        To execute the optimizer from the shell, the provided helper script may
+        be used like so:
+        
+        .. code:: sh
+        
+            $ python -m calmjs.parse.parsers.optimize
+        
+        If warnings appear that warn that tokens are defined but not used, they
+        may be safely ignored.
+        
+        This step is generally optionally for users who installed this package
+        from PyPI via a Python wheel, provided the caveats as outlined in the
+        installation section are addressed.
+        
+        Testing the installation
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        To ensure that the |calmjs.parse| installation is functioning correctly,
+        the built-in testsuite can be executed by the following:
+        
+        .. code:: sh
+        
+            $ python -m unittest calmjs.parse.tests.make_suite
+        
+        If there are failures, please file an issue on the issue tracker with
+        the full traceback, and/or the method of installation.  Please also
+        remember to include platform specific information, such as Python
+        version, operating system environments, the version of |ply| that was
+        installed, plus other information related to the issue at hand.
+        
+        
+        Usage
+        -----
+        
+        As this is a parser library, no executable shell commands are provided.
+        There is however a helper function provided at the top level for
+        immediate access to the parsing feature.  It may be used like so:
+        
+        .. code:: python
+        
+            >>> from calmjs.parse import es5
+            >>> program = es5('''
+            ... // simple program
+            ... var main = function(greet) {
+            ...     var hello = "hello " + greet;
+            ...     return hello;
+            ... };
+            ... console.log(main('world'));
+            ... ''')
+            >>> program  # for a simple repr-like nested view of the ast
+            <ES5Program ?children=[
+              <VarStatement ?children=[
+                <VarDecl identifier=<Identifier ...>, initializer=<FuncExpr ...>>
+              ]>,
+              <ExprStatement expr=<FunctionCall args=[
+                <FunctionCall ...>
+              ], identifier=<DotAccessor ...>>>
+            ]>
+            >>> print(program)  # automatic reconstruction of ast into source
+            var main = function(greet) {
+              var hello = "hello " + greet;
+              return hello;
+            };
+            console.log(main('world'));
+        
+        The parser classes are organized under the ``calmjs.parse.parsers``
+        module, with each language being under their own module.  A
+        corresponding lexer class with the same name is also provided under the
+        ``calmjs.parse.lexers`` module.  For the moment, only ES5 support is
+        implemented.
+        
+        AST (Abstract Syntax Tree) visitor classes are defined under the
+        appropriate named modules under ``calmjs.parse.visitors``; please refer
+        to their docstrings for documentation on their usage.  A quick example
+        to show how the es5 visitor may be used to regenerate the source tree
+        back into text for the above example (in fact, the ``__str__`` call
+        shown in the first example generates the output like so).
+        
+        .. code:: python
+        
+            >>> from calmjs.parse.visitors.es5 import PrettyPrinter
+            >>> visitor = PrettyPrinter(indent=4)
+            >>> print(visitor.visit(program))
+            var main = function(greet) {
+                var hello = "hello " + greet;
+                return hello;
+            };
+            console.log(main('world'));
+        
+        Note the change in indentation and the lack of comments, as this visitor
+        implementation has their own indentation scheme and the parser currently
+        skips over comments.
+        
+        
+        Troubleshooting
+        ---------------
+        
+        Instantiation the parser fails with ``UnicodeEncodeError``
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        For platforms or systems that do not have utf8 configured as the default
+        encoding, the automatic table generation may fail when constructing a
+        parser instance.  An example:
+        
+        .. code:: python-doctest
+        
+            >>> from calmjs.parse.parsers import es5
+            >>> parser = es5.Parser()
+            Traceback (most recent call last):
+              ...
+              File "c:\python35\lib\site-packages\ply-3.10-py3.5.egg\ply\lex.py", line 1043, in lex
+                lexobj.writetab(lextab, outputdir)
+              File "c:\python35\lib\site-packages\ply-3.10-py3.5.egg\ply\lex.py", line 195, in writetab
+                tf.write('_lexstatere   = %s\n' % repr(tabre))
+              File "c:\python35\lib\encodings\cp1252.py", line 19, in encode
+                return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+            UnicodeEncodeError: 'charmap' codec can't encode character '\u02c1' in position 2488: character maps to <undefined>
+        
+        A workaround helper script is provided, it may be executed like so:
+        
+        .. code:: sh
+        
+            $ python -m calmjs.parse.parsers.optimize
+        
+        For more details, refer to the ``Manual optimization`` section of this
+        document.
+        
+        
+        Contribute
+        ----------
+        
+        - Issue Tracker: https://github.com/calmjs/calmjs.parse/issues
+        - Source Code: https://github.com/calmjs/calmjs.parse
+        
+        
+        Legal
+        -----
+        
+        The |calmjs.parse| package is copyright (c) 2017 Auckland Bioengineering
+        Institute, University of Auckland.  The |calmjs.parse| package is
+        licensed under the MIT license (specifically, the Expat License), which
+        is also the same license that the package |slimit| was released under.
+        
+        The lexer, parser, visitor and the other types definitions portions were
+        originally imported from the |slimit| package; |slimit| is copyright (c)
+        Ruslan Spivak.
+        
+        The Calmjs project is copyright (c) 2017 Auckland Bioengineering
+        Institute, University of Auckland.
+        
+        Changelog
+        =========
+        
+        0.9.0 - 2017-06-09
+        ------------------
+        
+        - Initial release of the fork of ``slimit.parser`` and its parent
+          modules as ``calmjs.parse``.
+        - This release brings in a number of bug fixes that were available via
+          other forks of ``slimit``, with modifications or even a complete
+          revamp.
+        - Issues addressed includes:
+        
+          - `rspivak/slimit#52 <https://github.com/rspivak/slimit/issues/52>`_,
+            `rspivak/slimit#59 <https://github.com/rspivak/slimit/issues/59>`_,
+            `rspivak/slimit#81 <https://github.com/rspivak/slimit/issues/81>`_,
+            `rspivak/slimit#90 <https://github.com/rspivak/slimit/issues/90>`_
+            (relating to conformance of ecma-262 7.6 identifier names)
+          - `rspivak/slimit#54 <https://github.com/rspivak/slimit/issues/54>`_
+            (fixed by tracking scope and executable current token in lexer)
+          - `rspivak/slimit#57 <https://github.com/rspivak/slimit/issues/57>`_,
+            `rspivak/slimit#70 <https://github.com/rspivak/slimit/issues/70>`_
+            (octal encoding (e.g \0), from `redapple/slimit@a93204577f
+            <https://github.com/redapple/slimit/commit/a93204577f>`_)
+          - `rspivak/slimit#62 <https://github.com/rspivak/slimit/issues/62>`_
+            (formalized into a unittest that passed)
+          - `rspivak/slimit#73 <https://github.com/rspivak/slimit/issues/73>`_
+            (specifically the desire for a better repr; the minifier bits are
+            not relevant to this package)
+          - `rspivak/slimit#79 <https://github.com/rspivak/slimit/pull/79>`_
+            (tab module handling was completely reimplemented)
+          - `rspivak/slimit#82 <https://github.com/rspivak/slimit/issues/82>`_
+            (formalized into a unittest that passed)
+        
+        - Include various changes gathered by `rspivak/slimit#65
+          <https://github.com/rspivak/slimit/pull/65>`_, which may be the source
+          of some of the fixes listed above.
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: JavaScript
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
