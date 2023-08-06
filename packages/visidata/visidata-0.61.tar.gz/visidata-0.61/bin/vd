@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+#
+# Usage: $0 [-d] [-r] [<input_source> ...]
+
+import visidata
+
+def main():
+    """Use the VisiData interface to browse the given sources."""
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+
+    parser.add_argument('inputs', nargs='*', help='initial sources')
+    parser.add_argument('-d', dest='debug', action='store_true', default=False, help='abort on error')
+    parser.add_argument('-r', dest='readonly', action='store_true', default=False, help='disable editing')
+    parser.add_argument('-f', dest='filetype', help='specify file type')
+
+    for optname, v in visidata.base_options.items():
+        name, optval, defaultval, helpstr = v
+        action = 'store_true' if optval is False else 'store'
+        parser.add_argument('--' + optname.replace('_', '-'), action=action, dest=optname, default=optval, help=helpstr)
+
+    args = parser.parse_args()
+
+    for optname, optval in vars(args).items():
+        if optname != 'inputs':
+            visidata.options[optname] = optval
+
+    inputs = args.inputs or ['.']
+
+    sources = []
+    for src in inputs:
+        vs = visidata.openSource(src)
+        visidata.vd().editlog.open_hook(vs, src)
+        sources.append(vs)
+
+    visidata.run(sources)
+
+if __name__ == '__main__':
+    main()
