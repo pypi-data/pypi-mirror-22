@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{#PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"#}
+{#        "http://www.w3.org/TR/html4/loose.dtd">#}
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    {% load static %}
+    {% load compress %}
+    <title>{% block title %}{% block extratitle %}{% endblock %}
+        - Bibliografia Publikacji Pracowników {{ uczelnia.nazwa_dopelniacz }}
+    {% endblock %}</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+
+    {% compress css %}
+        <link rel="stylesheet" href="{% static 'scss/app.css' %}"/>
+    {% endcompress %}
+
+    {% compress js %}
+       <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static "jquery.cookie/jquery.cookie.js" %}"></script>
+       <script src="{% static 'foundation-sites/js/vendor/modernizr.js' %}"></script>
+       <script src="{% static 'foundation-sites/js/foundation.min.js' %}"></script>
+    {% endcompress %}
+
+    {% block extrahead %}
+    {% endblock %}
+    {% load favtags %}
+    {% placeFavicon %}
+</head>
+<body>
+{% block body %}
+{% endblock %}
+<script type="text/javascript">
+    $(document).foundation();
+</script>
+</body>
+<footer>
+    {% load bpp_version %}
+    <!-- wygenerowano dnia {% bpp_localtime %}, wersja {% bpp_version %} -->
+</footer>
+</html>
