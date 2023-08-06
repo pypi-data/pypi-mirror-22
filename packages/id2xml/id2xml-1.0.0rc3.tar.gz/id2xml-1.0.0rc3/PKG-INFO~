@@ -1,0 +1,120 @@
+Metadata-Version: 1.1
+Name: id2xml
+Version: 1.0.0rc3
+Summary: Convert text format RFCs and Internet-Drafts to .xml format
+Home-page: https://tools.ietf.org/tools/ietfdb/browser/branch/elft/id2rfcx/
+Author: Henrik Levkowetz
+Author-email: henrik@levkowetz.com
+License: Simplified BSD
+Description: Internet-Draft text to XML Conversion Tool
+        ==========================================
+        
+        This tool, 'id2xml', is intended for use by the RFC-Editor staff, in order to
+        produce a first xml2rfc-compatible XML version from text-only Internet-Draft
+        submissions.
+        
+        id2xml may also be useful for Internet-Draft authors who wish to start working
+        on a new version of an older draft or RFC, for which no xml2rfc-compatible XML
+        source is available.
+        
+        The releases of the 0.9.x release series are preview releases, with a number
+        of known deficiencies.  They are released in order that potential users may
+        provide feedback on the most desired improvements ahead of a 1.0.0 release.
+        
+        Version 0.9.0 can process the drafts specified in the development Statement of
+        Work to XML files acceptable to xml2rfc, and can also process a number of
+        other test files to acceptable XML.  However, adding new drafts to the test
+        set still reveals weaknesses in many cases, so trouble-free processing of any
+        arbitrary draft should not be expected from the 0.9.x series.
+        
+        The XML produced follows RFC 7749 [1]_ in version 0.9.x and 1.x of the tool, and
+        will follow RFC 7991 [2]_ in version 2.x, which will be released once support
+        is available to process XML sources which follows the RFC 7991 vocabulary.
+        
+        
+        .. [1] Reschke, J., "The "xml2rfc" Version 2 Vocabulary", RFC 7749, DOI
+           10.17487/RFC7749, February 2016, <http://www.rfc-editor.org/info/rfc7749>.
+        
+        .. [2] Hoffman, P., "The "xml2rfc" Version 3 Vocabulary", RFC 7991, DOI
+           10.17487/RFC7991, December 2016, http://www.rfc-editor.org/info/rfc7991>.
+        
+        
+        Changelog
+        =========
+        
+        
+        Version 1.0.0rc3 (26 May 2017)
+        ------------------------------------------------
+        
+        
+          This release reduces the diff between the text input file and the
+          text file resulting from the generated xml even more.  The average
+          number of lines in the input which is rendered differently in the
+          output is now below 3%.
+        
+          From the changelog:
+        
+          * Committed updated (smaller) diff files for test baseline
+        
+          * Added more alternatives to the code recognition regex, for xml tags and
+            C statements
+        
+          * Refined the header/footer stripping a bit, to not join text broken across
+            pages into one paragraph when there are too many intervening blank lines, 
+            or when the last line is a table or figure label.
+        
+          * Added handling of blank lines in list items, by inserting <vspace> as
+            needed
+        
+          * Added isertion of subcompact PIs for compact list.  Fixed some warning 
+            message issues.
+        
+          * Added another comment delimiter to the code regex, and applied it to
+            whole text blocks, not only to their first line.
+        
+          * Moved list block normalisation functions into the DraftParser class, and
+            added recognition of compact lists.  Also some refactoring.
+        
+          * Added more descriptive manpage text, and tweaked the making of the
+            manpage.
+        
+          * Added switches for trace start and stop on line number, and renamed the
+            trace-related switches.
+        
+          * Refined guess_list_style().
+        
+          * Added code to recognise 'centered' titles when they span the whole line
+        
+          * Rewrote the code which parses the top left column of the titlepage to not
+            assume any ordering of the lines, but permit them to occur in almost any
+            order.  The only exception is that if there's a working group string, it
+            must occur first, as it has no recognizable keyword to identify it.
+        
+        
+        
+        
+        
+        
+        Version 1.0.0rc2 (22 May 2017)
+        ------------------------------------------------
+        
+        
+          * Tweaked the help text and the manpage generation.
+        
+          * Updated MANIFEST and Makefile
+        
+          * Added some missing files, updated the acceptable diffs in test/ok/.
+        
+        
+        
+        
+        
+Keywords: Internet-Draft text to xml conversion
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Other Audience
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Text Processing :: Markup :: XML
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
