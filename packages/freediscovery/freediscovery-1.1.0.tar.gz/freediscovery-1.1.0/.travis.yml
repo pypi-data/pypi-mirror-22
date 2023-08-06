@@ -1,0 +1,52 @@
+language: python
+sudo: required # this is necessary to get gcc-4.8 for some reason (otherwise gcc-4.6 is used)
+dist: trusty
+matrix:
+    include:
+    - python: "3.6"
+      env: SKLEARN="0.18.1"
+    - python: "3.5" 
+      env: SKLEARN="0.18.1"
+
+# setup adapted from https://github.com/soft-matter/trackpy/blob/master/.travis.yml
+before_install:
+    - wget http://repo.continuum.io/miniconda/Miniconda${TRAVIS_PYTHON_VERSION:0:1}-latest-Linux-x86_64.sh -O miniconda.sh
+    - chmod +x miniconda.sh
+    - ./miniconda.sh -b
+    - export PATH=/home/travis/miniconda${TRAVIS_PYTHON_VERSION:0:1}/bin:$PATH
+    - conda update --yes conda
+    - conda info -a
+
+install: 
+    - conda config --append channels conda-forge
+    - conda install --yes --file requirements.txt simhash-py python=${TRAVIS_PYTHON_VERSION}
+    # reinstall the tested version of SKLEARN
+    - | 
+        if [ "${SKLEARN}" != "0.18.1" ]; then
+            pip uninstall --yes scikit-learn &&  pip install scikit-learn==${SKLEARN}
+        fi
+
+    - python setup.py install
+    - pwd
+
+script:
+    # run tests
+    - pip install pytest-cov codecov
+    - py.test -sv --cov=./
+    # install matplotlib which we don't add as a core dependency but which is used in examples
+    - pip install matplotlib==1.5.3 gunicorn
+    # now start the server and run the examples
+    - | 
+        freediscovery run -y --cache-dir ../freediscovery_shared &
+        FDSERVER_PID=$!
+        sleep 20  
+    - | 
+        cd examples/
+        set -o pipefail
+        for f in ./*.py; do 
+           python $f >> log.txt
+        done
+        cat log.txt && if grep -q "Traceback (most recent call last):" ~/log.txt; then false; else true; fi
+
+after_success:
+    codecov --token=${CODECOV_TOKEN}
