@@ -1,0 +1,1096 @@
+diff --git a/examples/CommonInterfaces/CommonGUIHelperInterface.h b/examples/CommonInterfaces/CommonGUIHelperInterface.h
+index baea8da..01f7b37 100644
+--- a/examples/CommonInterfaces/CommonGUIHelperInterface.h
++++ b/examples/CommonInterfaces/CommonGUIHelperInterface.h
+@@ -69,6 +69,12 @@ struct GUIHelperInterface
+ 	virtual void drawText3D( const char* txt, float posX, float posZY, float posZ, float size)=0;
+ 
+ 
++	
++	virtual int		addUserDebugText3D( const char* txt, const double posisionXYZ[3], const double	textColorRGB[3], double size, double lifeTime)=0;
++	virtual int		addUserDebugLine(const double	debugLineFromXYZ[3], const double	debugLineToXYZ[3], const double	debugLineColorRGB[3], double lineWidth, double lifeTime )=0;
++	virtual void	removeUserDebugItem( int debugItemUniqueId)=0;
++	virtual void	removeAllUserDebugItems( )=0;
++
+ };
+ 
+ 
+@@ -141,7 +147,22 @@ struct DummyGUIHelper : public GUIHelperInterface
+ 	virtual void drawText3D( const char* txt, float posX, float posZY, float posZ, float size)
+ 	{
+ 	}
+-	
++
++	virtual int		addUserDebugText3D( const char* txt, const double positionXYZ[3], const double	textColorRGB[3], double size, double lifeTime)
++	{
++		return -1;
++	}
++	virtual int		addUserDebugLine(const double	debugLineFromXYZ[3], const double	debugLineToXYZ[3], const double	debugLineColorRGB[3], double lineWidth, double lifeTime )
++	{
++		return -1;
++	}
++	virtual void	removeUserDebugItem( int debugItemUniqueId)
++	{
++	}
++	virtual void	removeAllUserDebugItems( )
++	{
++	}
++
+ };
+ 
+ #endif //GUI_HELPER_INTERFACE_H
+diff --git a/examples/ExampleBrowser/OpenGLGuiHelper.h b/examples/ExampleBrowser/OpenGLGuiHelper.h
+index eaa72a7..d0c9cdb 100644
+--- a/examples/ExampleBrowser/OpenGLGuiHelper.h
++++ b/examples/ExampleBrowser/OpenGLGuiHelper.h
+@@ -55,9 +55,27 @@ struct OpenGLGuiHelper : public GUIHelperInterface
+     
+     virtual void drawText3D( const char* txt, float posX, float posY, float posZ, float size);
+ 
++	virtual int		addUserDebugText3D( const char* txt, const double positionXYZ[3], const double	textColorRGB[3], double size, double lifeTime)
++	{
++		return -1;
++	}
++	virtual int		addUserDebugLine(const double	debugLineFromXYZ[3], const double	debugLineToXYZ[3], const double	debugLineColorRGB[3], double lineWidth, double lifeTime )
++	{
++		return -1;
++	}
++	virtual void	removeUserDebugItem( int debugItemUniqueId)
++	{
++	}
++	virtual void	removeAllUserDebugItems( )
++	{
++	}
++
++
+ 	void renderInternalGl2(int  pass, const btDiscreteDynamicsWorld* dynamicsWorld);
+ 
+ 	void setVRMode(bool vrMode);
++
++
+ };
+ 
+ #endif //OPENGL_GUI_HELPER_H
+diff --git a/examples/RoboticsLearning/b3RobotSimAPI.cpp b/examples/RoboticsLearning/b3RobotSimAPI.cpp
+index d035f5a..5106b6e 100644
+--- a/examples/RoboticsLearning/b3RobotSimAPI.cpp
++++ b/examples/RoboticsLearning/b3RobotSimAPI.cpp
+@@ -402,6 +402,21 @@ public:
+ 	virtual void drawText3D( const char* txt, float posX, float posZY, float posZ, float size)
+ 	{
+ 	}
++
++		virtual int		addUserDebugText3D( const char* txt, const double positionXYZ[3], const double	textColorRGB[3], double size, double lifeTime)
++	{
++		return -1;
++	}
++	virtual int		addUserDebugLine(const double	debugLineFromXYZ[3], const double	debugLineToXYZ[3], const double	debugLineColorRGB[3], double lineWidth, double lifeTime )
++	{
++		return -1;
++	}
++	virtual void	removeUserDebugItem( int debugItemUniqueId)
++	{
++	}
++	virtual void	removeAllUserDebugItems( )
++	{
++	}
+ };
+ 
+ 
+diff --git a/examples/SharedMemory/PhysicsClientC_API.cpp b/examples/SharedMemory/PhysicsClientC_API.cpp
+index cc2ac7d..b4f797e 100644
+--- a/examples/SharedMemory/PhysicsClientC_API.cpp
++++ b/examples/SharedMemory/PhysicsClientC_API.cpp
+@@ -793,6 +793,7 @@ int b3GetStatusBodyIndices(b3SharedMemoryStatusHandle statusHandle, int* bodyInd
+ 	{
+ 			switch (status->m_type)
+ 			{
++				case CMD_BULLET_LOADING_COMPLETED:
+ 				case CMD_SDF_LOADING_COMPLETED:
+ 				{
+ 				    int i,maxBodies;
+@@ -1062,6 +1063,107 @@ void    b3GetDebugLines(b3PhysicsClientHandle physClient, struct b3DebugLines* l
+     
+ }
+ 
++
++/// Add/remove user-specific debug lines and debug text messages
++b3SharedMemoryCommandHandle b3InitUserDebugDrawAddLine3D(b3PhysicsClientHandle physClient, double fromXYZ[3], double toXYZ[3], double colorRGB[3], double lineWidth, double lifeTime)
++{
++	PhysicsClient* cl = (PhysicsClient* ) physClient;
++	b3Assert(cl);
++    b3Assert(cl->canSubmitCommand());
++    struct SharedMemoryCommand* command = cl->getAvailableSharedMemoryCommand();
++    b3Assert(command);
++    command->m_type =CMD_USER_DEBUG_DRAW;
++	command->m_updateFlags = USER_DEBUG_HAS_LINE; //USER_DEBUG_HAS_TEXT
++	
++	command->m_userDebugDrawArgs.m_debugLineFromXYZ[0] = fromXYZ[0];
++	command->m_userDebugDrawArgs.m_debugLineFromXYZ[1] = fromXYZ[1];
++	command->m_userDebugDrawArgs.m_debugLineFromXYZ[2] = fromXYZ[2];
++
++	command->m_userDebugDrawArgs.m_debugLineToXYZ[0] = toXYZ[0];
++	command->m_userDebugDrawArgs.m_debugLineToXYZ[1] = toXYZ[1];
++	command->m_userDebugDrawArgs.m_debugLineToXYZ[2] = toXYZ[2];
++	
++	command->m_userDebugDrawArgs.m_debugLineColorRGB[0] = colorRGB[0];
++	command->m_userDebugDrawArgs.m_debugLineColorRGB[1] = colorRGB[1];
++	command->m_userDebugDrawArgs.m_debugLineColorRGB[2] = colorRGB[2];
++		
++	command->m_userDebugDrawArgs.m_lineWidth = lineWidth;
++	command->m_userDebugDrawArgs.m_lifeTime = lifeTime;
++
++	return (b3SharedMemoryCommandHandle) command;
++}
++
++b3SharedMemoryCommandHandle b3InitUserDebugDrawAddText3D(b3PhysicsClientHandle physClient, const char* txt, double positionXYZ[3], double colorRGB[3], double textSize, double lifeTime)
++{
++
++	PhysicsClient* cl = (PhysicsClient* ) physClient;
++	b3Assert(cl);
++    b3Assert(cl->canSubmitCommand());
++    struct SharedMemoryCommand* command = cl->getAvailableSharedMemoryCommand();
++    b3Assert(command);
++    command->m_type =CMD_USER_DEBUG_DRAW;
++	command->m_updateFlags = USER_DEBUG_HAS_TEXT;
++	
++	int len = strlen(txt);
++    if (len<MAX_FILENAME_LENGTH)
++    {
++		strcpy(command->m_userDebugDrawArgs.m_text,txt);
++    } else
++    {
++        command->m_userDebugDrawArgs.m_text[0] = 0;
++    }
++	command->m_userDebugDrawArgs.m_textPositionXYZ[0] = positionXYZ[0];
++	command->m_userDebugDrawArgs.m_textPositionXYZ[1] = positionXYZ[1];
++	command->m_userDebugDrawArgs.m_textPositionXYZ[2] = positionXYZ[2];
++
++	command->m_userDebugDrawArgs.m_textColorRGB[0] = colorRGB[0];
++	command->m_userDebugDrawArgs.m_textColorRGB[1] = colorRGB[1];
++	command->m_userDebugDrawArgs.m_textColorRGB[2] = colorRGB[2];
++	
++	command->m_userDebugDrawArgs.m_textSize = textSize;
++
++	command->m_userDebugDrawArgs.m_lifeTime = lifeTime;
++
++	return (b3SharedMemoryCommandHandle) command;
++}
++
++b3SharedMemoryCommandHandle b3InitUserDebugDrawRemove(b3PhysicsClientHandle physClient, int debugItemUniqueId)
++{
++	PhysicsClient* cl = (PhysicsClient* ) physClient;
++	b3Assert(cl);
++    b3Assert(cl->canSubmitCommand());
++    struct SharedMemoryCommand* command = cl->getAvailableSharedMemoryCommand();
++    b3Assert(command);
++    command->m_type =CMD_USER_DEBUG_DRAW;
++	command->m_updateFlags = USER_DEBUG_REMOVE_ONE_ITEM;
++	command->m_userDebugDrawArgs.m_removeItemUniqueId = debugItemUniqueId;
++	return (b3SharedMemoryCommandHandle) command;
++
++}
++
++b3SharedMemoryCommandHandle b3InitUserDebugDrawRemoveAll(b3PhysicsClientHandle physClient)
++{
++	PhysicsClient* cl = (PhysicsClient* ) physClient;
++	b3Assert(cl);
++    b3Assert(cl->canSubmitCommand());
++    struct SharedMemoryCommand* command = cl->getAvailableSharedMemoryCommand();
++    b3Assert(command);
++    command->m_type =CMD_USER_DEBUG_DRAW;
++	command->m_updateFlags = USER_DEBUG_REMOVE_ALL;
++	return (b3SharedMemoryCommandHandle) command;
++}
++
++int b3GetDebugItemUniqueId(b3SharedMemoryStatusHandle statusHandle)
++{
++    const SharedMemoryStatus* status = (const SharedMemoryStatus*)statusHandle;
++    btAssert(status->m_type == CMD_USER_DEBUG_DRAW_COMPLETED);
++    if (status->m_type != CMD_USER_DEBUG_DRAW_COMPLETED)
++        return -1;
++
++	return status->m_userDebugDrawArgs.m_debugItemUniqueId;
++}
++
++
+ ///request an image from a simulated camera, using a software renderer.
+ b3SharedMemoryCommandHandle b3InitRequestCameraImage(b3PhysicsClientHandle physClient)
+ {
+@@ -1627,6 +1729,7 @@ b3SharedMemoryCommandHandle	b3CalculateJacobianCommandInit(b3PhysicsClientHandle
+     return (b3SharedMemoryCommandHandle)command;
+ }
+ 
++
+ int b3GetStatusJacobian(b3SharedMemoryStatusHandle statusHandle, double* linearJacobian, double* angularJacobian)
+ {
+     const SharedMemoryStatus* status = (const SharedMemoryStatus*)statusHandle;
+diff --git a/examples/SharedMemory/PhysicsClientC_API.h b/examples/SharedMemory/PhysicsClientC_API.h
+index c22b461..e82b682 100644
+--- a/examples/SharedMemory/PhysicsClientC_API.h
++++ b/examples/SharedMemory/PhysicsClientC_API.h
+@@ -74,14 +74,22 @@ int	b3GetJointInfo(b3PhysicsClientHandle physClient, int bodyIndex, int jointInd
+     
+ b3SharedMemoryCommandHandle b3CreateJoint(b3PhysicsClientHandle physClient, int parentBodyIndex, int parentJointIndex, int childBodyIndex, int childJointIndex, struct b3JointInfo* info);
+ 
+-///Request debug lines for debug visualization. The flags in debugMode are the same as used in Bullet
++///Request physics debug lines for debug visualization. The flags in debugMode are the same as used in Bullet
+ ///See btIDebugDraw::DebugDrawModes in Bullet/src/LinearMath/btIDebugDraw.h
+ b3SharedMemoryCommandHandle b3InitRequestDebugLinesCommand(b3PhysicsClientHandle physClient, int debugMode);
+ 
+-///Get the pointers to the debug line information, after b3InitRequestDebugLinesCommand returns
++///Get the pointers to the physics debug line information, after b3InitRequestDebugLinesCommand returns
+ ///status CMD_DEBUG_LINES_COMPLETED
+ void    b3GetDebugLines(b3PhysicsClientHandle physClient, struct b3DebugLines* lines);
+ 
++/// Add/remove user-specific debug lines and debug text messages
++b3SharedMemoryCommandHandle b3InitUserDebugDrawAddLine3D(b3PhysicsClientHandle physClient, double fromXYZ[3], double toXYZ[3], double colorRGB[3], double lineWidth, double lifeTime);
++b3SharedMemoryCommandHandle b3InitUserDebugDrawAddText3D(b3PhysicsClientHandle physClient, const char* txt, double positionXYZ[3], double colorRGB[3], double textSize, double lifeTime);
++b3SharedMemoryCommandHandle b3InitUserDebugDrawRemove(b3PhysicsClientHandle physClient, int debugItemUniqueId);
++b3SharedMemoryCommandHandle b3InitUserDebugDrawRemoveAll(b3PhysicsClientHandle physClient);
++///All debug items unique Ids are positive: a negative unique Id means failure.
++int b3GetDebugItemUniqueId(b3SharedMemoryStatusHandle statusHandle);
++
+ ///request an image from a simulated camera, using a software renderer.
+ b3SharedMemoryCommandHandle b3InitRequestCameraImage(b3PhysicsClientHandle physClient);
+ void b3RequestCameraImageSetCameraMatrices(b3SharedMemoryCommandHandle command, float viewMatrix[16], float projectionMatrix[16]);
+diff --git a/examples/SharedMemory/PhysicsClientSharedMemory.cpp b/examples/SharedMemory/PhysicsClientSharedMemory.cpp
+index 0339531..e2b072b 100644
+--- a/examples/SharedMemory/PhysicsClientSharedMemory.cpp
++++ b/examples/SharedMemory/PhysicsClientSharedMemory.cpp
+@@ -722,6 +722,15 @@ const SharedMemoryStatus* PhysicsClientSharedMemory::processServerStatus() {
+ 				b3Warning("Load .mjcf failed");
+ 				break;
+ 			}
++			case CMD_USER_DEBUG_DRAW_COMPLETED:
++			{
++				break;
++			}
++			case CMD_USER_DEBUG_DRAW_FAILED:
++			{
++				b3Warning("User debug draw failed");
++				break;
++			}
+ 
+             default: {
+                 b3Error("Unknown server status %d\n", serverCmd.m_type);
+diff --git a/examples/SharedMemory/PhysicsServerCommandProcessor.cpp b/examples/SharedMemory/PhysicsServerCommandProcessor.cpp
+index 6ab9416..c1b7eaa 100644
+--- a/examples/SharedMemory/PhysicsServerCommandProcessor.cpp
++++ b/examples/SharedMemory/PhysicsServerCommandProcessor.cpp
+@@ -3403,6 +3403,34 @@ bool PhysicsServerCommandProcessor::processCommand(const struct SharedMemoryComm
+ 						bool ok = importer->loadFile(relativeFileName);
+ 						if (ok)
+ 						{
++							
++							
++							int numRb = importer->getNumRigidBodies();
++							serverStatusOut.m_sdfLoadedArgs.m_numBodies = 0;
++
++							for( int i=0;i<numRb;i++)
++							{
++								btCollisionObject* colObj = importer->getRigidBodyByIndex(i);
++
++								if (colObj)
++								{
++									btRigidBody* rb = btRigidBody::upcast(colObj);
++									if (rb)
++									{
++										int bodyUniqueId = m_data->allocHandle();
++										InternalBodyHandle* bodyHandle = m_data->getHandle(bodyUniqueId);
++										colObj->setUserIndex2(bodyUniqueId);
++										bodyHandle->m_rigidBody = rb;
++
++										if (serverStatusOut.m_sdfLoadedArgs.m_numBodies<MAX_SDF_BODIES)
++										{
++											serverStatusOut.m_sdfLoadedArgs.m_numBodies++;
++											serverStatusOut.m_sdfLoadedArgs.m_bodyUniqueIds[i] = bodyUniqueId;
++										}
++									}
++								}
++							}
++
+ 							serverCmd.m_type = CMD_BULLET_LOADING_COMPLETED;
+ 							m_data->m_guiHelper->autogenerateGraphicsObjects(m_data->m_dynamicsWorld);
+ 							hasStatus = true;
+@@ -3441,6 +3469,62 @@ bool PhysicsServerCommandProcessor::processCommand(const struct SharedMemoryComm
+ 					break;
+ 				}
+ 				
++				case CMD_USER_DEBUG_DRAW:
++					{
++						SharedMemoryStatus& serverCmd = serverStatusOut;
++						serverCmd.m_type = CMD_USER_DEBUG_DRAW_FAILED;
++						hasStatus = true;
++						
++
++						if (clientCmd.m_updateFlags & USER_DEBUG_HAS_TEXT)
++						{
++							int uid = m_data->m_guiHelper->addUserDebugText3D(clientCmd.m_userDebugDrawArgs.m_text,
++								clientCmd.m_userDebugDrawArgs.m_textPositionXYZ,
++								clientCmd.m_userDebugDrawArgs.m_textColorRGB,
++								clientCmd.m_userDebugDrawArgs.m_textSize,
++								clientCmd.m_userDebugDrawArgs.m_lifeTime);
++
++							if (uid>=0)
++							{
++								serverCmd.m_userDebugDrawArgs.m_debugItemUniqueId = uid;
++								serverCmd.m_type = CMD_USER_DEBUG_DRAW_COMPLETED;
++							}
++						}
++
++						if (clientCmd.m_updateFlags & USER_DEBUG_HAS_LINE)
++						{
++							int uid = m_data->m_guiHelper->addUserDebugLine(
++								clientCmd.m_userDebugDrawArgs.m_debugLineFromXYZ,
++								clientCmd.m_userDebugDrawArgs.m_debugLineToXYZ,
++								clientCmd.m_userDebugDrawArgs.m_debugLineColorRGB,
++								clientCmd.m_userDebugDrawArgs.m_lineWidth,
++								clientCmd.m_userDebugDrawArgs.m_lifeTime);
++
++							if (uid>=0)
++							{
++								serverCmd.m_userDebugDrawArgs.m_debugItemUniqueId = uid;
++								serverCmd.m_type = CMD_USER_DEBUG_DRAW_COMPLETED;
++							}
++						}
++						
++
++						if (clientCmd.m_updateFlags & USER_DEBUG_REMOVE_ALL)
++						{
++							m_data->m_guiHelper->removeAllUserDebugItems();
++							serverCmd.m_type = CMD_USER_DEBUG_DRAW_COMPLETED;
++
++						}
++						if (clientCmd.m_updateFlags & USER_DEBUG_REMOVE_ONE_ITEM)
++						{
++							m_data->m_guiHelper->removeUserDebugItem(clientCmd.m_userDebugDrawArgs.m_removeItemUniqueId);
++							serverCmd.m_type = CMD_USER_DEBUG_DRAW_COMPLETED;
++
++						}
++
++						break;        
++					}
++		
++
+                 default:
+                 {
+                     b3Error("Unknown command encountered");
+diff --git a/examples/SharedMemory/PhysicsServerExample.cpp b/examples/SharedMemory/PhysicsServerExample.cpp
+index 828fab3..4e3ccf2 100644
+--- a/examples/SharedMemory/PhysicsServerExample.cpp
++++ b/examples/SharedMemory/PhysicsServerExample.cpp
+@@ -75,6 +75,10 @@ enum MultiThreadedGUIHelperCommunicationEnums
+ 	eGUIHelperRemoveAllGraphicsInstances,
+ 	eGUIHelperCopyCameraImageData,
+ 	eGUIHelperAutogenerateGraphicsObjects,
++	eGUIUserDebugAddText,
++	eGUIUserDebugAddLine,
++	eGUIUserDebugRemoveItem,
++	eGUIUserDebugRemoveAllItems,
+ };
+ 
+ #include <stdio.h>
+@@ -271,17 +275,43 @@ void*	MotionlsMemoryFunc()
+ 
+ 
+ 
++struct UserDebugDrawLine
++{
++	double	m_debugLineFromXYZ[3];
++	double	m_debugLineToXYZ[3];
++	double	m_debugLineColorRGB[3];
++	double	m_lineWidth;
++	
++	double m_lifeTime;
++	int m_itemUniqueId;
++};
++
++struct UserDebugText
++{
++	char m_text[1024];
++	double m_textPositionXYZ[3];
++	double m_textColorRGB[3];
++	double textSize;
++
++	double m_lifeTime;
++	int m_itemUniqueId;
++};
++
++
++
+ class MultiThreadedOpenGLGuiHelper : public GUIHelperInterface
+ {
+ 	CommonGraphicsApp* m_app;
+ 	
+ 	b3CriticalSection* m_cs;
+-
+ 	
++	
++
+ public:
+ 
+ 	GUIHelperInterface* m_childGuiHelper;
+ 
++	int m_uidGenerator;
+ 	const unsigned char* m_texels;
+ 	int m_textureWidth;
+ 	int m_textureHeight;
+@@ -305,6 +335,7 @@ public:
+ 	MultiThreadedOpenGLGuiHelper(CommonGraphicsApp* app, GUIHelperInterface* guiHelper)
+ 		:m_app(app)
+ 		,m_cs(0),
++		m_uidGenerator(0),
+ 		m_texels(0),
+ 		m_textureId(-1)
+ 	{
+@@ -548,6 +579,96 @@ public:
+ 	virtual void drawText3D( const char* txt, float posX, float posZY, float posZ, float size)
+ 	{
+ 	}
++
++
++
++
++	btAlignedObjectArray<UserDebugText> m_userDebugText;
++	
++	UserDebugText m_tmpText;
++
++	virtual int		addUserDebugText3D( const char* txt, const double positionXYZ[3], const double	textColorRGB[3], double size, double lifeTime)
++	{
++		
++		m_tmpText.m_itemUniqueId = m_uidGenerator++;
++		m_tmpText.m_lifeTime = lifeTime;
++		m_tmpText.textSize = size;
++		int len = strlen(txt);
++		strcpy(m_tmpText.m_text,txt);
++		m_tmpText.m_textPositionXYZ[0] = positionXYZ[0];
++		m_tmpText.m_textPositionXYZ[1] = positionXYZ[1];
++		m_tmpText.m_textPositionXYZ[2] = positionXYZ[2];
++		m_tmpText.m_textColorRGB[0] = textColorRGB[0];
++		m_tmpText.m_textColorRGB[1] = textColorRGB[1];
++		m_tmpText.m_textColorRGB[2] = textColorRGB[2];
++
++		m_cs->lock();
++		m_cs->setSharedParam(1, eGUIUserDebugAddText);
++		m_cs->unlock();
++		while (m_cs->getSharedParam(1) != eGUIHelperIdle)
++		{
++			b3Clock::usleep(150);
++		}
++
++		return m_userDebugText[m_userDebugText.size()-1].m_itemUniqueId;
++	}
++
++	btAlignedObjectArray<UserDebugDrawLine> m_userDebugLines;
++	UserDebugDrawLine m_tmpLine;
++
++	virtual int		addUserDebugLine(const double	debugLineFromXYZ[3], const double	debugLineToXYZ[3], const double	debugLineColorRGB[3], double lineWidth, double lifeTime )
++	{
++		m_tmpLine.m_lifeTime = lifeTime;
++		m_tmpLine.m_lineWidth = lineWidth;
++		m_tmpLine.m_itemUniqueId = m_uidGenerator++;
++		m_tmpLine.m_debugLineFromXYZ[0] = debugLineFromXYZ[0];
++		m_tmpLine.m_debugLineFromXYZ[1] = debugLineFromXYZ[1];
++		m_tmpLine.m_debugLineFromXYZ[2] = debugLineFromXYZ[2];
++
++		m_tmpLine.m_debugLineToXYZ[0] = debugLineToXYZ[0];
++		m_tmpLine.m_debugLineToXYZ[1] = debugLineToXYZ[1];
++		m_tmpLine.m_debugLineToXYZ[2] = debugLineToXYZ[2];
++		
++		m_tmpLine.m_debugLineColorRGB[0] = debugLineColorRGB[0];
++		m_tmpLine.m_debugLineColorRGB[1] = debugLineColorRGB[1];
++		m_tmpLine.m_debugLineColorRGB[2] = debugLineColorRGB[2];
++		
++		m_cs->lock();
++		m_cs->setSharedParam(1, eGUIUserDebugAddLine);
++		m_cs->unlock();
++		while (m_cs->getSharedParam(1) != eGUIHelperIdle)
++		{
++			b3Clock::usleep(150);
++		}
++		return m_userDebugLines[m_userDebugLines.size()-1].m_itemUniqueId;
++	}
++
++	int m_removeDebugItemUid;
++
++	virtual void	removeUserDebugItem( int debugItemUniqueId)
++	{
++		m_removeDebugItemUid = debugItemUniqueId;
++		m_cs->lock();
++		m_cs->setSharedParam(1, eGUIUserDebugRemoveItem);
++		m_cs->unlock();
++		while (m_cs->getSharedParam(1) != eGUIHelperIdle)
++		{
++			b3Clock::usleep(150);
++		}
++
++	}	
++	virtual void	removeAllUserDebugItems( )
++	{
++		m_cs->lock();
++		m_cs->setSharedParam(1, eGUIUserDebugRemoveAllItems);
++		m_cs->unlock();
++		while (m_cs->getSharedParam(1) != eGUIHelperIdle)
++		{
++			b3Clock::usleep(150);
++		}
++	
++	}
++
+ };
+ 
+ 
+@@ -935,10 +1056,68 @@ void	PhysicsServerExample::stepSimulation(float deltaTime)
+ 		m_multiThreadedHelper->getCriticalSection()->unlock();
+ 		break;
+ 	}
++
++	case eGUIUserDebugAddText:
++	{
++		m_multiThreadedHelper->m_userDebugText.push_back(m_multiThreadedHelper->m_tmpText);
++		m_multiThreadedHelper->getCriticalSection()->lock();
++		m_multiThreadedHelper->getCriticalSection()->setSharedParam(1, eGUIHelperIdle);
++		m_multiThreadedHelper->getCriticalSection()->unlock();
++		break;
++	}
++	case eGUIUserDebugAddLine:
++	{
++		m_multiThreadedHelper->m_userDebugLines.push_back(m_multiThreadedHelper->m_tmpLine);
++		m_multiThreadedHelper->getCriticalSection()->lock();
++		m_multiThreadedHelper->getCriticalSection()->setSharedParam(1, eGUIHelperIdle);
++		m_multiThreadedHelper->getCriticalSection()->unlock();
++			break;
++	}
++	case eGUIUserDebugRemoveItem:
++	{
++		for (int i=0;i<m_multiThreadedHelper->m_userDebugLines.size();i++)
++		{
++			if (m_multiThreadedHelper->m_userDebugLines[i].m_itemUniqueId == m_multiThreadedHelper->m_removeDebugItemUid)
++			{
++				m_multiThreadedHelper->m_userDebugLines.swap(i,m_multiThreadedHelper->m_userDebugLines.size()-1);
++				m_multiThreadedHelper->m_userDebugLines.pop_back();
++				break;
++			}
++		}
++
++
++		for (int i=0;i<m_multiThreadedHelper->m_userDebugText.size();i++)
++		{
++			if (m_multiThreadedHelper->m_userDebugText[i].m_itemUniqueId == m_multiThreadedHelper->m_removeDebugItemUid)
++			{
++				m_multiThreadedHelper->m_userDebugText.swap(i,m_multiThreadedHelper->m_userDebugText.size()-1);
++				m_multiThreadedHelper->m_userDebugText.pop_back();
++				break;
++			}
++		}
++
++		m_multiThreadedHelper->getCriticalSection()->lock();
++		m_multiThreadedHelper->getCriticalSection()->setSharedParam(1, eGUIHelperIdle);
++		m_multiThreadedHelper->getCriticalSection()->unlock();
++			break;
++	}
++	case eGUIUserDebugRemoveAllItems:
++	{
++		m_multiThreadedHelper->m_userDebugLines.clear();
++		m_multiThreadedHelper->m_userDebugText.clear();
++		m_multiThreadedHelper->m_uidGenerator = 0;
++		m_multiThreadedHelper->getCriticalSection()->lock();
++		m_multiThreadedHelper->getCriticalSection()->setSharedParam(1, eGUIHelperIdle);
++		m_multiThreadedHelper->getCriticalSection()->unlock();
++			break;
++	}
+ 	case eGUIHelperIdle:
++		{
++			break;
++		}
+ 	default:
+ 		{
+-			
++			btAssert(0);
+ 		}
+ 	}
+ 	
+@@ -993,15 +1172,38 @@ void PhysicsServerExample::renderScene()
+ 	//add array of lines
+ 
+ 	//draw all user- 'text3d' messages
+-		if (m_guiHelper)
++		if (m_multiThreadedHelper)
+ 		{
+-			btVector3 from(0, 0, 0);
+-			btVector3 toX(1, 1, 1);
+-			btVector3 color(0, 1, 0);
+-			double width = 2;
+-			m_guiHelper->getAppInterface()->m_renderer->drawLine(from, toX, color, width);
++			
++			for (int i=0;i<m_multiThreadedHelper->m_userDebugLines.size();i++)
++			{
++				btVector3 from;
++				from.setValue(	m_multiThreadedHelper->m_userDebugLines[i].m_debugLineFromXYZ[0],
++								m_multiThreadedHelper->m_userDebugLines[i].m_debugLineFromXYZ[1],
++								m_multiThreadedHelper->m_userDebugLines[i].m_debugLineFromXYZ[2]);
++				btVector3 toX;
++				toX.setValue(	m_multiThreadedHelper->m_userDebugLines[i].m_debugLineToXYZ[0],
++								m_multiThreadedHelper->m_userDebugLines[i].m_debugLineToXYZ[1],
++								m_multiThreadedHelper->m_userDebugLines[i].m_debugLineToXYZ[2]);
++				
++				btVector3 color;
++				color.setValue(	m_multiThreadedHelper->m_userDebugLines[i].m_debugLineColorRGB[0],
++								m_multiThreadedHelper->m_userDebugLines[i].m_debugLineColorRGB[1],
++								m_multiThreadedHelper->m_userDebugLines[i].m_debugLineColorRGB[2]);
+ 
+-			m_guiHelper->getAppInterface()->drawText3D("hi", 1, 1, 1, 1);
++				
++				m_guiHelper->getAppInterface()->m_renderer->drawLine(from, toX, color, m_multiThreadedHelper->m_userDebugLines[i].m_lineWidth);
++			}
++			
++			for (int i=0;i<m_multiThreadedHelper->m_userDebugText.size();i++)
++			{
++				m_guiHelper->getAppInterface()->drawText3D(m_multiThreadedHelper->m_userDebugText[i].m_text,
++					m_multiThreadedHelper->m_userDebugText[i].m_textPositionXYZ[0],
++					m_multiThreadedHelper->m_userDebugText[i].m_textPositionXYZ[1],
++					m_multiThreadedHelper->m_userDebugText[i].m_textPositionXYZ[2],
++					m_multiThreadedHelper->m_userDebugText[i].textSize);
++				
++			}
+ 		}
+ 
+ 
+diff --git a/examples/SharedMemory/SharedMemoryCommands.h b/examples/SharedMemory/SharedMemoryCommands.h
+index 82925c8..69b7916 100644
+--- a/examples/SharedMemory/SharedMemoryCommands.h
++++ b/examples/SharedMemory/SharedMemoryCommands.h
+@@ -500,6 +500,40 @@ struct CreateJointArgs
+     int m_jointType;
+ };
+ 
++
++
++enum EnumUserDebugDrawFlags
++{
++    USER_DEBUG_HAS_LINE=1,
++	USER_DEBUG_HAS_TEXT=2,
++	USER_DEBUG_REMOVE_ONE_ITEM=4,
++	USER_DEBUG_REMOVE_ALL=8	
++};
++
++struct UserDebugDrawArgs
++{
++	double	m_debugLineFromXYZ[3];
++	double	m_debugLineToXYZ[3];
++	double	m_debugLineColorRGB[3];
++	double	m_lineWidth;
++	
++	double m_lifeTime;
++	int m_removeItemUniqueId;
++
++	char m_text[MAX_FILENAME_LENGTH];
++	double m_textPositionXYZ[3];
++	double m_textColorRGB[3];
++	double m_textSize;
++};
++
++
++
++struct UserDebugDrawResultArgs
++{
++	int m_debugItemUniqueId;
++};
++
++
+ struct SharedMemoryCommand
+ {
+ 	int m_type;
+@@ -536,6 +570,7 @@ struct SharedMemoryCommand
+         struct UpdateVisualShapeDataArgs m_updateVisualShapeDataArguments;
+         struct LoadTextureArgs m_loadTextureArguments;
+ 		struct CalculateInverseKinematicsArgs m_calculateInverseKinematicsArguments;
++		struct UserDebugDrawArgs m_userDebugDrawArgs;
+         struct LoadBunnyArgs m_loadBunnyArguments;
+     };
+ };
+@@ -584,6 +619,7 @@ struct SharedMemoryStatus
+ 		struct SendOverlappingObjectsArgs m_sendOverlappingObjectsArgs;
+ 		struct CalculateInverseKinematicsResultArgs m_inverseKinematicsResultArgs;
+ 		struct SendVisualShapeDataArgs m_sendVisualShapeArgs;
++		struct UserDebugDrawResultArgs m_userDebugDrawArgs;
+ 	};
+ };
+ 
+diff --git a/examples/SharedMemory/SharedMemoryPublic.h b/examples/SharedMemory/SharedMemoryPublic.h
+index 47c7e72..a37ead2 100644
+--- a/examples/SharedMemory/SharedMemoryPublic.h
++++ b/examples/SharedMemory/SharedMemoryPublic.h
+@@ -40,6 +40,8 @@ enum EnumSharedMemoryClientCommand
+ 	CMD_REQUEST_VISUAL_SHAPE_INFO,
+     CMD_UPDATE_VISUAL_SHAPE,
+     CMD_LOAD_TEXTURE,
++	CMD_USER_DEBUG_DRAW,
++
+     //don't go beyond this command!
+     CMD_MAX_CLIENT_COMMANDS,
+     
+@@ -100,6 +102,8 @@ enum EnumSharedMemoryServerStatus
+         CMD_VISUAL_SHAPE_UPDATE_FAILED,
+         CMD_LOAD_TEXTURE_COMPLETED,
+         CMD_LOAD_TEXTURE_FAILED,
++		CMD_USER_DEBUG_DRAW_COMPLETED,
++		CMD_USER_DEBUG_DRAW_FAILED,
+         //don't go beyond 'CMD_MAX_SERVER_COMMANDS!
+         CMD_MAX_SERVER_COMMANDS
+ };
+diff --git a/examples/StandaloneMain/main_tinyrenderer_single_example.cpp b/examples/StandaloneMain/main_tinyrenderer_single_example.cpp
+index 6ca0efa..d9c324c 100644
+--- a/examples/StandaloneMain/main_tinyrenderer_single_example.cpp
++++ b/examples/StandaloneMain/main_tinyrenderer_single_example.cpp
+@@ -380,6 +380,20 @@ struct TinyRendererGUIHelper : public GUIHelperInterface
+ 	virtual void drawText3D( const char* txt, float posX, float posZY, float posZ, float size)
+ 	{
+ 	}
++		virtual int		addUserDebugText3D( const char* txt, const double positionXYZ[3], const double	textColorRGB[3], double size, double lifeTime)
++	{
++		return -1;
++	}
++	virtual int		addUserDebugLine(const double	debugLineFromXYZ[3], const double	debugLineToXYZ[3], const double	debugLineColorRGB[3], double lineWidth, double lifeTime )
++	{
++		return -1;
++	}
++	virtual void	removeUserDebugItem( int debugItemUniqueId)
++	{
++	}
++	virtual void	removeAllUserDebugItems( )
++	{
++	}
+ };
+ 
+ int main(int argc, char* argv[])
+diff --git a/examples/pybullet/pybullet.c b/examples/pybullet/pybullet.c
+index 9991ee0..273ae67 100644
+--- a/examples/pybullet/pybullet.c
++++ b/examples/pybullet/pybullet.c
+@@ -199,7 +199,7 @@ static PyObject* pybullet_saveWorld(PyObject* self, PyObject* args) {
+     
+ }
+ 
+-
++#define MAX_SDF_BODIES 512
+ static PyObject* pybullet_loadBullet(PyObject* self, PyObject* args)
+ {
+ 	int size = PySequence_Size(args);
+@@ -207,8 +207,9 @@ static PyObject* pybullet_loadBullet(PyObject* self, PyObject* args)
+ 	b3SharedMemoryStatusHandle statusHandle;
+ 	int statusType;
+ 	b3SharedMemoryCommandHandle command;
+-
+-
++	int i,numBodies;
++	int bodyIndicesOut[MAX_SDF_BODIES];
++	  PyObject* pylist = 0;
+ 	if (0 == sm) {
+ 		PyErr_SetString(SpamError, "Not connected to physics server.");
+ 		return NULL;
+@@ -225,8 +226,24 @@ static PyObject* pybullet_loadBullet(PyObject* self, PyObject* args)
+ 		PyErr_SetString(SpamError, "Couldn't load .bullet file.");
+ 		return NULL;
+ 	}
+-	Py_INCREF(Py_None);
+-	return Py_None;
++
++	numBodies =
++      b3GetStatusBodyIndices(statusHandle, bodyIndicesOut, MAX_SDF_BODIES);
++  if (numBodies > MAX_SDF_BODIES) {
++    PyErr_SetString(SpamError, "loadBullet exceeds body capacity");
++    return NULL;
++  }
++
++  pylist = PyTuple_New(numBodies);
++
++  if (numBodies > 0 && numBodies <= MAX_SDF_BODIES) {
++    for (i = 0; i < numBodies; i++) {
++      PyTuple_SetItem(pylist, i, PyInt_FromLong(bodyIndicesOut[i]));
++    }
++  }
++  return pylist;
++
++	
+ }
+ 
+ static PyObject* pybullet_saveBullet(PyObject* self, PyObject* args)
+@@ -366,7 +383,7 @@ static double pybullet_internalGetFloatFromSequence(PyObject* seq, int index) {
+   return v;
+ }
+ 
+-#define MAX_SDF_BODIES 512
++
+ 
+ static PyObject* pybullet_loadSDF(PyObject* self, PyObject* args) {
+   const char* sdfFileName = "";
+@@ -1376,12 +1393,14 @@ static int pybullet_internalSetMatrix(PyObject* objMat, float matrix[16]) {
+ //
+ // // Args:
+ //  vector - float[3] which will be set by values from objMat
+-static int pybullet_internalSetVector(PyObject* objMat, float vector[3]) {
++static int pybullet_internalSetVector(PyObject* objVec, float vector[3]) {
+   int i, len;
+   PyObject* seq;
++  if (objVec==NULL)
++		return 0;
+ 
+-  seq = PySequence_Fast(objMat, "expected a sequence");
+-  len = PySequence_Size(objMat);
++  seq = PySequence_Fast(objVec, "expected a sequence");
++  len = PySequence_Size(objVec);
+   if (len == 3) {
+     for (i = 0; i < len; i++) {
+       vector[i] = pybullet_internalGetFloatFromSequence(seq, i);
+@@ -1397,7 +1416,9 @@ static int pybullet_internalSetVector(PyObject* objMat, float vector[3]) {
+ static int pybullet_internalSetVectord(PyObject* obVec, double vector[3]) {
+     int i, len;
+     PyObject* seq;
+-    
++    if (obVec==NULL)
++		return 0;
++
+     seq = PySequence_Fast(obVec, "expected a sequence");
+     len = PySequence_Size(obVec);
+     if (len == 3) {
+@@ -1415,7 +1436,9 @@ static int pybullet_internalSetVectord(PyObject* obVec, double vector[3]) {
+ static int pybullet_internalSetVector4(PyObject* obVec, double vector[4]) {
+     int i, len;
+     PyObject* seq;
+-    
++    if (obVec==NULL)
++		return 0;
++
+     seq = PySequence_Fast(obVec, "expected a sequence");
+     len = PySequence_Size(obVec);
+     if (len == 4) {
+@@ -1429,6 +1452,196 @@ static int pybullet_internalSetVector4(PyObject* obVec, double vector[4]) {
+     return 0;
+ }
+ 
++
++
++static PyObject* pybullet_addUserDebugText(PyObject* self, PyObject* args, PyObject *keywds) 
++{
++  int size = PySequence_Size(args);
++  
++  b3SharedMemoryCommandHandle commandHandle;
++  struct b3ContactInformation contactPointData;
++  b3SharedMemoryStatusHandle statusHandle;
++  int statusType;
++  int res = 0;
++
++  PyObject* pyResultList = 0;
++	char* text;
++  double posXYZ[3];
++  double colorRGB[3]={1,1,1};
++
++  
++  PyObject* textPositionObj=0;
++  PyObject* textColorRGBObj=0;
++  double textSize = 1.f;
++  double lifeTime = 0.f;
++  
++  static char *kwlist[] = { "text", "textPosition", "textColorRGB", "textSize", "lifeTime", NULL };
++
++  if (0 == sm) {
++	  PyErr_SetString(SpamError, "Not connected to physics server.");
++	  return NULL;
++  }
++
++  if (!PyArg_ParseTupleAndKeywords(args, keywds, "sO|Odd", kwlist, &text,  &textPositionObj,  &textColorRGBObj,&textSize, &lifeTime))
++  {
++	  return NULL;
++  }
++
++  res = pybullet_internalSetVectord(textPositionObj,posXYZ);
++  if (!res)
++  {
++	  PyErr_SetString(SpamError, "Error converting lineFrom[3]");
++	  return NULL;
++  }
++
++  if (textColorRGBObj)
++  {
++	  res = pybullet_internalSetVectord(textColorRGBObj,colorRGB);
++	  if (!res)
++	  {
++		  PyErr_SetString(SpamError, "Error converting lineTo[3]");
++		  return NULL;
++	  }
++  }
++
++  
++   commandHandle = b3InitUserDebugDrawAddText3D(sm,text,posXYZ,colorRGB,textSize,lifeTime);
++
++  statusHandle = b3SubmitClientCommandAndWaitStatus(sm, commandHandle);
++  statusType = b3GetStatusType(statusHandle);
++  if (statusType == CMD_USER_DEBUG_DRAW_COMPLETED) 
++  {
++    int debugItemUniqueId = b3GetDebugItemUniqueId(statusHandle);
++	PyObject* item = PyInt_FromLong(debugItemUniqueId);
++	return item;
++  }
++
++  PyErr_SetString(SpamError, "Error in addUserDebugText.");
++	  return NULL;
++}
++
++
++static PyObject* pybullet_addUserDebugLine(PyObject* self, PyObject* args, PyObject *keywds) 
++{
++  int size = PySequence_Size(args);
++  
++  b3SharedMemoryCommandHandle commandHandle;
++  struct b3ContactInformation contactPointData;
++  b3SharedMemoryStatusHandle statusHandle;
++  int statusType;
++  int res = 0;
++
++  PyObject* pyResultList = 0;
++
++  double fromXYZ[3];
++  double toXYZ[3];
++  double colorRGB[3]={1,1,1};
++
++  PyObject* lineFromObj=0;
++  PyObject* lineToObj=0;
++  PyObject* lineColorRGBObj=0;
++  double lineWidth = 1.f;
++  double lifeTime = 0.f;
++  
++  static char *kwlist[] = { "lineFromXYZ", "lineToXYZ", "lineColorRGB", "lineWidth", "lifeTime", NULL };
++
++  if (0 == sm) {
++	  PyErr_SetString(SpamError, "Not connected to physics server.");
++	  return NULL;
++  }
++
++  if (!PyArg_ParseTupleAndKeywords(args, keywds, "OO|Odd", kwlist, &lineFromObj,  &lineToObj,  &lineColorRGBObj,&lineWidth, &lifeTime))
++  {
++	  return NULL;
++  }
++
++  res = pybullet_internalSetVectord(lineFromObj,fromXYZ);
++  if (!res)
++  {
++	  PyErr_SetString(SpamError, "Error converting lineFrom[3]");
++	  return NULL;
++  }
++
++  res = pybullet_internalSetVectord(lineToObj,toXYZ);
++  if (!res)
++  {
++	  PyErr_SetString(SpamError, "Error converting lineTo[3]");
++	  return NULL;
++  }
++  if (lineColorRGBObj)
++  {
++	  res = pybullet_internalSetVectord(lineColorRGBObj,colorRGB);
++  }
++  
++   commandHandle = b3InitUserDebugDrawAddLine3D(sm,fromXYZ,toXYZ,colorRGB,lineWidth,lifeTime);
++
++  statusHandle = b3SubmitClientCommandAndWaitStatus(sm, commandHandle);
++  statusType = b3GetStatusType(statusHandle);
++  if (statusType == CMD_USER_DEBUG_DRAW_COMPLETED) 
++  {
++    int debugItemUniqueId = b3GetDebugItemUniqueId(statusHandle);
++	PyObject* item = PyInt_FromLong(debugItemUniqueId);
++	return item;
++  }
++
++  PyErr_SetString(SpamError, "Error in addUserDebugLine.");
++	  return NULL;
++}
++
++
++
++
++static PyObject* pybullet_removeUserDebugItem(PyObject* self, PyObject* args, PyObject *keywds) 
++{
++	 b3SharedMemoryCommandHandle commandHandle;
++  struct b3ContactInformation contactPointData;
++  b3SharedMemoryStatusHandle statusHandle;
++  int statusType;
++  int itemUniqueId;
++
++	if (0 == sm) {
++	  PyErr_SetString(SpamError, "Not connected to physics server.");
++	  return NULL;
++  }
++
++	if (!PyArg_ParseTuple(args, "i", &itemUniqueId)) {
++			PyErr_SetString(SpamError, "Error parsing user debug item unique id");
++			return NULL;
++		}
++
++	commandHandle = b3InitUserDebugDrawRemove(sm,itemUniqueId);
++
++	statusHandle = b3SubmitClientCommandAndWaitStatus(sm, commandHandle);
++	statusType = b3GetStatusType(statusHandle);
++
++	Py_INCREF(Py_None);
++	return Py_None;
++}
++
++static PyObject* pybullet_removeAllUserDebugItems(PyObject* self, PyObject* args, PyObject *keywds) 
++{
++	 b3SharedMemoryCommandHandle commandHandle;
++  struct b3ContactInformation contactPointData;
++  b3SharedMemoryStatusHandle statusHandle;
++  int statusType;
++
++	if (0 == sm) {
++	  PyErr_SetString(SpamError, "Not connected to physics server.");
++	  return NULL;
++  }
++
++	commandHandle = b3InitUserDebugDrawRemoveAll(sm);
++
++	statusHandle = b3SubmitClientCommandAndWaitStatus(sm, commandHandle);
++	statusType = b3GetStatusType(statusHandle);
++	  
++
++	Py_INCREF(Py_None);
++	return Py_None;
++}
++	
++
++
+ static PyObject* pybullet_getVisualShapeData(PyObject* self, PyObject* args) 
+ {
+ 	int size = PySequence_Size(args);
+@@ -2687,6 +2900,30 @@ static PyMethodDef SpamMethods[] = {
+ 		"axis-aligned bounding box volume (AABB)."
+ 		"Input are two vectors defining the AABB in world space [min_x,min_y,min_z],[max_x,max_y,max_z]."
+ 	 },
++
++
++	 { "addUserDebugLine", (PyCFunction)pybullet_addUserDebugLine, METH_VARARGS | METH_KEYWORDS,
++	 "Add a user debug draw line with lineFrom[3], lineTo[3], lineColorRGB[3], lineWidth, lifeTime. "
++	  "A lifeTime of 0 means permanent until removed. Returns a unique id for the user debug item."
++	 },
++
++
++	 { "addUserDebugText", (PyCFunction)pybullet_addUserDebugText, METH_VARARGS | METH_KEYWORDS,
++	 "Add a user debug draw line with text, textPosition[3], textSize and lifeTime in seconds "
++	 "A lifeTime of 0 means permanent until removed. Returns a unique id for the user debug item."
++	  },
++
++	 { "removeUserDebugItem", (PyCFunction)pybullet_removeUserDebugItem, METH_VARARGS | METH_KEYWORDS,
++	 "remove a user debug draw item, giving its unique id"
++	  },
++
++
++	 { "removeAllUserDebugItems", (PyCFunction)pybullet_removeAllUserDebugItems, METH_VARARGS | METH_KEYWORDS,
++	 "remove all user debug draw items"
++	  },
++
++
++
+     {"getVisualShapeData", pybullet_getVisualShapeData, METH_VARARGS,
+ 	"Return the visual shape information for one object." },
+ 		 
