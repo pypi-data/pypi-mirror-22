@@ -1,0 +1,66 @@
+Metadata-Version: 1.0
+Name: gmplmagic
+Version: 0.1.4
+Summary: GMPL/MathProg magics for IPython/Jupyter
+Home-page: https://github.com/nelsonuhan/gmplmagic
+Author: Nelson Uhan
+Author-email: nelson@uhan.me
+License: GNU GPLv3
+Description: GMPL Magic: GMPL/MathProg Magics for IPython/Jupyter
+        ====================================================
+        
+        Usage
+        -----
+        
+        Take a look at these `example
+        notebooks <https://github.com/nelsonuhan/gmplmagicexamples>`__ for
+        details on how to use GMPL Magic — no installation required, thanks to
+        `Binder <http://mybinder.org>`__!
+        
+        Dependencies
+        ------------
+        
+        GMPL Magic has been tested with
+        
+        -  Jupyter 4.2.0
+        -  Python 3.5.2
+        -  MetaKernel 0.14
+        -  PyGLPK 0.4.2, available from
+           [@bradfordboyle](https://github.com/bradfordboyle/pyglpk)
+        -  GLPK 4.60
+        
+        Installation
+        ------------
+        
+        First, make sure you have a working installation of GLPK. For example,
+        on macOS, this can be accomplished with `Homebrew <http://brew.sh>`__
+        by:
+        
+        ::
+        
+            brew update
+            brew tap homebrew/science
+            brew install glpk
+        
+        (I will eventually include instructions on how to install GLPK on other
+        operating systems.)
+        
+        Next, install PyGLPK - note that the version on PyPI is outdated:
+        
+        ::
+        
+            pip install https://github.com/bradfordboyle/pyglpk/zipball/master
+        
+        Then, install GMPL Magic:
+        
+        ::
+        
+            pip install gmplmagic
+        
+        To use these magics in a Jupyter notebook:
+        
+        ::
+        
+            %load_ext glpkmagic
+        
+Platform: UNKNOWN
