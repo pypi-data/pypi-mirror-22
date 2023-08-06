@@ -1,0 +1,9 @@
+{% extends 'dragonpay_soapxml/base.xml' %}
+
+{% block body %}
+<tns:GetAvailableProcessors xmlns="http://api.dragonpay.ph">
+    <tns:merchantId>{{ dp_merchant_id }}</tns:merchantId>
+    <tns:merchantPwd>{{ dp_merchant_secret }}</tns:merchantPwd>
+    <tns:amount>{{ amount }}</tns:amount>
+</tns:GetAvailableProcessors>
+{% endblock%}
