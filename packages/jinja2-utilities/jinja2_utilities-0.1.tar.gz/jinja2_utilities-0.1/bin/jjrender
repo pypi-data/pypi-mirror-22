@@ -1,0 +1,205 @@
+#!/usr/bin/env python
+#
+# vim:ts=4:sw=4:expandtab
+#
+# Copyright (C) 2013-2015 Menlo Security, Inc.
+#
+######################################################################
+
+import argparse
+import logging
+import os
+import sys
+
+from jinja2 import Template
+import yaml
+
+_version = '0.99.0'
+
+_description = """Ansible uses jinja2 templates, we need a utility to
+troubleshoot these templates from the command line.  This simple utility serves
+just that purpose. That is it takes a jinja2 template and renders it."""
+
+_epilog = """
+Example(s):
+    %(script)s -h                             - To provide this help
+    %(script)s -Y vars.yml                   - With YAML vars in the command
+    %(script)s -y <vars.yml                  - With YAML vars in stdin
+    my_var="WORLD WORLD" %(script)s -e       - Environment override
+    cat vars.yml | %(script)s -yy -e         - Override with relative priorities
+    cat my.j2 | %(script)s -t -Y vars.yml    - Template provided on stdin
+    """ % {
+        'script': os.path.basename(sys.argv[0]),
+    }
+
+_sample_template_file_content = """
+Hello {{ my_var }} !
+"""
+
+_sample_yaml_vars_file_content = """
+---
+my_var: WORLD
+"""
+
+
+def environment_override(vars_d):
+    for k, v in os.environ.items():
+        vars_d[k] = v
+    return vars_d
+
+
+def yaml_vars_stdin_override(vars_d):
+    stdin = ''.join(sys.stdin.readlines())
+    for k, v in yaml.safe_load(stdin):
+        vars_d[k] = v
+    return vars_d
+
+
+def get_section_path(section, separator):
+    _path = section.split(separator)
+    path = list()
+
+    for p in _path:
+        if len(p) > 0:
+            path.append(p)
+    return path
+
+
+def get_vars(data, steps):
+    assert type(data) is dict
+    assert type(steps) is list
+
+    ptr = data
+    for s in steps:
+        ptr = ptr[s]
+    return ptr
+
+
+def main():
+    parser = argparse.ArgumentParser(
+                        description=_description,
+                        epilog=_epilog,
+                        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    parser.add_argument('-d', '--debug',
+                        action='store_true',
+                        default=False,
+                        help='Debug mode',
+                        required=False,
+                        )
+    parser.add_argument('-e', '--environment',
+                        action='count',
+                        default=0,
+                        help='Environmnet variables override those provided',
+                        required=False,
+                        )
+    parser.add_argument('-I', '--input-separator',
+                        default='/',
+                        help='Input separator',
+                        required=False,
+                        )
+    parser.add_argument('-O', '--output-file',
+                        help='Output file',
+                        required=False,
+                        default='',
+                        )
+    parser.add_argument('-S', '--section',
+                        default='/',
+                        help='File section',
+                        required=False,
+                        )
+    parser.add_argument('-t', '--template-stdin',
+                        action='store_true',
+                        help='Template provided on stdin',
+                        required=False,
+                        )
+    parser.add_argument('-T', '--template-file',
+                        default='',
+                        help='Template file to process',
+                        required=False,
+                        )
+    parser.add_argument('-v', '--version',
+                        action='store_true',
+                        default=False,
+                        help='YAML on Stdin overrides provided vars',
+                        required=False,
+                        )
+    parser.add_argument('-y', '--yaml-vars-stdin',
+                        action='count',
+                        default=0,
+                        help='YAML on Stdin overrides provided vars',
+                        required=False,
+                        )
+    parser.add_argument('-Y', '--yaml-vars-file',
+                        default='',
+                        help='Variable in YAML file',
+                        required=False,
+                        )
+    args = parser.parse_args()
+    input_separator = args.input_separator
+    section = args.section
+
+    my_vars = dict()
+
+    if args.debug > 0:
+        logging.basicConfig(level=logging.DEBUG)
+        logging.debug('debug=%s', args.debug)
+
+    if args.version is True:
+        print _version
+        return
+
+    if len(args.template_file) > 0:
+        logging.debug('template-file=%s', args.template_file)
+        with open(args.template_file, 'r') as f:
+            tpl = Template(f.read())
+    elif args.template_stdin is True:
+        logging.debug('template-stdin=%s', args.template_stdin)
+        stdin = ''.join(sys.stdin.readlines())
+        tpl = Template(stdin)
+    else:
+        tpl = Template(_sample_template_file_content)
+
+    if len(args.yaml_vars_file) > 0:
+        logging.debug('yaml-vars-file=%s', args.yaml_vars_file)
+        with open(args.yaml_vars_file, 'r') as f:
+            my_vars = yaml.load(f)
+    else:
+        my_vars = yaml.load(_sample_yaml_vars_file_content)
+
+    if args.yaml_vars_stdin >= args.environment:
+        logging.debug('environment=%s', args.environment)
+        logging.debug('yaml-vars-stdin=%s', args.yaml_vars_stdin)
+        if args.yaml_vars_stdin > 0:
+            my_vars = yaml_vars_stdin_override(my_vars)
+        if args.environment > 0:
+            my_vars = environment_override(my_vars)
+    else:
+        if args.environment > 0:
+            my_vars = environment_override(my_vars)
+        if args.yaml_vars_stdin > 0:
+            my_vars = yaml_vars_stdin_override(my_vars)
+
+    # Take the section
+    keys = get_section_path(section, input_separator)
+
+    try:
+        my_vars = get_vars(my_vars, keys)
+    # except KeyError as e:
+    except KeyError as e:
+        logging.error("Keys '%s' not found!", keys)
+        logging.error("Var '%s' !", my_vars)
+        logging.error("Key '%s' not found!" % e.message)
+        sys.exit(1)
+
+    logging.debug('vars=%s ' % my_vars)
+
+    if len(args.output_file) > 0:
+        logging.debug('output-file=%s', args.output_file)
+        with open(args.output_file, 'w') as f:
+            print >>f, tpl.render(**my_vars)
+    else:
+        logging.debug('output-file=STDOUT')
+        print tpl.render(**my_vars)
+
+main()
