@@ -1,0 +1,160 @@
+Metadata-Version: 1.1
+Name: id2xml
+Version: 1.0.1
+Summary: Convert text format RFCs and Internet-Drafts to .xml format
+Home-page: https://tools.ietf.org/tools/ietfdb/browser/branch/elft/id2rfcx/
+Author: Henrik Levkowetz
+Author-email: henrik@levkowetz.com
+License: Simplified BSD
+Description: Internet-Draft text to XML Conversion Tool
+        ==========================================
+        
+        This tool, 'id2xml', is intended for use by the RFC-Editor staff, in order to
+        produce a first xml2rfc-compatible XML version from text-only Internet-Draft
+        submissions.
+        
+        id2xml may also be useful for Internet-Draft authors who wish to start working
+        on a new version of an older draft or RFC, for which no xml2rfc-compatible XML
+        source is available.
+        
+        The releases of the 0.9.x release series are preview releases, with a number
+        of known deficiencies.  They are released in order that potential users may
+        provide feedback on the most desired improvements ahead of a 1.0.0 release.
+        
+        Version 0.9.0 can process the drafts specified in the development Statement of
+        Work to XML files acceptable to xml2rfc, and can also process a number of
+        other test files to acceptable XML.  However, adding new drafts to the test
+        set still reveals weaknesses in many cases, so trouble-free processing of any
+        arbitrary draft should not be expected from the 0.9.x series.
+        
+        The XML produced follows RFC 7749 [1]_ in version 0.9.x and 1.x of the tool, and
+        will follow RFC 7991 [2]_ in version 2.x, which will be released once support
+        is available to process XML sources which follows the RFC 7991 vocabulary.
+        
+        
+        .. [1] Reschke, J., "The "xml2rfc" Version 2 Vocabulary", RFC 7749, DOI
+           10.17487/RFC7749, February 2016, <http://www.rfc-editor.org/info/rfc7749>.
+        
+        .. [2] Hoffman, P., "The "xml2rfc" Version 3 Vocabulary", RFC 7991, DOI
+           10.17487/RFC7991, December 2016, http://www.rfc-editor.org/info/rfc7991>.
+        
+        
+        Changelog
+        =========
+        
+        Version 1.0.1 (14 Jun 2017)
+        ------------------------------------------------
+        
+        
+          This is a bugfix release which addressess a number of issues raised by the
+          RFC Editor staff, and a few issues found during testing.
+        
+          * Added generation of a sortrefs PI which matches the original's RFC
+            references being sorted or not.
+        
+          * Tweaked the slugifier, and applied it to section-* anchors, to ensure 
+            they are valid.  Fixed an issue causing trailing commas in entity names.
+        
+          * Rewrote the handling of back matter to permit the various back sections 
+            to occur in any order.  Added yet another way to say 'work in progress' in 
+            references; added new reference patterns and removed the expectation that 
+            references will have a terminating period; did some minor code clean-up.
+        
+          * Refined the header and footer stripping to consider end-of-line commas,
+            and to require short lines triggering paragraph breaks to contain text.
+        
+          * Fixed a bug in line reading, which could cause the first line of a 
+            document to be skipped.  Added recognition of additional Standards Track 
+            status indications, such as 'Proposed Standard', etc.  Fixed a grammar 
+            issue.  Fixed an issue with mismatched authors on the first page and 
+            Author's Addresses section.  Refined the header/footer stripping to deal 
+            with additional variations of header/footer lines.
+        
+          * Fixed a number of places where warn() was called with a line object was 
+            used instead of the line number.
+        
+          * Changed to using the supplied figure or texttable label to set the 
+            title attribute also when rendering the figure as texttable or texttable as 
+            figure.
+        
+          * Refined the tokenizer for the text parser in order to correctly handle 
+            things like (Section N.N).
+        
+          * Eliminated trailing blank cells in texttables.
+        
+          * Added RFC-Editor staff to the release notification list.
+        
+        
+        
+        
+        
+        Version 1.0.0 (30 May 2017)
+        ------------------------------------------------
+        
+        
+          The number of lines in the corpus of test documents now show a percentage
+          of lines which differ from the original input file to the text file generated
+          from id2xml's xml file of just over 2%, and in some cases the generated
+          text is an improvement over the original text.  The tool should now be
+          functionally complete for vocabulary v2 output, so this seems like a good
+          time for a 1.0.0 release.
+        
+          Changes since 1.0.0rc3:
+        
+          * Split the functionality up into separate run.py, parser.py and utils.py
+            files, and adjusted Makefile and MANIFEST accordingly.
+        
+          * Entries in the <references/> sections are now entity references for drafts
+            and RFCs, instead of inserting the reference xml as generated from the
+            input document.
+        
+          * There's a slight refactoring of how the reference_anchors and
+            section_anchors lists are generated.
+        
+          * Added xref elements for Section N.nn strings which reference document
+            sections.
+        
+          * There has been multiple rounds of refactoring, to clean up and organise
+            the code better.
+        
+          * The generated xml has also been cleaned up, to avoid long lines and
+            tags bunched up on the same line.  It's still not super pretty, but
+            should be readable.
+        
+          * Added a check on coupled debug trace switches, where setting a trace start
+            option also requires that a trace stop option be set.
+        
+          * The regular expression which identifies code has been further refined.
+        
+          * Refined the header stripping to not join pararaphs where the first part
+            has a short line.
+        
+          * Added more cases where list hangIndent is derived and set.
+        
+          * Added modification of the text-list-symbols PI in order to better match
+            the source.  Since this is a global setting, it can't handle inconsistent
+            bullet styles in a document (for instance created with hangText="*" ...).
+        
+          * Improved the error message for missing stream information when attempting
+            to process older RFCs
+        
+          * Fixed a bug in the handling of the xml tree for xrefs found in text
+            interspersed with vspace elements.
+        
+          * Code optimisations.
+        
+          * Added the last two changelog sections to the release information shown onl
+            PyPi.
+        
+        
+        
+        
+Keywords: Internet-Draft text to xml conversion
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Other Audience
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Text Processing :: Markup :: XML
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
