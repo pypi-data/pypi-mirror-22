@@ -1,0 +1,59 @@
+2017-06-05 Hologram <support@hologram.io>
+    * Updated requirements.txt to always use the latest python sdk auth package.
+    * Added custom Hologram exceptions to the SDK.
+
+2017-06-02 Hologram <support@hologram.io>
+    * Fixed Hologram Spacebridge and Heartbeat
+
+2017-06-01 Hologram <support@hologram.io>
+    * Added better spacing for CLI help subcommand descriptions
+    * Added default send cloud and receive data for Hologram CLI
+    * Turned off exception stack trace when program is terminated via SIGTERM.
+    * Better CLI messages and error handling (on CLI parameters + options).
+
+2017-05-17 Hologram <support@hologram.io>
+    * Added receive sms feature
+    * Added auto PPP session detection
+    * Threaded serial output buffer in the Serial interface to listen for URC events
+    * Deprecated hologram_* CLI commands in favor of hologram <subcommand>s.
+    * Added operator, location and modem type (name) properties for cellular modems.
+
+2017-04-18 Hologram <support@hologram.io>
+    * Deprecated cloud_id and cloud_key credentials in favor of a single devicekey.
+    * Deprecated getSDKVersion() in favor of .version property.
+    * Deprecated getNetworkType() in favor of .network_type property.
+    * Deprecated mode choices in the modem interface.
+    * Added sendPeriodicMessage() feature in CustomCloud + HologramCloud interface.
+    * Added serial mode interface for cellular modems.
+    * Deprecated chatScriptFile in favor of chatscript_file. Sticking to underscores
+      for properties, camelCase for public methods/interfaces.
+    * Added credentials property in authentication class.
+    * Made certain properties persistent within the SDK (to minimize user errors
+      when trying to set/change them after instantiation.
+
+2017-04-03 Hologram <support@hologram.io>
+    * Deprecated consumeReceivedMessage() interface in favor of popReceivedMessage()
+    * Added more CLI scripts for sending messages via an active cellular connection.
+    * Added CLI scripts that are automatically added to your PATH via setup.py.
+    * Renamed default chatscript and moved it to a chatscripts folder under the modem interface
+
+2017-03-16 Hologram <support@hologram.io>
+    * Released hologram-python version 0.3.0
+    * Added network interfaces for the Hologram SDK.
+    * Added cellular network support via PPP for the iota, Huawei MS2131, and E303 modems.
+
+2017-02-14 Hologram <support@hologram.io>
+    * Released hologram-python version 0.2.0
+    * Refactored Cloud interfaces - They are now named Cloud, CustomCloud and
+      HologramCloud instead of Raw and Cloud.
+    * Added more *Cloud interface unit tests
+    * Added inbound connection interface.
+    * Added socket timeout flags for both inbound and outbound interfaces.
+    * Added and optimized Hologram CLI scripts.
+    * HologramCloud now parses Hologram specific return types and alerts the
+      user via the logging framework.
+
+2017-02-01 Hologram <support@hologram.io>
+    * Released hologram-python version 0.1.1
+    * Added sendMessage and sendSMS functionality.
+    * Examples and unit tests.
