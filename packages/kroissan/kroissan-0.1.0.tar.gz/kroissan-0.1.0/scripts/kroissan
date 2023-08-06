@@ -1,0 +1,95 @@
+#!/usr/bin/python
+import sys
+import argparse, yaml, copy
+
+from kroissan.tools import read_yaml_file, write_file, YamlDict, DictAsMember
+from kroissan.tools.output import Output
+
+default_config_file = 'kroissan.yaml'
+
+__version__ = '0.1.0'
+__program__ = 'kroissan'
+
+def main(args):
+
+    Output.set_output_policy(not args.no_output)
+    Output.set_color_policy(not args.no_color)
+    Output.set_debug_policy(args.debug)
+
+    if args.version:
+        raise(RuntimeError('{0} {1}\nPython {2}'.format(__program__, __version__, sys.version)))
+
+    config = read_yaml_file(default_config_file)
+
+    for stage_name in config.stages:
+
+        stage = config[stage_name]
+
+        Output.start_step(stage_name)
+
+        for step_dict in stage:
+            step = DictAsMember(step_dict)
+
+            process = read_yaml_file('{0}.yaml'.format(step.process))
+
+            file_input = ['{0}.yaml'.format(el) for el in step.input]
+            data = YamlDict(file_input)
+
+            result = apply_process(process, data)
+
+            if 'output' in step:
+                yaml_file_name = '{0}.yaml'.format(step.output)
+                Output.info('writting \'{}\''.format(yaml_file_name))
+                result = '# {}\n'.format(yaml_file_name) + yaml.dump(result, default_flow_style=False)
+                write_file(yaml_file_name, result)
+
+
+def apply_process(process, data):
+    result = {}
+    for key, value in process.items():
+        new_value = ''
+        if value:
+            if isinstance(value, dict):
+                new_value = apply_process(value, data)
+            else:
+                new_value = exec_with_args(value, data)
+
+        result[key] = new_value
+
+    return result
+
+
+def exec_with_args(code, args):
+
+    for arg, value in args.items():
+        locals()[arg] = value
+
+    result = 0
+
+    try:
+        result = eval(code, globals(), args)
+        return result
+    except:
+        exec(code, globals(), args)
+        if 'result' in  args:
+            return args['result']
+
+
+if __name__ == '__main__':
+
+    try:
+        parser = argparse.ArgumentParser(prog=__program__, add_help=False)
+        parser.add_argument('-v', '--version', help='Show program\'s version number and exit.', action='store_true')
+        parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS, help='Show this help message and exit.')
+        parser.add_argument('-d', '--debug', help='Show information to help debug the bake processing.', action='store_true')
+        parser.add_argument('--no-color', help='The output has no color.', action='store_true')
+        parser.add_argument('--no-output', help='There is no output.', action='store_true')
+        args = parser.parse_args()
+
+        main(args)
+
+    except RuntimeError as e:
+        print(e)
+
+    except (KeyboardInterrupt, SystemExit):
+        pass
