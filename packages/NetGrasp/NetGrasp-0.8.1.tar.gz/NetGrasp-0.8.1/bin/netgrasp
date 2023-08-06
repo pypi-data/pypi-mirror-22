@@ -1,0 +1,85 @@
+#!/usr/bin/env python2
+
+from netgrasp.utils import debug
+from netgrasp.utils import exclusive_lock
+from netgrasp.utils import email
+from netgrasp.utils import simple_timer
+from netgrasp.utils import pretty
+from netgrasp.utils import cli
+from netgrasp.config import config
+from netgrasp.notify import notify
+from netgrasp.database import database
+from netgrasp import netgrasp
+
+import argparse
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+            prog="netgrasp",
+            description="A passive network observation tool")
+    # --verbose -v, verbose
+    parser.add_argument("--verbose", "-v", action="count", help="verbose output")
+    # --config -c, configuration file
+    parser.add_argument("--config", "-c", help="specify custom path for configuration file")
+
+    subparsers = parser.add_subparsers()
+
+    # start
+    parser_start = subparsers.add_parser("start", help="start netgrasp")
+    parser_start.add_argument("--verbose", "-v", action="count", help="verbose logging")
+    parser_start.add_argument("--foreground", "-f", action="count", help="don't daemonize, run in the foreground")
+    parser_start.set_defaults(func=cli.start)
+
+    # stop
+    parser_stop = subparsers.add_parser("stop", help="stop netgrasp")
+    parser_stop.add_argument("--verbose", "-v", action="count", help="verbose logging")
+    parser_stop.set_defaults(func=cli.stop)
+
+    # restart
+    parser_restart = subparsers.add_parser("restart", help="restart netgrasp")
+    parser_restart.add_argument("--verbose", "-v", action="count", help="verbose logging")
+    parser_restart.add_argument("--foreground", "-f", action="count", help="don't daemonize, run in the foreground")
+    parser_restart.set_defaults(func=cli.restart)
+
+    # status
+    parser_status = subparsers.add_parser("status", help="netgrasp status")
+    parser_status.add_argument("--verbose", "-v", action="count", help="verbose logging")
+    parser_status.set_defaults(func=cli.status)
+
+    # list
+    parser_list = subparsers.add_parser("list", help="list devices")
+    parser_list.add_argument("--type", "-t", choices=["device", "event"], default="device", help="type of object to list")
+    parser_list.add_argument("--all", "-a", action="count", help="list all devices/events")
+    parser_list.add_argument("--mac", "-m", help="filter by mac address (ex. -m ff:ff)")
+    parser_list.add_argument("--ip", "-i", help="filter by ip address (ex. -i 127.0)")
+    parser_list.add_argument("--vendor", "-v", help="filter by vendor (ex. -v apple)")
+    parser_list.add_argument("--hostname", "-n", help="filter by hostname (ex. -h localhost)")
+    parser_list.add_argument("--custom", "-c", help="filter by custom name (ex. -i phone)")
+    parser_list.set_defaults(func=cli.list)
+
+    # identify (id, -i) ,v,i(ip),m(mac)
+    parser_identify = subparsers.add_parser("identify", help="identify devices")
+    parser_identify.add_argument("--set", "-s", nargs=2, help="set custom name (ex. -s 4 'my iPhone')")
+    parser_identify.add_argument("--all", "-a", action="count", help="list all devices")
+    parser_identify.add_argument("--mac", "-m", help="filter by mac address (ex. -m ff:ff:ff:ff:ff:ff)")
+    parser_identify.add_argument("--ip", "-i", help="filter by ip address (ex. -i 127.0.0.1)")
+    parser_identify.add_argument("--vendor", "-v", help="filter by vendor (ex. -v apple)")
+    parser_identify.add_argument("--hostname", "-n", help="filter by hostname (ex. -h localhost)")
+    parser_identify.add_argument("--custom", "-c", help="filter by custom name (ex. -i iphone)")
+    parser_identify.set_defaults(func=cli.identify)
+
+    args = parser.parse_args()
+
+    if args.config:
+        config = args.config
+    else:
+        config = netgrasp.DEFAULT_CONFIG
+
+    ng = netgrasp.Netgrasp(config)
+    ng.debugger, ng.config = netgrasp._init(args.verbose, False, debug.PRINT)
+    ng.verbose = args.verbose
+
+    ng.pidfile = ng.config.GetText("Logging", "pidfile", netgrasp.DEFAULT_PIDFILE, False)
+    ng.args = args
+
+    args.func(ng)
