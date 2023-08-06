@@ -1,0 +1,24 @@
+{
+  "template": "sentry-*",
+  "settings": {
+    "index": {
+      "number_of_shards": 5,
+      "number_of_replicas": 0
+    }
+  },
+  "mappings": {
+    "node": {
+      "dynamic": "strict",
+      "_all": {
+        "enabled": false
+      },
+
+      "properties": {
+        "data": {
+          "type": "text",
+          "index": false
+        }
+      }
+    }
+  }
+}
