@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Handlers &mdash; Pydap 3.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+      <link rel="search" type="application/opensearchdescription+xml" title="Search within Pydap 3.2 documentation" href="_static/opensearch.xml"/>
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Pydap 3.2 documentation" href="index.html"/>
+        <link rel="next" title="Responses" href="responses.html"/>
+        <link rel="prev" title="Running a server" href="server.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pydap
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="client.html">Using the client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Running a server</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Handlers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-data-handlers">Installing data handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#netcdf">NetCDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nca">NCA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cdms">CDMS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sql">SQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#proxy">Proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#csv">CSV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hdf5">HDF5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sqlite">SQLite</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="responses.html">Responses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pydap</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Handlers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/handlers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="handlers">
+<h1>Handlers<a class="headerlink" href="#handlers" title="Permalink to this headline">¶</a></h1>
+<p>Handlers are special Python modules that convert between a given data format and the data model used by Pydap (defined in the <code class="docutils literal"><span class="pre">pydap.model</span></code> module). They are necessary in order to Pydap be able to actually serve a dataset. There are handlers for NetCDF, HDF 4 &amp; 5, Matlab, relational databases, Grib 1 &amp; 2, CSV, Seabird CTD files, and a few more.</p>
+<div class="section" id="installing-data-handlers">
+<h2>Installing data handlers<a class="headerlink" href="#installing-data-handlers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="netcdf">
+<h3>NetCDF<a class="headerlink" href="#netcdf" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://www.unidata.ucar.edu/software/netcdf/">NetCDF</a> is a format commonly used in oceanography, meteorology and climate science to store data in a machine-independent format. You can install the NetCDF handler using <a class="reference external" href="http://pypi.python.org/pypi/pip">pip</a>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install Pydap<span class="o">[</span>handlers.netcdf<span class="o">]</span>
+</pre></div>
+</div>
+<p>This will take care of the necessary dependencies. You don’t even need to have to NetCDF libraries installed, since the handler will use a pure Python NetCDF library from <a class="reference external" href="https://docs.scipy.org/doc/scipy-0.16.1/reference/generated/scipy.io.netcdf.netcdf_file.html/">scipy.io.netcdf</a>.</p>
+<p>The NetCDF handler uses a buffered reader that access the data in contiguous blocks from disk, avoiding reading everything into memory at once. You can configure the size of the buffer by specifying a key in the <code class="docutils literal"><span class="pre">server.ini</span></code> file:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="k">[app:main]</span>
+<span class="na">use</span> <span class="o">=</span> <span class="s">egg:pydap#server</span>
+<span class="na">root</span> <span class="o">=</span> <span class="s">%(here)s/data</span>
+<span class="na">templates</span> <span class="o">=</span> <span class="s">%(here)s/templates</span>
+<span class="na">x-wsgiorg.throw_errors</span> <span class="o">=</span> <span class="s">0</span>
+<span class="na">pydap.handlers.netcdf.buf_size</span> <span class="o">=</span> <span class="s">10000</span>
+</pre></div>
+</div>
+<p>In this example, the handler will read 10 thousand values at a time, converting the data and sending to the client before reading more blocks.</p>
+</div>
+<div class="section" id="nca">
+<h3>NCA<a class="headerlink" href="#nca" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">pydap.handlers.nca</span></code> is a simple handler for NetCDF aggregation (hence the name). The configuration is extremely simple. As an example, to aggregate model output in different files (say, <code class="docutils literal"><span class="pre">output1.nc</span></code>, <code class="docutils literal"><span class="pre">output2.nc</span></code>, etc.) along a new axis “ensemble” just create an INI file with the extension <code class="docutils literal"><span class="pre">.nca</span></code>:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="c1">; output.nca</span>
+<span class="k">[dataset]</span>
+<span class="na">match</span> <span class="o">=</span> <span class="s">/path/to/output*.nc</span>
+<span class="na">axis</span> <span class="o">=</span> <span class="s">ensemble</span>
+<span class="c1">; below optional metadata:</span>
+<span class="na">history</span> <span class="o">=</span> <span class="s">Test for NetCDF aggregator</span>
+
+<span class="k">[ensemble]</span>
+<span class="na">values</span> <span class="o">=</span> <span class="s">1, 2, ...</span>
+<span class="na">long_name</span> <span class="o">=</span> <span class="s">Ensemble members</span>
+</pre></div>
+</div>
+<p>This will assign the values 1, 2, and so on to each ensemble member. The new, aggregated dataset, will be accessed at the location of the INI file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">server</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">output</span><span class="o">.</span><span class="n">nca</span>
+</pre></div>
+</div>
+<p>Another example: suppose we have monthly data in files <code class="docutils literal"><span class="pre">data01.nc</span></code>, <code class="docutils literal"><span class="pre">data02.nc</span></code>, …, <code class="docutils literal"><span class="pre">data12.nc</span></code>, and we want to aggregate along the time axis:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="k">[dataset]</span>
+<span class="na">match</span> <span class="o">=</span> <span class="s">/path/to/data*.nc</span>
+<span class="na">axis</span> <span class="o">=</span> <span class="s">TIME  # existing axis</span>
+</pre></div>
+</div>
+<p>The handler only works with NetCDF files for now, but in the future it should be changed to work with any other Pydap-supported data format. As all handlers, it can be installed using <a class="reference external" href="http://pypi.python.org/pypi/pip">pip</a>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install pydap.handlers.nca
+</pre></div>
+</div>
+</div>
+<div class="section" id="cdms">
+<h3>CDMS<a class="headerlink" href="#cdms" title="Permalink to this headline">¶</a></h3>
+<p>This is a handler that uses the <code class="docutils literal"><span class="pre">cdms2.open</span></code> function from <a class="reference external" href="http://www2-pcmdi.llnl.gov/cdat">CDAT</a>/<a class="reference external" href="http://proj.badc.rl.ac.uk/ndg/wiki/CdatLite">CdatLite</a> to read files in any of the self-describing formats netCDF, HDF, GrADS/GRIB (GRIB with a GrADS control file), or PCMDI DRS. It can be installed using <a class="reference external" href="http://pypi.python.org/pypi/pip">pip</a>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install pydap.handlers.cdms
+</pre></div>
+</div>
+<p>The handler will automatically install <code class="docutils literal"><span class="pre">CdatLite</span></code>, which requires the NetCDF libraries to be installed on the system.</p>
+</div>
+<div class="section" id="sql">
+<h3>SQL<a class="headerlink" href="#sql" title="Permalink to this headline">¶</a></h3>
+<p>The SQL handler reads data from a relation database, as the name suggests. It works by reading a file with the extension <code class="docutils literal"><span class="pre">.sql</span></code>, defining the connection to the database and other metadata using either YAML or INI syntax. Below is an example that reads data from a SQLite database:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="c1"># please read http://groups.google.com/group/pydap/browse_thread/thread/c7f5c569d661f7f9 before</span>
+<span class="c1"># setting your password on the DSN</span>
+<span class="na">database:</span>
+    <span class="na">dsn: &#39;sqlite://simple.db&#39;</span>
+    <span class="na">table: test</span>
+
+<span class="na">dataset:</span>
+    <span class="na">NC_GLOBAL:</span>
+        <span class="na">history: Created by the Pydap SQL handler</span>
+        <span class="na">dataType: Station</span>
+        <span class="na">Conventions: GrADS</span>
+
+    <span class="na">contact: roberto@dealmeida.net</span>
+    <span class="na">name: test_dataset</span>
+    <span class="na">owner: Roberto De Almeida</span>
+    <span class="na">version: 1.0</span>
+    <span class="na">last_modified: !Query &#39;SELECT time FROM test ORDER BY time DESC LIMIT 1;&#39;</span>
+
+<span class="na">sequence:</span>
+    <span class="na">name: simple</span>
+    <span class="na">items: !Query &#39;SELECT COUNT(id) FROM test&#39;</span>
+
+<span class="na">_id:</span>
+    <span class="na">col: id</span>
+    <span class="na">long_name: sequence id</span>
+    <span class="na">missing_value: -9999</span>
+
+<span class="na">lon:</span>
+    <span class="na">col: lon</span>
+    <span class="na">axis: X</span>
+    <span class="na">grads_dim: x</span>
+    <span class="na">long_name: longitude</span>
+    <span class="na">units: degrees_east</span>
+    <span class="na">missing_value: -9999</span>
+    <span class="na">type: Float32</span>
+    <span class="na">global_range: [-180, 180]</span>
+    <span class="na">valid_range: !Query &#39;SELECT min(lon), max(lon) FROM test&#39;</span>
+
+<span class="na">lat:</span>
+    <span class="na">col: lat</span>
+    <span class="na">axis: Y</span>
+    <span class="na">grads_dim: y</span>
+    <span class="na">long_name: latitude</span>
+    <span class="na">units: degrees_north</span>
+    <span class="na">missing_value: -9999</span>
+    <span class="na">type: Float32</span>
+    <span class="na">global_range: [-90, 90]</span>
+    <span class="na">valid_range: !Query &#39;SELECT min(lat), max(lat) FROM test&#39;</span>
+
+<span class="na">time:</span>
+    <span class="na">col: time</span>
+    <span class="na">axis: T</span>
+    <span class="na">grads_dim: t</span>
+    <span class="na">long_name: time</span>
+    <span class="na">missing_value: -9999</span>
+    <span class="na">type: String</span>
+
+<span class="na">depth:</span>
+    <span class="na">axis: Z</span>
+    <span class="na">col: depth</span>
+    <span class="na">long_name: depth</span>
+    <span class="na">missing_value: -9999</span>
+    <span class="na">type: Float32</span>
+    <span class="na">units: m</span>
+
+<span class="na">temp:</span>
+    <span class="na">col: temp</span>
+    <span class="na">long_name: temperature</span>
+    <span class="na">missing_value: -9999</span>
+    <span class="na">type: Float32</span>
+    <span class="na">units: degc</span>
+</pre></div>
+</div>
+<p>The handler works with SQLite, MySQL, PostgreSQL, Oracle, MSSQL and ODBC databases. To install the handler use pip; you should also install the dependencies according to the database used:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install pydap.handlers.sql
+$ pip install <span class="s2">&quot;pydap.handlers.sql[oracle]&quot;</span>
+$ pip install <span class="s2">&quot;pydap.handlers.sql[postgresql]&quot;</span>
+$ pip install <span class="s2">&quot;pydap.handlers.sql[mysql]&quot;</span>
+$ pip install <span class="s2">&quot;pydap.handlers.sql[mssql]&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="proxy">
+<h3>Proxy<a class="headerlink" href="#proxy" title="Permalink to this headline">¶</a></h3>
+<p>This is a simple handler intended to serve remote datasets locally. For example, suppose you want to serve <a class="reference external" href="http://test.opendap.org:8080/dods/dts/D1.html">this dataset</a> on your Pydap server. The URL of the dataset is:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">test</span><span class="o">.</span><span class="n">opendap</span><span class="o">.</span><span class="n">org</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">dods</span><span class="o">/</span><span class="n">dts</span><span class="o">/</span><span class="n">D1</span>
+</pre></div>
+</div>
+<p>So we create an INI file called, say, <code class="docutils literal"><span class="pre">D1.url</span></code>:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="k">[dataset]</span>
+<span class="na">url</span> <span class="o">=</span> <span class="s">http://test.opendap.org:8080/dods/dts/D1</span>
+<span class="na">pass</span> <span class="o">=</span> <span class="s">dds, das, dods</span>
+</pre></div>
+</div>
+<p>The file specifies that requests for the DDS, DAS and DODS responses should be passed directly to the server (so that the data is downloaded directly from the remote server). Other requests, like for the HTML form or a WMS image are built by Pydap; in this case Pydap acts as an Opendap client, connecting to the remote server and downloading data to fulfill the request.</p>
+</div>
+<div class="section" id="csv">
+<h3>CSV<a class="headerlink" href="#csv" title="Permalink to this headline">¶</a></h3>
+<p>This is a handler for files with comma separated values. The first column should contain the variable names, and subsequent lines the data. Metadata is not supported. The handler is used mostly as a reference for building handlers for sequential data. You can install it with:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install pydap.handlers.csv
+</pre></div>
+</div>
+</div>
+<div class="section" id="hdf5">
+<h3>HDF5<a class="headerlink" href="#hdf5" title="Permalink to this headline">¶</a></h3>
+<p>A handler for HDF5 files, based on <a class="reference external" href="http://code.google.com/p/h5py/">h5py</a>. In order to install it:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install pydap.handlers.hdf5
+</pre></div>
+</div>
+</div>
+<div class="section" id="sqlite">
+<h3>SQLite<a class="headerlink" href="#sqlite" title="Permalink to this headline">¶</a></h3>
+<p>This is a handler very similar to the SQL handler. The major difference is that data and metadata are all contained in a single <code class="docutils literal"><span class="pre">.db</span></code> SQLite file. Metadata is stored as JSON in a table called <code class="docutils literal"><span class="pre">attributes</span></code>, while data goes into a table <code class="docutils literal"><span class="pre">data</span></code>.</p>
+<p>The handler was created as a way to move sequential data from one server to another. It comes with a script called <code class="docutils literal"><span class="pre">freeze</span></code> which will take an Opendap dataset with sequential data and create a <code class="docutils literal"><span class="pre">.db</span></code> file that can be served using this handler. For example:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ freeze http://opendap.ccst.inpe.br/Observations/PIRATA/pirata_stations.sql
+</pre></div>
+</div>
+<p>This will creata file called <code class="docutils literal"><span class="pre">pirata_stations.db</span></code> that can be served using the SQLite handler.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="responses.html" class="btn btn-neutral float-right" title="Responses" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="server.html" class="btn btn-neutral" title="Running a server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2003-2017, Pydap contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

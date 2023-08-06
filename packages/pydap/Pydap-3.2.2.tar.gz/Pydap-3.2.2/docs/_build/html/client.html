@@ -1,0 +1,654 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using the client &mdash; Pydap 3.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+      <link rel="search" type="application/opensearchdescription+xml" title="Search within Pydap 3.2 documentation" href="_static/opensearch.xml"/>
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Pydap 3.2 documentation" href="index.html"/>
+        <link rel="next" title="Running a server" href="server.html"/>
+        <link rel="prev" title="Pydap" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pydap
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using the client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-gridded-data">Accessing gridded data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#older-servers">Older Servers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-sequential-data">Accessing sequential data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#urs-nasa-earthdata">URS NASA EARTHDATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#earth-system-grid-federation-esgf">Earth System Grid Federation (ESGF)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-features">Advanced features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Running a server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handlers.html">Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="responses.html">Responses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pydap</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Using the client</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/client.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="using-the-client">
+<h1>Using the client<a class="headerlink" href="#using-the-client" title="Permalink to this headline">¶</a></h1>
+<p>Pydap can be used as a client to inspect and retrieve data from any of the <a class="reference external" href="http://www.opendap.org/data/datasets.cgi?xmlfilename=datasets.xml&amp;exfunction=none">hundreds of scientific datasets</a> available on the internet on <a class="reference external" href="http://opendap.org/">OPeNDAP</a> servers. This way, it’s possible to instrospect and manipulate a dataset as if it were stored locally, with data being downloaded on-the-fly as necessary.</p>
+<div class="section" id="accessing-gridded-data">
+<h2>Accessing gridded data<a class="headerlink" href="#accessing-gridded-data" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start accessing gridded data, i.e., data that is stored as a regular multidimensional array. Here’s a simple example where we access the <a class="reference external" href="http://www.ncdc.noaa.gov/oa/climate/coads/">COADS</a> climatology from the official OPeNDAP server:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.client</span> <span class="k">import</span> <span class="n">open_url</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_url</span><span class="p">(</span><span class="s1">&#39;http://test.opendap.org/dap/data/nc/coads_climatology.nc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="go">&lt;class &#39;pydap.model.DatasetType&#39;&gt;</span>
+</pre></div>
+</div>
+<p>Here we use the <code class="docutils literal"><span class="pre">pydap.client.open_url</span></code> function to open an URL specifying the location of the dataset; this URL should be stripped of the extensions commonly used for OPeNDAP datasets, like <cite>.dds</cite> or <cite>.das</cite>. When we access the remote dataset the function returns a <code class="docutils literal"><span class="pre">DatasetType</span></code> object, which is a <em>Structure</em> – a fancy dictionary that stores other variables. We can check the names of the store variables like we would do with a Python dictionary:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">[&#39;COADSX&#39;, &#39;COADSY&#39;, &#39;TIME&#39;, &#39;SST&#39;, &#39;AIRT&#39;, &#39;UWND&#39;, &#39;VWND&#39;]</span>
+</pre></div>
+</div>
+<p>Let’s work with the <code class="docutils literal"><span class="pre">SST</span></code> variable; we can reference it using the usual dictionary syntax of <code class="docutils literal"><span class="pre">dataset['SST']</span></code>, or using the “lazy” syntax <code class="docutils literal"><span class="pre">dataset.SST</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sst</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;SST&#39;</span><span class="p">]</span>  <span class="c1"># or dataset.SST</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">sst</span><span class="p">)</span>
+<span class="go">&lt;class &#39;pydap.model.GridType&#39;&gt;</span>
+</pre></div>
+</div>
+<p>Note that the variable is of type <code class="docutils literal"><span class="pre">GridType</span></code>, a multidimensional array with specific axes defining each of its dimensions:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sst</span><span class="o">.</span><span class="n">dimensions</span>
+<span class="go">(&#39;TIME&#39;, &#39;COADSY&#39;, &#39;COADSX&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sst</span><span class="o">.</span><span class="n">maps</span>
+<span class="go">OrderedDict([(&#39;TIME&#39;, &lt;BaseType with data BaseProxy(&#39;http://test.opendap.org/dap/data/nc/coads_climatology.nc&#39;, &#39;SST.TIME&#39;, dtype(&#39;&gt;f8&#39;), (12,), (slice(None, None, None),))&gt;), (&#39;COADSY&#39;, &lt;BaseType with data BaseProxy(&#39;http://test.opendap.org/dap/data/nc/coads_climatology.nc&#39;, &#39;SST.COADSY&#39;, dtype(&#39;&gt;f8&#39;), (90,), (slice(None, None, None),))&gt;), (&#39;COADSX&#39;, &lt;BaseType with data BaseProxy(&#39;http://test.opendap.org/dap/data/nc/coads_climatology.nc&#39;, &#39;SST.COADSX&#39;, dtype(&#39;&gt;f8&#39;), (180,), (slice(None, None, None),))&gt;)])</span>
+</pre></div>
+</div>
+<p>Each map is also, in turn, a variable that can be accessed using the same syntax used for Structures:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sst</span><span class="o">.</span><span class="n">TIME</span>
+<span class="go">&lt;BaseType with data BaseProxy(&#39;http://test.opendap.org/dap/data/nc/coads_climatology.nc&#39;, &#39;SST.TIME&#39;, dtype(&#39;&gt;f8&#39;), (12,), (slice(None, None, None),))&gt;</span>
+</pre></div>
+</div>
+<p>The axes are all of type <code class="docutils literal"><span class="pre">BaseType</span></code>. This is the OPeNDAP equivalent of a multidimensional array, with a specific shape and type. Even though no data have been downloaded up to this point, we can introspect these attributes from the axes or from the Grid itself:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sst</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(12, 90, 180)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sst</span><span class="o">.</span><span class="n">dtype</span>
+<span class="go">dtype(&#39;&gt;f4&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sst</span><span class="o">.</span><span class="n">TIME</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(12,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sst</span><span class="o">.</span><span class="n">TIME</span><span class="o">.</span><span class="n">dtype</span>
+<span class="go">dtype(&#39;&gt;f8&#39;)</span>
+</pre></div>
+</div>
+<p>We can also introspect the variable attributes; they are stored in an attribute appropriately called <code class="docutils literal"><span class="pre">attributes</span></code>, and they can also be accessed with a “lazy” syntax:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pprint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">sst</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+<span class="go">{&#39;_FillValue&#39;: -9.99999979e+33,</span>
+<span class="go"> &#39;history&#39;: &#39;From coads_climatology&#39;,</span>
+<span class="go"> &#39;long_name&#39;: &#39;SEA SURFACE TEMPERATURE&#39;,</span>
+<span class="go"> &#39;missing_value&#39;: -9.99999979e+33,</span>
+<span class="go"> &#39;units&#39;: &#39;Deg C&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sst</span><span class="o">.</span><span class="n">units</span>
+<span class="go">&#39;Deg C&#39;</span>
+</pre></div>
+</div>
+<p>Finally, we can also download some data. To download data we simply access it like we would access a <a class="reference external" href="http://numpy.scipy.org/">Numpy</a> array, and the data for the corresponding subset will be dowloaded on the fly from the server:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sst</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(12, 90, 180)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span> <span class="o">=</span> <span class="n">sst</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span><span class="mi">14</span><span class="p">]</span>  <span class="c1"># this will download data from the server</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span>
+<span class="go">&lt;GridType with array &#39;SST&#39; and maps &#39;TIME&#39;, &#39;COADSY&#39;, &#39;COADSX&#39;&gt;</span>
+</pre></div>
+</div>
+<p>The data itself can be accessed in the <code class="docutils literal"><span class="pre">array</span></code> attribute of the Grid, and also on the individual axes:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">array</span><span class="p">[:]</span>
+<span class="go">&lt;BaseType with data array([[[ -1.26285708e+00,  -9.99999979e+33,  -9.99999979e+33,</span>
+<span class="go">          -9.99999979e+33],</span>
+<span class="go">        [ -7.69166648e-01,  -7.79999971e-01,  -6.75454497e-01,</span>
+<span class="go">          -5.95714271e-01],</span>
+<span class="go">        [  1.28333330e-01,  -5.00000156e-02,  -6.36363626e-02,</span>
+<span class="go">          -1.41666666e-01],</span>
+<span class="go">        [  6.38000011e-01,   8.95384610e-01,   7.21666634e-01,</span>
+<span class="go">           8.10000002e-01]]], dtype=float32)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">array</span><span class="p">[:]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="go">[[[ -1.26285708e+00  -9.99999979e+33  -9.99999979e+33  -9.99999979e+33]</span>
+<span class="go">  [ -7.69166648e-01  -7.79999971e-01  -6.75454497e-01  -5.95714271e-01]</span>
+<span class="go">  [  1.28333330e-01  -5.00000156e-02  -6.36363626e-02  -1.41666666e-01]</span>
+<span class="go">  [  6.38000011e-01   8.95384610e-01   7.21666634e-01   8.10000002e-01]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">COADSX</span><span class="p">[:]</span>
+<span class="go">&lt;BaseType with data array([ 41.,  43.,  45.,  47.])&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">COADSX</span><span class="p">[:]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="go">[ 41.  43.  45.  47.]</span>
+</pre></div>
+</div>
+<p>Alternatively, we could have dowloaded the data directly, skipping the axes:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sst</span><span class="o">.</span><span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span><span class="mi">14</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="go">[[[ -1.26285708e+00  -9.99999979e+33  -9.99999979e+33  -9.99999979e+33]</span>
+<span class="go">  [ -7.69166648e-01  -7.79999971e-01  -6.75454497e-01  -5.95714271e-01]</span>
+<span class="go">  [  1.28333330e-01  -5.00000156e-02  -6.36363626e-02  -1.41666666e-01]</span>
+<span class="go">  [  6.38000011e-01   8.95384610e-01   7.21666634e-01   8.10000002e-01]]]</span>
+</pre></div>
+</div>
+<div class="section" id="older-servers">
+<h3>Older Servers<a class="headerlink" href="#older-servers" title="Permalink to this headline">¶</a></h3>
+<p>Some servers using a very old OPeNDAP application might run of of memory when attempting to retrieve both the data and
+the coordinate axes of a variable. The work around is to simply disable the retrieval of coordinate axes by using the
+<code class="docutils literal"><span class="pre">output_grid</span></code> option to open url:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.client</span> <span class="k">import</span> <span class="n">open_url</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_url</span><span class="p">(</span><span class="s1">&#39;http://test.opendap.org/dap/data/nc/coads_climatology.nc&#39;</span><span class="p">,</span> <span class="n">output_grid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span> <span class="o">=</span> <span class="n">sst</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span><span class="mi">14</span><span class="p">]</span>  <span class="c1"># this will download data from the server</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span>
+<span class="go">&lt;GridType with array &#39;SST&#39; and maps &#39;TIME&#39;, &#39;COADSY&#39;, &#39;COADSX&#39;&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="accessing-sequential-data">
+<h2>Accessing sequential data<a class="headerlink" href="#accessing-sequential-data" title="Permalink to this headline">¶</a></h2>
+<p>Now let’s see an example of accessing sequential data. Sequential data consists of one or more records of related variables, such as a simultaneous measurements of temperature and wind velocity, for example. In this example we’re going to access data from the <a class="reference external" href="http://www.argo.ucsd.edu/">Argo project</a>, consisting of profiles made by autonomous buoys drifting on the ocean:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.client</span> <span class="k">import</span> <span class="n">open_url</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_url</span><span class="p">(</span><span class="s1">&#39;http://dapper.pmel.noaa.gov/dapper/argo/argo_all.cdp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This dataset is fairly complex, with several variables representing heterogeneous 4D data. The layout of the dataset follows the <a class="reference external" href="http://www.epic.noaa.gov/epic/software/dapper/dapperdocs/conventions/">Dapper in-situ conventions</a>, consisting of two nested sequences: the outer sequence contains, in this case, a latitude, longitude and time variable, while the inner sequence contains measurements along a z axis.</p>
+<p>The first thing we’d like to do is limit our region; let’s work with a small region in the Tropical Atlantic:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">location</span><span class="p">)</span>
+<span class="go">&lt;class &#39;pydap.model.SequenceType&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="go">[&#39;LATITUDE&#39;, &#39;JULD&#39;, &#39;LONGITUDE&#39;, &#39;_id&#39;, &#39;profile&#39;, &#39;attributes&#39;, &#39;variable_attributes&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_location</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">location</span><span class="p">[</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">LATITUDE</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">LATITUDE</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">LONGITUDE</span> <span class="o">&gt;</span> <span class="mi">320</span><span class="p">)</span> <span class="o">&amp;</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">LONGITUDE</span> <span class="o">&lt;</span> <span class="mi">330</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Note that the variable <code class="docutils literal"><span class="pre">dataset.location</span></code> is of type <code class="docutils literal"><span class="pre">SequenceType</span></code> – also a Structure that holds other variables. Here we’re limiting the sequence <code class="docutils literal"><span class="pre">dataset.location</span></code> to measurements between given latitude and longitude boundaries. Let’s access the identification number of the first 10-or-so profiles:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">id_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">my_location</span><span class="p">[</span><span class="s1">&#39;_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iterdata</span><span class="p">()):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">id_</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">break</span>
+<span class="go">1125393</span>
+<span class="go">835304</span>
+<span class="go">839894</span>
+<span class="go">875344</span>
+<span class="go">110975</span>
+<span class="go">864748</span>
+<span class="go">832685</span>
+<span class="go">887712</span>
+<span class="go">962673</span>
+<span class="go">881368</span>
+<span class="go">1127922</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">my_location</span><span class="p">[</span><span class="s1">&#39;_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iterdata</span><span class="p">())</span>
+<span class="go">623</span>
+</pre></div>
+</div>
+<p>Note that calculating the length of a sequence takes some time, since the client has to download all the data and do the calculation locally. This is why you should use <code class="docutils literal"><span class="pre">len(my_location['_id'])</span></code> instead of <code class="docutils literal"><span class="pre">len(my_location)</span></code>. Both should give the same result (unless the dataset changes between requests), but the former retrieves only data for the <code class="docutils literal"><span class="pre">_id</span></code> variable, while the later retrives data for all variables.</p>
+<p>We can explicitly select just the first 5 profiles from our sequence:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_location</span> <span class="o">=</span> <span class="n">my_location</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">my_location</span><span class="p">[</span><span class="s1">&#39;_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iterdata</span><span class="p">())</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>And we can print the temperature profiles at each location. We’re going to use the <a class="reference external" href="http://pypi.python.org/pypi/coards">coards</a> module to convert the time to a Python <code class="docutils literal"><span class="pre">datetime</span></code> object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">coards</span> <span class="kn">import</span> <span class="n">from_udunits</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">my_location</span><span class="o">.</span><span class="n">iterdata</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">date</span> <span class="o">=</span> <span class="n">from_udunits</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">JULD</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">position</span><span class="o">.</span><span class="n">JULD</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;GMT&#39;</span><span class="p">,</span> <span class="s1">&#39;+0:00&#39;</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">LATITUDE</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">position</span><span class="o">.</span><span class="n">LONGITUDE</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">pressure</span><span class="p">,</span> <span class="n">temperature</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">PRES</span><span class="p">,</span> <span class="n">position</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">TEMP</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">)</span>
+<span class="gp">... </span>            <span class="k">break</span>
+<span class="gp">... </span>        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="go">-1.01 320.019 2009-05-03 11:42:34+00:00</span>
+<span class="go">========================================</span>
+<span class="go">5.0 28.59</span>
+<span class="go">10.0 28.788</span>
+<span class="go">15.0 28.867</span>
+<span class="go">20.0 28.916</span>
+<span class="go">25.0 28.94</span>
+<span class="go">30.0 28.846</span>
+<span class="go">35.0 28.566</span>
+<span class="go">40.0 28.345</span>
+<span class="go">45.0 28.05</span>
+<span class="go">50.0 27.595</span>
+<span class="go">55.0 27.061</span>
+<span class="gp">...</span>
+<span class="go">-0.675 320.027 2006-12-25 13:24:11+00:00</span>
+<span class="go">========================================</span>
+<span class="go">5.0 27.675</span>
+<span class="go">10.0 27.638</span>
+<span class="go">15.0 27.63</span>
+<span class="go">20.0 27.616</span>
+<span class="go">25.0 27.617</span>
+<span class="go">30.0 27.615</span>
+<span class="go">35.0 27.612</span>
+<span class="go">40.0 27.612</span>
+<span class="go">45.0 27.605</span>
+<span class="go">50.0 27.577</span>
+<span class="go">55.0 27.536</span>
+<span class="gp">...</span>
+<span class="go">-0.303 320.078 2007-01-12 11:30:31.001000+00:00</span>
+<span class="go">========================================</span>
+<span class="go">5.0 27.727</span>
+<span class="go">10.0 27.722</span>
+<span class="go">15.0 27.734</span>
+<span class="go">20.0 27.739</span>
+<span class="go">25.0 27.736</span>
+<span class="go">30.0 27.718</span>
+<span class="go">35.0 27.694</span>
+<span class="go">40.0 27.697</span>
+<span class="go">45.0 27.698</span>
+<span class="go">50.0 27.699</span>
+<span class="go">55.0 27.703</span>
+<span class="gp">...</span>
+<span class="go">-1.229 320.095 2007-04-22 13:03:35.002000+00:00</span>
+<span class="go">========================================</span>
+<span class="go">5.0 28.634</span>
+<span class="go">10.0 28.71</span>
+<span class="go">15.0 28.746</span>
+<span class="go">20.0 28.758</span>
+<span class="go">25.0 28.755</span>
+<span class="go">30.0 28.747</span>
+<span class="go">35.0 28.741</span>
+<span class="go">40.0 28.737</span>
+<span class="go">45.0 28.739</span>
+<span class="go">50.0 28.748</span>
+<span class="go">55.0 28.806</span>
+<span class="gp">...</span>
+<span class="go">-1.82 320.131 2003-04-09 13:20:03+00:00</span>
+<span class="go">========================================</span>
+<span class="go">5.1 28.618</span>
+<span class="go">9.1 28.621</span>
+<span class="go">19.4 28.637</span>
+<span class="go">29.7 28.662</span>
+<span class="go">39.6 28.641</span>
+<span class="go">49.6 28.615</span>
+<span class="go">59.7 27.6</span>
+<span class="go">69.5 26.956</span>
+<span class="go">79.5 26.133</span>
+<span class="go">89.7 23.937</span>
+<span class="go">99.2 22.029</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+<p>These profiles could be easily plotted using <a class="reference external" href="http://matplotlib.sf.net/">matplotlib</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">my_location</span><span class="o">.</span><span class="n">iterdata</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">plot</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">TEMP</span><span class="p">,</span> <span class="n">position</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">PRES</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You can also access the deep variables directly. When you iterate over these variables the client will download the data as nested lists:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">my_location</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">PRES</span><span class="o">.</span><span class="n">iterdata</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">value</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="go">[5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0]</span>
+<span class="go">[5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0]</span>
+<span class="go">[5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0]</span>
+<span class="go">[5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0]</span>
+<span class="go">[5.0999999, 9.1000004, 19.4, 29.700001, 39.599998, 49.599998, 59.700001, 69.5, 79.5, 89.699997]</span>
+</pre></div>
+</div>
+<p>Pydap 3.0 has been rewritten to make it easier to work with Dapper datasets like this one, and it should be intuitive <a class="footnote-reference" href="#id2" id="id1">[1]</a> to work with these variables.</p>
+</div>
+<div class="section" id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
+<p>To use Basic and Digest authentication, simply add your username and password to the dataset URL. Keep in mind that if the server only supports Basic authentication your credentials will be sent as plaintext, and could be sniffed on the network.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.client</span> <span class="kn">import</span> <span class="n">open_url</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_url</span><span class="p">(</span><span class="s1">&#39;http://username:password@server.example.com/path/to/dataset&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Central_Authentication_Service">Central Authentication Service</a> (CAS) is a single sign-on protocol for the web, usually involving a web browser and cookies. Nevertheless it’s possible to use Pydap with an OPeNDAP server behind a CAS. The function <code class="docutils literal"><span class="pre">install_cas_client</span></code> below replaces Pydap’s default HTTP function with a new version able to submit authentication data to an HTML form and store credentials in cookies. (In this particular case, the server uses Javascript to redirect the browser to a new location, so the client has to parse the location from the Javascript code; other CAS would require a tweaked function.)</p>
+<p>To use it, just attach a web browsing <code class="docutils literal"><span class="pre">session</span></code> with authentication cookies:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.client</span> <span class="kn">import</span> <span class="n">open_url</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.cas.get_cookies</span> <span class="kn">import</span> <span class="n">setup_session</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">session</span> <span class="o">=</span> <span class="n">setup_session</span><span class="p">(</span><span class="n">authentication_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_url</span><span class="p">(</span><span class="s1">&#39;http://server.example.com/path/to/dataset&#39;</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This method could work but each CAS is slightly different and might require a specifically designed
+<code class="docutils literal"><span class="pre">setup_session</span></code> instance. Two CAS are however explicitly supported by <code class="docutils literal"><span class="pre">pydap</span></code>:</p>
+<div class="section" id="urs-nasa-earthdata">
+<h3>URS NASA EARTHDATA<a class="headerlink" href="#urs-nasa-earthdata" title="Permalink to this headline">¶</a></h3>
+<p>Authentication is done through a <code class="docutils literal"><span class="pre">username</span></code> and a <code class="docutils literal"><span class="pre">password</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.client</span> <span class="kn">import</span> <span class="n">open_url</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.cas.urs</span> <span class="kn">import</span> <span class="n">setup_session</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset_url</span> <span class="o">=</span> <span class="s1">&#39;http://server.example.com/path/to/dataset&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">session</span> <span class="o">=</span> <span class="n">setup_session</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">check_url</span><span class="o">=</span><span class="n">dataset_url</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_url</span><span class="p">(</span><span class="n">dataset_url</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="earth-system-grid-federation-esgf">
+<h3>Earth System Grid Federation (ESGF)<a class="headerlink" href="#earth-system-grid-federation-esgf" title="Permalink to this headline">¶</a></h3>
+<p>Authentication is done through an <code class="docutils literal"><span class="pre">openid</span></code> and a <code class="docutils literal"><span class="pre">password</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.client</span> <span class="kn">import</span> <span class="n">open_url</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.cas.esgf</span> <span class="kn">import</span> <span class="n">setup_session</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset_url</span> <span class="o">=</span> <span class="s1">&#39;http://server.example.com/path/to/dataset&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">session</span> <span class="o">=</span> <span class="n">setup_session</span><span class="p">(</span><span class="n">openid</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">check_url</span><span class="o">=</span><span class="n">dataset_url</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_url</span><span class="p">(</span><span class="n">dataset_url</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If your <code class="docutils literal"><span class="pre">openid</span></code> contains contains the
+string <code class="docutils literal"><span class="pre">ceda.ac.uk</span></code> authentication requires an additional <code class="docutils literal"><span class="pre">username</span></code> argument:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.client</span> <span class="kn">import</span> <span class="n">open_url</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.cas.esgf</span> <span class="kn">import</span> <span class="n">setup_session</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">session</span> <span class="o">=</span> <span class="n">setup_session</span><span class="p">(</span><span class="n">openid</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">check_url</span><span class="o">=</span><span class="n">dataset_url</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_url</span><span class="p">(</span><span class="n">dataset_url</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="advanced-features">
+<h2>Advanced features<a class="headerlink" href="#advanced-features" title="Permalink to this headline">¶</a></h2>
+<p>When you open a remote dataset, the <code class="docutils literal"><span class="pre">DatasetType</span></code> object has a special attribute named <code class="docutils literal"><span class="pre">functions</span></code> that can be used to invoke any server-side functions. Here’s an example of using the <code class="docutils literal"><span class="pre">geogrid</span></code> function from Hyrax:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_url</span><span class="p">(</span><span class="s1">&#39;http://test.opendap.org/dap/data/nc/coads_climatology.nc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">functions</span><span class="o">.</span><span class="n">geogrid</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">SST</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_dataset</span><span class="o">.</span><span class="n">SST</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(12, 12, 21)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_dataset</span><span class="o">.</span><span class="n">SST</span><span class="o">.</span><span class="n">COADSY</span><span class="p">[:]</span>
+<span class="go">[-11.  -9.  -7.  -5.  -3.  -1.   1.   3.   5.   7.   9.  11.]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_dataset</span><span class="o">.</span><span class="n">SST</span><span class="o">.</span><span class="n">COADSX</span><span class="p">[:]</span>
+<span class="go">[ 21.  23.  25.  27.  29.  31.  33.  35.  37.  39.  41.  43.  45.  47.  49.</span>
+<span class="go">  51.  53.  55.  57.  59.  61.]</span>
+</pre></div>
+</div>
+<p>Unfortunately, there’s currently no standard mechanism to discover which functions the server support. The <code class="docutils literal"><span class="pre">function</span></code> attribute will accept any function name the user specifies, and will try to pass the call to the remote server.</p>
+<p>You can pass any URL to the <code class="docutils literal"><span class="pre">open_url</span></code> function, together with any valid constraint expression. Here’s an example of restricting values for the months of January, April, July and October:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_url</span><span class="p">(</span><span class="s1">&#39;http://test.opendap.org/dap/data/nc/coads_climatology.nc?SST[0:3:11][0:1:89][0:1:179]&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">SST</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(4, 90, 180)</span>
+</pre></div>
+</div>
+<p>This can be extremely useful for server side-processing; for example, we can create and access a new variable <code class="docutils literal"><span class="pre">A</span></code> in this dataset, equal to twice <code class="docutils literal"><span class="pre">SSH</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_url</span><span class="p">(</span><span class="s1">&#39;http://hycom.coaps.fsu.edu:8080/thredds/dodsC/las/dynamic/data_A5CDC5CAF9D810618C39646350F727FF.jnl_expr_%7B%7D%7Blet%20A=SSH*2%7D?A&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="go">[&#39;A&#39;]</span>
+</pre></div>
+</div>
+<p>In this case, we’re using the Ferret syntax <code class="docutils literal"><span class="pre">let</span> <span class="pre">A=SSH*2</span></code> to define the new variable, since the data is stored in an <a class="reference external" href="http://ferret.pmel.noaa.gov/LAS/documentation/the-ferret-thredds-data-server-f-tds/using-f-tds-and-the-server-side-analysis/">F-TDS server</a>. Server-side processing is useful when you want to reduce the data before downloading it, to calculate a global average, for example.</p>
+<p>The client module has a special function called <code class="docutils literal"><span class="pre">open_dods</span></code>, used to access raw data from a DODS response:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.client</span> <span class="k">import</span> <span class="n">open_dods</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_dods</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s1">&#39;http://test.opendap.org/dap/data/nc/coads_climatology.nc.dods?SST[0:3:11][0:1:89][0:1:179]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function allows you to access raw data from any URL, including appending expressions to <a class="reference external" href="http://ferret.pmel.noaa.gov/LAS/documentation/the-ferret-thredds-data-server-f-tds/">F-TDS</a> and <a class="reference external" href="http://www.iges.org/grads/gds/">GDS</a> servers or calling server-side functions directly. By default this method downloads the data directly, and skips metadata from the DAS response; if you want to investigate and introspect datasets you should set the <code class="docutils literal"><span class="pre">get_metadata</span></code> parameter to true:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_dods</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s1">&#39;http://test.opendap.org/dap/data/nc/coads_climatology.nc.dods?SST[0:3:11][0:1:89][0:1:179]&#39;</span><span class="p">,</span>
+<span class="gp">... </span>     <span class="n">get_metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;NC_GLOBAL&#39;</span><span class="p">][</span><span class="s1">&#39;history&#39;</span><span class="p">]</span>
+<span class="go">FERRET V4.30 (debug/no GUI) 15-Aug-96</span>
+</pre></div>
+</div>
+<p>You can specify a cache directory in the <code class="docutils literal"><span class="pre">pydap.lib.CACHE</span></code> global variable. If this value is different than <code class="docutils literal"><span class="pre">None</span></code>, the client will try (if the server headers don’t prohibit) to cache the result, so repeated requests will be read from disk instead of the network:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pydap.lib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pydap</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">CACHE</span> <span class="o">=</span> <span class="s2">&quot;/tmp/pydap-cache/&quot;</span>
+</pre></div>
+</div>
+<p>To specify a timeout for the client, just set the desired number of seconds using the <code class="docutils literal"><span class="pre">timeout</span></code> option to <code class="docutils literal"><span class="pre">open_url(...)</span></code> or <code class="docutils literal"><span class="pre">open_dods(...)</span></code>.
+For example, the following commands would timeout after 30 seconds without receiving a response from the server:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_url</span><span class="p">(</span><span class="s1">&#39;http://test.opendap.org/dap/data/nc/coads_climatology.nc, timeout=30)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">open_dods</span><span class="p">(</span><span class="s1">&#39;http://test.opendap.org/dap/data/nc/coads_climatology.nc.dods, timeout=30)</span>
+</pre></div>
+</div>
+<p>It’s possible to configure Pydap to access the network through a proxy server. Here’s an example for an HTTP proxy running on <code class="docutils literal"><span class="pre">localhost</span></code> listening on port 8000:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">httplib2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydap.util</span> <span class="kn">import</span> <span class="n">socks</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pydap.lib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pydap</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">PROXY</span> <span class="o">=</span> <span class="n">httplib2</span><span class="o">.</span><span class="n">ProxyInfo</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">socks</span><span class="o">.</span><span class="n">PROXY_TYPE_HTTP</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This way, all further calls to <code class="docutils literal"><span class="pre">pydap.client.open_url</span></code> will be routed through the proxy server. You can also authenticate to the proxy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pydap</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">PROXY</span> <span class="o">=</span> <span class="n">httplib2</span><span class="o">.</span><span class="n">ProxyInfo</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">socks</span><span class="o">.</span><span class="n">PROXY_TYPE_HTTP</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">proxy_user</span><span class="o">=</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">proxy_pass</span><span class="o">=</span><span class="n">PASSWORD</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A user <a class="reference external" href="http://groups.google.com/group/pydap/browse_thread/thread/425b2e1a3b3f233d">has reported</a> that <code class="docutils literal"><span class="pre">httplib2</span></code> has problems authenticating against a NTLM proxy server. In this case, a simple solution is to change the <code class="docutils literal"><span class="pre">pydap.http.request</span></code> function to use <code class="docutils literal"><span class="pre">urllib2</span></code> instead of <code class="docutils literal"><span class="pre">httplib2</span></code>, monkeypatching the code like in the <a class="reference external" href="#cas">CAS authentication example above</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="k">def</span> <span class="nf">install_urllib2_client</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">new_request</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+        <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;pydap&#39;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">INFO</span><span class="p">(</span><span class="s1">&#39;Opening </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">url</span><span class="p">)</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;?&amp;&#39;</span><span class="p">))</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">info</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">headers</span><span class="p">,</span> <span class="n">body</span>
+
+    <span class="kn">from</span> <span class="nn">pydap.util</span> <span class="kn">import</span> <span class="n">http</span>
+    <span class="n">http</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">new_request</span>
+</pre></div>
+</div>
+<p>The function <code class="docutils literal"><span class="pre">install_urllib2_client</span></code> should then be called before doing any requests.</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>But please check <a class="reference external" href="http://www.greenend.org.uk/rjk/2002/08/nipple.html">this quote</a>.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="server.html" class="btn btn-neutral float-right" title="Running a server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Pydap" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2003-2017, Pydap contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
