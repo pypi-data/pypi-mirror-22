@@ -1,0 +1,92 @@
+
+description: Do actions with your RAPyDo project
+action:
+  name: action
+  help: all possible commands
+
+options:
+  log-level:
+    type: str
+    metavalue: LEVEL_OF_DEBUGGER
+    default: DEBUG
+    help: Level of verbosity
+
+  blueprint:
+    type: str
+    metavalue: CONTAINERS_YAML_BLUEPRINT
+    default: debug
+    help: Blueprint marker of the configuration to launch
+
+  services:
+    type: str
+    metavalue: SERVICES_COMA_SEPARATED
+    default: active services
+    help: List of services referring to a command
+
+  force_build:
+    type: bool
+    # metavalue: TRUE_OR_FALSE
+    default: False
+    help: Force building of templates docker images used in other builds
+
+  force_env:
+    type: bool
+    default: False
+    help: Force recreation of the docker compose .env file even if existing
+
+  development:
+    type: bool
+    # metavalue: TRUE_OR_FALSE
+    default: False
+    help: Allow to execute the code directly from rapydo core
+
+subcommands:
+  check:
+    description: "only verify if currently compliant to RAPyDo specs
+        (NOTE: this is done at every call)"
+  init:
+    description: "
+      make current project compliant to RAPyDo requirements
+      (if not yet being)"
+  status:
+    description: list current status of containers
+  build:
+    description: force building of one or more services docker images
+  log:
+    description: watch log tails of all or specified containers
+  shell:
+    description: open a shell inside the specified container
+    suboptions:
+      user:
+        type: str
+        metavalue: UNIX_EXISTING_USER
+        default: ''
+        help: user existing inside selected service
+      command:
+        type: str
+        metavalue: TERMINAL_COMMAND_UNIX-LIKE
+        default: bash
+        help: UNIX command to be executed on selected running service
+  control:
+    description: manage start/stop of the framework based on  current specified blueprint
+    controlrequired: True
+    controlcommands:
+      start:
+        - Start containers for this configuration
+      stop:
+        - Stop running containers, but do not remove them
+      restart:
+        - Restart running containers
+      remove:
+        - Stop containers if running and remove them
+      toggle_freeze:
+        - Toggle a temporary block/pause of running services
+  clean:
+    description: "remove all:
+      containers, networks and OPTIONALLY data volumes"
+    suboptions:
+      rm-volumes:
+        type: bool
+        metavalue: TRUE_OR_FALSE
+        default: False
+        help: remove also containers persistent data
