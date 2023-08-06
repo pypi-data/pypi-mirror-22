@@ -1,0 +1,19 @@
+<h3>Other Projects</h3>
+
+<p><iframe src="https://ghbtns.com/github-btn.html?user=tony&type=follow&count=false" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></p>
+
+<p>More open source projects from <a href="https://www.git-pull.com">Tony Narlock</a>:</p>
+
+<ul>
+  {%- for project in theme_projects %}
+  <li>{%- if project.name != theme_project_name %}<a href="{{project.url}}">{%- endif %}{{ project.name }}{%- if project.name != theme_project_name %}</a>{% endif %} 
+  {% if 'subprojects' in project -%}
+  <small>(
+  {%- for subproject in project.subprojects -%} 
+  {%- if subproject.name != theme_project_name -%}<a href="{{subproject.url}}">{%- endif -%}{{ subproject.name }}{%- if subproject.name != theme_project_name -%}</a>{%- endif -%}
+  {%- endfor -%}
+  )</small>
+  {%- endif -%}
+  </li>
+  {%- endfor %}
+</ul>
