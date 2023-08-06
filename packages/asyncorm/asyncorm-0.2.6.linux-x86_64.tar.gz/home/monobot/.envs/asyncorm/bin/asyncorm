@@ -1,0 +1,10 @@
+#!/home/monobot/.envs/asyncorm/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'asyncorm==0.2.6','console_scripts','asyncorm'
+__requires__ = 'asyncorm==0.2.6'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('asyncorm==0.2.6', 'console_scripts', 'asyncorm')()
+    )
