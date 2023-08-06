@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h3 class="modal-title">Load Script</h3>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <form class="form form-horizontal">
+      <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">File Name</label>
+        <div class="col-sm-6">
+          <input class="form-control" type="text" ng-model="ctrl.loadFile.filepath" disabled>
+        </div>
+      </div>
+    </form>
+    <div class="col-sm-7 col-sm-offset-2 modal-filetree">
+      <div sandstone-filetree tree-data="ctrl.treeData" tree-options="ctrl.treeOptions" on-select="ctrl.filetreeOnSelect(node,selected)"></div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    class="btn btn-success"
+    ng-click="ctrl.loadScript()"
+    ng-disabled="!ctrl.validFilepath()">
+    Load File
+  </button>
+  <button class="btn btn-warning" ng-click="ctrl.cancel()">Cancel</button>
+</div>

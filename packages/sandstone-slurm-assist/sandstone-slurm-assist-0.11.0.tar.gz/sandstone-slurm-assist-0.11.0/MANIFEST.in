@@ -1,0 +1,5 @@
+include AUTHORS CHANGES README.md INSTALL LICENSE DESCRIPTION.rst
+recursive-esclude sandstone_slurm *.pyc
+recursive-include sandstone_slurm *.py *.html *.js *.css
+prune .git
+prune .gitignore

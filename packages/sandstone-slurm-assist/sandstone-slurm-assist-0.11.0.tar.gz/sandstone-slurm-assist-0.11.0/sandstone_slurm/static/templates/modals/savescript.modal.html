@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{ctrl.title}}</h3>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <form name="form" class="form form-horizontal">
+      <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">File Name</label>
+        <div class="col-sm-6">
+          <input id="filename-input" class="form-control" type="text" ng-model="ctrl.newFile.name">
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">Save Directory</label>
+        <div class="col-sm-6">
+          <input class="form-control" type="text" ng-model="ctrl.newFile.dirpath" ng-disabled="true">
+        </div>
+      </div>
+    </form>
+    <div id="saveas-ft-container" class="col-sm-7 col-sm-offset-2">
+      <div sandstone-filetree tree-data="ctrl.treeData" tree-options="ctrl.treeOptions" on-select="ctrl.filetreeOnSelect(node,selected)"></div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    class="btn btn-success"
+    ng-click="ctrl.saveAs()"
+    ng-disabled="!ctrl.validFilepath()">
+    {{ctrl.title}}
+  </button>
+  <button class="btn btn-warning" ng-click="ctrl.cancel()">Cancel</button>
+</div>

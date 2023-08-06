@@ -1,0 +1,64 @@
+<div class="row partial-fill">
+  <div id="sched-col-left" class="col-md-6 sa-main sched-col">
+    <div
+      sa-sbatch-script
+      sbatch="ctrl.sbatch"
+      script="ctrl.script"
+      sbatch-script="ctrl.sbatchScript">
+    </div>
+  </div>
+  <div id="sched-col-right" class="col-md-6 sa-main sched-col">
+    <div
+      sa-assist-form
+      config="ctrl.formConfig"
+      sbatch="ctrl.sbatch"
+      form="ctrl.form"
+      profile="ctrl.profile">
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div id="sched-button-panel" class="well well-lg">
+      <div class="btn-group btn-group-justified" role="group">
+        <div class="btn-group" role="group">
+          <button
+            id="save-button"
+            type="button"
+            class="btn btn-default sched-button"
+            ng-click="ctrl.saveScript()">
+            Save Script for Later
+          </button>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            id="load-button"
+            type="button"
+            class="btn btn-default sched-button"
+            ng-click="ctrl.loadScript()">
+            Load Saved Script
+          </button>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            id="estimate-button"
+            type="button"
+            class="btn btn-default sched-button"
+            ng-click="ctrl.getEstimate()">
+            Cost Estimate
+          </button>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            id="submit-button"
+            type="button"
+            class="btn btn-success sched-button"
+            ng-click="ctrl.submitScript()"
+            ng-disabled="ctrl.form.$invalid">
+            Schedule Job
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
