@@ -1,0 +1,38 @@
+# You should not use special characture in the value keys
+#
+# A single whitespace in `line` will match any number of whitespaces. You should be explicit when
+# Matching white space in `values`
+#
+prefix:
+  values:
+    messageId: (\d+)
+    # On IOS-XR syslog messages do not contain the hostname by default, they
+    # only provide the node-id which, e.g RP/0/RSP0/CPU0. To include the
+    # hostname you can add a hostname prefix, however as this is not always
+    # present the host field can be empty.
+    host: ([^ ]+ )?
+    nodeId: ([^ ]+)
+    date: (\w+ +\d+)
+    time: (\d\d:\d\d:\d\d\.\d\d\d \w\w\w)
+    processName: (\w+)
+    processId: (\d+)
+    tag: ([\w-]+)
+  line: '{messageId}: {host}{nodeId}:{date} {time}: {processName}[{processId}]: %{tag}'
+
+messages:
+  # 'error' should be unique and vendor agnostic. Currently we are using the JUNOS syslog message name as the canonical name.
+  # This may change if we are able to find a more well defined naming system.
+  - error: BGP_PREFIX_THRESH_EXCEEDED
+    tag: ROUTING-BGP-5-MAXPFX
+    values:
+      peer: (\d+\.\d+\.\d+\.\d+)
+      current: (\d+)
+      limit: (\d+)
+    replace: {}
+    line: 'No. of IPv4 Unicast prefixes received from {peer} has reached {current}, max {limit}'
+    model: openconfig_bgp
+    mapping:
+      variables:
+        bgp//neighbors//neighbor//{peer}//afi_safis//afi_safi//inet//ipv4_unicast//prefix_limit//state//max_prefixes: limit
+        bgp//neighbors//neighbor//{peer}//afi_safis//afi_safi//inet//state//prefixes//received: current
+      static: {}
