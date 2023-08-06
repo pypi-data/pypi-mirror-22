@@ -1,0 +1,76 @@
+Metadata-Version: 2.0
+Name: indic-transliteration
+Version: 1.1.0
+Summary: Transliteration tools to convert text in one indic script encoding to another
+Home-page: https://github.com/sanskrit-coders/indic_transliteration
+Author: Sanskrit programmers
+Author-email: sanskrit-programmers@googlegroups.com
+License: MIT
+Keywords: indic script transliteration hindi sanskrit samskritam kannada devanagari tamil malayalam telugu gurumukhi gujarati bengali oriya
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: Hindi
+Classifier: Natural Language :: Tamil
+Classifier: Natural Language :: Bengali
+Classifier: Natural Language :: Panjabi
+Classifier: Natural Language :: Marathi
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+
+Indic transliteration tools
+===========================
+
+Intro
+=====
+
+For detailed examples and help, please see individual module files in
+this package.
+
+Transliteration
+===============
+
+::
+
+    from indic_transliteration import sanscript
+    output = sanscript.transliterate('idam adbhutam', sanscript.HK, sanscript.DEVANAGARI)
+
+Script detection
+================
+
+``detect.py`` automatically detects a string's transliteration scheme:
+
+::
+
+    from indic_transliteration import detect
+    detect.detect('pitRRIn') == Scheme.ITRANS
+    detect.detect('pitRRn') == Scheme.HK
+
+For contributors
+================
+
+Contact
+-------
+
+Have a problem or question? Please head to
+`github <https://github.com/sanskrit-coders/indic_transliteration>`__.
+
+Packaging
+---------
+
+-  ~/.pypirc should have your pypi login credentials.
+
+   ::
+
+       python setup.py bdist_wheel
+       twine upload dist/*
+
+
