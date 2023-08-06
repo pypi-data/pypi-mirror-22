@@ -1,0 +1,24 @@
+language:  python
+sudo: false
+
+python:
+  - 2.7
+  - 3.4
+  - 3.5
+  - 3.6
+  - pypy-5.4.1
+
+install:
+  - python bootstrap.py
+  - bin/buildout
+
+script:
+  - bin/test
+
+
+notifications:
+  irc:
+    channels:
+      - "irc.freenode.org#sprint"
+    template:
+      - "%{repository}/#%{build_number}/%{branch} (%{author}): %{message} %{build_url}"
