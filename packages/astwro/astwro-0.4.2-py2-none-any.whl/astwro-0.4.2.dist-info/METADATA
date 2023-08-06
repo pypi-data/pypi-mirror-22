@@ -1,0 +1,47 @@
+Metadata-Version: 2.0
+Name: astwro
+Version: 0.4.2
+Summary: Astro tools
+Home-page: https://github.com/majkelx/astwro
+Author: Mikolaj Kaluszynski
+Author-email: UNKNOWN
+License: MIT
+Keywords: daophot photometry
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: astropy
+Requires-Dist: bitarray (>=0.8)
+Requires-Dist: deap
+Requires-Dist: pandas
+Requires-Dist: scipy
+
+======
+astwro
+======
+
+Instalation
+===========
+
+.. code:: bash
+
+    pip install astwro
+
+.. note:: You must have DAOPHOT suite installed, to use `pydaophot` module.
+
+Modules
+=======
+Package contains following modules:
+
+* `pydaophot` - wrapper for Peter Stetson's DAOPHOT photometry  suite.
+* `starlist` - provides pandas objects for stars list, with import/export do daophot and ds9 formats.
+* `utils` - some helpers for scripts.
+* `tools` - command line (callable form python also) tools including `gapick` for finding optimal PSF-stars
+set using generic algorithm.
+
+
+
