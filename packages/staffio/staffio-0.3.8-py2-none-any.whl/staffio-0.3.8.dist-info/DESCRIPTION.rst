@@ -1,0 +1,15 @@
+A client of StaffIO (An OAuth2 Provider) with python,
+Supported:
+- Flask
+- Sentry Social Auth (Django)
+
+Home-page: https://github.com/liut/staffio-py
+Author: Eagle Liut
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: db,auth,staffio
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
