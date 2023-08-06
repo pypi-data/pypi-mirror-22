@@ -1,0 +1,417 @@
+Metadata-Version: 1.1
+Name: collective.nitf
+Version: 2.1b2
+Summary: A content type inspired on the IPTC's News Industry Text Format specification.
+Home-page: https://github.com/collective/collective.nitf
+Author: Hector Velarde
+Author-email: hector.velarde@gmail.com
+License: UNKNOWN
+Description: ===============
+        collective.nitf
+        ===============
+        
+        .. contents:: Table of Contents
+        
+        Life, the Universe, and Everything
+        ----------------------------------
+        
+        News articles in Plone are instances of the 'News Item' content type: they can
+        contain a title, a description, a body text, an image and some basic metadata.
+        If you publish a couple of items from time to time, this is fine.
+        
+        But suppose you have to publish dozens of items everyday... How do you tell
+        your readers who they are about? What do they cover? Where do they took place?
+        And, more important, how do you classify them? How do you organize them? How
+        do you tell your readers which ones are newsworthy?
+        
+        To solve these, and other issues, the `IPTC`_ developed XML standards to
+        define the content and structure of news articles. `NITF`_, `NewsML`_ and
+        `NewsCodes`_ are among these standards and they support the classification,
+        identification and description of a huge number of news articles
+        characteristics.
+        
+        NITF is intended to structure independent news articles and this package aims
+        to implement a content type inspired by the specification.
+        
+        Mostly Harmless
+        ---------------
+        
+        .. image:: http://img.shields.io/pypi/v/collective.nitf.svg
+            :target: https://pypi.python.org/pypi/collective.nitf
+        
+        .. image:: https://img.shields.io/travis/collective/collective.nitf/master.svg
+            :target: http://travis-ci.org/collective/collective.nitf
+        
+        .. image:: https://img.shields.io/coveralls/collective/collective.nitf/master.svg
+            :target: https://coveralls.io/r/collective/collective.nitf
+        
+        Got an idea? Found a bug? Let us know by `opening a support ticket`_.
+        
+        Don't Panic
+        -----------
+        
+        Installation
+        ^^^^^^^^^^^^
+        
+        To enable this product in a buildout-based installation:
+        
+        #. Edit your buildout.cfg and add ``collective.nitf`` to the list of eggs to install::
+        
+            [buildout]
+            ...
+            eggs =
+                collective.nitf
+        
+        After updating the configuration you need to run ''bin/buildout'', which will take care of updating your system.
+        
+        Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
+        
+        Check the box next to ``collective.nitf`` and click the 'Activate' button.
+        
+        Behaviors
+        ^^^^^^^^^
+        
+        This package includes a behavior called ``collective.nitf.behaviors.interfaces.ISection``.
+        By applying it to a Dexterity-based content type you will get a new field called ``section``.
+        
+        Helper views
+        ^^^^^^^^^^^^
+        
+        All news articles provide @@nitf and @@newsml views that are available although are not registered.
+        
+        You can validate the output of the those views using services like `XML validation`_.
+        
+        You may use the `NITF Document Type Definition`_ version 3.5 and the `XHTML Ruby Module`_ associated with it.
+        
+        .. _`IPTC`: http://www.iptc.org/
+        .. _`NewsCodes`: http://www.iptc.org/NewsCodes/
+        .. _`NewsML`: http://www.newsml.org/
+        .. _`NITF`: http://www.nitf.org/
+        .. _`NITF Document Type Definition`: http://www.iptc.org/std/NITF/3.5/specification/nitf-3-5.dtd
+        .. _`XHTML Ruby Module`: http://www.iptc.org/std/NITF/3.5/specification/xhtml-ruby-1.mod
+        .. _`XML validation`: http://www.xmlvalidation.com/
+        .. _`opening a support ticket`: https://github.com/collective/collective.nitf/issues
+        
+        Internals
+        ---------
+        
+        ``collective.nitf`` uses Cycle2 slideshow plugin for jQuery and it can load its resources from the Plone JS registry if they are present there.
+        
+        If you're using ``collective.nitf`` with other packages that use Cycle2 also (like `sc.photogallery`_ or `covertile.cycle2`_),
+        it is highly recommended that you register those resources to load them once and avoid conflicts.
+        
+        You can use a ``jsregistry.xml`` file that includes the following:
+        
+        .. code-block:: xml
+        
+            <javascript id="++resource++collective.js.cycle2/jquery.cycle2.min.js"
+                cacheable="True" compression="none" cookable="True" enabled="True" />
+            <javascript id="++resource++collective.js.cycle2/jquery.cycle2.carousel.min.js"
+                cacheable="True" compression="none" cookable="True" enabled="True" />
+            <javascript id="++resource++collective.js.cycle2/jquery.cycle2.swipe.min.js"
+                cacheable="True" compression="none" cookable="True" enabled="True" />
+        
+        .. _`sc.photogallery`: https://pypi.python.org/pypi/sc.photogallery
+        .. _`covertile.cycle2`: https://pypi.python.org/pypi/covertile.cycle2
+        
+        Development
+        ^^^^^^^^^^^
+        
+        We use Webpack to process static resources on this package.
+        Webpack processes LESS and JS files, minifies the resulting CSS and JS, and optimizes all images.
+        The final JS file is also a UMD package, which provides compatibility with most popular script loaders.
+        
+        To contribute, you should start the instance in one shell and start Webpack watcher on another with the following command:
+        
+        .. code-block:: bash
+        
+            $ bin/npm_watch
+        
+        Then go to ``webpack/app`` folder and edit LESS and JS files;
+        Webpack watcher will automatically create the final resources in the right place.
+        
+        There are also other commands added to handle more complex scenarios.
+        The following command will set the buildout node installation in the system PATH, this way you can use Webpack as described on Webpack docs.
+        
+        .. code-block:: bash
+        
+            $ bin/webpack_env
+        
+        The following command generates JS and CSS without the minify step (it can be used to check the code being generated in a human readable way).
+        
+        .. code-block:: bash
+        
+            $ bin/npm_dev
+        
+        The following command rebuilds static files and exit (insted of keep watching the changes):
+        
+        .. code-block:: bash
+        
+            $ bin/npm_build
+        
+        Migration from 1.x to 2.x
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        You have to be aware of the following changes when migrating from version 1.x to 2.x:
+        
+        * Package is no longer compatible with Plone 4.2
+        * Package no longer depends on Grok
+        * Package no longer depends on `collective.z3cform.widgets <http://pypi.python.org/pypi/collective.z3cform.widgets>`_;
+          you should uninstall that dependency manually if there is no other package depending on it on your site
+        * Package no longer depends on `plone.app.referenceablebehavior <http://pypi.python.org/pypi/plone.app.referenceablebehavior>`_;
+          the ``IReferenceable`` behavior included there is no longer assigned by default
+        * The character counter is no longer available
+        * We use `Cycle2 <http://jquery.malsup.com/cycle2/>`_ instead of `Galleria <https://galleria.io/>`_ as the framework for the slideshow view;
+          package now depends on `collective.js.cycle2 <https://pypi.python.org/pypi/collective.js.cycle2>`_
+        * The following views are available for a News Article: ``view``, ``slideshow_view`` and ``text_only_view``
+        * View templates were completely refactored and support for semantic markup was added;
+          the default view displays a bigger image
+        * The following behaviors are assigned by default to the News Article content type: ``plone.app.relationfield.behavior.IRelatedItems`` and ``collective.nitf.behaviors.interfaces.ISection``
+        * A new permission ``collective.nitf: Setup`` is available to access the control panel configlet and is assigned by default to ``Manager`` and ``Site Administrator`` roles
+        * Static resources are now named ``nitf.css`` and ``nitf.js`` (easier to debug at the browser)
+        
+        An upgrade step is available to remove old resources, rename the views, and reindex all News Articles to reflect changes.
+        The upgrade step will not remove the ``plone.app.referenceablebehavior.referenceable.IReferenceable`` behavior if applied.
+        
+        Share and Enjoy
+        ---------------
+        
+        ``collective.nitf`` would not have been possible without the contribution of
+        the following people:
+        
+        - Cleber J. Santos
+        - Franco Pellegrini
+        - Gonzalo Almeida
+        - Héctor Velarde
+        - Joaquín Rosales
+        - Juan A. Díaz
+        - Juan Pablo Giménez
+        - Marcos F. Romero
+        - Silvestre Huens
+        - Érico Andrei
+        - Rodrigo Ferreira de Souza
+        - Wolfgang Beyer (`Mandelbrot image set <https://commons.wikimedia.org/wiki/File:Mandel_zoom_00_mandelbrot_set.jpg>`_ used in tests)
+        
+        You can find an updated list of package contributors on `GitHub`_.
+        
+        Development sponsored by Open Multimedia.
+        
+        .. _`GitHub`: https://github.com/collective/collective.nitf/contributors
+        
+        Changelog
+        ---------
+        
+        There's a frood who really knows where his towel is.
+        
+        2.1b2 (2017-06-12)
+        ^^^^^^^^^^^^^^^^^^
+        
+        - Do not create a link to ``None`` on the tile.
+          [hvelarde]
+        
+        - Fix upgrade process between versions 1.0 and 2.0;
+          check documentation on migration from 1.x to 2.x (closes `#198`_).
+          [rodfersou, hvelarde]
+        
+        
+        2.1b1 (2017-02-16)
+        ^^^^^^^^^^^^^^^^^^
+        
+        - Handle corner case when upgrade step for 1008 found a collection with no query defined.
+          [hvelarde]
+        
+        - Simplify slideshow template to avoid depending on context id;
+          this solves an issue when id ends with ".html".
+          [rodfersou]
+        
+        - Refactor static resources.
+          [rodfersou]
+        
+        - Add classes to HTML elements on tile for easy visual customization.
+          [agnogueira]
+        
+        - Remove dependency on plone.directives.form and latest traces of Grok.
+          [hvelarde]
+        
+        - Fix exception getting image size with ``ImageScaling`` adapter (refs. `sc.social.like #87`_).
+          [rodfersou]
+        
+        
+        2.0b4 (2016-11-03)
+        ^^^^^^^^^^^^^^^^^^
+        
+        - Do not try to create scales on news article with no lead image;
+          this was causing issues in some Collection view methods and in collective.cover's Collection tile (fixes `#178`_).
+          [hvelarde]
+        
+        
+        2.0b3 (2016-09-12)
+        ^^^^^^^^^^^^^^^^^^
+        
+        - Fix issue in NITF tile that was causing an exception when dropping content into it (fixes `#175`_).
+          [rodfersou]
+        
+        
+        2.0b2 (2016-07-27)
+        ^^^^^^^^^^^^^^^^^^
+        
+        - The ``getImage()`` and ``imageCaption()`` methods of the ``NITF`` class are deprecated and will be removed on next release;
+          use ``image()`` and ``media_caption()`` instead.
+          [hvelarde]
+        
+        - Fix issue with ``collective.nitf.image`` viewlet raising ``AttributeError`` when plone.app.contenttypes is installed (closes `#169`_).
+          [hvelarde]
+        
+        - Use ``<p>`` tag to display the News Article subtitle to avoid warnings on validation.
+          [hvelarde]
+        
+        - Fix exception when syndicalize NITF (closes `#161`_).
+          [rodfersou]
+        
+        - Fix tile date format.
+          [hvelarde]
+        
+        - Avoid rising exceptions when content referenced in tile is not available (fixes `#154`_).
+          [hvelarde, rodfersou]
+        
+        - Remove hard dependency on plone.app.referenceablebehavior as Archetypes is no longer the default framework in Plone 5.
+          Under Plone < 5.0 you should now explicitly add it to the `eggs` part of your buildout configuration to avoid issues while upgrading.
+          [hvelarde]
+        
+        
+        2.0b1 (2016-02-29)
+        ^^^^^^^^^^^^^^^^^^
+        
+        - Show title of news article as ``alt`` attribute on tile's image.
+          [hvelarde]
+        
+        - Fix upgrade step to work with both, Archetypes and Dexterity-based collections.
+          [rodfersou]
+        
+        
+        2.0a1 (2015-09-30)
+        ^^^^^^^^^^^^^^^^^^
+        
+        .. Warning::
+            Upgrades are supported only from release 1.0b3.
+        
+        - Make control panel configlet accesible to Site Administrator role (closes `#137`_).
+          [hvelarde]
+        
+        - Load Cycle2 resources from the JS registry if available (closes `#133`_).
+          [hvelarde]
+        
+        - Fix display of byline and refactor override of ``documentbyline`` viewlet;
+          avoid performance issues when having many users by memoizing expensive call to Membership tool (fixes `#128`_).
+          [hvelarde, rodfersou]
+        
+        - Replace slideshow framework machinery;
+          we use `Cycle2`_ now instead of `Galleria`_.
+          Don't forget do uninstall and remove collective.js.galleria if you no longer depend on it on your site (closes `#116`_).
+          [rodfersou, hvelarde]
+        
+        - Fix default values for genre and urgency fields (closes `#118`_).
+          [rodfersou]
+        
+        - Add NITF tile for collective.cover (closes `#123`_).
+          [hvelarde]
+        
+        - Reimplement section field as a behavior (closes `#98`_).
+          [hvelarde]
+        
+        - Drop support of Plone 4.2.
+          [hvelarde]
+        
+        - Remove dependency on collective.z3cform.widgets.
+          Don't forget do uninstall and remove the package if you no longer depend on it on your site.
+          [hvelarde]
+        
+        - Update package i18n and Spanish and Brazilian Portuguese translations.
+          [hvelarde]
+        
+        - Restore default binding on Link content type at uninstall time.
+          [hvelarde]
+        
+        - Add ``Current`` as default value for available_genres and ``General`` as
+          default value for available_sections.
+          [hvelarde]
+        
+        - Character counter code was removed from package; this should be
+          reimplemented using collective.js.charcount (closes `#75`_).
+          [hvelarde]
+        
+        - Package was cleaned by removing some dependencies,
+          deprecated methods on default view,
+          unused macros from templates,
+          and needless resources, scripts and styles.
+          [marcosfromero, hvelarde]
+        
+        - Remove all javascript from templates, create new nitf.js and use
+          jsregistry (closes `#94`_). [marcosfromero]
+        
+        - Add confirmation overlay before removing an image in media.pt
+          (closes `#85`_). [marcosfromero]
+        
+        - Add required script library in media.pt to prevent image not loading
+          when editing in overlay (closes `#84`_). [marcosfromero]
+        
+        - Fields were reordered to enhance user experience on adding/editing content:
+          'location' field is now above 'body text' and 'urgency' is below 'genre'.
+          [hvelarde]
+        
+        - Reimplement ``keywords`` and ``documentbyline`` viewlets with semantic markup and
+          support for news article byline for INITF interface.
+          [jpgimenez, hvelarde, cleberjsantos]
+        
+        - Refactor templates to implement semantic markup to annotate news-specific
+          metadata using rNews, schema.org and RDFa (closes `#47`_).
+          [jpgimenez, marcosfromero, hvelarde]
+        
+        - Add plone.app.relationfield as a dependency; this is needed for Dexterity
+          to proper handle relations (closes `#71`_). [jpgimenez]
+        
+        - Remove five.grok dependency, will easy the mainteinance and the
+          extendibility of the package. [jpgimenez]
+        
+        - Changes image link behavior in view.pt for mobile devices
+          (closes `#62`_). [marcosfromero]
+        
+        
+        .. _`Cycle2`: http://jquery.malsup.com/cycle2/
+        .. _`sc.social.like #87`: https://github.com/collective/sc.social.like/issues/87
+        .. _`#47`: https://github.com/collective/collective.nitf/issues/47
+        .. _`#62`: https://github.com/collective/collective.nitf/issues/62
+        .. _`#71`: https://github.com/collective/collective.nitf/issues/71
+        .. _`#75`: https://github.com/collective/collective.nitf/issues/75
+        .. _`#84`: https://github.com/collective/collective.nitf/issues/84
+        .. _`#85`: https://github.com/collective/collective.nitf/issues/85
+        .. _`#94`: https://github.com/collective/collective.nitf/issues/94
+        .. _`#98`: https://github.com/collective/collective.nitf/issues/98
+        .. _`#116`: https://github.com/collective/collective.nitf/issues/116
+        .. _`#118`: https://github.com/collective/collective.nitf/issues/118
+        .. _`#123`: https://github.com/collective/collective.nitf/issues/123
+        .. _`#128`: https://github.com/collective/collective.nitf/issues/128
+        .. _`#133`: https://github.com/collective/collective.nitf/issues/133
+        .. _`#137`: https://github.com/collective/collective.nitf/issues/137
+        .. _`#154`: https://github.com/collective/collective.nitf/issues/154
+        .. _`#161`: https://github.com/collective/collective.nitf/issues/161
+        .. _`#169`: https://github.com/collective/collective.nitf/issues/169
+        .. _`#175`: https://github.com/collective/collective.nitf/issues/175
+        .. _`#178`: https://github.com/collective/collective.nitf/issues/178
+        .. _`#198`: https://github.com/collective/collective.nitf/issues/198
+        
+Keywords: plone dexterity iptc newsml nitf
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 4.3
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: JavaScript
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Office/Business :: News/Diary
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
