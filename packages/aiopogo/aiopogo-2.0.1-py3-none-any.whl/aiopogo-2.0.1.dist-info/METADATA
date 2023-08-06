@@ -1,0 +1,33 @@
+Metadata-Version: 2.0
+Name: aiopogo
+Version: 2.0.1
+Summary: Asynchronous Pokemon API lib
+Home-page: https://github.com/Noctem/aiopogo
+Author: David Christenson
+Author-email: mail@noctem.xyz
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: aiohttp (<2.2,>=2.0.7)
+Requires-Dist: cyrandom (>=0.1.2)
+Requires-Dist: protobuf (>=3.0.0)
+Requires-Dist: pycrypt (>=0.7.0)
+Provides-Extra: google
+Requires-Dist: gpsoauth (>=0.4.0); extra == 'google'
+Provides-Extra: performance
+Requires-Dist: aiodns (>=1.1.1); extra == 'performance'
+Requires-Dist: cchardet (>=2.1.0); extra == 'performance'
+Requires-Dist: ujson (>=1.3.5); extra == 'performance'
+Provides-Extra: socks
+Requires-Dist: aiosocks (>=0.2.2); extra == 'socks'
+
+UNKNOWN
+
+
