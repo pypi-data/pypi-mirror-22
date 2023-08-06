@@ -1,0 +1,20 @@
+---
+outputs:
+    RestApiId:
+        Description:
+            The REST API Id
+        Value: {Ref: RestApi}
+
+    ApiKey:
+        Description:
+            The key associated to the REST API {{__context.stage}} deployment
+        Value: {Ref: ApiKey}
+
+    RootResourceInvokeUrl:
+        Description:
+            The invoke URL for the root resource of the API
+        Value:
+            "Fn::Join":
+                - ""
+                - ["https://", {Ref: RestApi}, ".execute-api.",
+                   {Ref: "AWS::Region"}, ".amazonaws.com/", "{{__context.stage.lower()}}"]
