@@ -1,0 +1,26 @@
+{% extends "jobs/base.html" %}
+{% block content %}
+{% load bootstrap3 %}
+{% if request.user.is_authenticated %}
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1>Profile</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <form action="" method="post" class="form">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          {% buttons %}
+              <button type="submit" class="btn btn-primary">
+                  {% bootstrap_icon "wrench" %} Submit
+              </button>
+          {% endbuttons %}
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
