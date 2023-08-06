@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>colour_hdri.utilities.exif Module &mdash; Colour - HDRI 0.1.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Colour - HDRI 0.1.3 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-colour_hdri.utilities.exif">
+<span id="colour-hdri-utilities-exif-module"></span><h1>colour_hdri.utilities.exif Module<a class="headerlink" href="#module-colour_hdri.utilities.exif" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exif-manipulation">
+<h2>EXIF Manipulation<a class="headerlink" href="#exif-manipulation" title="Permalink to this headline">¶</a></h2>
+<p>Exif data manipulation routines based on <em>exiftool</em>:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#colour_hdri.utilities.exif.parse_exif_data" title="colour_hdri.utilities.exif.parse_exif_data"><code class="xref py py-func docutils literal"><span class="pre">parse_exif_data()</span></code></a></li>
+<li><a class="reference internal" href="#colour_hdri.utilities.exif.read_exif_tags" title="colour_hdri.utilities.exif.read_exif_tags"><code class="xref py py-func docutils literal"><span class="pre">read_exif_tags()</span></code></a></li>
+<li><a class="reference internal" href="#colour_hdri.utilities.exif.copy_exif_tags" title="colour_hdri.utilities.exif.copy_exif_tags"><code class="xref py py-func docutils literal"><span class="pre">copy_exif_tags()</span></code></a></li>
+<li><a class="reference internal" href="#colour_hdri.utilities.exif.update_exif_tags" title="colour_hdri.utilities.exif.update_exif_tags"><code class="xref py py-func docutils literal"><span class="pre">update_exif_tags()</span></code></a></li>
+<li><a class="reference internal" href="#colour_hdri.utilities.exif.delete_exif_tags" title="colour_hdri.utilities.exif.delete_exif_tags"><code class="xref py py-func docutils literal"><span class="pre">delete_exif_tags()</span></code></a></li>
+<li><a class="reference internal" href="#colour_hdri.utilities.exif.read_exif_tag" title="colour_hdri.utilities.exif.read_exif_tag"><code class="xref py py-func docutils literal"><span class="pre">read_exif_tag()</span></code></a></li>
+<li><a class="reference internal" href="#colour_hdri.utilities.exif.write_exif_tag" title="colour_hdri.utilities.exif.write_exif_tag"><code class="xref py py-func docutils literal"><span class="pre">write_exif_tag()</span></code></a></li>
+</ul>
+<dl class="class">
+<dt id="colour_hdri.utilities.exif.ExifTag">
+<em class="property">class </em><code class="descclassname">colour_hdri.utilities.exif.</code><code class="descname">ExifTag</code><a class="reference internal" href="_modules/colour_hdri/utilities/exif.html#ExifTag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.exif.ExifTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#colour_hdri.utilities.exif.ExifTag" title="colour_hdri.utilities.exif.ExifTag"><code class="xref py py-class docutils literal"><span class="pre">colour_hdri.utilities.exif.ExifTag</span></code></a></p>
+<p>Hunt colour appearance model induction factors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>group</strong> (<em>unicode, optional</em>) &#8211; Exif tag group name.</li>
+<li><strong>name</strong> (<em>unicode, optional</em>) &#8211; Exif tag name.</li>
+<li><strong>value</strong> (<em>object, optional</em>) &#8211; Exif tag value.</li>
+<li><strong>identifier</strong> (<em>numeric, optional</em>) &#8211; Exif tag identifier.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.exif.parse_exif_string">
+<code class="descclassname">colour_hdri.utilities.exif.</code><code class="descname">parse_exif_string</code><span class="sig-paren">(</span><em>exif_tag</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/exif.html#parse_exif_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.exif.parse_exif_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses given exif tag assuming it is a string and return its value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>exif_tag</strong> (<a class="reference internal" href="colour_hdri.html#colour_hdri.ExifTag" title="colour_hdri.ExifTag"><em>ExifTag</em></a>) &#8211; Exif tag to parse.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Parsed exif tag value.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">unicode</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.exif.parse_exif_numeric">
+<code class="descclassname">colour_hdri.utilities.exif.</code><code class="descname">parse_exif_numeric</code><span class="sig-paren">(</span><em>exif_tag</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/exif.html#parse_exif_numeric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.exif.parse_exif_numeric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses given exif tag assuming it is a numeric type and return its value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>exif_tag</strong> (<a class="reference internal" href="colour_hdri.html#colour_hdri.ExifTag" title="colour_hdri.ExifTag"><em>ExifTag</em></a>) &#8211; Exif tag to parse.</li>
+<li><strong>dtype</strong> (<em>object, optional</em>) &#8211; Return value data type.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Parsed exif tag value.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numeric</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.exif.parse_exif_fraction">
+<code class="descclassname">colour_hdri.utilities.exif.</code><code class="descname">parse_exif_fraction</code><span class="sig-paren">(</span><em>exif_tag</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/exif.html#parse_exif_fraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.exif.parse_exif_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses given exif tag assuming it is a fraction and return its value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>exif_tag</strong> (<a class="reference internal" href="colour_hdri.html#colour_hdri.ExifTag" title="colour_hdri.ExifTag"><em>ExifTag</em></a>) &#8211; Exif tag to parse.</li>
+<li><strong>dtype</strong> (<em>object, optional</em>) &#8211; Return value data type.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Parsed exif tag value.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numeric</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.exif.parse_exif_array">
+<code class="descclassname">colour_hdri.utilities.exif.</code><code class="descname">parse_exif_array</code><span class="sig-paren">(</span><em>exif_tag</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em>, <em>shape=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/exif.html#parse_exif_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.exif.parse_exif_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses given exif tag assuming it is an array and return its value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>exif_tag</strong> (<a class="reference internal" href="colour_hdri.html#colour_hdri.ExifTag" title="colour_hdri.ExifTag"><em>ExifTag</em></a>) &#8211; Exif tag to parse.</li>
+<li><strong>dtype</strong> (<em>object, optional</em>) &#8211; Return value data type.</li>
+<li><strong>shape</strong> (<em>array_like, optional</em>) &#8211; Shape of</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Parsed exif tag value.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.exif.parse_exif_data">
+<code class="descclassname">colour_hdri.utilities.exif.</code><code class="descname">parse_exif_data</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/exif.html#parse_exif_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.exif.parse_exif_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses given exif data output from <em>exiftool</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>unicode</em>) &#8211; Exif data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Parsed exif data.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.exif.read_exif_tags">
+<code class="descclassname">colour_hdri.utilities.exif.</code><code class="descname">read_exif_tags</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/exif.html#read_exif_tags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.exif.read_exif_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns given image exif image tags.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>unicode</em>) &#8211; Image file.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Exif tags.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">defaultdict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.exif.copy_exif_tags">
+<code class="descclassname">colour_hdri.utilities.exif.</code><code class="descname">copy_exif_tags</code><span class="sig-paren">(</span><em>source</em>, <em>target</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/exif.html#copy_exif_tags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.exif.copy_exif_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies given source image file exif tag to given image target.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>source</strong> (<em>unicode</em>) &#8211; Source image file.</li>
+<li><strong>target</strong> (<em>unicode</em>) &#8211; Target image file.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Definition success.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)">bool</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.exif.update_exif_tags">
+<code class="descclassname">colour_hdri.utilities.exif.</code><code class="descname">update_exif_tags</code><span class="sig-paren">(</span><em>images</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/exif.html#update_exif_tags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.exif.update_exif_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates given images siblings images pairs exif tags.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>images</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)"><em>list</em></a>) &#8211; Image files to update.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Definition success.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.exif.delete_exif_tags">
+<code class="descclassname">colour_hdri.utilities.exif.</code><code class="descname">delete_exif_tags</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/exif.html#delete_exif_tags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.exif.delete_exif_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes all given image exif tags.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>unicode</em>) &#8211; Image file.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Definition success.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.exif.read_exif_tag">
+<code class="descclassname">colour_hdri.utilities.exif.</code><code class="descname">read_exif_tag</code><span class="sig-paren">(</span><em>image</em>, <em>tag</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/exif.html#read_exif_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.exif.read_exif_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns given image exif tag value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>image</strong> (<em>unicode</em>) &#8211; Image file.</li>
+<li><strong>tag</strong> (<em>unicode</em>) &#8211; Tag.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tag value.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">unicode</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.exif.write_exif_tag">
+<code class="descclassname">colour_hdri.utilities.exif.</code><code class="descname">write_exif_tag</code><span class="sig-paren">(</span><em>image</em>, <em>tag</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/exif.html#write_exif_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.exif.write_exif_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets given image exif tag value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>image</strong> (<em>unicode</em>) &#8211; Image file.</li>
+<li><strong>tag</strong> (<em>unicode</em>) &#8211; Tag.</li>
+<li><strong>value</strong> (<em>unicode</em>) &#8211; Value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Definition success.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)">bool</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Colour_Logo_Small_001.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">colour_hdri.utilities.exif Module</a><ul>
+<li><a class="reference internal" href="#exif-manipulation">EXIF Manipulation</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/colour_hdri.utilities.exif.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2017, Colour Developers.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/colour_hdri.utilities.exif.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

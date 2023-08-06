@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>colour_hdri.models.dataset.dng Module &mdash; Colour - HDRI 0.1.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Colour - HDRI 0.1.3 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-colour_hdri.models.dataset.dng">
+<span id="colour-hdri-models-dataset-dng-module"></span><h1>colour_hdri.models.dataset.dng Module<a class="headerlink" href="#module-colour_hdri.models.dataset.dng" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="adobe-dng-sdk-dataset">
+<h2>Adobe DNG SDK Dataset<a class="headerlink" href="#adobe-dng-sdk-dataset" title="Permalink to this headline">¶</a></h2>
+<p>Defines various dataset objects for <em>Adobe DNG SDK</em>:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#colour_hdri.models.dataset.dng.ADOBE_DNG_XYZ_ILLUMINANT" title="colour_hdri.models.dataset.dng.ADOBE_DNG_XYZ_ILLUMINANT"><code class="xref py py-attr docutils literal"><span class="pre">ADOBE_DNG_XYZ_ILLUMINANT</span></code></a></li>
+<li><a class="reference internal" href="#colour_hdri.models.dataset.dng.DNG_ILLUMINANTS_CORRELATED_COLOUR_TEMPERATURE" title="colour_hdri.models.dataset.dng.DNG_ILLUMINANTS_CORRELATED_COLOUR_TEMPERATURE"><code class="xref py py-attr docutils literal"><span class="pre">DNG_ILLUMINANTS_CORRELATED_COLOUR_TEMPERATURE</span></code></a></li>
+<li><a class="reference internal" href="#colour_hdri.models.dataset.dng.LIGHT_SOURCE_TAG_TO_DNG_ILLUMINANTS" title="colour_hdri.models.dataset.dng.LIGHT_SOURCE_TAG_TO_DNG_ILLUMINANTS"><code class="xref py py-attr docutils literal"><span class="pre">LIGHT_SOURCE_TAG_TO_DNG_ILLUMINANTS</span></code></a></li>
+</ul>
+<dl class="data">
+<dt id="colour_hdri.models.dataset.dng.ADOBE_DNG_XYZ_ILLUMINANT">
+<code class="descclassname">colour_hdri.models.dataset.dng.</code><code class="descname">ADOBE_DNG_XYZ_ILLUMINANT</code><em class="property"> = None</em><a class="headerlink" href="#colour_hdri.models.dataset.dng.ADOBE_DNG_XYZ_ILLUMINANT" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Adobe DNG SDK</em> default illuminant for <em>CIE XYZ</em> colourspace.</p>
+<p>ADOBE_DNG_XYZ_ILLUMINANT : tuple</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="colour_hdri.models.dataset.dng.DNG_ILLUMINANTS_CORRELATED_COLOUR_TEMPERATURE">
+<code class="descclassname">colour_hdri.models.dataset.dng.</code><code class="descname">DNG_ILLUMINANTS_CORRELATED_COLOUR_TEMPERATURE</code><em class="property"> = &lt;Mock name='mock.CaseInsensitiveMapping()' id='4496272528'&gt;</em><a class="headerlink" href="#colour_hdri.models.dataset.dng.DNG_ILLUMINANTS_CORRELATED_COLOUR_TEMPERATURE" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Adobe DNG SDK</em> illuminants correlated colour temperature.</p>
+<p class="rubric">References</p>
+<dl class="docutils">
+<dt>..[1]   Adobe Systems. (2015). Adobe DNG SDK 1.4 -</dt>
+<dd>dng_sdk_1_4/dng_sdk/source/dng_camera_profile.cpp -
+dng_camera_profile::IlluminantToTemperature.
+Retrieved from <a class="reference external" href="http://download.adobe.com/pub/adobe/dng/dng_sdk_1_4.zip">http://download.adobe.com/pub/adobe/dng/dng_sdk_1_4.zip</a></dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li>The correlated colour temperature are given for the
+<em>CIE 1931 2 Degree Standard Observer</em>.</li>
+</ul>
+<p>DNG_ILLUMINANTS_CORRELATED_COLOUR_TEMPERATURE : CaseInsensitiveMapping</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="colour_hdri.models.dataset.dng.LIGHT_SOURCE_TAG_TO_DNG_ILLUMINANTS">
+<code class="descclassname">colour_hdri.models.dataset.dng.</code><code class="descname">LIGHT_SOURCE_TAG_TO_DNG_ILLUMINANTS</code><em class="property"> = {1: u'Daylight', 2: u'Fluorescent', 3: u'Tungsten (incandescent light)', 4: u'Flash', 9: u'Fine weather', 10: u'Cloudy weather', 11: u'Shade', 12: u'Daylight fluorescent (D 5700 - 7100K)', 13: u'Day white fluorescent (N 4600 - 5500K)', 14: u'Cool white fluorescent (W 3800 - 4500K)', 15: u'White fluorescent (WW 3250 - 3800K)', 16: u'Warm white fluorescent (L 2600 - 3250K)', 17: u'Standard light A', 18: u'Standard light B', 19: u'Standard light C', 20: u'D55', 21: u'D65', 22: u'D75', 23: u'D50', 24: u'ISO studio tungsten', 255: u'Other'}</em><a class="headerlink" href="#colour_hdri.models.dataset.dng.LIGHT_SOURCE_TAG_TO_DNG_ILLUMINANTS" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Adobe DNG SDK</em> <em>LightSource Tag</em> indexes mapping to illuminants.</p>
+<p class="rubric">References</p>
+<dl class="docutils">
+<dt>..[2]   Adobe Systems. (2015). Adobe DNG SDK 1.4 -</dt>
+<dd>dng_sdk_1_4/dng_sdk/source/dng_tag_values.h - LightSource tag.
+Retrieved from <a class="reference external" href="http://download.adobe.com/pub/adobe/dng/dng_sdk_1_4.zip">http://download.adobe.com/pub/adobe/dng/dng_sdk_1_4.zip</a></dd>
+</dl>
+<p>LIGHT_SOURCE_TAG_TO_DNG_ILLUMINANTS : CaseInsensitiveMapping</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Colour_Logo_Small_001.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">colour_hdri.models.dataset.dng Module</a><ul>
+<li><a class="reference internal" href="#adobe-dng-sdk-dataset">Adobe DNG SDK Dataset</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/colour_hdri.models.dataset.dng.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2017, Colour Developers.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/colour_hdri.models.dataset.dng.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

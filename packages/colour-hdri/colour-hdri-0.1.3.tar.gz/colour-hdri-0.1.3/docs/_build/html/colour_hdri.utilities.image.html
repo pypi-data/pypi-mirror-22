@@ -1,0 +1,485 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>colour_hdri.utilities.image Module &mdash; Colour - HDRI 0.1.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Colour - HDRI 0.1.3 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-colour_hdri.utilities.image">
+<span id="colour-hdri-utilities-image-module"></span><h1>colour_hdri.utilities.image Module<a class="headerlink" href="#module-colour_hdri.utilities.image" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="image-data-metadata-utilities">
+<h2>Image Data &amp; Metadata Utilities<a class="headerlink" href="#image-data-metadata-utilities" title="Permalink to this headline">¶</a></h2>
+<p>Defines various image data and metadata utilities classes:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#colour_hdri.utilities.image.Metadata" title="colour_hdri.utilities.image.Metadata"><code class="xref py py-class docutils literal"><span class="pre">Metadata</span></code></a></li>
+<li><a class="reference internal" href="#colour_hdri.utilities.image.Image" title="colour_hdri.utilities.image.Image"><code class="xref py py-class docutils literal"><span class="pre">Image</span></code></a></li>
+<li><a class="reference internal" href="#colour_hdri.utilities.image.ImageStack" title="colour_hdri.utilities.image.ImageStack"><code class="xref py py-class docutils literal"><span class="pre">ImageStack</span></code></a></li>
+</ul>
+<dl class="class">
+<dt id="colour_hdri.utilities.image.Metadata">
+<em class="property">class </em><code class="descclassname">colour_hdri.utilities.image.</code><code class="descname">Metadata</code><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#Metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.Metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#colour_hdri.utilities.image.Metadata" title="colour_hdri.utilities.image.Metadata"><code class="xref py py-class docutils literal"><span class="pre">colour_hdri.utilities.image.Metadata</span></code></a></p>
+<p>Defines the base object for storing exif metadata relevant to
+HDRI / radiance image generation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>f_number</strong> (<em>array_like</em>) &#8211; Image <em>FNumber</em>.</li>
+<li><strong>exposure_time</strong> (<em>array_like</em>) &#8211; Image <em>Exposure Time</em>.</li>
+<li><strong>iso</strong> (<em>array_like</em>) &#8211; Image <em>ISO</em>.</li>
+<li><strong>black_level</strong> (<em>array_like</em>) &#8211; Image <em>Black Level</em>.</li>
+<li><strong>white_level</strong> (<em>array_like</em>) &#8211; Image <em>White Level</em>.</li>
+<li><strong>white_balance_multipliers</strong> (<em>array_like</em>) &#8211; Image white balance multipliers, usually the <em>As Shot Neutral</em>  matrix.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="colour_hdri.utilities.image.Image">
+<em class="property">class </em><code class="descclassname">colour_hdri.utilities.image.</code><code class="descname">Image</code><span class="sig-paren">(</span><em>path=None</em>, <em>data=None</em>, <em>metadata=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#Image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.Image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.5/library/functions.html#object" title="(in Python v3.5)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Defines the base object for storing an image along its path, pixel data and
+metadata needed for HDRI / radiance images generation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path</strong> (<em>unicode, optional</em>) &#8211; Image path.</li>
+<li><strong>data</strong> (<em>array_like, optional</em>) &#8211; Image pixel data array.</li>
+<li><strong>metadata</strong> (<em>Metadata, optional</em>) &#8211; Image exif metadata.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="colour_hdri.utilities.image.Image.path">
+<code class="descname">path</code><a class="headerlink" href="#colour_hdri.utilities.image.Image.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="colour_hdri.utilities.image.Image.data">
+<code class="descname">data</code><a class="headerlink" href="#colour_hdri.utilities.image.Image.data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="colour_hdri.utilities.image.Image.metadata">
+<code class="descname">metadata</code><a class="headerlink" href="#colour_hdri.utilities.image.Image.metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="colour_hdri.utilities.image.Image.read_data">
+<code class="descname">read_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#Image.read_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.Image.read_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="colour_hdri.utilities.image.Image.read_metadata">
+<code class="descname">read_metadata</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#Image.read_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.Image.read_metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">data</code></dt>
+<dd><p>Property for <strong>self._data</strong> private attribute.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">self._data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">unicode</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">metadata</code></dt>
+<dd><p>Property for <strong>self._metadata</strong> private attribute.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">self._metadata.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">unicode</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">path</code></dt>
+<dd><p>Property for <strong>self._path</strong> private attribute.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">self._path.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">unicode</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">read_data</code><span class="sig-paren">(</span><em>decoding_cctf=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#Image.read_data"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Reads image pixel data at <a class="reference internal" href="#colour_hdri.utilities.image.Image.path" title="colour_hdri.utilities.image.Image.path"><code class="xref py py-attr docutils literal"><span class="pre">Image.path</span></code></a> attribute.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>decoding_cctf</strong> (<em>object, optional</em>) &#8211; Decoding colour component transfer function (Decoding CCTF) or
+electro-optical transfer function (EOTF / EOCF).</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Image pixel data.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">read_metadata</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#Image.read_metadata"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Reads image relevant exif metadata at <a class="reference internal" href="#colour_hdri.utilities.image.Image.path" title="colour_hdri.utilities.image.Image.path"><code class="xref py py-attr docutils literal"><span class="pre">Image.path</span></code></a> attribute.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Image relevant exif metadata.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="colour_hdri.utilities.html#colour_hdri.utilities.Metadata" title="colour_hdri.utilities.Metadata">Metadata</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="colour_hdri.utilities.image.ImageStack">
+<em class="property">class </em><code class="descclassname">colour_hdri.utilities.image.</code><code class="descname">ImageStack</code><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.ImageStack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">_abcoll.MutableSequence</span></code></p>
+<p>Defines a convenient stack storing a sequence of images for HDRI / radiance
+images generation.</p>
+<dl class="method">
+<dt id="colour_hdri.utilities.image.ImageStack.ImageStack">
+<code class="descname">ImageStack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#colour_hdri.utilities.image.ImageStack.ImageStack" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="colour_hdri.utilities.image.ImageStack.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.ImageStack.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="colour_hdri.utilities.image.ImageStack.__getitem__">
+<code class="descname">__getitem__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.ImageStack.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="colour_hdri.utilities.image.ImageStack.__setitem__">
+<code class="descname">__setitem__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__setitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.ImageStack.__setitem__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="colour_hdri.utilities.image.ImageStack.__delitem__">
+<code class="descname">__delitem__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__delitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.ImageStack.__delitem__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="colour_hdri.utilities.image.ImageStack.__len__">
+<code class="descname">__len__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__len__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.ImageStack.__len__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="colour_hdri.utilities.image.ImageStack.__getattr__">
+<code class="descname">__getattr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__getattr__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.ImageStack.__getattr__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="colour_hdri.utilities.image.ImageStack.__setattr__">
+<code class="descname">__setattr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__setattr__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.ImageStack.__setattr__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="colour_hdri.utilities.image.ImageStack.sort">
+<code class="descname">sort</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.sort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.ImageStack.sort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="colour_hdri.utilities.image.ImageStack.insert">
+<code class="descname">insert</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.ImageStack.insert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="colour_hdri.utilities.image.ImageStack.from_files">
+<code class="descname">from_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.from_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.image.ImageStack.from_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">__delitem__</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__delitem__"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Reimplements the <code class="xref py py-meth docutils literal"><span class="pre">MutableSequence.__delitem__()</span></code> method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; Item index.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">__getattr__</code><span class="sig-paren">(</span><em>attribute</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__getattr__"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Reimplements the <code class="xref py py-meth docutils literal"><span class="pre">MutableSequence.__getattr__()</span></code> method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>attribute</strong> (<em>unicode</em>) &#8211; Attribute to retrieve the value.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Attribute value.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#object" title="(in Python v3.5)">object</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">__getitem__</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__getitem__"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Reimplements the <code class="xref py py-meth docutils literal"><span class="pre">MutableSequence.__getitem__()</span></code> method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; Item index.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Item at given index.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="colour_hdri.utilities.html#colour_hdri.utilities.Image" title="colour_hdri.utilities.Image">Image</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">__len__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__len__"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Reimplements the <code class="xref py py-meth docutils literal"><span class="pre">MutableSequence.__len__()</span></code> method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">__setattr__</code><span class="sig-paren">(</span><em>attribute</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__setattr__"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Reimplements the <code class="xref py py-meth docutils literal"><span class="pre">MutableSequence.__getattr__()</span></code> method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>attribute</strong> (<em>unicode</em>) &#8211; Attribute to set the value.</li>
+<li><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#object" title="(in Python v3.5)"><em>object</em></a>) &#8211; Value to set.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">__setitem__</code><span class="sig-paren">(</span><em>index</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.__setitem__"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Reimplements the <code class="xref py py-meth docutils literal"><span class="pre">MutableSequence.__setitem__()</span></code> method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; Item index.</li>
+<li><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; Item value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt>
+<em class="property">static </em><code class="descname">from_files</code><span class="sig-paren">(</span><em>image_files</em>, <em>decoding_cctf=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.from_files"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Returns a <a class="reference internal" href="#colour_hdri.utilities.image.ImageStack" title="colour_hdri.utilities.image.ImageStack"><code class="xref py py-class docutils literal"><span class="pre">ImageStack</span></code></a> instance with given image files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>image_files</strong> (<em>array_like</em>) &#8211; Image files.</li>
+<li><strong>decoding_cctf</strong> (<em>object, optional</em>) &#8211; Decoding colour component transfer function (Decoding CCTF) or
+electro-optical transfer function (EOTF / EOCF).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#colour_hdri.utilities.image.ImageStack" title="colour_hdri.utilities.image.ImageStack">ImageStack</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">insert</code><span class="sig-paren">(</span><em>index</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.insert"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Reimplements the <code class="xref py py-meth docutils literal"><span class="pre">MutableSequence.insert()</span></code> method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; Item index.</li>
+<li><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#object" title="(in Python v3.5)"><em>object</em></a>) &#8211; Item value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">sort</code><span class="sig-paren">(</span><em>key=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/image.html#ImageStack.sort"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Sorts the underlying data structure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#callable" title="(in Python v3.5)"><em>callable</em></a>) &#8211; Function of one argument that is used to extract a comparison key
+from each data structure.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Colour_Logo_Small_001.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">colour_hdri.utilities.image Module</a><ul>
+<li><a class="reference internal" href="#image-data-metadata-utilities">Image Data &amp; Metadata Utilities</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/colour_hdri.utilities.image.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2017, Colour Developers.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/colour_hdri.utilities.image.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

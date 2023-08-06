@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>colour_hdri.calibration Package &mdash; Colour - HDRI 0.1.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Colour - HDRI 0.1.3 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="colour-hdri-calibration-package">
+<h1>colour_hdri.calibration Package<a class="headerlink" href="#colour-hdri-calibration-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sub-modules">
+<h2>Sub-Modules<a class="headerlink" href="#sub-modules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="colour_hdri.calibration.absolute_luminance.html">colour_hdri.calibration.absolute_luminance Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colour_hdri.calibration.absolute_luminance.html#absolute-luminance-calibration-lagarde-2016">Absolute Luminance Calibration - Lagarde (2016)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="colour_hdri.calibration.debevec1997.html">colour_hdri.calibration.debevec1997 Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colour_hdri.calibration.debevec1997.html#debevec-1997-camera-response-function-computation">Debevec (1997) Camera Response Function Computation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-colour_hdri.calibration">
+<span id="module-contents"></span><h2>Module Contents<a class="headerlink" href="#module-colour_hdri.calibration" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="colour_hdri.calibration.upper_hemisphere_illuminance_weights_Lagarde2016">
+<code class="descclassname">colour_hdri.calibration.</code><code class="descname">upper_hemisphere_illuminance_weights_Lagarde2016</code><span class="sig-paren">(</span><em>height</em>, <em>width</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/calibration/absolute_luminance.html#upper_hemisphere_illuminance_weights_Lagarde2016"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.calibration.upper_hemisphere_illuminance_weights_Lagarde2016" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes upper hemisphere illuminance weights for use with applications
+unable to perform the computation directly, i.e. <em>Adobe Photoshop</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>height</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; Output array height.</li>
+<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; Output array width.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Upper hemisphere illuminance weights.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">upper_hemisphere_illuminance_weights_Lagarde2016</span><span class="p">(</span>  
+<span class="gp">... </span>   <span class="mi">16</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">array([[ 0...        ],</span>
+<span class="go">       [ 4.0143297...],</span>
+<span class="go">       [ 7.3345454...],</span>
+<span class="go">       [ 9.3865515...],</span>
+<span class="go">       [ 9.8155376...],</span>
+<span class="go">       [ 8.5473281...],</span>
+<span class="go">       [ 5.8012079...],</span>
+<span class="go">       [ 2.0520061...],</span>
+<span class="go">       [ 0...        ],</span>
+<span class="go">       [ 0...        ],</span>
+<span class="go">       [ 0...        ],</span>
+<span class="go">       [ 0...        ],</span>
+<span class="go">       [ 0...        ],</span>
+<span class="go">       [ 0...        ],</span>
+<span class="go">       [ 0...        ],</span>
+<span class="go">       [ 0...        ]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.calibration.absolute_luminance_calibration_Lagarde2016">
+<code class="descclassname">colour_hdri.calibration.</code><code class="descname">absolute_luminance_calibration_Lagarde2016</code><span class="sig-paren">(</span><em>RGB</em>, <em>measured_illuminance</em>, <em>colourspace=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/calibration/absolute_luminance.html#absolute_luminance_calibration_Lagarde2016"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.calibration.absolute_luminance_calibration_Lagarde2016" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs absolute <em>Luminance</em> calibration of given <em>RGB</em> panoramic image
+using <em>Lagarde (2016)</em> method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>RGB</strong> (<em>array_like</em>) &#8211; <em>RGB</em> panoramic image to calibrate.</li>
+<li><strong>measured_illuminance</strong> (<em>numeric</em>) &#8211; Measured illuminance <span class="math">\(E_v\)</span>.</li>
+<li><strong>colourspace</strong> (<cite>colour.RGB_Colourspace</cite>, optional) &#8211; <em>RGB</em> colourspace used for internal <em>Luminance</em> computation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Absolute <em>Luminance</em> calibrated <em>RGB</em> panoramic image.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">absolute_luminance_calibration_Lagarde2016</span><span class="p">(</span>  
+<span class="gp">... </span>    <span class="n">RGB</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="go">array([[[ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...]],</span>
+
+<span class="go">       [[ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...]],</span>
+
+<span class="go">       [[ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...]],</span>
+
+<span class="go">       [[ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...],</span>
+<span class="go">        [ 233.9912506...,  233.9912506...,  233.9912506...]]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.calibration.g_solve">
+<code class="descclassname">colour_hdri.calibration.</code><code class="descname">g_solve</code><span class="sig-paren">(</span><em>Z</em>, <em>B</em>, <em>l=30</em>, <em>w=&lt;function weighting_function_Debevec1997&gt;</em>, <em>n=256</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/calibration/debevec1997.html#g_solve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.calibration.g_solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a set of pixel values observed for several pixels in several images
+with different exposure times, this function returns the imaging system’s
+response function <span class="math">\(g\)</span> as well as the log film irradiance values
+<span class="math">\(lE\)</span> for the observed pixels.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>Z</strong> (<em>array_like</em>) &#8211; Set of pixel values observed for several pixels in several images.</li>
+<li><strong>B</strong> (<em>array_like</em>) &#8211; Log <span class="math">\(\Delta t\)</span>, or log shutter speed for images.</li>
+<li><strong>l</strong> (<em>numeric, optional</em>) &#8211; <span class="math">\(\lambda\)</span> smoothing term.</li>
+<li><strong>w</strong> (<em>callable, optional</em>) &#8211; Weighting function <span class="math">\(w\)</span>.</li>
+<li><strong>n</strong> (<em>int, optional</em>) &#8211; <span class="math">\(n\)</span> constant.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Camera response functions <span class="math">\(g(z)\)</span> and log film irradiance values
+<span class="math">\(lE\)</span>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#tuple" title="(in Python v3.5)">tuple</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.calibration.camera_response_functions_Debevec1997">
+<code class="descclassname">colour_hdri.calibration.</code><code class="descname">camera_response_functions_Debevec1997</code><span class="sig-paren">(</span><em>image_stack</em>, <em>s=&lt;function samples_Grossberg2003&gt;</em>, <em>samples=1000</em>, <em>l=30</em>, <em>w=&lt;function weighting_function_Debevec1997&gt;</em>, <em>n=256</em>, <em>normalise=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/calibration/debevec1997.html#camera_response_functions_Debevec1997"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.calibration.camera_response_functions_Debevec1997" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the camera response functions for given image stack using
+<em>Debevec (1997)</em> method.</p>
+<p>Image channels are sampled with <span class="math">\(s\)</span> sampling function and the output
+samples are passed to <a class="reference internal" href="#colour_hdri.calibration.g_solve" title="colour_hdri.calibration.g_solve"><code class="xref py py-func docutils literal"><span class="pre">g_solve()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>image_stack</strong> (<a class="reference internal" href="colour_hdri.utilities.image.html#colour_hdri.utilities.image.ImageStack" title="colour_hdri.utilities.image.ImageStack"><em>ImageStack</em></a>) &#8211; Stack of single channel or multi-channel floating point images.</li>
+<li><strong>s</strong> (<em>callable, optional</em>) &#8211; Sampling function <span class="math">\(s\)</span>.</li>
+<li><strong>samples</strong> (<em>int, optional</em>) &#8211; Samples count per images.</li>
+<li><strong>l</strong> (<em>numeric, optional</em>) &#8211; <span class="math">\(\lambda\)</span> smoothing term.</li>
+<li><strong>w</strong> (<em>callable, optional</em>) &#8211; Weighting function <span class="math">\(w\)</span>.</li>
+<li><strong>n</strong> (<em>int, optional</em>) &#8211; <span class="math">\(n\)</span> constant.</li>
+<li><strong>normalise</strong> (<em>bool, optional</em>) &#8211; Enables the camera response functions normalisation. Uncertain camera
+response functions values resulting from <span class="math">\(w\)</span> function are
+set to zero.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Camera response functions <span class="math">\(g(z)\)</span>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Colour_Logo_Small_001.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">colour_hdri.calibration Package</a><ul>
+<li><a class="reference internal" href="#sub-modules">Sub-Modules</a></li>
+<li><a class="reference internal" href="#module-colour_hdri.calibration">Module Contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/colour_hdri.calibration.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2017, Colour Developers.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/colour_hdri.calibration.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

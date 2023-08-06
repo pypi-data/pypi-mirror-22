@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>colour_hdri.sampling.variance_minimization Module &mdash; Colour - HDRI 0.1.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Colour - HDRI 0.1.3 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-colour_hdri.sampling.variance_minimization">
+<span id="colour-hdri-sampling-variance-minimization-module"></span><h1>colour_hdri.sampling.variance_minimization Module<a class="headerlink" href="#module-colour_hdri.sampling.variance_minimization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="viriyothai-2009-variance-minimization-light-probe-sampling">
+<h2>Viriyothai (2009) Variance Minimization Light Probe Sampling<a class="headerlink" href="#viriyothai-2009-variance-minimization-light-probe-sampling" title="Permalink to this headline">¶</a></h2>
+<p>Defines <em>Viriyothai (2009)</em> variance minimization light probe sampling objects:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#colour_hdri.sampling.variance_minimization.light_probe_sampling_variance_minimization_Viriyothai2009" title="colour_hdri.sampling.variance_minimization.light_probe_sampling_variance_minimization_Viriyothai2009"><code class="xref py py-func docutils literal"><span class="pre">light_probe_sampling_variance_minimization_Viriyothai2009()</span></code></a></li>
+</ul>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>Viriyothai, K., &amp; Debevec, P. (2009). Variance minimization light probe
+sampling. SIGGRAPH’09: Posters, (Egsr), 60558.
+doi:10.1145/1599301.1599393</td></tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="colour_hdri.sampling.variance_minimization.Light_Specification">
+<em class="property">class </em><code class="descclassname">colour_hdri.sampling.variance_minimization.</code><code class="descname">Light_Specification</code><a class="reference internal" href="_modules/colour_hdri/sampling/variance_minimization.html#Light_Specification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.sampling.variance_minimization.Light_Specification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#colour_hdri.sampling.variance_minimization.Light_Specification" title="colour_hdri.sampling.variance_minimization.Light_Specification"><code class="xref py py-class docutils literal"><span class="pre">colour_hdri.sampling.variance_minimization.Light_Specification</span></code></a></p>
+<p>Defines a light probe sampling resulting light specification.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>uv</strong> (<em>array_like</em>) &#8211; <span class="math">\(uv\)</span> coordinates of the sampled light.</li>
+<li><strong>colour</strong> (<em>array_like</em>) &#8211; Sampled light colour.</li>
+<li><strong>index</strong> (<em>array_like</em>) &#8211; Sampled light location index in its original array.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.sampling.variance_minimization.luminance_variance">
+<code class="descclassname">colour_hdri.sampling.variance_minimization.</code><code class="descname">luminance_variance</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/sampling/variance_minimization.html#luminance_variance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.sampling.variance_minimization.luminance_variance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the Luminance variance of given <span class="math">\(a\)</span> 2-D array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> (<em>array_like</em>) &#8211; <span class="math">\(a\)</span> 2-D array to compute the Luminance variation.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><span class="math">\(a\)</span> 2-D array Luminance variance.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numeric</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">luminance_variance</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  
+<span class="go">12.2474487...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.sampling.variance_minimization.find_regions_variance_minimization_Viriyothai2009">
+<code class="descclassname">colour_hdri.sampling.variance_minimization.</code><code class="descname">find_regions_variance_minimization_Viriyothai2009</code><span class="sig-paren">(</span><em>a</em>, <em>n=4</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/sampling/variance_minimization.html#find_regions_variance_minimization_Viriyothai2009"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.sampling.variance_minimization.find_regions_variance_minimization_Viriyothai2009" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the <span class="math">\(2^n\)</span> regions using <em>Viriyothai (2009)</em> variance
+minimization light probe sampling algorithm on given <span class="math">\(a\)</span> 2-D array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<em>array_like</em>) &#8211; <span class="math">\(a\)</span> 2-D array to find the regions.</li>
+<li><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; Iterations count, the total regions count is <span class="math">\(2^n\)</span>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Regions with variance minimized.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.sampling.variance_minimization.highlight_regions_variance_minimization">
+<code class="descclassname">colour_hdri.sampling.variance_minimization.</code><code class="descname">highlight_regions_variance_minimization</code><span class="sig-paren">(</span><em>a</em>, <em>regions</em>, <em>highlight_colour=array([0</em>, <em>1</em>, <em>0])</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/sampling/variance_minimization.html#highlight_regions_variance_minimization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.sampling.variance_minimization.highlight_regions_variance_minimization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlights regions using with variance minimized on given <span class="math">\(a\)</span>
+3-D array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<em>array_like</em>) &#8211; <span class="math">\(a\)</span> 3-D array to highlight the regions.</li>
+<li><strong>regions</strong> (<em>array_like</em>) &#8211; Regions with variance minimized.</li>
+<li><strong>highlight_colour</strong> (<em>array_like</em>) &#8211; Highlight colour.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><span class="math">\(a\)</span> 3-D array with highlighted regions.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.sampling.variance_minimization.light_probe_sampling_variance_minimization_Viriyothai2009">
+<code class="descclassname">colour_hdri.sampling.variance_minimization.</code><code class="descname">light_probe_sampling_variance_minimization_Viriyothai2009</code><span class="sig-paren">(</span><em>light_probe</em>, <em>lights_count=16</em>, <em>colourspace=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/sampling/variance_minimization.html#light_probe_sampling_variance_minimization_Viriyothai2009"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.sampling.variance_minimization.light_probe_sampling_variance_minimization_Viriyothai2009" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample given light probe to find lights using <em>Viriyothai (2009)</em> variance
+minimization light probe sampling algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>light_probe</strong> (<em>array_like</em>) &#8211; Array to sample for lights.</li>
+<li><strong>lights_count</strong> (<a class="reference external" href="https://docs.python.org/3.5/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; Amount of lights to generate.</li>
+<li><strong>colourspace</strong> (<cite>colour.RGB_Colourspace</cite>, optional) &#8211; <em>RGB</em> colourspace used for internal <em>Luminance</em> computation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of <a class="reference internal" href="#colour_hdri.sampling.variance_minimization.Light_Specification" title="colour_hdri.sampling.variance_minimization.Light_Specification"><code class="xref py py-class docutils literal"><span class="pre">Light_Specification</span></code></a> lights.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Colour_Logo_Small_001.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">colour_hdri.sampling.variance_minimization Module</a><ul>
+<li><a class="reference internal" href="#viriyothai-2009-variance-minimization-light-probe-sampling">Viriyothai (2009) Variance Minimization Light Probe Sampling</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/colour_hdri.sampling.variance_minimization.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2017, Colour Developers.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/colour_hdri.sampling.variance_minimization.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

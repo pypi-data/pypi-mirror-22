@@ -1,0 +1,507 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>colour_hdri.models Package &mdash; Colour - HDRI 0.1.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Colour - HDRI 0.1.3 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="colour-hdri-models-package">
+<h1>colour_hdri.models Package<a class="headerlink" href="#colour-hdri-models-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sub-packages">
+<h2>Sub-Packages<a class="headerlink" href="#sub-packages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="colour_hdri.models.dataset.html">colour_hdri.models.dataset Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colour_hdri.models.dataset.html#sub-modules">Sub-Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="colour_hdri.models.dataset.dng.html">colour_hdri.models.dataset.dng Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="colour_hdri.models.dataset.dng.html#adobe-dng-sdk-dataset">Adobe DNG SDK Dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="colour_hdri.models.dataset.html#module-colour_hdri.models.dataset">Module Contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="sub-modules">
+<h2>Sub-Modules<a class="headerlink" href="#sub-modules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="colour_hdri.models.dng.html">colour_hdri.models.dng Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colour_hdri.models.dng.html#adobe-dng-sdk-colour-processing">Adobe DNG SDK Colour Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="colour_hdri.models.rgb.html">colour_hdri.models.rgb Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="colour_hdri.models.rgb.html#rgb-colourspace-transformations">RGB Colourspace &amp; Transformations</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-colour_hdri.models">
+<span id="module-contents"></span><h2>Module Contents<a class="headerlink" href="#module-colour_hdri.models" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="colour_hdri.models.xy_to_camera_neutral">
+<code class="descclassname">colour_hdri.models.</code><code class="descname">xy_to_camera_neutral</code><span class="sig-paren">(</span><em>xy</em>, <em>CCT_calibration_illuminant_1</em>, <em>CCT_calibration_illuminant_2</em>, <em>M_color_matrix_1</em>, <em>M_color_matrix_2</em>, <em>M_camera_calibration_1</em>, <em>M_camera_calibration_2</em>, <em>analog_balance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/models/dng.html#xy_to_camera_neutral"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.models.xy_to_camera_neutral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts given <em>xy</em> white balance chromaticity coordinates to
+<em>Camera Neutral</em> coordinates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>xy</strong> (<em>array_like</em>) &#8211; <em>xy</em> white balance chromaticity coordinates.</li>
+<li><strong>CCT_calibration_illuminant_1</strong> (<em>numeric</em>) &#8211; Correlated colour temperature of <em>CalibrationIlluminant1</em>.</li>
+<li><strong>CCT_calibration_illuminant_2</strong> (<em>numeric</em>) &#8211; Correlated colour temperature of <em>CalibrationIlluminant2</em>.</li>
+<li><strong>M_color_matrix_1</strong> (<em>array_like</em>) &#8211; <em>ColorMatrix1</em> tag matrix.</li>
+<li><strong>M_color_matrix_2</strong> (<em>array_like</em>) &#8211; <em>ColorMatrix2</em> tag matrix.</li>
+<li><strong>M_camera_calibration_1</strong> (<em>array_like</em>) &#8211; <em>CameraCalibration1</em> tag matrix.</li>
+<li><strong>M_camera_calibration_2</strong> (<em>array_like</em>) &#8211; <em>CameraCalibration2</em> tag matrix.</li>
+<li><strong>analog_balance</strong> (<em>array_like</em>) &#8211; <em>AnalogBalance</em> tag vector.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><em>Camera Neutral</em> coordinates.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[4]</a></td><td>Adobe Systems. (2012). Translating White Balance xy Coordinates to
+Camera Neutral Coordinates.
+In Digital Negative (DNG) Specification (p. 80).</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M_color_matrix_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.5309</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0229</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0336</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.6241</span><span class="p">,</span> <span class="mf">1.3265</span><span class="p">,</span> <span class="mf">0.3337</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.0817</span><span class="p">,</span> <span class="mf">0.1215</span><span class="p">,</span> <span class="mf">0.6664</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_color_matrix_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.4716</span><span class="p">,</span> <span class="mf">0.0603</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0830</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.7798</span><span class="p">,</span> <span class="mf">1.5474</span><span class="p">,</span> <span class="mf">0.2480</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.1496</span><span class="p">,</span> <span class="mf">0.1937</span><span class="p">,</span> <span class="mf">0.6651</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_camera_calibration_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_camera_calibration_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">analog_balance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xy_to_camera_neutral</span><span class="p">(</span>  
+<span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.32816244</span><span class="p">,</span> <span class="mf">0.34698169</span><span class="p">]),</span>
+<span class="gp">... </span>    <span class="mi">2850</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="mi">6500</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_color_matrix_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_color_matrix_2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_camera_calibration_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_camera_calibration_2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">analog_balance</span><span class="p">)</span>
+<span class="go">array([ 0.4130699...,  1...        ,  0.646465...])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.models.camera_neutral_to_xy">
+<code class="descclassname">colour_hdri.models.</code><code class="descname">camera_neutral_to_xy</code><span class="sig-paren">(</span><em>camera_neutral</em>, <em>CCT_calibration_illuminant_1</em>, <em>CCT_calibration_illuminant_2</em>, <em>M_color_matrix_1</em>, <em>M_color_matrix_2</em>, <em>M_camera_calibration_1</em>, <em>M_camera_calibration_2</em>, <em>analog_balance</em>, <em>epsilon=&lt;Mock name='mock.EPSILON' id='4496273360'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/models/dng.html#camera_neutral_to_xy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.models.camera_neutral_to_xy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts given <em>Camera Neutral</em> coordinates to <em>xy</em> white balance
+chromaticity coordinates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>camera_neutral</strong> (<em>array_like</em>) &#8211; <em>Camera Neutral</em> coordinates.</li>
+<li><strong>CCT_calibration_illuminant_1</strong> (<em>numeric</em>) &#8211; Correlated colour temperature of <em>CalibrationIlluminant1</em>.</li>
+<li><strong>CCT_calibration_illuminant_2</strong> (<em>numeric</em>) &#8211; Correlated colour temperature of <em>CalibrationIlluminant2</em>.</li>
+<li><strong>M_color_matrix_1</strong> (<em>array_like</em>) &#8211; <em>ColorMatrix1</em> tag matrix.</li>
+<li><strong>M_color_matrix_2</strong> (<em>array_like</em>) &#8211; <em>ColorMatrix2</em> tag matrix.</li>
+<li><strong>M_camera_calibration_1</strong> (<em>array_like</em>) &#8211; <em>CameraCalibration1</em> tag matrix.</li>
+<li><strong>M_camera_calibration_2</strong> (<em>array_like</em>) &#8211; <em>CameraCalibration2</em> tag matrix.</li>
+<li><strong>analog_balance</strong> (<em>array_like</em>) &#8211; <em>AnalogBalance</em> tag vector.</li>
+<li><strong>epsilon</strong> (<em>numeric, optional</em>) &#8211; Threshold value for computation convergence.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><em>xy</em> white balance chromaticity coordinates.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">ndarray</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3.5/library/exceptions.html#RuntimeError" title="(in Python v3.5)"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code></a> &#8211;
+If the given <em>Camera Neutral</em> coordinates did not converge to <em>xy</em>
+white balance chromaticity coordinates.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[5]</td><td>Adobe Systems. (2012). Translating Camera Neutral Coordinates to
+White Balance xy Coordinates.
+In Digital Negative (DNG) Specification (pp. 80–81).</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M_color_matrix_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.5309</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0229</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0336</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.6241</span><span class="p">,</span> <span class="mf">1.3265</span><span class="p">,</span> <span class="mf">0.3337</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.0817</span><span class="p">,</span> <span class="mf">0.1215</span><span class="p">,</span> <span class="mf">0.6664</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_color_matrix_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.4716</span><span class="p">,</span> <span class="mf">0.0603</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0830</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.7798</span><span class="p">,</span> <span class="mf">1.5474</span><span class="p">,</span> <span class="mf">0.2480</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.1496</span><span class="p">,</span> <span class="mf">0.1937</span><span class="p">,</span> <span class="mf">0.6651</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_camera_calibration_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_camera_calibration_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">analog_balance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">camera_neutral_to_xy</span><span class="p">(</span>  
+<span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.413070</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">,</span> <span class="mf">0.646465</span><span class="p">]),</span>
+<span class="gp">... </span>    <span class="mi">2850</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="mi">6500</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_color_matrix_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_color_matrix_2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_camera_calibration_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_camera_calibration_2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">analog_balance</span><span class="p">)</span>
+<span class="go">array([ 0.3281624...,  0.3469816...])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.models.XYZ_to_camera_space_matrix">
+<code class="descclassname">colour_hdri.models.</code><code class="descname">XYZ_to_camera_space_matrix</code><span class="sig-paren">(</span><em>xy</em>, <em>CCT_calibration_illuminant_1</em>, <em>CCT_calibration_illuminant_2</em>, <em>M_color_matrix_1</em>, <em>M_color_matrix_2</em>, <em>M_camera_calibration_1</em>, <em>M_camera_calibration_2</em>, <em>analog_balance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/models/dng.html#XYZ_to_camera_space_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.models.XYZ_to_camera_space_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <em>CIE XYZ</em> to <em>Camera Space</em> matrix for given <em>xy</em> white balance
+chromaticity coordinates. <a class="footnote-reference" href="#id1" id="id3">[4]</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>xy</strong> (<em>array_like</em>) &#8211; <em>xy</em> white balance chromaticity coordinates.</li>
+<li><strong>CCT_calibration_illuminant_1</strong> (<em>numeric</em>) &#8211; Correlated colour temperature of <em>CalibrationIlluminant1</em>.</li>
+<li><strong>CCT_calibration_illuminant_2</strong> (<em>numeric</em>) &#8211; Correlated colour temperature of <em>CalibrationIlluminant2</em>.</li>
+<li><strong>M_color_matrix_1</strong> (<em>array_like</em>) &#8211; <em>ColorMatrix1</em> tag matrix.</li>
+<li><strong>M_color_matrix_2</strong> (<em>array_like</em>) &#8211; <em>ColorMatrix2</em> tag matrix.</li>
+<li><strong>M_camera_calibration_1</strong> (<em>array_like</em>) &#8211; <em>CameraCalibration1</em> tag matrix.</li>
+<li><strong>M_camera_calibration_2</strong> (<em>array_like</em>) &#8211; <em>CameraCalibration2</em> tag matrix.</li>
+<li><strong>analog_balance</strong> (<em>array_like</em>) &#8211; <em>AnalogBalance</em> tag vector.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><em>CIE XYZ</em> to <em>Camera Space</em> matrix.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li>The reference illuminant is D50 as defined per
+<code class="xref py py-attr docutils literal"><span class="pre">ADOBE_DNG_XYZ_ILLUMINANT</span></code> attribute.</li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M_color_matrix_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.5309</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0229</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0336</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.6241</span><span class="p">,</span> <span class="mf">1.3265</span><span class="p">,</span> <span class="mf">0.3337</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.0817</span><span class="p">,</span> <span class="mf">0.1215</span><span class="p">,</span> <span class="mf">0.6664</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_color_matrix_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.4716</span><span class="p">,</span> <span class="mf">0.0603</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0830</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.7798</span><span class="p">,</span> <span class="mf">1.5474</span><span class="p">,</span> <span class="mf">0.2480</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.1496</span><span class="p">,</span> <span class="mf">0.1937</span><span class="p">,</span> <span class="mf">0.6651</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_camera_calibration_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_camera_calibration_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">analog_balance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">XYZ_to_camera_space_matrix</span><span class="p">(</span>  
+<span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.34510414</span><span class="p">,</span> <span class="mf">0.35162252</span><span class="p">]),</span>
+<span class="gp">... </span>    <span class="mi">2850</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="mi">6500</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_color_matrix_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_color_matrix_2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_camera_calibration_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_camera_calibration_2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">analog_balance</span><span class="p">)</span>
+<span class="go">array([[ 0.4854908...,  0.0408106..., -0.0714282...],</span>
+<span class="go">       [-0.7433278...,  1.4956549...,  0.2680749...],</span>
+<span class="go">       [-0.1336946...,  0.1767874...,  0.6654045...]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.models.camera_space_to_XYZ_matrix">
+<code class="descclassname">colour_hdri.models.</code><code class="descname">camera_space_to_XYZ_matrix</code><span class="sig-paren">(</span><em>xy</em>, <em>CCT_calibration_illuminant_1</em>, <em>CCT_calibration_illuminant_2</em>, <em>M_color_matrix_1</em>, <em>M_color_matrix_2</em>, <em>M_camera_calibration_1</em>, <em>M_camera_calibration_2</em>, <em>analog_balance</em>, <em>M_forward_matrix_1</em>, <em>M_forward_matrix_2</em>, <em>chromatic_adaptation_transform=u'Bradford'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/models/dng.html#camera_space_to_XYZ_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.models.camera_space_to_XYZ_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <em>Camera Space</em> to <em>CIE XYZ</em> matrix for given <em>xy</em> white
+balance chromaticity coordinates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>xy</strong> (<em>array_like</em>) &#8211; <em>xy</em> white balance chromaticity coordinates.</li>
+<li><strong>CCT_calibration_illuminant_1</strong> (<em>numeric</em>) &#8211; Correlated colour temperature of <em>CalibrationIlluminant1</em>.</li>
+<li><strong>CCT_calibration_illuminant_2</strong> (<em>numeric</em>) &#8211; Correlated colour temperature of <em>CalibrationIlluminant2</em>.</li>
+<li><strong>M_color_matrix_1</strong> (<em>array_like</em>) &#8211; <em>ColorMatrix1</em> tag matrix.</li>
+<li><strong>M_color_matrix_2</strong> (<em>array_like</em>) &#8211; <em>ColorMatrix2</em> tag matrix.</li>
+<li><strong>M_camera_calibration_1</strong> (<em>array_like</em>) &#8211; <em>CameraCalibration1</em> tag matrix.</li>
+<li><strong>M_camera_calibration_2</strong> (<em>array_like</em>) &#8211; <em>CameraCalibration2</em> tag matrix.</li>
+<li><strong>analog_balance</strong> (<em>array_like</em>) &#8211; <em>AnalogBalance</em> tag vector.</li>
+<li><strong>M_forward_matrix_1</strong> (<em>array_like</em>) &#8211; <em>ForwardMatrix1</em> tag matrix.</li>
+<li><strong>M_forward_matrix_2</strong> (<em>array_like</em>) &#8211; <em>ForwardMatrix2</em> tag matrix.</li>
+<li><strong>chromatic_adaptation_transform</strong> (<em>unicode, optional</em>) &#8211; <strong>{&#8216;CAT02&#8217;, &#8216;XYZ Scaling&#8217;, &#8216;Von Kries&#8217;, &#8216;Bradford&#8217;, &#8216;Sharp&#8217;,
+&#8216;Fairchild&#8217;, &#8216;CMCCAT97&#8217;, &#8216;CMCCAT2000&#8217;, &#8216;CAT02_BRILL_CAT&#8217;, &#8216;Bianco&#8217;,
+&#8216;Bianco PC&#8217;}</strong>,
+Chromatic adaptation transform.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><em>Camera Space</em> to <em>CIE XYZ</em> matrix.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li>The reference illuminant is D50 as defined per
+<code class="xref py py-attr docutils literal"><span class="pre">ADOBE_DNG_XYZ_ILLUMINANT</span></code> attribute.</li>
+</ul>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[6]</td><td>Adobe Systems. (2012). Camera to XYZ (D50) Transform.
+In Digital Negative (DNG) Specification (p. 81).</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M_color_matrix_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.5309</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0229</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0336</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.6241</span><span class="p">,</span> <span class="mf">1.3265</span><span class="p">,</span> <span class="mf">0.3337</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.0817</span><span class="p">,</span> <span class="mf">0.1215</span><span class="p">,</span> <span class="mf">0.6664</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_color_matrix_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.4716</span><span class="p">,</span> <span class="mf">0.0603</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0830</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.7798</span><span class="p">,</span> <span class="mf">1.5474</span><span class="p">,</span> <span class="mf">0.2480</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.1496</span><span class="p">,</span> <span class="mf">0.1937</span><span class="p">,</span> <span class="mf">0.6651</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_camera_calibration_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_camera_calibration_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">analog_balance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_forward_matrix_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.8924</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1041</span><span class="p">,</span> <span class="mf">0.1760</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.4351</span><span class="p">,</span> <span class="mf">0.6621</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0972</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.0505</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1562</span><span class="p">,</span> <span class="mf">0.9308</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_forward_matrix_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.8924</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1041</span><span class="p">,</span> <span class="mf">0.1760</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.4351</span><span class="p">,</span> <span class="mf">0.6621</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0972</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.0505</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1562</span><span class="p">,</span> <span class="mf">0.9308</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">camera_space_to_XYZ_matrix</span><span class="p">(</span>  
+<span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.32816244</span><span class="p">,</span> <span class="mf">0.34698169</span><span class="p">]),</span>
+<span class="gp">... </span>    <span class="mi">2850</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="mi">6500</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_color_matrix_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_color_matrix_2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_camera_calibration_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_camera_calibration_2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">analog_balance</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_forward_matrix_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_forward_matrix_2</span><span class="p">)</span>
+<span class="go">array([[ 2.1604087..., -0.1041...    ,  0.2722498...],</span>
+<span class="go">       [ 1.0533324...,  0.6621...    , -0.1503561...],</span>
+<span class="go">       [ 0.1222553..., -0.1562...    ,  1.4398304...]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.models.camera_space_to_RGB">
+<code class="descclassname">colour_hdri.models.</code><code class="descname">camera_space_to_RGB</code><span class="sig-paren">(</span><em>RGB</em>, <em>M_XYZ_to_camera_space</em>, <em>RGB_to_XYZ_matrix</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/models/rgb.html#camera_space_to_RGB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.models.camera_space_to_RGB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts given <em>RGB</em> array from <em>camera space</em> to given <em>RGB</em> colourspace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>RGB</strong> (<em>array_like</em>) &#8211; Camera space <em>RGB</em> colourspace array.</li>
+<li><strong>XYZ_to_camera_matrix</strong> (<em>array_like</em>) &#8211; Matrix converting from <em>CIE XYZ</em> tristimulus values to <em>camera space</em>.</li>
+<li><strong>RGB_to_XYZ_matrix</strong> (<em>array_like</em>) &#8211; Matrix converting from <em>RGB</em> colourspace to <em>CIE XYZ</em> tristimulus
+values.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><em>RGB</em> colourspace array.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.80660</span><span class="p">,</span> <span class="mf">0.81638</span><span class="p">,</span> <span class="mf">0.65885</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_XYZ_to_camera_space</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.47160000</span><span class="p">,</span> <span class="mf">0.06030000</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.08300000</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.77980000</span><span class="p">,</span> <span class="mf">1.54740000</span><span class="p">,</span> <span class="mf">0.24800000</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.14960000</span><span class="p">,</span> <span class="mf">0.19370000</span><span class="p">,</span> <span class="mf">0.66510000</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">RGB_to_XYZ_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.41238656</span><span class="p">,</span> <span class="mf">0.35759149</span><span class="p">,</span> <span class="mf">0.18045049</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.21263682</span><span class="p">,</span> <span class="mf">0.71518298</span><span class="p">,</span> <span class="mf">0.07218020</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.01933062</span><span class="p">,</span> <span class="mf">0.11919716</span><span class="p">,</span> <span class="mf">0.95037259</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">camera_space_to_RGB</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">RGB</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_XYZ_to_camera_space</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">RGB_to_XYZ_matrix</span><span class="p">)</span>  
+<span class="go">array([ 0.7564180...,  0.8683192...,  0.6044589...])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.models.camera_space_to_sRGB">
+<code class="descclassname">colour_hdri.models.</code><code class="descname">camera_space_to_sRGB</code><span class="sig-paren">(</span><em>RGB</em>, <em>M_XYZ_to_camera_space</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/models/rgb.html#camera_space_to_sRGB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.models.camera_space_to_sRGB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts given <em>RGB</em> array from <em>camera space</em> to <em>sRGB</em> colourspace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>RGB</strong> (<em>array_like</em>) &#8211; Camera space <em>RGB</em> colourspace array.</li>
+<li><strong>M_XYZ_to_camera_space</strong> (<em>array_like</em>) &#8211; Matrix converting from <em>CIE XYZ</em> tristimulus values to <em>camera space</em>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><em>sRGB</em> colourspace array.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.80660</span><span class="p">,</span> <span class="mf">0.81638</span><span class="p">,</span> <span class="mf">0.65885</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_XYZ_to_camera_space</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.47160000</span><span class="p">,</span> <span class="mf">0.06030000</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.08300000</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.77980000</span><span class="p">,</span> <span class="mf">1.54740000</span><span class="p">,</span> <span class="mf">0.24800000</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.14960000</span><span class="p">,</span> <span class="mf">0.19370000</span><span class="p">,</span> <span class="mf">0.66510000</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">camera_space_to_sRGB</span><span class="p">(</span><span class="n">RGB</span><span class="p">,</span> <span class="n">M_XYZ_to_camera_space</span><span class="p">)</span>  
+<span class="go">array([ 0.7564350...,  0.8683155...,  0.6044706...])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Colour_Logo_Small_001.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">colour_hdri.models Package</a><ul>
+<li><a class="reference internal" href="#sub-packages">Sub-Packages</a></li>
+<li><a class="reference internal" href="#sub-modules">Sub-Modules</a></li>
+<li><a class="reference internal" href="#module-colour_hdri.models">Module Contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/colour_hdri.models.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2017, Colour Developers.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/colour_hdri.models.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

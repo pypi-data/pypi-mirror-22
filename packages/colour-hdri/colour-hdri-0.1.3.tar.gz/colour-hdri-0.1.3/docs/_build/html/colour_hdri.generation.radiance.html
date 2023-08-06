@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>colour_hdri.generation.radiance Module &mdash; Colour - HDRI 0.1.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Colour - HDRI 0.1.3 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-colour_hdri.generation.radiance">
+<span id="colour-hdri-generation-radiance-module"></span><h1>colour_hdri.generation.radiance Module<a class="headerlink" href="#module-colour_hdri.generation.radiance" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hdri-radiance-image-generation">
+<h2>HDRI / Radiance Image Generation<a class="headerlink" href="#hdri-radiance-image-generation" title="Permalink to this headline">¶</a></h2>
+<p>Defines HDRI / radiance image generation objects:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#colour_hdri.generation.radiance.image_stack_to_radiance_image" title="colour_hdri.generation.radiance.image_stack_to_radiance_image"><code class="xref py py-func docutils literal"><span class="pre">image_stack_to_radiance_image()</span></code></a></li>
+</ul>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="https://github.com/colour-science/colour-hdri/blob/master/colour_hdri/examples">Colour - HDRI - Examples Jupyter Notebooks</a></p>
+</div>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>Banterle, F., Artusi, A., Debattista, K., &amp; Chalmers, A. (2011). 2.1.1
+Generating HDR Content by Combining Multiple Exposures. Advanced High
+Dynamic Range Imaging. A K Peters/CRC Press. ISBN:978-1568817194</td></tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="colour_hdri.generation.radiance.image_stack_to_radiance_image">
+<code class="descclassname">colour_hdri.generation.radiance.</code><code class="descname">image_stack_to_radiance_image</code><span class="sig-paren">(</span><em>image_stack</em>, <em>weighting_function=&lt;function weighting_function_Debevec1997&gt;</em>, <em>weighting_average=False</em>, <em>camera_response_functions=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/generation/radiance.html#image_stack_to_radiance_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.generation.radiance.image_stack_to_radiance_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a HDRI / radiance image from given image stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>image_stack</strong> (<a class="reference internal" href="colour_hdri.utilities.image.html#colour_hdri.utilities.image.ImageStack" title="colour_hdri.utilities.image.ImageStack"><em>ImageStack</em></a>) &#8211; Stack of single channel or multi-channel floating point images. The
+stack is assumed to be representing linear values except if
+<code class="docutils literal"><span class="pre">camera_response_functions</span></code> argument is provided.</li>
+<li><strong>weighting_function</strong> (<em>callable, optional</em>) &#8211; Weighting function <span class="math">\(w\)</span>.</li>
+<li><strong>weighting_average</strong> (<em>bool, optional</em>) &#8211; Enables weighting function <span class="math">\(w\)</span> computation on channels average
+instead of on a per channel basis.</li>
+<li><strong>camera_response_functions</strong> (<em>array_like, optional</em>) &#8211; Camera response functions <span class="math">\(g(z)\)</span> of the imaging system / camera
+if the stack is representing non linear values.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Radiance image.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If the image stack contains images with negative or equal to zero values,
+unpredictable results may occur and NaNs might be generated. It is
+thus recommended to encode the images in a wider RGB colourspace or clamp
+negative values.</p>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Colour_Logo_Small_001.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">colour_hdri.generation.radiance Module</a><ul>
+<li><a class="reference internal" href="#hdri-radiance-image-generation">HDRI / Radiance Image Generation</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/colour_hdri.generation.radiance.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2017, Colour Developers.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/colour_hdri.generation.radiance.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>colour_hdri.models.rgb Module &mdash; Colour - HDRI 0.1.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Colour - HDRI 0.1.3 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-colour_hdri.models.rgb">
+<span id="colour-hdri-models-rgb-module"></span><h1>colour_hdri.models.rgb Module<a class="headerlink" href="#module-colour_hdri.models.rgb" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rgb-colourspace-transformations">
+<h2>RGB Colourspace &amp; Transformations<a class="headerlink" href="#rgb-colourspace-transformations" title="Permalink to this headline">¶</a></h2>
+<p>Defines the following <em>RGB</em> colourspace transformations:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#colour_hdri.models.rgb.camera_space_to_RGB" title="colour_hdri.models.rgb.camera_space_to_RGB"><code class="xref py py-func docutils literal"><span class="pre">camera_space_to_RGB()</span></code></a></li>
+<li><a class="reference internal" href="#colour_hdri.models.rgb.camera_space_to_sRGB" title="colour_hdri.models.rgb.camera_space_to_sRGB"><code class="xref py py-func docutils literal"><span class="pre">camera_space_to_sRGB()</span></code></a></li>
+</ul>
+<dl class="function">
+<dt id="colour_hdri.models.rgb.camera_space_to_RGB">
+<code class="descclassname">colour_hdri.models.rgb.</code><code class="descname">camera_space_to_RGB</code><span class="sig-paren">(</span><em>RGB</em>, <em>M_XYZ_to_camera_space</em>, <em>RGB_to_XYZ_matrix</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/models/rgb.html#camera_space_to_RGB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.models.rgb.camera_space_to_RGB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts given <em>RGB</em> array from <em>camera space</em> to given <em>RGB</em> colourspace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>RGB</strong> (<em>array_like</em>) &#8211; Camera space <em>RGB</em> colourspace array.</li>
+<li><strong>XYZ_to_camera_matrix</strong> (<em>array_like</em>) &#8211; Matrix converting from <em>CIE XYZ</em> tristimulus values to <em>camera space</em>.</li>
+<li><strong>RGB_to_XYZ_matrix</strong> (<em>array_like</em>) &#8211; Matrix converting from <em>RGB</em> colourspace to <em>CIE XYZ</em> tristimulus
+values.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><em>RGB</em> colourspace array.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.80660</span><span class="p">,</span> <span class="mf">0.81638</span><span class="p">,</span> <span class="mf">0.65885</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_XYZ_to_camera_space</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.47160000</span><span class="p">,</span> <span class="mf">0.06030000</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.08300000</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.77980000</span><span class="p">,</span> <span class="mf">1.54740000</span><span class="p">,</span> <span class="mf">0.24800000</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.14960000</span><span class="p">,</span> <span class="mf">0.19370000</span><span class="p">,</span> <span class="mf">0.66510000</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">RGB_to_XYZ_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.41238656</span><span class="p">,</span> <span class="mf">0.35759149</span><span class="p">,</span> <span class="mf">0.18045049</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.21263682</span><span class="p">,</span> <span class="mf">0.71518298</span><span class="p">,</span> <span class="mf">0.07218020</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.01933062</span><span class="p">,</span> <span class="mf">0.11919716</span><span class="p">,</span> <span class="mf">0.95037259</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">camera_space_to_RGB</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">RGB</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">M_XYZ_to_camera_space</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">RGB_to_XYZ_matrix</span><span class="p">)</span>  
+<span class="go">array([ 0.7564180...,  0.8683192...,  0.6044589...])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.models.rgb.camera_space_to_sRGB">
+<code class="descclassname">colour_hdri.models.rgb.</code><code class="descname">camera_space_to_sRGB</code><span class="sig-paren">(</span><em>RGB</em>, <em>M_XYZ_to_camera_space</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/models/rgb.html#camera_space_to_sRGB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.models.rgb.camera_space_to_sRGB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts given <em>RGB</em> array from <em>camera space</em> to <em>sRGB</em> colourspace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>RGB</strong> (<em>array_like</em>) &#8211; Camera space <em>RGB</em> colourspace array.</li>
+<li><strong>M_XYZ_to_camera_space</strong> (<em>array_like</em>) &#8211; Matrix converting from <em>CIE XYZ</em> tristimulus values to <em>camera space</em>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><em>sRGB</em> colourspace array.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.80660</span><span class="p">,</span> <span class="mf">0.81638</span><span class="p">,</span> <span class="mf">0.65885</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M_XYZ_to_camera_space</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mf">0.47160000</span><span class="p">,</span> <span class="mf">0.06030000</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.08300000</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.77980000</span><span class="p">,</span> <span class="mf">1.54740000</span><span class="p">,</span> <span class="mf">0.24800000</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="o">-</span><span class="mf">0.14960000</span><span class="p">,</span> <span class="mf">0.19370000</span><span class="p">,</span> <span class="mf">0.66510000</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">camera_space_to_sRGB</span><span class="p">(</span><span class="n">RGB</span><span class="p">,</span> <span class="n">M_XYZ_to_camera_space</span><span class="p">)</span>  
+<span class="go">array([ 0.7564350...,  0.8683155...,  0.6044706...])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Colour_Logo_Small_001.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">colour_hdri.models.rgb Module</a><ul>
+<li><a class="reference internal" href="#rgb-colourspace-transformations">RGB Colourspace &amp; Transformations</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/colour_hdri.models.rgb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2017, Colour Developers.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/colour_hdri.models.rgb.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

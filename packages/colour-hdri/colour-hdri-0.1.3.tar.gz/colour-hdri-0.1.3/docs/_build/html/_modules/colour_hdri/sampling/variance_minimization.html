@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>colour_hdri.sampling.variance_minimization &mdash; Colour - HDRI 0.1.3 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Colour - HDRI 0.1.3 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for colour_hdri.sampling.variance_minimization</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Viriyothai (2009) Variance Minimization Light Probe Sampling</span>
+<span class="sd">============================================================</span>
+
+<span class="sd">Defines *Viriyothai (2009)* variance minimization light probe sampling objects:</span>
+
+<span class="sd">-   :func:`light_probe_sampling_variance_minimization_Viriyothai2009`</span>
+
+<span class="sd">References</span>
+<span class="sd">----------</span>
+<span class="sd">.. [1]  Viriyothai, K., &amp; Debevec, P. (2009). Variance minimization light probe</span>
+<span class="sd">        sampling. SIGGRAPH’09: Posters, (Egsr), 60558.</span>
+<span class="sd">        doi:10.1145/1599301.1599393</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">unicode_literals</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="kn">from</span> <span class="nn">colour</span> <span class="kn">import</span> <span class="n">RGB_COLOURSPACES</span><span class="p">,</span> <span class="n">RGB_luminance</span><span class="p">,</span> <span class="n">centroid</span><span class="p">,</span> <span class="n">warning</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Colour Developers&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (C) 2015-2017 - Colour Developers&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;New BSD License - http://opensource.org/licenses/BSD-3-Clause&#39;</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Colour Developers&#39;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;colour-science@googlegroups.com&#39;</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Production&#39;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Light_Specification&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;luminance_variance&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;find_regions_variance_minimization_Viriyothai2009&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;highlight_regions_variance_minimization&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;light_probe_sampling_variance_minimization_Viriyothai2009&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Light_Specification"><a class="viewcode-back" href="../../../colour_hdri.sampling.variance_minimization.html#colour_hdri.Light_Specification">[docs]</a><span class="k">class</span> <span class="nc">Light_Specification</span><span class="p">(</span>
+        <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Light_Specification&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;uv&#39;</span><span class="p">,</span> <span class="s1">&#39;colour&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">))):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines a light probe sampling resulting light specification.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    uv : array_like</span>
+<span class="sd">        :math:`uv` coordinates of the sampled light.</span>
+<span class="sd">    colour : array_like</span>
+<span class="sd">        Sampled light colour.</span>
+<span class="sd">    index : array_like</span>
+<span class="sd">        Sampled light location index in its original array.</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="luminance_variance"><a class="viewcode-back" href="../../../colour_hdri.sampling.variance_minimization.html#colour_hdri.luminance_variance">[docs]</a><span class="k">def</span> <span class="nf">luminance_variance</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the Luminance variance of given :math:`a` 2-D array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a : array_like</span>
+<span class="sd">        :math:`a` 2-D array to compute the Luminance variation.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numeric</span>
+<span class="sd">        :math:`a` 2-D array Luminance variance.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; a = np.tile(np.arange(5), (5, 1))</span>
+<span class="sd">    &gt;&gt;&gt; luminance_variance(a)  # doctest: +ELLIPSIS</span>
+<span class="sd">    12.2474487...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">a</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">a</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span>
+
+    <span class="n">x_centroid</span><span class="p">,</span> <span class="n">y_centroid</span> <span class="o">=</span> <span class="n">centroid</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+    <span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+        <span class="n">a</span> <span class="o">*</span> <span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_centroid</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_centroid</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">variance</span></div>
+
+
+<div class="viewcode-block" id="find_regions_variance_minimization_Viriyothai2009"><a class="viewcode-back" href="../../../colour_hdri.sampling.variance_minimization.html#colour_hdri.find_regions_variance_minimization_Viriyothai2009">[docs]</a><span class="k">def</span> <span class="nf">find_regions_variance_minimization_Viriyothai2009</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds the :math:`2^n` regions using *Viriyothai (2009)* variance</span>
+<span class="sd">    minimization light probe sampling algorithm on given :math:`a` 2-D array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a : array_like</span>
+<span class="sd">        :math:`a` 2-D array to find the regions.</span>
+<span class="sd">    n : int</span>
+<span class="sd">        Iterations count, the total regions count is :math:`2^n`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        Regions with variance minimized.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+    <span class="n">regions</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">sub_regions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">region</span> <span class="ow">in</span> <span class="n">regions</span><span class="p">:</span>
+            <span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="n">horizontal</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">region</span>
+
+            <span class="c1"># Vertical cut on image width.</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">):</span>
+                <span class="n">variance_c</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+                    <span class="n">luminance_variance</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">y_min</span><span class="p">:</span><span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">:</span><span class="n">j</span><span class="p">]),</span>
+                    <span class="n">luminance_variance</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">y_min</span><span class="p">:</span><span class="n">y_max</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span><span class="n">x_max</span><span class="p">]))</span>
+
+                <span class="k">if</span> <span class="n">variance_c</span> <span class="o">&lt;</span> <span class="n">variance</span><span class="p">:</span>
+                    <span class="n">variance</span> <span class="o">=</span> <span class="n">variance_c</span>
+                    <span class="n">horizontal</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="n">location</span> <span class="o">=</span> <span class="n">j</span>
+
+            <span class="c1"># Horizontal cut on image height.</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">):</span>
+                <span class="n">variance_c</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+                    <span class="n">luminance_variance</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">y_min</span><span class="p">:</span><span class="n">j</span><span class="p">,</span> <span class="n">x_min</span><span class="p">:</span><span class="n">x_max</span><span class="p">]),</span>
+                    <span class="n">luminance_variance</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">:</span><span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">:</span><span class="n">x_max</span><span class="p">]))</span>
+
+                <span class="k">if</span> <span class="n">variance_c</span> <span class="o">&lt;</span> <span class="n">variance</span><span class="p">:</span>
+                    <span class="n">variance</span> <span class="o">=</span> <span class="n">variance_c</span>
+                    <span class="n">horizontal</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">location</span> <span class="o">=</span> <span class="n">j</span>
+
+            <span class="k">if</span> <span class="n">horizontal</span><span class="p">:</span>
+                <span class="n">sub_regions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">y_min</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">))</span>
+                <span class="n">sub_regions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">location</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sub_regions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">,</span> <span class="n">location</span><span class="p">))</span>
+                <span class="n">sub_regions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">x_max</span><span class="p">))</span>
+
+        <span class="n">regions</span> <span class="o">=</span> <span class="n">sub_regions</span>
+
+    <span class="k">return</span> <span class="n">regions</span></div>
+
+
+<div class="viewcode-block" id="highlight_regions_variance_minimization"><a class="viewcode-back" href="../../../colour_hdri.sampling.variance_minimization.html#colour_hdri.highlight_regions_variance_minimization">[docs]</a><span class="k">def</span> <span class="nf">highlight_regions_variance_minimization</span><span class="p">(</span>
+        <span class="n">a</span><span class="p">,</span>
+        <span class="n">regions</span><span class="p">,</span>
+        <span class="n">highlight_colour</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Highlights regions using with variance minimized on given :math:`a`</span>
+<span class="sd">    3-D array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a : array_like</span>
+<span class="sd">        :math:`a` 3-D array to highlight the regions.</span>
+<span class="sd">    regions : array_like</span>
+<span class="sd">        Regions with variance minimized.</span>
+<span class="sd">    highlight_colour : array_like</span>
+<span class="sd">        Highlight colour.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray</span>
+<span class="sd">        :math:`a` 3-D array with highlighted regions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">region</span> <span class="ow">in</span> <span class="n">regions</span><span class="p">:</span>
+        <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">region</span>
+
+        <span class="n">a</span><span class="p">[</span><span class="n">y_min</span><span class="p">:</span><span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">]</span> <span class="o">=</span> <span class="n">highlight_colour</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">y_min</span><span class="p">:</span><span class="n">y_max</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">highlight_colour</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">y_min</span><span class="p">,</span> <span class="n">x_min</span><span class="p">:</span><span class="n">x_max</span><span class="p">]</span> <span class="o">=</span> <span class="n">highlight_colour</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">y_max</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x_min</span><span class="p">:</span><span class="n">x_max</span><span class="p">]</span> <span class="o">=</span> <span class="n">highlight_colour</span>
+
+    <span class="k">return</span> <span class="n">a</span></div>
+
+
+<div class="viewcode-block" id="light_probe_sampling_variance_minimization_Viriyothai2009"><a class="viewcode-back" href="../../../colour_hdri.sampling.variance_minimization.html#colour_hdri.light_probe_sampling_variance_minimization_Viriyothai2009">[docs]</a><span class="k">def</span> <span class="nf">light_probe_sampling_variance_minimization_Viriyothai2009</span><span class="p">(</span>
+        <span class="n">light_probe</span><span class="p">,</span>
+        <span class="n">lights_count</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+        <span class="n">colourspace</span><span class="o">=</span><span class="n">RGB_COLOURSPACES</span><span class="p">[</span><span class="s1">&#39;sRGB&#39;</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sample given light probe to find lights using *Viriyothai (2009)* variance</span>
+<span class="sd">    minimization light probe sampling algorithm.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    light_probe : array_like</span>
+<span class="sd">        Array to sample for lights.</span>
+<span class="sd">    lights_count : int</span>
+<span class="sd">        Amount of lights to generate.</span>
+<span class="sd">    colourspace : `colour.RGB_Colourspace`, optional</span>
+<span class="sd">        *RGB* colourspace used for internal *Luminance* computation.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        list of :class:`Light_Specification` lights.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">light_probe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">light_probe</span><span class="p">)</span>
+
+    <span class="n">iterations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">lights_count</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int_</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">iterations</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">!=</span> <span class="n">lights_count</span><span class="p">:</span>
+        <span class="n">warning</span><span class="p">(</span>
+            <span class="s1">&#39;{0} lights requested, {1} will be effectively computed!&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">lights_count</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">RGB_luminance</span><span class="p">(</span>
+        <span class="n">light_probe</span><span class="p">,</span> <span class="n">colourspace</span><span class="o">.</span><span class="n">primaries</span><span class="p">,</span> <span class="n">colourspace</span><span class="o">.</span><span class="n">whitepoint</span><span class="p">)</span>
+    <span class="n">regions</span> <span class="o">=</span> <span class="n">find_regions_variance_minimization_Viriyothai2009</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">iterations</span><span class="p">)</span>
+
+    <span class="n">lights</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">region</span> <span class="ow">in</span> <span class="n">regions</span><span class="p">:</span>
+        <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">region</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">centroid</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">y_min</span><span class="p">:</span><span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">:</span><span class="n">x_max</span><span class="p">])</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">y_min</span><span class="p">,</span> <span class="n">x_min</span><span class="p">]))</span>
+        <span class="n">lights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">Light_Specification</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">c</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="p">))[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">light_probe</span><span class="p">[</span><span class="n">y_min</span><span class="p">:</span><span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">:</span><span class="n">x_max</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span>
+                <span class="n">c</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">lights</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/Colour_Logo_Small_001.png" alt="Logo"/>
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2017, Colour Developers.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

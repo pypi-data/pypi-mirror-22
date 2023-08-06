@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>colour_hdri.utilities.common Module &mdash; Colour - HDRI 0.1.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Colour - HDRI 0.1.3 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-colour_hdri.utilities.common">
+<span id="colour-hdri-utilities-common-module"></span><h1>colour_hdri.utilities.common Module<a class="headerlink" href="#module-colour_hdri.utilities.common" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="common-utilities">
+<h2>Common Utilities<a class="headerlink" href="#common-utilities" title="Permalink to this headline">¶</a></h2>
+<p>Defines common utilities objects that don&#8217;t fall in any specific category.</p>
+<dl class="function">
+<dt id="colour_hdri.utilities.common.vivification">
+<code class="descclassname">colour_hdri.utilities.common.</code><code class="descname">vivification</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/common.html#vivification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.common.vivification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements supports for vivification of the underlying dict like
+data-structure, magical!</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">defaultdict</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vivified</span> <span class="o">=</span> <span class="n">vivification</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vivified</span><span class="p">[</span><span class="s1">&#39;my&#39;</span><span class="p">][</span><span class="s1">&#39;attribute&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vivified</span><span class="p">[</span><span class="s1">&#39;my&#39;</span><span class="p">]</span>  
+<span class="go">defaultdict(&lt;function vivification at 0x...&gt;, {u&#39;attribute&#39;: 1})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vivified</span><span class="p">[</span><span class="s1">&#39;my&#39;</span><span class="p">][</span><span class="s1">&#39;attribute&#39;</span><span class="p">]</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.common.vivified_to_dict">
+<code class="descclassname">colour_hdri.utilities.common.</code><code class="descname">vivified_to_dict</code><span class="sig-paren">(</span><em>vivified</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/common.html#vivified_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.common.vivified_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts given vivified data-structure to dictionary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>vivified</strong> (<em>defaultdict</em>) &#8211; Vivified data-structure.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#dict" title="(in Python v3.5)">dict</a></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vivified</span> <span class="o">=</span> <span class="n">vivification</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vivified</span><span class="p">[</span><span class="s1">&#39;my&#39;</span><span class="p">][</span><span class="s1">&#39;attribute&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vivified_to_dict</span><span class="p">(</span><span class="n">vivified</span><span class="p">)</span>
+<span class="go">{u&#39;my&#39;: {u&#39;attribute&#39;: 1}}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.common.path_exists">
+<code class="descclassname">colour_hdri.utilities.common.</code><code class="descname">path_exists</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/common.html#path_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.common.path_exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if given path exists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>unicode</em>) &#8211; Path to check the existence.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.5/library/functions.html#bool" title="(in Python v3.5)">bool</a></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">path_exists</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">path_exists</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="colour_hdri.utilities.common.filter_files">
+<code class="descclassname">colour_hdri.utilities.common.</code><code class="descname">filter_files</code><span class="sig-paren">(</span><em>directory</em>, <em>extensions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/colour_hdri/utilities/common.html#filter_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#colour_hdri.utilities.common.filter_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters given directory for files matching given extensions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>directory</strong> (<em>unicode</em>) &#8211; Directory to filter.</li>
+<li><strong>extensions</strong> (<em>tuple or list</em>) &#8211; Extensions to filter on.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Filtered files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3.5/library/stdtypes.html#list" title="(in Python v3.5)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Colour_Logo_Small_001.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">colour_hdri.utilities.common Module</a><ul>
+<li><a class="reference internal" href="#common-utilities">Common Utilities</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/colour_hdri.utilities.common.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2017, Colour Developers.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/colour_hdri.utilities.common.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
