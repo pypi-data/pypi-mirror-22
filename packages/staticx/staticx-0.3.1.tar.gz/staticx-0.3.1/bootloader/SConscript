@@ -1,0 +1,19 @@
+Import('env')
+
+env.Append(
+    CCFLAGS = ['-static'],
+    LINKFLAGS = ['-static'],
+)
+
+bootloader = env.Program(
+    target = 'bootloader',
+    source = [
+        'error.c',
+        'main.c',
+        'mmap.c',
+        'util.c',
+    ],
+    LIBS = ['tar'],
+)
+
+Return('bootloader')
