@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="python">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation</title>
+    
+    <link rel="stylesheet" href="_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> 
+  </head>
+  <body role="document">
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="installation">
+<h1>Installation</h1>
+<div class="section" id="external-requirements">
+<h2>External requirements</h2>
+<p>This library is written for python &gt;= 3.6, and I recommend to install it via <a href="#id1"><span class="problematic" id="id2">Anaconda_</span></a> : this is a full python distribution including a scientific-oriented IDE, the main scientific python libraries and the Jupyter project.</p>
+<p>The library is based on Theano, thus extra dependecies like fortran and C compiler are needed, see Theano install page for extra informations:</p>
+<p><a class="reference external" href="http://deeplearning.net/software/theano/install.html">http://deeplearning.net/software/theano/install.html</a></p>
+</div>
+<div class="section" id="via-pypi">
+<h2>via PyPI</h2>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install triflow
+</pre></div>
+</div>
+<p>will install the package and</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install triflow --upgrade
+</pre></div>
+</div>
+<p>will update an old version of the library.</p>
+<p>use sudo if needed, and the user flag if you want to install it without the root privileges:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install --user triflow
+</pre></div>
+</div>
+</div>
+<div class="section" id="via-github">
+<h2>via github</h2>
+<p>You can install the last version of the library using pip and the <a class="reference external" href="https://github.com/locie/triflow">github repository</a><span class="link-target"> [https://github.com/locie/triflow]</span>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install git+git://github.com/locie/triflow.git
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

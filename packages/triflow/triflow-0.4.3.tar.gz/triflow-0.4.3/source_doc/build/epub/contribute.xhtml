@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="python">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Contribution guide</title>
+    
+    <link rel="stylesheet" href="_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> 
+  </head>
+  <body role="document">
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="contribution-guide">
+<h1>Contribution guide</h1>
+<div class="section" id="minor-contribution">
+<h2>Minor Contribution</h2>
+<p>Testing, issue reporting, new feature request are welcome (via the <a class="reference external" href="https://github.com/locie/triflow">github repository</a><span class="link-target"> [https://github.com/locie/triflow]</span>).</p>
+</div>
+<div class="section" id="make">
+<h2>Make</h2>
+<ul>
+<li><p class="first">a makefile is provided, and</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>make env</cite> install the requirement for triflow and triflow itself</li>
+<li><cite>make init</cite> install the developpement requirement</li>
+<li><cite>make clean</cite> remove all the build artefacts</li>
+<li><cite>make test</cite> launch the test (doctest + pytest, with coverage)</li>
+<li><cite>make doc</cite> build the documentation</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="testing">
+<h2>Testing</h2>
+<ul class="simple">
+<li>the master branch require 100% coverage (or good reason to ignore part of the code)</li>
+<li>the doctest needs to pass the test too, making sure the examples are consistants</li>
+<li>if the API change, the test will move to a file <cite>deprecated.py</cite> in tests folder, a warning will be raised and the deprecated API will be removed at the next major version (after the 1.0), or after 2 minor version (before the 1.0)</li>
+</ul>
+</div>
+<div class="section" id="style-guide">
+<h2>Style guide</h2>
+<p>The code is pep8 complient, and the tests is running with pytest-pep8 and pylama. the #noqa flag is allowed, but the reason has to be written.</p>
+<p>Docstring for public API and main methods are mandatory.</p>
+</div>
+<div class="section" id="roadmap">
+<h2>Roadmap</h2>
+<ul>
+<li><p class="first">go to continous integration via travis (or other?)</p>
+</li>
+<li><p class="first">include t as symbolic variable to allow time dependent functions (non-autonomous dynamical systems)</p>
+</li>
+<li><p class="first">test different model against analytical solutions or reference library</p>
+</li>
+<li><p class="first">benchmark the solver</p>
+</li>
+<li><p class="first">drop the 1D limitation with</p>
+<blockquote>
+<div><ul class="simple">
+<li>2D</li>
+<li>ND with arbitrary independant variable</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">implement various finite different scheme (as upwind), or better, an easy way to add new spatial scheme</p>
+</li>
+<li><p class="first">give the ability to use mixed scheme</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>
