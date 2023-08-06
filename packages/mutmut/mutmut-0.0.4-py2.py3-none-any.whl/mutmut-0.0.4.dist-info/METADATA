@@ -1,0 +1,131 @@
+Metadata-Version: 2.0
+Name: mutmut
+Version: 0.0.4
+Summary: UNKNOWN
+Home-page: https://github.com/boxed/mutmut
+Author: Anders Hovmöller
+Author-email: boxed@killingar.net
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Framework :: Pytest
+Requires-Dist: baron
+Requires-Dist: click
+Requires-Dist: tri.declarative
+
+Mutmut
+======
+
+Mutmut is a mutation testing library/tool. It aims to be usable as a program directly, but also to have an easy to use API.
+
+
+Install
+-------
+
+.. code-block::
+
+    pip install mutmut
+
+
+Usage
+-----
+
+.. code-block::
+
+    mutmut path/to/directory/you/want/to/mutate
+
+This will by default run py.test on tests in the "tests" folder. Run
+
+.. code-block::
+
+    mutmut --help
+
+for the available flags to use other runners, etc.
+
+The output of the mutation tests (if you have surviving mutants) looks like:
+
+.. code-block::
+
+    FAILED: mutmut path/filename.py --mutation 10 --apply
+
+I've made is to you can just copy paste everything after "FAILED:" and run it directly and you'll get the
+mutant on disk. You should REALLY have the file you mutate under source code control and committed before you mutate it!
+
+You should start from the bottom of the list, because if you start from the top, the indexes of the mutations change.
+
+You can mark lines like this:
+
+.. code-block:: python
+
+    some_code_here()  # pragma: no mutate
+
+to stop mutation on those lines. Some cases we've found where you need to whitelist lines are:
+
+- The version string on your library. You really shouldn't have a test for this :P
+- Optimizing break instead of continue. The code runs fine when mutating break to continue, but it's slower.
+
+
+Example mutations
+-----------------
+
+- Integer literals are changed by adding 1. So 0 becomes 1, 5 becomes 6, etc.
+- < is changed to <=
+- break is changed to continue and vice versa
+
+In general the idea is that the mutations should be as subtle as possible.
+
+
+Future plan
+-----------
+
+- Custom importer that will mutate the code on the way in
+- Plug in to py.test (and nose, etc?) to make it use the importer
+- Optimization: Keep a cache of hashes to know which files have changed since they were tested, so we can skip testing files which are already done
+- Optimization: Use testmon to know which tests to rerun for each mutation
+- Speed up: Make the runner itself a part of py.test so we can use py.test test parallelization/distribution
+
+
+Changelog
+---------
+
+0.0.4 (2017-06-13)
+~~~~~~~~~~~~~~~~~~
+
+* New mutation: remove decorators!
+
+* Improved status while running. This should make it easier to handle when you hit mutants that cause infinite loops.
+
+* Fixes failing attempts to mutate parentheses. (Thanks Hristo Georgiev!)
+
+0.0.3 (2017-05-05)
+~~~~~~~~~~~~~~~~~~
+
+* Python 3 support (as far as baron supports it anyway)
+
+* Try running without mutations first to make sure we can run the test suite cleanly before starting mutation
+
+* Implemented feature to run mutation on covered lines only, this is useful for mutation testing existing tests when you don't have 100% coverage
+
+* Error message on incorrect invocation
+
+
+0.0.2 (2016-12-01)
+~~~~~~~~~~~~~~~~~~
+
+* Tons of fixes
+
+
+0.0.1 (2016-12-01)
+~~~~~~~~~~~~~~~~~~
+
+* Initial version
+
+
+
