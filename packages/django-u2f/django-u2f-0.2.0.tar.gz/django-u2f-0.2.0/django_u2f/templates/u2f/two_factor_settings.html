@@ -1,0 +1,13 @@
+{% extends "u2f/base.html" %}
+{% load i18n %}
+
+{% block content %}
+{{ block.super }}
+<h1>{% trans "Two Factor Settings" %}</h1>
+<ul>
+  <li><a href="{% url 'u2f:u2f-keys' %}">{% trans 'Manage U2F keys' %}</a></li>
+  <li><a href="{% url 'u2f:backup-codes' %}">{% trans 'Manage backup codes' %}</a></li>
+  <li><a href="{% url 'u2f:totp-devices' %}">{% trans 'Manage TOTP (Authenticator) devices' %}</a></li>
+</ul>
+
+{% endblock %}
