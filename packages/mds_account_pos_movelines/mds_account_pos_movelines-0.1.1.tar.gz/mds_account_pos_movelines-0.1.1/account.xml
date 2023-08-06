@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<tryton>
+    <data>
+
+        <!-- view -->
+        <record model="ir.ui.view" id="moveline_view_form">
+            <field name="model">account.move.line</field>
+            <field name="type">form</field>
+            <field name="name">movelines_form</field>
+        </record>
+        <record model="ir.ui.view" id="moveline_view_tree">
+            <field name="model">account.move.line</field>
+            <field name="type">tree</field>
+            <field name="name">movelines_tree</field>
+        </record>
+
+        <!-- action-view -->
+        <record model="ir.action.act_window" id="act_moveline_form">
+            <field name="name">Move Lines</field>
+            <field name="res_model">account.move.line</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_moveline_form_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="moveline_view_tree"/>
+            <field name="act_window" ref="act_moveline_form"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_moveline_form_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="moveline_view_form"/>
+            <field name="act_window" ref="act_moveline_form"/>
+        </record>
+    
+        <!-- menu -->
+        <menuitem parent="account.menu_reporting" icon="move-lines-icon"
+                    action="act_moveline_form" id="menu_moveline_form" />
+
+    </data>
+</tryton>
