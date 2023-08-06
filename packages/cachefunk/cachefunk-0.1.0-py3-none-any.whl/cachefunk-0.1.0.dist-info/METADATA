@@ -1,0 +1,53 @@
+Metadata-Version: 2.0
+Name: cachefunk
+Version: 0.1.0
+Summary: Sitemap.xml cache warmer
+Home-page: https://github.com/ashwoods/cachefunk
+Author: Ashley Camba Garrido
+Author-email: ashwoods@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Utilities
+Requires-Dist: attrs
+Requires-Dist: cached-property
+Requires-Dist: click
+Requires-Dist: click-log
+Requires-Dist: grequests
+Requires-Dist: requests
+Requires-Dist: structlog
+Requires-Dist: tqdm
+
+cachefunk
+=========
+
+.. image:: https://img.shields.io/pypi/v/cachefunk.svg
+   :alt: PyPi page
+   :target: https://pypi.python.org/pypi/cachefunk
+
+.. image:: https://img.shields.io/travis/ashwoods/cachefunk.svg
+    :alt: Travis CI Status
+    :target: https://travis-ci.org/ashwoods/cachefunk
+
+.. image:: https://img.shields.io/coveralls/ashwoods/cachefunk/master.svg
+   :alt: Coverage status
+   :target: https://coveralls.io/r/ashwoods/cachefunk
+
+.. image:: https://img.shields.io/pypi/l/cachefunk.svg
+   :alt: License MIT
+
+A simple cache warming command line tool that can fetch a list of URLs from sitemap.xml 
+and make a GET request on each url.
+
+
+
+
+
+
+
