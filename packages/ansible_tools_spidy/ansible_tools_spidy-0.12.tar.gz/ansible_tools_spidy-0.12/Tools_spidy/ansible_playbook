@@ -1,0 +1,129 @@
+#! /usr/local/bin/python
+
+import sys,os
+sys.path.append("../")
+import constrains_spidy.contrain_checker as constrains
+import FILE_spidy.file_functions as file
+import Utilities_spidy.mongo_functions as mongo
+import Utilities_spidy.command_line as command_line
+import pyaml, json
+import collections
+import inspect, subprocess
+
+
+class ansible_playbook:
+
+      def __init__(self):
+
+          self.tmp_yaml_file__ = "./temp.yaml"
+          self.tmp_json_file__ = "./temp.json"
+
+
+      def mongo_connect(self,baseline={}):
+          self.__baseline__ = baseline
+
+          ### Check Metadata
+          metadata_header = ["mongo_params_file","collection_name"]
+          constrain = constrains.constrain_check()
+          constrain.metadata_checks(self.__baseline__,metadata_header)
+
+          ### Retrieve File Parameters
+          file_name = self.__baseline__["mongo_params_file"].split("/")[-1]
+          file_loc = self.__baseline__["mongo_params_file"].rsplit("/",1)[0]
+
+          self.json_name_temp = self.tmp_json_file__.split("/")[-1]
+          self.json_loc_temp = self.tmp_json_file__.rsplit("/",1)[0]
+
+          ### mongo_parameters for Connectivity
+          file_ops = file.file_functions({"file_name" : file_name, "file_loc" : file_loc } )
+          self.__mongo_info__ = file_ops.get_json()
+
+          ### Retrieve Data from mongo and convert into yaml
+          self.mongo_2_yaml()
+
+          self.execute_ansible()
+
+      def __del__(self):
+          try:
+                type(os)
+                try:
+                     os.remove(self.tmp_yaml_file__)
+                     os.remove(self.tmp_json_file__)
+                     pass
+                except EnvironmentError:
+                     if not inspect.stack().__len__() == 1:
+                        print("File not found, Message from -- Destructor ansible_playbook class")
+          except TypeError:
+                print(" ")
+          except AttributeError:
+                print(" ")
+
+      def mongo_data_retrieve(self):
+          mongo_conn = mongo.mongo_functions(self.__mongo_info__)
+          json_data = mongo_conn.mongo_get_collection(self.__baseline__["collection_name"])
+          if json_data.__len__() == 0:
+             print("Collection Does not exists in mongo, kindly check with DB Administrator")
+             sys.exit(0)
+          return json_data
+
+
+      def mongo_2_yaml(self):
+
+          file_ops = file.file_functions({"file_loc": self.json_loc_temp,"file_name": self.json_name_temp})
+          file_ops.write_json(self.mongo_data_retrieve()[0])
+
+          with open(self.tmp_json_file__, 'r') as json_file:
+              with open(self.tmp_yaml_file__,'w') as yaml_file:
+                   pyaml.dump(json.load(json_file, object_pairs_hook=collections.OrderedDict), yaml_file, safe=True)
+
+
+      def execute_ansible(self):
+          ### Run ansible command
+
+          ### Check if commands exists
+          constrain = constrains.constrain_check()
+          constrain.check_command_exists(["ansible","sed"])
+
+          ### Fix Spacing in Yaml file
+          constrain.check_file_exists(self.tmp_yaml_file__)
+          command = "sed -i '1 i\---' " + self.tmp_yaml_file__
+          subprocess.call(command, shell=True)
+          command = "sed -i '2 s/^/- /' " + self.tmp_yaml_file__
+          subprocess.call(command,shell=True)
+          command = "sed -i '3,$ s/^/  /' " + self.tmp_yaml_file__
+          subprocess.call(command, shell=True)
+
+          ### execute ansible
+          if not self.args.sudo_ask == True:
+             command = "ansible-playbook " + self.tmp_yaml_file__ + " -l " + self.args.host_label
+          else:
+             command = "ansible-playbook " + self.tmp_yaml_file__ + " --ask-sudo-pass " + " -l " + self.args.host_label
+          #os.execvp(command,args=["--ask-sudo-pass"])
+
+          subprocess.call(command, shell=True)
+
+
+      def start(self):
+          parser_obj = {
+              "args_list": ["-l", "-m", "-s", "-c"],
+              "args_var": ["--host_label", "--mongo_param", "--sudo-ask", "--mongo-collection-name"],
+              "args_action": ["store", "store", "store_true", "store"],
+              "args_help": ["host label which will be picked up from /etc/ansible directory", \
+                            "mongo params file path, used to connect to Database, a reference file is available in /usr/share/mongo_connect.json", \
+                            "if specified will ask for the sudo password in case of root enviornments", \
+                            "collection name which contains the yaml config to be used to push"
+                            ],
+              "args_required" : ["True","True","False","True"]
+          }
+          cmd_parser = command_line.command_line(parser_obj)
+          parser = cmd_parser.argument_parser()
+          self.args = parser.parse_args()
+
+          ### Metadata Creation for mongo connectivity and yaml to mongo load
+          baseline = {"mongo_params_file": self.args.mongo_param, "collection_name": self.args.mongo_collection_name,
+                      "host_label": self.args.host_label}
+          self.mongo_connect(baseline)
+
+
+ansible_play = ansible_playbook()
+ansible_play.start()
