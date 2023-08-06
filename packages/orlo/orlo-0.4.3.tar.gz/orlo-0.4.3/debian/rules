@@ -1,0 +1,12 @@
+#!/usr/bin/make -f
+DH_VIRTUALENV_INSTALL_ROOT := /opt/venvs
+export DH_VIRTUALENV_INSTALL_ROOT
+
+# So dh_virtualenv can find virtualenv:
+export PATH := $(PATH):/usr/local/bin
+
+%:
+	dh $@ --with python-virtualenv,systemd
+
+override_dh_virtualenv:
+	dh_virtualenv --python /usr/bin/python --preinstall=no-manylinux1
