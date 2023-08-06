@@ -1,0 +1,47 @@
+{% extends "master.html" %}
+
+{% block content %}
+
+<h1>Route list</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>URL</th>
+            <th>Methods</th>
+            <th>Context</th>
+            <th>Plugin</th>
+            <th>Endpoint</th>
+
+        </tr>
+    </thead>
+
+{% for name, route in routes.items() -%}
+    {% set prefix = app.web.contexts.get(route.context.name).url_prefix or "" -%}
+    {% if prefix == "/" -%}
+        {% set prefix="" -%}
+    {% endif -%}
+    <tr>
+        <td>{{route.name}}</td>
+        <td><a href="{{ prefix }}{{route.url}}">
+            {{ prefix }}{{route.url}}
+        </a></td>
+        <td>{{route.methods}}</td>
+        <td>
+            <a href="{{url_for('webmanager.__context_view')}}">
+                {{route.context.name}}
+            </a>
+        </td>
+        <td>
+            <a href="{{url_for('webmanager.__plugin_detail_view', plugin_name=route.plugin.name)}}">
+                {{route.plugin.name }}
+            </a>
+        </td>
+        <td>{{route.endpoint.__name__}}</td>
+
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}
