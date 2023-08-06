@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OMERO First Person Bioimage</title>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <!-- EDIT THIS JAVASCRIPT! -->
+  <script type='text/javascript'>
+    pathToImages = "{% url 'fpbioimage_index' %}imageStacks/{{ image.id }}"; // This is the path relative to the FPBioimage parent folder
+    uniqueName = "fpbioimage_{{ image.id }}"; // Give this image stack a unique name for bookmarking to work correctly
+    numberOfImages = {{ image.getSizeZ }};  // Number of images in the stack
+    imagePrefix = "";  // The prefix of the image stack file names
+    numberingFormat = "000";  // eg. "000" for 000, 001, 002, 003 etc.
+    voxelSize = [{{ size_x }}, {{ size_y }}, {{ size_z }}]; // This needs to be a ratio of x:y:z voxel size.
+
+    pathToFPBioimage = "{% static 'fpbioimage/FPBioimage' %}"; // The path to the FPBioimage folder from this webpage
+
+    // optional parameters
+    intensity = 1;
+  </script>
+  <!-- END OF REQUIRED EDITS -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'fpbioimage/resources/w3.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <style>
+  html,body,h1,h2,h3,h4,h5 {font-family: "Lato", sans-serif}
+  .mySlides {display:none}
+  .w3-left, .w3-right, .w3-tag {cursor:pointer}
+  .w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+  </style>
+</head>
+<body>
+
+<!-- Heading -->
+<div class = "w3-top w3-center w3-large w3-teal" style="height:80px">
+<h1>First Person Bioimage</h1>
+</div>
+
+
+<!-- Progress bar -->
+
+<div id="jsHolder"></div>
+<script type="text/javascript">
+    var s1 = document.createElement("script");
+    s1.type = "text/javascript";
+    s1.src = pathToFPBioimage + "/FPProgress.js";
+    s1.innerHTML = null;
+    document.getElementById("jsHolder").innerHTML = "";
+    document.getElementById("jsHolder").appendChild(s1);
+</script>
+
+<!-- Rest of the website -->
+<div class="w3-content w3-container w3-center" style="max-width:99x;margin-top:80px;">
+  <!-- Title -->
+  <div>
+    <h2><b>{{ image.getName }}</b></h2>
+    Press M for a full list of controls
+  </div>
+
+  <!-- Put the WebGL Canvas in here-->
+  <div class = "w3-container w3-center w3-padding-0" style="width:100%; max-width:960px; height:600px;">
+    <div id="fullBrowserWindow" style="width: 100%; height: 100%"></div>
+  </div>
+
+  <!-- Full screen button -->
+  <div class="w3-container w3-center" style="padding:0px">
+    <table><tr>
+      <td style="vertical-align:middle; text-align:left"><h4>Images generated in OMERO. </h4></td>
+      <td style="vertical-align:middle; text-align:right"><img src="{% static 'fpbioimage/resources/fullscreen.png' %}" height="40px" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" /></td>
+    </tr></table>
+  </div>
+
+<!-- Footer -->
+<footer class="w3-container w3-white w3-center">
+  <p style="margin: 5px;">
+    <a href="http://laser.ceb.cam.ac.uk/directory/marcus-fantham" class="w3-text-teal">&copy; Marcus Fantham </a><br/>
+    See the paper in <a href="https://www.nature.com/nphoton/journal/v11/n2/full/nphoton.2016.273.html" class="w3-text-teal">Nature Photonics</a>
+  </p>
+  <img src="{% static 'fpbioimage/resources/LAGlogo.png' %}" width="65%" alt="Laser Analytics Group"><img src="{% static 'fpbioimage/resources/cambridgeLogo.png' %}" width="25%" alt="University of Cambridge">
+</footer>
+</div>
+
+</body>
+</html>
