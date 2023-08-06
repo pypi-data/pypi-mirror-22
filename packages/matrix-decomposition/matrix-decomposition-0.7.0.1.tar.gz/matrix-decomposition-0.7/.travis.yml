@@ -1,0 +1,64 @@
+language: python
+matrix:
+  include:
+    - env:
+        - PYTHON=3.5
+        - PY_TEST=1
+        - SPHINX_TEST=0
+        - PYCODESTYLE=0
+    - env:
+        - PYTHON=3.6
+        - PY_TEST=1
+        - SPHINX_TEST=0
+        - PYCODESTYLE=0
+    - env:
+        - PYTHON=3.6
+        - PY_TEST=0
+        - SPHINX_TEST=1
+        - PYCODESTYLE=0
+    - env:
+        - PYTHON=3.6
+        - PY_TEST=0
+        - SPHINX_TEST=0
+        - PYCODESTYLE=1
+install:
+    # install conda
+    - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    - bash miniconda.sh -b -p $HOME/miniconda
+    - export PATH="$HOME/miniconda/bin:$PATH"
+    - conda config --set always_yes yes --set changeps1 no
+    - conda update -q conda
+    - conda info -a
+    # install Python
+    - conda create -q -n test-environment python=$PYTHON
+    - source activate test-environment
+    # install needed packages
+    - conda install -q scipy
+    - conda install -q scikit-sparse -c conda-forge
+    - if [ "${PY_TEST}" == "1" ]; then
+          conda install -q nose;
+          conda install -q pytest;
+      fi
+    - if [ "${SPHINX_TEST}" == "1" ]; then
+          conda install -q sphinx;
+      fi
+    - if [ "${PYCODESTYLE}" == "1" ]; then
+          conda install -q pycodestyle;
+      fi
+    - conda list
+    # install package
+    - python3 setup.py install
+script:
+    - if [ "${PY_TEST}" == "1" ]; then
+          pytest;
+      fi
+    - if [ "${SPHINX_TEST}" == "1" ]; then
+          sphinx-build -nW -b html -d doc/build/doctrees/ doc/source/ doc/build/html/;
+      fi
+    - if [ "${PYCODESTYLE}" == "1" ]; then
+          pycodestyle --ignore=E402,E501 matrix/;
+      fi
+    # E402 = module level import not at top of file
+    # E501 = line too long
+    #
+
