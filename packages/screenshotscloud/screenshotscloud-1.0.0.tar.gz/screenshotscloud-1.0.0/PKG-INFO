@@ -1,0 +1,66 @@
+Metadata-Version: 1.1
+Name: screenshotscloud
+Version: 1.0.0
+Summary: ScreenshotsCloud Python screenshot generator
+Home-page: https://github.com/ScreenshotsCloud/screenshotscloud-python
+Author: Chris Hutchinson
+Author-email: chris@equalkit.com
+License: MIT
+Description: ScreenshotsCloud
+        ======
+        
+        Perfect Screenshots Anywhere
+        ----------------------------
+        
+        Get high quality screenshots using a real browser in seconds using our
+        reliable CDN backed service
+        
+        Requirements
+        ------------
+        
+        Tested against Python 2.6+ and 3.2+
+        
+        Installation
+        ------------
+        
+        Install via pip
+        
+        .. code:: bash
+        
+            pip install screenshotscloud
+        
+        Once installed you can generate screenshots as follows:
+        
+        .. code:: python
+        
+            #!/usr/bin/python
+            from screenshotscloud import ScreenshotsCloud
+        
+            screenshotscloud = ScreenshotsCloud('SCREENSHOTSCLOUD_KEY', 'SCREENSHOTSCLOUD_SECRET')
+        
+            screenshotUrl = screenshotscloud.screenshotUrl({
+                "url": "bbc.com/news",
+                "width": 800
+            })
+        
+        -------
+        
+        Contact us at support@brushd.com if you have any issues or questions
+        about this package.
+        
+Keywords: screenshots,screenshots.cloud,firefox,browser
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
