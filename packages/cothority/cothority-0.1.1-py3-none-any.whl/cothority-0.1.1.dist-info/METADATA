@@ -1,0 +1,30 @@
+Metadata-Version: 2.0
+Name: cothority
+Version: 0.1.1
+Summary: Cothority-interface for the services
+Home-page: https://github.com/dedis/cothority
+Author: Linus Gasser
+Author-email: linus.gasser@epfl.ch
+License: AGPLv3+
+Keywords: cothority requests websockets
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: peppercorn
+Provides-Extra: dev
+Requires-Dist: check-manifest; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+
+Cothority is a set of conodes that participate in a decentralized,
+distributed protocol. Our cothority-code at https://github.com/dedis/cothority
+has different services that can be connected to using this library. For
+the moment we have the following covered:
+
+* Status - to get the status of a cothority
+* Skipchains - to start new skipchains and add blocks to existing skipchains
+
+
