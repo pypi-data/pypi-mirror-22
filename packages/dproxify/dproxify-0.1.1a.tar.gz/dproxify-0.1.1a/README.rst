@@ -1,0 +1,104 @@
+dproxify is a object daemon proxifier for GNU/Linux 
+(Python 3.x), released under the terms of GPL3 license. 
+
+Description
+===========
+
+A custom object is loaded into a detached daemon 
+which communicate with clients (one at a time) through AFUnix sockets.
+With some exceptions (this is an alpha project), 
+every call to object's methods through client is
+executed/computed on the daemon.
+
+NOTE: dproxify uses pickle to send serialized objects over sockets.
+
+As an example:
+
+code::
+
+
+	# This program is free software: you can redistribute it and/or modify
+	# it under the terms of the GNU General Public License as published by
+	# the Free Software Foundation, either version 3 of the License, or
+	# (at your option) any later version.
+	#
+	# This program is distributed in the hope that it will be useful,
+	# but WITHOUT ANY WARRANTY; without even the implied warranty of
+	# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	# GNU General Public License for more details.
+	#
+	# You should have received a copy of the GNU General Public License
+	# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+
+
+	import sys
+	import os
+
+	from dproxify import dproxify
+
+
+	if len(sys.argv) < 2:
+		sys.exit()
+
+
+	class Custom:
+		string_cls = 'CLASS ATTR'
+
+		def __init__(self, string):
+				self.string = string
+
+		def process(self, a):
+				return a
+
+		@classmethod
+		def clsmethod(cls, a):
+				a + 456
+				return a
+
+		def __str__(self):
+				return 'CUSTOM'
+
+
+
+	custom = Custom('my custom object')
+
+
+	if sys.argv[1] == 'start_daemon':
+		print('Starting daemon')
+
+		logfd    = os.open(path='LOG_FILE',    flags=(os.O_CREAT | os.O_WRONLY | os.O_APPEND), mode=0o600)
+		errlogfd = os.open(path='ERRLOG_FILE', flags=(os.O_CREAT | os.O_WRONLY), mode=0o600)
+
+		try:
+			### this sets up all: create daemon, load custom object, etc.
+			dproxify.daemonize_object(obj=custom, sockpath='DAEMON_SOCKET', pidfile='PID_FILE', fds=(None, logfd, errlogfd))
+
+		except dproxify.DaemonIsAlredyRunningException as e:
+			print('Daemon is alredy running with the PID of %d' % e.pid)
+
+		sys.exit()
+
+
+	## here, the client request a proxy object for our custom object (on the same socket path).
+	## raise_exceptions (defaults to False), raises the possible exceptions encountered
+	## in the custom object code, instead of returning them as a simple output.
+
+	proxy = dproxify.get_proxy_object('DAEMON_SOCKET', raise_exceptions=True)
+
+	print(proxy.string_cls)
+	print(proxy)
+	print(proxy.process('SVEVO'))
+
+	try:
+		print(proxy.clsmethod('NUMBER'))
+	except TypeError as e:
+		print('Error!')
+
+
+	## _stop_daemon() is a special command
+	## used by the proxy to shutdown the daemon
+
+	print(proxy._stop_daemon())
+	print('Exiting client')
