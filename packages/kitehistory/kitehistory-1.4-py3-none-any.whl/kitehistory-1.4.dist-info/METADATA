@@ -1,0 +1,147 @@
+Metadata-Version: 2.0
+Name: kitehistory
+Version: 1.4
+Summary: Kite History API wrapper
+Home-page: https://github.com/mr-karan/kiteHistory/
+Author: Karan Sharma
+Author-email: karansharma1295@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: Jinja2 (==2.9.6)
+Requires-Dist: MarkupSafe (==1.0)
+Requires-Dist: PyYAML (==3.12)
+Requires-Dist: appdirs (==1.4.3)
+Requires-Dist: astroid (==1.5.3)
+Requires-Dist: autopep8 (==1.3.2)
+Requires-Dist: bokeh (==0.12.5)
+Requires-Dist: certifi (==2017.4.17)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: idna (==2.5)
+Requires-Dist: isort (==4.2.13)
+Requires-Dist: kiteconnect (==3.4.1)
+Requires-Dist: lazy-object-proxy (==1.3.1)
+Requires-Dist: mccabe (==0.6.1)
+Requires-Dist: numpy (==1.12.1)
+Requires-Dist: packaging (==16.8)
+Requires-Dist: pandas (==0.20.1)
+Requires-Dist: pkginfo (==1.4.1)
+Requires-Dist: pycodestyle (==2.3.1)
+Requires-Dist: pylint (==1.7.1)
+Requires-Dist: pyparsing (==2.2.0)
+Requires-Dist: python-dateutil (==2.6.0)
+Requires-Dist: pytz (==2017.2)
+Requires-Dist: requests (==2.17.3)
+Requires-Dist: requests-toolbelt (==0.8.0)
+Requires-Dist: six (==1.10.0)
+Requires-Dist: tornado (==4.5.1)
+Requires-Dist: tqdm (==4.14.0)
+Requires-Dist: twine (==1.9.1)
+Requires-Dist: urllib3 (==1.21.1)
+Requires-Dist: websocket-client (==0.40.0)
+Requires-Dist: wrapt (==1.10.10)
+
+kite-history
+============
+
+|GitHub license| |saythanks|
+
+``kitehistory`` is a wrapper around `Kite Historical
+API <https://kite.trade/docs/connect/v1/#historical-data>`__
+
+Installation :
+~~~~~~~~~~~~~~
+
+::
+
+    pip install kitehistory
+
+|asciicast|
+
+Options :
+~~~~~~~~~
+
+::
+
+    --symbol                         Stock symbol of the instrument.
+    --interval                       Time interval for the tick data.
+    --from_date                      Start date indicating the start of records.
+    --to_date                        End date indicating the end of records.
+    --exchange                       Exchange Name. (MCX/NSE/BSE/NFO/CDS/BFO/MCXSX)
+    --output                         Output filename to save `csv`
+    --path                           Specify path to directory to store instruments master 
+                                     along with access token keys
+    --verbose                        Enable verbose logging
+
+Example Usage :
+~~~~~~~~~~~~~~~
+
+::
+
+    kitehistory -s TCS -i day -f 2017-05-15 -t 2017-06-05 -e NSE -o TCS.csv --verbose 
+
+.. figure:: screens/tcs.png
+   :alt: img
+
+   img
+First Time Setup
+~~~~~~~~~~~~~~~~
+
+``kitehistory`` depends on Kite API to fetch instruments master file in
+``.csv``. You need to create an appllication at
+https://developers.kite.trade/apps and export the following keys in your
+shell
+
+::
+
+                export KITE_API_KEY='your-kite-api-key'
+                export KITE_SECRET='your-kite-secret-key'
+                export KITE_REQUEST_TOKEN='your-kite-request-token'
+
+How it works ?
+~~~~~~~~~~~~~~
+
+Kite API requires instrument-token to fetch the historical data. The
+idea behind this wrapper is to fetch the instruments master file and
+query it for the required symbol to fetch instrument token. Once the
+token is fetched, it uses Kite's API to get the historical data and
+saves the output in a ``.csv`` ready for analysis etc.
+
+Credits
+-------
+
+-  `pandas <http://pandas.pydata.org/>`__
+-  `Kite API <https://developers.kite.trade/apps/>`__
+-  `pykiteconnect <pykiteconnect>`__
+-  `requests <http://docs.python-requests.org/en/master/>`__
+
+Contributing
+------------
+
+Feel free to report any issues and/or send PRs for additional features.
+
+License
+~~~~~~~
+
+MIT © Karan Sharma `LICENSE included here <LICENSE>`__
+
+.. |GitHub license| image:: https://img.shields.io/badge/license-MIT-blue.svg
+   :target: https://raw.githubusercontent.com/mr-karan/kiteHistory/master/LICENSE
+.. |saythanks| image:: https://img.shields.io/badge/say-thanks-ff69b4.svg
+   :target: https://saythanks.io/to/mr-karan
+.. |asciicast| image:: https://asciinema.org/a/.png
+   :target: https://asciinema.org/a/
+
+
