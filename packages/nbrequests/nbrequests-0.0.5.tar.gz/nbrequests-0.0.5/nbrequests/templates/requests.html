@@ -1,0 +1,26 @@
+<div class='dr'>
+    {% if r.ok %}
+      <div class='dr_status dr_success' style='height: 100%; width: 100%; color: white;background-color: #5cb85c;'>
+          Successful response {{r.status_code}} - {{r.reason}} for {{r.request.method}} to
+          <pre style="color: white">{{r.request.url}}</pre>
+      </div>
+    {% else %}
+      <div class='dr_status dr_error' style='height: 100%; width: 100%; color: white; background-color: #d9534f;'>
+          Received response {{r.status_code}} - {{r.reason}} for {{r.request.method}} to
+
+          <pre style="color: white">{{r.request.url}}</pre>
+      </div>
+    {% endif %}
+    <h4>Request</h4>
+    <div id="{{rq_id}}" style="max-height: 600px; width:100%;">
+      {% if r.request.headers['Content-Type'] != 'application/json' %}
+        <pre>{{r.request.body}}</pre>
+      {% endif %}
+    </div>
+    <h4>Response</h4>
+    <div id="{{rs_id}}" style="max-height: 600px; width:100%;">
+      {% if r.headers['Content-Type'] != 'application/json' %}
+        <pre>{{r.text}}</pre>
+      {% endif %}
+    </div>
+</div>
