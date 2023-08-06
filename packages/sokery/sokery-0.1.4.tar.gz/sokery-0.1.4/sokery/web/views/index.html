@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sokery test</title>
+</head>
+
+<body>
+	
+<div>
+	<div>Puerto</div>
+	<input type="text" value="" id="port">
+	<label>
+		<input type="checkbox" id="echo" value="1">
+		Eco a todo
+	</label>
+
+	<button type="button" id="listen">Listen</button>
+</div>
+
+<div id="output">
+</div>
+
+<script>
+	var socket;
+	var buttonListen;
+	var fieldPort;
+	var fieldEcho;
+	var divOutput;
+
+	function outputLine(text, color) {
+		var div = document.createElement('div');
+		div.innerHTML = text;
+		if (color) {
+			div.style.color = color;
+		}
+		divOutput.append(div);
+	}
+
+	window.onload = function() {
+		buttonListen = document.getElementById('listen');
+		fieldPort = document.getElementById('port');
+		divOutput = document.getElementById('output');
+		fieldEcho = document.getElementById('echo');
+
+		socket = new WebSocket('ws://' + location.host + '/live');
+
+		socket.onmessage = function(message) {
+			data = JSON.parse(message.data);
+			if (data.op === 'recvd') {
+				outputLine('[data] ' + data.data);
+			} else if (data.op === 'success') {
+				outputLine(data.message, '#009900');
+			} else if (data.op === 'error') {
+				outputLine(data.message, 'red');
+			} else if (data.op === 'newclient') {
+				outputLine('[' + data.address + '] connected', 'blue');
+			}
+			console.log(data);
+		}
+
+		buttonListen.onclick = function() {
+			if (socket) {
+				socket.send(JSON.stringify({
+					op: 'listen',
+					port: parseInt(fieldPort.value),
+					options: {
+						echo_all: fieldEcho.checked
+					}
+				}))
+			}
+		};
+	}
+</script>
+
+</body>
+</html>
