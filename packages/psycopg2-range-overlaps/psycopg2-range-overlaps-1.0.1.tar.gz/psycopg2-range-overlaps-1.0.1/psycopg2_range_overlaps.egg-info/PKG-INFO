@@ -1,0 +1,30 @@
+Metadata-Version: 1.1
+Name: psycopg2-range-overlaps
+Version: 1.0.1
+Summary: Use & and = on psycopg2 range types.
+Home-page: https://bitbucket.org/schinckel/psycopg2-range-overlaps
+Author: Matthew Schinckel
+Author-email: matt@schinckel.net
+License: UNKNOWN
+Description: Psycopg2 Range Overlaps
+        ========================
+        
+        This module overrides the Range.__and__ function, so that it returns a boolean value
+        based on if the two objects overlap.
+        
+        The rationale behind this is that it mirrors the `range && range` operator in postgres.
+        
+        
+        There is also an improved equality operator, and a function for normalising ranges (if possible).
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
