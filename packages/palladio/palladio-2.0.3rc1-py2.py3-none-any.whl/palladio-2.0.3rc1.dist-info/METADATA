@@ -1,0 +1,57 @@
+Metadata-Version: 2.0
+Name: palladio
+Version: 2.0.3rc1
+Summary: ParALleL frAmework for moDel selectIOn
+Home-page: https://github.com/slipguru/palladio
+Author: Matteo Barbieri, Samuele Fiorini, Federico Tomasi
+Author-email: {matteo.barbieri, samuele.fiorini, federico.tomasi}@dibris.unige.it
+License: FreeBSD
+Download-URL: https://github.com/slipguru/palladio/tarball/2.0.3rc1
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Requires-Dist: joblib
+Requires-Dist: matplotlib (>=1.5.1)
+Requires-Dist: numpy (>=1.10.1)
+Requires-Dist: scikit-learn (>=0.18)
+Requires-Dist: scipy (>=0.16.1)
+Requires-Dist: seaborn (>=0.7.0)
+
+# palladio
+ParALleL frAmework for moDel selectIOn
+
+
+### Welcome to PALLADIO.
+PALLADIO is a machine learning framework whose purpose is to provide robust and reproducible results when dealing with data where the signal to noise ratio is low; it also provides tools to determine whether the dataset being analyzed contains any signal at all.
+PALLADIO works by repeating the same experiment many times, each time resampling the training and the test set so that the outcome is reliable as it is not determined by a single partition of the dataset. Besides, using permutation tests, a measure of how much experiments produce a reliable result is provided.
+Since all experiments performed are independent, PALLADIO is designed so that it can exploit a cluster where it is available.
+
+### Dependencies
+PALLADIO is developed using Python 2.7 and inherits its main functionalities from:
+* numpy
+* scipy
+* scikit-learn
+* mpi4py
+* matplotlib
+* seaborn
+
+### Authors and Contributors
+Current developers: Matteo Barbieri (@matteobarbieri), Samuele Fiorini (@samuelefiorini) and Federico Tomasi (@fdtomasi).
+
+
+### Support or Contact
+Having trouble with PALLADIO? Check out our [documentation](http://slipguru.github.io/palladio/) or contact us:
+* matteo [dot] barbieri [at] dibris [dot] unige [dot] it
+* samuele [dot] fiorini [at] dibris [dot] unige [dot] it
+* federico [dot] tomasi [at] dibris [dot] unige [dot] it
+
+
