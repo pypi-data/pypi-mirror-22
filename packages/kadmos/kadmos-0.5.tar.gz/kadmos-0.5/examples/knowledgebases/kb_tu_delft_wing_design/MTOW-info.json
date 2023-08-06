@@ -1,0 +1,27 @@
+{
+  "general_info":
+      {
+        "name":"MTOW",
+        "version":1.0,
+        "creator":"Imco van Gent",
+        "description": "Calculate maximum take-off weight and zero-fuel mass."
+      },
+  "execution_info":
+      [
+        {
+          "mode": "Main",
+          "description": "Add description here.",
+          "run_time":0.1,
+          "precision":"L1",
+          "standard_deviation":0.001
+        }
+      ],
+  "rce_info":{"platform": "98737cdd4b424ab9af8f6bb636382176",
+               "component":
+               {"identifier": "de.rcenvironment.integration.cpacs.MTOW",
+                "version": "1.0",
+                "name": "MTOW"},
+               "staticInputName": "cpacs_in",
+               "staticOutputName": "cpacs_out"}
+}
+

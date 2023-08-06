@@ -1,0 +1,35 @@
+{
+  "general_info":
+    {
+      "name":"CNSTRNT",
+      "type": "tool",
+      "version":1.0,
+      "creator":"Imco van Gent",
+      "description": "CNSTRNT stands for constraint. It is a tool that collects different constraint functions (wing loading, fuel tank volume, etc.)."
+    },
+  "execution_info":
+    [
+      {
+        "mode": "wingLoading",
+        "description":"Determination of the wing loading constraint w.r.t. a maximum allowed wing loading.",
+        "run_time":0.1,
+        "precision":"L3",
+        "standard_deviation":0.01
+      },
+      {
+        "mode": "fuelTankVolume",
+        "description":"Determination of the constraint w.r.t. volume of the fuel tanks in the wing and required fuel volume.",
+        "run_time":0.1,
+        "precision":"L3",
+        "standard_deviation":0.01
+      }
+    ],
+  "rce_info":{"platform": "98737cdd4b424ab9af8f6bb636382176",
+               "component":
+               {"identifier": "de.rcenvironment.integration.cpacs.CNSTRNT",
+                "version": "1.0",
+                "name": "CNSTRNT"},
+               "staticInputName": "cpacs_in",
+               "staticOutputName": "cpacs_out"}
+}
+

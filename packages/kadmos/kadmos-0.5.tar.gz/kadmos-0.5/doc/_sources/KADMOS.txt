@@ -1,0 +1,79 @@
+.. KADMOS documentation master file, created by
+   sphinx-quickstart on Mon Jun 13 13:12:24 2016.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to KADMOS's documentation!
+==================================
+
+See sidebar on the right for the table of contents.
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+Documentation for the Code
+==========================
+
+.. automodule:: kadmos
+
+Below the main class diagram of the KADMOS package is shown.
+
+.. image:: ../doc_source/images/KADMOS_UMLs.png
+   :width: 70 %
+   :align: center
+
+Example scripts for using KADMOS are available in the scripts folder. The following scripts are available there:
+
+* ``sellarProblem.py``: Small two-disciplinary MDO problem based on MDO literature.
+* ``AGILE_EY01_DEMO.py``: Small-size MDO problem inspired on CPACS data schema.
+* ``mathProblem.py``: User-adjustable (in size and coupling strength) MDO problem based on MDO literature.
+* ``exampleGraphs.py``: Script that combines different example scripts and provides graphs that can be used for visualization.
+
+KnowledgeBase
+*************
+
+Below the full KADMOS KnowledgeBase class description can be found.
+
+.. automodule:: kadmos.sample.knowledgebase
+   :members:
+
+Graph
+*****
+
+Below the KADMOS KadmosGraph class and its subclasses are listed.
+
+KadmosGraph
+~~~~~~~~~~~
+.. autoclass:: kadmos.graph.KadmosGraph
+   :members:
+   :inherited-members:
+
+RepositoryConnectivityGraph
+~~~~~~~~~~~~~~~~~~~~~~~~
+.. autoclass:: kadmos.graph.RepositoryConnectivityGraph
+   :members:
+
+FundamentalProblemGraph
+~~~~~~~~~~~~~~~~~~~~~~~
+.. autoclass:: kadmos.graph.FundamentalProblemGraph
+   :members:
+
+MdaoProcessGraph
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. autoclass:: kadmos.graph.MdaoProcessGraph
+   :members:
+
+MdaoDataGraph
+~~~~~~~~~~~~~~~~~~~~~~~~
+.. autoclass:: kadmos.graph.MdaoDataGraph
+   :members:
+
+Utilities
+*********
+
+Below the utilities used by KADMOS are listed.
+
+.. automodule:: kadmos.utilities.general
+   :members:
+

@@ -1,0 +1,3647 @@
+{
+  "identifier": "2b446bd2-bf98-4d26-a541-3ebb1d8597d9", 
+  "workflowVersion": "4", 
+  "name": "tu_delft_wing_design_unconverged-OPT-GS2017-05-18_17:40:18_22", 
+  "nodes": [
+    {
+      "identifier": "e1bab916-4e97-40b2-b778-e0b750275afd", 
+      "name": "COOR-out", 
+      "location": "30:30", 
+      "active": "true", 
+      "component": {
+        "identifier": "de.rcenvironment.inputprovider", 
+        "version": "3.2", 
+        "name": "Input Provider"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true"
+      }, 
+      "dynamicOutputs": [
+        {
+          "identifier": "8b64b567-ef60-43f6-a982-18dca344a553", 
+          "name": "COOR-out_tu_delft_wing_design_unconverged-OPT-GS", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\tu_delft_wing_design\\RCE\\COOR-out_tu_delft_wing_design_unconverged-OPT-GS.xml"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "9197e8c2-60d8-4258-8e99-049f77582ca6", 
+      "name": "COOR-filters", 
+      "location": "130:130", 
+      "active": "true", 
+      "component": {
+        "identifier": "de.rcenvironment.inputprovider", 
+        "version": "3.2", 
+        "name": "Input Provider"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true"
+      }, 
+      "dynamicOutputs": [
+        {
+          "identifier": "1cad06af-5e1f-4dba-8f25-1f1d624d2a91", 
+          "name": "COOR-UXPathFilter-HANGAR[AGILE_DC1_WP6_wing_startpoint]", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\tu_delft_wing_design\\RCE\\COOR-UXPathFilter-HANGAR[AGILE_DC1_WP6_wing_startpoint].json"
+          }
+        }, 
+        {
+          "identifier": "2cdb4321-6fee-4648-b67d-f47ec62a7743", 
+          "name": "COOR-UXPathFilter-SCAM-merged[5modes]", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\tu_delft_wing_design\\RCE\\COOR-UXPathFilter-SCAM-merged[5modes].json"
+          }
+        }, 
+        {
+          "identifier": "ed749ce2-aa1d-4406-921c-5afff6184760", 
+          "name": "COOR-UXPathFilter-GACA-merged[2modes]", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\tu_delft_wing_design\\RCE\\COOR-UXPathFilter-GACA-merged[2modes].json"
+          }
+        }, 
+        {
+          "identifier": "2ff98db6-d365-4dbe-9b70-e037c1546cce", 
+          "name": "COOR-UXPathFilter-Q3D[FLC]-EMWET--seq", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\tu_delft_wing_design\\RCE\\COOR-UXPathFilter-Q3D[FLC]-EMWET--seq.json"
+          }
+        }, 
+        {
+          "identifier": "dc1e2f49-29b5-433b-bf87-7e8bdf853e4f", 
+          "name": "COOR-UXPathFilter-Q3D[VDE]-SMFA--seq", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\tu_delft_wing_design\\RCE\\COOR-UXPathFilter-Q3D[VDE]-SMFA--seq.json"
+          }
+        }, 
+        {
+          "identifier": "704556c6-d717-4346-88f9-b184a13ff64a", 
+          "name": "COOR-UXPathFilter-MTOW", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\tu_delft_wing_design\\RCE\\COOR-UXPathFilter-MTOW.json"
+          }
+        }, 
+        {
+          "identifier": "3743bfdf-5dac-4bf3-a00d-2a868fac578c", 
+          "name": "COOR-UXPathFilter-OBJ", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\tu_delft_wing_design\\RCE\\COOR-UXPathFilter-OBJ.json"
+          }
+        }, 
+        {
+          "identifier": "58a2ece4-4408-4f3f-8854-918613b35435", 
+          "name": "COOR-UXPathFilter-CNSTRNT-merged[2modes]", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\tu_delft_wing_design\\RCE\\COOR-UXPathFilter-CNSTRNT-merged[2modes].json"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "6f24f557-503e-4ef5-9b6e-52f4c87266f0", 
+      "name": "COOR-start-Optimizer", 
+      "location": "230:230", 
+      "active": "true", 
+      "component": {
+        "identifier": "de.rcenvironment.inputprovider", 
+        "version": "3.2", 
+        "name": "Input Provider"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true"
+      }, 
+      "dynamicOutputs": [
+        {
+          "identifier": "47e41fef-41ad-4ead-a50e-1a3821c0a137", 
+          "name": "COOR-start_Optimizer_tu_delft_wing_design_unconverged-OPT-GS", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\tu_delft_wing_design\\RCE\\COOR-start_Optimizer_tu_delft_wing_design_unconverged-OPT-GS.xml"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "3426206e-4784-46f6-a9db-8f350e43572d", 
+      "name": "COOR-in", 
+      "location": "332:330", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.xmlmerger", 
+        "version": "3.2", 
+        "name": "XML Merger"
+      }, 
+      "configuration": {
+        "mappingType": "Classic", 
+        "storeComponentHistoryData": "true", 
+        "xmlContent": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<map:mappings xmlns:map=\"http://www.rcenvironment.de/2015/mapping\"\r\n              xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n    <map:mapping>\r\n        <map:source>/cpacs</map:source>\r\n        <map:target>/cpacs</map:target>\r\n    </map:mapping>\r\n\r\n</map:mappings>"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "febacd78-cb2e-44d0-b0b4-d6d881353b83", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "8e1b8eaa-859b-4369-9cf3-4da32d59d4f6", 
+          "name": "XML to integrate", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "9e1b83e4-1a0c-498f-b13a-ab344a9e6e2f", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "dynamicOutputs": [
+        {
+          "identifier": "96c79988-9725-43a5-8e34-2d46e614a981", 
+          "name": "latestValueIIvegosa", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/mdodata/constraints/fuelTankVolume/latestValue"
+          }
+        }, 
+        {
+          "identifier": "2a87f932-a1e0-44bf-b2cf-d37b3fbe568d", 
+          "name": "latestValueIIpavewe", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/mdodata/constraints/wingLoading/latestValue"
+          }
+        }, 
+        {
+          "identifier": "41d00b65-cd21-47c4-9302-19beb14ba6de", 
+          "name": "normalized_mtowIIpuwawu", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/mdodata/objectives/mtow/normalized_mtow"
+          }
+        }, 
+        {
+          "identifier": "576c7e27-cafc-4c87-81b4-1e91f93db8a9", 
+          "name": "required_wing_dihedralIIfudobu", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_dihedral_morph/required_wing_dihedral"
+          }
+        }, 
+        {
+          "identifier": "26e730fd-9002-4855-a6b7-e18b2cc25d0d", 
+          "name": "required_lengthIItahuru", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_length_morph/required_length"
+          }
+        }, 
+        {
+          "identifier": "1e6bb912-2a00-42dd-8ba0-5089aeb0f9fd", 
+          "name": "required_root_chordIIlebabu", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_root_chord_morph/required_root_chord"
+          }
+        }, 
+        {
+          "identifier": "5c98a395-bb99-4ee4-8d7e-ada24aa59c62", 
+          "name": "required_sweep1IIrafiro", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_sweep_morph/required_sweep1"
+          }
+        }, 
+        {
+          "identifier": "6925a90d-1ea4-4592-8670-1f572bcc0db4", 
+          "name": "required_sweep2IIvegedi", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_sweep_morph/required_sweep2"
+          }
+        }, 
+        {
+          "identifier": "1d5a8d5e-dd55-427a-9b4b-44c00bd8dd9b", 
+          "name": "required_taper1IIfoniko", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_taper_morph/required_taper1"
+          }
+        }, 
+        {
+          "identifier": "575be0c7-8534-4066-9318-b66dc41fe1b4", 
+          "name": "required_taper2IIkemone", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_taper_morph/required_taper2"
+          }
+        }, 
+        {
+          "identifier": "3e334c27-49bb-440f-a186-bafceebc151f", 
+          "name": "massIIholibe", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/vehicles/aircraft/model/analyses/massBreakdown/designMasses/mZFM/mass"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "539f6c7a-250e-4aba-b5a5-a019855dc023", 
+      "name": "XMLM-COOR-in", 
+      "location": "410:413", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "4", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "a0e0c8ba-b284-41bb-8084-e46cfeb7c45e", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "d650369c-98c5-469b-a1e6-64506d677bc0", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "09fe756b-b265-48a0-945b-e7c37e146800", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "9e01e03d-6db2-4ad6-9eba-15497cf57787", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "48870f7c-768b-4033-a527-7c9bf313283c", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "2cb4080c-4159-4d2c-9c2d-2303454894e8", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "de3deeae-5152-4f99-b988-815b8548fca9", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "869c3c3e-6fea-486d-8c2b-005b6f8e48eb", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "6b9fdf6c-31cf-49f9-92f4-7d8c1715c2ec", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "4799d702-ba8c-4501-a4a8-0a45172ec62c", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "8c0629bd-8c37-42f7-9c97-d288aae96f94", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "1167be5d-25f7-4085-8216-4c4dcb64d5c5", 
+      "name": "HANGAR[AGILE_DC1_WP6_wing_startpoint]", 
+      "location": "510:513", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.HANGAR", 
+        "version": "1.0", 
+        "name": "HANGAR"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "407e390b-d9a6-40e4-9103-0b755ddfdd50", 
+          "name": "cpacs_in", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "7eff678c-e700-47d7-a786-9acf08bbac22", 
+          "name": "cpacs_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "5de1b432-a317-4a5b-9d7e-3af890833a7c", 
+      "name": "UXPathFilter-HANGAR[AGILE_DC1_WP6_wing_startpoint]", 
+      "location": "610:613", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-CNSTRNT-merged[2modes]"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "b1e758f0-f6f4-4761-83f0-31f5024fc19a", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "0b2dfc9a-2bba-4a28-8b92-4272a44c59e1", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "a5cc4510-2dd2-4427-86da-3b6c52b7eb10", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "f21ec890-1250-433c-86ac-5b3515bbd39d", 
+      "name": "Optimizer-start_values", 
+      "location": "732:730", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.xmlmerger", 
+        "version": "3.2", 
+        "name": "XML Merger"
+      }, 
+      "configuration": {
+        "mappingType": "Classic", 
+        "storeComponentHistoryData": "true", 
+        "xmlContent": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<map:mappings xmlns:map=\"http://www.rcenvironment.de/2015/mapping\"\r\n              xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n    <map:mapping>\r\n        <map:source>/cpacs</map:source>\r\n        <map:target>/cpacs</map:target>\r\n    </map:mapping>\r\n\r\n</map:mappings>"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "7c31eb2b-bfc3-47fa-aecc-38d4db957f7b", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "b513df8b-6ee2-4bbb-b45d-236e31fe3406", 
+          "name": "XML to integrate", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "5f8dc099-68f3-4104-954c-df77b5e63241", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "dynamicOutputs": [
+        {
+          "identifier": "a5178b5b-729a-4e11-b828-5414ab3a12f6", 
+          "name": "required_wing_dihedralIIfudobu", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_dihedral_morph/required_wing_dihedral"
+          }
+        }, 
+        {
+          "identifier": "ed0c3211-08bf-4218-969b-6decb886ea98", 
+          "name": "required_lengthIItahuru", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_length_morph/required_length"
+          }
+        }, 
+        {
+          "identifier": "89f24c84-1c73-4b4c-aeea-931138e60a77", 
+          "name": "required_root_chordIIlebabu", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_root_chord_morph/required_root_chord"
+          }
+        }, 
+        {
+          "identifier": "7e9c0c60-4e12-4f90-95b3-13442b9a0fa9", 
+          "name": "required_sweep1IIrafiro", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_sweep_morph/required_sweep1"
+          }
+        }, 
+        {
+          "identifier": "e2cc66ed-18af-47d7-a6de-66facbf685ea", 
+          "name": "required_sweep2IIvegedi", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_sweep_morph/required_sweep2"
+          }
+        }, 
+        {
+          "identifier": "5211f0d8-eed8-480d-afa0-504c0c8ab23b", 
+          "name": "required_taper1IIfoniko", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_taper_morph/required_taper1"
+          }
+        }, 
+        {
+          "identifier": "8bda9f81-8f45-4ac5-83ec-66c0023a8a99", 
+          "name": "required_taper2IIkemone", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_taper_morph/required_taper2"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "name": "Optimizer", 
+      "location": "810:813", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.optimizer", 
+        "version": "7.0", 
+        "name": "Optimizer"
+      }, 
+      "configuration": {
+        "CustomDakotaPath": "false", 
+        "algorithm": "Dakota Coliny COBYLA (Constraint Optimization By Linear Approximations)", 
+        "dakotaExecPath": "${dakotaExecPath}", 
+        "loopFaultTolerance_5e0ed1cd": "Fail", 
+        "loopRerunAndDiscard_5e0ed1cd": "1", 
+        "loopRerunAndFail_5e0ed1cd": "1", 
+        "methodConfigurations": "{\r\n  \"Dakota HOPSPACK Asynch Pattern Search\" : {\r\n    \"methodName\" : \"Dakota HOPSPACK Asynch Pattern Search\",\r\n    \"methodCode\" : \"asynch_pattern_search\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"initial_delta\" : {\r\n        \"GuiName\" : \"Initial offset value\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"threshold_delta\" : {\r\n        \"GuiName\" : \"Threshold for offset values\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.01\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"contraction_factor\" : {\r\n        \"GuiName\" : \"Pattern contraction factor\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.5\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"solution_target\" : {\r\n        \"GuiName\" : \"Solution target\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"optional\"\r\n      },\r\n      \"synchronization\" : {\r\n        \"GuiName\" : \"Evaluation synchronization\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"blocking,nonblocking\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"nonblocking\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"merit_function\" : {\r\n        \"GuiName\" : \"Merit function\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"merit_max,merit_max_smooth,merit1,merit1_smooth,merit2,merit2_smooth,merit2_squared\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"merit2_squared\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_penalty\" : {\r\n        \"GuiName\" : \"Constraint penalty\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"smoothing_factor\" : {\r\n        \"GuiName\" : \"Smoothing factor\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"0\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Multi Objective Genetic Algorithm\" : {\r\n    \"methodName\" : \"Dakota Multi Objectiv Genetic Algorithm\",\r\n    \"methodCode\" : \"moga\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"fitness_type\" : {\r\n        \"GuiName\" : \"Fitness type\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"layer_rank,domination_count\",\r\n        \"DefaultValue\" : \"domination_count\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"seed\" : {\r\n        \"GuiName\" : \"Random seed\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"population_size\" : {\r\n        \"GuiName\" : \"Number of population members\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"50\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">=0\"\r\n      },\r\n      \"initialization_type\" : {\r\n        \"GuiName\" : \"Initialization type\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"simple_random,unique_random\",\r\n        \"DefaultValue\" : \"unique_random\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_type\" : {\r\n        \"GuiName\" : \"Mutation type\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"replace_uniform,bit_random,offset_normal,offset_cauchy,offset_uniform\",\r\n        \"DefaultValue\" : \"replace_uniform\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_rate\" : {\r\n        \"GuiName\" : \"Mutation rate\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.08\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"replacement_type\" : {\r\n        \"GuiName\" : \"Replacement type\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"roulette_wheel,unique_roulette_wheel,elitist\",\r\n        \"DefaultValue\" : \"elitist\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"crossover_type\" : {\r\n        \"GuiName\" : \"Crossover type\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"multi_point_binary,multi_point_parameterized_binary,multi_point_real\",\r\n        \"DefaultValue\" : \"multi_point_real\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"NoLinebreak\" : \"true\"\r\n      },\r\n      \"crossover_type_value\" : {\r\n        \"GuiName\" : \"Crossover type value\",\r\n        \"GuiOrder\" : \"9\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"50\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"NoKeyword\" : \"true\"\r\n      },\r\n      \"crossover_rate\" : {\r\n        \"GuiName\" : \"Crossover rate\",\r\n        \"GuiOrder\" : \"10\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"0.8\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota NOMAD (Mesh Adaptive Direct Search Algorithm)\" : {\r\n    \"methodName\" : \"Dakota NOMAD (Mesh Adaptive Direct Search Algorithm)\",\r\n    \"methodCode\" : \"mesh_adaptive_search\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"function_precision\" : {\r\n        \"GuiName\" : \"Maximum precision of responses\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-5\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">0\"\r\n      },\r\n      \"seed\" : {\r\n        \"GuiName\" : \"Seed\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">0\"\r\n      },\r\n      \"variable_neighborhood_search\" : {\r\n        \"GuiName\" : \"Neighborhood search\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.5\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Latin Hypercube Sampling\" : {\r\n    \"methodName\" : \"Dakota Latin Hypercube Sampling\",\r\n    \"methodCode\" : \"dace lhs\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"seed\" : {\r\n        \"GuiName\" : \"Seed\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"fixed_seed\" : {\r\n        \"GuiName\" : \"Fixed seed flag\",\r\n        \"dataType\" : \"bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"false\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"samples\" : {\r\n        \"GuiName\" : \"Number of samples\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"10\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"symbols\" : {\r\n        \"GuiName\" : \"Number of symbols\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"main_effects\" : {\r\n        \"GuiName\" : \"Main effects\",\r\n        \"dataType\" : \"bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"quality_metrics\" : {\r\n        \"GuiName\" : \"Quality metrics\",\r\n        \"dataType\" : \"bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"variance_based_decomp\" : {\r\n        \"GuiName\" : \"Varianve based decomposition\",\r\n        \"dataType\" : \"bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Coliny Evolutionary Algorithm\" : {\r\n    \"methodName\" : \"Dakota Coliny Evolutionary Algorithm\",\r\n    \"methodCode\" : \"coliny_ea\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"seed\" : {\r\n        \"GuiName\" : \"Random seed\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">=0\"\r\n      },\r\n      \"population_size\" : {\r\n        \"GuiName\" : \"Number of population members\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"50\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">=0\"\r\n      },\r\n      \"initialization_type\" : {\r\n        \"GuiName\" : \"Initialization type\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"simple_random,unique_random\",\r\n        \"DefaultValue\" : \"unique_random\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"fitness_type\" : {\r\n        \"GuiName\" : \"Fitness type\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"linear_rank,merit_function\",\r\n        \"DefaultValue\" : \"linear_rank\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"replacement_type\" : {\r\n        \"GuiName\" : \"Replacement type\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"random,chc,elitist\",\r\n        \"DefaultValue\" : \"elitist\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"NoLinebreak\" : \"true\"\r\n      },\r\n      \"replacement_type_value\" : {\r\n        \"GuiName\" : \"Replacement size\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"NoKeyword\" : \"true\"\r\n      },\r\n      \"new_solutions_generated\" : {\r\n        \"GuiName\" : \"New solutions generated\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"50\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"crossover_type\" : {\r\n        \"GuiName\" : \"Crossover type\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"two_point,blend,uniform\",\r\n        \"DefaultValue\" : \"two_point\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"crossover_rate\" : {\r\n        \"GuiName\" : \"Crossover rate\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.8\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_type\" : {\r\n        \"GuiName\" : \"Mutation type\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"replace_uniform,offset_normal,offset_cauchy,offset_uniform\",\r\n        \"DefaultValue\" : \"offset_normal\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_scale\" : {\r\n        \"GuiName\" : \"Mutation scale\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_range\" : {\r\n        \"GuiName\" : \"Mutation range\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_rate\" : {\r\n        \"GuiName\" : \"Mutation rate\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.0\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"non_adaptive\" : {\r\n        \"GuiName\" : \"Non-adaptive mutation flag\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"solution_accuracy\" : {\r\n        \"GuiName\" : \"Solution accuracy\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"required\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Surrogate-Based Local\" : {\r\n    \"methodName\" : \"Dakota Surrogate-Based Local\",\r\n    \"methodCode\" : \"surrogate_based_local\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"2\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"approx_method_pointer\" : {\r\n        \"doNotShow\" : \"true\",\r\n        \"dataType\" : \"String\",\r\n        \"DefaultValue\" : \"method2\",\r\n        \"Value\" : \"\"\r\n      },\r\n      \"dace_list\" : {\r\n        \"doNotShow\" : \"true\",\r\n        \"doNotWrite\" : \"true\",\r\n        \"dataType\" : \"String\",\r\n        \"DefaultValue\" : \"Dakota Latin Hypercube Sampling\",\r\n        \"Value\" : \"\"\r\n      },\r\n      \"approx_method_list\" : {\r\n        \"doNotShow\" : \"true\",\r\n        \"doNotWrite\" : \"true\",\r\n        \"dataType\" : \"String\",\r\n        \"DefaultValue\" : \"Dakota Coliny COBYLA (Constraint Optimization By Linear Approximations),Dakota Quasi-Newton method\",\r\n        \"Value\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : {\r\n      \"gradients\" : {\r\n        \"GuiName\" : \"Use gradients\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"no_gradients,numerical_gradients\",\r\n        \"DefaultValue\" : \"no_gradients\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"noKeyword\" : \"true\"\r\n      },\r\n      \"interval_type\" : {\r\n        \"GuiName\" : \"Gradient interval type\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"forward,central\",\r\n        \"DefaultValue\" : \"forward\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"fd_gradient_step_size\" : {\r\n        \"GuiName\" : \"Gradient stepsize\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.0E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">0\"\r\n      },\r\n      \"hessians\" : {\r\n        \"GuiName\" : \"Use hessians\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"no_hessians\",\r\n        \"DefaultValue\" : \"no_hessians\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"noKeyword\" : \"true\"\r\n      }\r\n    },\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Coliny COBYLA (Constraint Optimization By Linear Approximations)\" : {\r\n    \"methodName\" : \"Dakota Coliny COBYLA (Constraint Optimization By Linear Approximations)\",\r\n    \"methodCode\" : \"coliny_cobyla\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"initial_delta\" : {\r\n        \"GuiName\" : \"Initial trust region\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.0\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"required\"\r\n      },\r\n      \"threshold_delta\" : {\r\n        \"GuiName\" : \"Minimal trust region (stopping criterion)\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"required\"\r\n      },\r\n      \"solution_accuracy\" : {\r\n        \"GuiName\" : \"Solution accuracy\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"required\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Single Objective Genetic Algorithm\" : {\r\n    \"methodName\" : \"Dakota Single Objectiv Genetic Algorithm\",\r\n    \"methodCode\" : \"soga\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"fitness_type\" : {\r\n        \"GuiName\" : \"Fitness type\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"merit_function\",\r\n        \"DefaultValue\" : \"merit_function\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"seed\" : {\r\n        \"GuiName\" : \"Random seed\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"population_size\" : {\r\n        \"GuiName\" : \"Number of population members\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"50\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">=0\"\r\n      },\r\n      \"initialization_type\" : {\r\n        \"GuiName\" : \"Initialization type\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"simple_random,unique_random\",\r\n        \"DefaultValue\" : \"unique_random\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_type\" : {\r\n        \"GuiName\" : \"Mutation type\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"bit_random,replace_uniform,bit_random,offset_normal,offset_cauchy,offset_uniform\",\r\n        \"DefaultValue\" : \"replace_uniform\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_rate\" : {\r\n        \"GuiName\" : \"Mutation rate\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.08\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"replacement_type\" : {\r\n        \"GuiName\" : \"Replacement type\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"favor_feasible,roulette_wheel,unique_roulette_wheel,elitist\",\r\n        \"DefaultValue\" : \"elitist\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"crossover_type\" : {\r\n        \"GuiName\" : \"Crossover type\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"multi_point_binary,multi_point_parameterized_binary,multi_point_real\",\r\n        \"DefaultValue\" : \"multi_point_real\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"NoLinebreak\" : \"true\"\r\n      },\r\n      \"crossover_type_value\" : {\r\n        \"GuiName\" : \"Crossover type value\",\r\n        \"GuiOrder\" : \"9\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"50\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"NoKeyword\" : \"true\"\r\n      },\r\n      \"crossover_rate\" : {\r\n        \"GuiName\" : \"Crossover rate\",\r\n        \"GuiOrder\" : \"10\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.8\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Quasi-Newton method\" : {\r\n    \"methodName\" : \"Dakota Quasi-Newton method\",\r\n    \"methodCode\" : \"optpp_q_newton\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"search_method\" : {\r\n        \"GuiName\" : \"Search method\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"value_based_line_search,gradient_based_line_search,trust_region,tr_pds\",\r\n        \"DefaultValue\" : \"trust_region\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"IsGroup\" : \"true\"\r\n      },\r\n      \"max_step\" : {\r\n        \"GuiName\" : \"Maximum step size\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">=0\"\r\n      },\r\n      \"gradient_tolerance\" : {\r\n        \"GuiName\" : \"Gradient tolerance\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"merit_function\" : {\r\n        \"GuiName\" : \"Merit function\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"el_bakry,argaez_tapia,van_shanno\",\r\n        \"DefaultValue\" : \"argaez_tapia\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"steplength_to_boundary\" : {\r\n        \"GuiName\" : \"Steplengh to boundary\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.99995\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"centering_parameter\" : {\r\n        \"GuiName\" : \"Centering parameter\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"0.1\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : {\r\n      \"gradients\" : {\r\n        \"GuiName\" : \"Use gradients\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"numerical_gradients,analytic_gradients\",\r\n        \"DefaultValue\" : \"numerical_gradients\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"noKeyword\" : \"true\"\r\n      },\r\n      \"interval_type\" : {\r\n        \"GuiName\" : \"Gradient interval type\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"forward,central\",\r\n        \"DefaultValue\" : \"forward\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"fd_gradient_step_size\" : {\r\n        \"GuiName\" : \"Gradient stepsize\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.0E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">0\"\r\n      },\r\n      \"hessians\" : {\r\n        \"GuiName\" : \"Use hessians\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"no_hessians,numerical_hessians\",\r\n        \"DefaultValue\" : \"no_hessians\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"noKeyword\" : \"true\"\r\n      },\r\n      \"interval_type_hessian\" : {\r\n        \"GuiName\" : \"Hessian interval type\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"forward,central\",\r\n        \"DefaultValue\" : \"forward\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"noKeyword\" : \"true\"\r\n      },\r\n      \"fd_hessian_step_size\" : {\r\n        \"GuiName\" : \"Hessian stepsize\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.0E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">0\"\r\n      }\r\n    },\r\n    \"configMap\" : null\r\n  }\r\n}", 
+        "optimizerPackageCode": "dakota", 
+        "preCalcFilePath": "${preCalcFilePath}", 
+        "storeComponentHistoryData": "true", 
+        "usePrecalculation": "false"
+      }, 
+      "staticOutputs": [
+        {
+          "identifier": "8be25e2b-b6f2-40fb-bbb7-b7c6971dce1a", 
+          "name": "Done", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "Boolean", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "95a93c87-d984-442b-86ce-0a6d3220a29b", 
+          "name": "Gradient request", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "Boolean", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "32cb964e-4c4f-435a-bb40-f99ff485f6f1", 
+          "name": "Iteration", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "Integer", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "71c7e2d7-bd9c-4f20-af2a-c066b53a4ec9", 
+          "name": "Outer loop done", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "Boolean", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "InnerLoopEndpoint"
+          }
+        }
+      ], 
+      "dynamicInputs": [
+        {
+          "identifier": "bd64b987-07cc-4b23-bd70-2aef14e4da93", 
+          "name": "requiredwingdihedralIIfudobu - start value", 
+          "epIdentifier": "startvalues", 
+          "group": "startValues", 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "usage": "initial"
+          }
+        }, 
+        {
+          "identifier": "d7beec16-6f1a-4d13-a035-9b440ed4a676", 
+          "name": "requiredlengthIItahuru - start value", 
+          "epIdentifier": "startvalues", 
+          "group": "startValues", 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "usage": "initial"
+          }
+        }, 
+        {
+          "identifier": "60fc2e87-e7a1-4fc5-8a6c-53df44be0404", 
+          "name": "requiredrootchordIIlebabu - start value", 
+          "epIdentifier": "startvalues", 
+          "group": "startValues", 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "usage": "initial"
+          }
+        }, 
+        {
+          "identifier": "d910cbcf-f01c-4e6a-b6cb-707eb6b0d136", 
+          "name": "requiredsweep1IIrafiro - start value", 
+          "epIdentifier": "startvalues", 
+          "group": "startValues", 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "usage": "initial"
+          }
+        }, 
+        {
+          "identifier": "eb401983-6609-4bae-ab9a-f5efeb83b983", 
+          "name": "requiredsweep2IIvegedi - start value", 
+          "epIdentifier": "startvalues", 
+          "group": "startValues", 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "usage": "initial"
+          }
+        }, 
+        {
+          "identifier": "19312172-02af-4fa2-91f6-608dc5973acd", 
+          "name": "requiredtaper1IIfoniko - start value", 
+          "epIdentifier": "startvalues", 
+          "group": "startValues", 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "usage": "initial"
+          }
+        }, 
+        {
+          "identifier": "636f1d85-3098-4958-babf-7e5186c8fc7f", 
+          "name": "requiredtaper2IIkemone - start value", 
+          "epIdentifier": "startvalues", 
+          "group": "startValues", 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "usage": "initial"
+          }
+        }, 
+        {
+          "identifier": "1a595204-0187-4638-83a1-ca8207f338cc", 
+          "name": "normalizedmtowIIpuwawu", 
+          "epIdentifier": "Objective", 
+          "group": "valuesToOptimize", 
+          "datatype": "Float", 
+          "metadata": {
+            "goal": "Minimize", 
+            "hasGradient": "false", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "vectorSize": "-", 
+            "weight": "1"
+          }
+        }, 
+        {
+          "identifier": "478cd628-9fab-43b2-846f-5b8f11a2d46c", 
+          "name": "latestValueIIvegosa", 
+          "epIdentifier": "Constraint", 
+          "group": "valuesToOptimize", 
+          "datatype": "Float", 
+          "metadata": {
+            "hasGradient": "false", 
+            "hasSingleBounds": "true", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "-1e+99", 
+            "upper": "0.0", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "37d90598-0d50-470d-a605-f52616c17bbe", 
+          "name": "latestValueIIpavewe", 
+          "epIdentifier": "Constraint", 
+          "group": "valuesToOptimize", 
+          "datatype": "Float", 
+          "metadata": {
+            "hasGradient": "false", 
+            "hasSingleBounds": "true", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "-1e+99", 
+            "upper": "0.0", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "50b51f39-9a39-4ec8-9d2b-9b681c3fb96e", 
+          "name": "UXPathFilter-OBJ", 
+          "epIdentifier": "toForward", 
+          "group": "valuesToOptimize", 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "351a4ecd-e755-41af-ae5e-ac422c5958d0", 
+          "name": "UXPathFilter-OBJ_start", 
+          "epIdentifier": "toForward", 
+          "group": "startValues", 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "c6ad430e-c4e6-49b8-a219-52851003a817", 
+          "name": "UXPathFilter-CNSTRNT-merged[2modes]", 
+          "epIdentifier": "toForward", 
+          "group": "valuesToOptimize", 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "59f834ab-9736-4cb7-bb5d-9bc55bb466f4", 
+          "name": "UXPathFilter-CNSTRNT-merged[2modes]_start", 
+          "epIdentifier": "toForward", 
+          "group": "startValues", 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }
+      ], 
+      "dynamicOutputs": [
+        {
+          "identifier": "d0dc0169-35c1-4adb-8c2a-b0090686ab9b", 
+          "name": "requiredwingdihedralIIfudobu", 
+          "epIdentifier": "Design", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "5.9", 
+            "startValue": "-", 
+            "upper": "6.1", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "6b6eb19f-3b80-46de-8697-b58a4a4ab814", 
+          "name": "requiredwingdihedralIIfudobu_optimal", 
+          "epIdentifier": "optima", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "lower": "5.9", 
+            "startValue": "-", 
+            "upper": "6.1", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "ce4b4e9e-5625-4838-abd3-6d6458b4c3ea", 
+          "name": "requiredlengthIItahuru", 
+          "epIdentifier": "Design", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "16.32982", 
+            "startValue": "-", 
+            "upper": "16.34982", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "ab3e9b93-9599-415a-9346-a37978d2835d", 
+          "name": "requiredlengthIItahuru_optimal", 
+          "epIdentifier": "optima", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "lower": "16.32982", 
+            "startValue": "-", 
+            "upper": "16.34982", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "7163666a-9ed6-452a-a970-c9ce02f5379f", 
+          "name": "requiredrootchordIIlebabu", 
+          "epIdentifier": "Design", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "6.2923", 
+            "startValue": "-", 
+            "upper": "6.4923", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "1ab191d5-df43-49b8-addf-6f64bdd936f5", 
+          "name": "requiredrootchordIIlebabu_optimal", 
+          "epIdentifier": "optima", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "lower": "6.2923", 
+            "startValue": "-", 
+            "upper": "6.4923", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "a00dde37-8f96-4be4-a8b5-fc52c8a46654", 
+          "name": "requiredsweep1IIrafiro", 
+          "epIdentifier": "Design", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "33.1273", 
+            "startValue": "-", 
+            "upper": "33.3273", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "43f97fd7-97bb-448e-9615-5b54a5487894", 
+          "name": "requiredsweep1IIrafiro_optimal", 
+          "epIdentifier": "optima", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "lower": "33.1273", 
+            "startValue": "-", 
+            "upper": "33.3273", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "c634ce90-853a-4c5b-b2bc-ed2f366ed900", 
+          "name": "requiredsweep2IIvegedi", 
+          "epIdentifier": "Design", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "28.3037", 
+            "startValue": "-", 
+            "upper": "28.5037", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "79acb098-999c-4945-a650-c0b488c9a10a", 
+          "name": "requiredsweep2IIvegedi_optimal", 
+          "epIdentifier": "optima", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "lower": "28.3037", 
+            "startValue": "-", 
+            "upper": "28.5037", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "fbfb71ed-bdf4-421a-9609-e98d94188297", 
+          "name": "requiredtaper1IIfoniko", 
+          "epIdentifier": "Design", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "0.4151", 
+            "startValue": "-", 
+            "upper": "0.4351", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "518ff031-3d67-4903-a849-6de03689ce45", 
+          "name": "requiredtaper1IIfoniko_optimal", 
+          "epIdentifier": "optima", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "lower": "0.4151", 
+            "startValue": "-", 
+            "upper": "0.4351", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "14db0fb0-ec88-4ee6-af0e-cfdcc42868f6", 
+          "name": "requiredtaper2IIkemone", 
+          "epIdentifier": "Design", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "0.1545182485", 
+            "startValue": "-", 
+            "upper": "0.1745182485", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "70f3a0bc-36d5-4e4b-8480-4995a2539fc5", 
+          "name": "requiredtaper2IIkemone_optimal", 
+          "epIdentifier": "optima", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "lower": "0.1545182485", 
+            "startValue": "-", 
+            "upper": "0.1745182485", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "531b0442-a160-497f-ae01-4311eef2de3d", 
+          "name": "UXPathFilter-OBJ", 
+          "epIdentifier": "toForward", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "d2076c26-300d-4a2e-84b8-1bfe8fe6f06f", 
+          "name": "UXPathFilter-OBJ_optimal", 
+          "epIdentifier": "toForward", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "dc2fd68a-29cb-44d6-826d-2deb6a7ee6f4", 
+          "name": "UXPathFilter-CNSTRNT-merged[2modes]", 
+          "epIdentifier": "toForward", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "ecf3772e-f069-4d8c-a00a-2fbbd70fa61f", 
+          "name": "UXPathFilter-CNSTRNT-merged[2modes]_optimal", 
+          "epIdentifier": "toForward", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "2baa48dc-6a79-4507-88ed-9e1130f483c3", 
+      "name": "Optimizer-XML-load-conv", 
+      "location": "932:930", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.xmlloader", 
+        "version": "3.2", 
+        "name": "XML Loader"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true", 
+        "xmlContent": "<?xml version=\"1.0\"?>\n<cpacs>\n  <toolspecific><sCAM><wing_dihedral_morph><required_wing_dihedral>dummy</required_wing_dihedral></wing_dihedral_morph><wing_length_morph><required_length>dummy</required_length></wing_length_morph><wing_root_chord_morph><required_root_chord>dummy</required_root_chord></wing_root_chord_morph><wing_sweep_morph><required_sweep1>dummy</required_sweep1><required_sweep2>dummy</required_sweep2></wing_sweep_morph><wing_taper_morph><required_taper1>dummy</required_taper1><required_taper2>dummy</required_taper2></wing_taper_morph></sCAM></toolspecific>\n</cpacs>\n"
+      }, 
+      "staticOutputs": [
+        {
+          "identifier": "21018cfc-1a66-4edd-9d4d-fe603148a2b1", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "dynamicInputs": [
+        {
+          "identifier": "f1b96305-8e84-483c-b0c8-4b2da0e149a8", 
+          "name": "requiredwingdihedralIIfudobu", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_dihedral_morph/required_wing_dihedral"
+          }
+        }, 
+        {
+          "identifier": "e4c92f10-a8fb-46da-bbf1-e3f7a8a7f178", 
+          "name": "requiredlengthIItahuru", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_length_morph/required_length"
+          }
+        }, 
+        {
+          "identifier": "5a8e98dd-59a8-49db-a87e-1d1362c0aa20", 
+          "name": "requiredrootchordIIlebabu", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_root_chord_morph/required_root_chord"
+          }
+        }, 
+        {
+          "identifier": "06c750a3-6610-4b45-9aca-88b85291f74b", 
+          "name": "requiredsweep1IIrafiro", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_sweep_morph/required_sweep1"
+          }
+        }, 
+        {
+          "identifier": "7ff3168c-c2f0-4ce3-9fc8-ffaee2ca368e", 
+          "name": "requiredsweep2IIvegedi", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_sweep_morph/required_sweep2"
+          }
+        }, 
+        {
+          "identifier": "c5e1cca4-dc8f-4722-b4e1-e42ddc3769d5", 
+          "name": "requiredtaper1IIfoniko", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_taper_morph/required_taper1"
+          }
+        }, 
+        {
+          "identifier": "3133b888-b623-4301-aa61-25eaa8ba5ac0", 
+          "name": "requiredtaper2IIkemone", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_taper_morph/required_taper2"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "4bfda262-fcb8-41a9-add6-8baff109d1a5", 
+      "name": "Optimizer-XML-merge-conv", 
+      "location": "1032:1030", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.xmlmerger", 
+        "version": "3.2", 
+        "name": "XML Merger"
+      }, 
+      "configuration": {
+        "mappingType": "Classic", 
+        "storeComponentHistoryData": "true", 
+        "xmlContent": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<map:mappings xmlns:map=\"http://www.rcenvironment.de/2015/mapping\"\r\n              xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n    <map:mapping>\r\n        <map:source>/cpacs</map:source>\r\n        <map:target>/cpacs</map:target>\r\n    </map:mapping>\r\n\r\n</map:mappings>"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "7b5a2fd8-85a6-4669-a15d-9832abde9caf", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "acea55ce-904e-41c6-b514-f2e76e12cbd1", 
+          "name": "XML to integrate", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "541c05da-f02e-46cb-b596-5c01b0125634", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "dynamicOutputs": [
+        {
+          "identifier": "af59e33a-ca1b-48aa-abe1-0ac68c495dd4", 
+          "name": "latestValueIIvegosa", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/mdodata/constraints/fuelTankVolume/latestValue"
+          }
+        }, 
+        {
+          "identifier": "cafcfb86-04d2-43c5-b66c-836cc75942f9", 
+          "name": "latestValueIIpavewe", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/mdodata/constraints/wingLoading/latestValue"
+          }
+        }, 
+        {
+          "identifier": "247017c1-956e-41f8-be9c-bda9f16ce145", 
+          "name": "normalized_mtowIIpuwawu", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/cpacs/mdodata/objectives/mtow/normalized_mtow"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "a382766c-f833-4688-987f-a1b72d310af2", 
+      "name": "XMLM-Optimizer-XML-merge-conv", 
+      "location": "1110:1113", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "2", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "d45b3dcd-708e-4fb8-a5c3-f875c43928d9", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "48967f52-d3db-46fd-99a7-e7e0605626fc", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "9a94ab5a-c59e-4ee3-9248-b3e3e1e24f00", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "97f894e8-9722-44ee-820c-e01a1c3d3fdd", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "3c6d6370-494f-4dc1-a3a4-5594116e8280", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "e8034214-c846-4547-9652-4c699161844c", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "024f3df5-dd2e-4f40-b76b-cf9b150e14dd", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "e87cebf1-6f94-47db-a140-981e40c69bcd", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "623a811f-71f0-4366-a9ef-377b8dac272c", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "722ae4e6-e9b9-4a0f-a5a0-72cf535cbc5a", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "be82d358-f179-4e86-9796-423eb335f168", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "246399f1-44e3-4f35-b0b9-e70d93fc838f", 
+      "name": "Optimizer-XML-load-final", 
+      "location": "1232:1230", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.xmlloader", 
+        "version": "3.2", 
+        "name": "XML Loader"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true", 
+        "xmlContent": "<?xml version=\"1.0\"?>\n<cpacs>\n  <toolspecific><sCAM><wing_dihedral_morph><required_wing_dihedral>dummy</required_wing_dihedral></wing_dihedral_morph><wing_length_morph><required_length>dummy</required_length></wing_length_morph><wing_root_chord_morph><required_root_chord>dummy</required_root_chord></wing_root_chord_morph><wing_sweep_morph><required_sweep1>dummy</required_sweep1><required_sweep2>dummy</required_sweep2></wing_sweep_morph><wing_taper_morph><required_taper1>dummy</required_taper1><required_taper2>dummy</required_taper2></wing_taper_morph></sCAM></toolspecific>\n</cpacs>\n"
+      }, 
+      "staticOutputs": [
+        {
+          "identifier": "b86aba01-8227-4b81-aa11-3d4ec5dfef00", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "dynamicInputs": [
+        {
+          "identifier": "0c3b2c96-82e9-478d-9d4d-97f2f38ed40a", 
+          "name": "requiredwingdihedralIIfudobu", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_dihedral_morph/required_wing_dihedral"
+          }
+        }, 
+        {
+          "identifier": "c16780e6-0829-46d5-99db-5caeef5695bf", 
+          "name": "requiredlengthIItahuru", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_length_morph/required_length"
+          }
+        }, 
+        {
+          "identifier": "a7e0269d-89f9-4faf-a1b4-1a2ffe76be32", 
+          "name": "requiredrootchordIIlebabu", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_root_chord_morph/required_root_chord"
+          }
+        }, 
+        {
+          "identifier": "a172bb2c-6a27-41e9-bbd0-91947af132eb", 
+          "name": "requiredsweep1IIrafiro", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_sweep_morph/required_sweep1"
+          }
+        }, 
+        {
+          "identifier": "3fde0195-b57c-4c7b-a6f7-1502526f6dac", 
+          "name": "requiredsweep2IIvegedi", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_sweep_morph/required_sweep2"
+          }
+        }, 
+        {
+          "identifier": "bcf47edc-1e64-43b7-aeff-bf01c317c077", 
+          "name": "requiredtaper1IIfoniko", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_taper_morph/required_taper1"
+          }
+        }, 
+        {
+          "identifier": "7761eafd-1628-4325-a5b5-fac0ba8dd4a5", 
+          "name": "requiredtaper2IIkemone", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/cpacs/toolspecific/sCAM/wing_taper_morph/required_taper2"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "861c782d-e1d9-4633-b521-77284687ef13", 
+      "name": "XMLM-SCAM-merged[5modes]", 
+      "location": "1310:1313", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "3", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "cb74ec7a-c7be-422e-afd6-eb723a00ac07", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "b453e3a7-e441-4ac6-8113-fddfd14362b4", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "a93714bd-de9f-4a0b-97a5-bafaba392835", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "6726423d-7bac-4519-94b1-8d8ff1455711", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "02c48e95-8909-4b9d-a0eb-6c2c8255f095", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "812642df-d98e-43c9-b47b-d1ae917f336b", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "2d2c0191-a5bf-4347-b947-1d0949c63084", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "5d7fc34d-6df7-43fc-ba03-2f29063a0308", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "97a4a5ca-b82a-41c5-ace8-a4ea4e2ccfdf", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "087d8daf-2441-44f6-80f1-f9012b4fc382", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "f90d27db-e213-4c28-a7ba-bf73627ba13f", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "20feda40-ffb3-47ee-9c35-9b5ba29d0e5a", 
+      "name": "SCAM-merged[5modes]", 
+      "location": "1410:1413", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.SCAM", 
+        "version": "1.0", 
+        "name": "SCAM"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "6f372f7c-a6e2-4a9f-9d6c-c7f06586dc67", 
+          "name": "cpacs_in", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "7f0ab3e0-2836-439b-9c06-3d6b21a23295", 
+          "name": "cpacs_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "b9e9db23-9224-4acf-b410-d0009e2507bd", 
+      "name": "UXPathFilter-SCAM-merged[5modes]", 
+      "location": "1510:1513", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-CNSTRNT-merged[2modes]"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "feb64974-2d06-4f6a-9ecb-c124e539b0b4", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "83a18d2f-fd36-4898-885b-027c7af1ff74", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "318ee7da-aaa7-4775-8a63-1acd3cc01257", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "739627f7-32ef-4543-b3a1-56bf61f631bd", 
+      "name": "XMLM-GACA-merged[2modes]", 
+      "location": "1610:1613", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "3", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "2a3e6eb3-e5af-486c-a37c-5ef487ceb63f", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "fd0d5701-d559-4b78-9a46-a886e8e881df", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "0bf7b615-5475-4e8d-8bf6-32bfdb9be92d", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "70f24100-2cdb-415e-879b-0fd0acc61573", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "377a235c-f618-45b6-acd1-c72bfbdb5d84", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "48bba91f-d54b-4177-8b64-83e07eac7a95", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "2ca7e94c-bc3f-40e5-bb0b-118cb65ee2b1", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "c6328740-55f2-4571-95b9-e96964e44e18", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "e8f98f17-a7b2-48b4-8fda-d01f69176637", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "cea44cb5-fc25-49b8-bd67-8104a1a08928", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "3ed9734f-1c63-4ab6-9b7c-7f1039270b51", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "c6d72555-08b8-4307-8069-c4760e4c29af", 
+      "name": "GACA-merged[2modes]", 
+      "location": "1710:1713", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.GACA", 
+        "version": "1.0", 
+        "name": "GACA"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "2793209a-aae1-46d0-a50b-f19c3b6b2565", 
+          "name": "cpacs_in", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "9ee990b0-49f3-496e-bac3-0806aa62cb33", 
+          "name": "cpacs_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "9c67d9f5-75d2-46b9-a564-6320a1adee20", 
+      "name": "UXPathFilter-GACA-merged[2modes]", 
+      "location": "1810:1813", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-CNSTRNT-merged[2modes]"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "01b02644-92a8-417f-921a-6cb14d9521c4", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "64318aae-ced7-4fdb-8cdc-8f3139761ea7", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "fb185303-29fc-4fb6-b5ed-c5ad50e39924", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "33a4b84f-2d92-472e-bace-176ab568e2c7", 
+      "name": "XMLM-Q3D[FLC]-EMWET--seq", 
+      "location": "1910:1913", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "3", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "888eefbd-19ce-475f-af25-65bb26acc3e4", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "68e7236d-ce3f-4b7b-8487-60b9ec1afcc7", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "ff6779e6-4887-4bc9-a735-3bb862209587", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "3052284d-6a01-4626-8cca-c9a27598f31e", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "0d078b47-47cd-4c3f-bbf9-2af829e911bf", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "4ec86fad-d227-4380-968a-9431c3cb8c3e", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "dc17eabe-5f68-4935-9fae-d1a993152233", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "b8576022-4e5b-40ac-86ac-e17fbc27adfd", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "cf8d133b-0625-4382-a4bc-a161d0552f60", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "299785c8-2845-4593-8669-7ee37171c82b", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "7f035279-1d58-4414-9b4c-4d294c693815", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "7730a328-7766-4f15-ad3f-a46acd557190", 
+      "name": "Q3D[FLC]", 
+      "location": "2010:2013", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.Q3D", 
+        "version": "0.2", 
+        "name": "Q3D"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": "FLC", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "f89c7130-87cb-4f7a-80e7-2d0aaf8135ef", 
+          "name": "cpacs_in", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "2eee01ef-692e-40cc-9b61-5e3f25914e55", 
+          "name": "cpacs_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "a4192ac7-eacb-4319-b259-a26fb360d42a", 
+      "name": "EMWET", 
+      "location": "2110:2113", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.EMWET", 
+        "version": "1.0", 
+        "name": "EMWET"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "c3252730-e02d-4c02-878f-fc3e4de2e669", 
+          "name": "cpacs_in", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "1f3cfd92-0589-4134-b211-784c3126377b", 
+          "name": "cpacs_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "9433baf7-fa0f-48e5-aee4-6145c8f609af", 
+      "name": "UXPathFilter-Q3D[FLC]-EMWET--seq", 
+      "location": "2210:2213", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-CNSTRNT-merged[2modes]"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "de8925e5-c1a4-4027-b070-429590bf5d03", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "cb2aac4e-d081-4a42-a372-bad8fa33f05d", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "74b928fb-fc83-45cc-b4c1-86859d5f09cb", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "da3bbe04-c7cd-4c3f-9568-0022c2dfefbb", 
+      "name": "XMLM-Q3D[VDE]-SMFA--seq", 
+      "location": "2310:2313", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "4", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "21bbfd97-dfe1-43e3-a08f-8ee85cf3df5f", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "c64eeee1-a02b-4a7f-a7ce-6752517c157f", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "2b7609c2-6c54-4486-aa83-9dc593816717", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "40405fde-5f6b-4acf-8ad7-dbf729ed5668", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "cf530906-d216-4926-b0eb-7767f250b4d6", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "80199520-c862-405c-9e51-06debd006260", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "15cbd21d-8b49-414d-988e-803d820e056d", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "a2b1af96-b30b-4bdd-ac10-ed33a615c90e", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "2092064d-e554-43bc-bfa1-95148d67db76", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "64465dbc-6079-4af8-b7e2-2d5185b8d2da", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "98f1871a-7bca-4ee6-ba99-a6e12194adfc", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "6d381787-2025-4017-a365-68fe18d0c94a", 
+      "name": "Q3D[VDE]", 
+      "location": "2410:2413", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.Q3D", 
+        "version": "0.2", 
+        "name": "Q3D"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": "VDE", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "3beb8bdc-99c9-45f6-92a9-70a6077c558f", 
+          "name": "cpacs_in", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "665b9273-c3b5-4f04-9709-3047a5c24703", 
+          "name": "cpacs_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "20f14b4b-5d2d-4a74-bec8-f4df9fa9e0ac", 
+      "name": "SMFA", 
+      "location": "2510:2513", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.SMFA", 
+        "version": "1.0", 
+        "name": "SMFA"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "890455de-53df-4c73-af5c-da085dc1594b", 
+          "name": "cpacs_in", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "0333d2a1-6696-44b7-b3ce-0e91afc8d9f5", 
+          "name": "cpacs_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "98addbcd-0c1d-43c1-a149-fd790685729d", 
+      "name": "UXPathFilter-Q3D[VDE]-SMFA--seq", 
+      "location": "2610:2613", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-CNSTRNT-merged[2modes]"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "749c1179-226f-4509-b095-00e9e6d9d82c", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "3030767f-8a84-429a-8d91-e19c910d6a8b", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "54173d52-4e3f-444c-ae53-a1508b8c907b", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "f1dd5385-dfb0-4d2d-897b-9d89cde025aa", 
+      "name": "XMLM-MTOW", 
+      "location": "2710:2713", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "4", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "f038b5f6-5d37-4336-8d5d-81b6e66297b5", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "af383cc2-eb9a-4e37-bb15-c6a10b15da18", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "025979ef-3319-4603-9b99-b7b4ad234fe5", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "7f5fa95f-1174-4daa-b2f1-380ff0c8f59b", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "fc31a992-2a4a-40d4-934b-24ddbf0aa7e0", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "e7696613-a659-4848-9b06-6973bf799ece", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "e2977f07-91ac-4ea0-bc13-5df885e4a48b", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "6a60ac40-b021-4065-b9a0-bbdd4524d8af", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "ef145578-e59a-4369-8819-9be8b041e507", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "9482aaa8-f218-4f84-bc35-7d252ab27d31", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "13b94ca9-180a-424f-8f8f-67d9dcf9cd0e", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "df3a3aa5-bd4e-45cb-8ecc-26730a0ca662", 
+      "name": "MTOW", 
+      "location": "2810:2813", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.MTOW", 
+        "version": "1.0", 
+        "name": "MTOW"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "a263de1c-9e41-415d-af9c-dfd383e5401a", 
+          "name": "cpacs_in", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "0fa1e7d1-0915-49ec-b0bf-24153c477be4", 
+          "name": "cpacs_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "a0c1ac77-11ec-41d7-9c98-77a29f5bfb6e", 
+      "name": "UXPathFilter-MTOW", 
+      "location": "2910:2913", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-CNSTRNT-merged[2modes]"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "220350e0-5870-47ff-b92a-121ebdfececf", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "27d1cc2c-8d7b-469f-adc8-7cf6c33b3091", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "dda9eae9-dab6-4166-bb14-c0dd25c8a000", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "224f1107-e513-41c3-9d53-8de81026bac5", 
+      "name": "XMLM-OBJ", 
+      "location": "3010:3013", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "2", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "e0a1bee7-e186-437b-832f-a6dc3ac80aa7", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "3718666b-91ca-4744-9773-3c3016f51c8c", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "efa55638-2ade-498f-8856-7e008d034e3d", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "87e47098-d233-4543-9a99-734fbfa25268", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "07deadb3-a2dd-402e-bbb5-db11950ad3f0", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "0537de78-22f7-4314-89a8-aef78ef2218e", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "62c533fc-d3f4-46da-b71a-fe63a32bf8aa", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "0a06aed5-9c8d-4028-9920-86d791b02353", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "63e1705e-cb02-4c13-93d8-ba8607ca2336", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "f1a25fa6-a6e5-4209-be3c-6fe3282e0ee4", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "fcf0cfb3-f4c9-4423-aaef-da8d9b3b3485", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "e13bf22f-9501-4734-9e52-40db89367f83", 
+      "name": "OBJ", 
+      "location": "3110:3113", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.OBJ", 
+        "version": "1.0", 
+        "name": "OBJ"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "950946cb-d999-4d32-9c8b-2ef88b5269b1", 
+          "name": "cpacs_in", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "45b496cb-bdb1-43b7-9cf9-5401f02bac3a", 
+          "name": "cpacs_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "3ce4774a-7515-40cb-9790-a553c347f340", 
+      "name": "UXPathFilter-OBJ", 
+      "location": "3210:3213", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-CNSTRNT-merged[2modes]"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "af042b6f-0367-4ad6-b7a9-a5eefe924455", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "8aeb8ba9-ffd7-4005-b0ca-9dfd927a4380", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "ef8fd103-6b4a-4629-bc6b-33620d22fbdd", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "be0f9d42-eba9-417d-8709-9d58aa4d63ad", 
+      "name": "XMLM-CNSTRNT-merged[2modes]", 
+      "location": "3310:3313", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "4", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "f2249a75-9270-4142-b3ba-2b124ba68914", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "7f064b95-de61-4d88-a49c-61292aa758b6", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "925ee32b-b615-4856-8527-a3abf6a950fb", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "5676e857-0eea-4b2b-a5c2-d8b6ddd7c712", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "bb6f2905-b1a7-4975-accc-5f5182238c81", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "7fad9795-aee0-42bf-90ba-2211238aa7cd", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "f2bc2652-bd8a-4ce4-95e8-00c8f29e3e3b", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "4f141614-105f-43b3-9a56-ca87aa8e47da", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "fdcdd7fb-a7ef-4793-b6c1-54963763d248", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "fa8dc423-c4ee-4ba9-8c5a-de625fc6ffe2", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "940381bc-6f0d-46be-8a88-c3a80a33cf60", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "477bbc0f-6896-4c82-9f84-0b8665c26cd0", 
+      "name": "CNSTRNT-merged[2modes]", 
+      "location": "3410:3413", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CNSTRNT", 
+        "version": "1.0", 
+        "name": "CNSTRNT"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "b61fc4e3-7e45-4e54-95c9-974b04d0d70f", 
+          "name": "cpacs_in", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "485d3c58-898b-4dc3-b5f9-f05c45eec6e6", 
+          "name": "cpacs_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "da43d321-be9a-4327-b8b8-fc7302abd1f7", 
+      "name": "UXPathFilter-CNSTRNT-merged[2modes]", 
+      "location": "3510:3513", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-CNSTRNT-merged[2modes]"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "9f87e7e5-1dd5-482b-8bfb-b676d73fb780", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "3aef5ec8-760e-49c8-827b-fcdd238fc3d0", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "44031b79-3584-4fe5-b3eb-72aaf76aacf6", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }
+  ], 
+  "connections": [
+    {
+      "source": "da3bbe04-c7cd-4c3f-9568-0022c2dfefbb", 
+      "output": "98f1871a-7bca-4ee6-ba99-a6e12194adfc", 
+      "target": "6d381787-2025-4017-a365-68fe18d0c94a", 
+      "input": "3beb8bdc-99c9-45f6-92a9-70a6077c558f"
+    }, 
+    {
+      "source": "7730a328-7766-4f15-ad3f-a46acd557190", 
+      "output": "2eee01ef-692e-40cc-9b61-5e3f25914e55", 
+      "target": "a4192ac7-eacb-4319-b259-a26fb360d42a", 
+      "input": "c3252730-e02d-4c02-878f-fc3e4de2e669"
+    }, 
+    {
+      "source": "a0c1ac77-11ec-41d7-9c98-77a29f5bfb6e", 
+      "output": "dda9eae9-dab6-4166-bb14-c0dd25c8a000", 
+      "target": "224f1107-e513-41c3-9d53-8de81026bac5", 
+      "input": "3718666b-91ca-4744-9773-3c3016f51c8c"
+    }, 
+    {
+      "source": "a0c1ac77-11ec-41d7-9c98-77a29f5bfb6e", 
+      "output": "dda9eae9-dab6-4166-bb14-c0dd25c8a000", 
+      "target": "be0f9d42-eba9-417d-8709-9d58aa4d63ad", 
+      "input": "5676e857-0eea-4b2b-a5c2-d8b6ddd7c712"
+    }, 
+    {
+      "source": "477bbc0f-6896-4c82-9f84-0b8665c26cd0", 
+      "output": "485d3c58-898b-4dc3-b5f9-f05c45eec6e6", 
+      "target": "da43d321-be9a-4327-b8b8-fc7302abd1f7", 
+      "input": "3aef5ec8-760e-49c8-827b-fcdd238fc3d0"
+    }, 
+    {
+      "source": "1167be5d-25f7-4085-8216-4c4dcb64d5c5", 
+      "output": "7eff678c-e700-47d7-a786-9acf08bbac22", 
+      "target": "5de1b432-a317-4a5b-9d7e-3af890833a7c", 
+      "input": "0b2dfc9a-2bba-4a28-8b92-4272a44c59e1"
+    }, 
+    {
+      "source": "739627f7-32ef-4543-b3a1-56bf61f631bd", 
+      "output": "3ed9734f-1c63-4ab6-9b7c-7f1039270b51", 
+      "target": "c6d72555-08b8-4307-8069-c4760e4c29af", 
+      "input": "2793209a-aae1-46d0-a50b-f19c3b6b2565"
+    }, 
+    {
+      "source": "6f24f557-503e-4ef5-9b6e-52f4c87266f0", 
+      "output": "47e41fef-41ad-4ead-a50e-1a3821c0a137", 
+      "target": "f21ec890-1250-433c-86ac-5b3515bbd39d", 
+      "input": "7c31eb2b-bfc3-47fa-aecc-38d4db957f7b"
+    }, 
+    {
+      "source": "6f24f557-503e-4ef5-9b6e-52f4c87266f0", 
+      "output": "47e41fef-41ad-4ead-a50e-1a3821c0a137", 
+      "target": "f21ec890-1250-433c-86ac-5b3515bbd39d", 
+      "input": "b513df8b-6ee2-4bbb-b45d-236e31fe3406"
+    }, 
+    {
+      "source": "c6d72555-08b8-4307-8069-c4760e4c29af", 
+      "output": "9ee990b0-49f3-496e-bac3-0806aa62cb33", 
+      "target": "9c67d9f5-75d2-46b9-a564-6320a1adee20", 
+      "input": "64318aae-ced7-4fdb-8cdc-8f3139761ea7"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "d0dc0169-35c1-4adb-8c2a-b0090686ab9b", 
+      "target": "2baa48dc-6a79-4507-88ed-9e1130f483c3", 
+      "input": "f1b96305-8e84-483c-b0c8-4b2da0e149a8"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "ce4b4e9e-5625-4838-abd3-6d6458b4c3ea", 
+      "target": "2baa48dc-6a79-4507-88ed-9e1130f483c3", 
+      "input": "e4c92f10-a8fb-46da-bbf1-e3f7a8a7f178"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "7163666a-9ed6-452a-a970-c9ce02f5379f", 
+      "target": "2baa48dc-6a79-4507-88ed-9e1130f483c3", 
+      "input": "5a8e98dd-59a8-49db-a87e-1d1362c0aa20"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "a00dde37-8f96-4be4-a8b5-fc52c8a46654", 
+      "target": "2baa48dc-6a79-4507-88ed-9e1130f483c3", 
+      "input": "06c750a3-6610-4b45-9aca-88b85291f74b"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "c634ce90-853a-4c5b-b2bc-ed2f366ed900", 
+      "target": "2baa48dc-6a79-4507-88ed-9e1130f483c3", 
+      "input": "7ff3168c-c2f0-4ce3-9fc8-ffaee2ca368e"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "fbfb71ed-bdf4-421a-9609-e98d94188297", 
+      "target": "2baa48dc-6a79-4507-88ed-9e1130f483c3", 
+      "input": "c5e1cca4-dc8f-4722-b4e1-e42ddc3769d5"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "14db0fb0-ec88-4ee6-af0e-cfdcc42868f6", 
+      "target": "2baa48dc-6a79-4507-88ed-9e1130f483c3", 
+      "input": "3133b888-b623-4301-aa61-25eaa8ba5ac0"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "d2076c26-300d-4a2e-84b8-1bfe8fe6f06f", 
+      "target": "539f6c7a-250e-4aba-b5a5-a019855dc023", 
+      "input": "a0e0c8ba-b284-41bb-8084-e46cfeb7c45e"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "ecf3772e-f069-4d8c-a00a-2fbbd70fa61f", 
+      "target": "539f6c7a-250e-4aba-b5a5-a019855dc023", 
+      "input": "09fe756b-b265-48a0-945b-e7c37e146800"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "6b6eb19f-3b80-46de-8697-b58a4a4ab814", 
+      "target": "246399f1-44e3-4f35-b0b9-e70d93fc838f", 
+      "input": "0c3b2c96-82e9-478d-9d4d-97f2f38ed40a"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "ab3e9b93-9599-415a-9346-a37978d2835d", 
+      "target": "246399f1-44e3-4f35-b0b9-e70d93fc838f", 
+      "input": "c16780e6-0829-46d5-99db-5caeef5695bf"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "1ab191d5-df43-49b8-addf-6f64bdd936f5", 
+      "target": "246399f1-44e3-4f35-b0b9-e70d93fc838f", 
+      "input": "a7e0269d-89f9-4faf-a1b4-1a2ffe76be32"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "43f97fd7-97bb-448e-9615-5b54a5487894", 
+      "target": "246399f1-44e3-4f35-b0b9-e70d93fc838f", 
+      "input": "a172bb2c-6a27-41e9-bbd0-91947af132eb"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "79acb098-999c-4945-a650-c0b488c9a10a", 
+      "target": "246399f1-44e3-4f35-b0b9-e70d93fc838f", 
+      "input": "3fde0195-b57c-4c7b-a6f7-1502526f6dac"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "518ff031-3d67-4903-a849-6de03689ce45", 
+      "target": "246399f1-44e3-4f35-b0b9-e70d93fc838f", 
+      "input": "bcf47edc-1e64-43b7-aeff-bf01c317c077"
+    }, 
+    {
+      "source": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "output": "70f3a0bc-36d5-4e4b-8480-4995a2539fc5", 
+      "target": "246399f1-44e3-4f35-b0b9-e70d93fc838f", 
+      "input": "7761eafd-1628-4325-a5b5-fac0ba8dd4a5"
+    }, 
+    {
+      "source": "9c67d9f5-75d2-46b9-a564-6320a1adee20", 
+      "output": "fb185303-29fc-4fb6-b5ed-c5ad50e39924", 
+      "target": "da3bbe04-c7cd-4c3f-9568-0022c2dfefbb", 
+      "input": "40405fde-5f6b-4acf-8ad7-dbf729ed5668"
+    }, 
+    {
+      "source": "9c67d9f5-75d2-46b9-a564-6320a1adee20", 
+      "output": "fb185303-29fc-4fb6-b5ed-c5ad50e39924", 
+      "target": "be0f9d42-eba9-417d-8709-9d58aa4d63ad", 
+      "input": "7f064b95-de61-4d88-a49c-61292aa758b6"
+    }, 
+    {
+      "source": "98addbcd-0c1d-43c1-a149-fd790685729d", 
+      "output": "54173d52-4e3f-444c-ae53-a1508b8c907b", 
+      "target": "f1dd5385-dfb0-4d2d-897b-9d89cde025aa", 
+      "input": "7f5fa95f-1174-4daa-b2f1-380ff0c8f59b"
+    }, 
+    {
+      "source": "98addbcd-0c1d-43c1-a149-fd790685729d", 
+      "output": "54173d52-4e3f-444c-ae53-a1508b8c907b", 
+      "target": "be0f9d42-eba9-417d-8709-9d58aa4d63ad", 
+      "input": "925ee32b-b615-4856-8527-a3abf6a950fb"
+    }, 
+    {
+      "source": "be0f9d42-eba9-417d-8709-9d58aa4d63ad", 
+      "output": "940381bc-6f0d-46be-8a88-c3a80a33cf60", 
+      "target": "477bbc0f-6896-4c82-9f84-0b8665c26cd0", 
+      "input": "b61fc4e3-7e45-4e54-95c9-974b04d0d70f"
+    }, 
+    {
+      "source": "33a4b84f-2d92-472e-bace-176ab568e2c7", 
+      "output": "7f035279-1d58-4414-9b4c-4d294c693815", 
+      "target": "7730a328-7766-4f15-ad3f-a46acd557190", 
+      "input": "f89c7130-87cb-4f7a-80e7-2d0aaf8135ef"
+    }, 
+    {
+      "source": "a382766c-f833-4688-987f-a1b72d310af2", 
+      "output": "be82d358-f179-4e86-9796-423eb335f168", 
+      "target": "4bfda262-fcb8-41a9-add6-8baff109d1a5", 
+      "input": "7b5a2fd8-85a6-4669-a15d-9832abde9caf"
+    }, 
+    {
+      "source": "a382766c-f833-4688-987f-a1b72d310af2", 
+      "output": "be82d358-f179-4e86-9796-423eb335f168", 
+      "target": "4bfda262-fcb8-41a9-add6-8baff109d1a5", 
+      "input": "acea55ce-904e-41c6-b514-f2e76e12cbd1"
+    }, 
+    {
+      "source": "20feda40-ffb3-47ee-9c35-9b5ba29d0e5a", 
+      "output": "7f0ab3e0-2836-439b-9c06-3d6b21a23295", 
+      "target": "b9e9db23-9224-4acf-b410-d0009e2507bd", 
+      "input": "83a18d2f-fd36-4898-885b-027c7af1ff74"
+    }, 
+    {
+      "source": "a4192ac7-eacb-4319-b259-a26fb360d42a", 
+      "output": "1f3cfd92-0589-4134-b211-784c3126377b", 
+      "target": "9433baf7-fa0f-48e5-aee4-6145c8f609af", 
+      "input": "cb2aac4e-d081-4a42-a372-bad8fa33f05d"
+    }, 
+    {
+      "source": "b9e9db23-9224-4acf-b410-d0009e2507bd", 
+      "output": "318ee7da-aaa7-4775-8a63-1acd3cc01257", 
+      "target": "da3bbe04-c7cd-4c3f-9568-0022c2dfefbb", 
+      "input": "2b7609c2-6c54-4486-aa83-9dc593816717"
+    }, 
+    {
+      "source": "b9e9db23-9224-4acf-b410-d0009e2507bd", 
+      "output": "318ee7da-aaa7-4775-8a63-1acd3cc01257", 
+      "target": "739627f7-32ef-4543-b3a1-56bf61f631bd", 
+      "input": "0bf7b615-5475-4e8d-8bf6-32bfdb9be92d"
+    }, 
+    {
+      "source": "b9e9db23-9224-4acf-b410-d0009e2507bd", 
+      "output": "318ee7da-aaa7-4775-8a63-1acd3cc01257", 
+      "target": "33a4b84f-2d92-472e-bace-176ab568e2c7", 
+      "input": "ff6779e6-4887-4bc9-a735-3bb862209587"
+    }, 
+    {
+      "source": "da43d321-be9a-4327-b8b8-fc7302abd1f7", 
+      "output": "44031b79-3584-4fe5-b3eb-72aaf76aacf6", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "c6ad430e-c4e6-49b8-a219-52851003a817"
+    }, 
+    {
+      "source": "da43d321-be9a-4327-b8b8-fc7302abd1f7", 
+      "output": "44031b79-3584-4fe5-b3eb-72aaf76aacf6", 
+      "target": "a382766c-f833-4688-987f-a1b72d310af2", 
+      "input": "48967f52-d3db-46fd-99a7-e7e0605626fc"
+    }, 
+    {
+      "source": "4bfda262-fcb8-41a9-add6-8baff109d1a5", 
+      "output": "af59e33a-ca1b-48aa-abe1-0ac68c495dd4", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "478cd628-9fab-43b2-846f-5b8f11a2d46c"
+    }, 
+    {
+      "source": "4bfda262-fcb8-41a9-add6-8baff109d1a5", 
+      "output": "cafcfb86-04d2-43c5-b66c-836cc75942f9", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "37d90598-0d50-470d-a605-f52616c17bbe"
+    }, 
+    {
+      "source": "4bfda262-fcb8-41a9-add6-8baff109d1a5", 
+      "output": "247017c1-956e-41f8-be9c-bda9f16ce145", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "1a595204-0187-4638-83a1-ca8207f338cc"
+    }, 
+    {
+      "source": "f21ec890-1250-433c-86ac-5b3515bbd39d", 
+      "output": "a5178b5b-729a-4e11-b828-5414ab3a12f6", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "bd64b987-07cc-4b23-bd70-2aef14e4da93"
+    }, 
+    {
+      "source": "f21ec890-1250-433c-86ac-5b3515bbd39d", 
+      "output": "ed0c3211-08bf-4218-969b-6decb886ea98", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "d7beec16-6f1a-4d13-a035-9b440ed4a676"
+    }, 
+    {
+      "source": "f21ec890-1250-433c-86ac-5b3515bbd39d", 
+      "output": "89f24c84-1c73-4b4c-aeea-931138e60a77", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "60fc2e87-e7a1-4fc5-8a6c-53df44be0404"
+    }, 
+    {
+      "source": "f21ec890-1250-433c-86ac-5b3515bbd39d", 
+      "output": "7e9c0c60-4e12-4f90-95b3-13442b9a0fa9", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "d910cbcf-f01c-4e6a-b6cb-707eb6b0d136"
+    }, 
+    {
+      "source": "f21ec890-1250-433c-86ac-5b3515bbd39d", 
+      "output": "e2cc66ed-18af-47d7-a6de-66facbf685ea", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "eb401983-6609-4bae-ab9a-f5efeb83b983"
+    }, 
+    {
+      "source": "f21ec890-1250-433c-86ac-5b3515bbd39d", 
+      "output": "5211f0d8-eed8-480d-afa0-504c0c8ab23b", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "19312172-02af-4fa2-91f6-608dc5973acd"
+    }, 
+    {
+      "source": "f21ec890-1250-433c-86ac-5b3515bbd39d", 
+      "output": "8bda9f81-8f45-4ac5-83ec-66c0023a8a99", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "636f1d85-3098-4958-babf-7e5186c8fc7f"
+    }, 
+    {
+      "source": "f21ec890-1250-433c-86ac-5b3515bbd39d", 
+      "output": "5f8dc099-68f3-4104-954c-df77b5e63241", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "351a4ecd-e755-41af-ae5e-ac422c5958d0"
+    }, 
+    {
+      "source": "f21ec890-1250-433c-86ac-5b3515bbd39d", 
+      "output": "5f8dc099-68f3-4104-954c-df77b5e63241", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "59f834ab-9736-4cb7-bb5d-9bc55bb466f4"
+    }, 
+    {
+      "source": "9197e8c2-60d8-4258-8e99-049f77582ca6", 
+      "output": "ed749ce2-aa1d-4406-921c-5afff6184760", 
+      "target": "9c67d9f5-75d2-46b9-a564-6320a1adee20", 
+      "input": "01b02644-92a8-417f-921a-6cb14d9521c4"
+    }, 
+    {
+      "source": "9197e8c2-60d8-4258-8e99-049f77582ca6", 
+      "output": "1cad06af-5e1f-4dba-8f25-1f1d624d2a91", 
+      "target": "5de1b432-a317-4a5b-9d7e-3af890833a7c", 
+      "input": "b1e758f0-f6f4-4761-83f0-31f5024fc19a"
+    }, 
+    {
+      "source": "9197e8c2-60d8-4258-8e99-049f77582ca6", 
+      "output": "2ff98db6-d365-4dbe-9b70-e037c1546cce", 
+      "target": "9433baf7-fa0f-48e5-aee4-6145c8f609af", 
+      "input": "de8925e5-c1a4-4027-b070-429590bf5d03"
+    }, 
+    {
+      "source": "9197e8c2-60d8-4258-8e99-049f77582ca6", 
+      "output": "2cdb4321-6fee-4648-b67d-f47ec62a7743", 
+      "target": "b9e9db23-9224-4acf-b410-d0009e2507bd", 
+      "input": "feb64974-2d06-4f6a-9ecb-c124e539b0b4"
+    }, 
+    {
+      "source": "9197e8c2-60d8-4258-8e99-049f77582ca6", 
+      "output": "dc1e2f49-29b5-433b-bf87-7e8bdf853e4f", 
+      "target": "98addbcd-0c1d-43c1-a149-fd790685729d", 
+      "input": "749c1179-226f-4509-b095-00e9e6d9d82c"
+    }, 
+    {
+      "source": "9197e8c2-60d8-4258-8e99-049f77582ca6", 
+      "output": "704556c6-d717-4346-88f9-b184a13ff64a", 
+      "target": "a0c1ac77-11ec-41d7-9c98-77a29f5bfb6e", 
+      "input": "220350e0-5870-47ff-b92a-121ebdfececf"
+    }, 
+    {
+      "source": "9197e8c2-60d8-4258-8e99-049f77582ca6", 
+      "output": "3743bfdf-5dac-4bf3-a00d-2a868fac578c", 
+      "target": "3ce4774a-7515-40cb-9790-a553c347f340", 
+      "input": "af042b6f-0367-4ad6-b7a9-a5eefe924455"
+    }, 
+    {
+      "source": "9197e8c2-60d8-4258-8e99-049f77582ca6", 
+      "output": "58a2ece4-4408-4f3f-8854-918613b35435", 
+      "target": "da43d321-be9a-4327-b8b8-fc7302abd1f7", 
+      "input": "9f87e7e5-1dd5-482b-8bfb-b676d73fb780"
+    }, 
+    {
+      "source": "df3a3aa5-bd4e-45cb-8ecc-26730a0ca662", 
+      "output": "0fa1e7d1-0915-49ec-b0bf-24153c477be4", 
+      "target": "a0c1ac77-11ec-41d7-9c98-77a29f5bfb6e", 
+      "input": "27d1cc2c-8d7b-469f-adc8-7cf6c33b3091"
+    }, 
+    {
+      "source": "3ce4774a-7515-40cb-9790-a553c347f340", 
+      "output": "ef8fd103-6b4a-4629-bc6b-33620d22fbdd", 
+      "target": "39aa2208-03ab-4e79-8a49-92a3f9d4c817", 
+      "input": "50b51f39-9a39-4ec8-9d2b-9b681c3fb96e"
+    }, 
+    {
+      "source": "3ce4774a-7515-40cb-9790-a553c347f340", 
+      "output": "ef8fd103-6b4a-4629-bc6b-33620d22fbdd", 
+      "target": "a382766c-f833-4688-987f-a1b72d310af2", 
+      "input": "d45b3dcd-708e-4fb8-a5c3-f875c43928d9"
+    }, 
+    {
+      "source": "246399f1-44e3-4f35-b0b9-e70d93fc838f", 
+      "output": "b86aba01-8227-4b81-aa11-3d4ec5dfef00", 
+      "target": "539f6c7a-250e-4aba-b5a5-a019855dc023", 
+      "input": "d650369c-98c5-469b-a1e6-64506d677bc0"
+    }, 
+    {
+      "source": "224f1107-e513-41c3-9d53-8de81026bac5", 
+      "output": "fcf0cfb3-f4c9-4423-aaef-da8d9b3b3485", 
+      "target": "e13bf22f-9501-4734-9e52-40db89367f83", 
+      "input": "950946cb-d999-4d32-9c8b-2ef88b5269b1"
+    }, 
+    {
+      "source": "e1bab916-4e97-40b2-b778-e0b750275afd", 
+      "output": "8b64b567-ef60-43f6-a982-18dca344a553", 
+      "target": "da3bbe04-c7cd-4c3f-9568-0022c2dfefbb", 
+      "input": "21bbfd97-dfe1-43e3-a08f-8ee85cf3df5f"
+    }, 
+    {
+      "source": "e1bab916-4e97-40b2-b778-e0b750275afd", 
+      "output": "8b64b567-ef60-43f6-a982-18dca344a553", 
+      "target": "f1dd5385-dfb0-4d2d-897b-9d89cde025aa", 
+      "input": "f038b5f6-5d37-4336-8d5d-81b6e66297b5"
+    }, 
+    {
+      "source": "e1bab916-4e97-40b2-b778-e0b750275afd", 
+      "output": "8b64b567-ef60-43f6-a982-18dca344a553", 
+      "target": "33a4b84f-2d92-472e-bace-176ab568e2c7", 
+      "input": "888eefbd-19ce-475f-af25-65bb26acc3e4"
+    }, 
+    {
+      "source": "e1bab916-4e97-40b2-b778-e0b750275afd", 
+      "output": "8b64b567-ef60-43f6-a982-18dca344a553", 
+      "target": "739627f7-32ef-4543-b3a1-56bf61f631bd", 
+      "input": "2a3e6eb3-e5af-486c-a37c-5ef487ceb63f"
+    }, 
+    {
+      "source": "e1bab916-4e97-40b2-b778-e0b750275afd", 
+      "output": "8b64b567-ef60-43f6-a982-18dca344a553", 
+      "target": "224f1107-e513-41c3-9d53-8de81026bac5", 
+      "input": "e0a1bee7-e186-437b-832f-a6dc3ac80aa7"
+    }, 
+    {
+      "source": "e1bab916-4e97-40b2-b778-e0b750275afd", 
+      "output": "8b64b567-ef60-43f6-a982-18dca344a553", 
+      "target": "861c782d-e1d9-4633-b521-77284687ef13", 
+      "input": "cb74ec7a-c7be-422e-afd6-eb723a00ac07"
+    }, 
+    {
+      "source": "e1bab916-4e97-40b2-b778-e0b750275afd", 
+      "output": "8b64b567-ef60-43f6-a982-18dca344a553", 
+      "target": "1167be5d-25f7-4085-8216-4c4dcb64d5c5", 
+      "input": "407e390b-d9a6-40e4-9103-0b755ddfdd50"
+    }, 
+    {
+      "source": "e1bab916-4e97-40b2-b778-e0b750275afd", 
+      "output": "8b64b567-ef60-43f6-a982-18dca344a553", 
+      "target": "be0f9d42-eba9-417d-8709-9d58aa4d63ad", 
+      "input": "f2249a75-9270-4142-b3ba-2b124ba68914"
+    }, 
+    {
+      "source": "6d381787-2025-4017-a365-68fe18d0c94a", 
+      "output": "665b9273-c3b5-4f04-9709-3047a5c24703", 
+      "target": "20f14b4b-5d2d-4a74-bec8-f4df9fa9e0ac", 
+      "input": "890455de-53df-4c73-af5c-da085dc1594b"
+    }, 
+    {
+      "source": "20f14b4b-5d2d-4a74-bec8-f4df9fa9e0ac", 
+      "output": "0333d2a1-6696-44b7-b3ce-0e91afc8d9f5", 
+      "target": "98addbcd-0c1d-43c1-a149-fd790685729d", 
+      "input": "3030767f-8a84-429a-8d91-e19c910d6a8b"
+    }, 
+    {
+      "source": "861c782d-e1d9-4633-b521-77284687ef13", 
+      "output": "f90d27db-e213-4c28-a7ba-bf73627ba13f", 
+      "target": "20feda40-ffb3-47ee-9c35-9b5ba29d0e5a", 
+      "input": "6f372f7c-a6e2-4a9f-9d6c-c7f06586dc67"
+    }, 
+    {
+      "source": "2baa48dc-6a79-4507-88ed-9e1130f483c3", 
+      "output": "21018cfc-1a66-4edd-9d4d-fe603148a2b1", 
+      "target": "861c782d-e1d9-4633-b521-77284687ef13", 
+      "input": "a93714bd-de9f-4a0b-97a5-bafaba392835"
+    }, 
+    {
+      "source": "9433baf7-fa0f-48e5-aee4-6145c8f609af", 
+      "output": "74b928fb-fc83-45cc-b4c1-86859d5f09cb", 
+      "target": "f1dd5385-dfb0-4d2d-897b-9d89cde025aa", 
+      "input": "025979ef-3319-4603-9b99-b7b4ad234fe5"
+    }, 
+    {
+      "source": "f1dd5385-dfb0-4d2d-897b-9d89cde025aa", 
+      "output": "13b94ca9-180a-424f-8f8f-67d9dcf9cd0e", 
+      "target": "df3a3aa5-bd4e-45cb-8ecc-26730a0ca662", 
+      "input": "a263de1c-9e41-415d-af9c-dfd383e5401a"
+    }, 
+    {
+      "source": "e13bf22f-9501-4734-9e52-40db89367f83", 
+      "output": "45b496cb-bdb1-43b7-9cf9-5401f02bac3a", 
+      "target": "3ce4774a-7515-40cb-9790-a553c347f340", 
+      "input": "8aeb8ba9-ffd7-4005-b0ca-9dfd927a4380"
+    }, 
+    {
+      "source": "5de1b432-a317-4a5b-9d7e-3af890833a7c", 
+      "output": "a5cc4510-2dd2-4427-86da-3b6c52b7eb10", 
+      "target": "da3bbe04-c7cd-4c3f-9568-0022c2dfefbb", 
+      "input": "c64eeee1-a02b-4a7f-a7ce-6752517c157f"
+    }, 
+    {
+      "source": "5de1b432-a317-4a5b-9d7e-3af890833a7c", 
+      "output": "a5cc4510-2dd2-4427-86da-3b6c52b7eb10", 
+      "target": "33a4b84f-2d92-472e-bace-176ab568e2c7", 
+      "input": "68e7236d-ce3f-4b7b-8487-60b9ec1afcc7"
+    }, 
+    {
+      "source": "5de1b432-a317-4a5b-9d7e-3af890833a7c", 
+      "output": "a5cc4510-2dd2-4427-86da-3b6c52b7eb10", 
+      "target": "f1dd5385-dfb0-4d2d-897b-9d89cde025aa", 
+      "input": "af383cc2-eb9a-4e37-bb15-c6a10b15da18"
+    }, 
+    {
+      "source": "5de1b432-a317-4a5b-9d7e-3af890833a7c", 
+      "output": "a5cc4510-2dd2-4427-86da-3b6c52b7eb10", 
+      "target": "739627f7-32ef-4543-b3a1-56bf61f631bd", 
+      "input": "fd0d5701-d559-4b78-9a46-a886e8e881df"
+    }, 
+    {
+      "source": "5de1b432-a317-4a5b-9d7e-3af890833a7c", 
+      "output": "a5cc4510-2dd2-4427-86da-3b6c52b7eb10", 
+      "target": "861c782d-e1d9-4633-b521-77284687ef13", 
+      "input": "b453e3a7-e441-4ac6-8113-fddfd14362b4"
+    }, 
+    {
+      "source": "539f6c7a-250e-4aba-b5a5-a019855dc023", 
+      "output": "8c0629bd-8c37-42f7-9c97-d288aae96f94", 
+      "target": "3426206e-4784-46f6-a9db-8f350e43572d", 
+      "input": "febacd78-cb2e-44d0-b0b4-d6d881353b83"
+    }, 
+    {
+      "source": "539f6c7a-250e-4aba-b5a5-a019855dc023", 
+      "output": "8c0629bd-8c37-42f7-9c97-d288aae96f94", 
+      "target": "3426206e-4784-46f6-a9db-8f350e43572d", 
+      "input": "8e1b8eaa-859b-4369-9cf3-4da32d59d4f6"
+    }
+  ], 
+  "bendpoints": "[{\"source\": \"da3bbe04-c7cd-4c3f-9568-0022c2dfefbb\", \"target\": \"6d381787-2025-4017-a365-68fe18d0c94a\", \"coordinates\": \"2450:2350\"}, {\"source\": \"7730a328-7766-4f15-ad3f-a46acd557190\", \"target\": \"a4192ac7-eacb-4319-b259-a26fb360d42a\", \"coordinates\": \"2150:2050\"}, {\"source\": \"a0c1ac77-11ec-41d7-9c98-77a29f5bfb6e\", \"target\": \"224f1107-e513-41c3-9d53-8de81026bac5\", \"coordinates\": \"3050:2950\"}, {\"source\": \"a0c1ac77-11ec-41d7-9c98-77a29f5bfb6e\", \"target\": \"be0f9d42-eba9-417d-8709-9d58aa4d63ad\", \"coordinates\": \"3350:2950\"}, {\"source\": \"477bbc0f-6896-4c82-9f84-0b8665c26cd0\", \"target\": \"da43d321-be9a-4327-b8b8-fc7302abd1f7\", \"coordinates\": \"3550:3450\"}, {\"source\": \"1167be5d-25f7-4085-8216-4c4dcb64d5c5\", \"target\": \"5de1b432-a317-4a5b-9d7e-3af890833a7c\", \"coordinates\": \"650:550\"}, {\"source\": \"739627f7-32ef-4543-b3a1-56bf61f631bd\", \"target\": \"c6d72555-08b8-4307-8069-c4760e4c29af\", \"coordinates\": \"1750:1650\"}, {\"source\": \"6f24f557-503e-4ef5-9b6e-52f4c87266f0\", \"target\": \"f21ec890-1250-433c-86ac-5b3515bbd39d\", \"coordinates\": \"750:250\"}, {\"source\": \"c6d72555-08b8-4307-8069-c4760e4c29af\", \"target\": \"9c67d9f5-75d2-46b9-a564-6320a1adee20\", \"coordinates\": \"1850:1750\"}, {\"source\": \"39aa2208-03ab-4e79-8a49-92a3f9d4c817\", \"target\": \"2baa48dc-6a79-4507-88ed-9e1130f483c3\", \"coordinates\": \"950:850\"}, {\"source\": \"39aa2208-03ab-4e79-8a49-92a3f9d4c817\", \"target\": \"539f6c7a-250e-4aba-b5a5-a019855dc023\", \"coordinates\": \"450:850\"}, {\"source\": \"39aa2208-03ab-4e79-8a49-92a3f9d4c817\", \"target\": \"246399f1-44e3-4f35-b0b9-e70d93fc838f\", \"coordinates\": \"1250:850\"}, {\"source\": \"9c67d9f5-75d2-46b9-a564-6320a1adee20\", \"target\": \"da3bbe04-c7cd-4c3f-9568-0022c2dfefbb\", \"coordinates\": \"2350:1850\"}, {\"source\": \"9c67d9f5-75d2-46b9-a564-6320a1adee20\", \"target\": \"be0f9d42-eba9-417d-8709-9d58aa4d63ad\", \"coordinates\": \"3350:1850\"}, {\"source\": \"98addbcd-0c1d-43c1-a149-fd790685729d\", \"target\": \"f1dd5385-dfb0-4d2d-897b-9d89cde025aa\", \"coordinates\": \"2750:2650\"}, {\"source\": \"98addbcd-0c1d-43c1-a149-fd790685729d\", \"target\": \"be0f9d42-eba9-417d-8709-9d58aa4d63ad\", \"coordinates\": \"3350:2650\"}, {\"source\": \"be0f9d42-eba9-417d-8709-9d58aa4d63ad\", \"target\": \"477bbc0f-6896-4c82-9f84-0b8665c26cd0\", \"coordinates\": \"3450:3350\"}, {\"source\": \"33a4b84f-2d92-472e-bace-176ab568e2c7\", \"target\": \"7730a328-7766-4f15-ad3f-a46acd557190\", \"coordinates\": \"2050:1950\"}, {\"source\": \"a382766c-f833-4688-987f-a1b72d310af2\", \"target\": \"4bfda262-fcb8-41a9-add6-8baff109d1a5\", \"coordinates\": \"1050:1150\"}, {\"source\": \"20feda40-ffb3-47ee-9c35-9b5ba29d0e5a\", \"target\": \"b9e9db23-9224-4acf-b410-d0009e2507bd\", \"coordinates\": \"1550:1450\"}, {\"source\": \"a4192ac7-eacb-4319-b259-a26fb360d42a\", \"target\": \"9433baf7-fa0f-48e5-aee4-6145c8f609af\", \"coordinates\": \"2250:2150\"}, {\"source\": \"b9e9db23-9224-4acf-b410-d0009e2507bd\", \"target\": \"da3bbe04-c7cd-4c3f-9568-0022c2dfefbb\", \"coordinates\": \"2350:1550\"}, {\"source\": \"b9e9db23-9224-4acf-b410-d0009e2507bd\", \"target\": \"739627f7-32ef-4543-b3a1-56bf61f631bd\", \"coordinates\": \"1650:1550\"}, {\"source\": \"b9e9db23-9224-4acf-b410-d0009e2507bd\", \"target\": \"33a4b84f-2d92-472e-bace-176ab568e2c7\", \"coordinates\": \"1950:1550\"}, {\"source\": \"da43d321-be9a-4327-b8b8-fc7302abd1f7\", \"target\": \"39aa2208-03ab-4e79-8a49-92a3f9d4c817\", \"coordinates\": \"850:3550\"}, {\"source\": \"da43d321-be9a-4327-b8b8-fc7302abd1f7\", \"target\": \"a382766c-f833-4688-987f-a1b72d310af2\", \"coordinates\": \"1150:3550\"}, {\"source\": \"4bfda262-fcb8-41a9-add6-8baff109d1a5\", \"target\": \"39aa2208-03ab-4e79-8a49-92a3f9d4c817\", \"coordinates\": \"850:1050\"}, {\"source\": \"f21ec890-1250-433c-86ac-5b3515bbd39d\", \"target\": \"39aa2208-03ab-4e79-8a49-92a3f9d4c817\", \"coordinates\": \"850:750\"}, {\"source\": \"9197e8c2-60d8-4258-8e99-049f77582ca6\", \"target\": \"9c67d9f5-75d2-46b9-a564-6320a1adee20\", \"coordinates\": \"1850:150\"}, {\"source\": \"9197e8c2-60d8-4258-8e99-049f77582ca6\", \"target\": \"5de1b432-a317-4a5b-9d7e-3af890833a7c\", \"coordinates\": \"650:150\"}, {\"source\": \"9197e8c2-60d8-4258-8e99-049f77582ca6\", \"target\": \"9433baf7-fa0f-48e5-aee4-6145c8f609af\", \"coordinates\": \"2250:150\"}, {\"source\": \"9197e8c2-60d8-4258-8e99-049f77582ca6\", \"target\": \"b9e9db23-9224-4acf-b410-d0009e2507bd\", \"coordinates\": \"1550:150\"}, {\"source\": \"9197e8c2-60d8-4258-8e99-049f77582ca6\", \"target\": \"98addbcd-0c1d-43c1-a149-fd790685729d\", \"coordinates\": \"2650:150\"}, {\"source\": \"9197e8c2-60d8-4258-8e99-049f77582ca6\", \"target\": \"a0c1ac77-11ec-41d7-9c98-77a29f5bfb6e\", \"coordinates\": \"2950:150\"}, {\"source\": \"9197e8c2-60d8-4258-8e99-049f77582ca6\", \"target\": \"3ce4774a-7515-40cb-9790-a553c347f340\", \"coordinates\": \"3250:150\"}, {\"source\": \"9197e8c2-60d8-4258-8e99-049f77582ca6\", \"target\": \"da43d321-be9a-4327-b8b8-fc7302abd1f7\", \"coordinates\": \"3550:150\"}, {\"source\": \"df3a3aa5-bd4e-45cb-8ecc-26730a0ca662\", \"target\": \"a0c1ac77-11ec-41d7-9c98-77a29f5bfb6e\", \"coordinates\": \"2950:2850\"}, {\"source\": \"3ce4774a-7515-40cb-9790-a553c347f340\", \"target\": \"39aa2208-03ab-4e79-8a49-92a3f9d4c817\", \"coordinates\": \"850:3250\"}, {\"source\": \"3ce4774a-7515-40cb-9790-a553c347f340\", \"target\": \"a382766c-f833-4688-987f-a1b72d310af2\", \"coordinates\": \"1150:3250\"}, {\"source\": \"246399f1-44e3-4f35-b0b9-e70d93fc838f\", \"target\": \"539f6c7a-250e-4aba-b5a5-a019855dc023\", \"coordinates\": \"450:1250\"}, {\"source\": \"224f1107-e513-41c3-9d53-8de81026bac5\", \"target\": \"e13bf22f-9501-4734-9e52-40db89367f83\", \"coordinates\": \"3150:3050\"}, {\"source\": \"e1bab916-4e97-40b2-b778-e0b750275afd\", \"target\": \"da3bbe04-c7cd-4c3f-9568-0022c2dfefbb\", \"coordinates\": \"2350:50\"}, {\"source\": \"e1bab916-4e97-40b2-b778-e0b750275afd\", \"target\": \"f1dd5385-dfb0-4d2d-897b-9d89cde025aa\", \"coordinates\": \"2750:50\"}, {\"source\": \"e1bab916-4e97-40b2-b778-e0b750275afd\", \"target\": \"33a4b84f-2d92-472e-bace-176ab568e2c7\", \"coordinates\": \"1950:50\"}, {\"source\": \"e1bab916-4e97-40b2-b778-e0b750275afd\", \"target\": \"739627f7-32ef-4543-b3a1-56bf61f631bd\", \"coordinates\": \"1650:50\"}, {\"source\": \"e1bab916-4e97-40b2-b778-e0b750275afd\", \"target\": \"224f1107-e513-41c3-9d53-8de81026bac5\", \"coordinates\": \"3050:50\"}, {\"source\": \"e1bab916-4e97-40b2-b778-e0b750275afd\", \"target\": \"861c782d-e1d9-4633-b521-77284687ef13\", \"coordinates\": \"1350:50\"}, {\"source\": \"e1bab916-4e97-40b2-b778-e0b750275afd\", \"target\": \"1167be5d-25f7-4085-8216-4c4dcb64d5c5\", \"coordinates\": \"550:50\"}, {\"source\": \"e1bab916-4e97-40b2-b778-e0b750275afd\", \"target\": \"be0f9d42-eba9-417d-8709-9d58aa4d63ad\", \"coordinates\": \"3350:50\"}, {\"source\": \"6d381787-2025-4017-a365-68fe18d0c94a\", \"target\": \"20f14b4b-5d2d-4a74-bec8-f4df9fa9e0ac\", \"coordinates\": \"2550:2450\"}, {\"source\": \"20f14b4b-5d2d-4a74-bec8-f4df9fa9e0ac\", \"target\": \"98addbcd-0c1d-43c1-a149-fd790685729d\", \"coordinates\": \"2650:2550\"}, {\"source\": \"861c782d-e1d9-4633-b521-77284687ef13\", \"target\": \"20feda40-ffb3-47ee-9c35-9b5ba29d0e5a\", \"coordinates\": \"1450:1350\"}, {\"source\": \"2baa48dc-6a79-4507-88ed-9e1130f483c3\", \"target\": \"861c782d-e1d9-4633-b521-77284687ef13\", \"coordinates\": \"1350:950\"}, {\"source\": \"9433baf7-fa0f-48e5-aee4-6145c8f609af\", \"target\": \"f1dd5385-dfb0-4d2d-897b-9d89cde025aa\", \"coordinates\": \"2750:2250\"}, {\"source\": \"f1dd5385-dfb0-4d2d-897b-9d89cde025aa\", \"target\": \"df3a3aa5-bd4e-45cb-8ecc-26730a0ca662\", \"coordinates\": \"2850:2750\"}, {\"source\": \"e13bf22f-9501-4734-9e52-40db89367f83\", \"target\": \"3ce4774a-7515-40cb-9790-a553c347f340\", \"coordinates\": \"3250:3150\"}, {\"source\": \"5de1b432-a317-4a5b-9d7e-3af890833a7c\", \"target\": \"da3bbe04-c7cd-4c3f-9568-0022c2dfefbb\", \"coordinates\": \"2350:650\"}, {\"source\": \"5de1b432-a317-4a5b-9d7e-3af890833a7c\", \"target\": \"33a4b84f-2d92-472e-bace-176ab568e2c7\", \"coordinates\": \"1950:650\"}, {\"source\": \"5de1b432-a317-4a5b-9d7e-3af890833a7c\", \"target\": \"f1dd5385-dfb0-4d2d-897b-9d89cde025aa\", \"coordinates\": \"2750:650\"}, {\"source\": \"5de1b432-a317-4a5b-9d7e-3af890833a7c\", \"target\": \"739627f7-32ef-4543-b3a1-56bf61f631bd\", \"coordinates\": \"1650:650\"}, {\"source\": \"5de1b432-a317-4a5b-9d7e-3af890833a7c\", \"target\": \"861c782d-e1d9-4633-b521-77284687ef13\", \"coordinates\": \"1350:650\"}, {\"source\": \"539f6c7a-250e-4aba-b5a5-a019855dc023\", \"target\": \"3426206e-4784-46f6-a9db-8f350e43572d\", \"coordinates\": \"350:450\"}]", 
+  "labels": "[{\"identifier\": \"718a9f78-06f9-4fa9-b0df-2668f97f7840\", \"text\": \"Q3D[FLC]-EMWET--seq\", \"location\": \"1900:1900\", \"size\": \"400:400\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"0:111:166\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"aa607b11-a8a2-40f0-8665-a483ac61bdec\", \"text\": \"COOR\", \"location\": \"0:0\", \"size\": \"500:500\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"255:255:0\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"0a1b0311-31d9-4cc7-995a-b81bc74bf04a\", \"text\": \"Optimizer\", \"location\": \"700:700\", \"size\": \"600:600\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"28:230:255\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"9d60913f-e25a-4aa1-b13d-528cc21df0e0\", \"text\": \"OBJ\", \"location\": \"3000:3000\", \"size\": \"300:300\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"255:52:255\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"e0872da6-d691-4a85-96fd-f7b779843709\", \"text\": \"SCAM-merged[5modes]\", \"location\": \"1300:1300\", \"size\": \"300:300\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"255:74:70\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"5d56de97-0dab-45f3-b2d5-f5b4ad21f12d\", \"text\": \"GACA-merged[2modes]\", \"location\": \"1600:1600\", \"size\": \"300:300\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"0:137:65\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"c1d1df6b-caf0-4c88-8a04-3d5530abebf6\", \"text\": \"MTOW\", \"location\": \"2700:2700\", \"size\": \"300:300\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"255:219:229\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"ff9584ae-d328-49d1-8ad6-f269b91e91bd\", \"text\": \"Q3D[VDE]-SMFA--seq\", \"location\": \"2300:2300\", \"size\": \"400:400\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"163:0:89\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"3f901b9f-5e5f-4700-9f74-b8132a728077\", \"text\": \"HANGAR[AGILE_DC1_WP6_wing_startpoint]\", \"location\": \"500:500\", \"size\": \"200:200\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"0:0:0\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"aa92199a-43e6-4fe9-b7cf-3abd4209efd4\", \"text\": \"CNSTRNT-merged[2modes]\", \"location\": \"3300:3300\", \"size\": \"300:300\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"122:73:0\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}]"
+}

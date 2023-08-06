@@ -1,0 +1,35 @@
+{
+  "general_info":
+    {
+      "name":"GACA",
+      "type": "tool",
+      "version":1.0,
+      "creator":"Imco van Gent",
+      "description": "GACA stands for Geometrical Analysis of a CPACS Aircraft. It is a tool that provides geometrical values that are not explicitly stored in CPACS files (wing span, wing reference area, wing fuel tank volume)."
+    },
+  "execution_info":
+    [
+      {
+        "mode": "mainWingRefArea",
+        "description":"Determination of the reference (projected) area of the main wing.",
+        "run_time":0.1,
+        "precision":"L3",
+        "standard_deviation":0.01
+      },
+      {
+        "mode": "mainWingFuelTankVol",
+        "description":"Determination of the volume of the fuel tank in the wing.",
+        "run_time":0.1,
+        "precision":"L2",
+        "standard_deviation":0.01
+      }
+    ],
+  "rce_info":{"platform": "98737cdd4b424ab9af8f6bb636382176",
+               "component":
+               {"identifier": "de.rcenvironment.integration.cpacs.GACA",
+                "version": "1.0",
+                "name": "GACA"},
+               "staticInputName": "cpacs_in",
+               "staticOutputName": "cpacs_out"}
+}
+

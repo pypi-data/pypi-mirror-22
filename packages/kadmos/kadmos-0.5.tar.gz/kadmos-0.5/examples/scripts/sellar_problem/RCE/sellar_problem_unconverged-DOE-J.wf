@@ -1,0 +1,1563 @@
+{
+  "identifier": "5d0d5c7c-c4b5-4c8c-82f3-27ca0efd3913", 
+  "workflowVersion": "4", 
+  "name": "sellar_problem_unconverged-DOE-J2017-05-31_10:12:57_68", 
+  "nodes": [
+    {
+      "identifier": "68c7d591-9038-4454-b72a-9eefc9252bf8", 
+      "name": "COOR-out", 
+      "location": "30:30", 
+      "active": "true", 
+      "component": {
+        "identifier": "de.rcenvironment.inputprovider", 
+        "version": "3.2", 
+        "name": "Input Provider"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true"
+      }, 
+      "dynamicOutputs": [
+        {
+          "identifier": "6497556c-2ea4-4ead-ab47-bc48aa5dea2a", 
+          "name": "COOR-out_sellar_problem_unconverged-DOE-J", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-out_sellar_problem_unconverged-DOE-J.xml"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "3a4fa8c4-ca1a-4d68-bed8-da642764d695", 
+      "name": "COOR-filters", 
+      "location": "130:130", 
+      "active": "true", 
+      "component": {
+        "identifier": "de.rcenvironment.inputprovider", 
+        "version": "3.2", 
+        "name": "Input Provider"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true"
+      }, 
+      "dynamicOutputs": [
+        {
+          "identifier": "8a885dc6-2e15-4c0f-aef8-4de9c1c80eac", 
+          "name": "COOR-UXPathFilter-A", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-UXPathFilter-A.json"
+          }
+        }, 
+        {
+          "identifier": "49b4de84-7f23-4659-901a-10fe27fa8c31", 
+          "name": "COOR-UXPathFilter-D1", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-UXPathFilter-D1.json"
+          }
+        }, 
+        {
+          "identifier": "180ee0c3-8da9-4f1d-9e43-2fe975d76cb3", 
+          "name": "COOR-UXPathFilter-D2", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-UXPathFilter-D2.json"
+          }
+        }, 
+        {
+          "identifier": "0dd9bd89-68dd-4871-8ad5-be3e072e1328", 
+          "name": "COOR-UXPathFilter-F1", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-UXPathFilter-F1.json"
+          }
+        }, 
+        {
+          "identifier": "28cabf05-b3d7-43cd-9066-15472c06b0e2", 
+          "name": "COOR-UXPathFilter-G1", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-UXPathFilter-G1.json"
+          }
+        }, 
+        {
+          "identifier": "78c7da0d-5d48-4e35-bd5c-62db47bc0859", 
+          "name": "COOR-UXPathFilter-G2", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-UXPathFilter-G2.json"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "422dcf69-67da-4ea2-ba2f-2b72d5c6bec1", 
+      "name": "A", 
+      "location": "210:213", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.A", 
+        "version": "0.1", 
+        "name": "A"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "c2c99214-609b-4031-8383-f309b185c784", 
+          "name": "cpacs_in", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "6ff545fe-3bd3-4c2d-b0cf-bc4f4856dfef", 
+          "name": "cpacs_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "2b72f979-d1c4-4ff4-9a67-d99adab4b6e7", 
+      "name": "UXPathFilter-A", 
+      "location": "310:313", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-G2"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "04716fa3-d562-49a2-bf7f-3fb167da1d4e", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "c4fd00ba-9b0e-437e-b3d0-6fd9857d455e", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "e7739adb-f40d-4d7a-a150-364e99b0d8ab", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "96122929-6db8-42a3-9bf2-2740535369b2", 
+      "name": "DOE", 
+      "location": "410:413", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.doe.v2", 
+        "version": "3.3", 
+        "name": "Design of Experiments"
+      }, 
+      "configuration": {
+        "behaviourFailedRun": "Skip kadmos and continue", 
+        "endSample": "3", 
+        "isNestedLoop_5e0ed1cd": "false", 
+        "loopFaultTolerance_5e0ed1cd": "Fail", 
+        "loopRerunAndDiscard_5e0ed1cd": "1", 
+        "loopRerunAndFail_5e0ed1cd": "1", 
+        "method": "Custom design table", 
+        "runNumber": "4", 
+        "seedNumber": "0", 
+        "startSample": "0", 
+        "storeComponentHistoryData": "true", 
+        "table": "[[0.0, 1.0], [0.1, 1.1], [0.5, 1.5], [0.75, 1.75]]"
+      }, 
+      "staticOutputs": [
+        {
+          "identifier": "8b4e2040-44fb-4779-a772-ac68116e947b", 
+          "name": "Done", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "Boolean", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "edc0b70f-1d80-42cc-b3c3-1730ce51ddc0", 
+          "name": "Outer loop done", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "Boolean", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "InnerLoopEndpoint"
+          }
+        }
+      ], 
+      "dynamicOutputs": [
+        {
+          "identifier": "34c27297-7e79-4f7a-9a1c-485b78b7d662", 
+          "name": "z2IIpowe", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "0.0", 
+            "upper": "1.0"
+          }
+        }, 
+        {
+          "identifier": "935e0adb-cc01-4a38-900f-deeed6e711d8", 
+          "name": "z1IIkeri", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "0.0", 
+            "upper": "1.0"
+          }
+        }
+      ], 
+      "dynamicInputs": [
+        {
+          "identifier": "bddf2c29-121e-447f-88b3-ce4602cabde2", 
+          "name": "fIInomi", 
+          "epIdentifier": "default", 
+          "group": "default", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "618158b5-1d9a-4dc6-8735-a898b5c95597", 
+          "name": "g2IImoka", 
+          "epIdentifier": "default", 
+          "group": "default", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "43f53f76-8c4c-43b2-87d3-ff07c5bc5cfe", 
+          "name": "g1IInopu", 
+          "epIdentifier": "default", 
+          "group": "default", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "1cad1605-99e9-43ea-86b8-ec62568e2960", 
+      "name": "DOE-XML-load-conv", 
+      "location": "532:530", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.xmlloader", 
+        "version": "3.2", 
+        "name": "XML Loader"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true", 
+        "xmlContent": "<?xml version=\"1.0\"?>\n<data_schema>\n  <geometry><z1>dummy</z1><z2>dummy</z2></geometry>\n</data_schema>\n"
+      }, 
+      "staticOutputs": [
+        {
+          "identifier": "24d90342-2e39-48c7-aa07-9a79fa73c904", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "dynamicInputs": [
+        {
+          "identifier": "a718140d-0e63-4a1a-ade7-0d5212b07b7a", 
+          "name": "z1IIkeri", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/data_schema/geometry/z1"
+          }
+        }, 
+        {
+          "identifier": "6cc673f4-be0b-4eae-9189-b406875003c1", 
+          "name": "z2IIpowe", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/data_schema/geometry/z2"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "26b5ad93-c4b0-4ff2-9f9e-c401078b53c1", 
+      "name": "DOE-XML-merge-conv", 
+      "location": "632:630", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.xmlmerger", 
+        "version": "3.2", 
+        "name": "XML Merger"
+      }, 
+      "configuration": {
+        "mappingType": "Classic", 
+        "storeComponentHistoryData": "true", 
+        "xmlContent": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<map:mappings xmlns:map=\"http://www.rcenvironment.de/2015/mapping\"\r\n              xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n    <map:mapping>\r\n        <map:source>/data_schema</map:source>\r\n        <map:target>/data_schema</map:target>\r\n    </map:mapping>\r\n\r\n</map:mappings>"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "5cbff16a-1e57-40f9-8bac-864a6ed1e9ab", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "0ef5dda4-89d4-41fa-a65d-8222035b3e27", 
+          "name": "XML to integrate", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "a92ecff0-aac7-4cf8-8eae-17aee0a09b9b", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "dynamicOutputs": [
+        {
+          "identifier": "1d502c2e-0dd7-46c3-b95e-2e48b72f5ae6", 
+          "name": "fIInomi", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/f"
+          }
+        }, 
+        {
+          "identifier": "2c2826c2-c005-471d-8ae7-9ee888c19ba5", 
+          "name": "g1IInopu", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/g1"
+          }
+        }, 
+        {
+          "identifier": "e18839ce-ebf0-4545-a2b8-5f6ea27f7bb4", 
+          "name": "g2IImoka", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/g2"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "90006fff-89a4-43f6-abc8-aac7ef3cbbdf", 
+      "name": "XMLM-DOE-XML-merge-conv", 
+      "location": "710:713", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "3", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "6b4b288e-806e-4889-b1b7-d7a382c68dea", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "5a65df33-4ce4-4ea0-85ef-e6777dfaa5c5", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "1382212e-0eae-47a8-9d7f-70ef5dba36f3", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "a644430f-12b6-4b57-aa3c-564788915dcb", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "77e64239-8200-4795-9066-901ade46d3ab", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "b9c1efb1-bdff-4244-85fe-2d8448311789", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "7d40280d-4553-4c99-98f4-0c1de380a1a5", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "e315e189-d39f-4df4-89ad-f4f0cce47178", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "ebc65b3b-fd40-44c5-b935-1094461f2fdc", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "88602310-c3b4-4644-8f5e-d8ccdd113df0", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "68add04b-a496-4e28-819c-5b9d9a9801e5", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "0b629812-d8e0-45f0-8c12-ba4a674190da", 
+      "name": "XMLM-D1", 
+      "location": "810:813", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "3", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "ccdbf155-7045-44fb-87f3-6a26ffa8394d", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "4190b158-92e5-4149-9ccb-b9ff3cae72d8", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "109840b0-3625-411d-b804-edce6461c6bf", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "e284808e-52c7-4945-96ca-9c30f5fa7fdd", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "ddbfbdb2-6db0-40b7-beb1-ed69182152f5", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "943dcdc7-6f6a-4292-92fc-72c8438ed5de", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "c2e4a918-2d0e-4623-b590-cce9feb575ea", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "5ebff8f2-7b3a-490c-9a6c-2dd9a2a6ca0f", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "85900aa7-7dab-4594-86e5-dfcf77bd269a", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "b410aab2-510b-4a7f-b54b-45fb3ac3894f", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "cce521a4-25e4-4b90-ae4a-890cace87919", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "1b634968-95a3-4fc9-8b83-0440a9403d23", 
+      "name": "D1", 
+      "location": "910:913", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.D1-XML", 
+        "version": "0.1", 
+        "name": "D1-XML"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "632e8a7f-e01f-4536-a51f-3a72c6cc1a8a", 
+          "name": "D1-input_xml", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "e615a26b-8e22-4e8d-bfbf-74a96031ad57", 
+          "name": "D1-output_xml", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "4e319e0d-1ebc-4709-ba39-3d90fbc14431", 
+      "name": "UXPathFilter-D1", 
+      "location": "1010:1013", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-G2"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "c55c02a9-0fc9-4969-9abd-b8d0926cd272", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "1ec4ca2a-2984-4b03-9bfd-406f47088e68", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "4ed06bab-59c5-405a-8af9-4aa5514e1a95", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "3b238fe8-4543-4ad6-b25f-5e3e44e68717", 
+      "name": "XMLM-D2", 
+      "location": "1110:1113", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "3", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "d2465e3e-651c-41ce-8740-40de16179da3", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "de55822d-eded-418d-9dec-d9bac55bd668", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "1e717289-3851-435f-abb7-6abbd07e5361", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "207cfac1-dc8d-48f9-8848-6972b8464abb", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "0477878c-1555-4e88-aa4e-f3b09a74c580", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "928d2c94-5d3c-4c1b-8f0f-367507dbaa61", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "b8a3669f-7c72-446e-b706-dcbea9262a2f", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "a213fb33-a1fb-4eb1-87a9-8a6edecd0c37", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "0d548499-48bd-439d-8a46-60363bd6e6ae", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "4f847023-e5bb-4bd5-8bf1-bfab2dd0ffd2", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "5287df05-ee94-4e43-8685-b77dac0c8be6", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "c3ee4075-3a94-4377-b40b-5721b670b0eb", 
+      "name": "D2", 
+      "location": "1210:1213", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.D2-XML", 
+        "version": "0.1", 
+        "name": "D2-XML"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "55482537-05d0-41fe-9d0c-8a8aeb7230bc", 
+          "name": "D2_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "020c432f-2dda-4b99-9f90-0da104798fb3", 
+          "name": "D2_output", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "cbc15384-c3ea-499f-92cf-106529260459", 
+      "name": "UXPathFilter-D2", 
+      "location": "1310:1313", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-G2"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "032e89ff-f9b1-460b-bb43-81844ddcd04f", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "7663d790-a50b-4a06-84bc-2217d236faaa", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "e88524f1-f00d-433b-a68b-ac8e4780f6b4", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "11881694-abd5-4399-9fa3-46fe6b4419ae", 
+      "name": "XMLM-F1", 
+      "location": "1410:1413", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "4", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "a9f1ce80-caf9-4fd5-8a54-b778c5378c74", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "f6978ebf-512e-41aa-8fdb-9902d6cb5d31", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "1a95ca1b-d7dc-432c-84c4-7f80eb9bc29e", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "88f75a00-d347-472b-a261-fa8c0867479f", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "c2d102b9-217d-4cc6-a6f0-7875daf53571", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "2fffe58c-f3b0-4a04-adc0-f74b028ac512", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "461faa67-be0d-4982-844a-33f5d66f3efd", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "dfa98157-adfd-4d0d-9d76-4039755d9992", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "3672cd4c-8a12-4b60-aa81-b6e141547148", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "e680a9c1-9e9b-4530-8add-68a3947e266f", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "5263bfa2-b349-49a8-98e3-548575cd81e9", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "68c8e2b1-adf3-40b4-a0c5-226dcb54d700", 
+      "name": "F1", 
+      "location": "1510:1513", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.F-XML", 
+        "version": "0.1", 
+        "name": "F-XML"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "4804e648-e000-46a6-b4d9-36a3a429a71c", 
+          "name": "F_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "dd1e99c8-c993-4b7b-89f9-e20d2d273b29", 
+          "name": "F_output", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "d267b91d-ac63-49a7-9dfe-f52e19151285", 
+      "name": "UXPathFilter-F1", 
+      "location": "1610:1613", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-G2"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "eab3d666-c1b2-4251-9bd9-5f0c7072626e", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "e4c08484-5c8d-4424-a90d-5d6b009c7560", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "06ba9d52-073e-4a9a-a41b-d61e798ae58c", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "6720ff82-9c4c-4551-a0c8-905399e1efd0", 
+      "name": "G1", 
+      "location": "1710:1713", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.G1-XML", 
+        "version": "0.1", 
+        "name": "G1-XML"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "c114c000-ed11-4d80-a079-2dcb67b3a2b0", 
+          "name": "G1-input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "1b7fa939-4749-4db6-ad87-257cbfc28f64", 
+          "name": "G1-output", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "802298bd-5401-4feb-acfb-8d48be6004b3", 
+      "name": "UXPathFilter-G1", 
+      "location": "1810:1813", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-G2"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "0d5773b6-fb78-482f-9dad-c0c008ee6c77", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "91f99f07-6700-4313-a7e5-525e766325de", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "9a088566-3bd4-4530-a8d8-b1ea73cf08b5", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "d1a044c0-aaef-4899-80a9-860a2832443e", 
+      "name": "G2", 
+      "location": "1910:1913", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.G2-XML", 
+        "version": "0.1", 
+        "name": "G2-XML"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "d55939dc-2215-4fb1-ae18-df0143373b68", 
+          "name": "G2-input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "dcf634f5-a2b7-4cee-aa56-759b6fa79f1d", 
+          "name": "G2-output", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "ddab9fc2-0d89-431d-8097-22faebc76a7e", 
+      "name": "UXPathFilter-G2", 
+      "location": "2010:2013", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-G2"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "2190ad84-c64e-4812-a8c4-5ef3157ef9c3", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "b5b4738a-510d-4720-aef7-810fa2ffbb23", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "0e7c03f8-4bdf-4ade-b4a6-5c143da93eeb", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }
+  ], 
+  "connections": [
+    {
+      "source": "3b238fe8-4543-4ad6-b25f-5e3e44e68717", 
+      "output": "5287df05-ee94-4e43-8685-b77dac0c8be6", 
+      "target": "c3ee4075-3a94-4377-b40b-5721b670b0eb", 
+      "input": "55482537-05d0-41fe-9d0c-8a8aeb7230bc"
+    }, 
+    {
+      "source": "0b629812-d8e0-45f0-8c12-ba4a674190da", 
+      "output": "cce521a4-25e4-4b90-ae4a-890cace87919", 
+      "target": "1b634968-95a3-4fc9-8b83-0440a9403d23", 
+      "input": "632e8a7f-e01f-4536-a51f-3a72c6cc1a8a"
+    }, 
+    {
+      "source": "2b72f979-d1c4-4ff4-9a67-d99adab4b6e7", 
+      "output": "e7739adb-f40d-4d7a-a150-364e99b0d8ab", 
+      "target": "3b238fe8-4543-4ad6-b25f-5e3e44e68717", 
+      "input": "de55822d-eded-418d-9dec-d9bac55bd668"
+    }, 
+    {
+      "source": "2b72f979-d1c4-4ff4-9a67-d99adab4b6e7", 
+      "output": "e7739adb-f40d-4d7a-a150-364e99b0d8ab", 
+      "target": "0b629812-d8e0-45f0-8c12-ba4a674190da", 
+      "input": "4190b158-92e5-4149-9ccb-b9ff3cae72d8"
+    }, 
+    {
+      "source": "96122929-6db8-42a3-9bf2-2740535369b2", 
+      "output": "935e0adb-cc01-4a38-900f-deeed6e711d8", 
+      "target": "1cad1605-99e9-43ea-86b8-ec62568e2960", 
+      "input": "a718140d-0e63-4a1a-ade7-0d5212b07b7a"
+    }, 
+    {
+      "source": "96122929-6db8-42a3-9bf2-2740535369b2", 
+      "output": "34c27297-7e79-4f7a-9a1c-485b78b7d662", 
+      "target": "1cad1605-99e9-43ea-86b8-ec62568e2960", 
+      "input": "6cc673f4-be0b-4eae-9189-b406875003c1"
+    }, 
+    {
+      "source": "11881694-abd5-4399-9fa3-46fe6b4419ae", 
+      "output": "5263bfa2-b349-49a8-98e3-548575cd81e9", 
+      "target": "68c8e2b1-adf3-40b4-a0c5-226dcb54d700", 
+      "input": "4804e648-e000-46a6-b4d9-36a3a429a71c"
+    }, 
+    {
+      "source": "d1a044c0-aaef-4899-80a9-860a2832443e", 
+      "output": "dcf634f5-a2b7-4cee-aa56-759b6fa79f1d", 
+      "target": "ddab9fc2-0d89-431d-8097-22faebc76a7e", 
+      "input": "b5b4738a-510d-4720-aef7-810fa2ffbb23"
+    }, 
+    {
+      "source": "6720ff82-9c4c-4551-a0c8-905399e1efd0", 
+      "output": "1b7fa939-4749-4db6-ad87-257cbfc28f64", 
+      "target": "802298bd-5401-4feb-acfb-8d48be6004b3", 
+      "input": "91f99f07-6700-4313-a7e5-525e766325de"
+    }, 
+    {
+      "source": "1cad1605-99e9-43ea-86b8-ec62568e2960", 
+      "output": "24d90342-2e39-48c7-aa07-9a79fa73c904", 
+      "target": "3b238fe8-4543-4ad6-b25f-5e3e44e68717", 
+      "input": "1e717289-3851-435f-abb7-6abbd07e5361"
+    }, 
+    {
+      "source": "1cad1605-99e9-43ea-86b8-ec62568e2960", 
+      "output": "24d90342-2e39-48c7-aa07-9a79fa73c904", 
+      "target": "0b629812-d8e0-45f0-8c12-ba4a674190da", 
+      "input": "109840b0-3625-411d-b804-edce6461c6bf"
+    }, 
+    {
+      "source": "1cad1605-99e9-43ea-86b8-ec62568e2960", 
+      "output": "24d90342-2e39-48c7-aa07-9a79fa73c904", 
+      "target": "11881694-abd5-4399-9fa3-46fe6b4419ae", 
+      "input": "f6978ebf-512e-41aa-8fdb-9902d6cb5d31"
+    }, 
+    {
+      "source": "ddab9fc2-0d89-431d-8097-22faebc76a7e", 
+      "output": "0e7c03f8-4bdf-4ade-b4a6-5c143da93eeb", 
+      "target": "90006fff-89a4-43f6-abc8-aac7ef3cbbdf", 
+      "input": "1382212e-0eae-47a8-9d7f-70ef5dba36f3"
+    }, 
+    {
+      "source": "802298bd-5401-4feb-acfb-8d48be6004b3", 
+      "output": "9a088566-3bd4-4530-a8d8-b1ea73cf08b5", 
+      "target": "90006fff-89a4-43f6-abc8-aac7ef3cbbdf", 
+      "input": "5a65df33-4ce4-4ea0-85ef-e6777dfaa5c5"
+    }, 
+    {
+      "source": "422dcf69-67da-4ea2-ba2f-2b72d5c6bec1", 
+      "output": "6ff545fe-3bd3-4c2d-b0cf-bc4f4856dfef", 
+      "target": "2b72f979-d1c4-4ff4-9a67-d99adab4b6e7", 
+      "input": "c4fd00ba-9b0e-437e-b3d0-6fd9857d455e"
+    }, 
+    {
+      "source": "3a4fa8c4-ca1a-4d68-bed8-da642764d695", 
+      "output": "8a885dc6-2e15-4c0f-aef8-4de9c1c80eac", 
+      "target": "2b72f979-d1c4-4ff4-9a67-d99adab4b6e7", 
+      "input": "04716fa3-d562-49a2-bf7f-3fb167da1d4e"
+    }, 
+    {
+      "source": "3a4fa8c4-ca1a-4d68-bed8-da642764d695", 
+      "output": "0dd9bd89-68dd-4871-8ad5-be3e072e1328", 
+      "target": "d267b91d-ac63-49a7-9dfe-f52e19151285", 
+      "input": "eab3d666-c1b2-4251-9bd9-5f0c7072626e"
+    }, 
+    {
+      "source": "3a4fa8c4-ca1a-4d68-bed8-da642764d695", 
+      "output": "180ee0c3-8da9-4f1d-9e43-2fe975d76cb3", 
+      "target": "cbc15384-c3ea-499f-92cf-106529260459", 
+      "input": "032e89ff-f9b1-460b-bb43-81844ddcd04f"
+    }, 
+    {
+      "source": "3a4fa8c4-ca1a-4d68-bed8-da642764d695", 
+      "output": "49b4de84-7f23-4659-901a-10fe27fa8c31", 
+      "target": "4e319e0d-1ebc-4709-ba39-3d90fbc14431", 
+      "input": "c55c02a9-0fc9-4969-9abd-b8d0926cd272"
+    }, 
+    {
+      "source": "3a4fa8c4-ca1a-4d68-bed8-da642764d695", 
+      "output": "78c7da0d-5d48-4e35-bd5c-62db47bc0859", 
+      "target": "ddab9fc2-0d89-431d-8097-22faebc76a7e", 
+      "input": "2190ad84-c64e-4812-a8c4-5ef3157ef9c3"
+    }, 
+    {
+      "source": "3a4fa8c4-ca1a-4d68-bed8-da642764d695", 
+      "output": "28cabf05-b3d7-43cd-9066-15472c06b0e2", 
+      "target": "802298bd-5401-4feb-acfb-8d48be6004b3", 
+      "input": "0d5773b6-fb78-482f-9dad-c0c008ee6c77"
+    }, 
+    {
+      "source": "26b5ad93-c4b0-4ff2-9f9e-c401078b53c1", 
+      "output": "1d502c2e-0dd7-46c3-b95e-2e48b72f5ae6", 
+      "target": "96122929-6db8-42a3-9bf2-2740535369b2", 
+      "input": "bddf2c29-121e-447f-88b3-ce4602cabde2"
+    }, 
+    {
+      "source": "26b5ad93-c4b0-4ff2-9f9e-c401078b53c1", 
+      "output": "2c2826c2-c005-471d-8ae7-9ee888c19ba5", 
+      "target": "96122929-6db8-42a3-9bf2-2740535369b2", 
+      "input": "43f53f76-8c4c-43b2-87d3-ff07c5bc5cfe"
+    }, 
+    {
+      "source": "26b5ad93-c4b0-4ff2-9f9e-c401078b53c1", 
+      "output": "e18839ce-ebf0-4545-a2b8-5f6ea27f7bb4", 
+      "target": "96122929-6db8-42a3-9bf2-2740535369b2", 
+      "input": "618158b5-1d9a-4dc6-8735-a898b5c95597"
+    }, 
+    {
+      "source": "68c8e2b1-adf3-40b4-a0c5-226dcb54d700", 
+      "output": "dd1e99c8-c993-4b7b-89f9-e20d2d273b29", 
+      "target": "d267b91d-ac63-49a7-9dfe-f52e19151285", 
+      "input": "e4c08484-5c8d-4424-a90d-5d6b009c7560"
+    }, 
+    {
+      "source": "90006fff-89a4-43f6-abc8-aac7ef3cbbdf", 
+      "output": "68add04b-a496-4e28-819c-5b9d9a9801e5", 
+      "target": "26b5ad93-c4b0-4ff2-9f9e-c401078b53c1", 
+      "input": "5cbff16a-1e57-40f9-8bac-864a6ed1e9ab"
+    }, 
+    {
+      "source": "90006fff-89a4-43f6-abc8-aac7ef3cbbdf", 
+      "output": "68add04b-a496-4e28-819c-5b9d9a9801e5", 
+      "target": "26b5ad93-c4b0-4ff2-9f9e-c401078b53c1", 
+      "input": "0ef5dda4-89d4-41fa-a65d-8222035b3e27"
+    }, 
+    {
+      "source": "cbc15384-c3ea-499f-92cf-106529260459", 
+      "output": "e88524f1-f00d-433b-a68b-ac8e4780f6b4", 
+      "target": "11881694-abd5-4399-9fa3-46fe6b4419ae", 
+      "input": "88f75a00-d347-472b-a261-fa8c0867479f"
+    }, 
+    {
+      "source": "cbc15384-c3ea-499f-92cf-106529260459", 
+      "output": "e88524f1-f00d-433b-a68b-ac8e4780f6b4", 
+      "target": "d1a044c0-aaef-4899-80a9-860a2832443e", 
+      "input": "d55939dc-2215-4fb1-ae18-df0143373b68"
+    }, 
+    {
+      "source": "68c7d591-9038-4454-b72a-9eefc9252bf8", 
+      "output": "6497556c-2ea4-4ead-ab47-bc48aa5dea2a", 
+      "target": "422dcf69-67da-4ea2-ba2f-2b72d5c6bec1", 
+      "input": "c2c99214-609b-4031-8383-f309b185c784"
+    }, 
+    {
+      "source": "68c7d591-9038-4454-b72a-9eefc9252bf8", 
+      "output": "6497556c-2ea4-4ead-ab47-bc48aa5dea2a", 
+      "target": "0b629812-d8e0-45f0-8c12-ba4a674190da", 
+      "input": "ccdbf155-7045-44fb-87f3-6a26ffa8394d"
+    }, 
+    {
+      "source": "68c7d591-9038-4454-b72a-9eefc9252bf8", 
+      "output": "6497556c-2ea4-4ead-ab47-bc48aa5dea2a", 
+      "target": "3b238fe8-4543-4ad6-b25f-5e3e44e68717", 
+      "input": "d2465e3e-651c-41ce-8740-40de16179da3"
+    }, 
+    {
+      "source": "68c7d591-9038-4454-b72a-9eefc9252bf8", 
+      "output": "6497556c-2ea4-4ead-ab47-bc48aa5dea2a", 
+      "target": "11881694-abd5-4399-9fa3-46fe6b4419ae", 
+      "input": "a9f1ce80-caf9-4fd5-8a54-b778c5378c74"
+    }, 
+    {
+      "source": "4e319e0d-1ebc-4709-ba39-3d90fbc14431", 
+      "output": "4ed06bab-59c5-405a-8af9-4aa5514e1a95", 
+      "target": "11881694-abd5-4399-9fa3-46fe6b4419ae", 
+      "input": "1a95ca1b-d7dc-432c-84c4-7f80eb9bc29e"
+    }, 
+    {
+      "source": "4e319e0d-1ebc-4709-ba39-3d90fbc14431", 
+      "output": "4ed06bab-59c5-405a-8af9-4aa5514e1a95", 
+      "target": "6720ff82-9c4c-4551-a0c8-905399e1efd0", 
+      "input": "c114c000-ed11-4d80-a079-2dcb67b3a2b0"
+    }, 
+    {
+      "source": "c3ee4075-3a94-4377-b40b-5721b670b0eb", 
+      "output": "020c432f-2dda-4b99-9f90-0da104798fb3", 
+      "target": "cbc15384-c3ea-499f-92cf-106529260459", 
+      "input": "7663d790-a50b-4a06-84bc-2217d236faaa"
+    }, 
+    {
+      "source": "d267b91d-ac63-49a7-9dfe-f52e19151285", 
+      "output": "06ba9d52-073e-4a9a-a41b-d61e798ae58c", 
+      "target": "90006fff-89a4-43f6-abc8-aac7ef3cbbdf", 
+      "input": "6b4b288e-806e-4889-b1b7-d7a382c68dea"
+    }, 
+    {
+      "source": "1b634968-95a3-4fc9-8b83-0440a9403d23", 
+      "output": "e615a26b-8e22-4e8d-bfbf-74a96031ad57", 
+      "target": "4e319e0d-1ebc-4709-ba39-3d90fbc14431", 
+      "input": "1ec4ca2a-2984-4b03-9bfd-406f47088e68"
+    }
+  ], 
+  "bendpoints": "[{\"source\": \"3b238fe8-4543-4ad6-b25f-5e3e44e68717\", \"target\": \"c3ee4075-3a94-4377-b40b-5721b670b0eb\", \"coordinates\": \"1250:1150\"}, {\"source\": \"0b629812-d8e0-45f0-8c12-ba4a674190da\", \"target\": \"1b634968-95a3-4fc9-8b83-0440a9403d23\", \"coordinates\": \"950:850\"}, {\"source\": \"2b72f979-d1c4-4ff4-9a67-d99adab4b6e7\", \"target\": \"3b238fe8-4543-4ad6-b25f-5e3e44e68717\", \"coordinates\": \"1150:350\"}, {\"source\": \"2b72f979-d1c4-4ff4-9a67-d99adab4b6e7\", \"target\": \"0b629812-d8e0-45f0-8c12-ba4a674190da\", \"coordinates\": \"850:350\"}, {\"source\": \"96122929-6db8-42a3-9bf2-2740535369b2\", \"target\": \"1cad1605-99e9-43ea-86b8-ec62568e2960\", \"coordinates\": \"550:450\"}, {\"source\": \"11881694-abd5-4399-9fa3-46fe6b4419ae\", \"target\": \"68c8e2b1-adf3-40b4-a0c5-226dcb54d700\", \"coordinates\": \"1550:1450\"}, {\"source\": \"d1a044c0-aaef-4899-80a9-860a2832443e\", \"target\": \"ddab9fc2-0d89-431d-8097-22faebc76a7e\", \"coordinates\": \"2050:1950\"}, {\"source\": \"6720ff82-9c4c-4551-a0c8-905399e1efd0\", \"target\": \"802298bd-5401-4feb-acfb-8d48be6004b3\", \"coordinates\": \"1850:1750\"}, {\"source\": \"1cad1605-99e9-43ea-86b8-ec62568e2960\", \"target\": \"3b238fe8-4543-4ad6-b25f-5e3e44e68717\", \"coordinates\": \"1150:550\"}, {\"source\": \"1cad1605-99e9-43ea-86b8-ec62568e2960\", \"target\": \"0b629812-d8e0-45f0-8c12-ba4a674190da\", \"coordinates\": \"850:550\"}, {\"source\": \"1cad1605-99e9-43ea-86b8-ec62568e2960\", \"target\": \"11881694-abd5-4399-9fa3-46fe6b4419ae\", \"coordinates\": \"1450:550\"}, {\"source\": \"ddab9fc2-0d89-431d-8097-22faebc76a7e\", \"target\": \"90006fff-89a4-43f6-abc8-aac7ef3cbbdf\", \"coordinates\": \"750:2050\"}, {\"source\": \"802298bd-5401-4feb-acfb-8d48be6004b3\", \"target\": \"90006fff-89a4-43f6-abc8-aac7ef3cbbdf\", \"coordinates\": \"750:1850\"}, {\"source\": \"422dcf69-67da-4ea2-ba2f-2b72d5c6bec1\", \"target\": \"2b72f979-d1c4-4ff4-9a67-d99adab4b6e7\", \"coordinates\": \"350:250\"}, {\"source\": \"3a4fa8c4-ca1a-4d68-bed8-da642764d695\", \"target\": \"2b72f979-d1c4-4ff4-9a67-d99adab4b6e7\", \"coordinates\": \"350:150\"}, {\"source\": \"3a4fa8c4-ca1a-4d68-bed8-da642764d695\", \"target\": \"d267b91d-ac63-49a7-9dfe-f52e19151285\", \"coordinates\": \"1650:150\"}, {\"source\": \"3a4fa8c4-ca1a-4d68-bed8-da642764d695\", \"target\": \"cbc15384-c3ea-499f-92cf-106529260459\", \"coordinates\": \"1350:150\"}, {\"source\": \"3a4fa8c4-ca1a-4d68-bed8-da642764d695\", \"target\": \"4e319e0d-1ebc-4709-ba39-3d90fbc14431\", \"coordinates\": \"1050:150\"}, {\"source\": \"3a4fa8c4-ca1a-4d68-bed8-da642764d695\", \"target\": \"ddab9fc2-0d89-431d-8097-22faebc76a7e\", \"coordinates\": \"2050:150\"}, {\"source\": \"3a4fa8c4-ca1a-4d68-bed8-da642764d695\", \"target\": \"802298bd-5401-4feb-acfb-8d48be6004b3\", \"coordinates\": \"1850:150\"}, {\"source\": \"26b5ad93-c4b0-4ff2-9f9e-c401078b53c1\", \"target\": \"96122929-6db8-42a3-9bf2-2740535369b2\", \"coordinates\": \"450:650\"}, {\"source\": \"68c8e2b1-adf3-40b4-a0c5-226dcb54d700\", \"target\": \"d267b91d-ac63-49a7-9dfe-f52e19151285\", \"coordinates\": \"1650:1550\"}, {\"source\": \"90006fff-89a4-43f6-abc8-aac7ef3cbbdf\", \"target\": \"26b5ad93-c4b0-4ff2-9f9e-c401078b53c1\", \"coordinates\": \"650:750\"}, {\"source\": \"cbc15384-c3ea-499f-92cf-106529260459\", \"target\": \"11881694-abd5-4399-9fa3-46fe6b4419ae\", \"coordinates\": \"1450:1350\"}, {\"source\": \"cbc15384-c3ea-499f-92cf-106529260459\", \"target\": \"d1a044c0-aaef-4899-80a9-860a2832443e\", \"coordinates\": \"1950:1350\"}, {\"source\": \"68c7d591-9038-4454-b72a-9eefc9252bf8\", \"target\": \"422dcf69-67da-4ea2-ba2f-2b72d5c6bec1\", \"coordinates\": \"250:50\"}, {\"source\": \"68c7d591-9038-4454-b72a-9eefc9252bf8\", \"target\": \"0b629812-d8e0-45f0-8c12-ba4a674190da\", \"coordinates\": \"850:50\"}, {\"source\": \"68c7d591-9038-4454-b72a-9eefc9252bf8\", \"target\": \"3b238fe8-4543-4ad6-b25f-5e3e44e68717\", \"coordinates\": \"1150:50\"}, {\"source\": \"68c7d591-9038-4454-b72a-9eefc9252bf8\", \"target\": \"11881694-abd5-4399-9fa3-46fe6b4419ae\", \"coordinates\": \"1450:50\"}, {\"source\": \"4e319e0d-1ebc-4709-ba39-3d90fbc14431\", \"target\": \"11881694-abd5-4399-9fa3-46fe6b4419ae\", \"coordinates\": \"1450:1050\"}, {\"source\": \"4e319e0d-1ebc-4709-ba39-3d90fbc14431\", \"target\": \"6720ff82-9c4c-4551-a0c8-905399e1efd0\", \"coordinates\": \"1750:1050\"}, {\"source\": \"c3ee4075-3a94-4377-b40b-5721b670b0eb\", \"target\": \"cbc15384-c3ea-499f-92cf-106529260459\", \"coordinates\": \"1350:1250\"}, {\"source\": \"d267b91d-ac63-49a7-9dfe-f52e19151285\", \"target\": \"90006fff-89a4-43f6-abc8-aac7ef3cbbdf\", \"coordinates\": \"750:1650\"}, {\"source\": \"1b634968-95a3-4fc9-8b83-0440a9403d23\", \"target\": \"4e319e0d-1ebc-4709-ba39-3d90fbc14431\", \"coordinates\": \"1050:950\"}]", 
+  "labels": "[{\"identifier\": \"907b15fd-1fea-4392-9c4f-f1954a038c88\", \"text\": \"A\", \"location\": \"200:200\", \"size\": \"200:200\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"0:111:166\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"b1d6605f-27a7-44fd-b519-827d696609a2\", \"text\": \"COOR\", \"location\": \"0:0\", \"size\": \"200:200\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"255:255:0\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"5a3ce72e-ec5c-4588-bc94-9fdfc6d1725f\", \"text\": \"G2\", \"location\": \"1900:1900\", \"size\": \"200:200\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"28:230:255\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"e6c75baa-7c5a-484f-8f39-4661647f4da1\", \"text\": \"G1\", \"location\": \"1700:1700\", \"size\": \"200:200\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"255:52:255\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"43f3c0fa-7e48-486c-8f9a-99dc72b65cf2\", \"text\": \"F1\", \"location\": \"1400:1400\", \"size\": \"300:300\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"255:74:70\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"dc6520ca-0655-4174-bd4d-2bbccdb2578c\", \"text\": \"DOE\", \"location\": \"400:400\", \"size\": \"400:400\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"0:137:65\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"bbcedcf5-1996-4cc2-a57d-3ee4ce7e7019\", \"text\": \"D2\", \"location\": \"1100:1100\", \"size\": \"300:300\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"255:219:229\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"f991cdf4-6a41-45d4-a466-19081d1b5952\", \"text\": \"D1\", \"location\": \"800:800\", \"size\": \"300:300\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"163:0:89\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}]"
+}

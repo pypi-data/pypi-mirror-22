@@ -1,0 +1,28 @@
+{
+  "general_info":
+    {
+      "name":"OBJ",
+      "type": "tool",
+      "version":1.0,
+      "creator":"Imco van Gent",
+      "description": "OBJ is a tool that collects different objective functions."
+    },
+  "execution_info":
+    [
+      {
+        "mode": "MTOW",
+        "description":"Determination of the normalized MTOW.",
+        "run_time":0.1,
+        "precision":"L3",
+        "standard_deviation":0.01
+      }
+    ],
+  "rce_info":{"platform": "98737cdd4b424ab9af8f6bb636382176",
+               "component":
+               {"identifier": "de.rcenvironment.integration.cpacs.OBJ",
+                "version": "1.0",
+                "name": "OBJ"},
+               "staticInputName": "cpacs_in",
+               "staticOutputName": "cpacs_out"}
+}
+

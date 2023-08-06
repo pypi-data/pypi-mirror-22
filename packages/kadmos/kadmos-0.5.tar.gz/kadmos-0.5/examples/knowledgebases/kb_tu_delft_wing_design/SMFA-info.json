@@ -1,0 +1,26 @@
+{
+  "general_info":
+      {
+        "name":"SMFA",
+        "version":1.0,
+        "creator":"Imco van Gent",
+        "description": "SMFA: Simplified Mission Fuel Analysis is a tool that provides an estimation of the required mission fuel based on the Breguet equation."
+      },
+  "execution_info":
+      [
+        {
+          "mode": "Main",
+          "description": "The main and only mode of SMFA.",
+          "run_time":0.1,
+          "precision":"L0",
+          "standard_deviation":0.10
+        }
+      ],
+  "rce_info":{"platform": "98737cdd4b424ab9af8f6bb636382176",
+               "component":
+               {"identifier": "de.rcenvironment.integration.cpacs.SMFA",
+                "version": "1.0",
+                "name": "SMFA"},
+               "staticInputName": "cpacs_in",
+               "staticOutputName": "cpacs_out"}
+}

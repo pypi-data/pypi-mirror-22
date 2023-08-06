@@ -1,0 +1,56 @@
+{
+  "general_info":
+    {
+      "name":"SCAM",
+      "type": "tool",
+      "version":1.0,
+      "creator":"Imco van Gent",
+      "description": "SCAM: Simplified CPACS Aircraft Morphing."
+    },
+  "execution_info":
+    [
+      {
+        "mode": "wing_length_morph",
+        "description":"Adjustment of total lenght of all the wing segments.",
+        "run_time":0.1,
+        "precision":"L0",
+        "standard_deviation":0.01
+      },
+      {
+        "mode": "wing_sweep_morph",
+        "description":"Adjustment of the sweep angle of each wing segment.",
+        "run_time":0.1,
+        "precision":"L0",
+        "standard_deviation":0.01
+      },
+      {
+        "mode": "wing_taper_morph",
+        "description":"Adjustment of the tip chord length of each wing segment w.r.t. the wing root chord using a taper ratio value.",
+        "run_time":0.1,
+        "precision":"L0",
+        "standard_deviation":0.01
+      },
+      {
+        "mode": "wing_root_chord_morph",
+        "description":"Adjustment wing root chord length.",
+        "run_time":0.1,
+        "precision":"L0",
+        "standard_deviation":0.01
+      },
+      {
+        "mode": "wing_dihedral_morph",
+        "description":"Adjustment of the full wing dihedral to a single new value.",
+        "run_time":0.1,
+        "precision":"L0",
+        "standard_deviation":0.01
+      }
+    ],
+  "rce_info":{"platform": "98737cdd4b424ab9af8f6bb636382176",
+               "component":
+               {"identifier": "de.rcenvironment.integration.cpacs.SCAM",
+                "version": "1.0",
+                "name": "SCAM"},
+               "staticInputName": "cpacs_in",
+               "staticOutputName": "cpacs_out"}
+}
+

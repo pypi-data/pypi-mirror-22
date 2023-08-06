@@ -1,0 +1,27 @@
+{
+  "general_info":
+      {
+        "name":"EMWET",
+        "version":1.0,
+        "creator":"Ali Elham",
+        "description": "provide description here."
+      },
+  "execution_info":
+      [
+        {
+          "mode": "Main",
+          "description": "The main and only mode of EMWET.",
+          "run_time":5,
+          "precision":"L1",
+          "standard_deviation":0.05
+        }
+      ],
+  "rce_info":{"platform": "98737cdd4b424ab9af8f6bb636382176",
+               "component":
+               {"identifier": "de.rcenvironment.integration.cpacs.EMWET",
+                "version": "1.0",
+                "name": "EMWET"},
+               "staticInputName": "cpacs_in",
+               "staticOutputName": "cpacs_out"}
+}
+

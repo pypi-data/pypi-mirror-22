@@ -1,0 +1,2749 @@
+{
+  "identifier": "571e4308-2622-45bc-ada9-c081d835293f", 
+  "workflowVersion": "4", 
+  "name": "sellar_problem_IDF2017-05-31_10:13:37_93", 
+  "nodes": [
+    {
+      "identifier": "65f60609-4da0-4765-ada1-cdb182e79c6c", 
+      "name": "COOR-out", 
+      "location": "30:30", 
+      "active": "true", 
+      "component": {
+        "identifier": "de.rcenvironment.inputprovider", 
+        "version": "3.2", 
+        "name": "Input Provider"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true"
+      }, 
+      "dynamicOutputs": [
+        {
+          "identifier": "3a2186de-c91b-4150-af32-86eeb8cd92d2", 
+          "name": "COOR-out_sellar_problem_IDF", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-out_sellar_problem_IDF.xml"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "b1d8f629-d520-4d8c-a466-e8828bb102cd", 
+      "name": "COOR-filters", 
+      "location": "130:130", 
+      "active": "true", 
+      "component": {
+        "identifier": "de.rcenvironment.inputprovider", 
+        "version": "3.2", 
+        "name": "Input Provider"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true"
+      }, 
+      "dynamicOutputs": [
+        {
+          "identifier": "a1452742-5b69-4790-aa55-654367cbcdff", 
+          "name": "COOR-UXPathFilter-A", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-UXPathFilter-A.json"
+          }
+        }, 
+        {
+          "identifier": "2c25c081-0828-4265-bbd0-e13940c253df", 
+          "name": "COOR-UXPathFilter-D1", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-UXPathFilter-D1.json"
+          }
+        }, 
+        {
+          "identifier": "e58bc387-eea0-40f2-8535-ca698cff0a34", 
+          "name": "COOR-UXPathFilter-D2", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-UXPathFilter-D2.json"
+          }
+        }, 
+        {
+          "identifier": "e40ff2e6-8cb1-425a-8c0e-0c86f25babc8", 
+          "name": "COOR-UXPathFilter-F1", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-UXPathFilter-F1.json"
+          }
+        }, 
+        {
+          "identifier": "6d31fbb1-f61e-41c4-8f78-fcbce5dac349", 
+          "name": "COOR-UXPathFilter-G1", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-UXPathFilter-G1.json"
+          }
+        }, 
+        {
+          "identifier": "b001644a-022c-4895-ad28-76c61308eb43", 
+          "name": "COOR-UXPathFilter-G2", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-UXPathFilter-G2.json"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "658ce175-4c24-4c04-a51b-61d8b0a1307e", 
+      "name": "COOR-start-Optimizer", 
+      "location": "230:230", 
+      "active": "true", 
+      "component": {
+        "identifier": "de.rcenvironment.inputprovider", 
+        "version": "3.2", 
+        "name": "Input Provider"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true"
+      }, 
+      "dynamicOutputs": [
+        {
+          "identifier": "32b5f217-b10d-49de-a458-4e2527aaec47", 
+          "name": "COOR-start_Optimizer_sellar_problem_IDF", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "fileSourceType": "fromFileSystem", 
+            "startValue": "C:\\Users\\Lukas\\SourceTree\\KADMOS\\examples\\scripts\\sellar_problem\\RCE\\COOR-start_Optimizer_sellar_problem_IDF.xml"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "b733b6d1-a87f-49a4-8d58-c93dac0e65cd", 
+      "name": "COOR-in", 
+      "location": "332:330", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.xmlmerger", 
+        "version": "3.2", 
+        "name": "XML Merger"
+      }, 
+      "configuration": {
+        "mappingType": "Classic", 
+        "storeComponentHistoryData": "true", 
+        "xmlContent": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<map:mappings xmlns:map=\"http://www.rcenvironment.de/2015/mapping\"\r\n              xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n    <map:mapping>\r\n        <map:source>/data_schema</map:source>\r\n        <map:target>/data_schema</map:target>\r\n    </map:mapping>\r\n\r\n</map:mappings>"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "a8f99d25-e128-4e5b-bca9-e49a5252fe8f", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "ce1357f4-7d4a-41b3-bdb5-865369e15238", 
+          "name": "XML to integrate", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "dd499e2d-7281-4d2d-8b50-bf48b8cb11b7", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "dynamicOutputs": [
+        {
+          "identifier": "ce4b9faa-3381-4d53-96ed-a89f9301a752", 
+          "name": "fIIhapi", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/f"
+          }
+        }, 
+        {
+          "identifier": "c416aa1d-ff15-401b-aeca-cf568537e951", 
+          "name": "g1IImisi", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/g1"
+          }
+        }, 
+        {
+          "identifier": "cb16fda6-7af1-4f1b-af04-289db9b24730", 
+          "name": "g2IIfewo", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/g2"
+          }
+        }, 
+        {
+          "identifier": "037de088-6fe6-40de-8623-21b6b47ac4eb", 
+          "name": "y1IIvive", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/y1"
+          }
+        }, 
+        {
+          "identifier": "43e605ee-1686-4089-bb31-39c7d60148d7", 
+          "name": "y2IInubi", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/y2"
+          }
+        }, 
+        {
+          "identifier": "92989617-aecd-487b-bbed-aade331792f1", 
+          "name": "z1IIhana", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/geometry/z1"
+          }
+        }, 
+        {
+          "identifier": "632971fa-6ee1-43f3-a0cc-b832fe75aa82", 
+          "name": "z2IIfotu", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/geometry/z2"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "91e95b1a-48fe-424b-9f27-3d3a5f8c5c6b", 
+      "name": "XMLM-COOR-in", 
+      "location": "410:413", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "4", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "43ed1396-9a0a-4f2e-9a1e-c5e553bf73dd", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "deaec27c-6ace-4a83-a882-d6f05d33c2a8", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "e085718e-3623-48a2-b674-cda32e66f2d7", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "4b6b9607-ee79-4c3f-8321-6059fdb00f77", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "b4fc8229-524a-41b0-b1a3-624af7434398", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "bca0c69b-b7fb-447a-82b0-6871dfd2fec5", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "6cb50a85-5a9e-401f-9536-08e994a208ae", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "9f49c982-8e3d-47bc-86d3-2924fef94c6e", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "50cb58da-a4f3-4f16-945b-93d3490a36f4", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "154b1820-09b8-4399-bd3a-b5fb94000ccb", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "5447a5e6-a4b9-450e-aa58-ab61a6106438", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "01d190b3-4b00-4286-847f-21db216591ff", 
+      "name": "A", 
+      "location": "510:513", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.A", 
+        "version": "0.1", 
+        "name": "A"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "f3cd13e2-2bed-4fbc-b852-ce7362f801d8", 
+          "name": "cpacs_in", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "e385b509-15f4-43e5-bafc-caa51a6bee67", 
+          "name": "cpacs_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "e9bbc92d-7f61-47c2-b15d-61129967e40c", 
+      "name": "UXPathFilter-A", 
+      "location": "610:613", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-G2"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "8602520c-0046-4a57-9acb-59a584185d97", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "e48fdbd5-5c6a-459b-8c5e-efe28647f536", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "d9cef277-dfe3-4aba-8ac7-1ce329b0987d", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "adb80811-8811-43cb-88de-96791766e9d9", 
+      "name": "Optimizer-start_values", 
+      "location": "732:730", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.xmlmerger", 
+        "version": "3.2", 
+        "name": "XML Merger"
+      }, 
+      "configuration": {
+        "mappingType": "Classic", 
+        "storeComponentHistoryData": "true", 
+        "xmlContent": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<map:mappings xmlns:map=\"http://www.rcenvironment.de/2015/mapping\"\r\n              xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n    <map:mapping>\r\n        <map:source>/data_schema</map:source>\r\n        <map:target>/data_schema</map:target>\r\n    </map:mapping>\r\n\r\n</map:mappings>"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "556a8939-3f3c-4978-ab98-90c5f3b00572", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "11f36e1e-ff63-45ff-b5b8-27881b4fbcd7", 
+          "name": "XML to integrate", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "f8f3093f-6c0d-4b5e-a776-c3ae622e9264", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "dynamicOutputs": [
+        {
+          "identifier": "d3f90db7-6d93-428a-ac93-41e106dfe249", 
+          "name": "y1IIvive", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/y1"
+          }
+        }, 
+        {
+          "identifier": "7c3d52dc-303f-46b9-b037-eef43918ca85", 
+          "name": "y2IInubi", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/y2"
+          }
+        }, 
+        {
+          "identifier": "a15106d6-60a0-4755-aaec-975038b80083", 
+          "name": "z1IIhana", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/geometry/z1"
+          }
+        }, 
+        {
+          "identifier": "74da1a87-eef1-4db9-8654-b7db1c1834c1", 
+          "name": "z2IIfotu", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/geometry/z2"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "name": "Optimizer", 
+      "location": "810:813", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.optimizer", 
+        "version": "7.0", 
+        "name": "Optimizer"
+      }, 
+      "configuration": {
+        "CustomDakotaPath": "false", 
+        "algorithm": "Dakota Coliny COBYLA (Constraint Optimization By Linear Approximations)", 
+        "dakotaExecPath": "${dakotaExecPath}", 
+        "loopFaultTolerance_5e0ed1cd": "Fail", 
+        "loopRerunAndDiscard_5e0ed1cd": "1", 
+        "loopRerunAndFail_5e0ed1cd": "1", 
+        "methodConfigurations": "{\r\n  \"Dakota HOPSPACK Asynch Pattern Search\" : {\r\n    \"methodName\" : \"Dakota HOPSPACK Asynch Pattern Search\",\r\n    \"methodCode\" : \"asynch_pattern_search\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"initial_delta\" : {\r\n        \"GuiName\" : \"Initial offset value\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"threshold_delta\" : {\r\n        \"GuiName\" : \"Threshold for offset values\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.01\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"contraction_factor\" : {\r\n        \"GuiName\" : \"Pattern contraction factor\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.5\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"solution_target\" : {\r\n        \"GuiName\" : \"Solution target\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"optional\"\r\n      },\r\n      \"synchronization\" : {\r\n        \"GuiName\" : \"Evaluation synchronization\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"blocking,nonblocking\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"nonblocking\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"merit_function\" : {\r\n        \"GuiName\" : \"Merit function\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"merit_max,merit_max_smooth,merit1,merit1_smooth,merit2,merit2_smooth,merit2_squared\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"merit2_squared\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_penalty\" : {\r\n        \"GuiName\" : \"Constraint penalty\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"smoothing_factor\" : {\r\n        \"GuiName\" : \"Smoothing factor\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"0\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Multi Objective Genetic Algorithm\" : {\r\n    \"methodName\" : \"Dakota Multi Objectiv Genetic Algorithm\",\r\n    \"methodCode\" : \"moga\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"fitness_type\" : {\r\n        \"GuiName\" : \"Fitness type\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"layer_rank,domination_count\",\r\n        \"DefaultValue\" : \"domination_count\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"seed\" : {\r\n        \"GuiName\" : \"Random seed\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"population_size\" : {\r\n        \"GuiName\" : \"Number of population members\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"50\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">=0\"\r\n      },\r\n      \"initialization_type\" : {\r\n        \"GuiName\" : \"Initialization type\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"simple_random,unique_random\",\r\n        \"DefaultValue\" : \"unique_random\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_type\" : {\r\n        \"GuiName\" : \"Mutation type\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"replace_uniform,bit_random,offset_normal,offset_cauchy,offset_uniform\",\r\n        \"DefaultValue\" : \"replace_uniform\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_rate\" : {\r\n        \"GuiName\" : \"Mutation rate\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.08\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"replacement_type\" : {\r\n        \"GuiName\" : \"Replacement type\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"roulette_wheel,unique_roulette_wheel,elitist\",\r\n        \"DefaultValue\" : \"elitist\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"crossover_type\" : {\r\n        \"GuiName\" : \"Crossover type\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"multi_point_binary,multi_point_parameterized_binary,multi_point_real\",\r\n        \"DefaultValue\" : \"multi_point_real\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"NoLinebreak\" : \"true\"\r\n      },\r\n      \"crossover_type_value\" : {\r\n        \"GuiName\" : \"Crossover type value\",\r\n        \"GuiOrder\" : \"9\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"50\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"NoKeyword\" : \"true\"\r\n      },\r\n      \"crossover_rate\" : {\r\n        \"GuiName\" : \"Crossover rate\",\r\n        \"GuiOrder\" : \"10\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"0.8\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota NOMAD (Mesh Adaptive Direct Search Algorithm)\" : {\r\n    \"methodName\" : \"Dakota NOMAD (Mesh Adaptive Direct Search Algorithm)\",\r\n    \"methodCode\" : \"mesh_adaptive_search\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"function_precision\" : {\r\n        \"GuiName\" : \"Maximum precision of responses\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-5\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">0\"\r\n      },\r\n      \"seed\" : {\r\n        \"GuiName\" : \"Seed\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">0\"\r\n      },\r\n      \"variable_neighborhood_search\" : {\r\n        \"GuiName\" : \"Neighborhood search\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.5\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Latin Hypercube Sampling\" : {\r\n    \"methodName\" : \"Dakota Latin Hypercube Sampling\",\r\n    \"methodCode\" : \"dace lhs\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"seed\" : {\r\n        \"GuiName\" : \"Seed\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"fixed_seed\" : {\r\n        \"GuiName\" : \"Fixed seed flag\",\r\n        \"dataType\" : \"bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"false\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"samples\" : {\r\n        \"GuiName\" : \"Number of samples\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"10\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"symbols\" : {\r\n        \"GuiName\" : \"Number of symbols\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"main_effects\" : {\r\n        \"GuiName\" : \"Main effects\",\r\n        \"dataType\" : \"bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"quality_metrics\" : {\r\n        \"GuiName\" : \"Quality metrics\",\r\n        \"dataType\" : \"bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"variance_based_decomp\" : {\r\n        \"GuiName\" : \"Varianve based decomposition\",\r\n        \"dataType\" : \"bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Coliny Evolutionary Algorithm\" : {\r\n    \"methodName\" : \"Dakota Coliny Evolutionary Algorithm\",\r\n    \"methodCode\" : \"coliny_ea\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"seed\" : {\r\n        \"GuiName\" : \"Random seed\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">=0\"\r\n      },\r\n      \"population_size\" : {\r\n        \"GuiName\" : \"Number of population members\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"50\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">=0\"\r\n      },\r\n      \"initialization_type\" : {\r\n        \"GuiName\" : \"Initialization type\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"simple_random,unique_random\",\r\n        \"DefaultValue\" : \"unique_random\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"fitness_type\" : {\r\n        \"GuiName\" : \"Fitness type\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"linear_rank,merit_function\",\r\n        \"DefaultValue\" : \"linear_rank\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"replacement_type\" : {\r\n        \"GuiName\" : \"Replacement type\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"random,chc,elitist\",\r\n        \"DefaultValue\" : \"elitist\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"NoLinebreak\" : \"true\"\r\n      },\r\n      \"replacement_type_value\" : {\r\n        \"GuiName\" : \"Replacement size\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"NoKeyword\" : \"true\"\r\n      },\r\n      \"new_solutions_generated\" : {\r\n        \"GuiName\" : \"New solutions generated\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"50\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"crossover_type\" : {\r\n        \"GuiName\" : \"Crossover type\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"two_point,blend,uniform\",\r\n        \"DefaultValue\" : \"two_point\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"crossover_rate\" : {\r\n        \"GuiName\" : \"Crossover rate\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.8\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_type\" : {\r\n        \"GuiName\" : \"Mutation type\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"replace_uniform,offset_normal,offset_cauchy,offset_uniform\",\r\n        \"DefaultValue\" : \"offset_normal\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_scale\" : {\r\n        \"GuiName\" : \"Mutation scale\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_range\" : {\r\n        \"GuiName\" : \"Mutation range\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_rate\" : {\r\n        \"GuiName\" : \"Mutation rate\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.0\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"non_adaptive\" : {\r\n        \"GuiName\" : \"Non-adaptive mutation flag\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"solution_accuracy\" : {\r\n        \"GuiName\" : \"Solution accuracy\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"required\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Surrogate-Based Local\" : {\r\n    \"methodName\" : \"Dakota Surrogate-Based Local\",\r\n    \"methodCode\" : \"surrogate_based_local\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"2\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"approx_method_pointer\" : {\r\n        \"doNotShow\" : \"true\",\r\n        \"dataType\" : \"String\",\r\n        \"DefaultValue\" : \"method2\",\r\n        \"Value\" : \"\"\r\n      },\r\n      \"dace_list\" : {\r\n        \"doNotShow\" : \"true\",\r\n        \"doNotWrite\" : \"true\",\r\n        \"dataType\" : \"String\",\r\n        \"DefaultValue\" : \"Dakota Latin Hypercube Sampling\",\r\n        \"Value\" : \"\"\r\n      },\r\n      \"approx_method_list\" : {\r\n        \"doNotShow\" : \"true\",\r\n        \"doNotWrite\" : \"true\",\r\n        \"dataType\" : \"String\",\r\n        \"DefaultValue\" : \"Dakota Coliny COBYLA (Constraint Optimization By Linear Approximations),Dakota Quasi-Newton method\",\r\n        \"Value\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : {\r\n      \"gradients\" : {\r\n        \"GuiName\" : \"Use gradients\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"no_gradients,numerical_gradients\",\r\n        \"DefaultValue\" : \"no_gradients\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"noKeyword\" : \"true\"\r\n      },\r\n      \"interval_type\" : {\r\n        \"GuiName\" : \"Gradient interval type\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"forward,central\",\r\n        \"DefaultValue\" : \"forward\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"fd_gradient_step_size\" : {\r\n        \"GuiName\" : \"Gradient stepsize\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.0E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">0\"\r\n      },\r\n      \"hessians\" : {\r\n        \"GuiName\" : \"Use hessians\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"no_hessians\",\r\n        \"DefaultValue\" : \"no_hessians\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"noKeyword\" : \"true\"\r\n      }\r\n    },\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Coliny COBYLA (Constraint Optimization By Linear Approximations)\" : {\r\n    \"methodName\" : \"Dakota Coliny COBYLA (Constraint Optimization By Linear Approximations)\",\r\n    \"methodCode\" : \"coliny_cobyla\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"initial_delta\" : {\r\n        \"GuiName\" : \"Initial trust region\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.0\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"required\"\r\n      },\r\n      \"threshold_delta\" : {\r\n        \"GuiName\" : \"Minimal trust region (stopping criterion)\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"required\"\r\n      },\r\n      \"solution_accuracy\" : {\r\n        \"GuiName\" : \"Solution accuracy\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"required\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Single Objective Genetic Algorithm\" : {\r\n    \"methodName\" : \"Dakota Single Objectiv Genetic Algorithm\",\r\n    \"methodCode\" : \"soga\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"fitness_type\" : {\r\n        \"GuiName\" : \"Fitness type\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"merit_function\",\r\n        \"DefaultValue\" : \"merit_function\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"seed\" : {\r\n        \"GuiName\" : \"Random seed\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"population_size\" : {\r\n        \"GuiName\" : \"Number of population members\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"50\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">=0\"\r\n      },\r\n      \"initialization_type\" : {\r\n        \"GuiName\" : \"Initialization type\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"simple_random,unique_random\",\r\n        \"DefaultValue\" : \"unique_random\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_type\" : {\r\n        \"GuiName\" : \"Mutation type\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"bit_random,replace_uniform,bit_random,offset_normal,offset_cauchy,offset_uniform\",\r\n        \"DefaultValue\" : \"replace_uniform\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"mutation_rate\" : {\r\n        \"GuiName\" : \"Mutation rate\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.08\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"replacement_type\" : {\r\n        \"GuiName\" : \"Replacement type\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"favor_feasible,roulette_wheel,unique_roulette_wheel,elitist\",\r\n        \"DefaultValue\" : \"elitist\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"crossover_type\" : {\r\n        \"GuiName\" : \"Crossover type\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"multi_point_binary,multi_point_parameterized_binary,multi_point_real\",\r\n        \"DefaultValue\" : \"multi_point_real\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"NoLinebreak\" : \"true\"\r\n      },\r\n      \"crossover_type_value\" : {\r\n        \"GuiName\" : \"Crossover type value\",\r\n        \"GuiOrder\" : \"9\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"50\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"NoKeyword\" : \"true\"\r\n      },\r\n      \"crossover_rate\" : {\r\n        \"GuiName\" : \"Crossover rate\",\r\n        \"GuiOrder\" : \"10\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.8\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : null,\r\n    \"configMap\" : null\r\n  },\r\n  \"Dakota Quasi-Newton method\" : {\r\n    \"methodName\" : \"Dakota Quasi-Newton method\",\r\n    \"methodCode\" : \"optpp_q_newton\",\r\n    \"optimizerPackage\" : \"dakota\",\r\n    \"followingMethods\" : \"0\",\r\n    \"commonSettings\" : {\r\n      \"speculative\" : {\r\n        \"GuiName\" : \"Speculative gradients and Hessians\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"output\" : {\r\n        \"GuiName\" : \"Output verbosity\",\r\n        \"GuiOrder\" : \"8\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"debug,quiet,normal,silent,verbose\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"normal\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_iterations\" : {\r\n        \"GuiName\" : \"Maximum iterations\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"100\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"scaling\" : {\r\n        \"GuiName\" : \"Scaling flag\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Bool\",\r\n        \"SWTWidget\" : \"Check\",\r\n        \"DefaultValue\" : \"false\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"constraint_tolerance\" : {\r\n        \"GuiName\" : \"Constraint tolerance\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"convergence_tolerance\" : {\r\n        \"GuiName\" : \"Convergence tolerance\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"final_solutions\" : {\r\n        \"GuiName\" : \"Final solutions\",\r\n        \"GuiOrder\" : \"7\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"max_function_evaluations\" : {\r\n        \"GuiName\" : \"Maximum function evaluations\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"Int\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"specificSettings\" : {\r\n      \"search_method\" : {\r\n        \"GuiName\" : \"Search method\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"value_based_line_search,gradient_based_line_search,trust_region,tr_pds\",\r\n        \"DefaultValue\" : \"trust_region\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"IsGroup\" : \"true\"\r\n      },\r\n      \"max_step\" : {\r\n        \"GuiName\" : \"Maximum step size\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1000\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">=0\"\r\n      },\r\n      \"gradient_tolerance\" : {\r\n        \"GuiName\" : \"Gradient tolerance\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"merit_function\" : {\r\n        \"GuiName\" : \"Merit function\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"el_bakry,argaez_tapia,van_shanno\",\r\n        \"DefaultValue\" : \"argaez_tapia\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"steplength_to_boundary\" : {\r\n        \"GuiName\" : \"Steplengh to boundary\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"0.99995\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"centering_parameter\" : {\r\n        \"GuiName\" : \"Centering parameter\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"Value\" : \"\",\r\n        \"DefaultValue\" : \"0.1\",\r\n        \"Validation\" : \"\"\r\n      }\r\n    },\r\n    \"responsesSettings\" : {\r\n      \"gradients\" : {\r\n        \"GuiName\" : \"Use gradients\",\r\n        \"GuiOrder\" : \"1\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"numerical_gradients,analytic_gradients\",\r\n        \"DefaultValue\" : \"numerical_gradients\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"noKeyword\" : \"true\"\r\n      },\r\n      \"interval_type\" : {\r\n        \"GuiName\" : \"Gradient interval type\",\r\n        \"GuiOrder\" : \"2\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"forward,central\",\r\n        \"DefaultValue\" : \"forward\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\"\r\n      },\r\n      \"fd_gradient_step_size\" : {\r\n        \"GuiName\" : \"Gradient stepsize\",\r\n        \"GuiOrder\" : \"3\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.0E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">0\"\r\n      },\r\n      \"hessians\" : {\r\n        \"GuiName\" : \"Use hessians\",\r\n        \"GuiOrder\" : \"4\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"no_hessians,numerical_hessians\",\r\n        \"DefaultValue\" : \"no_hessians\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"noKeyword\" : \"true\"\r\n      },\r\n      \"interval_type_hessian\" : {\r\n        \"GuiName\" : \"Hessian interval type\",\r\n        \"GuiOrder\" : \"5\",\r\n        \"dataType\" : \"None\",\r\n        \"SWTWidget\" : \"Combo\",\r\n        \"Choices\" : \"forward,central\",\r\n        \"DefaultValue\" : \"forward\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \"\",\r\n        \"noKeyword\" : \"true\"\r\n      },\r\n      \"fd_hessian_step_size\" : {\r\n        \"GuiName\" : \"Hessian stepsize\",\r\n        \"GuiOrder\" : \"6\",\r\n        \"dataType\" : \"Real\",\r\n        \"SWTWidget\" : \"Text\",\r\n        \"DefaultValue\" : \"1.0E-4\",\r\n        \"Value\" : \"\",\r\n        \"Validation\" : \">0\"\r\n      }\r\n    },\r\n    \"configMap\" : null\r\n  }\r\n}", 
+        "optimizerPackageCode": "dakota", 
+        "preCalcFilePath": "${preCalcFilePath}", 
+        "storeComponentHistoryData": "true", 
+        "usePrecalculation": "false"
+      }, 
+      "staticOutputs": [
+        {
+          "identifier": "8be25e2b-b6f2-40fb-bbb7-b7c6971dce1a", 
+          "name": "Done", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "Boolean", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "95a93c87-d984-442b-86ce-0a6d3220a29b", 
+          "name": "Gradient request", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "Boolean", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "32cb964e-4c4f-435a-bb40-f99ff485f6f1", 
+          "name": "Iteration", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "Integer", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "71c7e2d7-bd9c-4f20-af2a-c066b53a4ec9", 
+          "name": "Outer loop done", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "Boolean", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "InnerLoopEndpoint"
+          }
+        }
+      ], 
+      "dynamicInputs": [
+        {
+          "identifier": "d87c02a4-c77a-40f0-935f-74f61ae35197", 
+          "name": "y1IIvive - start value", 
+          "epIdentifier": "startvalues", 
+          "group": "startValues", 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "usage": "initial"
+          }
+        }, 
+        {
+          "identifier": "5b9c06a9-afea-4862-b49e-fd478f987174", 
+          "name": "y2IInubi - start value", 
+          "epIdentifier": "startvalues", 
+          "group": "startValues", 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "usage": "initial"
+          }
+        }, 
+        {
+          "identifier": "5cbefb3c-26ba-408c-bdaa-16933f07ecdb", 
+          "name": "z1IIhana - start value", 
+          "epIdentifier": "startvalues", 
+          "group": "startValues", 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "usage": "initial"
+          }
+        }, 
+        {
+          "identifier": "23317625-1849-4a09-8337-b0d37ece3f66", 
+          "name": "z2IIfotu - start value", 
+          "epIdentifier": "startvalues", 
+          "group": "startValues", 
+          "datatype": "Float", 
+          "metadata": {
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "usage": "initial"
+          }
+        }, 
+        {
+          "identifier": "f1dbb4ee-05fe-4428-9535-c9f553509c21", 
+          "name": "fIIhapi", 
+          "epIdentifier": "Objective", 
+          "group": "valuesToOptimize", 
+          "datatype": "Float", 
+          "metadata": {
+            "goal": "Minimize", 
+            "hasGradient": "false", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "vectorSize": "-", 
+            "weight": "1"
+          }
+        }, 
+        {
+          "identifier": "0a83372b-fae9-4115-a06f-297db305cd82", 
+          "name": "g2IIfewo", 
+          "epIdentifier": "Constraint", 
+          "group": "valuesToOptimize", 
+          "datatype": "Float", 
+          "metadata": {
+            "hasGradient": "false", 
+            "hasSingleBounds": "true", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "0.0", 
+            "upper": "1e+99", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "2e63077e-6e34-4e93-b01f-2dc248046d07", 
+          "name": "gcy1IImoba", 
+          "epIdentifier": "Constraint", 
+          "group": "valuesToOptimize", 
+          "datatype": "Float", 
+          "metadata": {
+            "hasGradient": "false", 
+            "hasSingleBounds": "true", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "-1e-06", 
+            "upper": "1e-06", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "0fb1b2a1-3765-4b9b-ac36-646e817baec7", 
+          "name": "gcy2IItehu", 
+          "epIdentifier": "Constraint", 
+          "group": "valuesToOptimize", 
+          "datatype": "Float", 
+          "metadata": {
+            "hasGradient": "false", 
+            "hasSingleBounds": "true", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "-1e-06", 
+            "upper": "1e-06", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "7097c992-1619-4c1f-87da-24e80a501e83", 
+          "name": "g1IImisi", 
+          "epIdentifier": "Constraint", 
+          "group": "valuesToOptimize", 
+          "datatype": "Float", 
+          "metadata": {
+            "hasGradient": "false", 
+            "hasSingleBounds": "true", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "0.0", 
+            "upper": "1e+99", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "fa5530bc-339c-4499-8cfe-096c81c325f0", 
+          "name": "UXPathFilter-F1", 
+          "epIdentifier": "toForward", 
+          "group": "valuesToOptimize", 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "d0d7921a-1ce2-4cde-bf7f-7b4a7bcfee87", 
+          "name": "UXPathFilter-F1_start", 
+          "epIdentifier": "toForward", 
+          "group": "startValues", 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "716d1ded-678c-4720-88b7-5dcc41bef0b4", 
+          "name": "UXPathFilter-G1", 
+          "epIdentifier": "toForward", 
+          "group": "valuesToOptimize", 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "319ac772-6faa-45de-8efb-dfa344442b6d", 
+          "name": "UXPathFilter-G1_start", 
+          "epIdentifier": "toForward", 
+          "group": "startValues", 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "dcd4aa49-d6f9-4c89-addd-56d171586274", 
+          "name": "UXPathFilter-G2", 
+          "epIdentifier": "toForward", 
+          "group": "valuesToOptimize", 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "6c6c62ff-9104-4f39-9350-fd1dfb7d6046", 
+          "name": "UXPathFilter-G2_start", 
+          "epIdentifier": "toForward", 
+          "group": "startValues", 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }
+      ], 
+      "dynamicOutputs": [
+        {
+          "identifier": "8fbab0fb-7fac-49a4-b187-39a5f719b13b", 
+          "name": "y1IIvive", 
+          "epIdentifier": "Design", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "-100.0", 
+            "startValue": "-", 
+            "upper": "100.0", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "022c42c2-bb13-492a-ae19-d8e9faded8f7", 
+          "name": "y1IIvive_optimal", 
+          "epIdentifier": "optima", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "lower": "-100.0", 
+            "startValue": "-", 
+            "upper": "100.0", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "81eaa5d6-a76c-42f6-9fc3-14a436ab1996", 
+          "name": "y2IInubi", 
+          "epIdentifier": "Design", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "-100.0", 
+            "startValue": "-", 
+            "upper": "100.0", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "d61e504f-4a8d-4f93-b8ef-a592059f3279", 
+          "name": "y2IInubi_optimal", 
+          "epIdentifier": "optima", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "lower": "-100.0", 
+            "startValue": "-", 
+            "upper": "100.0", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "6ba29e58-5953-4381-927f-aa876277606a", 
+          "name": "z1IIhana", 
+          "epIdentifier": "Design", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "-10.0", 
+            "startValue": "-", 
+            "upper": "10.0", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "53fb8adb-75b0-4354-afd3-637b6b62e97f", 
+          "name": "z1IIhana_optimal", 
+          "epIdentifier": "optima", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "lower": "-10.0", 
+            "startValue": "-", 
+            "upper": "10.0", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "cea713e5-f7b6-4f05-ab1c-87dc23a7ceca", 
+          "name": "z2IIfotu", 
+          "epIdentifier": "Design", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint", 
+            "lower": "0.0", 
+            "startValue": "-", 
+            "upper": "10.0", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "0e2c3d6c-32b0-4e25-a81d-13db3592a92d", 
+          "name": "z2IIfotu_optimal", 
+          "epIdentifier": "optima", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "hasSingleBounds": "true", 
+            "hasStartValue": "false", 
+            "isDiscrete": "false", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint", 
+            "lower": "0.0", 
+            "startValue": "-", 
+            "upper": "10.0", 
+            "vectorSize": "-"
+          }
+        }, 
+        {
+          "identifier": "969dca31-1dff-4d28-8449-e23aed41e2b3", 
+          "name": "UXPathFilter-F1", 
+          "epIdentifier": "toForward", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "db55692b-bdd2-447e-ab45-504f786c56a2", 
+          "name": "UXPathFilter-F1_optimal", 
+          "epIdentifier": "toForward", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "fedf1057-e72e-4f25-9cd7-c34ca31ed2d5", 
+          "name": "UXPathFilter-G1", 
+          "epIdentifier": "toForward", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "bfe17118-1b46-4878-a0e5-828009360082", 
+          "name": "UXPathFilter-G1_optimal", 
+          "epIdentifier": "toForward", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "46991e00-e95a-43df-8eb3-146e9af63bfe", 
+          "name": "UXPathFilter-G2", 
+          "epIdentifier": "toForward", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "SelfLoopEndpoint"
+          }
+        }, 
+        {
+          "identifier": "0245a7ca-8f3f-4309-a1aa-9085c914cded", 
+          "name": "UXPathFilter-G2_optimal", 
+          "epIdentifier": "toForward", 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "loopEndpointType_5e0ed1cd": "OuterLoopEndpoint"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "40c6ca50-fbfa-4717-bb98-1dbb038c0d1b", 
+      "name": "Optimizer-XML-load-conv", 
+      "location": "932:930", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.xmlloader", 
+        "version": "3.2", 
+        "name": "XML Loader"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true", 
+        "xmlContent": "<?xml version=\"1.0\"?>\n<data_schema>\n  <analyses><y1>dummy</y1><y2>dummy</y2></analyses>\n  <geometry><z1>dummy</z1><z2>dummy</z2></geometry>\n</data_schema>\n"
+      }, 
+      "staticOutputs": [
+        {
+          "identifier": "dcd49b8c-0a9e-4514-8b14-4fe4bd3faa3c", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "dynamicInputs": [
+        {
+          "identifier": "bd5db8e5-e7f8-4805-8ff4-1a8e86d4cfa3", 
+          "name": "y1IIvive", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/data_schema/analyses/y1"
+          }
+        }, 
+        {
+          "identifier": "5c767d4c-0d5b-479c-a31e-3c37d270b8ba", 
+          "name": "y2IInubi", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/data_schema/analyses/y2"
+          }
+        }, 
+        {
+          "identifier": "2694b0e7-68da-4c4e-be55-f7380d5e39c9", 
+          "name": "z1IIhana", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/data_schema/geometry/z1"
+          }
+        }, 
+        {
+          "identifier": "11a866a8-e228-480f-86a5-24c4004c5077", 
+          "name": "z2IIfotu", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/data_schema/geometry/z2"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "cccc9cbf-1ca7-4b00-af14-a46a3cf0c933", 
+      "name": "Optimizer-XML-merge-conv", 
+      "location": "1032:1030", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.xmlmerger", 
+        "version": "3.2", 
+        "name": "XML Merger"
+      }, 
+      "configuration": {
+        "mappingType": "Classic", 
+        "storeComponentHistoryData": "true", 
+        "xmlContent": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<map:mappings xmlns:map=\"http://www.rcenvironment.de/2015/mapping\"\r\n              xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n    <map:mapping>\r\n        <map:source>/data_schema</map:source>\r\n        <map:target>/data_schema</map:target>\r\n    </map:mapping>\r\n\r\n</map:mappings>"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "25476cdd-23e8-4c31-89ed-9f345d16371f", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "2b2c97ae-e29d-4f95-a064-03ae3ef2da7d", 
+          "name": "XML to integrate", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "359cdeae-a086-48cc-b494-df0cd227d28c", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "dynamicOutputs": [
+        {
+          "identifier": "65aa0a6e-30fc-4d97-81eb-157231587193", 
+          "name": "fIIhapi", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/f"
+          }
+        }, 
+        {
+          "identifier": "05f0f1bd-4fb9-44ff-bc27-8e8033347dd3", 
+          "name": "g1IImisi", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/g1"
+          }
+        }, 
+        {
+          "identifier": "88936718-62b9-4cdc-b490-1ea95ed799d3", 
+          "name": "g2IIfewo", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/analyses/g2"
+          }
+        }, 
+        {
+          "identifier": "e677ef54-3591-4e0a-a125-accfce94475a", 
+          "name": "gc_y1IImoba", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/architectureNodes/consistencyConstraintVariables/data_schemaCopy/analyses/gc_y1"
+          }
+        }, 
+        {
+          "identifier": "bc8edcb6-6a4a-427f-bf17-e1d9c0e7376b", 
+          "name": "gc_y2IItehu", 
+          "epIdentifier": "default", 
+          "group": null, 
+          "datatype": "Float", 
+          "metadata": {
+            "variable.xpath": "/data_schema/architectureNodes/consistencyConstraintVariables/data_schemaCopy/analyses/gc_y2"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "a70c4bec-e495-471e-97ec-a3847a2756b2", 
+      "name": "XMLM-Optimizer-XML-merge-conv", 
+      "location": "1110:1113", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "4", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "96fae3b9-02a8-4944-bca9-593c6c7e82d2", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "45be0552-e85c-4174-b1f1-93f1e18f3f92", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "0d246277-4b00-4b85-82d3-74aa90946a4e", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "46535806-be2f-4550-be88-3594d8ea303c", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "286e5637-703d-44c2-8c9d-123d0ea3d513", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "b718db57-7627-4901-bf90-2a1803e91990", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "47ca67ce-6049-4cf3-a6df-4134db19c02d", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "d5642902-b5ec-4cac-bb7d-e76e3768cf2e", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "3eedf694-0f16-4cd0-8a4c-96330218ffdf", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "1f62eb5e-8ae8-4083-bd76-c035b3931299", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "2536369f-e69a-4839-b381-50da333146dd", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "ca7b38ad-0c73-4993-91ea-63e268662001", 
+      "name": "Optimizer-XML-load-final", 
+      "location": "1232:1230", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.xmlloader", 
+        "version": "3.2", 
+        "name": "XML Loader"
+      }, 
+      "configuration": {
+        "storeComponentHistoryData": "true", 
+        "xmlContent": "<?xml version=\"1.0\"?>\n<data_schema>\n  <analyses><y1>dummy</y1><y2>dummy</y2></analyses>\n  <geometry><z1>dummy</z1><z2>dummy</z2></geometry>\n</data_schema>\n"
+      }, 
+      "staticOutputs": [
+        {
+          "identifier": "299081c8-e236-43b7-80d1-cff55d44e64f", 
+          "name": "XML", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "dynamicInputs": [
+        {
+          "identifier": "9f889f7b-9db6-4ebc-8d15-4e67f4da2ef2", 
+          "name": "y1IIvive", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/data_schema/analyses/y1"
+          }
+        }, 
+        {
+          "identifier": "e4cd5ab7-fb11-43fe-a1ae-7bb02a9e968c", 
+          "name": "y2IInubi", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/data_schema/analyses/y2"
+          }
+        }, 
+        {
+          "identifier": "31b29f35-afd7-4846-b945-4435c16f0c9a", 
+          "name": "z1IIhana", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/data_schema/geometry/z1"
+          }
+        }, 
+        {
+          "identifier": "e746696a-c60b-4079-955e-87345fc6efcc", 
+          "name": "z2IIfotu", 
+          "epIdentifier": "default", 
+          "group": "null", 
+          "datatype": "Float", 
+          "metadata": {
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Single", 
+            "variable.xpath": "/data_schema/geometry/z2"
+          }
+        }
+      ]
+    }, 
+    {
+      "identifier": "afb2f824-ccfe-4913-9ace-a0c10e388b7b", 
+      "name": "XMLM-D1", 
+      "location": "1310:1313", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "3", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "f0482097-b64e-4ef6-bb9d-d4c34ea4e9cf", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "e2c94924-2668-4de9-b257-faa9ec686ec3", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "b0117c39-145d-4b81-98d3-d4fa9fb4edaa", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "6a731d54-e9a4-443d-973d-2d53f8adcd80", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "0c0ddac4-2f49-4769-a199-4c468fb08621", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "dcd91aeb-8de5-4488-a58f-007692fcd00a", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "3a987d86-05d5-4e6a-8954-574494eb8a45", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "34971a95-dd80-4392-b04e-ec549e7e1c72", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "80d5e5e2-edac-4fb3-8dca-f2b0c93a90af", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "3cd3b99c-98dd-4151-9369-30958f40d99a", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "49e5ae90-d341-478d-91fd-6428908302cb", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "2b59e08d-4ae4-4ef3-8d07-8fed11d2a524", 
+      "name": "D1", 
+      "location": "1410:1413", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.D1-XML", 
+        "version": "0.1", 
+        "name": "D1-XML"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "4a4fb243-86cc-4fba-a77f-f80784ea30ca", 
+          "name": "D1-input_xml", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "a81aca9c-c1e3-4e1f-b3de-4c95eddce1eb", 
+          "name": "D1-output_xml", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "2fd07273-84c6-4f6c-af49-b0f02dfd79c9", 
+      "name": "UXPathFilter-D1", 
+      "location": "1510:1513", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-G2"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "3c8fa5c9-35ca-4eb3-97f7-97d2bbe36618", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "b6f51390-a8f5-4e15-856b-e8868b0ed876", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "558e060e-465c-482f-84c7-2dc6da050cf6", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "4fa83b03-6fa6-4fbd-84ee-828566eeac2f", 
+      "name": "XMLM-D2", 
+      "location": "1610:1613", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "2", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "66183b47-cffb-44d4-b561-67a9f884a38f", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "ce66d8f4-f6dd-46ba-9d37-af854f621cdf", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "d2076195-db31-42ee-b3af-0bd1e0d7dd9c", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "ab59154b-6a9f-4f65-a0a9-7963ddc52d03", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "dd2b1086-23da-40c9-8d3c-3e61dd287a36", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "1d076414-5adf-41d4-8038-ceeff9cf9336", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "9501ed70-a271-4388-8d8a-7f90bb4615d3", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "ce926097-70a5-4370-824a-abf824b06e97", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "49a9fa95-657a-4d74-b80a-c765e550d9dc", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "2a69fa56-ac0e-480d-a9bd-867e375390b1", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "db7ed95e-acd1-4578-ac5d-61e36a24a04f", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "c497304f-3a65-405a-a291-4f4e7d9f8456", 
+      "name": "D2", 
+      "location": "1710:1713", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.D2-XML", 
+        "version": "0.1", 
+        "name": "D2-XML"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "4ad68d3e-4226-44a5-a0df-616905f9836e", 
+          "name": "D2_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "cd13d083-a466-40aa-95cb-c4f36dfaf812", 
+          "name": "D2_output", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "03910059-d517-4976-b694-3ca20cffcc23", 
+      "name": "UXPathFilter-D2", 
+      "location": "1810:1813", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-G2"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "9d6ad02b-b0b0-45ed-91ff-3b02fc146357", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "5b90d5a9-bf83-4eb5-bfcb-115850cc575d", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "9351d43e-1666-47fe-b234-b01d921122ae", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "36453bf3-039d-444f-ac2f-bf1d77ccbea4", 
+      "name": "XMLM-F1", 
+      "location": "1910:1913", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "4", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "9346a96d-396d-4ebc-864d-1e26c9bfe893", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": "", 
+            "inputExecutionConstraint_4aae3eea": "Required", 
+            "inputHandling_73b1056e": "Constant"
+          }
+        }, 
+        {
+          "identifier": "ed0e6e5a-7e52-404f-b35f-47d12876f78e", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "dc57a4a8-da1e-4988-9ffb-e2346411b2b4", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "cdae8f61-7b0a-4880-becc-b0db78e1a39e", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "7ece657a-a523-408e-a53a-39e8d6c5f653", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "a1fc469d-9462-4746-b657-87a6fef62930", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "a3c77dd3-c290-44d5-b207-d065604f3f89", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "5814e6d9-619c-4794-a281-0b0f659b3565", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "02306ac3-99ef-4f30-9730-44bf7a6eda8a", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "fc41f91b-0785-4aec-a18f-4af540f6b1f7", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "b1a04e82-0653-4379-8673-40414564005e", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "bfc3e32f-185b-49ed-a710-217456d92eb4", 
+      "name": "F1", 
+      "location": "2010:2013", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.F-XML", 
+        "version": "0.1", 
+        "name": "F-XML"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "fb456289-6546-43f7-9fac-9cbf5b09a60b", 
+          "name": "F_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "4622d9d8-dbcb-4c85-a9e8-38003b6675e2", 
+          "name": "F_output", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "fba034fb-aa1f-4b4a-9c5e-890c67253be8", 
+      "name": "UXPathFilter-F1", 
+      "location": "2110:2113", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-G2"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "5b5dadbe-61f8-444f-9bd0-20dea5cde657", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "58753fbe-ea20-4396-ba06-ac245e8f3ccb", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "01f33fb5-dfc1-443c-aa0d-61be6a91c220", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "9e91eb49-2834-4fac-834a-9bdce5086768", 
+      "name": "G1", 
+      "location": "2210:2213", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.G1-XML", 
+        "version": "0.1", 
+        "name": "G1-XML"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "389aca98-0286-4de4-9bd5-221fd0064196", 
+          "name": "G1-input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "ec18b2f7-0b54-443b-a8ac-7b15535214ab", 
+          "name": "G1-output", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "42c6c6ea-2ec9-4809-a0d0-dc2a5cff7ff8", 
+      "name": "UXPathFilter-G1", 
+      "location": "2310:2313", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-G2"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "83f0054f-31ce-412e-9319-93ce124313ba", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "bb8aa201-742a-46a6-bb73-0ebc8f96d040", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "657c6afe-ff25-431d-b247-a396420ebaef", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "53c94d07-5ff8-4121-8df2-d14124a9bb87", 
+      "name": "G2", 
+      "location": "2410:2413", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.G2-XML", 
+        "version": "0.1", 
+        "name": "G2-XML"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "executionMode": null, 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "44c5cc53-8a3a-4bf6-ba99-9f83e0afe8a2", 
+          "name": "G2-input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "26cc02af-fb42-4fac-a525-9659ace07865", 
+          "name": "G2-output", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "cd1bef7e-1d2d-477a-bd5d-23352f4fe3b6", 
+      "name": "UXPathFilter-G2", 
+      "location": "2510:2513", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.UXPath-filter", 
+        "version": "0.1", 
+        "name": "UXPathFilter-G2"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "76e702f8-947d-47fb-ae67-ca19e8b07177", 
+          "name": "uxpaths_json", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "95e6922b-33d6-4785-b37c-c7fe8e84559c", 
+          "name": "xml_input", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "fd8a9c7b-709d-4dd9-ae71-4335a3d72884", 
+          "name": "xml_out", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "6a4aaddc-ac9b-4fc4-a6ad-d69ac58191ed", 
+      "name": "XMLM-Gc", 
+      "location": "2610:2613", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.CPACS-XML-merger", 
+        "version": "0.1", 
+        "name": "CPACS-XML-merger"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesAfterWorkflowExecution", 
+        "n_xmls": "2", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "ffed5528-5d5a-463a-a47b-a5a7486cb5fd", 
+          "name": "xml_in_01", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "281e610b-f29a-4296-a110-24b10960d5c4", 
+          "name": "xml_in_02", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "b3734972-6cba-40d3-9015-0dda9f10a5ce", 
+          "name": "xml_in_03", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "68f8b352-bb96-4c1d-806b-57147842f9c5", 
+          "name": "xml_in_04", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "eb45243e-f8bb-4996-bd56-98dd958e0e35", 
+          "name": "xml_in_05", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "bd9d55e8-3b8b-4823-9196-44709be87568", 
+          "name": "xml_in_06", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "4af14c47-e001-450e-b368-4b823bad7830", 
+          "name": "xml_in_07", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "d8eafd1e-a60c-452d-87e1-fc05f993cf4b", 
+          "name": "xml_in_08", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "acd65b0a-3b06-4049-9131-71a142f812a2", 
+          "name": "xml_in_09", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }, 
+        {
+          "identifier": "2661dc37-2a25-48c5-a123-6620e0dbed19", 
+          "name": "xml_in_10", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference", 
+          "metadata": {
+            "endpointFileName": ""
+          }
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "7220cadf-147d-4f3e-a3ff-aed5d9a6a250", 
+          "name": "xml_file", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }, 
+    {
+      "identifier": "174660b9-8d11-4c94-a6df-9af33ed21fd3", 
+      "name": "Gc", 
+      "location": "2710:2713", 
+      "active": "true", 
+      "platform": "98737cdd4b424ab9af8f6bb636382176", 
+      "component": {
+        "identifier": "de.rcenvironment.integration.cpacs.Gc-XML", 
+        "version": "0.1", 
+        "name": "Gc-XML"
+      }, 
+      "configuration": {
+        "chosenDeleteTempDirBehavior": "deleteWorkingDirectoriesNever", 
+        "storeComponentHistoryData": "true"
+      }, 
+      "staticInputs": [
+        {
+          "identifier": "c3b58a00-c9ae-4531-97b9-f8714c390aa2", 
+          "name": "Gc-input-copies", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }, 
+        {
+          "identifier": "bfc73add-adf4-4249-828b-2c93f72663ee", 
+          "name": "Gc-input-originals", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ], 
+      "staticOutputs": [
+        {
+          "identifier": "9579ca86-bc5c-46a4-87ba-4b09bd2691c3", 
+          "name": "Gc-output", 
+          "epIdentifier": null, 
+          "group": null, 
+          "datatype": "FileReference"
+        }
+      ]
+    }
+  ], 
+  "connections": [
+    {
+      "source": "4fa83b03-6fa6-4fbd-84ee-828566eeac2f", 
+      "output": "db7ed95e-acd1-4578-ac5d-61e36a24a04f", 
+      "target": "c497304f-3a65-405a-a291-4f4e7d9f8456", 
+      "input": "4ad68d3e-4226-44a5-a0df-616905f9836e"
+    }, 
+    {
+      "source": "afb2f824-ccfe-4913-9ace-a0c10e388b7b", 
+      "output": "49e5ae90-d341-478d-91fd-6428908302cb", 
+      "target": "2b59e08d-4ae4-4ef3-8d07-8fed11d2a524", 
+      "input": "4a4fb243-86cc-4fba-a77f-f80784ea30ca"
+    }, 
+    {
+      "source": "6a4aaddc-ac9b-4fc4-a6ad-d69ac58191ed", 
+      "output": "7220cadf-147d-4f3e-a3ff-aed5d9a6a250", 
+      "target": "174660b9-8d11-4c94-a6df-9af33ed21fd3", 
+      "input": "bfc73add-adf4-4249-828b-2c93f72663ee"
+    }, 
+    {
+      "source": "cccc9cbf-1ca7-4b00-af14-a46a3cf0c933", 
+      "output": "65aa0a6e-30fc-4d97-81eb-157231587193", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "f1dbb4ee-05fe-4428-9535-c9f553509c21"
+    }, 
+    {
+      "source": "cccc9cbf-1ca7-4b00-af14-a46a3cf0c933", 
+      "output": "05f0f1bd-4fb9-44ff-bc27-8e8033347dd3", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "7097c992-1619-4c1f-87da-24e80a501e83"
+    }, 
+    {
+      "source": "cccc9cbf-1ca7-4b00-af14-a46a3cf0c933", 
+      "output": "88936718-62b9-4cdc-b490-1ea95ed799d3", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "0a83372b-fae9-4115-a06f-297db305cd82"
+    }, 
+    {
+      "source": "cccc9cbf-1ca7-4b00-af14-a46a3cf0c933", 
+      "output": "e677ef54-3591-4e0a-a125-accfce94475a", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "2e63077e-6e34-4e93-b01f-2dc248046d07"
+    }, 
+    {
+      "source": "cccc9cbf-1ca7-4b00-af14-a46a3cf0c933", 
+      "output": "bc8edcb6-6a4a-427f-bf17-e1d9c0e7376b", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "0fb1b2a1-3765-4b9b-ac36-646e817baec7"
+    }, 
+    {
+      "source": "36453bf3-039d-444f-ac2f-bf1d77ccbea4", 
+      "output": "b1a04e82-0653-4379-8673-40414564005e", 
+      "target": "bfc3e32f-185b-49ed-a710-217456d92eb4", 
+      "input": "fb456289-6546-43f7-9fac-9cbf5b09a60b"
+    }, 
+    {
+      "source": "40c6ca50-fbfa-4717-bb98-1dbb038c0d1b", 
+      "output": "dcd49b8c-0a9e-4514-8b14-4fe4bd3faa3c", 
+      "target": "4fa83b03-6fa6-4fbd-84ee-828566eeac2f", 
+      "input": "ce66d8f4-f6dd-46ba-9d37-af854f621cdf"
+    }, 
+    {
+      "source": "40c6ca50-fbfa-4717-bb98-1dbb038c0d1b", 
+      "output": "dcd49b8c-0a9e-4514-8b14-4fe4bd3faa3c", 
+      "target": "afb2f824-ccfe-4913-9ace-a0c10e388b7b", 
+      "input": "b0117c39-145d-4b81-98d3-d4fa9fb4edaa"
+    }, 
+    {
+      "source": "40c6ca50-fbfa-4717-bb98-1dbb038c0d1b", 
+      "output": "dcd49b8c-0a9e-4514-8b14-4fe4bd3faa3c", 
+      "target": "174660b9-8d11-4c94-a6df-9af33ed21fd3", 
+      "input": "c3b58a00-c9ae-4531-97b9-f8714c390aa2"
+    }, 
+    {
+      "source": "40c6ca50-fbfa-4717-bb98-1dbb038c0d1b", 
+      "output": "dcd49b8c-0a9e-4514-8b14-4fe4bd3faa3c", 
+      "target": "36453bf3-039d-444f-ac2f-bf1d77ccbea4", 
+      "input": "ed0e6e5a-7e52-404f-b35f-47d12876f78e"
+    }, 
+    {
+      "source": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "output": "8fbab0fb-7fac-49a4-b187-39a5f719b13b", 
+      "target": "40c6ca50-fbfa-4717-bb98-1dbb038c0d1b", 
+      "input": "bd5db8e5-e7f8-4805-8ff4-1a8e86d4cfa3"
+    }, 
+    {
+      "source": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "output": "81eaa5d6-a76c-42f6-9fc3-14a436ab1996", 
+      "target": "40c6ca50-fbfa-4717-bb98-1dbb038c0d1b", 
+      "input": "5c767d4c-0d5b-479c-a31e-3c37d270b8ba"
+    }, 
+    {
+      "source": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "output": "6ba29e58-5953-4381-927f-aa876277606a", 
+      "target": "40c6ca50-fbfa-4717-bb98-1dbb038c0d1b", 
+      "input": "2694b0e7-68da-4c4e-be55-f7380d5e39c9"
+    }, 
+    {
+      "source": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "output": "cea713e5-f7b6-4f05-ab1c-87dc23a7ceca", 
+      "target": "40c6ca50-fbfa-4717-bb98-1dbb038c0d1b", 
+      "input": "11a866a8-e228-480f-86a5-24c4004c5077"
+    }, 
+    {
+      "source": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "output": "db55692b-bdd2-447e-ab45-504f786c56a2", 
+      "target": "91e95b1a-48fe-424b-9f27-3d3a5f8c5c6b", 
+      "input": "43ed1396-9a0a-4f2e-9a1e-c5e553bf73dd"
+    }, 
+    {
+      "source": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "output": "bfe17118-1b46-4878-a0e5-828009360082", 
+      "target": "91e95b1a-48fe-424b-9f27-3d3a5f8c5c6b", 
+      "input": "e085718e-3623-48a2-b674-cda32e66f2d7"
+    }, 
+    {
+      "source": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "output": "0245a7ca-8f3f-4309-a1aa-9085c914cded", 
+      "target": "91e95b1a-48fe-424b-9f27-3d3a5f8c5c6b", 
+      "input": "4b6b9607-ee79-4c3f-8321-6059fdb00f77"
+    }, 
+    {
+      "source": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "output": "022c42c2-bb13-492a-ae19-d8e9faded8f7", 
+      "target": "ca7b38ad-0c73-4993-91ea-63e268662001", 
+      "input": "9f889f7b-9db6-4ebc-8d15-4e67f4da2ef2"
+    }, 
+    {
+      "source": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "output": "d61e504f-4a8d-4f93-b8ef-a592059f3279", 
+      "target": "ca7b38ad-0c73-4993-91ea-63e268662001", 
+      "input": "e4cd5ab7-fb11-43fe-a1ae-7bb02a9e968c"
+    }, 
+    {
+      "source": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "output": "53fb8adb-75b0-4354-afd3-637b6b62e97f", 
+      "target": "ca7b38ad-0c73-4993-91ea-63e268662001", 
+      "input": "31b29f35-afd7-4846-b945-4435c16f0c9a"
+    }, 
+    {
+      "source": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "output": "0e2c3d6c-32b0-4e25-a81d-13db3592a92d", 
+      "target": "ca7b38ad-0c73-4993-91ea-63e268662001", 
+      "input": "e746696a-c60b-4079-955e-87345fc6efcc"
+    }, 
+    {
+      "source": "53c94d07-5ff8-4121-8df2-d14124a9bb87", 
+      "output": "26cc02af-fb42-4fac-a525-9659ace07865", 
+      "target": "cd1bef7e-1d2d-477a-bd5d-23352f4fe3b6", 
+      "input": "95e6922b-33d6-4785-b37c-c7fe8e84559c"
+    }, 
+    {
+      "source": "9e91eb49-2834-4fac-834a-9bdce5086768", 
+      "output": "ec18b2f7-0b54-443b-a8ac-7b15535214ab", 
+      "target": "42c6c6ea-2ec9-4809-a0d0-dc2a5cff7ff8", 
+      "input": "bb8aa201-742a-46a6-bb73-0ebc8f96d040"
+    }, 
+    {
+      "source": "658ce175-4c24-4c04-a51b-61d8b0a1307e", 
+      "output": "32b5f217-b10d-49de-a458-4e2527aaec47", 
+      "target": "adb80811-8811-43cb-88de-96791766e9d9", 
+      "input": "556a8939-3f3c-4978-ab98-90c5f3b00572"
+    }, 
+    {
+      "source": "658ce175-4c24-4c04-a51b-61d8b0a1307e", 
+      "output": "32b5f217-b10d-49de-a458-4e2527aaec47", 
+      "target": "adb80811-8811-43cb-88de-96791766e9d9", 
+      "input": "11f36e1e-ff63-45ff-b5b8-27881b4fbcd7"
+    }, 
+    {
+      "source": "e9bbc92d-7f61-47c2-b15d-61129967e40c", 
+      "output": "d9cef277-dfe3-4aba-8ac7-1ce329b0987d", 
+      "target": "4fa83b03-6fa6-4fbd-84ee-828566eeac2f", 
+      "input": "66183b47-cffb-44d4-b561-67a9f884a38f"
+    }, 
+    {
+      "source": "e9bbc92d-7f61-47c2-b15d-61129967e40c", 
+      "output": "d9cef277-dfe3-4aba-8ac7-1ce329b0987d", 
+      "target": "afb2f824-ccfe-4913-9ace-a0c10e388b7b", 
+      "input": "e2c94924-2668-4de9-b257-faa9ec686ec3"
+    }, 
+    {
+      "source": "adb80811-8811-43cb-88de-96791766e9d9", 
+      "output": "d3f90db7-6d93-428a-ac93-41e106dfe249", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "d87c02a4-c77a-40f0-935f-74f61ae35197"
+    }, 
+    {
+      "source": "adb80811-8811-43cb-88de-96791766e9d9", 
+      "output": "7c3d52dc-303f-46b9-b037-eef43918ca85", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "5b9c06a9-afea-4862-b49e-fd478f987174"
+    }, 
+    {
+      "source": "adb80811-8811-43cb-88de-96791766e9d9", 
+      "output": "a15106d6-60a0-4755-aaec-975038b80083", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "5cbefb3c-26ba-408c-bdaa-16933f07ecdb"
+    }, 
+    {
+      "source": "adb80811-8811-43cb-88de-96791766e9d9", 
+      "output": "74da1a87-eef1-4db9-8654-b7db1c1834c1", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "23317625-1849-4a09-8337-b0d37ece3f66"
+    }, 
+    {
+      "source": "adb80811-8811-43cb-88de-96791766e9d9", 
+      "output": "f8f3093f-6c0d-4b5e-a776-c3ae622e9264", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "d0d7921a-1ce2-4cde-bf7f-7b4a7bcfee87"
+    }, 
+    {
+      "source": "adb80811-8811-43cb-88de-96791766e9d9", 
+      "output": "f8f3093f-6c0d-4b5e-a776-c3ae622e9264", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "319ac772-6faa-45de-8efb-dfa344442b6d"
+    }, 
+    {
+      "source": "adb80811-8811-43cb-88de-96791766e9d9", 
+      "output": "f8f3093f-6c0d-4b5e-a776-c3ae622e9264", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "6c6c62ff-9104-4f39-9350-fd1dfb7d6046"
+    }, 
+    {
+      "source": "03910059-d517-4976-b694-3ca20cffcc23", 
+      "output": "9351d43e-1666-47fe-b234-b01d921122ae", 
+      "target": "6a4aaddc-ac9b-4fc4-a6ad-d69ac58191ed", 
+      "input": "281e610b-f29a-4296-a110-24b10960d5c4"
+    }, 
+    {
+      "source": "03910059-d517-4976-b694-3ca20cffcc23", 
+      "output": "9351d43e-1666-47fe-b234-b01d921122ae", 
+      "target": "36453bf3-039d-444f-ac2f-bf1d77ccbea4", 
+      "input": "cdae8f61-7b0a-4880-becc-b0db78e1a39e"
+    }, 
+    {
+      "source": "03910059-d517-4976-b694-3ca20cffcc23", 
+      "output": "9351d43e-1666-47fe-b234-b01d921122ae", 
+      "target": "53c94d07-5ff8-4121-8df2-d14124a9bb87", 
+      "input": "44c5cc53-8a3a-4bf6-ba99-9f83e0afe8a2"
+    }, 
+    {
+      "source": "cd1bef7e-1d2d-477a-bd5d-23352f4fe3b6", 
+      "output": "fd8a9c7b-709d-4dd9-ae71-4335a3d72884", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "dcd4aa49-d6f9-4c89-addd-56d171586274"
+    }, 
+    {
+      "source": "cd1bef7e-1d2d-477a-bd5d-23352f4fe3b6", 
+      "output": "fd8a9c7b-709d-4dd9-ae71-4335a3d72884", 
+      "target": "a70c4bec-e495-471e-97ec-a3847a2756b2", 
+      "input": "0d246277-4b00-4b85-82d3-74aa90946a4e"
+    }, 
+    {
+      "source": "42c6c6ea-2ec9-4809-a0d0-dc2a5cff7ff8", 
+      "output": "657c6afe-ff25-431d-b247-a396420ebaef", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "716d1ded-678c-4720-88b7-5dcc41bef0b4"
+    }, 
+    {
+      "source": "42c6c6ea-2ec9-4809-a0d0-dc2a5cff7ff8", 
+      "output": "657c6afe-ff25-431d-b247-a396420ebaef", 
+      "target": "a70c4bec-e495-471e-97ec-a3847a2756b2", 
+      "input": "45be0552-e85c-4174-b1f1-93f1e18f3f92"
+    }, 
+    {
+      "source": "01d190b3-4b00-4286-847f-21db216591ff", 
+      "output": "e385b509-15f4-43e5-bafc-caa51a6bee67", 
+      "target": "e9bbc92d-7f61-47c2-b15d-61129967e40c", 
+      "input": "e48fdbd5-5c6a-459b-8c5e-efe28647f536"
+    }, 
+    {
+      "source": "a70c4bec-e495-471e-97ec-a3847a2756b2", 
+      "output": "2536369f-e69a-4839-b381-50da333146dd", 
+      "target": "cccc9cbf-1ca7-4b00-af14-a46a3cf0c933", 
+      "input": "25476cdd-23e8-4c31-89ed-9f345d16371f"
+    }, 
+    {
+      "source": "a70c4bec-e495-471e-97ec-a3847a2756b2", 
+      "output": "2536369f-e69a-4839-b381-50da333146dd", 
+      "target": "cccc9cbf-1ca7-4b00-af14-a46a3cf0c933", 
+      "input": "2b2c97ae-e29d-4f95-a064-03ae3ef2da7d"
+    }, 
+    {
+      "source": "b1d8f629-d520-4d8c-a466-e8828bb102cd", 
+      "output": "a1452742-5b69-4790-aa55-654367cbcdff", 
+      "target": "e9bbc92d-7f61-47c2-b15d-61129967e40c", 
+      "input": "8602520c-0046-4a57-9acb-59a584185d97"
+    }, 
+    {
+      "source": "b1d8f629-d520-4d8c-a466-e8828bb102cd", 
+      "output": "e40ff2e6-8cb1-425a-8c0e-0c86f25babc8", 
+      "target": "fba034fb-aa1f-4b4a-9c5e-890c67253be8", 
+      "input": "5b5dadbe-61f8-444f-9bd0-20dea5cde657"
+    }, 
+    {
+      "source": "b1d8f629-d520-4d8c-a466-e8828bb102cd", 
+      "output": "e58bc387-eea0-40f2-8535-ca698cff0a34", 
+      "target": "03910059-d517-4976-b694-3ca20cffcc23", 
+      "input": "9d6ad02b-b0b0-45ed-91ff-3b02fc146357"
+    }, 
+    {
+      "source": "b1d8f629-d520-4d8c-a466-e8828bb102cd", 
+      "output": "2c25c081-0828-4265-bbd0-e13940c253df", 
+      "target": "2fd07273-84c6-4f6c-af49-b0f02dfd79c9", 
+      "input": "3c8fa5c9-35ca-4eb3-97f7-97d2bbe36618"
+    }, 
+    {
+      "source": "b1d8f629-d520-4d8c-a466-e8828bb102cd", 
+      "output": "b001644a-022c-4895-ad28-76c61308eb43", 
+      "target": "cd1bef7e-1d2d-477a-bd5d-23352f4fe3b6", 
+      "input": "76e702f8-947d-47fb-ae67-ca19e8b07177"
+    }, 
+    {
+      "source": "b1d8f629-d520-4d8c-a466-e8828bb102cd", 
+      "output": "6d31fbb1-f61e-41c4-8f78-fcbce5dac349", 
+      "target": "42c6c6ea-2ec9-4809-a0d0-dc2a5cff7ff8", 
+      "input": "83f0054f-31ce-412e-9319-93ce124313ba"
+    }, 
+    {
+      "source": "ca7b38ad-0c73-4993-91ea-63e268662001", 
+      "output": "299081c8-e236-43b7-80d1-cff55d44e64f", 
+      "target": "91e95b1a-48fe-424b-9f27-3d3a5f8c5c6b", 
+      "input": "deaec27c-6ace-4a83-a882-d6f05d33c2a8"
+    }, 
+    {
+      "source": "bfc3e32f-185b-49ed-a710-217456d92eb4", 
+      "output": "4622d9d8-dbcb-4c85-a9e8-38003b6675e2", 
+      "target": "fba034fb-aa1f-4b4a-9c5e-890c67253be8", 
+      "input": "58753fbe-ea20-4396-ba06-ac245e8f3ccb"
+    }, 
+    {
+      "source": "91e95b1a-48fe-424b-9f27-3d3a5f8c5c6b", 
+      "output": "5447a5e6-a4b9-450e-aa58-ab61a6106438", 
+      "target": "b733b6d1-a87f-49a4-8d58-c93dac0e65cd", 
+      "input": "a8f99d25-e128-4e5b-bca9-e49a5252fe8f"
+    }, 
+    {
+      "source": "91e95b1a-48fe-424b-9f27-3d3a5f8c5c6b", 
+      "output": "5447a5e6-a4b9-450e-aa58-ab61a6106438", 
+      "target": "b733b6d1-a87f-49a4-8d58-c93dac0e65cd", 
+      "input": "ce1357f4-7d4a-41b3-bdb5-865369e15238"
+    }, 
+    {
+      "source": "174660b9-8d11-4c94-a6df-9af33ed21fd3", 
+      "output": "9579ca86-bc5c-46a4-87ba-4b09bd2691c3", 
+      "target": "a70c4bec-e495-471e-97ec-a3847a2756b2", 
+      "input": "46535806-be2f-4550-be88-3594d8ea303c"
+    }, 
+    {
+      "source": "65f60609-4da0-4765-ada1-cdb182e79c6c", 
+      "output": "3a2186de-c91b-4150-af32-86eeb8cd92d2", 
+      "target": "01d190b3-4b00-4286-847f-21db216591ff", 
+      "input": "f3cd13e2-2bed-4fbc-b852-ce7362f801d8"
+    }, 
+    {
+      "source": "65f60609-4da0-4765-ada1-cdb182e79c6c", 
+      "output": "3a2186de-c91b-4150-af32-86eeb8cd92d2", 
+      "target": "afb2f824-ccfe-4913-9ace-a0c10e388b7b", 
+      "input": "f0482097-b64e-4ef6-bb9d-d4c34ea4e9cf"
+    }, 
+    {
+      "source": "65f60609-4da0-4765-ada1-cdb182e79c6c", 
+      "output": "3a2186de-c91b-4150-af32-86eeb8cd92d2", 
+      "target": "36453bf3-039d-444f-ac2f-bf1d77ccbea4", 
+      "input": "9346a96d-396d-4ebc-864d-1e26c9bfe893"
+    }, 
+    {
+      "source": "2fd07273-84c6-4f6c-af49-b0f02dfd79c9", 
+      "output": "558e060e-465c-482f-84c7-2dc6da050cf6", 
+      "target": "6a4aaddc-ac9b-4fc4-a6ad-d69ac58191ed", 
+      "input": "ffed5528-5d5a-463a-a47b-a5a7486cb5fd"
+    }, 
+    {
+      "source": "2fd07273-84c6-4f6c-af49-b0f02dfd79c9", 
+      "output": "558e060e-465c-482f-84c7-2dc6da050cf6", 
+      "target": "36453bf3-039d-444f-ac2f-bf1d77ccbea4", 
+      "input": "dc57a4a8-da1e-4988-9ffb-e2346411b2b4"
+    }, 
+    {
+      "source": "2fd07273-84c6-4f6c-af49-b0f02dfd79c9", 
+      "output": "558e060e-465c-482f-84c7-2dc6da050cf6", 
+      "target": "9e91eb49-2834-4fac-834a-9bdce5086768", 
+      "input": "389aca98-0286-4de4-9bd5-221fd0064196"
+    }, 
+    {
+      "source": "c497304f-3a65-405a-a291-4f4e7d9f8456", 
+      "output": "cd13d083-a466-40aa-95cb-c4f36dfaf812", 
+      "target": "03910059-d517-4976-b694-3ca20cffcc23", 
+      "input": "5b90d5a9-bf83-4eb5-bfcb-115850cc575d"
+    }, 
+    {
+      "source": "fba034fb-aa1f-4b4a-9c5e-890c67253be8", 
+      "output": "01f33fb5-dfc1-443c-aa0d-61be6a91c220", 
+      "target": "7135d7bf-f63f-4de2-980f-87ef9c2349c0", 
+      "input": "fa5530bc-339c-4499-8cfe-096c81c325f0"
+    }, 
+    {
+      "source": "fba034fb-aa1f-4b4a-9c5e-890c67253be8", 
+      "output": "01f33fb5-dfc1-443c-aa0d-61be6a91c220", 
+      "target": "a70c4bec-e495-471e-97ec-a3847a2756b2", 
+      "input": "96fae3b9-02a8-4944-bca9-593c6c7e82d2"
+    }, 
+    {
+      "source": "2b59e08d-4ae4-4ef3-8d07-8fed11d2a524", 
+      "output": "a81aca9c-c1e3-4e1f-b3de-4c95eddce1eb", 
+      "target": "2fd07273-84c6-4f6c-af49-b0f02dfd79c9", 
+      "input": "b6f51390-a8f5-4e15-856b-e8868b0ed876"
+    }
+  ], 
+  "bendpoints": "[{\"source\": \"4fa83b03-6fa6-4fbd-84ee-828566eeac2f\", \"target\": \"c497304f-3a65-405a-a291-4f4e7d9f8456\", \"coordinates\": \"1750:1650\"}, {\"source\": \"afb2f824-ccfe-4913-9ace-a0c10e388b7b\", \"target\": \"2b59e08d-4ae4-4ef3-8d07-8fed11d2a524\", \"coordinates\": \"1450:1350\"}, {\"source\": \"6a4aaddc-ac9b-4fc4-a6ad-d69ac58191ed\", \"target\": \"174660b9-8d11-4c94-a6df-9af33ed21fd3\", \"coordinates\": \"2750:2650\"}, {\"source\": \"cccc9cbf-1ca7-4b00-af14-a46a3cf0c933\", \"target\": \"7135d7bf-f63f-4de2-980f-87ef9c2349c0\", \"coordinates\": \"850:1050\"}, {\"source\": \"36453bf3-039d-444f-ac2f-bf1d77ccbea4\", \"target\": \"bfc3e32f-185b-49ed-a710-217456d92eb4\", \"coordinates\": \"2050:1950\"}, {\"source\": \"40c6ca50-fbfa-4717-bb98-1dbb038c0d1b\", \"target\": \"4fa83b03-6fa6-4fbd-84ee-828566eeac2f\", \"coordinates\": \"1650:950\"}, {\"source\": \"40c6ca50-fbfa-4717-bb98-1dbb038c0d1b\", \"target\": \"afb2f824-ccfe-4913-9ace-a0c10e388b7b\", \"coordinates\": \"1350:950\"}, {\"source\": \"40c6ca50-fbfa-4717-bb98-1dbb038c0d1b\", \"target\": \"174660b9-8d11-4c94-a6df-9af33ed21fd3\", \"coordinates\": \"2750:950\"}, {\"source\": \"40c6ca50-fbfa-4717-bb98-1dbb038c0d1b\", \"target\": \"36453bf3-039d-444f-ac2f-bf1d77ccbea4\", \"coordinates\": \"1950:950\"}, {\"source\": \"7135d7bf-f63f-4de2-980f-87ef9c2349c0\", \"target\": \"40c6ca50-fbfa-4717-bb98-1dbb038c0d1b\", \"coordinates\": \"950:850\"}, {\"source\": \"7135d7bf-f63f-4de2-980f-87ef9c2349c0\", \"target\": \"91e95b1a-48fe-424b-9f27-3d3a5f8c5c6b\", \"coordinates\": \"450:850\"}, {\"source\": \"7135d7bf-f63f-4de2-980f-87ef9c2349c0\", \"target\": \"ca7b38ad-0c73-4993-91ea-63e268662001\", \"coordinates\": \"1250:850\"}, {\"source\": \"53c94d07-5ff8-4121-8df2-d14124a9bb87\", \"target\": \"cd1bef7e-1d2d-477a-bd5d-23352f4fe3b6\", \"coordinates\": \"2550:2450\"}, {\"source\": \"9e91eb49-2834-4fac-834a-9bdce5086768\", \"target\": \"42c6c6ea-2ec9-4809-a0d0-dc2a5cff7ff8\", \"coordinates\": \"2350:2250\"}, {\"source\": \"658ce175-4c24-4c04-a51b-61d8b0a1307e\", \"target\": \"adb80811-8811-43cb-88de-96791766e9d9\", \"coordinates\": \"750:250\"}, {\"source\": \"e9bbc92d-7f61-47c2-b15d-61129967e40c\", \"target\": \"4fa83b03-6fa6-4fbd-84ee-828566eeac2f\", \"coordinates\": \"1650:650\"}, {\"source\": \"e9bbc92d-7f61-47c2-b15d-61129967e40c\", \"target\": \"afb2f824-ccfe-4913-9ace-a0c10e388b7b\", \"coordinates\": \"1350:650\"}, {\"source\": \"adb80811-8811-43cb-88de-96791766e9d9\", \"target\": \"7135d7bf-f63f-4de2-980f-87ef9c2349c0\", \"coordinates\": \"850:750\"}, {\"source\": \"03910059-d517-4976-b694-3ca20cffcc23\", \"target\": \"6a4aaddc-ac9b-4fc4-a6ad-d69ac58191ed\", \"coordinates\": \"2650:1850\"}, {\"source\": \"03910059-d517-4976-b694-3ca20cffcc23\", \"target\": \"36453bf3-039d-444f-ac2f-bf1d77ccbea4\", \"coordinates\": \"1950:1850\"}, {\"source\": \"03910059-d517-4976-b694-3ca20cffcc23\", \"target\": \"53c94d07-5ff8-4121-8df2-d14124a9bb87\", \"coordinates\": \"2450:1850\"}, {\"source\": \"cd1bef7e-1d2d-477a-bd5d-23352f4fe3b6\", \"target\": \"7135d7bf-f63f-4de2-980f-87ef9c2349c0\", \"coordinates\": \"850:2550\"}, {\"source\": \"cd1bef7e-1d2d-477a-bd5d-23352f4fe3b6\", \"target\": \"a70c4bec-e495-471e-97ec-a3847a2756b2\", \"coordinates\": \"1150:2550\"}, {\"source\": \"42c6c6ea-2ec9-4809-a0d0-dc2a5cff7ff8\", \"target\": \"7135d7bf-f63f-4de2-980f-87ef9c2349c0\", \"coordinates\": \"850:2350\"}, {\"source\": \"42c6c6ea-2ec9-4809-a0d0-dc2a5cff7ff8\", \"target\": \"a70c4bec-e495-471e-97ec-a3847a2756b2\", \"coordinates\": \"1150:2350\"}, {\"source\": \"01d190b3-4b00-4286-847f-21db216591ff\", \"target\": \"e9bbc92d-7f61-47c2-b15d-61129967e40c\", \"coordinates\": \"650:550\"}, {\"source\": \"a70c4bec-e495-471e-97ec-a3847a2756b2\", \"target\": \"cccc9cbf-1ca7-4b00-af14-a46a3cf0c933\", \"coordinates\": \"1050:1150\"}, {\"source\": \"b1d8f629-d520-4d8c-a466-e8828bb102cd\", \"target\": \"e9bbc92d-7f61-47c2-b15d-61129967e40c\", \"coordinates\": \"650:150\"}, {\"source\": \"b1d8f629-d520-4d8c-a466-e8828bb102cd\", \"target\": \"fba034fb-aa1f-4b4a-9c5e-890c67253be8\", \"coordinates\": \"2150:150\"}, {\"source\": \"b1d8f629-d520-4d8c-a466-e8828bb102cd\", \"target\": \"03910059-d517-4976-b694-3ca20cffcc23\", \"coordinates\": \"1850:150\"}, {\"source\": \"b1d8f629-d520-4d8c-a466-e8828bb102cd\", \"target\": \"2fd07273-84c6-4f6c-af49-b0f02dfd79c9\", \"coordinates\": \"1550:150\"}, {\"source\": \"b1d8f629-d520-4d8c-a466-e8828bb102cd\", \"target\": \"cd1bef7e-1d2d-477a-bd5d-23352f4fe3b6\", \"coordinates\": \"2550:150\"}, {\"source\": \"b1d8f629-d520-4d8c-a466-e8828bb102cd\", \"target\": \"42c6c6ea-2ec9-4809-a0d0-dc2a5cff7ff8\", \"coordinates\": \"2350:150\"}, {\"source\": \"ca7b38ad-0c73-4993-91ea-63e268662001\", \"target\": \"91e95b1a-48fe-424b-9f27-3d3a5f8c5c6b\", \"coordinates\": \"450:1250\"}, {\"source\": \"bfc3e32f-185b-49ed-a710-217456d92eb4\", \"target\": \"fba034fb-aa1f-4b4a-9c5e-890c67253be8\", \"coordinates\": \"2150:2050\"}, {\"source\": \"91e95b1a-48fe-424b-9f27-3d3a5f8c5c6b\", \"target\": \"b733b6d1-a87f-49a4-8d58-c93dac0e65cd\", \"coordinates\": \"350:450\"}, {\"source\": \"174660b9-8d11-4c94-a6df-9af33ed21fd3\", \"target\": \"a70c4bec-e495-471e-97ec-a3847a2756b2\", \"coordinates\": \"1150:2750\"}, {\"source\": \"65f60609-4da0-4765-ada1-cdb182e79c6c\", \"target\": \"01d190b3-4b00-4286-847f-21db216591ff\", \"coordinates\": \"550:50\"}, {\"source\": \"65f60609-4da0-4765-ada1-cdb182e79c6c\", \"target\": \"afb2f824-ccfe-4913-9ace-a0c10e388b7b\", \"coordinates\": \"1350:50\"}, {\"source\": \"65f60609-4da0-4765-ada1-cdb182e79c6c\", \"target\": \"36453bf3-039d-444f-ac2f-bf1d77ccbea4\", \"coordinates\": \"1950:50\"}, {\"source\": \"2fd07273-84c6-4f6c-af49-b0f02dfd79c9\", \"target\": \"6a4aaddc-ac9b-4fc4-a6ad-d69ac58191ed\", \"coordinates\": \"2650:1550\"}, {\"source\": \"2fd07273-84c6-4f6c-af49-b0f02dfd79c9\", \"target\": \"36453bf3-039d-444f-ac2f-bf1d77ccbea4\", \"coordinates\": \"1950:1550\"}, {\"source\": \"2fd07273-84c6-4f6c-af49-b0f02dfd79c9\", \"target\": \"9e91eb49-2834-4fac-834a-9bdce5086768\", \"coordinates\": \"2250:1550\"}, {\"source\": \"c497304f-3a65-405a-a291-4f4e7d9f8456\", \"target\": \"03910059-d517-4976-b694-3ca20cffcc23\", \"coordinates\": \"1850:1750\"}, {\"source\": \"fba034fb-aa1f-4b4a-9c5e-890c67253be8\", \"target\": \"7135d7bf-f63f-4de2-980f-87ef9c2349c0\", \"coordinates\": \"850:2150\"}, {\"source\": \"fba034fb-aa1f-4b4a-9c5e-890c67253be8\", \"target\": \"a70c4bec-e495-471e-97ec-a3847a2756b2\", \"coordinates\": \"1150:2150\"}, {\"source\": \"2b59e08d-4ae4-4ef3-8d07-8fed11d2a524\", \"target\": \"2fd07273-84c6-4f6c-af49-b0f02dfd79c9\", \"coordinates\": \"1550:1450\"}]", 
+  "labels": "[{\"identifier\": \"572593fe-2297-400e-8fa2-ca151b7e7936\", \"text\": \"A\", \"location\": \"500:500\", \"size\": \"200:200\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"0:111:166\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"4b02a5b5-4274-499d-8bcc-0afc8adc4c7d\", \"text\": \"COOR\", \"location\": \"0:0\", \"size\": \"500:500\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"255:255:0\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"ecfd13b3-cdd9-41ac-8560-7c16340c7d03\", \"text\": \"Optimizer\", \"location\": \"700:700\", \"size\": \"600:600\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"28:230:255\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"72817c6e-0316-493e-b388-76c38719431c\", \"text\": \"G2\", \"location\": \"2400:2400\", \"size\": \"200:200\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"255:52:255\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"4b9c70b8-57a9-4461-b0f6-2aed0aa9989f\", \"text\": \"G1\", \"location\": \"2200:2200\", \"size\": \"200:200\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"255:74:70\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"86c93b17-6aaf-43d8-bf79-621034d1471c\", \"text\": \"F1\", \"location\": \"1900:1900\", \"size\": \"300:300\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"0:137:65\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"26e5d365-ac37-46b3-b1c3-f910a4940d76\", \"text\": \"Gc\", \"location\": \"2600:2600\", \"size\": \"200:200\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"255:219:229\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"af95f650-25d3-4cab-befa-e746ea9b62f2\", \"text\": \"D2\", \"location\": \"1600:1600\", \"size\": \"300:300\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"163:0:89\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}, {\"identifier\": \"446a9e2b-ed23-406a-83a9-818b0ee1831f\", \"text\": \"D1\", \"location\": \"1300:1300\", \"size\": \"300:300\", \"alpha\": \"127\", \"colorText\": \"0:0:0\", \"colorBackground\": \"0:0:0\", \"alignmentType\": \"TOPRIGHT\", \"border\": \"false\", \"textSize\": \"9\"}]"
+}

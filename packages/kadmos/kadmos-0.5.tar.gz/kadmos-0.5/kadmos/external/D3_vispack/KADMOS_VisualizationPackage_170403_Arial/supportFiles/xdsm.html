@@ -1,0 +1,375 @@
+<!doctype html>
+<html class="js" lang="">
+<style>
+/*
+* XDSMjs
+* Copyright 2016 Rémi Lafage
+*/
+
+/* Component types */
+.xdsm .user {
+visibility: hidden;
+}
+
+.xdsm .coordinator {
+fill: #FFFFFF;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .optimization {
+fill: #CCCCFF;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .converger {
+fill: #FFE5CC;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .doe {
+fill: #FFFCCC;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .rcganalysis {
+fill: #E5DEB3;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .precouplinganalysis {
+fill: #BCE4FA;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .preiteratoranalysis {
+fill: #BCE4FA;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .postiteratoranalysis {
+fill: #BCE4FA;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .coupledanalysis {
+fill: #CCFFCC;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .postcouplinganalysis {
+fill: #F2CCD9;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .consistencyconstraintfunction {
+fill: #F2CCD9;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .lp_optimization {
+fill: #CCCCFF;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .analysis {
+fill: #CCFFCC;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .mdo {
+fill: #FFCCCC;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .function {
+fill: #F2CCD9;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .mda {
+fill: #FFE5CC;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .metamodel {
+fill: #FFFCCC;
+stroke: black;
+stroke-width: 1px;
+}
+
+/* Title */
+.xdsm g.title text {
+display: block;
+font-size: 2em;
+margin-top: 0.67em;
+margin-bottom: 0.67em;
+margin-left: 0;
+margin-right: 0;
+font-family:Arial;
+}
+.xdsm g.title rect {
+fill: none;
+}
+
+
+/* Text Default */
+.xdsm text {
+fill: black;
+stroke: none;
+font-size: 16pt;
+font-family:Arial;
+}
+.xdsm tspan.sub {
+font-size: small;
+font-family:Arial;
+}
+.xdsm tspan.sup {
+font-size: small;
+font-family:Arial;
+}
+
+/* Data */
+.xdsm .dataInter polygon {
+fill: #E5E5E5;
+stroke: black;
+stroke-width: 1px;
+}
+
+.xdsm .dataIO polygon {
+fill: #FFFFFF;
+stroke: black;
+stroke-width: 1px;
+}
+
+/* Dataflow */
+.xdsm g.dataflow {
+fill: none;
+stroke: grey;
+stroke-width: 8px;
+}
+
+/* Workflow */
+.xdsm g.workflow {
+fill: none;
+stroke: black;
+stroke-width: 2px;
+}
+
+/* Tooltip */
+div.tooltip {
+position: absolute;
+text-align: center;
+font-size: 16pt;
+padding: 10px;
+background: lightsteelblue;
+border: 0px;
+border-radius: 8px;
+pointer-events: none;
+}
+
+div.treeDiv {
+position: absolute;
+}
+
+div.contextDiv {
+position: absolute;
+}
+
+sub, sup {
+/* Specified in % so that the sup/sup is the right size relative to the surrounding text */
+font-size: 75%;
+/* Zero out the line-height so that it doesn't interfere with the positioning that follows */
+line-height: 0;
+/* Where the magic happens: makes all browsers position the sup/sup properly, relative to the surrounding text */
+position: relative;
+/* Note that if you're using Eric Meyer's reset.css, this is already set and you can remove this rule */
+vertical-align: baseline;
+}
+
+sup {
+/* Move the superscripted text up */
+top: -0.5em;
+}
+
+sub {
+/* Move the subscripted text down, but only half as far down as the superscript moved up */
+bottom: -0.5em;
+}
+
+/* Aigner: New styles for tree layout */
+.node {
+cursor: pointer;
+}
+
+.overlay{
+background-color:#FFF;
+}
+
+.node circle {
+fill: #fff;
+stroke: #3399FF;
+stroke-width: 1.5px;
+}
+
+.node text {
+font-size:16pt; 
+font-family:Arial;
+}
+
+.link {
+fill: none;
+stroke: #ccc;
+stroke-width: 1.5px;
+}
+
+.d3-context-menu {
+	position: absolute;
+	display: none;
+	background-color: #f2f2f2;
+	border-radius: 4px;
+	font-family: Arial;
+	font-size: 16pt;
+	width: 350px;
+	border: 1px solid #d4d4d4;
+	z-index:1200;
+}
+.d3-context-menu ul {
+	list-style-type: none;
+	margin: 4px 0px;
+	padding: 0px;
+	cursor: default;
+}
+.d3-context-menu ul li {
+	padding: 4px 16px;
+}
+.d3-context-menu ul li:hover {
+	background-color: #3399FF;
+}
+.d3-context-menu ul li > ul {
+    position: absolute; 
+    background-color: #f2f2f2; 
+    top: 0;
+	min-width: 350px;
+    left: 350px; 
+    z-index: -1; 
+} 
+
+.d3-context-menu ul li > ul li:hover 
+{ 
+    background-color: #3399FF;
+	color: #fefefe;
+}
+
+.ackn {
+fill: #666666;
+stroke: #666666;
+stroke-width: 2.0;
+}
+
+.acknGroup:hover .ackn{
+fill: #3399FF;
+stroke: #3399FF;
+}
+
+.newDiv {
+	position:relative;
+	top: -100px;
+	left: 220px;
+	background-color: none;
+}
+.newDiv a {
+    text-decoration: none;
+    color: white;
+    font-family: Arial;
+    font-size: 20pt;
+    padding-top: 12px;
+    padding-right: 12px;
+    padding-bottom: 12px;
+    padding-left: 6px;
+    display:inline-block;
+}
+.newDiv ul {
+  display:  inline-block;;
+  margin: 0;
+  padding: 0;
+  background-color: #666666;
+}
+.newDiv ul li {display: inline-block;}
+.newDiv ul li:hover {background: #888;}
+.newDiv ul li:hover ul {display: block;}
+.newDiv ul li ul {
+  position: absolute;
+  min-width: 200px;
+  display: none;
+}
+.newDiv ul li ul li { 
+  background: #555; 
+  display: block;
+}
+.newDiv ul li ul li a {
+	display:block !important
+} 
+.newDiv ul li ul li:hover {background: #3399FF;}
+
+table {
+	max-width: 800px;
+}
+
+table, th, td {
+	font-family: Arial;
+    font-size: 16pt;
+	background-color: white;
+    border: 2pt solid darkgrey;
+    border-collapse: collapse;
+	text-align: left;
+}
+th, td {
+    padding-top: 6px;
+    padding-right: 20px;
+    padding-bottom: 6px;
+    padding-left: 20px;
+	max-width: 400px;
+}
+
+.remCircle {
+	stroke: black;
+	stroke-width: 2;
+	fill: red;
+	fill-opacity: .6
+}
+.remMinus {
+	stroke: black;
+	stroke-width: 2;
+}
+
+.acknText {
+font-family: Arial;
+font-size: 12pt;
+fill: #666666;
+}
+
+</style>
+    <head>
+		<meta charset="utf-8">
+		<title>KADMOS XDSM View</title>
+    </head>
+    <body>
+		<script src="xdsm.js"></script>
+    </body>
+</html>

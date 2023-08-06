@@ -1,0 +1,29 @@
+# Include readme files etc.
+include *.md
+include *.txt
+
+# Include interface templates
+graft kadmos/interface/static
+graft kadmos/interface/templates
+
+# Include schemas
+graft kadmos/utilities/cmdows
+
+# Include current vispack templates
+graft kadmos/external/D3_vispack/KADMOS_VisualizationPackage_170419
+graft kadmos/external/D3_vispack/KADMOS_VisualizationPackage_170523
+graft kadmos/external/D3_vispack/KADMOS_VisualizationPackage_170530
+
+# Include XDSM templates
+include kadmos/external/XDSM_writer/*.tex
+
+# Include examples (except VISPACK dirs)
+graft examples
+prune examples/scripts/tu_delft_wing_design/VISPACK
+prune examples/scripts/tu_delft_wing_design/VISPACK_RCG
+
+# Include documentation
+graft doc
+
+# Exclude compiled files
+prune *.pyc
