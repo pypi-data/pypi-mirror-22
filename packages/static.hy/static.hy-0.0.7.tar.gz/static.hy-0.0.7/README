@@ -1,0 +1,75 @@
+static.hy
+=========
+
+**Oh my god, yet another static website generator?? Are you crazy??**
+
+Yes. Next question?
+
+**WHY???**
+
+I wanted to learn [Hy](http://hylang.org).
+
+Installation
+============
+
+Install with pip:
+
+    $ sudo pip3 install static.hy
+
+`static.hy` depends on `hy`, `markdown`, `dateutil`, and `jinja2`, all of which will be pulled in automatically for you with the above command.
+
+Usage
+=====
+
+My aim was to make static.hy simpler than other static website generators, I'll let you be the judge of how successful I was.
+
+First, create your project:
+
+    $ mkdir my_new_website && cd my_new_website
+    $ git init .
+    $ $EDITOR config.json
+
+`config.json` should look something like this:
+
+    {
+        "home_page_url": "http://example.com",
+        "title": "My Awesome Website",
+        "description": "In which I show you how totally awesome I am",
+        "author": {
+            "name": "Your Name Here",
+            "url": "http://example.com/you"
+        },
+        "hide": [
+            "content_html",
+            "_display_date_published",
+            "_display_date_modified"
+        ]
+    }
+
+`home_page_url` should be the address to your website without a trailing slash.
+
+`author`, `title`, and `description` are site-wide fields that should be self expalanatory.
+
+`hide` allows you to suppress some elements from appearing in the generated JSON Feed. I prefer my JSON Feed to only have `summary` and not also `content_html` so I list that here for hiding.
+
+Next you need an `atom.jinja2` file that defines what your Atom feed will look like. For example, [the one on my personal website](http://robru.ca/atom.jinja2).
+
+And then you need an `html.jinja2` which will be used for both your index page and also each individual page on your site. This can be as simple or as intricate as you like, again refer to [my personal website](http://robru.ca/html.jinja2).
+
+Finally, start writing blog posts! Here you have a significant degree of freedom. `static.hy` will find all `*.md` files in your project and htmlify them and cram them into your html template. Here is a quick guide on possible file naming schemes:
+
+| **Name Your File**           | **Resulting Permalink** |
+| `/foo.md`                    | `/foo.html`             |
+| `/foo/index.md`              | `/foo/`                 |
+| `/2017/06/04/topic/index.md` | `/2017/06/04/topic/`    |
+
+Once you've written a post or two, run `static.hy`:
+
+    $ static.hy
+
+And you should be able to ship off the resulting files to the static file host of your choice!
+
+Bugs
+====
+
+Probably a lot. File them [in my gitlab issue tracker](https://gitlab.com/robru/static.hy/issues).
