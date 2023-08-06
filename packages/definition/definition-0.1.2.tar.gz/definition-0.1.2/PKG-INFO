@@ -1,0 +1,63 @@
+Metadata-Version: 1.0
+Name: definition
+Version: 0.1.2
+Summary: Definition fetcher from 5 online dictionaries
+Home-page: https://github.com/shubhamchaudhary/definition
+Author: Shubham Chaudhary
+Author-email: me@shubhamchaudhary.in
+License: GPLv3+
+Description: Definition
+        ==========
+        
+        |Join the chat at https://gitter.im/shubhamchaudhary/definition|
+        
+        +--------------------+--------------------+
+        | Version            | Downloads          |
+        +====================+====================+
+        | |Latest Version|   | |PyPi downloads|   |
+        +--------------------+--------------------+
+        
+        Fetch definition from 5 or more online dictionaries Available easily
+        from PyPi
+        
+        Installation
+        ^^^^^^^^^^^^
+        
+        .. code:: sh
+        
+            pip install definition
+        
+        Usage
+        ^^^^^
+        
+        To fetch definition of
+        
+        .. code:: sh
+        
+            definition <query>
+        
+        .. code:: sh
+        
+            $ definition -h
+        
+            Usage: def [-p] [-r [INT]] [-e [INT]] query
+        
+            Options:
+              --version             show program's version number and exit
+              -h, --help            show this help message and exit
+              -w, --word            Show the word of the day
+              -x, --xamples         Show 30 examples
+              -e EXAMPLE, --example=EXAMPLE
+                                    Show specified number of examples
+              -r, --random          Show random words
+              -q, --quiet           don't print status messages to stdout
+              -p, --pronunciation   Show detailed pronunciation
+        
+        .. |Join the chat at https://gitter.im/shubhamchaudhary/definition| image:: https://badges.gitter.im/shubhamchaudhary/definition.svg
+           :target: https://gitter.im/shubhamchaudhary/definition?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+        .. |Latest Version| image:: https://img.shields.io/pypi/v/definition.svg
+           :target: https://pypi.python.org/pypi/definition/
+        .. |PyPi downloads| image:: https://img.shields.io/pypi/dm/definition.svg
+           :target: https://pypi.python.org/pypi/definition
+        
+Platform: UNKNOWN
