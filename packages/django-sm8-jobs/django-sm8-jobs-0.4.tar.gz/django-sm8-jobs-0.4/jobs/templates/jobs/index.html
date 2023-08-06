@@ -1,0 +1,52 @@
+{% extends "jobs/base.html" %}
+{% block content %}
+{% load bootstrap3 %}
+<div class="container">
+  <div class="row top-padding">
+    <!--<div class="col-md-2">
+      {% load socialaccount %}
+      <a href="{% provider_login_url "facebook" method="oauth2" %}">
+        <button type="button" class="btn btn-primary">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Facebook Login
+        </button>
+      </a>
+    </div>-->
+    <div class="col-md-2">
+      <a href="{% url 'jobs:profile' %}">
+        <button type="button" class="btn btn-primary">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Edit Profile
+        </button>
+      </a>
+    </div>
+    <div class="col-md-2">
+      <a href="{% url 'jobs:submit' %}">
+        <button type="button" class="btn btn-primary">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Job
+        </button>
+      </a>
+    </div>
+  </div>
+  <div class="row table-padding">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Job ID</th>
+            <th>Job Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for job in jobs %}
+          {% if request.user.is_authenticated %}
+          <tr>
+            <td><a href="{% url 'jobs:detail' job.id %}">{{ job.job_id }}</a></td>
+            <td>{{ job.job_description }}</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
