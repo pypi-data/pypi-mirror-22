@@ -1,0 +1,39 @@
+.TH emu 1 May 30, 2017 "version 0.2.5" "Emu Manual"
+.SH NAME
+emu \- Fast incremental snapshot backups
+.SH SYNOPSIS
+.B emu
+<command> [<options>]
+.SH COMMANDS
+Below is a brief summary of the available commands. For more information on any,
+see
+.B emu help
+<command>, or
+.B emu
+<command>
+.B \-\-help
+.
+
+          checkout      restore source from snapshot
+          clean         remove locks and orphaned data
+          init          create emu sources
+          log           show sink snapshot logs
+          squash        merge snapshots
+          sink          manage sinks
+          prune         remove snapshots from sinks
+          push          record source snapshots
+          verify        verify the contents of snapshots
+.SH OPTIONS
+.TP
+\-\-version
+Show version information and quit.
+.TP
+\-h \-\-help
+Show this help and quit.
+.SH COPYRIGHT
+Copyright © 2015 Chris Cummins.  License GPLv3+: GNU GPL version 3 or
+later <http://gnu.org/licenses/gpl.html>.  This is free software: you
+are free to change and redistribute it.  There is NO WARRANTY, to the
+extent permitted by law.
+.SH AUTHOR
+Chris Cummins <chrisc.101@gmail.com>

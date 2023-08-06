@@ -1,0 +1,49 @@
+.TH emu-clean 1 July 14, 2015 "version 0.2.0" "Emu Manual"
+.SH NAME
+emu\-clean \- remove locks and orphaned data from sources and sinks
+.SH SYNOPSIS
+.B emu clean
+[<options>] [<sink ...>]
+.SH DESCRIPTION
+If an emu action upon a sink or source fails, is remotely killed or
+exits unexpectedly, the sink or source can be left in an unclean
+state. This may affect the outcome of future actions, prevent emu from
+operating normally or just result in temporary data being left in
+an 'orphaned' state.
+.PP
+This command searches for these unwanted files and locks, and forcibly
+removing them. It should be used as a recovery mechanism after a fatal
+error.
+.PP
+This command is harmless if run on a emu sink or source that is in a
+clean state.
+.SH OPTIONS
+.TP
+\-r \-\-recursive
+Operate first on the source, then recursively on each sink.
+.TP
+\-d \-\-dry-run
+Perform a trial run with no changes made.
+.TP
+\-S <dir> \-\-source-dir <dir>
+Specify the directory to use as an emu source. Defaults to `.'.
+.TP
+\-v \-\-verbose
+Increase verbosity.
+.TP
+\-\-version
+Show version information and quit.
+.TP
+\-h \-\-help
+Show this help and quit.
+.PP
+.SH EMU
+Part of the
+.B emu
+(1)
+suite
+.SH AUTHOR
+Chris Cummins <chrisc.101@gmail.com>
+.SH SEE ALSO
+.B emu
+(1)

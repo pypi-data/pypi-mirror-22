@@ -1,0 +1,65 @@
+.TH emu-init 1 July 14, 2015 "version 0.2.0" "Emu Manual"
+.SH NAME
+emu\-init \- Create emu sources
+.SH SYNOPSIS
+.B emu init
+[<options>]
+.SH DESCRIPTION
+Creates an empty emu source, with a .emu directory with subdirectories
+for hooks, sink refs and the configuration file. The directories are
+populated using template files.
+.PP
+This command is non-destructive: running it on an existing emu source
+will not overwrite any existing data. Instead, it can be used to
+rescue a broken source, as it will silently replace or recreate any
+missing files. If you have broken a file and would like to revert to
+the default, delete it and run this command.
+.PP
+First, the init program checks for read and write permissions in the
+specified directory (by default, the current directory, unless
+overridden with the \-\-source-dir argument). Once these have been
+established, it creates the .emu directory and required
+sub-directories for an emu source, and copies over any files from the
+templates folder, using the system default if not overriden with the
+\-\-template-dir argument.
+.SH OPTIONS
+.TP
+\-t <dir> \-\-template-dir <dir>
+Specify the directory from which templates will be copied.
+.TP
+\-f \-\-force
+Operate destructively. If a file exists in both the template and
+source directories, replace the source file with the template.
+.TP
+\-S <dir> \-\-source-dir <dir>
+Specify the directory to initialise as an emu source. Defaults to `.'.
+.TP
+\-v \-\-verbose
+Increase verbosity.
+.TP
+\-\-version
+Show version information and quit.
+.TP
+\-h \-\-help
+Show this help and quit.
+.SH EXAMPLES
+.TP
+Start an emu source in the current directory:
+emu init -v
+.TP
+Use a custom template directory:
+emu init -vt=~/my-source-templates
+.TP
+Repair a broken source:
+emu init -f
+.PP
+.SH EMU
+Part of the
+.B emu
+(1)
+suite
+.SH AUTHOR
+Chris Cummins <chrisc.101@gmail.com>
+.SH SEE ALSO
+.B emu
+(1)

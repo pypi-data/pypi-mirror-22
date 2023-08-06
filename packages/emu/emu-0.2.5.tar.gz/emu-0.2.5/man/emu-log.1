@@ -1,0 +1,48 @@
+.TH emu-log 1 July 14, 2015 "version 0.2.0" "Emu Manual"
+.SH NAME
+emu\-log \- Show sink snapshot logs
+.SH SYNOPSIS
+.B emu log
+[<options>] [<sink>[:<snapshot>] ...]
+.SH DESCRIPTION
+Show snapshot logs for one or more snapshots. If no arguments are
+given, show logs for snapshots across every sink.
+.SH OPTIONS
+.TP
+\-n <number> \-\-limit <number>
+limit the number of snapshot logs to the given number.
+.TP
+\-s \-\-short-log
+Show a dense summary of only vital information, suitable for reports or logs.
+.TP
+\-S <dir> \-\-source-dir <dir>
+Specify the directory to use as an emu source. Defaults to `.'.
+.TP
+\-v \-\-verbose
+Increase verbosity.
+.TP
+\-\-version
+Show version information and quit.
+.TP
+\-h \-\-help
+Show this help and quit.
+.SH EXAMPLES
+.TP
+Show log for all sinks:
+emu log
+.TP
+Show only the most recent snapshots for sinks `origin' and `local':
+emu log origin:HEAD local:HEAD
+.TP
+Show a short log for the 10 most recent snapshots for sink `origin':
+emu log origin -s -n10
+.SH EMU
+Part of the
+.B emu
+(1)
+suite
+.SH AUTHOR
+Chris Cummins <chrisc.101@gmail.com>
+.SH SEE ALSO
+.B emu
+(1)
