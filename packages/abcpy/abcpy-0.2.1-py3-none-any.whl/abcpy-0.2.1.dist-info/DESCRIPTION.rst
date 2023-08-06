@@ -1,0 +1,3 @@
+ABCpy is a highly modular, scientific library for approximate Bayesian computation (ABC) written in Python using the parallel computation framework Apache SPARK. The modularity helps domain scientists to easily apply ABC to their research without being ABC experts; using ABCpy they can easily run large parallel simulations without much knowledge about parallelization, even without much additional effort to parallelize their code. Further, ABCpy enables ABC experts to easily develop new inference schemes and evaluate them in a standardized environment, and to extend the library with new algorithms. These benefits come mainly from the modularity of ABCpy.
+
+
