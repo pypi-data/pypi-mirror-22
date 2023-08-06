@@ -1,0 +1,63 @@
+Metadata-Version: 2.0
+Name: gitleak
+Version: 0.9.2.1
+Summary: A tool library for searching your leaked sourcecode on github
+Home-page: https://github.com/lfzark/gitleak
+Author: ark1ee
+Author-email: lfzlfz@126.com
+License: MIT
+Keywords: github leak source code
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+
+Github Leaked Source Code Scanner with Python (gitleak) 
+======================= 
+### A tool library for searching your leaked sourcecode on github
+
+---- 
+
+## Installation 
+
+Use pip: 
+```
+pip install gitleak 
+```
+if you want to install from source code , you can download from pypi or simple use: 
+```
+git clone https://github.com/lfzark/gitleak 
+```
+then run: 
+```
+python setup.py install 
+```
+
+## Usage
+
+```
+>>> from gitleak import gl
+>>> gl.login('username', 'password')
+root        : INFO     login successfully
+True
+>>> gl.scan('password')
+root        : INFO     after duplicate removal [18 -> 6]
+{u'aixiatian/crawdata': u'8', u'lfzark/ArkPHP': u'17'}
+```
+
+## Example 
+
+```python 
+
+
+```
+
+
