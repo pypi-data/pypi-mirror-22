@@ -1,0 +1,83 @@
+Metadata-Version: 1.1
+Name: j1m.ravenzconfig
+Version: 0.1.1
+Summary: ZConfig logging support for raven
+Home-page: https://github.com/jimfulton/j1m.ravenzconfig
+Author: Jim Fulton
+Author-email: jim@jimfulton.info
+License: MIT
+Description: =======================================================
+        ZConfig logging support for raven
+        =======================================================
+        
+        This package allows enabling `raven
+        <https://docs.sentry.io/clients/python/>`_, the Python interfacet to
+        `Sentry <https://sentry.io>`_ via a `ZConfig logging configuration <http://zconfig.readthedocs.io/en/latest/using-logging.html>`_
+        like::
+        
+          <logger>
+            %import j1m.ravenzconfig
+            <sentry>
+              dsn https://abc:def@example.com/42
+            </sentry>
+          </logger>
+        
+        Additional options are supported, including logging level and options
+        accepted by the raven client.  See the `raven client documentation
+        <https://docs.sentry.io/clients/python/advanced/>`_.
+        
+        Here's an example that uses all of the options::
+        
+          <logger>
+             %import j1m.ravenzconfig
+             <sentry>
+               level WARNING
+               dsn https://abc:def@example.com/42
+               site test-site
+               name test
+               release 42.0
+               environment testing
+               exclude_paths /a /b
+               include_paths /c /d
+               sample_rate 0.5
+               list_max_length 9
+               string_max_length 99
+               auto_log_stacks true
+               processors x y z
+             </sentry>
+           </logger>
+        
+        The defaults for level and sample_rate are ERROR and 1.0. For other
+        options, other than the required ``dsn``, the defaults are unset.
+        
+        
+        Changes
+        =======
+        
+        0.1.1 (2017-06-12)
+        ==================
+        
+        - Fixed a packaging bug.
+        
+        
+        0.1.0 (2017-06-12)
+        ==================
+        
+        Initial release
+        
+Keywords: raven,zconfig,sentry
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: Unix
