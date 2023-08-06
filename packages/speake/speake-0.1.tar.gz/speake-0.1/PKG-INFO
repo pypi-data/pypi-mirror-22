@@ -1,0 +1,53 @@
+Metadata-Version: 1.1
+Name: speake
+Version: 0.1
+Summary: A wrapper for espeak for python2
+Home-page: https://github.com/GikonyoBrian/speake
+Author: Brian Gikonyo
+Author-email: colasgikonyo@gmail.com
+License: MIT
+Download-URL: https://github.com/GikonyoBrian/speake/archive/speake.tar.gz
+Description: Quick links
+        ===========
+        
+        - `Home <https://github.com/giampaolo/pyftpdlib>`__
+        - `Download <https://pypi.python.org/pypi/speake/>`__
+        
+        About
+        =====
+        
+        Speake library provides a wrapper around Espeak to easily
+        write efficient programs utilizing the text-to-speech functionalities
+        of espeak tts engine in Python.
+        
+        Features
+        ========
+        
+        - Queueing of text to converted to speech
+        - Able to manipulate Espeak filters to alter how voices sounds
+        
+        
+        Quick start
+        ===========
+        
+        .. code-block:: python
+        
+            >>> import speake
+            >>> 
+            >>> engine = speake.Speake()
+            >>> engine.set('voice', 'en')
+            >>> engine.set('amplitude', '107')
+            >>> engine.set('pitch', '99')
+            >>> engine.say("Hello world!")
+            >>> engine.talkback()
+            
+        
+Keywords: espeak,tts,text-to-speech,engine,python2,python
+Platform: Linux
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
