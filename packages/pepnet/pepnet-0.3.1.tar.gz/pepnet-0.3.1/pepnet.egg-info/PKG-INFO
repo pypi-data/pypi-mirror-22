@@ -1,0 +1,114 @@
+Metadata-Version: 1.1
+Name: pepnet
+Version: 0.3.1
+Summary: Neural networks for amino acid sequences
+Home-page: https://github.com/hammerlab/pepnet
+Author: Alex Rubinsteyn
+Author-email: alex.rubinsteyn@mssm.edu
+License: http://www.apache.org/licenses/LICENSE-2.0.html
+Description: |Build Status|
+        
+        pepnet
+        ======
+        
+        Neural networks for amino acid sequences
+        
+        Predictor API
+        -------------
+        
+        Sequence and model construction can both be handled for you by pepnet's
+        ``Predictor``:
+        
+        .. code:: python
+        
+            from pepnet import Predictor, SequenceInput, NumericInput, Output
+            predictor = Predictor(
+                inputs=[
+                    SequenceInput(length=4, name="x1", variable_length=True),
+                    NumericInput(dim=30, name="x2")],
+                outputs=[Output(name="y", dim=1, activation="sigmoid")],
+                dense_layer_sizes=[30],
+                dense_activation="relu")
+            sequences = ["ACAD", "ACAA", "ACA"]
+            vectors = np.random.normal(10, 100, (3, 30))
+            y = numpy.array([0, 1, 0])
+            predictor.fit({"x1": sequences, "x2": vectors}, y)
+            y_pred = predictor.predict({"x1": sequences, "x2": vectors})["y"]
+        
+        Convolutional sequence filtering
+        --------------------------------
+        
+        This model takes an amino acid sequence (of up to length 50) and applies
+        to it two layers of 9mer convolution with 3x maxpooling and 2x
+        downsampling in between. The second layer's activations are then pooled
+        across all sequence positions (using both mean and max pooling) and
+        passed to a single dense output node called "y".
+        
+        .. code:: python
+        
+            peptide = 
+            predictor = Predictor(
+                inputs=[SequenceInput(
+                    length=50, name="peptide", encoding="index", variable_length=True,
+                    conv_filter_sizes=[9],
+                    conv_output_dim=8,
+                    n_conv_layers=2,
+                    global_pooling=True)
+                ],
+                outputs=[Output(name="y", dim=1, activation="sigmoid")])
+        
+        Manual index encoding of peptides
+        ---------------------------------
+        
+        Represent every amino acid with a number between 1-21 (0 is reserved for
+        padding)
+        
+        .. code:: python
+        
+            from pepnet.encoder import Encoder
+            encoder = Encoder()
+            X_index = encoder.encode_index_array(["SYF", "GLYCI"], max_peptide_length=9)
+        
+        Manual one-hot encoding of peptides
+        -----------------------------------
+        
+        Represent every amino acid with a binary vector where only one entry is
+        1 and the rest are 0.
+        
+        .. code:: python
+        
+            from pepnet.encoder import Encoder
+            encoder = Encoder()
+            X_binary = encoder.encode_onehot(["SYF", "GLYCI"], max_peptide_length=9)
+        
+        FOFE encoding of peptides
+        -------------------------
+        
+        Implementation of FOFE encoding from `A Fixed-Size Encoding Method for
+        Variable-Length Sequences with its Application to Neural Network
+        Language Models <https://arxiv.org/abs/1505.01504>`__
+        
+        .. code:: python
+        
+            from pepnet.encoder import Encoder
+            encoder = Encoder()
+            X_binary = encoder.encode_FOFE(["SYF", "GLYCI"], bidirectional=True)
+        
+        Example network
+        ---------------
+        
+        Schematic of a convolutional model: |image1|
+        
+        .. |Build Status| image:: https://travis-ci.org/hammerlab/pepnet.svg?branch=master
+           :target: https://travis-ci.org/hammerlab/pepnet
+        .. |image1| image:: conv_large.png
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
