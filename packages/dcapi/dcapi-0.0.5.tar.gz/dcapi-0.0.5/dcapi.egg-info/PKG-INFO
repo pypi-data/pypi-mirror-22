@@ -1,0 +1,41 @@
+Metadata-Version: 1.1
+Name: dcapi
+Version: 0.0.5
+Summary: Wrapper for dcapi
+Home-page: https://github.com/lethargilistic/dcapi-wrap
+Author: Mike Overby
+Author-email: mikeoverby@outlook.com
+License: MIT
+Description: Wrapper for dcapi
+        -----------------
+        
+        A Python wrapper for the commands available in the dcapi REST API.
+        
+        Usage
+        ~~~~~
+        
+        .. code:: python
+        
+            import dcapi
+        
+            character_by_name = dcapi.character('Ai Haibara')
+            character_by_id = dcapi.character(1)
+        
+        If you are using a self-hosted version of the api, you can specify your own
+        endpoint and port.
+        
+        .. code:: python
+        
+            import dcapi
+        
+            api = dcapi.set_url('127.0.0.1:8000')
+        
+        
+Keywords: api
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
