@@ -1,0 +1,83 @@
+Metadata-Version: 1.1
+Name: confutil
+Version: 0.1.3
+Summary: Configuration utility to ease navigation of local and system configurations
+Home-page: https://bitbucket.org/johannestaas/confutil
+Author: Johan Nestaas
+Author-email: johannestaas@gmail.com
+License: GPLv3+
+Description: confutil
+        ========
+        
+        Configuration utility to ease navigation of local and system configurations
+        
+        Installation
+        ------------
+        
+        From the project root directory::
+        
+            $ python setup.py install
+        
+        Or install with pip::
+        
+            $ pip install confutil
+        
+        Usage
+        -----
+        
+        Example::
+        
+            from confutil import Config
+            conf = Config('spam')
+            password = conf['password']
+        
+        That will pull the first password value from a search through this sequence:
+        
+            - ./.spam.conf
+            - ./.spam.cfg
+            - ~/.spam.conf
+            - ~/.spam.cfg
+            - ~/.config/.spam.conf
+            - ~/.config/.spam.cfg
+            - ~/.config/spam/config.conf
+            - ~/.config/spam/config.cfg
+            - ~/.config/spam/config
+            - /etc/.spam.conf
+            - /etc/.spam.cfg
+            - /etc/spam/config.conf
+            - /etc/spam/config.cfg
+            - /etc/spam/config
+        
+        To write out a loaded configuration::
+            
+            from confutil import Config
+            c = Config('myapp')
+            c.write('output_path.cfg')
+        
+        To print a derived configuration from the current directory, run::
+        
+            $ confutil $PROJECT_NAME
+        
+        To output it to a new file, run::
+            
+            $ confutil $PROJECT_NAME -o output_path.cfg
+        
+        Release Notes
+        -------------
+        
+        :0.1.3:
+            Add ``get_in(key)`` and ``get_as(key, type=str)``
+        :0.0.1:
+            Project created
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Environment :: Console
+Classifier: Environment :: X11 Applications :: Qt
+Classifier: Environment :: MacOS X
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
