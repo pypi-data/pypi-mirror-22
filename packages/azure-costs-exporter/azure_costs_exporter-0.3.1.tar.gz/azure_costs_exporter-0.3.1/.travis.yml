@@ -1,0 +1,25 @@
+language: python
+python:
+- 2.7.3
+- 2.7.9
+- 2.7
+- 3.4
+- 3.5
+- 3.6
+install:
+- pip install --upgrade pip
+- pip install coveralls
+- pip install -r requirements_dev.txt
+- pip install . --no-deps
+script:
+- py.test
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: manuelbahr
+  password:
+    secure: rY1avxVKdjowrI6ZOHE8vjJ3u8c0Cud1RUKygkXss21CaZgNvCRdnRSqrdAMvEGsBs7qyFufq50jHNMl4ES7PHgREBynrTmld9KiZm46elgG3vazKzXnkzip3kfNtc8Aer15u0mMKFK2JR4I/T3irtL6USmHmAMhqI+d8dVIFTuJxRYSFEEGLUf60C0s8H9K2//yV4m6iWtGV0xwdGddKpelshezIliYXK+E9gKRUqVf34OhuN/F5sYlsE7JqN5BUzmi7W4dqLQOzSMQRD7kk1vcfTAP0VE1+hUDouBEWlksb7dy9qbpJ4X+X45X+JfL9m9tBCDh8yGPxYdRCMzzjSB6vCfvmGEEbiLFG3DjJ16YJIz63W4GbjwUsIlrzz8oPEOsAMO4LO1XFKU5E6KCnX+/vYm4cwe5tFl4RyZFtYu2zUZRQoVjgEZtXVudNoZXy3BPj8bLgQyscWqUfkq0j+wi+D3ebB7BlSl7TXg16SuGcN9vkoPLgwGsViOKTNCWMiyi+ouT5yeq0rprSr2dt2RRH9lYAVUh/W51Wq0S1Pz3va+RIOvUDbo6d6AR88mngq4TDfONy9P2SeZ9ksFH00vta6Ear32jdO3nI/0N+KOepKc6AyZrGdzX1FXJSwRXMNZr4gcuVgNNvqIs8nEmhD0iMvclzizWL8OJLrHq0UA=
+  on:
+    tags: true
+after_success:
+- coveralls
