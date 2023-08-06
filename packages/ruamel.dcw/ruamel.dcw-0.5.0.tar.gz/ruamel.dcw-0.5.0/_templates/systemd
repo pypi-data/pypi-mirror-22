@@ -1,0 +1,19 @@
+[Unit]
+Description={description}
+# Author = {author}
+Requires=docker.service
+After=docker.service
+
+[Service]
+{envs}Restart=always
+ExecStart={dc} \
+            -f {file} up
+ExecReload={dc} \
+            -f {file} stop \
+            && {dc} \
+            -f {file} up \
+ExecStop={dc} \
+            -f {file} stop
+
+[Install]
+WantedBy=multi-user.target
