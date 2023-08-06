@@ -1,0 +1,58 @@
+Metadata-Version: 1.1
+Name: py3bitlist
+Version: 1.0.4
+Summary: An bits array implement in pure python.
+Home-page: https://github.com/coneco/BitList/
+Author: coNEco
+Author-email: coneco@outlook.com
+License: MIT
+Description: BitList
+        =======
+        
+        An bits array implement in pure python.
+        No dependency. 
+        Support python3+.
+        
+        Package Installation and Usage
+        ------------------------------
+        
+        The package is available on PyPI ( called **py3bitlist** ):
+        
+            pip install py3bitlist
+        
+        The library can be imported in the usual way:
+        
+            import bitlist
+        
+        APIs
+        ----
+        
+        BitList(length)
+            Return a BitList object with length bits.
+        
+        Bitlist(bytes)
+            Return a BitList object which is constructed by bytes.
+        
+        BitList.get_bytes_length()
+            Return the number of bytes that consist the Bitlist.
+        
+        BitList.get_length()
+            Return the number of bits that consist the Bitlist.
+        
+        BitList.set_bit(position, num)
+            Set the bit in position to num.
+        
+        BitList.get_bit(position)
+            Get the bit in position.
+        
+Keywords: bit array list
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python ModulesLicense :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3 :: Only
