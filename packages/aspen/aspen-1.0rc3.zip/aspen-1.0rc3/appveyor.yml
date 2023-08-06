@@ -1,0 +1,31 @@
+environment:
+  matrix:
+    - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
+
+    - PYTHON: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
+
+install:
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+
+  # Check that we have the expected version and architecture for Python
+  - "python --version"
+  - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
+
+  # Install the project and its dependencies.
+  - "python build.py dev"
+
+build: false  # Not a C# project, build stuff at the test step instead.
+
+test_script:
+
+  # Build the compiled extension and run the project tests
+  - "python build.py test_cov"
+
+branches:
+  only:
+    # Suppress double-builds for PRs
+    - master

@@ -1,0 +1,27 @@
+dist: trusty
+sudo: false
+branches:
+  only:
+    - master
+language: python
+python:
+  - 3.6
+before_install:
+  - pip install --upgrade pip
+  - pip --version
+  - pip install --upgrade flake8
+  - flake8 . --count --exclude=fabricate.py --ignore=E --statistics --exit-zero
+install: python build.py dev
+script:
+  - flake8 . --select=E999  --statistics  # Stop the build on syntax errors
+  - python build.py test_cov
+notifications:
+  email: false
+  irc: 
+    channels:
+      - "irc.freenode.org#aspen"
+    on_success: change
+    on_failure: always
+    template:
+      - "%{repository} (%{branch}:%{commit} by %{author}): %{message} (%{build_url})"
+    skip_join: true
