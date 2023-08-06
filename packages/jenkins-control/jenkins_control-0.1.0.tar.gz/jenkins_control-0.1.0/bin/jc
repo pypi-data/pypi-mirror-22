@@ -1,0 +1,68 @@
+#!/bin/env python
+from sys import exit
+import argparse
+from jenkins_control import JenkinsControl
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description=(
+            'Control jenkins nodes'
+        )
+    )
+    parser.add_argument(
+        '-c',
+        '--computer',
+        required=True,
+        action='append',
+        type=str,
+        help='the node to check for'
+    )
+    parser.add_argument(
+        '-u',
+        '--url',
+        type=str,
+        help='base url of the jenkins instance'
+    )
+
+    group = parser.add_mutually_exclusive_group()
+
+    group.add_argument(
+        '-j',
+        '--job',
+        type=str,
+        help='returns "True" if job is running on the node, otherwise False'
+    )
+    group.add_argument(
+        '-s',
+        '--status',
+        action='store_true',
+        help='print the status of the node'
+    )
+    group.add_argument(
+        '-o',
+        '--offline',
+        action='store_true',
+        help='mark the node temporarily offline'
+    )
+    parser.add_argument(
+        '-r',
+        '--reason',
+        type=str,
+        default='',
+        help='offline reason'
+    )
+    args = parser.parse_args()
+
+    jenkins = JenkinsControl(args.url)
+
+    for computer in args.computer:
+        if args.job:
+            print(jenkins.job_running_on_computer(args.job, computer))
+        elif args.status:
+            jenkins.status(computer)
+        elif args.offline:
+            jenkins.toggle_offline(computer, args.reason)
+        else:
+            print("You need to specify a command")
+            exit(1)
