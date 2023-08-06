@@ -1,0 +1,111 @@
+heat_template_version: pike
+
+description: >
+  OpenStack containerized Neutron L3 agent
+
+parameters:
+  DockerNamespace:
+    description: namespace
+    default: 'tripleoupstream'
+    type: string
+  DockerNeutronL3AgentImage:
+    description: image
+    default: 'centos-binary-neutron-l3-agent:latest'
+    type: string
+  # we configure all neutron services in the same neutron
+  DockerNeutronConfigImage:
+    description: image
+    default: 'centos-binary-neutron-server:latest'
+    type: string
+  ServiceNetMap:
+    default: {}
+    description: Mapping of service_name -> network name. Typically set
+                 via parameter_defaults in the resource registry.  This
+                 mapping overrides those in ServiceNetMapDefaults.
+    type: json
+  DefaultPasswords:
+    default: {}
+    type: json
+  RoleName:
+    default: ''
+    description: Role name on which the service is applied
+    type: string
+  RoleParameters:
+    default: {}
+    description: Parameters specific to the role
+    type: json
+  EndpointMap:
+    default: {}
+    description: Mapping of service endpoint -> protocol. Typically set
+                 via parameter_defaults in the resource registry.
+    type: json
+
+resources:
+
+  ContainersCommon:
+    type: ./containers-common.yaml
+
+  NeutronL3Base:
+    type: ../../puppet/services/neutron-l3.yaml
+    properties:
+      EndpointMap: {get_param: EndpointMap}
+      ServiceNetMap: {get_param: ServiceNetMap}
+      DefaultPasswords: {get_param: DefaultPasswords}
+      RoleName: {get_param: RoleName}
+      RoleParameters: {get_param: RoleParameters}
+
+outputs:
+  role_data:
+    description: Role data for Neutron L3 agent
+    value:
+      service_name: {get_attr: [NeutronL3Base, role_data, service_name]}
+      config_settings: {get_attr: [NeutronL3Base, role_data, config_settings]}
+      step_config: &step_config
+        get_attr: [NeutronL3Base, role_data, step_config]
+      puppet_config:
+        puppet_tags: neutron_config,neutron_l3_agent_config
+        config_volume: neutron
+        step_config: *step_config
+        config_image:
+          list_join:
+            - '/'
+            - [ {get_param: DockerNamespace}, {get_param: DockerNeutronConfigImage} ]
+      kolla_config:
+        /var/lib/kolla/config_files/neutron-l3-agent.json:
+          command: /usr/bin/neutron-l3-agent --config-file /usr/share/neutron/neutron-dist.conf --config-dir /usr/share/neutron/l3_agent --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/l3_agent.ini
+          permissions:
+            - path: /var/log/neutron
+              owner: neutron:neutron
+              recurse: true
+      docker_config:
+        step_4:
+          neutronl3agent:
+            image:
+              list_join:
+                - '/'
+                - [ {get_param: DockerNamespace}, {get_param: DockerNeutronL3AgentImage} ]
+            net: host
+            pid: host
+            privileged: true
+            restart: always
+            volumes:
+              list_concat:
+                - {get_attr: [ContainersCommon, volumes]}
+                -
+                  - /var/lib/kolla/config_files/neutron-l3-agent.json:/var/lib/kolla/config_files/config.json:ro
+                  - /var/lib/config-data/neutron/etc/neutron/:/etc/neutron/:ro
+                  - /lib/modules:/lib/modules:ro
+                  - /run:/run
+                  - /var/log/containers/neutron:/var/log/neutron
+            environment:
+              - KOLLA_CONFIG_STRATEGY=COPY_ALWAYS
+      host_prep_tasks:
+        - name: create persistent logs directory
+          file:
+            path: /var/log/containers/neutron
+            state: directory
+      upgrade_tasks:
+        - name: Stop and disable neutron_l3 service
+          tags: step2
+          service: name=neutron-l3-agent state=stopped enabled=no
+

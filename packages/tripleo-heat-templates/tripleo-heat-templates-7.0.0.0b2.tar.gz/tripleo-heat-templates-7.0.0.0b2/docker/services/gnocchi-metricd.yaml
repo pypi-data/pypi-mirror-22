@@ -1,0 +1,101 @@
+heat_template_version: pike
+
+description: >
+  OpenStack containerized Gnocchi Metricd service
+
+parameters:
+  DockerNamespace:
+    description: namespace
+    default: 'tripleoupstream'
+    type: string
+  DockerGnocchiMetricdImage:
+    description: image
+    default: 'centos-binary-gnocchi-metricd:latest'
+    type: string
+  EndpointMap:
+    default: {}
+    description: Mapping of service endpoint -> protocol. Typically set
+                 via parameter_defaults in the resource registry.
+    type: json
+  ServiceNetMap:
+    default: {}
+    description: Mapping of service_name -> network name. Typically set
+                 via parameter_defaults in the resource registry.  This
+                 mapping overrides those in ServiceNetMapDefaults.
+    type: json
+  DefaultPasswords:
+    default: {}
+    type: json
+  RoleName:
+    default: ''
+    description: Role name on which the service is applied
+    type: string
+  RoleParameters:
+    default: {}
+    description: Parameters specific to the role
+    type: json
+
+resources:
+
+  ContainersCommon:
+    type: ./containers-common.yaml
+
+  GnocchiMetricdBase:
+    type: ../../puppet/services/gnocchi-metricd.yaml
+    properties:
+      EndpointMap: {get_param: EndpointMap}
+      ServiceNetMap: {get_param: ServiceNetMap}
+      DefaultPasswords: {get_param: DefaultPasswords}
+      RoleName: {get_param: RoleName}
+      RoleParameters: {get_param: RoleParameters}
+
+outputs:
+  role_data:
+    description: Role data for the Gnocchi API role.
+    value:
+      service_name: {get_attr: [GnocchiMetricdBase, role_data, service_name]}
+      config_settings: {get_attr: [GnocchiMetricdBase, role_data, config_settings]}
+      step_config: &step_config
+        get_attr: [GnocchiMetricdBase, role_data, step_config]
+      service_config_settings: {get_attr: [GnocchiMetricdBase, role_data, service_config_settings]}
+      # BEGIN DOCKER SETTINGS
+      puppet_config:
+        config_volume: gnocchi
+        puppet_tags: gnocchi_config
+        step_config: *step_config
+        config_image: &gnocchi_metricd_image
+          list_join:
+            - '/'
+            - [ {get_param: DockerNamespace}, {get_param: DockerGnocchiMetricdImage} ]
+      kolla_config:
+        /var/lib/kolla/config_files/gnocchi-metricd.json:
+          command: /usr/bin/gnocchi-metricd
+          permissions:
+            - path: /var/log/gnocchi
+              owner: gnocchi:gnocchi
+              recurse: true
+      docker_config:
+        step_4:
+          gnocchi_metricd:
+            image: *gnocchi_metricd_image
+            net: host
+            privileged: false
+            restart: always
+            volumes:
+              list_concat:
+                - {get_attr: [ContainersCommon, volumes]}
+                -
+                  - /var/lib/kolla/config_files/gnocchi-metricd.json:/var/lib/kolla/config_files/config.json:ro
+                  - /var/lib/config-data/gnocchi/etc/gnocchi/:/etc/gnocchi/:ro
+                  - /var/log/containers/gnocchi:/var/log/gnocchi
+            environment:
+              - KOLLA_CONFIG_STRATEGY=COPY_ALWAYS
+      host_prep_tasks:
+        - name: create persistent logs directory
+          file:
+            path: /var/log/containers/gnocchi
+            state: directory
+      upgrade_tasks:
+        - name: Stop and disable openstack-gnocchi-metricd service
+          tags: step2
+          service: name=openstack-gnocchi-metricd.service state=stopped enabled=no

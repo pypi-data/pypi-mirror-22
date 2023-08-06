@@ -1,0 +1,162 @@
+heat_template_version: pike
+
+description: >
+  OpenStack containerized Rabbitmq service
+
+parameters:
+  DockerNamespace:
+    description: namespace
+    default: 'tripleoupstream'
+    type: string
+  DockerRabbitmqImage:
+    description: image
+    default: 'centos-binary-rabbitmq:latest'
+    type: string
+  EndpointMap:
+    default: {}
+    description: Mapping of service endpoint -> protocol. Typically set
+                 via parameter_defaults in the resource registry.
+    type: json
+  ServiceNetMap:
+    default: {}
+    description: Mapping of service_name -> network name. Typically set
+                 via parameter_defaults in the resource registry.  This
+                 mapping overrides those in ServiceNetMapDefaults.
+    type: json
+  DefaultPasswords:
+    default: {}
+    type: json
+  RoleName:
+    default: ''
+    description: Role name on which the service is applied
+    type: string
+  RoleParameters:
+    default: {}
+    description: Parameters specific to the role
+    type: json
+  RabbitCookie:
+    type: string
+    default: ''
+    hidden: true
+
+resources:
+
+  ContainersCommon:
+    type: ./containers-common.yaml
+
+  RabbitmqBase:
+    type: ../../puppet/services/rabbitmq.yaml
+    properties:
+      EndpointMap: {get_param: EndpointMap}
+      ServiceNetMap: {get_param: ServiceNetMap}
+      DefaultPasswords: {get_param: DefaultPasswords}
+      RoleName: {get_param: RoleName}
+      RoleParameters: {get_param: RoleParameters}
+
+outputs:
+  role_data:
+    description: Role data for the Rabbitmq API role.
+    value:
+      service_name: {get_attr: [RabbitmqBase, role_data, service_name]}
+      # RabbitMQ plugins initialization occurs on every node
+      config_settings:
+        map_merge:
+          - {get_attr: [RabbitmqBase, role_data, config_settings]}
+          - rabbitmq::admin_enable: false
+      step_config: &step_config
+        list_join:
+          - "\n"
+          - - "['Rabbitmq_policy', 'Rabbitmq_user'].each |String $val| { noop_resource($val) }"
+            - get_attr: [RabbitmqBase, role_data, step_config]
+      service_config_settings: {get_attr: [RabbitmqBase, role_data, service_config_settings]}
+      # BEGIN DOCKER SETTINGS
+      puppet_config:
+        config_volume: rabbitmq
+        step_config: *step_config
+        config_image: &rabbitmq_image
+          list_join:
+            - '/'
+            - [ {get_param: DockerNamespace}, {get_param: DockerRabbitmqImage} ]
+      kolla_config:
+        /var/lib/kolla/config_files/rabbitmq.json:
+          command: /usr/lib/rabbitmq/bin/rabbitmq-server
+          permissions:
+            - path: /var/lib/rabbitmq
+              owner: rabbitmq:rabbitmq
+              recurse: true
+      docker_config:
+        # Kolla_bootstrap runs before permissions set by kolla_config
+        step_1:
+          rabbitmq_init_logs:
+            start_order: 0
+            image: *rabbitmq_image
+            privileged: false
+            user: root
+            volumes:
+              - /var/log/containers/rabbitmq:/var/log/rabbitmq
+            command: ['/bin/bash', '-c', 'chown -R rabbitmq:rabbitmq /var/log/rabbitmq']
+          rabbitmq_bootstrap:
+            start_order: 1
+            image: *rabbitmq_image
+            net: host
+            privileged: false
+            volumes:
+              list_concat:
+                - {get_attr: [ContainersCommon, volumes]}
+                -
+                  - /var/lib/kolla/config_files/rabbitmq.json:/var/lib/kolla/config_files/config.json:ro
+                  - /var/lib/config-data/rabbitmq/etc/rabbitmq/:/etc/rabbitmq/:ro
+                  - /var/lib/rabbitmq:/var/lib/rabbitmq
+                  - /var/log/containers/rabbitmq:/var/log/rabbitmq
+            environment:
+              - KOLLA_CONFIG_STRATEGY=COPY_ALWAYS
+              - KOLLA_BOOTSTRAP=True
+              -
+                list_join:
+                  - '='
+                  - - 'RABBITMQ_CLUSTER_COOKIE'
+                    -
+                      yaql:
+                        expression: $.data.passwords.where($ != '').first()
+                        data:
+                          passwords:
+                            - {get_param: RabbitCookie}
+                            - {get_param: [DefaultPasswords, rabbit_cookie]}
+          rabbitmq:
+            start_order: 2
+            image: *rabbitmq_image
+            net: host
+            privileged: false
+            restart: always
+            volumes:
+              list_concat:
+                - {get_attr: [ContainersCommon, volumes]}
+                -
+                  - /var/lib/kolla/config_files/rabbitmq.json:/var/lib/kolla/config_files/config.json:ro
+                  - /var/lib/config-data/rabbitmq/etc/rabbitmq/:/etc/rabbitmq/:ro
+                  - /var/lib/rabbitmq:/var/lib/rabbitmq
+                  - /var/log/containers/rabbitmq:/var/log/rabbitmq
+            environment:
+              - KOLLA_CONFIG_STRATEGY=COPY_ALWAYS
+      docker_puppet_tasks:
+        # RabbitMQ users and policies initialization occurs only on single node
+        step_1:
+          config_volume: 'rabbit_init_tasks'
+          puppet_tags: 'rabbitmq_policy,rabbitmq_user'
+          step_config: 'include ::tripleo::profile::base::rabbitmq'
+          config_image: *rabbitmq_image
+          volumes:
+            - /var/lib/config-data/rabbitmq/etc/:/etc/
+            - /var/lib/rabbitmq:/var/lib/rabbitmq:ro
+      host_prep_tasks:
+        - name: create persistent directories
+          file:
+            path: "{{ item }}"
+            state: directory
+          with_items:
+            - /var/log/containers/rabbitmq
+            - /var/lib/rabbitmq
+      upgrade_tasks:
+        - name: Stop and disable rabbitmq service
+          tags: step2
+          service: name=rabbitmq-server state=stopped enabled=no

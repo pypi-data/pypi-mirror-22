@@ -1,0 +1,146 @@
+heat_template_version: pike
+
+description: >
+  OpenStack Panko service configured with docker.
+  Note, this service is deprecated in Pike release and
+  will be disabled in future releases.
+
+parameters:
+  DockerNamespace:
+    description: namespace
+    default: 'tripleoupstream'
+    type: string
+  DockerPankoApiImage:
+    description: image
+    default: 'centos-binary-panko-api:latest'
+    type: string
+  EndpointMap:
+    default: {}
+    description: Mapping of service endpoint -> protocol. Typically set
+                 via parameter_defaults in the resource registry.
+    type: json
+  ServiceNetMap:
+    default: {}
+    description: Mapping of service_name -> network name. Typically set
+                 via parameter_defaults in the resource registry.  This
+                 mapping overrides those in ServiceNetMapDefaults.
+    type: json
+  DefaultPasswords:
+    default: {}
+    type: json
+  RoleName:
+    default: ''
+    description: Role name on which the service is applied
+    type: string
+  RoleParameters:
+    default: {}
+    description: Parameters specific to the role
+    type: json
+  EnableInternalTLS:
+    type: boolean
+    default: false
+
+conditions:
+
+  internal_tls_enabled: {equals: [{get_param: EnableInternalTLS}, true]}
+
+resources:
+
+  ContainersCommon:
+    type: ./containers-common.yaml
+
+  PankoApiPuppetBase:
+    type: ../../puppet/services/panko-api.yaml
+    properties:
+      EndpointMap: {get_param: EndpointMap}
+      ServiceNetMap: {get_param: ServiceNetMap}
+      DefaultPasswords: {get_param: DefaultPasswords}
+      RoleName: {get_param: RoleName}
+      RoleParameters: {get_param: RoleParameters}
+
+outputs:
+  role_data:
+    description: Role data for the Panko API role.
+    value:
+      service_name: {get_attr: [PankoApiPuppetBase, role_data, service_name]}
+      config_settings:
+        map_merge:
+          - get_attr: [PankoApiPuppetBase, role_data, config_settings]
+          - apache::default_vhost: false
+      step_config: &step_config
+        get_attr: [PankoApiPuppetBase, role_data, step_config]
+      service_config_settings: {get_attr: [PankoApiPuppetBase, role_data, service_config_settings]}
+      # BEGIN DOCKER SETTINGS #
+      puppet_config:
+        config_volume: panko
+        puppet_tags: panko_api_paste_ini,panko_config
+        step_config: *step_config
+        config_image: &panko_image
+          list_join:
+            - '/'
+            - [ {get_param: DockerNamespace}, {get_param: DockerPankoApiImage} ]
+      kolla_config:
+        /var/lib/kolla/config_files/panko-api.json:
+          command: /usr/sbin/httpd -DFOREGROUND
+          permissions:
+            - path: /var/log/panko
+              owner: panko:panko
+              recurse: true
+      docker_config:
+        step_3:
+          panko-init-log:
+            start_order: 0
+            image: *panko_image
+            user: root
+            volumes:
+              - /var/log/containers/panko:/var/log/panko
+            command: ['/bin/bash', '-c', 'mkdir -p /var/log/httpd; chown -R panko:panko /var/log/panko']
+          panko_db_sync:
+            start_order: 1
+            image: *panko_image
+            net: host
+            detach: false
+            privileged: false
+            user: root
+            volumes:
+              list_concat:
+                - {get_attr: [ContainersCommon, volumes]}
+                -
+                  - /var/lib/config-data/panko/etc/panko:/etc/panko:ro
+                  - /var/log/containers/panko:/var/log/panko
+            command: "/usr/bin/bootstrap_host_exec panko_api su panko -s /bin/bash -c '/usr/bin/panko-dbsync'"
+        step_4:
+          panko_api:
+            start_order: 2
+            image: *panko_image
+            net: host
+            privileged: false
+            restart: always
+            volumes:
+              list_concat:
+                - {get_attr: [ContainersCommon, volumes]}
+                -
+                  - /var/lib/kolla/config_files/panko-api.json:/var/lib/kolla/config_files/config.json:ro
+                  - /var/lib/config-data/panko/etc/panko/:/etc/panko/:ro
+                  - /var/lib/config-data/panko/etc/httpd/:/etc/httpd/:ro
+                  - /var/lib/config-data/panko/var/www/:/var/www/:ro
+                  - /var/log/containers/panko:/var/log/panko
+                  -
+                    if:
+                      - internal_tls_enabled
+                      - /etc/pki/tls/certs/httpd:/etc/pki/tls/certs/httpd:ro
+                      - ''
+                  -
+                    if:
+                      - internal_tls_enabled
+                      - /etc/pki/tls/private/httpd:/etc/pki/tls/private/httpd:ro
+                      - ''
+            environment:
+              - KOLLA_CONFIG_STRATEGY=COPY_ALWAYS
+      host_prep_tasks:
+        - name: create persistent logs directory
+          file:
+            path: /var/log/containers/panko
+            state: directory
+      metadata_settings:
+        get_attr: [PankoApiPuppetBase, role_data, metadata_settings]
