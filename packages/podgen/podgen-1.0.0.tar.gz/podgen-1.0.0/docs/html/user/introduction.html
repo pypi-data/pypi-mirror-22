@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction &#8212; PodGen Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="PodGen" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="philosophy">
+<h2>Philosophy<a class="headerlink" href="#philosophy" title="Permalink to this headline">¶</a></h2>
+<p>This project is heavily inspired by the wonderful
+<a class="reference external" href="http://www.kennethreitz.org/projects">Kenneth Reitz</a>, known for the
+<a class="reference external" href="http://docs.python-requests.org">Requests</a> library, which features an API that is
+as beautiful as it is effective. Watching his
+<a class="reference external" href="http://www.kennethreitz.org/talks/#/documentation-is-king/">&#8220;Documentation is King&#8221; talk</a>,
+I wanted to make some of the libraries I&#8217;m using suitable for human consumption too.</p>
+<p>This project is to be developed following the same
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0020/">PEP 20</a> idioms as
+<a class="reference external" href="http://docs.python-requests.org/en/master/user/intro/#philosophy">Requests</a>:</p>
+<ol class="arabic simple">
+<li>Beautiful is better than ugly.</li>
+<li>Explicit is better than implicit.</li>
+<li>Simple is better than complex.</li>
+<li>Complex is better than complicated.</li>
+<li>Readability counts.</li>
+</ol>
+<p>To enable this, the project focuses on one task alone: making it easy to generate a podcast.</p>
+</div>
+<div class="section" id="scope">
+<h2>Scope<a class="headerlink" href="#scope" title="Permalink to this headline">¶</a></h2>
+<p>This library does NOT help you publish a podcast, or manage the metadata of your
+podcasts. It&#8217;s just a tool that accepts information about your podcast and
+outputs an RSS feed which you can then publish however you want.</p>
+<p>Both the process of getting information
+about your podcast, and publishing it needs to be done by you. Even then,
+it will save you from hammering your head over confusing and undocumented APIs
+and conflicting views on how different RSS elements should be used. It also
+saves you from reading the RSS specification, the RSS Best Practices and the
+documentation for iTunes&#8217; Podcast Connect.</p>
+<p>PodGen is geared towards developers who aren&#8217;t super familiar with
+RSS and XML. If you know exactly how you want the XML to look, then you&#8217;re
+better off using a template engine like Jinja2 (even if friends don&#8217;t let
+friends touch XML bare-handed). If you just want an easy way to create and
+manage your podcasts, use <a class="reference external" href="http://www.podcastgenerator.net/">Podcast Generator</a>.</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>PodGen is licensed under the terms of both the FreeBSD license and the LGPLv3+.
+Choose the one which is more convenient for you. For more details, have a look
+at <a class="reference external" href="https://github.com/tobinus/python-podgen/blob/master/license.bsd">license.bsd</a> and <a class="reference external" href="https://github.com/tobinus/python-podgen/blob/master/license.lgpl">license.lgpl</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=tobinus&repo=python-podgen&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#philosophy">Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scope">Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fork.html">Why the fork?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage_guide/part_1.html">Creating the podcast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage_guide/part_2.html">Adding episodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage_guide/part_3.html">Generating the RSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Full example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Documentation</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2014, Lars Kiesow. Modified work © 2016, Thorben Dahl.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/user/introduction.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/tobinus/python-podgen" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

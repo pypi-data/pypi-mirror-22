@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>podgen.util &#8212; PodGen Documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="podgen.Category" href="api.category.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="module-podgen.util"></span><div class="section" id="podgen-util">
+<h1>podgen.util<a class="headerlink" href="#podgen-util" title="Permalink to this headline">¶</a></h1>
+<p>This file contains helper functions for the feed generator module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body">2013, Lars Kiesow &lt;<a class="reference external" href="mailto:lkiesow&#37;&#52;&#48;uos&#46;de">lkiesow<span>&#64;</span>uos<span>&#46;</span>de</a>&gt; and 2016, Thorben Dahl
+&lt;<a class="reference external" href="mailto:thorben&#37;&#52;&#48;sjostrom&#46;no">thorben<span>&#64;</span>sjostrom<span>&#46;</span>no</a>&gt;</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body">FreeBSD and LGPL, see license.* for more details.</td>
+</tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="podgen.util.ensure_format">
+<code class="descclassname">podgen.util.</code><code class="descname">ensure_format</code><span class="sig-paren">(</span><em>val</em>, <em>allowed</em>, <em>required</em>, <em>allowed_values=None</em>, <em>defaults=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/podgen/util.html#ensure_format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#podgen.util.ensure_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a dictionary or a list of dictionaries and check if all keys are in
+the set of allowed keys, if all required keys are present and if the values
+of a specific key are ok.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>val</strong> &#8211; Dictionaries to check.</li>
+<li><strong>allowed</strong> &#8211; Set of allowed keys.</li>
+<li><strong>required</strong> &#8211; Set of required keys.</li>
+<li><strong>allowed_values</strong> &#8211; Dictionary with keys and sets of their allowed values.</li>
+<li><strong>defaults</strong> &#8211; Dictionary with default values.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">List of checked dictionaries.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="podgen.util.formatRFC2822">
+<code class="descclassname">podgen.util.</code><code class="descname">formatRFC2822</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/podgen/util.html#formatRFC2822"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#podgen.util.formatRFC2822" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format a datetime according to RFC2822.</p>
+<p>This implementation exists as a workaround to ensure that the locale setting
+does not interfere with the time format. For example, day names might get
+translated to your local language, which would break with the standard.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.6)"><em>datetime.datetime</em></a>) &#8211; Time and date you want to format according to RFC2822.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The datetime formatted according to the RFC2822.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)">str</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="podgen.util.htmlencode">
+<code class="descclassname">podgen.util.</code><code class="descname">htmlencode</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/podgen/util.html#htmlencode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#podgen.util.htmlencode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode the given string so its content won&#8217;t be confused as HTML
+markup.</p>
+<p>This function exists as a cross-version compatibility alias.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="podgen.util.listToHumanreadableStr">
+<code class="descclassname">podgen.util.</code><code class="descname">listToHumanreadableStr</code><span class="sig-paren">(</span><em>l</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/podgen/util.html#listToHumanreadableStr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#podgen.util.listToHumanreadableStr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a human-readable string out of the given iterable.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">podgen.util</span> <span class="k">import</span> <span class="n">listToHumanreadableStr</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">listToHumanreadableStr</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="go">1, 2 and 3</span>
+</pre></div>
+</div>
+<p>The string <code class="docutils literal"><span class="pre">(empty)</span></code> is returned if the list is empty – it is assumed
+that you check whether the list is empty yourself.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=tobinus&repo=python-podgen&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/fork.html">Why the fork?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_1.html">Creating the podcast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_2.html">Adding episodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_3.html">Generating the RSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/example.html">Full example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/index.html">Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.podcast.html">podgen.Podcast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.episode.html">podgen.Episode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.person.html">podgen.Person</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.media.html">podgen.Media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.category.html">podgen.Category</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">podgen.util</a></li>
+</ul>
+</li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2014, Lars Kiesow. Modified work © 2016, Thorben Dahl.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/api.util.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/tobinus/python-podgen" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

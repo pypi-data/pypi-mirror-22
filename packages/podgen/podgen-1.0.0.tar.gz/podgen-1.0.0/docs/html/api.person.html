@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>podgen.Person &#8212; PodGen Documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="podgen.Media" href="api.media.html" />
+    <link rel="prev" title="podgen.Episode" href="api.episode.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="podgen-person">
+<h1>podgen.Person<a class="headerlink" href="#podgen-person" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="podgen.Person">
+<em class="property">class </em><code class="descclassname">podgen.</code><code class="descname">Person</code><span class="sig-paren">(</span><em>name=None</em>, <em>email=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/podgen/person.html#Person"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#podgen.Person" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data-oriented class representing a single person or entity.</p>
+<p>A Person can represent both real persons and less personal entities like
+organizations. Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">authors</span> <span class="o">=</span> <span class="p">[</span><span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Example Radio&quot;</span><span class="p">,</span> <span class="s2">&quot;mail@example.org&quot;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">At any time, one of name or email must be present.
+Both cannot be None or empty at the same time.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><strong>Any names and email addresses</strong> you put into a Person object will
+eventually be included and <strong>published</strong> together with
+the feed. If you want to keep a name or email address private, then you
+must make sure it isn&#8217;t used in a Person object (or to be precise: that
+the Person object with the name or email address isn&#8217;t used in any
+Podcast or Episode.)</p>
+</div>
+<p>Example of use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">podgen</span> <span class="k">import</span> <span class="n">Person</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Person</span><span class="p">(</span><span class="s2">&quot;John Doe&quot;</span><span class="p">)</span>
+<span class="go">Person(name=John Doe, email=None)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Person</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="s2">&quot;johndoe@example.org&quot;</span><span class="p">)</span>
+<span class="go">Person(name=None, email=johndoe@example.org)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Person</span><span class="p">()</span>
+<span class="go">ValueError: You must provide either a name or an email address.</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="podgen.Person.email">
+<code class="descname">email</code><a class="headerlink" href="#podgen.Person.email" title="Permalink to this definition">¶</a></dt>
+<dd><p>This person&#8217;s public email address.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="podgen.Person.name">
+<code class="descname">name</code><a class="headerlink" href="#podgen.Person.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>This person&#8217;s name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=tobinus&repo=python-podgen&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/fork.html">Why the fork?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_1.html">Creating the podcast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_2.html">Adding episodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_3.html">Generating the RSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/example.html">Full example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/index.html">Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.podcast.html">podgen.Podcast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.episode.html">podgen.Episode</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">podgen.Person</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.media.html">podgen.Media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.category.html">podgen.Category</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.util.html">podgen.util</a></li>
+</ul>
+</li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2014, Lars Kiesow. Modified work © 2016, Thorben Dahl.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/api.person.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/tobinus/python-podgen" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

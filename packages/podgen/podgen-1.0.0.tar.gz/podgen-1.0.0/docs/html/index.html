@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PodGen &#8212; PodGen Documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="user/introduction.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="podgen">
+<h1>PodGen<a class="headerlink" href="#podgen" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://travis-ci.org/tobinus/python-podgen"><img alt="https://travis-ci.org/tobinus/python-podgen.svg?branch=master" src="https://travis-ci.org/tobinus/python-podgen.svg?branch=master" /></a>
+<a class="reference external image-reference" href="http://podgen.readthedocs.io/en/latest/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/podgen/badge/?version=latest" /></a>
+<a class="reference external image-reference" href="https://waffle.io/tobinus/python-podgen"><img alt="'Stories in Ready'" src="https://badge.waffle.io/tobinus/python-podgen.svg?label=ready&amp;title=Ready" /></a>
+<p>Don&#8217;t you wish there was a <strong>clean and simple library</strong> which could help you
+<strong>generate podcast RSS feeds</strong> with your Python code? Well, today&#8217;s your lucky day!</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">podgen</span> <span class="k">import</span> <span class="n">Podcast</span><span class="p">,</span> <span class="n">Episode</span><span class="p">,</span> <span class="n">Media</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create the Podcast</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Podcast</span><span class="p">(</span>
+<span class="go">       name=&quot;The Library Tuesday Talk&quot;,</span>
+<span class="go">       description=&quot;My friends and I discuss Python&quot;</span>
+<span class="go">                   &quot; libraries each Tuesday!&quot;,</span>
+<span class="go">       website=&quot;http://example.org/librarytuesdaytalk&quot;</span>
+<span class="go">    )</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Add some episodes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">episodes</span> <span class="o">+=</span> <span class="p">[</span>
+<span class="go">       Episode(title=&quot;Worry about timezones no more&quot;,</span>
+<span class="go">               media=Media(&quot;http://example.org/ep1.mp3&quot;, 11932295),</span>
+<span class="go">               summary=&quot;Using pytz, you can make your code timezone-aware &quot;</span>
+<span class="go">                       &quot;with very little hassle.&quot;),</span>
+<span class="go">       Episode(title=&quot;Heard about clint?&quot;,</span>
+<span class="go">               media=Media(&quot;http://example.org/ep2.mp3&quot;, 15363464),</span>
+<span class="go">               summary=&quot;The man behind Requests made something useful &quot;</span>
+<span class="go">                       &quot;for us command-line nerds.&quot;</span>
+<span class="go">    ]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Generate the RSS feed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rss</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You don&#8217;t need to read the RSS specification, write XML by hand or wrap your
+head around ambiguous, undocumented APIs. PodGen incorporates the industry&#8217;s
+best practices and lets you focus on collecting the necessary metadata and
+publishing the podcast.</p>
+<p>PodGen is compatible with Python 2.7 and 3.3+.</p>
+<div class="section" id="user-guide">
+<h2>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/introduction.html#philosophy">Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/introduction.html#scope">Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/introduction.html#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/fork.html">Why the fork?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/fork.html#inspiration">Inspiration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/fork.html#summary-of-changes">Summary of changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_1.html">Creating the podcast</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/basic_usage_guide/part_1.html#creating-a-new-instance">Creating a new instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/basic_usage_guide/part_1.html#mandatory-attributes">Mandatory attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/basic_usage_guide/part_1.html#image">Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/basic_usage_guide/part_1.html#optional-attributes">Optional attributes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user/basic_usage_guide/part_1.html#commonly-used">Commonly used</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user/basic_usage_guide/part_1.html#less-commonly-used">Less commonly used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user/basic_usage_guide/part_1.html#shortcut-for-filling-in-data">Shortcut for filling in data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_2.html">Adding episodes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/basic_usage_guide/part_2.html#filling-with-data">Filling with data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user/basic_usage_guide/part_2.html#enclosing-media">Enclosing media</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user/basic_usage_guide/part_2.html#identifying-the-episode">Identifying the episode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user/basic_usage_guide/part_2.html#episode-s-publication-date">Episode&#8217;s publication date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user/basic_usage_guide/part_2.html#the-link">The Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user/basic_usage_guide/part_2.html#the-authors">The Authors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user/basic_usage_guide/part_2.html#less-used-attributes">Less used attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user/basic_usage_guide/part_2.html#shortcut-for-filling-in-data">Shortcut for filling in data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_3.html">Generating the RSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/example.html">Full example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/index.html">Advanced Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced/pubsubhubbub.html">Using PubSubHubbub</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced/pubsubhubbub.html#step-1-set-feed-url">Step 1: Set feed_url</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/pubsubhubbub.html#step-2-decide-on-a-hub">Step 2: Decide on a hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/pubsubhubbub.html#step-3-set-pubsubhubbub">Step 3: Set pubsubhubbub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/pubsubhubbub.html#step-4-set-http-link-header">Step 4: Set HTTP Link Header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/pubsubhubbub.html#step-5-notify-the-hub-of-new-episodes">Step 5: Notify the hub of new episodes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/extending.html">Adding new tags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced/extending.html#quick-how-to">Quick How-to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/extending.html#example-adding-a-ttl-element">Example: Adding a ttl element</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#setting-up">Setting up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#values">Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#the-workflow">The Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Documentation</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="#">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=tobinus&repo=python-podgen&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/fork.html">Why the fork?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_1.html">Creating the podcast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_2.html">Adding episodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_3.html">Generating the RSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/example.html">Full example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/index.html">Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Documentation</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2014, Lars Kiesow. Modified work © 2016, Thorben Dahl.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/tobinus/python-podgen" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

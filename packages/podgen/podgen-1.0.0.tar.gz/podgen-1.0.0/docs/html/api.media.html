@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>podgen.Media &#8212; PodGen Documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="podgen.Category" href="api.category.html" />
+    <link rel="prev" title="podgen.Person" href="api.person.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="podgen-media">
+<h1>podgen.Media<a class="headerlink" href="#podgen-media" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="podgen.Media">
+<em class="property">class </em><code class="descclassname">podgen.</code><code class="descname">Media</code><span class="sig-paren">(</span><em>url</em>, <em>size=0</em>, <em>type=None</em>, <em>duration=None</em>, <em>requests_session=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/podgen/media.html#Media"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#podgen.Media" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data-oriented class representing a pointer to a media file.</p>
+<p>A media file can be a sound file (most typical), video file or a document.</p>
+<p>You should provide the absolute URL at which this media can be found, and
+the media&#8217;s file size in bytes.</p>
+<p>Optionally, you can provide the type of media (expressed using MIME types).
+When not given in the constructor, it will be found automatically by looking
+at the url&#8217;s file extension. If the url&#8217;s file extension isn&#8217;t supported by
+iTunes, you will get an error if you don&#8217;t supply the type.</p>
+<p>You are also highly encouraged to provide the duration of the media.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">iTunes is lazy and will just look at the URL to figure out if
+a file is of a supported file type. You must therefore ensure your URL
+ends with a supported file extension.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A warning called <code class="xref py py-class docutils literal"><span class="pre">NotSupportedByItunesWarning</span></code>
+will be issued if your URL or type isn&#8217;t compatible with iTunes. See
+the Python documentation for more details on <a class="reference external" href="https://docs.python.org/3/library/warnings.html#module-warnings" title="(in Python v3.6)"><code class="xref py py-mod docutils literal"><span class="pre">warnings</span></code></a>.</p>
+</div>
+<p>Media types supported by iTunes:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Audio</dt>
+<dd><ul class="first last">
+<li>M4A</li>
+<li>MP3</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Video</dt>
+<dd><ul class="first last">
+<li>MOV</li>
+<li>MP4</li>
+<li>M4V</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Document</dt>
+<dd><ul class="first last">
+<li>PDF</li>
+<li>EPUB</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>All attributes will always have a value, except size which can be 0 if the
+size cannot be determined by any means (eg. if it&#8217;s a stream) and duration
+which is optional (but recommended).</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="user/basic_usage_guide/part_2.html#podgen-media-guide"><span class="std std-ref">Enclosing media</span></a></dt>
+<dd>for a more gentle introduction.</dd>
+</dl>
+</div>
+<dl class="classmethod">
+<dt id="podgen.Media.create_from_server_response">
+<em class="property">classmethod </em><code class="descname">create_from_server_response</code><span class="sig-paren">(</span><em>url</em>, <em>size=None</em>, <em>type=None</em>, <em>duration=None</em>, <em>requests_=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/podgen/media.html#Media.create_from_server_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#podgen.Media.create_from_server_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new Media object, with size and/or type fetched from the
+server when not given.</p>
+<p>See <a class="reference internal" href="#podgen.Media.fetch_duration" title="podgen.Media.fetch_duration"><code class="xref py py-meth docutils literal"><span class="pre">Media.fetch_duration()</span></code></a> for a (slow!) way to fill in the
+duration as well.</p>
+<p>Example (assuming the server responds with Content-Length: 252345991 and
+Content-Type: audio/mpeg):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">podgen</span> <span class="k">import</span> <span class="n">Media</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="c1"># Assume an episode is hosted at example.com</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Media</span><span class="o">.</span><span class="n">create_from_server_response</span><span class="p">(</span>
+  <span class="o">...</span>     <span class="s2">&quot;http://example.com/episodes/ep1.mp3&quot;</span><span class="p">)</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="n">m</span>
+  <span class="n">Media</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">episodes</span><span class="o">/</span><span class="n">ep1</span><span class="o">.</span><span class="n">mp3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">252345991</span><span class="p">,</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">audio</span><span class="o">/</span><span class="n">mpeg</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; The URL at which the media can be accessed right now.</li>
+<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.6)"><em>None</em></a>) &#8211; Size of the file. Will be fetched from server if not given.</li>
+<li><strong>type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.6)"><em>None</em></a>) &#8211; The media type of the file. Will be fetched from server if
+not given.</li>
+<li><strong>duration</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">datetime.timedelta</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>) &#8211; The media&#8217;s duration.</li>
+<li><strong>requests</strong> (<a class="reference external" href="http://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.14.2)"><code class="xref py py-mod docutils literal"><span class="pre">requests</span></code></a> or <a class="reference external" href="http://docs.python-requests.org/en/master/api/#requests.Session" title="(in Requests v2.14.2)"><code class="xref py py-class docutils literal"><span class="pre">requests.Session</span></code></a>) &#8211; Either the
+<a class="reference external" href="http://docs.python-requests.org/en/master/">requests</a> module
+itself, or a <a class="reference external" href="http://docs.python-requests.org/en/master/api/#requests.Session" title="(in Requests v2.14.2)"><code class="xref py py-class docutils literal"><span class="pre">requests.Session</span></code></a> object. Defaults to a new
+<a class="reference external" href="http://docs.python-requests.org/en/master/api/#requests.Session" title="(in Requests v2.14.2)"><code class="xref py py-class docutils literal"><span class="pre">Session</span></code></a>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">New instance of Media with url, size and type filled in.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">The appropriate requests exceptions are thrown when networking
+errors occur. RuntimeError is thrown if some information isn&#8217;t
+given and isn&#8217;t found in the server&#8217;s response.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="podgen.Media.download">
+<code class="descname">download</code><span class="sig-paren">(</span><em>destination</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/podgen/media.html#Media.download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#podgen.Media.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the media file.</p>
+<p>This method will block until the file is downloaded in its entirety.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The destination will not be populated atomically; if you need this,
+you must give provide a temporary file as destination and rename the
+file yourself.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>destination</strong> (<code class="xref py py-obj docutils literal"><span class="pre">fd</span></code> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>.) &#8211; Where to save the media file. Either a filename,
+or a file-like object. The file-like object will <em>not</em> be closed by
+PodGen.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="podgen.Media.duration">
+<code class="descname">duration</code><a class="headerlink" href="#podgen.Media.duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>The duration of the media file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">datetime.timedelta</span></code></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">TypeError</span></code></a> if you try to assign anything other than
+<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.6)"><code class="xref py py-class docutils literal"><span class="pre">datetime.timedelta</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> to this attribute. Raises
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">ValueError</span></code></a> if a negative timedelta value is given.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="podgen.Media.duration_str">
+<code class="descname">duration_str</code><a class="headerlink" href="#podgen.Media.duration_str" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#podgen.Media.duration" title="podgen.Media.duration"><code class="xref py py-attr docutils literal"><span class="pre">duration</span></code></a>, formatted as a string according to iTunes&#8217; specs.
+That is, HH:MM:SS if it lasts more than an hour, or MM:SS if it lasts
+less than an hour.</p>
+<p>This is just an alternate, read-only view of <a class="reference internal" href="#podgen.Media.duration" title="podgen.Media.duration"><code class="xref py py-attr docutils literal"><span class="pre">duration</span></code></a>.</p>
+<p>If <a class="reference internal" href="#podgen.Media.duration" title="podgen.Media.duration"><code class="xref py py-attr docutils literal"><span class="pre">duration</span></code></a> is <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>, then this will be <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> as
+well.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="podgen.Media.fetch_duration">
+<code class="descname">fetch_duration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/podgen/media.html#Media.fetch_duration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#podgen.Media.fetch_duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download <a class="reference internal" href="#podgen.Media.url" title="podgen.Media.url"><code class="xref py py-attr docutils literal"><span class="pre">Media.url</span></code></a> locally and use it to populate
+<a class="reference internal" href="#podgen.Media.duration" title="podgen.Media.duration"><code class="xref py py-attr docutils literal"><span class="pre">Media.duration</span></code></a>.</p>
+<p>Use this method when you don&#8217;t have the media file on the local file
+system. Use <a class="reference internal" href="#podgen.Media.populate_duration_from" title="podgen.Media.populate_duration_from"><code class="xref py py-meth docutils literal"><span class="pre">populate_duration_from()</span></code></a> otherwise.</p>
+<p>This method will take quite some time, since the media file must be
+downloaded before it can be analyzed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="podgen.Media.file_extension">
+<code class="descname">file_extension</code><a class="headerlink" href="#podgen.Media.file_extension" title="Permalink to this definition">¶</a></dt>
+<dd><p>The file extension of <a class="reference internal" href="#podgen.Media.url" title="podgen.Media.url"><code class="xref py py-attr docutils literal"><span class="pre">url</span></code></a>. Read-only.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="podgen.Media.get_type">
+<code class="descname">get_type</code><span class="sig-paren">(</span><em>url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/podgen/media.html#Media.get_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#podgen.Media.get_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guess the MIME type from the URL.</p>
+<p>This is used to fill in <a class="reference internal" href="#podgen.Media.type" title="podgen.Media.type"><code class="xref py py-attr docutils literal"><span class="pre">type</span></code></a> when it is not given (and
+thus called implicitly by the constructor), but you can call it
+yourself.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">podgen</span> <span class="k">import</span> <span class="n">Media</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Media</span><span class="p">(</span><span class="s2">&quot;http://example.org/1.mp3&quot;</span><span class="p">,</span> <span class="mi">136532744</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The type was detected from the url:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">type</span>
+<span class="go">audio/mpeg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Ops, I changed my mind...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.org/1.m4a&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># As you can see, the type didn&#39;t change:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">type</span>
+<span class="go">audio/mpeg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># So update type yourself</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">get_type</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">type</span>
+<span class="go">audio/x-m4a</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; The URL which should be used to guess the MIME type.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The guessed MIME type.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">ValueError if the MIME type couldn&#8217;t be guessed from the URL.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="podgen.Media.populate_duration_from">
+<code class="descname">populate_duration_from</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/podgen/media.html#Media.populate_duration_from"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#podgen.Media.populate_duration_from" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populate <a class="reference internal" href="#podgen.Media.duration" title="podgen.Media.duration"><code class="xref py py-attr docutils literal"><span class="pre">Media.duration</span></code></a> by analyzing the given file.</p>
+<p>Use this method when you have the media file on the local file system.
+Use <a class="reference internal" href="#podgen.Media.fetch_duration" title="podgen.Media.fetch_duration"><code class="xref py py-meth docutils literal"><span class="pre">Media.fetch_duration()</span></code></a> if you need to download the file from
+the server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; Path to the media file which shall be used to determine
+this media&#8217;s duration. The file extension must match its file type,
+since it is used to determine what type of media file it is. For
+a list of supported formats, see
+<a class="reference external" href="https://pypi.python.org/pypi/tinytag/">https://pypi.python.org/pypi/tinytag/</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="podgen.Media.requests_session">
+<code class="descname">requests_session</code><em class="property"> = None</em><a class="headerlink" href="#podgen.Media.requests_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>The requests.Session object which shall be used. Defaults to a new
+session with PodGen as User-Agent.</p>
+<p>This is used by the instance methods <a class="reference internal" href="#podgen.Media.download" title="podgen.Media.download"><code class="xref py py-meth docutils literal"><span class="pre">download()</span></code></a> and
+<a class="reference internal" href="#podgen.Media.fetch_duration" title="podgen.Media.fetch_duration"><code class="xref py py-meth docutils literal"><span class="pre">fetch_duration()</span></code></a>.
+<a class="reference internal" href="#podgen.Media.create_from_server_response" title="podgen.Media.create_from_server_response"><code class="xref py py-meth docutils literal"><span class="pre">create_from_server_response()</span></code></a>, however, creates its own
+requests Session if not given as a parameter (since it is a static
+method).</p>
+<p>You can set this attribute manually to set your own User-Agent and
+benefit from Keep-Alive across different instances of Media.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="http://docs.python-requests.org/en/master/api/#requests.Session" title="(in Requests v2.14.2)"><code class="xref py py-class docutils literal"><span class="pre">requests.Session</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="podgen.Media.size">
+<code class="descname">size</code><a class="headerlink" href="#podgen.Media.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>The media&#8217;s file size in bytes.</p>
+<p>You can either provide the number of bytes as an <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></a>, or you can
+provide a human-readable <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> with a unit, like MB or GiB.</p>
+<p>An unknown size is represented as 0. This should ONLY be used in
+exceptional cases, where it is theoretically impossible to determine
+the file size (for example if it&#8217;s a stream). Setting the size to 0
+will issue a UserWarning.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> (which will be converted to and stored as <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></a>)
+or <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you provide a string, it will be translated to int when the
+assignment happens. Thus, on subsequent accesses, you will get the
+resulting int, not the string you put in.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The units are case-insensitive. This means that the <code class="docutils literal"><span class="pre">B</span></code> is
+always assumed to mean &#8220;bytes&#8221;, even if it is lowercase (<code class="docutils literal"><span class="pre">b</span></code>).
+Likewise, <code class="docutils literal"><span class="pre">m</span></code> is taken to mean mega, not milli.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="podgen.Media.type">
+<code class="descname">type</code><a class="headerlink" href="#podgen.Media.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The MIME type of this media.</p>
+<p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Media_type">https://en.wikipedia.org/wiki/Media_type</a> for an introduction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you leave out type when creating a new Media object, the
+type will be auto-detected from the <a class="reference internal" href="#podgen.Media.url" title="podgen.Media.url"><code class="xref py py-attr docutils literal"><span class="pre">url</span></code></a>
+attribute. However, this won&#8217;t happen automatically other than
+during initialization. If you want to autodetect type when
+assigning a new value to url, you should use
+<a class="reference internal" href="#podgen.Media.get_type" title="podgen.Media.get_type"><code class="xref py py-meth docutils literal"><span class="pre">get_type()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="podgen.Media.url">
+<code class="descname">url</code><a class="headerlink" href="#podgen.Media.url" title="Permalink to this definition">¶</a></dt>
+<dd><p>The URL at which this media is publicly accessible.</p>
+<p>Only absolute URLs are allowed, so make sure it starts with <a class="reference external" href="http://">http://</a> or
+<a class="reference external" href="https://">https://</a>. The server should support HEAD-requests and byte-range
+requests.</p>
+<p>Ensure you quote parts of the URL that are not supposed to carry any
+special meaning to the browser, typically the name of your file.
+Common offenders include the slash character when not used to separate
+folders, the hash mark (#) and the question mark (?). Use
+<a class="reference external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.quote" title="(in Python v3.6)"><code class="xref py py-func docutils literal"><span class="pre">urllib.parse.quote()</span></code></a> in Python3 and <code class="xref py py-func docutils literal"><span class="pre">urllib.quote()</span></code> in
+Python2.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=tobinus&repo=python-podgen&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/fork.html">Why the fork?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_1.html">Creating the podcast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_2.html">Adding episodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/basic_usage_guide/part_3.html">Generating the RSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/example.html">Full example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/index.html">Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.podcast.html">podgen.Podcast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.episode.html">podgen.Episode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.person.html">podgen.Person</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">podgen.Media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.category.html">podgen.Category</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.util.html">podgen.util</a></li>
+</ul>
+</li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2014, Lars Kiesow. Modified work © 2016, Thorben Dahl.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/api.media.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/tobinus/python-podgen" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
