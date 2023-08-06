@@ -1,0 +1,57 @@
+---
+##
+## tasks for installing myria-python package
+##
+
+- name: Install myria-python prerequisites
+  apt: name="{{item}}" update_cache=yes
+  with_items:
+  - git
+  - python-setuptools
+  - python-pip
+  - build-essential
+  - libffi-dev
+  - libssl-dev
+  - python-lxml
+  tags:
+    - provision
+
+- name: Create myria-python directory
+  file: path={{myria_python_path}} state=directory owner={{myria_user}} group={{myria_group}} mode=0775
+  tags:
+    - provision
+
+- name: Clone myria-python repository
+  git: repo="{{myria_python_repository_url}}" dest="{{myria_python_path}}" version="{{myria_python_branch}}"
+  become: yes
+  become_user: "{{myria_user}}"
+  tags:
+    - provision
+
+- name: Install myria-python dependencies
+  pip: name={{ item }}
+  with_items:
+  - Cython
+  - numpy
+  - pandas
+  tags:
+    - provision
+
+- name: Workaround for regression in requests
+  # HACK: Until myria-python can be fixed, fix regression in requests from pinning urllib3 (https://github.com/requests/requests/commit/1ea27b35649571abb796f7cffbab83938d882a8d)
+  pip: name={{ item.name }} version={{ item.version }}
+  with_items:
+  - { name: 'chardet', version: '3.0.2' }
+  - { name: 'idna', version: '2.5' }
+  - { name: 'urllib3', version: '1.21.1' }
+  - { name: 'certifi', version: '2017.4.17' }
+  tags:
+    - provision
+
+- name: Setup myria-python
+  shell: "python setup.py install"
+  args:
+    chdir: "{{myria_python_path}}"
+    creates: "{{myria_python_path}}/build"
+  tags:
+    - provision
