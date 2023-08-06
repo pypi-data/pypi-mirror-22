@@ -1,0 +1,37 @@
+{
+    "global": {
+        "print_debug": false,
+        "environment_name": "environmentbase",
+        "monitor_stack": false,
+        "write_stack_outputs": false,
+        "stack_outputs_directory": "stack_outputs"
+    },
+    "template": {
+        # ami_map_file is not required
+        "ami_map_file": "ami_cache.json",
+        "description": "Environment Generator Base deployment",
+        "s3_bucket": "dualspark",
+        "s3_prefix": "templates",
+        "s3_upload_acl": "public-read",
+        # integer timestamp included in template file name?
+        "include_timestamp": true,
+        # include Output in finalized template with validation hash (doesn't include `dateGenerated` Output)
+        "include_templateValidationHash_output": true,
+        # include Output in finalized template with current timestamp
+        "include_dateGenerated_output": true,
+        "timeout_in_minutes": "60",
+        "ec2_key_default": "dualspark_rsa",
+        "s3_upload": true
+    },
+    "logging": {
+        "s3_bucket": "dualspark",
+        "cloudtrail_log_prefix": "cloudtrail_logs",
+        "elb_log_prefix": "elb_logs"
+    },
+    # The boto section is not required.
+    "boto": {
+        "region_name": "us-west-2",
+        "aws_access_key_id": null,
+        "aws_secret_access_key": null
+    }
+}

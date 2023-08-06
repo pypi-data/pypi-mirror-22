@@ -1,0 +1,14 @@
+graft docs
+graft src
+
+include LICENSE
+include README.md
+include DEVELOPMENT.md
+include FILE_DESCRIPTIONS.md
+include get_parameters.py
+
+include *.rst
+
+include tox.ini
+
+global-exclude *.py[co] src/.coverage
