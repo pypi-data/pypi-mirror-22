@@ -1,0 +1,44 @@
+sudo: required
+language: python
+python:
+  - 3.4
+  - 3.5
+  - 3.6
+env:
+  global:
+    - NUMPY_VERSION=1.11
+  matrix:
+    - PANDAS_VERSION=0.18
+    - PANDAS_VERSION=0.19
+    - PANDAS_VERSION=0.20
+
+matrix:
+  exclude:
+    - python: 3.4
+      env: PANDAS_VERSION=0.20
+    - python: 3.6
+      env: PANDAS_VERSION=0.18
+
+cache:
+  directories:
+    - $HOME/miniconda3 # miniconda cache
+
+# Setup miniconda
+before_install:
+  - export PATH=$HOME/miniconda3/bin:$PATH
+  - ci/before_install_travis.sh
+
+# command to install dependencies
+install:
+  - conda install -n sksurv-test -c sebp --file requirements.txt
+  - source activate sksurv-test
+  - python setup.py install
+  - rm -fr sksurv
+
+# command to run tests
+script: nosetests -w tests --with-coverage --cover-xml --cover-package=sksurv --cover-tests
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  - pip install codacy-coverage
+  - python-codacy-coverage -r coverage.xml

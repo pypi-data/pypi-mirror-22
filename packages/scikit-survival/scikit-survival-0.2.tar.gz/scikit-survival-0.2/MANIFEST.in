@@ -1,0 +1,10 @@
+include README.rst COPYING MANIFEST.in requirements.txt
+recursive-include doc *.py *.rst Makefile
+recursive-include examples *.py *.ipynb
+recursive-include sksurv *.c *.h *.pyx *.pxd
+recursive-include sksurv/datasets/data *.arff README.md
+prune doc/_build
+prune doc/generated
+prune */__pycache__
+prune */.ipynb_checkpoints
+global-exclude *.pyc *~ *.bak *.swp *.pyo
