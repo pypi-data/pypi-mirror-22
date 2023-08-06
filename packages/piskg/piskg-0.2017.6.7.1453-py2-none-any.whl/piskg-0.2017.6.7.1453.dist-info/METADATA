@@ -1,0 +1,48 @@
+Metadata-Version: 2.0
+Name: piskg
+Version: 0.2017.6.7.1453
+Summary: Python IPFS Swarm Key Generator
+Home-page: https://github.com/machawk1/py-ipfs-swarm-key-gen
+Author: Mat Kelly
+Author-email: mkelly@cs.odu.edu
+License: MIT
+Download-URL: https://github.com/machawk1/py-ipfs-swarm-key-gen
+Keywords: ipfs keygen
+Platform: UNKNOWN
+Classifier: Topic :: Utilities
+Provides: piskg
+
+piskg (Python IPFS Swarm Key Generator)
+=======================================
+
+This program generates swarm.key file for IPFS Private Network feature.
+
+Installing
+----------
+
+.. code-block:: bash
+
+      $ pip install piskg
+
+
+Usage
+-----
+
+.. code-block:: bash
+
+      $ piskg > ~/.ipfs/swarm.key
+
+
+Change `~/.ipfs/` to different directory if you use custom IPFS_PATH.
+
+
+Credits
+-------
+
+Direct port of https://github.com/Kubuxu/go-ipfs-swarm-key-gen/.
+
+License
+-------
+
+MIT
+
