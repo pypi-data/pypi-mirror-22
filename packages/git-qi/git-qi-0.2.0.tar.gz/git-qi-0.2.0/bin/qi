@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+
+import sys
+import logging
+from qi.Arguments import A
+from subprocess import call
+from qi import GitClient as git
+
+if __name__ == "__main__":
+    if not git.visitroot():
+        print "Run Qi from inside a Git repository."
+        sys.exit(1)
+
+    wherewestarted = git.currentpathspec()
+    exitcode = 0
+
+    try:
+        import pdb; pdb.set_trace()
+        time_stops = list(A.every(A.past, git.headtime()))
+        n_stops = len(time_stops)
+        stop = 0
+
+        for SHA, timestamp in git.history():
+            if stop >= n_stops:
+                break
+
+            if timestamp <= time_stops[stop]:
+                stop = stop + 1
+                if A.command:
+                    git.checkout(SHA)
+                    call(A.command.split(' '), shell=False)
+                else:
+                    print SHA + (": " + git.commitdate(SHA) if A.dates else '')
+    except KeyboardInterrupt:
+        exitcode = 1
+    except:
+        logging.exception('')
+        exitcode = 128
+    finally:
+        if A.command is not None:
+            git.checkout(wherewestarted)
+
+    sys.exit(exitcode)
