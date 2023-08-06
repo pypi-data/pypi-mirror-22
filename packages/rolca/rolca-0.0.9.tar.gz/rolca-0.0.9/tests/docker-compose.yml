@@ -1,0 +1,7 @@
+postgresql:
+    image: postgres:9.4
+    environment:
+        POSTGRES_USER: rolca
+        POSTGRES_DB: rolca
+    ports:
+        - "5432:5432"

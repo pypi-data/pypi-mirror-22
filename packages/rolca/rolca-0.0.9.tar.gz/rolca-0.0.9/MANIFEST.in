@@ -1,0 +1,14 @@
+# include meta data
+include LICENSE
+include CLA.rst
+include README.rst
+# include documentation and files needed by documentation
+recursive-include docs *.py *.rst
+# include tests and files needed by tests
+include .pylintrc
+include tox.ini
+include tests/.env
+recursive-include tests *.py *.yml *.html
+include rolca/core/tests/*.py
+include rolca/frontend/tests/*.py
+include rolca/frontend/tests/files/*.jpg

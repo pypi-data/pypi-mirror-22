@@ -1,0 +1,30 @@
+{% extends '__base__.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Rolca - Login" %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form method="post">
+            {% csrf_token %}
+
+            {% for field in form %}
+                {% include 'registration/form_field.html' %}
+            {% endfor %}
+
+            <input class="btn btn-primary btn-block" type="submit" value="{% trans "Log in" %}">
+        </form>
+
+        <br>
+
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <p><strong>{% trans "Error!" %}</strong> {% trans "Please enter a correct username and password. Note that both fields are case-sensitive." %}</p>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

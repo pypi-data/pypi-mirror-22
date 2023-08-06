@@ -1,0 +1,85 @@
+{% extends '__base__.html' %}
+{% load i18n material_form %}
+
+{% block title %}{% trans "Rolca - Upload" %}{% endblock %}
+
+{% block content %}
+<div class="row">
+
+  <h2 class="center-align">{{ contest_title }}</h2>
+
+  <div class="col l6 offset-l3 m8 offset-m2 s12">
+
+    {% if messages %}
+      {% for message in messages %}
+        <blockquote>{{ message }}</blockquote>
+      {% endfor %}
+    {% endif %}
+
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      {% for field in author_form.hidden_fields %}
+        {{ field }}
+      {% endfor %}
+
+      <div class="card {{ materialize_color }} lighten-5">
+        <div class="card-content">
+          {% for field in author_form.visible_fields %}
+            {{ field | render }}
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if author_form.non_field_errors %}
+        <blockquote>
+          {% for non_field_error in author_form.non_field_errors %}
+            {{ non_field_error }}
+          {% endfor %}
+        </blockquote>
+      {% endif %}
+
+      <table>
+        {% for formset_obj in theme_formsets %}
+          {{ formset_obj.formset.management_form }}
+
+          {% if show_titles %}
+            <h4 class="center-align">{{ formset_obj.theme.title }}</h4>
+          {% endif %}
+
+          {% for form in formset_obj.formset %}
+
+            {% for field in form.hidden_fields %}
+              {{ field }}
+            {% endfor %}
+
+            <div class="card {{ materialize_color }} lighten-5">
+              <div class="card-content">
+                {% for field in form.visible_fields %}
+                  {{ field | render }}
+                {% endfor %}
+              </div>
+            </div>
+
+            {% if form.non_field_errors %}
+              <blockquote>
+                {% for non_field_error in form.non_field_errors %}
+                  {{ non_field_error }}
+                {% endfor %}
+              </blockquote>
+            {% endif %}
+
+          {% endfor %}
+        {% endfor %}
+      </table>
+      <div class="center-align">
+        <button type="submit" name="_submit" class="btn-large waves-effect waves-light {{ materialize_color }}">
+          {% trans 'Submit' %}
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

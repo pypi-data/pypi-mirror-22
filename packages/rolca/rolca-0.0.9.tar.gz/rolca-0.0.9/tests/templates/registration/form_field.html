@@ -1,0 +1,6 @@
+<div class="form-group {% if field.errors %}has-error{% endif %}">
+    <input class="form-control" name="{{ field.name }}" type="{{ field.field.widget.input_type }}" placeholder="{{ field.label }}" {% if field.data %}value="{{ field.data }}"{% endif %} />
+    {% if field.errors %}
+        <span class='text-danger'>{{ field.errors|join:'<br>' }}</span>
+    {% endif %}
+</div>
