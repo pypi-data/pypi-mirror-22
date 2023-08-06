@@ -1,0 +1,66 @@
+Metadata-Version: 1.1
+Name: omero-webtagging-tagsearch
+Version: 3.0.1
+Summary: OMERO webtagging tagsearch app
+Home-page: https://github.com/MicronOxford/webtagging
+Author: D.P.W. Russell
+Author-email: douglas_russell@hms.harvard.edu
+License: AGPL-3.0
+Download-URL: https://github.com/MicronOxford/webtagging/archive/v3.0.1.tar.gz
+Description: Installation
+        ============
+        
+        The recommended way to install tagsearch is using `pip`, but it is also possible
+        to install it manually as described `here <https://www.openmicroscopy.org/site/support/omero5/developers/Web/CreateApp.html#add-your-app-location-to-your-pythonpath>`_.
+        
+        ::
+        
+          # In the python environment of OMERO.web (virtualenv or global)
+          pip install omero-webtagging-tagsearch
+        
+          # Add tagsearch to webclient
+          omero config append omero.web.apps '"omero_webtagging_tagsearch"'
+        
+          # Add a top-link to tagsearch designer
+          omero config append omero.web.ui.top_links '["Tag Search", "omero_webtagging_tagsearch"]'
+        
+        
+        Documentation
+        =============
+        
+        Available on the `OMERO website <http://www.openmicroscopy.org/site/support/partner/omero.webtagging>`_.
+        
+        
+        Development
+        ===========
+        
+        Pure javascript so does not require a node build step.
+        
+        To install using pip in development mode (in appropriate virtualenv)
+        
+        ::
+          # In the top-level tagsearch directory containing setup.py
+          pip install -e .
+          cd $OMERO_PREFIX
+        
+        OMERO development server can then be started in the usual way. Remember to
+        configure the tagsearch settings the same as above.
+        
+Keywords: OMERO.web,webtagging,tagsearch
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: JavaScript
+Classifier: Programming Language :: Python :: 2
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Text Processing :: Markup :: HTML
