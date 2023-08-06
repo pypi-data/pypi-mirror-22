@@ -1,0 +1,64 @@
+Metadata-Version: 1.0
+Name: gmplnotebook
+Version: 0.1.3
+Summary: A GMPL/MathProg kernel+extension for Jupyter
+Home-page: https://github.com/nelsonuhan/gmplnotebook
+Author: Nelson Uhan
+Author-email: nelson@uhan.me
+License: GNU GPLv3
+Description: GMPL Notebook: A GMPL/MathProg Kernel for Jupyter
+        =================================================
+        
+        Usage
+        -----
+        
+        Take a look at these `example
+        notebooks <https://github.com/nelsonuhan/gmplnotebookexamples>`__ for
+        details on how to use GMPL Notebook — no installation required, thanks
+        to `Binder <http://mybinder.org>`__!
+        
+        Dependencies
+        ------------
+        
+        GMPL Notebook has been tested with
+        
+        -  Jupyter 4.2.0
+        -  Python 3.5.2
+        -  MetaKernel 0.14
+        -  PyGLPK 0.4.2, available from
+           [@bradfordboyle](https://github.com/bradfordboyle/pyglpk)
+        -  GLPK 4.60
+        
+        Installation
+        ------------
+        
+        First, make sure you have a working installation of GLPK. For example,
+        on macOS, this can be accomplished with `Homebrew <http://brew.sh>`__
+        by:
+        
+        ::
+        
+            brew update
+            brew tap homebrew/science
+            brew install glpk
+        
+        (I will eventually include instructions on how to install GLPK on other
+        operating systems.)
+        
+        Next, install PyGLPK - note that the version on PyPI is outdated:
+        
+        ::
+        
+            pip install https://github.com/bradfordboyle/pyglpk/zipball/master
+        
+        Then, install GMPL Notebook:
+        
+        ::
+        
+            pip install gmplnotebook
+            python -m gmplnotebook install --user
+        
+        GMPL/MathProg should now appear as an option when creating new notebooks
+        in Jupyter.
+        
+Platform: UNKNOWN
