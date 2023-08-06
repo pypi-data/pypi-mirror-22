@@ -1,0 +1,11 @@
+[console_scripts]
+s3-backup-dir = s3_mysql_backup.scripts.backup_dir:backup
+s3-backup-gnucash = s3_mysql_backup.scripts.backup_gnucash:backup
+s3-backup-mysql-db = s3_mysql_backup.scripts.backup_mysql_db:backup_db
+s3-backup-qb = s3_mysql_backup.scripts.backup_qb:backup
+s3-delete-bucket = s3_mysql_backup.scripts.delete_bucket:delete_bucket
+s3-get-bucket = s3_mysql_backup.scripts.get_bucket:get_bucket
+s3-get-bucket-list = s3_mysql_backup.scripts.get_bucket_list:get_bucket_list
+s3-get-dir-backup = s3_mysql_backup.scripts.get_dir_backup:get_dir_backup
+s3-upload-file = s3_mysql_backup.scripts.copy_file_to_s3_bucket:cp_file
+
