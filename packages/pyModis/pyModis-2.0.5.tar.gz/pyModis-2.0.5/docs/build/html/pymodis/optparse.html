@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>optparse_required module &#8212; pyModis 2.0.5 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="pyModis 2.0.5 documentation" href="../index.html" />
+    <link rel="up" title="pyModis Library" href="modules.html" />
+    <link rel="prev" title="qualitymodis module" href="qualitymodis.html" />
+<link rel="stylesheet" href="../_static/pymodis.css" type="text/css" />
+
+  </head>
+  <body role="document">
+<h1 class="bigger"><img src="../_static/pyModis.png"></img> pyModis</h1>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="qualitymodis.html" title="qualitymodis module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyModis 2.0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">pyModis Library</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">optparse_required</span></code> module</a></li>
+<li><a class="reference internal" href="#module-pymodis.optparse_gui"><code class="docutils literal"><span class="pre">optparse_gui</span></code> module</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="qualitymodis.html"
+                        title="previous chapter"><code class="docutils literal"><span class="pre">qualitymodis</span></code> module</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><br /><br />
+<p>
+<script type="text/javascript" src="http://www.ohloh.net/p/486825/widgets/project_partner_badge.js"></script>
+</p>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pymodis.optparse_required">
+<span id="optparse-required-module"></span><h1><code class="xref py py-mod docutils literal"><span class="pre">optparse_required</span></code> module<a class="headerlink" href="#module-pymodis.optparse_required" title="Permalink to this headline">¶</a></h1>
+<p>Module to extend optparse, it add required options and new types to use
+into gui module.</p>
+<p>Classes:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#pymodis.optparse_required.OptionWithDefault" title="pymodis.optparse_required.OptionWithDefault"><code class="xref py py-class docutils literal"><span class="pre">OptionWithDefault</span></code></a></li>
+<li><a class="reference internal" href="#pymodis.optparse_required.OptionParser" title="pymodis.optparse_required.OptionParser"><code class="xref py py-class docutils literal"><span class="pre">OptionParser</span></code></a></li>
+</ul>
+<dl class="class">
+<dt id="pymodis.optparse_required.OptionParser">
+<em class="property">class </em><code class="descclassname">pymodis.optparse_required.</code><code class="descname">OptionParser</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pymodis/optparse_required.html#OptionParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_required.OptionParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/optparse.html#optparse.OptionParser" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">optparse.OptionParser</span></code></a></p>
+<p>Extend optparse.OptionParser</p>
+<dl class="method">
+<dt id="pymodis.optparse_required.OptionParser.check_values">
+<code class="descname">check_values</code><span class="sig-paren">(</span><em>values</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pymodis/optparse_required.html#OptionParser.check_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_required.OptionParser.check_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if value is required for an option</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pymodis.optparse_required.OptionWithDefault">
+<em class="property">class </em><code class="descclassname">pymodis.optparse_required.</code><code class="descname">OptionWithDefault</code><span class="sig-paren">(</span><em>*opts</em>, <em>**attrs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pymodis/optparse_required.html#OptionWithDefault"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_required.OptionWithDefault" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">optparse.Option</span></code></p>
+<p>Extend optparse.Option add required to the attributes and some new
+types for the GUI</p>
+<dl class="attribute">
+<dt id="pymodis.optparse_required.OptionWithDefault.ATTRS">
+<code class="descname">ATTRS</code><em class="property"> = ['action', 'type', 'dest', 'default', 'nargs', 'const', 'choices', 'callback', 'callback_args', 'callback_kwargs', 'help', 'metavar', 'required']</em><a class="headerlink" href="#pymodis.optparse_required.OptionWithDefault.ATTRS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pymodis.optparse_required.OptionWithDefault.TYPES">
+<code class="descname">TYPES</code><em class="property"> = ('string', 'int', 'long', 'float', 'complex', 'choice', 'file', 'output', 'directory')</em><a class="headerlink" href="#pymodis.optparse_required.OptionWithDefault.TYPES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pymodis.optparse_gui">
+<span id="optparse-gui-module"></span><h1><code class="xref py py-mod docutils literal"><span class="pre">optparse_gui</span></code> module<a class="headerlink" href="#module-pymodis.optparse_gui" title="Permalink to this headline">¶</a></h1>
+<p>A drop-in replacement for optparse (&#8220;import optparse_gui as optparse&#8221;)
+Provides an identical interface to optparse(.OptionParser),
+But displays an automatically generated wx dialog in order to enter the
+options/args, instead of parsing command line arguments</p>
+<p>Classes:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#pymodis.optparse_gui.OptparseDialog" title="pymodis.optparse_gui.OptparseDialog"><code class="xref py py-class docutils literal"><span class="pre">OptparseDialog</span></code></a></li>
+<li><a class="reference internal" href="#pymodis.optparse_gui.UserCancelledError" title="pymodis.optparse_gui.UserCancelledError"><code class="xref py py-class docutils literal"><span class="pre">UserCancelledError</span></code></a></li>
+<li><a class="reference internal" href="#pymodis.optparse_gui.Option" title="pymodis.optparse_gui.Option"><code class="xref py py-class docutils literal"><span class="pre">Option</span></code></a></li>
+<li><a class="reference internal" href="#pymodis.optparse_gui.OptionParser" title="pymodis.optparse_gui.OptionParser"><code class="xref py py-class docutils literal"><span class="pre">OptionParser</span></code></a></li>
+</ul>
+<p>Functions:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#pymodis.optparse_gui.checkLabel" title="pymodis.optparse_gui.checkLabel"><code class="xref py py-func docutils literal"><span class="pre">checkLabel()</span></code></a></li>
+</ul>
+<dl class="class">
+<dt id="pymodis.optparse_gui.Option">
+<em class="property">class </em><code class="descclassname">pymodis.optparse_gui.</code><code class="descname">Option</code><span class="sig-paren">(</span><em>*opts</em>, <em>**attrs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pymodis/optparse_gui.html#Option"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_gui.Option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">optparse.Option</span></code></p>
+<p>Extended optparse.Option class</p>
+<dl class="attribute">
+<dt id="pymodis.optparse_gui.Option.ACTIONS">
+<code class="descname">ACTIONS</code><em class="property"> = ('store', 'store_const', 'store_true', 'store_false', 'append', 'append_const', 'count', 'callback', 'help', 'version', 'group_name')</em><a class="headerlink" href="#pymodis.optparse_gui.Option.ACTIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pymodis.optparse_gui.Option.ATTRS">
+<code class="descname">ATTRS</code><em class="property"> = ['action', 'type', 'dest', 'default', 'nargs', 'const', 'choices', 'callback', 'callback_args', 'callback_kwargs', 'help', 'metavar', 'required']</em><a class="headerlink" href="#pymodis.optparse_gui.Option.ATTRS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pymodis.optparse_gui.Option.SUPER">
+<code class="descname">SUPER</code><a class="headerlink" href="#pymodis.optparse_gui.Option.SUPER" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#pymodis.optparse_gui.Option" title="pymodis.optparse_gui.Option"><code class="xref py py-class docutils literal"><span class="pre">Option</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pymodis.optparse_gui.Option.TYPED_ACTIONS">
+<code class="descname">TYPED_ACTIONS</code><em class="property"> = ('store', 'append', 'callback', 'group_name')</em><a class="headerlink" href="#pymodis.optparse_gui.Option.TYPED_ACTIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pymodis.optparse_gui.Option.TYPES">
+<code class="descname">TYPES</code><em class="property"> = ('string', 'int', 'long', 'float', 'complex', 'choice', 'file', 'output', 'directory', 'group_name')</em><a class="headerlink" href="#pymodis.optparse_gui.Option.TYPES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pymodis.optparse_gui.OptionParser">
+<em class="property">class </em><code class="descclassname">pymodis.optparse_gui.</code><code class="descname">OptionParser</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pymodis/optparse_gui.html#OptionParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_gui.OptionParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/optparse.html#optparse.OptionParser" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">optparse.OptionParser</span></code></a></p>
+<p>Extended optparse.OptionParser to create the GUI for the module</p>
+<dl class="attribute">
+<dt id="pymodis.optparse_gui.OptionParser.SUPER">
+<code class="descname">SUPER</code><a class="headerlink" href="#pymodis.optparse_gui.OptionParser.SUPER" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#pymodis.optparse_gui.OptionParser" title="pymodis.optparse_gui.OptionParser"><code class="xref py py-class docutils literal"><span class="pre">OptionParser</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymodis.optparse_gui.OptionParser.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pymodis/optparse_gui.html#OptionParser.error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_gui.OptionParser.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an error message with wx.MessageDialog</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; is the error string to pass to message dialog</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymodis.optparse_gui.OptionParser.parse_args">
+<code class="descname">parse_args</code><span class="sig-paren">(</span><em>args=None</em>, <em>values=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pymodis/optparse_gui.html#OptionParser.parse_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_gui.OptionParser.parse_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the heart of it all overrides
+optparse.OptionParser.parse_args</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg</strong> &#8211; is irrelevant and thus ignored, it&#8217;s here only for
+interface compatibility</li>
+<li><strong>values</strong> &#8211; is irrelevant and thus ignored, it&#8217;s here only for
+interface compatibility</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pymodis.optparse_gui.OptparseDialog">
+<em class="property">class </em><code class="descclassname">pymodis.optparse_gui.</code><code class="descname">OptparseDialog</code><span class="sig-paren">(</span><em>optParser</em>, <em>title</em>, <em>parent=None</em>, <em>ID=0</em>, <em>pos=wx.Point(-1</em>, <em>-1)</em>, <em>size=wx.Size(-1</em>, <em>-1)</em>, <em>style=536877120</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pymodis/optparse_gui.html#OptparseDialog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_gui.OptparseDialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>The dialog presented to the user with dynamically generated controls,
+to fill in the required options.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>optParser</strong> &#8211; the optparse object</li>
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; the title to add in the GUI</li>
+<li><strong>parent</strong> &#8211; the parent GUI</li>
+<li><strong>ID</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; the ID of GUI</li>
+<li><strong>pos</strong> &#8211; the position of GUI</li>
+<li><strong>size</strong> &#8211; the dimension of GUI</li>
+<li><strong>style</strong> &#8211; the style of GUI</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the wx.Dialog sample from wx Docs &amp; Demos</p>
+<dl class="method">
+<dt id="pymodis.optparse_gui.OptparseDialog.getOptionsAndArgs">
+<code class="descname">getOptionsAndArgs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pymodis/optparse_gui.html#OptparseDialog.getOptionsAndArgs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_gui.OptparseDialog.getOptionsAndArgs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the options and args</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a dictionary of option names and values, a sequence of args</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymodis.optparse_gui.OptparseDialog.onBrowse">
+<code class="descname">onBrowse</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pymodis/optparse_gui.html#OptparseDialog.onBrowse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_gui.OptparseDialog.onBrowse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Choose file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymodis.optparse_gui.OptparseDialog.onText">
+<code class="descname">onText</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pymodis/optparse_gui.html#OptparseDialog.onText"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_gui.OptparseDialog.onText" title="Permalink to this definition">¶</a></dt>
+<dd><p>File changed</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="pymodis.optparse_gui.UserCancelledError">
+<em class="property">exception </em><code class="descclassname">pymodis.optparse_gui.</code><code class="descname">UserCancelledError</code><a class="reference internal" href="../_modules/pymodis/optparse_gui.html#UserCancelledError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_gui.UserCancelledError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/exceptions.html#exceptions.Exception" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></a></p>
+<p>??</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pymodis.optparse_gui.checkLabel">
+<code class="descclassname">pymodis.optparse_gui.</code><code class="descname">checkLabel</code><span class="sig-paren">(</span><em>option</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pymodis/optparse_gui.html#checkLabel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymodis.optparse_gui.checkLabel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the label for an option, it add the required string if needed</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>option</strong> &#8211; and Option object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="qualitymodis.html" title="qualitymodis module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyModis 2.0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >pyModis Library</a> &#187;</li> 
+      </ul>
+    </div>
+<table align="rigth">
+<tr>
+<td><div class="footer"><a href="http://gis.cri.fmach.it" target="_blank">GIS & Remote Sensing Platform, Fondazione Edmund Mach</a></div></td>
+<td><div class="footer">Documentation created using <a href="http://sphinx.pocoo.org" target="_blank">Sphinx</a></div></td>
+<td>
+    <div class="footer" role="contentinfo">
+      Last updated on Jan 17, 2017.
+    </div></td>
+</tr>
+</table>
+
+  </body>
+</html>
