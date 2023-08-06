@@ -1,0 +1,122 @@
+0.4.5 (12th of June 2017)
+=========================
+
+With thanks to Marcel Falkiewicz for contributions.
+
+* [FIX] Correctly display help in `fmriprep-docker` (#533)
+* [FIX] Avoid invalid symlinks when running FreeSurfer (#536)
+* [ENH] Improve dependency management for users unable to use Docker/Singularity containers (#549)
+* [FIX] Return correct exit code when a Function node fails (#554)
+
+0.4.4 (20th of May 2017)
+========================
+
+With thanks to Feilong Ma for contributions.
+
+* [ENH] Option to provide a custom reference grid image (``--output-grid-reference``) for determining the field of view and resolution of output images (#480)
+* [ENH] Improved EPI skull stripping and tissue contrast enhancements (#519)
+* [ENH] Improve resource use estimates in FreeSurfer workflow (#506)
+* [ENH] Moved missing values in the DVARS* and FramewiseDisplacement columns of the _confounds.tsv from last row to the first row (#523)
+* [ENH] More robust initialization of the normalization procedure (#529)
+
+0.4.3 (10th of May 2017)
+========================
+
+* [ENH] ``--output-space template`` targets template specified by ``--template`` flag (``MNI152NLin2009cAsym`` supported) (#498)
+* [FIX] Fix a bug causing small numerical discrepancies in input data voxel size to lead to different FOV of the output files (#513)
+
+0.4.2 (3rd of May 2017)
+=======================
+
+* [ENH] Use robust template generation for multiple T1w images (#481)
+* [ENH] Anatomical MNI outputs respect ``--output-space`` selection (#490)
+* [ENH] Added support for distortion correction using opposite phase encoding direction EPI images (#493)
+* [ENH] Switched to FSL BET for skullstripping of EPI images (#493)
+* [ENH] ``--omp-nthreads`` controls maximum per-process thread count; replaces ``--ants-nthreads`` (#500)
+
+0.4.1 (20th of April 2017)
+==========================
+
+* Hotfix release (dependencies and deployment system)
+
+0.4.0 (20th of April 2017)
+==========================
+
+* [ENH] Added an option to choose the degrees of freedom used when doing BOLD to T1w coregistration (``--bold2t1w_dof``). Set default to 9 to account for field inhomogeneities and coils heating up (#448)
+* [ENH] Added support for phase difference and GE style fieldmaps (#448)
+* [ENH] Generate GrayWhite, Pial, MidThickness and inflated surfaces (#398)
+* [ENH] Memory and performance improvements for calculating the EPI reference (#436)
+* [ENH] Sample functional series to subject and ``fsaverage`` surfaces (#391)
+* [ENH] Output spaces for functional data may be selected with ``--output-space`` option (#447)
+* [DEP] ``--skip-native`` functionality replaced by ``--output-space`` (#447)
+* [ENH] ``fmriprep-docker`` wrapper script simplifies running in a Docker environment (#317)
+
+0.3.2 (7th of April 2017)
+=========================
+
+With thanks to Asier Erramuzpe for contributions.
+
+* [ENH] Added optional slice time correction (#415)
+* [ENH] Removed redundant motion parameter conversion step using avscale (#415)
+* [ENH] FreeSurfer submillimeter reconstruction may be disabled with ``--no-submm-recon`` (#422)
+* [ENH] Switch bbregister init from ``fsl`` to ``coreg`` (FreeSurfer native #423)
+* [ENH] Motion estimation now uses a smart reference image that takes advantage of T1 saturation (#421)
+* [FIX] Fix report generation with ``--reports-only`` (#427)
+
+0.3.1 (24th of March 2017)
+==========================
+
+* [ENH] Perform bias field correction of EPI images prior to coregistration (#409)
+* [FIX] Fix an orientation issue affecting some datasets when bbregister was used (#408)
+* [ENH] Minor improvements to the reports aesthetics (#428)
+
+0.3.0 (20th of March 2017)
+==========================
+
+* [FIX] Affine and warp MNI transforms are now applied in the correct order
+* [ENH] Added preliminary support for reconstruction of cortical surfaces using FreeSurfer
+* [ENH] Switched to bbregister for BOLD to T1 coregistration
+* [ENH] Switched to sinc interpolation of preprocessed BOLD and T1w outputs
+* [ENH] Preprocessed BOLD volumes are now saved in the T1w space instead of mean BOLD
+* [FIX] Fixed a bug with MCFLIRT interpolation inducing slow drift
+* [ENH] All files are now saved in Float32 instead of Float64 to save space
+
+0.2.0 (13th of January 2017)
+============================
+
+* Initial public release
+
+
+0.1.2 (3rd of October 2016)
+===========================
+
+* [FIX] Downloads from OSF, remove data downloader (now in niworkflows)
+* [FIX] pybids was missing in the install_requires
+* [DEP] Deprecated -S/--subject-id tag
+* [ENH] Accept subjects with several T1w images (#114)
+* [ENH] Documentation updates (#130, #131)
+* [TST] Re-enabled CircleCI tests on one subject from ds054 of OpenfMRI
+* [ENH] Add C3D to docker image, updated poldracklab hub (#128, #119)
+* [ENH] CLI is now BIDS-Apps compliant (#123)
+
+
+0.1.1 (30th of July 2016)
+=========================
+
+* [ENH] Grabbit integration (#113)
+* [ENH] More outputs in MNI space (#99)
+* [ENH] Implementation of phase-difference fieldmap estimation (#91)
+* [ENH] Fixed bug using non-RAS EPI
+* [ENH] Works on ds005 (datasets without fieldmap nor sbref)
+* [ENH] Outputs start to follow BIDS-derivatives (WIP)
+
+
+0.0.1
+=====
+
+* [ENH] Added Docker images
+* [DOC] Added base code for automatic publication to RTD.
+* Set up CircleCI with a first smoke test on one subject.
+* BIDS tree scrubbing and subject-session-run selection.
+* Refactored big workflow into consistent pieces.
+* Migrated Craig's original code
