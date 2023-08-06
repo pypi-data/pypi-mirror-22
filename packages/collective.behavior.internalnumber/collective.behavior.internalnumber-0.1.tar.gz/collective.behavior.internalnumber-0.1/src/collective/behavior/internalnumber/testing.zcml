@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.behavior.talcondition">
+
+  <include file="configure.zcml" />
+  <include package="plone.app.dexterity" />
+
+  <genericsetup:registerProfile
+      name="testing"
+      title="collective.behavior.internalnumber tests"
+      directory="profiles/testing"
+      description="Steps to ease tests of collective.behavior.internalnumber"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+</configure>

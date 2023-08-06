@@ -1,0 +1,53 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.behavior.internalnumber">
+
+  <i18n:registerTranslations directory="locales" />
+
+  <includeDependencies package="." />
+
+  <include package="plone.behavior" file="meta.zcml" />
+
+  <include package=".browser" />
+
+  <plone:behavior
+      title="Internal number field"
+      description="Add a text field to encode internal number."
+      provides=".behavior.IInternalNumberBehavior"
+      />
+
+  <adapter name="internal_number_index" factory=".adapters.internal_number_index" />
+  <adapter name="IInternalNumberBehavior" factory=".adapters.InternalNumberSearchableExtender" />
+
+  <subscriber
+      for=".behavior.IInternalNumberBehavior
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".subscribers.object_added"
+      />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.behavior.internalnumber"
+      directory="profiles/default"
+      description="Installs the collective.behavior.internalnumber add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_install"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="collective.behavior.internalnumber (uninstall)"
+      directory="profiles/uninstall"
+      description="Uninstalls the collective.behavior.internalnumber add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.uninstall"
+      />
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="collective.behavior.internalnumber-hiddenprofiles" />
+
+</configure>
