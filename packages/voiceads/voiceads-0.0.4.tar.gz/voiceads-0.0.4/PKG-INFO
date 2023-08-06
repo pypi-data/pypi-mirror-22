@@ -1,0 +1,51 @@
+Metadata-Version: 1.1
+Name: voiceads
+Version: 0.0.4
+Summary: VoiceAds.ai Python SDK
+Home-page: https://bitbucket.org/voiceadsai/voiceads-python-sdk
+Author: Anupam Jain
+Author-email: tech@voiceads.ai
+License: MIT
+Description: voiceads
+        ---------
+        
+        # Install the package
+        
+        you can install the package locally in the current folder by using the following command: 
+        
+        #from main public PIP repo
+        
+        pip install -t ./ voiceads
+        
+        ----------
+        
+        ## SDK usage: 
+        
+        from voiceads import VoiceAdsAI
+        
+        appToken = '<YOUR APP TOKEN>'
+        
+        appType = '<YOUR APP TYPE>'
+        
+        va = VoiceAdsAI()
+        
+        params = {
+            'appName' : '<YOUR APP NAME>',
+        
+            'appId': '<YOUR APP ID>',
+        
+            'appType': '<YOUR APP TYPE>',
+        
+            'appCategory' : '<YOUR APP CATEGORY>'
+        }
+        
+        va.initialize(appToken, appType, params)
+        
+        resp = va.getAd()
+        
+Keywords: voiceads,voiceads.ai,alexasdk
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
