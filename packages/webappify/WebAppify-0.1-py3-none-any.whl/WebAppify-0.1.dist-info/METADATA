@@ -1,0 +1,44 @@
+Metadata-Version: 2.0
+Name: WebAppify
+Version: 0.1
+Summary: Create desktop apps of your favourite websites
+Home-page: https://launchpad.net/webappify
+Author: Raoul Snyman
+Author-email: raoul@snyman.info
+License: MIT
+Keywords: Qt website
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: MacOS X
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Environment :: X11 Applications
+Classifier: Environment :: X11 Applications :: Qt
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Desktop Environment
+Classifier: Topic :: Internet :: WWW/HTTP :: Browsers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: PyQt5
+
+WebAppify
+=========
+
+WebAppify is a simple module to easily create your own desktop apps of websites.
+
+To create your own desktop web app, import and set up the WebApp class.
+
+.. code:: python
+
+   from webappify import WebApp
+
+   app = WebApp('OpenStreetMap', 'https://www.openstreetmap.org', 'osm.png')
+   app.run()
+
+This will create a window with the website, using the icon provided.
+
+
