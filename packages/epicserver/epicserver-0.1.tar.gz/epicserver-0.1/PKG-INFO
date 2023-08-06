@@ -1,0 +1,178 @@
+Metadata-Version: 1.0
+Name: epicserver
+Version: 0.1
+Summary: Online Persistent game infrastructure
+Home-page: http://code.epic-man.net
+Author: Da_Blitz
+Author-email: epiccode@epic-man.net
+License: MIT BSD
+Description: Epic Server
+        ===========
+        Epic Server is a runtime/harness for running code that offers multi-process and 
+        multi-machine execution. It handles aspects such as auto-discovery and 
+        messaging and abstracts these in an easy to use for to allow you to focus on 
+        writing the code to run your services.
+        
+        Note: This is alpha software. The below talks about features coming in the 0.1 
+        release, the project is in a runnable state at the moment but does not include 
+        the multi machine/process execution at this time, this is expected to be 
+        finished shortly before official release
+        
+        Example
+        --------
+            from epicserver.objects import Entity
+            
+            class GameEntity(Entity): pass
+            
+            class Player(GameEntity):
+                score = 0
+                async enter_level(self, barrels):
+                    for barrel in barrels:
+                        # shoot the barrel
+                        killed = await barrel.on_hit()
+                        if killed
+                            self.score += 1
+                            
+                async get_score(self):
+                    return self.score
+            
+            class Barrel(GameEntity):
+                team = "Society for the prevention of cruelty to barrels'
+                async on_hit(self):
+                    print("What, did you expect me to explode?")
+                    return False
+            
+            async def setup(pool)
+                pool.bind(GameEntity)
+                barrels = [pool.Barrel[i] for i in range(30)]
+                player = pool.Player['Bob: Slayer of armoured cylinders']
+                
+                await player.enter_level(barrels)
+                score = await player.get_score()
+            
+                print(f"New High scrore for player: {score}")
+            
+        
+        Features
+        ---------
+         * Based on raw async/await
+         * Inter object based messaging that looks like normal async method calls
+         * Automatic 'fabric' creation, stiching togther multiple processes on the same 
+           or seperate machines.
+         * Automatic discovery of machines
+         * Virtual actors/objects, no explicit instantiation required
+         * Isolated and pluggable systems allow swapping in diffrent implementations
+           (eg Serialisation, networking)
+         * Automatic object percistance to disk (aka 'saving')
+         * Garbage colleciton of objects
+         * Python >= 3.6 only support
+        
+        
+        Use Cases
+        ----------
+         * Distributed Game Backend
+         * Agent Simulation
+         * Communciation {latform (instant messaging, twiiter like systems)
+         * Graph based processing
+        
+        Epic Server is ideal for anything that is messaging heavy and designed around 
+        objects that need to communicate
+        
+        Epix Server is not a 'drop in' solution to python to gain concurrency. 
+        Applications seeking to exploit the parallelism of Epic Server will need to be 
+        written to use it. Code that uses fork or threads can be adapted to work (by 
+        making each fork/thread a separate object) however Epic Server is focused on 
+        high levels of parallelism (executing contexts is 10s to 100s of times the number 
+        of CPU's) and short lived 'calculations'
+        
+        Inspriaration
+        --------------
+        Epicserver draws fromconcepts from many diffrent languages and libraries, a 
+        short list is included below
+        
+         * Orleans from microsoft research (dotnet/C#). Used as the machinary behind 
+           Halo 5 and other games
+         * Erlang
+         * Stackless Python
+         * AsyncIO
+         * SansIO
+         * Zope/ZODB
+        
+        While the concepts of many of the above can be ported straight to python, 
+        modification of the concepts to make them feel fammilar to python programmers 
+        where undertaken in an attempt to make the resulting framework more pythonic 
+        and fit better with existing python ecosystems.
+        
+        
+        Implimentation
+        --------------
+        Epic Server consists of an event loop running in the main thread that is 
+        responsible for the execution of work, as well as several background IO threads 
+        responsible for sending and reciving IO requests as well as handling IO (both 
+        disk and network). Additional threads can be utilized for other blocking calls 
+        that may arrise such as Database access.
+        
+        All access to thes IO threads is dont via message passing and mediated by the 
+        event loop
+        
+        IO Loop
+        ========
+        Epic Server is implemented as an IO Loop with a number of 'syscalls' that 
+        correspond to high level concepts. Rather than focusing on how to perform the 
+        IO, Epic Server presents primitives such as 'persist to database' or 'Call 
+        remote object' leaving the implementation up to the server and allowing you to 
+        avoid having IO routines embedded in your business logic that would need to be 
+        mocked out for testing.
+        
+        By moving the IO out of the program and replacing it with a token based syscall 
+        system, one can simply and quickly test buisness logic without havign to mock 
+        out te IO routines or simulate services. Testing becomes a simple process of 
+        sending the code messages and checing the repsponses.
+        
+        Moving the IO out of the code also allows high performance implemetnations such 
+        as TIPC or ininiband to be plugged in without modifcation of code, this applies 
+        to which database is in use or the searlisation library allowing futher updates 
+        to features and performance without having to rework (or test) code.
+        
+        Concurrency
+        ============ 
+        A number of the implementations this project was inspired by have very explict 
+        ideas in regards to the concurrency model and interleaving of requests, a short 
+        summary is below:
+        
+         * Orleans: Objects are single threaded, only one request may be performed on 
+           an object at a time
+         * Erlang: Actors are lite-weight processes that communicate via mailboxes
+         * Stackless Python: Follows CPython/GIL Semantics
+         * AsyncIO: Cooperative multitasking, yields control flow at yield/await 
+           statements, Guaranteed exclusive execution between these two points (Providing 
+           threading is not used)
+        
+        Epic Server is composed of multiple Python processes that may be running on the 
+        same or different machines. Each Python process has one 'execution' thread that 
+        corresponds to the main thread as well as a number of background threads for IO 
+        (DB access, sending requests and receiving requests)..
+        
+        From the point of view of user code, a method call has exclusive access tot he 
+        CPU between 'yield points' (yield/await). At these points, the running context 
+        may be changed and other code may be executed. This is identical to AsyncIOs 
+        guarantees and a lot less restrictive (and dangerous) than other frameworks 
+        such as Orleans while being more in line with what python programmers expect.
+        
+        In contrast to the Orleans approach the above means that multiple instances of 
+        the same method call can be executing and will be interleaved. Should method 
+        level or object level locking be required to introduce Orleans like semantics 
+        be required then a decorator will need to be used to ensure this.
+        
+        The Use of IO threads should not interfere with the execution thread as these 
+        are interacted with via message passing and mediated by the event loop. 
+        Mutation of the messages after being 'handed off' however may cause 
+        undesirable effects and as such all 'sent' messages should not be further 
+        modified and references to them dropped.
+        
+        As an object can only be running in a single process at a time, Parallelism can 
+        be achieved by executing multiple different objects in multiple processes at 
+        once. Spreading the work over multiple objects can be used to achieve speedups
+        
+Keywords: game mmo rpg asyncio
+Platform: UNKNOWN
