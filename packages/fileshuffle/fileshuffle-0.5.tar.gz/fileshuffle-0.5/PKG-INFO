@@ -1,0 +1,71 @@
+Metadata-Version: 1.1
+Name: fileshuffle
+Version: 0.5
+Summary: Shuffle files
+Home-page: https://github.com/sashgorokhov/fileshuffle
+Author: sashgorokhov
+Author-email: sashgorokhov@gmail.com
+License: MIT License
+Download-URL: https://github.com/sashgorokhov/fileshuffle/archive/v0.5.zip
+Description: fileshuffle.py
+        **************
+        
+        .. image:: https://img.shields.io/pypi/status/fileshuffle.svg
+            :target: https://github.com/sashgorokhov/fileshuffle
+        
+        .. image:: https://img.shields.io/pypi/pyversions/fileshuffle.svg
+            :target: https://pypi.python.org/pypi/fileshuffle
+        
+        .. image:: https://badge.fury.io/py/fileshuffle.svg
+            :target: https://badge.fury.io/py/fileshuffle
+        
+        .. image:: https://img.shields.io/github/license/sashgorokhov/fileshuffle.svg
+            :target: https://raw.githubusercontent.com/sashgorokhov/fileshuffle/master/LICENSE
+        
+        Shuffle files
+        
+        Installation
+        ------------
+        
+        Python3.5 is required.
+        
+        .. code-block:: shell
+        
+            pip install fileshuffle
+        
+        Usage
+        -----
+        
+        .. code-block:: shell
+        
+            usage: fileshuffle.py [-h] --destination DESTINATION [--recurse]
+                                  [--no-shuffle] [--order_prefix ORDER_PREFIX]
+                                  [--order_prefix_regexp ORDER_PREFIX_REGEXP]
+                                  source
+        
+            Shuffle files
+        
+            positional arguments:
+              source                Source directory
+        
+            optional arguments:
+              -h, --help            show this help message and exit
+              --destination DESTINATION
+                                    Destination directory. Will be cleared if exists and
+                                    created if not
+              --recurse, -R         Search files in source directory recursively
+              --no-shuffle          Do not shuffle gathered files
+              --order_prefix ORDER_PREFIX
+              --order_prefix_regexp ORDER_PREFIX_REGEXP
+                                    Used to detect existing order prefixes and remove them
+        
+Keywords: shuffle,file shuffle,filesystem
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Multimedia
+Classifier: Topic :: System :: Filesystems
