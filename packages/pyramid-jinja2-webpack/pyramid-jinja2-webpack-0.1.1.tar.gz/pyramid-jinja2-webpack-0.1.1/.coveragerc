@@ -1,0 +1,16 @@
+[paths]
+source =
+   src/pyramid_jinja2_webpack
+   */site-packages/pyramid_jinja2_webpack
+
+[run]
+branch = true
+source =
+    pyramid_jinja2_webpack
+    tests
+parallel = true
+
+[report]
+show_missing = true
+precision = 2
+omit = *migrations*
