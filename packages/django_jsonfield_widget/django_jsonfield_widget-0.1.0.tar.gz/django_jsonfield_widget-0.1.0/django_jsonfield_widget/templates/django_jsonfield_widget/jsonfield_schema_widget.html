@@ -1,0 +1,17 @@
+{% load i18n jsonify staticfiles %}
+
+
+<script>
+    $( document ).ready(function() {
+        var label = $('label[for="id_{{ field_name }}"]');
+        label.hide();
+    });
+</script>
+
+<div class="react_jsonfield_schema_widget" data-field_name='{{ field_name|jsonify }}' data-schema='{{ schema }}' data-json='{{ value }}'></div>
+
+<script src="{% static 'admin/js/django_jsonfield_widget/bundles/JsonFieldSchemaWidget.js' %}"></script>
+
+{% comment %}
+    <script src="http://localhost:8084/static/bundles/JsonFieldSchemaWidget.js"></script>
+{% endcomment %}
