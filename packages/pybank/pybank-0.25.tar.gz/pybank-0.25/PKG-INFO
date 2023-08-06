@@ -1,0 +1,32 @@
+Metadata-Version: 1.1
+Name: pybank
+Version: 0.25
+Summary: Core Banking Simulator
+Home-page: https://github.com/timgabets/pybank
+Author: Tim Gabets
+Author-email: tim@gabets.ru
+License: LGPLv2
+Description: pybank
+        =======
+        
+        A python library that implements the primitive Core Banking system (CBS) emulator.
+        
+        Usage:
+         >>> from pybank.cbs import CBS
+         >>> cbs = CBS(host=ip, port=port)
+         >>> cbs.run()
+        
+        cbs_example.py_ is an example of core banking system emulator application, that interacts connects to authorization switch through ISO8583:1993 protocol (accounts, transactions and balances are stored in a local sqlite3 database).
+        
+        .. _cbs_example.py: https://github.com/timgabets/pybank/tree/master/examples/cbs_example.py
+        
+Keywords: Core banking financial
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Communications
+Classifier: Intended Audience :: Developers
