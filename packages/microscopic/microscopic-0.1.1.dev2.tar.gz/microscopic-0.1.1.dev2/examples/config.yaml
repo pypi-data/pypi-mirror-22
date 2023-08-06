@@ -1,0 +1,45 @@
+__version__: '0'
+
+pipelines:
+  pattern_queue:
+    entry_point: pattern_queue
+
+transports:
+  elinks:
+    entry_point: subprocess
+    # fixme: the configuration should support runtime-value interpolation for things like 'message.html'
+    args: [elinks, -dump, -dump-charset, utf-8, -default-mime-type, text/html, message.html]
+    kwargs:
+      chunk_size: 65536
+
+  stdout:
+    entry_point: pipe
+    kwargs:
+      read_fd: 0
+      write_fd: 1
+      chunk_size: 65536
+
+processors:
+  short_url:
+    entry_point: request_processor
+    kwargs:
+      request_factory:
+        # fixme: not robust: what if the user wants to pass a dictionary as a kwarg?--there should be an interpolator for this as well
+        __import__: microscopic.processors.request:short_url_factory
+
+patterns:
+  http_url:
+    entry_point: regex
+    kwargs:
+      pattern: |-
+        https?:\/\/[A-Za-z0-9-._~:/?#@!$&'*,;=`\[\]\(\)\+]+
+
+      chunk_size: 65536
+
+__executor__:
+  # fixme: support more than one executor/type of executor
+  pipeline: pipelines.pattern_queue
+  read_transport_factory: transports.elinks
+  write_transport_factory: transports.stdout
+  processor_factory: processors.short_url
+  pattern_factory: patterns.http_url
