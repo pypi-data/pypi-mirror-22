@@ -1,0 +1,89 @@
+##############################################################################
+# Copyright (c) 2016 ZTE Corporation and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+name: compute
+description: QTIP Performance Index of compute
+formula: weighted arithmetic mean
+sections: # split based on different application
+  - name: SSL
+    description: cryptography and SSL/TLS performance
+    formula: geometric mean
+    metrics:
+      - name: ssl_rsa
+        formual: geometric mean
+        workloads:
+          - name: rsa_sign_512
+            baseline: 14982.3
+          - name: rsa_verify_512
+            baseline: 180619.2
+          - name: rsa_sign_1024
+            baseline: 5037.7
+          - name: rsa_verify_1024
+            baseline: 67359.9
+          - name: rsa_sign_2048
+            baseline: 713.6
+          - name: rsa_verify_2048
+            baseline: 23458.0
+          - name: rsa_sign_4096
+            baseline: 102.1
+          - name: rsa_verify_4096
+            baseline: 6402.9
+      - name: ssl_aes
+        formual: geometric mean
+        workloads:
+          - name: aes_128_cbc_16_bytes
+            baseline: 612376.96k
+          - name: aes_128_cbc_64_bytes
+            baseline: 657350.74k
+          - name: aes_128_cbc_256_bytes
+            baseline: 669680.04k
+          - name: aes_128_cbc_1024_bytes
+            baseline: 672675.50k
+          - name: aes_128_cbc_8192_bytes
+            baseline: 672344.75k
+  - name: DPI
+    description: deep packet inspection
+    metrics:
+      - name: dpi_throughput
+        workloads:
+          - name: dpi_pps
+            baseline: 2.19M
+          - name: dpi_bps
+            baseline: 20.55G
+  - name: memory
+    description: cache and memory performance
+    metrics:
+      - name: floatmem
+        workloads:
+          - name: triad
+            baseline: 9748.98
+          - name: add
+            baseline: 9734.18
+          - name: copy
+            baseline: 7692.26
+          - name: scale
+            baseline: 7616.35
+      - name: intmem
+        workloads:
+          - name: triad
+            baseline: 12110.50
+          - name: add
+            baseline: 12153.10
+          - name: copy
+            baseline: 11913.03
+          - name: scale
+            baseline: 11945.36
+  - name: arithmetic
+    description: arithmetic computing speed
+    metrics:
+      - name: arithmetic
+        workloads:
+          - name: dhrystone_lps
+            baseline: 34657490.5
+          - name: whetstone_MWIPS
+            baseline: 2495.9
