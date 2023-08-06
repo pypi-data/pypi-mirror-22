@@ -1,0 +1,3 @@
+OBSOLETE - see opencivicdata package
+
+
