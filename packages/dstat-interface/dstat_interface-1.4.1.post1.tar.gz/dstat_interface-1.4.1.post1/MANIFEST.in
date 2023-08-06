@@ -1,0 +1,10 @@
+include RELEASE-VERSION
+include version.py
+include setup.py
+include paver-minilib.zip
+include dstat_interface/RELEASE-VERSION
+recursive-include dstat_interface *
+recursive-exclude dstat_interface *.pyc
+recursive-exclude dstat_interface *~
+exclude dstat_interface/last_params.yml
+exclude dstat_interface/.DS_Store
