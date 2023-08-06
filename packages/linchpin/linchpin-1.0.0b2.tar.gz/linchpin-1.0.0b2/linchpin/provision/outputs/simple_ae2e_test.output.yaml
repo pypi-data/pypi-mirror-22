@@ -1,0 +1,1168 @@
+aws_cfn_res: []
+aws_ec2_key_res: []
+aws_ec2_res: []
+aws_s3_res: []
+beaker_res: []
+duffy_res: []
+gcloud_gce_res: []
+os_heat_res: []
+os_keypair_res: []
+os_obj_res: []
+os_server_res:
+-   _ansible_item_result: true
+    _ansible_no_log: false
+    _ansible_parsed: true
+    changed: false
+    id: 5c7b71e0-40dd-4c1a-aad2-07833769f527
+    instance:
+    - http://dashboard.centralci.eng.rdu2.redhat.com:5000/v2.0/
+    - atomic-e2e-jenkins
+    - rgHdUfMqshXWSBYdlfIp
+    - atomic-e2e-jenkins-test
+    - present
+    - rhel-6.5_jeos
+    - ci-factory
+    - m1.small
+    - net-name=atomic-e2e-jenkins-test
+    - ae2e
+    - test
+    - 0
+    - 10.8.172.0/22
+    invocation:
+        module_args:
+            api_timeout: 99999
+            auth:
+                auth_url: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                password: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                project_name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                username: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+            auth_type: null
+            auto_ip: true
+            availability_zone: null
+            boot_from_volume: false
+            boot_volume: null
+            cacert: null
+            cert: null
+            cloud: null
+            config_drive: false
+            endpoint_type: public
+            flavor: m1.small
+            flavor_include: null
+            flavor_ram: null
+            floating_ip_pools:
+            - 10.8.172.0/22
+            floating_ips: null
+            image: rhel-6.5_jeos
+            image_exclude: (deprecated)
+            key: null
+            key_name: ci-factory
+            meta: null
+            name: ae2e_test_0
+            network: null
+            nics:
+            - net-name=********-test
+            region_name: null
+            scheduler_hints: null
+            security_groups:
+            - default
+            state: present
+            terminate_volume: false
+            timeout: 180
+            userdata: null
+            verify: true
+            volume_size: false
+            volumes: []
+            wait: true
+        module_name: os_server
+    openstack:
+        OS-DCF:diskConfig: MANUAL
+        OS-EXT-AZ:availability_zone: nova
+        OS-EXT-STS:power_state: 1
+        OS-EXT-STS:task_state: null
+        OS-EXT-STS:vm_state: active
+        OS-SRV-USG:launched_at: '2017-01-20T04:43:38.000000'
+        OS-SRV-USG:terminated_at: null
+        accessIPv4: 10.8.174.128
+        accessIPv6: ''
+        addresses:
+            atomic-e2e-jenkins-test:
+            -   OS-EXT-IPS-MAC:mac_addr: fa:16:3e:63:e5:e1
+                OS-EXT-IPS:type: fixed
+                addr: 172.16.171.225
+                version: 4
+            -   OS-EXT-IPS-MAC:mac_addr: fa:16:3e:63:e5:e1
+                OS-EXT-IPS:type: floating
+                addr: 10.8.174.128
+                version: 4
+        adminPass: null
+        az: nova
+        cloud: defaults
+        config_drive: ''
+        created: '2017-01-20T04:43:33Z'
+        disk_config: MANUAL
+        flavor:
+            id: '2'
+            name: m1.small
+        has_config_drive: false
+        hostId: 2bfceff70c1a30b94defb41d9b87b98b665ad1cb9926d005e0b486db
+        host_id: 2bfceff70c1a30b94defb41d9b87b98b665ad1cb9926d005e0b486db
+        id: 5c7b71e0-40dd-4c1a-aad2-07833769f527
+        image:
+            id: 3bcfd17c-6bf0-4134-ae7f-80bded8b46fd
+            name: rhel-6.5_jeos
+        interface_ip: 10.8.174.128
+        key_name: ci-factory
+        launched_at: '2017-01-20T04:43:38.000000'
+        location:
+            cloud: defaults
+            project:
+                domain_id: null
+                domain_name: null
+                id: 4ace8180769a42e7b7ef2d795c555002
+                name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+            region_name: ''
+            zone: nova
+        metadata: {}
+        name: ae2e_test_0
+        networks:
+            atomic-e2e-jenkins-test:
+            - 172.16.171.225
+            - 10.8.174.128
+        os-extended-volumes:volumes_attached: []
+        power_state: 1
+        private_v4: 172.16.171.225
+        progress: 0
+        project_id: 4ace8180769a42e7b7ef2d795c555002
+        properties:
+            OS-DCF:diskConfig: MANUAL
+            OS-EXT-AZ:availability_zone: nova
+            OS-EXT-STS:power_state: 1
+            OS-EXT-STS:task_state: null
+            OS-EXT-STS:vm_state: active
+            OS-SRV-USG:launched_at: '2017-01-20T04:43:38.000000'
+            OS-SRV-USG:terminated_at: null
+            os-extended-volumes:volumes_attached: []
+            request_ids: []
+        public_v4: 10.8.174.128
+        public_v6: ''
+        region: ''
+        request_ids: []
+        security_groups:
+        -   HUMAN_ID: false
+            NAME_ATTR: name
+            description: Default security group
+            human_id: null
+            id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+            location:
+                cloud: defaults
+                project:
+                    domain_id: null
+                    domain_name: null
+                    id: 4ace8180769a42e7b7ef2d795c555002
+                    name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                region_name: ''
+                zone: null
+            name: default
+            project_id: 4ace8180769a42e7b7ef2d795c555002
+            properties:
+                HUMAN_ID: false
+                NAME_ATTR: name
+                human_id: null
+                request_ids: []
+            request_ids: []
+            security_group_rules:
+            -   direction: ingress
+                ethertype: IPv4
+                group:
+                    name: default
+                    tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                id: 07d9e837-23b0-47d2-93ab-89a9d6f46b21
+                location:
+                    cloud: defaults
+                    project:
+                        domain_id: null
+                        domain_name: null
+                        id: 4ace8180769a42e7b7ef2d795c555002
+                        name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                    region_name: ''
+                    zone: null
+                port_range_max: null
+                port_range_min: null
+                project_id: ''
+                properties:
+                    group:
+                        name: default
+                        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                protocol: null
+                remote_group_id: null
+                remote_ip_prefix: null
+                security_group_id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+                tenant_id: ''
+            -   direction: ingress
+                ethertype: IPv4
+                group:
+                    name: default
+                    tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                id: 4f2cb431-90a5-46a0-bc57-b98a4ea7ca97
+                location:
+                    cloud: defaults
+                    project:
+                        domain_id: null
+                        domain_name: null
+                        id: 4ace8180769a42e7b7ef2d795c555002
+                        name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                    region_name: ''
+                    zone: null
+                port_range_max: null
+                port_range_min: null
+                project_id: ''
+                properties:
+                    group:
+                        name: default
+                        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                protocol: null
+                remote_group_id: null
+                remote_ip_prefix: null
+                security_group_id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+                tenant_id: ''
+            tenant_id: 4ace8180769a42e7b7ef2d795c555002
+        status: ACTIVE
+        task_state: null
+        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+        terminated_at: null
+        updated: '2017-01-20T04:43:38Z'
+        user_id: 6fdaef18f58e40bfb4d10f17a54554f3
+        vm_state: active
+        volumes: []
+    server:
+        OS-DCF:diskConfig: MANUAL
+        OS-EXT-AZ:availability_zone: nova
+        OS-EXT-STS:power_state: 1
+        OS-EXT-STS:task_state: null
+        OS-EXT-STS:vm_state: active
+        OS-SRV-USG:launched_at: '2017-01-20T04:43:38.000000'
+        OS-SRV-USG:terminated_at: null
+        accessIPv4: 10.8.174.128
+        accessIPv6: ''
+        addresses:
+            atomic-e2e-jenkins-test:
+            -   OS-EXT-IPS-MAC:mac_addr: fa:16:3e:63:e5:e1
+                OS-EXT-IPS:type: fixed
+                addr: 172.16.171.225
+                version: 4
+            -   OS-EXT-IPS-MAC:mac_addr: fa:16:3e:63:e5:e1
+                OS-EXT-IPS:type: floating
+                addr: 10.8.174.128
+                version: 4
+        adminPass: null
+        az: nova
+        cloud: defaults
+        config_drive: ''
+        created: '2017-01-20T04:43:33Z'
+        disk_config: MANUAL
+        flavor:
+            id: '2'
+            name: m1.small
+        has_config_drive: false
+        hostId: 2bfceff70c1a30b94defb41d9b87b98b665ad1cb9926d005e0b486db
+        host_id: 2bfceff70c1a30b94defb41d9b87b98b665ad1cb9926d005e0b486db
+        id: 5c7b71e0-40dd-4c1a-aad2-07833769f527
+        image:
+            id: 3bcfd17c-6bf0-4134-ae7f-80bded8b46fd
+            name: rhel-6.5_jeos
+        interface_ip: 10.8.174.128
+        key_name: ci-factory
+        launched_at: '2017-01-20T04:43:38.000000'
+        location:
+            cloud: defaults
+            project:
+                domain_id: null
+                domain_name: null
+                id: 4ace8180769a42e7b7ef2d795c555002
+                name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+            region_name: ''
+            zone: nova
+        metadata: {}
+        name: ae2e_test_0
+        networks:
+            atomic-e2e-jenkins-test:
+            - 172.16.171.225
+            - 10.8.174.128
+        os-extended-volumes:volumes_attached: []
+        power_state: 1
+        private_v4: 172.16.171.225
+        progress: 0
+        project_id: 4ace8180769a42e7b7ef2d795c555002
+        properties:
+            OS-DCF:diskConfig: MANUAL
+            OS-EXT-AZ:availability_zone: nova
+            OS-EXT-STS:power_state: 1
+            OS-EXT-STS:task_state: null
+            OS-EXT-STS:vm_state: active
+            OS-SRV-USG:launched_at: '2017-01-20T04:43:38.000000'
+            OS-SRV-USG:terminated_at: null
+            os-extended-volumes:volumes_attached: []
+            request_ids: []
+        public_v4: 10.8.174.128
+        public_v6: ''
+        region: ''
+        request_ids: []
+        security_groups:
+        -   HUMAN_ID: false
+            NAME_ATTR: name
+            description: Default security group
+            human_id: null
+            id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+            location:
+                cloud: defaults
+                project:
+                    domain_id: null
+                    domain_name: null
+                    id: 4ace8180769a42e7b7ef2d795c555002
+                    name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                region_name: ''
+                zone: null
+            name: default
+            project_id: 4ace8180769a42e7b7ef2d795c555002
+            properties:
+                HUMAN_ID: false
+                NAME_ATTR: name
+                human_id: null
+                request_ids: []
+            request_ids: []
+            security_group_rules:
+            -   direction: ingress
+                ethertype: IPv4
+                group:
+                    name: default
+                    tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                id: 07d9e837-23b0-47d2-93ab-89a9d6f46b21
+                location:
+                    cloud: defaults
+                    project:
+                        domain_id: null
+                        domain_name: null
+                        id: 4ace8180769a42e7b7ef2d795c555002
+                        name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                    region_name: ''
+                    zone: null
+                port_range_max: null
+                port_range_min: null
+                project_id: ''
+                properties:
+                    group:
+                        name: default
+                        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                protocol: null
+                remote_group_id: null
+                remote_ip_prefix: null
+                security_group_id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+                tenant_id: ''
+            -   direction: ingress
+                ethertype: IPv4
+                group:
+                    name: default
+                    tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                id: 4f2cb431-90a5-46a0-bc57-b98a4ea7ca97
+                location:
+                    cloud: defaults
+                    project:
+                        domain_id: null
+                        domain_name: null
+                        id: 4ace8180769a42e7b7ef2d795c555002
+                        name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                    region_name: ''
+                    zone: null
+                port_range_max: null
+                port_range_min: null
+                project_id: ''
+                properties:
+                    group:
+                        name: default
+                        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                protocol: null
+                remote_group_id: null
+                remote_ip_prefix: null
+                security_group_id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+                tenant_id: ''
+            tenant_id: 4ace8180769a42e7b7ef2d795c555002
+        status: ACTIVE
+        task_state: null
+        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+        terminated_at: null
+        updated: '2017-01-20T04:43:38Z'
+        user_id: 6fdaef18f58e40bfb4d10f17a54554f3
+        vm_state: active
+        volumes: []
+-   _ansible_item_result: true
+    _ansible_no_log: false
+    _ansible_parsed: true
+    changed: false
+    id: cdd9b4cf-d95b-4a0c-ab50-5873312f6bf7
+    instance:
+    - http://dashboard.centralci.eng.rdu2.redhat.com:5000/v2.0/
+    - atomic-e2e-jenkins
+    - rgHdUfMqshXWSBYdlfIp
+    - atomic-e2e-jenkins-test
+    - present
+    - rhel-6.5_jeos
+    - ci-factory
+    - m1.small
+    - net-name=atomic-e2e-jenkins-test
+    - ae2e
+    - test
+    - 1
+    - 10.8.172.0/22
+    invocation:
+        module_args:
+            api_timeout: 99999
+            auth:
+                auth_url: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                password: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                project_name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                username: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+            auth_type: null
+            auto_ip: true
+            availability_zone: null
+            boot_from_volume: false
+            boot_volume: null
+            cacert: null
+            cert: null
+            cloud: null
+            config_drive: false
+            endpoint_type: public
+            flavor: m1.small
+            flavor_include: null
+            flavor_ram: null
+            floating_ip_pools:
+            - 10.8.172.0/22
+            floating_ips: null
+            image: rhel-6.5_jeos
+            image_exclude: (deprecated)
+            key: null
+            key_name: ci-factory
+            meta: null
+            name: ae2e_test_1
+            network: null
+            nics:
+            - net-name=********-test
+            region_name: null
+            scheduler_hints: null
+            security_groups:
+            - default
+            state: present
+            terminate_volume: false
+            timeout: 180
+            userdata: null
+            verify: true
+            volume_size: false
+            volumes: []
+            wait: true
+        module_name: os_server
+    openstack:
+        OS-DCF:diskConfig: MANUAL
+        OS-EXT-AZ:availability_zone: nova
+        OS-EXT-STS:power_state: 1
+        OS-EXT-STS:task_state: null
+        OS-EXT-STS:vm_state: active
+        OS-SRV-USG:launched_at: '2017-01-20T04:44:10.000000'
+        OS-SRV-USG:terminated_at: null
+        accessIPv4: 10.8.175.134
+        accessIPv6: ''
+        addresses:
+            atomic-e2e-jenkins-test:
+            -   OS-EXT-IPS-MAC:mac_addr: fa:16:3e:3f:21:07
+                OS-EXT-IPS:type: fixed
+                addr: 172.16.171.226
+                version: 4
+            -   OS-EXT-IPS-MAC:mac_addr: fa:16:3e:3f:21:07
+                OS-EXT-IPS:type: floating
+                addr: 10.8.175.134
+                version: 4
+        adminPass: null
+        az: nova
+        cloud: defaults
+        config_drive: ''
+        created: '2017-01-20T04:44:04Z'
+        disk_config: MANUAL
+        flavor:
+            id: '2'
+            name: m1.small
+        has_config_drive: false
+        hostId: 2bfceff70c1a30b94defb41d9b87b98b665ad1cb9926d005e0b486db
+        host_id: 2bfceff70c1a30b94defb41d9b87b98b665ad1cb9926d005e0b486db
+        id: cdd9b4cf-d95b-4a0c-ab50-5873312f6bf7
+        image:
+            id: 3bcfd17c-6bf0-4134-ae7f-80bded8b46fd
+            name: rhel-6.5_jeos
+        interface_ip: 10.8.175.134
+        key_name: ci-factory
+        launched_at: '2017-01-20T04:44:10.000000'
+        location:
+            cloud: defaults
+            project:
+                domain_id: null
+                domain_name: null
+                id: 4ace8180769a42e7b7ef2d795c555002
+                name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+            region_name: ''
+            zone: nova
+        metadata: {}
+        name: ae2e_test_1
+        networks:
+            atomic-e2e-jenkins-test:
+            - 172.16.171.226
+            - 10.8.175.134
+        os-extended-volumes:volumes_attached: []
+        power_state: 1
+        private_v4: 172.16.171.226
+        progress: 0
+        project_id: 4ace8180769a42e7b7ef2d795c555002
+        properties:
+            OS-DCF:diskConfig: MANUAL
+            OS-EXT-AZ:availability_zone: nova
+            OS-EXT-STS:power_state: 1
+            OS-EXT-STS:task_state: null
+            OS-EXT-STS:vm_state: active
+            OS-SRV-USG:launched_at: '2017-01-20T04:44:10.000000'
+            OS-SRV-USG:terminated_at: null
+            os-extended-volumes:volumes_attached: []
+            request_ids: []
+        public_v4: 10.8.175.134
+        public_v6: ''
+        region: ''
+        request_ids: []
+        security_groups:
+        -   HUMAN_ID: false
+            NAME_ATTR: name
+            description: Default security group
+            human_id: null
+            id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+            location:
+                cloud: defaults
+                project:
+                    domain_id: null
+                    domain_name: null
+                    id: 4ace8180769a42e7b7ef2d795c555002
+                    name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                region_name: ''
+                zone: null
+            name: default
+            project_id: 4ace8180769a42e7b7ef2d795c555002
+            properties:
+                HUMAN_ID: false
+                NAME_ATTR: name
+                human_id: null
+                request_ids: []
+            request_ids: []
+            security_group_rules:
+            -   direction: ingress
+                ethertype: IPv4
+                group:
+                    name: default
+                    tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                id: 07d9e837-23b0-47d2-93ab-89a9d6f46b21
+                location:
+                    cloud: defaults
+                    project:
+                        domain_id: null
+                        domain_name: null
+                        id: 4ace8180769a42e7b7ef2d795c555002
+                        name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                    region_name: ''
+                    zone: null
+                port_range_max: null
+                port_range_min: null
+                project_id: ''
+                properties:
+                    group:
+                        name: default
+                        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                protocol: null
+                remote_group_id: null
+                remote_ip_prefix: null
+                security_group_id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+                tenant_id: ''
+            -   direction: ingress
+                ethertype: IPv4
+                group:
+                    name: default
+                    tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                id: 4f2cb431-90a5-46a0-bc57-b98a4ea7ca97
+                location:
+                    cloud: defaults
+                    project:
+                        domain_id: null
+                        domain_name: null
+                        id: 4ace8180769a42e7b7ef2d795c555002
+                        name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                    region_name: ''
+                    zone: null
+                port_range_max: null
+                port_range_min: null
+                project_id: ''
+                properties:
+                    group:
+                        name: default
+                        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                protocol: null
+                remote_group_id: null
+                remote_ip_prefix: null
+                security_group_id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+                tenant_id: ''
+            tenant_id: 4ace8180769a42e7b7ef2d795c555002
+        status: ACTIVE
+        task_state: null
+        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+        terminated_at: null
+        updated: '2017-01-20T04:44:10Z'
+        user_id: 6fdaef18f58e40bfb4d10f17a54554f3
+        vm_state: active
+        volumes: []
+    server:
+        OS-DCF:diskConfig: MANUAL
+        OS-EXT-AZ:availability_zone: nova
+        OS-EXT-STS:power_state: 1
+        OS-EXT-STS:task_state: null
+        OS-EXT-STS:vm_state: active
+        OS-SRV-USG:launched_at: '2017-01-20T04:44:10.000000'
+        OS-SRV-USG:terminated_at: null
+        accessIPv4: 10.8.175.134
+        accessIPv6: ''
+        addresses:
+            atomic-e2e-jenkins-test:
+            -   OS-EXT-IPS-MAC:mac_addr: fa:16:3e:3f:21:07
+                OS-EXT-IPS:type: fixed
+                addr: 172.16.171.226
+                version: 4
+            -   OS-EXT-IPS-MAC:mac_addr: fa:16:3e:3f:21:07
+                OS-EXT-IPS:type: floating
+                addr: 10.8.175.134
+                version: 4
+        adminPass: null
+        az: nova
+        cloud: defaults
+        config_drive: ''
+        created: '2017-01-20T04:44:04Z'
+        disk_config: MANUAL
+        flavor:
+            id: '2'
+            name: m1.small
+        has_config_drive: false
+        hostId: 2bfceff70c1a30b94defb41d9b87b98b665ad1cb9926d005e0b486db
+        host_id: 2bfceff70c1a30b94defb41d9b87b98b665ad1cb9926d005e0b486db
+        id: cdd9b4cf-d95b-4a0c-ab50-5873312f6bf7
+        image:
+            id: 3bcfd17c-6bf0-4134-ae7f-80bded8b46fd
+            name: rhel-6.5_jeos
+        interface_ip: 10.8.175.134
+        key_name: ci-factory
+        launched_at: '2017-01-20T04:44:10.000000'
+        location:
+            cloud: defaults
+            project:
+                domain_id: null
+                domain_name: null
+                id: 4ace8180769a42e7b7ef2d795c555002
+                name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+            region_name: ''
+            zone: nova
+        metadata: {}
+        name: ae2e_test_1
+        networks:
+            atomic-e2e-jenkins-test:
+            - 172.16.171.226
+            - 10.8.175.134
+        os-extended-volumes:volumes_attached: []
+        power_state: 1
+        private_v4: 172.16.171.226
+        progress: 0
+        project_id: 4ace8180769a42e7b7ef2d795c555002
+        properties:
+            OS-DCF:diskConfig: MANUAL
+            OS-EXT-AZ:availability_zone: nova
+            OS-EXT-STS:power_state: 1
+            OS-EXT-STS:task_state: null
+            OS-EXT-STS:vm_state: active
+            OS-SRV-USG:launched_at: '2017-01-20T04:44:10.000000'
+            OS-SRV-USG:terminated_at: null
+            os-extended-volumes:volumes_attached: []
+            request_ids: []
+        public_v4: 10.8.175.134
+        public_v6: ''
+        region: ''
+        request_ids: []
+        security_groups:
+        -   HUMAN_ID: false
+            NAME_ATTR: name
+            description: Default security group
+            human_id: null
+            id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+            location:
+                cloud: defaults
+                project:
+                    domain_id: null
+                    domain_name: null
+                    id: 4ace8180769a42e7b7ef2d795c555002
+                    name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                region_name: ''
+                zone: null
+            name: default
+            project_id: 4ace8180769a42e7b7ef2d795c555002
+            properties:
+                HUMAN_ID: false
+                NAME_ATTR: name
+                human_id: null
+                request_ids: []
+            request_ids: []
+            security_group_rules:
+            -   direction: ingress
+                ethertype: IPv4
+                group:
+                    name: default
+                    tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                id: 07d9e837-23b0-47d2-93ab-89a9d6f46b21
+                location:
+                    cloud: defaults
+                    project:
+                        domain_id: null
+                        domain_name: null
+                        id: 4ace8180769a42e7b7ef2d795c555002
+                        name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                    region_name: ''
+                    zone: null
+                port_range_max: null
+                port_range_min: null
+                project_id: ''
+                properties:
+                    group:
+                        name: default
+                        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                protocol: null
+                remote_group_id: null
+                remote_ip_prefix: null
+                security_group_id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+                tenant_id: ''
+            -   direction: ingress
+                ethertype: IPv4
+                group:
+                    name: default
+                    tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                id: 4f2cb431-90a5-46a0-bc57-b98a4ea7ca97
+                location:
+                    cloud: defaults
+                    project:
+                        domain_id: null
+                        domain_name: null
+                        id: 4ace8180769a42e7b7ef2d795c555002
+                        name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                    region_name: ''
+                    zone: null
+                port_range_max: null
+                port_range_min: null
+                project_id: ''
+                properties:
+                    group:
+                        name: default
+                        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                protocol: null
+                remote_group_id: null
+                remote_ip_prefix: null
+                security_group_id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+                tenant_id: ''
+            tenant_id: 4ace8180769a42e7b7ef2d795c555002
+        status: ACTIVE
+        task_state: null
+        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+        terminated_at: null
+        updated: '2017-01-20T04:44:10Z'
+        user_id: 6fdaef18f58e40bfb4d10f17a54554f3
+        vm_state: active
+        volumes: []
+-   _ansible_item_result: true
+    _ansible_no_log: false
+    _ansible_parsed: true
+    changed: false
+    id: 75bcd6cd-8b19-4d5b-be4a-a13bb9cfede9
+    instance:
+    - http://dashboard.centralci.eng.rdu2.redhat.com:5000/v2.0/
+    - atomic-e2e-jenkins
+    - rgHdUfMqshXWSBYdlfIp
+    - atomic-e2e-jenkins-test
+    - present
+    - rhel-6.5_jeos
+    - ci-factory
+    - m1.small
+    - net-name=atomic-e2e-jenkins-test
+    - ae2e
+    - test
+    - 2
+    - 10.8.172.0/22
+    invocation:
+        module_args:
+            api_timeout: 99999
+            auth:
+                auth_url: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                password: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                project_name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                username: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+            auth_type: null
+            auto_ip: true
+            availability_zone: null
+            boot_from_volume: false
+            boot_volume: null
+            cacert: null
+            cert: null
+            cloud: null
+            config_drive: false
+            endpoint_type: public
+            flavor: m1.small
+            flavor_include: null
+            flavor_ram: null
+            floating_ip_pools:
+            - 10.8.172.0/22
+            floating_ips: null
+            image: rhel-6.5_jeos
+            image_exclude: (deprecated)
+            key: null
+            key_name: ci-factory
+            meta: null
+            name: ae2e_test_2
+            network: null
+            nics:
+            - net-name=********-test
+            region_name: null
+            scheduler_hints: null
+            security_groups:
+            - default
+            state: present
+            terminate_volume: false
+            timeout: 180
+            userdata: null
+            verify: true
+            volume_size: false
+            volumes: []
+            wait: true
+        module_name: os_server
+    openstack:
+        OS-DCF:diskConfig: MANUAL
+        OS-EXT-AZ:availability_zone: nova
+        OS-EXT-STS:power_state: 1
+        OS-EXT-STS:task_state: null
+        OS-EXT-STS:vm_state: active
+        OS-SRV-USG:launched_at: '2017-01-20T04:44:42.000000'
+        OS-SRV-USG:terminated_at: null
+        accessIPv4: 10.8.172.152
+        accessIPv6: ''
+        addresses:
+            atomic-e2e-jenkins-test:
+            -   OS-EXT-IPS-MAC:mac_addr: fa:16:3e:83:52:4a
+                OS-EXT-IPS:type: fixed
+                addr: 172.16.171.227
+                version: 4
+            -   OS-EXT-IPS-MAC:mac_addr: fa:16:3e:83:52:4a
+                OS-EXT-IPS:type: floating
+                addr: 10.8.172.152
+                version: 4
+        adminPass: null
+        az: nova
+        cloud: defaults
+        config_drive: ''
+        created: '2017-01-20T04:44:36Z'
+        disk_config: MANUAL
+        flavor:
+            id: '2'
+            name: m1.small
+        has_config_drive: false
+        hostId: 0cc3727488a7769df3b9d01a0abdcf7f46ec6559567118e1377c4967
+        host_id: 0cc3727488a7769df3b9d01a0abdcf7f46ec6559567118e1377c4967
+        id: 75bcd6cd-8b19-4d5b-be4a-a13bb9cfede9
+        image:
+            id: 3bcfd17c-6bf0-4134-ae7f-80bded8b46fd
+            name: rhel-6.5_jeos
+        interface_ip: 10.8.172.152
+        key_name: ci-factory
+        launched_at: '2017-01-20T04:44:42.000000'
+        location:
+            cloud: defaults
+            project:
+                domain_id: null
+                domain_name: null
+                id: 4ace8180769a42e7b7ef2d795c555002
+                name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+            region_name: ''
+            zone: nova
+        metadata: {}
+        name: ae2e_test_2
+        networks:
+            atomic-e2e-jenkins-test:
+            - 172.16.171.227
+            - 10.8.172.152
+        os-extended-volumes:volumes_attached: []
+        power_state: 1
+        private_v4: 172.16.171.227
+        progress: 0
+        project_id: 4ace8180769a42e7b7ef2d795c555002
+        properties:
+            OS-DCF:diskConfig: MANUAL
+            OS-EXT-AZ:availability_zone: nova
+            OS-EXT-STS:power_state: 1
+            OS-EXT-STS:task_state: null
+            OS-EXT-STS:vm_state: active
+            OS-SRV-USG:launched_at: '2017-01-20T04:44:42.000000'
+            OS-SRV-USG:terminated_at: null
+            os-extended-volumes:volumes_attached: []
+            request_ids: []
+        public_v4: 10.8.172.152
+        public_v6: ''
+        region: ''
+        request_ids: []
+        security_groups:
+        -   HUMAN_ID: false
+            NAME_ATTR: name
+            description: Default security group
+            human_id: null
+            id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+            location:
+                cloud: defaults
+                project:
+                    domain_id: null
+                    domain_name: null
+                    id: 4ace8180769a42e7b7ef2d795c555002
+                    name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                region_name: ''
+                zone: null
+            name: default
+            project_id: 4ace8180769a42e7b7ef2d795c555002
+            properties:
+                HUMAN_ID: false
+                NAME_ATTR: name
+                human_id: null
+                request_ids: []
+            request_ids: []
+            security_group_rules:
+            -   direction: ingress
+                ethertype: IPv4
+                group:
+                    name: default
+                    tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                id: 07d9e837-23b0-47d2-93ab-89a9d6f46b21
+                location:
+                    cloud: defaults
+                    project:
+                        domain_id: null
+                        domain_name: null
+                        id: 4ace8180769a42e7b7ef2d795c555002
+                        name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                    region_name: ''
+                    zone: null
+                port_range_max: null
+                port_range_min: null
+                project_id: ''
+                properties:
+                    group:
+                        name: default
+                        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                protocol: null
+                remote_group_id: null
+                remote_ip_prefix: null
+                security_group_id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+                tenant_id: ''
+            -   direction: ingress
+                ethertype: IPv4
+                group:
+                    name: default
+                    tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                id: 4f2cb431-90a5-46a0-bc57-b98a4ea7ca97
+                location:
+                    cloud: defaults
+                    project:
+                        domain_id: null
+                        domain_name: null
+                        id: 4ace8180769a42e7b7ef2d795c555002
+                        name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                    region_name: ''
+                    zone: null
+                port_range_max: null
+                port_range_min: null
+                project_id: ''
+                properties:
+                    group:
+                        name: default
+                        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                protocol: null
+                remote_group_id: null
+                remote_ip_prefix: null
+                security_group_id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+                tenant_id: ''
+            tenant_id: 4ace8180769a42e7b7ef2d795c555002
+        status: ACTIVE
+        task_state: null
+        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+        terminated_at: null
+        updated: '2017-01-20T04:44:42Z'
+        user_id: 6fdaef18f58e40bfb4d10f17a54554f3
+        vm_state: active
+        volumes: []
+    server:
+        OS-DCF:diskConfig: MANUAL
+        OS-EXT-AZ:availability_zone: nova
+        OS-EXT-STS:power_state: 1
+        OS-EXT-STS:task_state: null
+        OS-EXT-STS:vm_state: active
+        OS-SRV-USG:launched_at: '2017-01-20T04:44:42.000000'
+        OS-SRV-USG:terminated_at: null
+        accessIPv4: 10.8.172.152
+        accessIPv6: ''
+        addresses:
+            atomic-e2e-jenkins-test:
+            -   OS-EXT-IPS-MAC:mac_addr: fa:16:3e:83:52:4a
+                OS-EXT-IPS:type: fixed
+                addr: 172.16.171.227
+                version: 4
+            -   OS-EXT-IPS-MAC:mac_addr: fa:16:3e:83:52:4a
+                OS-EXT-IPS:type: floating
+                addr: 10.8.172.152
+                version: 4
+        adminPass: null
+        az: nova
+        cloud: defaults
+        config_drive: ''
+        created: '2017-01-20T04:44:36Z'
+        disk_config: MANUAL
+        flavor:
+            id: '2'
+            name: m1.small
+        has_config_drive: false
+        hostId: 0cc3727488a7769df3b9d01a0abdcf7f46ec6559567118e1377c4967
+        host_id: 0cc3727488a7769df3b9d01a0abdcf7f46ec6559567118e1377c4967
+        id: 75bcd6cd-8b19-4d5b-be4a-a13bb9cfede9
+        image:
+            id: 3bcfd17c-6bf0-4134-ae7f-80bded8b46fd
+            name: rhel-6.5_jeos
+        interface_ip: 10.8.172.152
+        key_name: ci-factory
+        launched_at: '2017-01-20T04:44:42.000000'
+        location:
+            cloud: defaults
+            project:
+                domain_id: null
+                domain_name: null
+                id: 4ace8180769a42e7b7ef2d795c555002
+                name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+            region_name: ''
+            zone: nova
+        metadata: {}
+        name: ae2e_test_2
+        networks:
+            atomic-e2e-jenkins-test:
+            - 172.16.171.227
+            - 10.8.172.152
+        os-extended-volumes:volumes_attached: []
+        power_state: 1
+        private_v4: 172.16.171.227
+        progress: 0
+        project_id: 4ace8180769a42e7b7ef2d795c555002
+        properties:
+            OS-DCF:diskConfig: MANUAL
+            OS-EXT-AZ:availability_zone: nova
+            OS-EXT-STS:power_state: 1
+            OS-EXT-STS:task_state: null
+            OS-EXT-STS:vm_state: active
+            OS-SRV-USG:launched_at: '2017-01-20T04:44:42.000000'
+            OS-SRV-USG:terminated_at: null
+            os-extended-volumes:volumes_attached: []
+            request_ids: []
+        public_v4: 10.8.172.152
+        public_v6: ''
+        region: ''
+        request_ids: []
+        security_groups:
+        -   HUMAN_ID: false
+            NAME_ATTR: name
+            description: Default security group
+            human_id: null
+            id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+            location:
+                cloud: defaults
+                project:
+                    domain_id: null
+                    domain_name: null
+                    id: 4ace8180769a42e7b7ef2d795c555002
+                    name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                region_name: ''
+                zone: null
+            name: default
+            project_id: 4ace8180769a42e7b7ef2d795c555002
+            properties:
+                HUMAN_ID: false
+                NAME_ATTR: name
+                human_id: null
+                request_ids: []
+            request_ids: []
+            security_group_rules:
+            -   direction: ingress
+                ethertype: IPv4
+                group:
+                    name: default
+                    tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                id: 07d9e837-23b0-47d2-93ab-89a9d6f46b21
+                location:
+                    cloud: defaults
+                    project:
+                        domain_id: null
+                        domain_name: null
+                        id: 4ace8180769a42e7b7ef2d795c555002
+                        name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                    region_name: ''
+                    zone: null
+                port_range_max: null
+                port_range_min: null
+                project_id: ''
+                properties:
+                    group:
+                        name: default
+                        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                protocol: null
+                remote_group_id: null
+                remote_ip_prefix: null
+                security_group_id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+                tenant_id: ''
+            -   direction: ingress
+                ethertype: IPv4
+                group:
+                    name: default
+                    tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                id: 4f2cb431-90a5-46a0-bc57-b98a4ea7ca97
+                location:
+                    cloud: defaults
+                    project:
+                        domain_id: null
+                        domain_name: null
+                        id: 4ace8180769a42e7b7ef2d795c555002
+                        name: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
+                    region_name: ''
+                    zone: null
+                port_range_max: null
+                port_range_min: null
+                project_id: ''
+                properties:
+                    group:
+                        name: default
+                        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+                protocol: null
+                remote_group_id: null
+                remote_ip_prefix: null
+                security_group_id: dc3d62e6-db74-48ea-801d-f3f99504b9ec
+                tenant_id: ''
+            tenant_id: 4ace8180769a42e7b7ef2d795c555002
+        status: ACTIVE
+        task_state: null
+        tenant_id: 4ace8180769a42e7b7ef2d795c555002
+        terminated_at: null
+        updated: '2017-01-20T04:44:42Z'
+        user_id: 6fdaef18f58e40bfb4d10f17a54554f3
+        vm_state: active
+        volumes: []
+os_volume_res: []
+rax_server_res: []
