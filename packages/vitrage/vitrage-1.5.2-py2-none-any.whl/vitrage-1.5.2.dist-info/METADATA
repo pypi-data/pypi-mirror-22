@@ -1,0 +1,76 @@
+Metadata-Version: 2.0
+Name: vitrage
+Version: 1.5.2
+Summary: The OpenStack RCA Service
+Home-page: http://docs.openstack.org/developer/vitrage/
+Author: OpenStack
+Author-email: openstack-dev@lists.openstack.org
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: OpenStack
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: System :: Monitoring
+Requires-Dist: Babel (>=2.3.4)
+Requires-Dist: PasteDeploy (>=1.5.0)
+Requires-Dist: Werkzeug (>=0.7)
+Requires-Dist: keystonemiddleware (>=4.12.0)
+Requires-Dist: lxml (!=3.7.0,>=2.3)
+Requires-Dist: networkx (>=1.10)
+Requires-Dist: oslo.config (>=3.14.0,!=3.18.0)
+Requires-Dist: oslo.i18n (>=2.1.0)
+Requires-Dist: oslo.log (>=3.11.0)
+Requires-Dist: oslo.messaging (>=5.14.0)
+Requires-Dist: oslo.policy (>=1.17.0)
+Requires-Dist: oslo.service (>=1.10.0)
+Requires-Dist: pbr (>=1.8)
+Requires-Dist: pecan (!=1.0.3,!=1.0.4,>=1.0.0,!=1.0.2,!=1.2)
+Requires-Dist: python-ceilometerclient (>=2.5.0)
+Requires-Dist: python-cinderclient (!=1.7.0,!=1.7.1,>=1.6.0)
+Requires-Dist: python-dateutil (>=2.4.2)
+Requires-Dist: python-heatclient (>=1.6.1)
+Requires-Dist: python-keystoneclient (>=3.8.0)
+Requires-Dist: python-neutronclient (>=5.1.0)
+Requires-Dist: python-novaclient (>=6.0.0,!=7.0.0)
+Requires-Dist: pyzabbix (>=0.7.4)
+Requires-Dist: stevedore (>=1.17.1)
+Requires-Dist: sympy (>=0.7.6)
+Requires-Dist: voluptuous (>=0.8.9)
+
+========================
+Team and repository tags
+========================
+
+.. image:: http://governance.openstack.org/badges/vitrage.svg
+    :target: http://governance.openstack.org/reference/tags/index.html
+
+.. Change things from this point on
+
+=======
+Vitrage
+=======
+
+The OpenStack RCA Service
+
+Vitrage is the OpenStack RCA (Root Cause Analysis) Service for organizing, analyzing and expanding OpenStack alarms & events, yielding insights regarding the root cause of problems and deducing the existence of problems before they are directly detected.
+
+Enabling Vitrage in DevStack
+----------------------------
+More details in: `README file <devstack/README.rst>`_
+
+Project Resources
+-----------------
+
+* Wiki page: https://wiki.openstack.org/wiki/Vitrage
+* Launchpad: https://launchpad.net/vitrage
+* Source: http://git.openstack.org/cgit/openstack/vitrage
+
+
+
