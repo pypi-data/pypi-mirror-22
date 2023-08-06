@@ -1,0 +1,17 @@
+#!python
+import asyncio
+import sys
+import os
+
+if len(sys.argv) < 2:
+    print("Usage: %s <image url>" % sys.argv[0])
+    sys.exit(0)
+
+sys.path.append("%s/.." % os.path.dirname(__file__))
+from fastimage.detect import ImageCollector
+
+loop = asyncio.get_event_loop()
+collector = ImageCollector(sys.argv[1])
+loop.run_until_complete(collector.collect())
+print("Image size:", collector.size)
+print("Image type:", collector.type)
