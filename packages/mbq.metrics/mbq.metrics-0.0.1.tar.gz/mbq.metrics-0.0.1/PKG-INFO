@@ -1,0 +1,66 @@
+Metadata-Version: 1.1
+Name: mbq.metrics
+Version: 0.0.1
+Summary: UNKNOWN
+Home-page: https://github.com/managedbyq/mbq.metrics
+Author: Managed by Q, Inc.
+Author-email: open-source@managedbyq.com
+License: UNKNOWN
+Description: mbq.metrics: metrics for the masses
+        ===================================
+        
+        .. .. image:: https://img.shields.io/pypi/v/mbq.metrics.svg
+        ..     :target: https://pypi.python.org/pypi/mbq.metrics
+        
+        .. .. image:: https://img.shields.io/pypi/l/mbq.metrics.svg
+        ..     :target: https://pypi.python.org/pypi/mbq.metrics
+        
+        .. .. image:: https://img.shields.io/pypi/pyversions/mbq.metrics.svg
+        ..     :target: https://pypi.python.org/pypi/mbq.metrics
+        
+        .. image:: https://img.shields.io/travis/managedbyq/mbq.metrics/master.svg
+            :target: https://travis-ci.org/managedbyq/mbq.metrics
+        
+        Installation
+        ------------
+        
+        .. code-block:: bash
+        
+            $ pip install mbq.metrics
+            🚀✨
+        
+        Guaranteed fresh.
+        
+        
+        Getting started
+        ---------------
+        
+        .. code-block:: python
+        
+            from mbq import metrics
+        
+            metrics.init(namespace='my-service', constant_tags={'env': ENV_NAME})
+        
+            metrics.increment('metric.name', 5, tags={'something': 'awesome')
+        
+            # show the rest
+        
+        API Reference
+        -------------
+        
+        
+        Contributing
+        ------------
+        
+Keywords: metrics monitoring statsd
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries
