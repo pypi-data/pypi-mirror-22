@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Papimem - Captured requests</title>
+  </head>
+  <body>
+    <h3> Captured requests</h3>
+    <div class="list-group">
+      {% for item in items %}
+      <div class="list-group-item">
+        <b>{{ item.request.method }} {{ item.request.url }}</b>
+        <div class="row">
+          <div class="col-md-2">request headers</div>
+          <div class="col-md-10">{{ dict(item.request.headers) }}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">request body</div>
+          <div class="col-md-10">{{ item.request.content }}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">response status</div>
+          <div class="col-md-10">{{ item.response.status_code }}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">response headers</div>
+          <div class="col-md-10">{{ dict(item.response.headers) }}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">response body</div>
+          <div class="col-md-10">{{ item.response.content }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </body>
+</html>
