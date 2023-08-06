@@ -1,0 +1,62 @@
+Metadata-Version: 1.1
+Name: pandoc-source-exec
+Version: 0.1.3
+Summary: A pandoc filter for executing (python) code and including the results.
+Home-page: https://github.com/shoeffner/pandoc-source-exec
+Author: Sebastian Höffner
+Author-email: info@sebastian-hoeffner.de
+License: MIT
+Download-URL: https://github.com/shoeffner/pandoc-source-exec/tarball/0.1.3
+Description: pandoc-source-exec
+        ==================
+        
+        ``pandoc-source-exec`` is a `panflute`_ `pandoc`_ `filter`_.
+        
+        It executes code annotated code blocks with the proper executables and
+        adds the output below. `Example <example>`__:
+        
+        ::
+        
+            ```{ .python .exec }
+            print('Hello World')
+            ```
+        
+        The above can be compiled like this:
+        
+        .. code-block:: Makefile
+        
+            main:
+            	pandoc --filter pandoc-source-exec -o example.pdf example.md
+        
+        The resulting output will include `Hello World` after the code block.
+        
+        Installation
+        ------------
+        
+        Just use pip to install it from `pypi`_
+        
+        .. code-block:: shell
+        
+            pip install pandoc-source-exec
+        
+        
+        .. _`filter`: https://pandoc.org/scripting.html
+        .. _`pandoc`: https://pandoc.org/index.html
+        .. _`panflute`: http://scorreia.com/software/panflute/index.html
+        .. _`pypi`: https://pypi.python.org/pypi/pandoc-source-exec
+        
+        Future
+        ------
+        
+        - Execute code other than python
+        - Refactor interactive execution, build REPL wrappers.
+        - Allow configurable pre- and postfixes for the output
+        
+Keywords: pandoc,filter,code,execution
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Text Processing :: Filters
