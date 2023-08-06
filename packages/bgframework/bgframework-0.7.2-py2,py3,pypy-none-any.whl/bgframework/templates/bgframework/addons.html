@@ -1,0 +1,66 @@
+{% load i18n cache sekizai_tags  %}
+
+{% for addon in addons|dictsort:"sort_id" %}
+  {% if addon.RenderMedia.css %}
+    {% addtoblock "css" %}
+      {% for media, url in addon.RenderMedia.css.items %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}{{ url }}" />
+      {% endfor %}
+    {% endaddtoblock %}
+  {% endif %}
+  {% if addon.RenderMedia.js %}
+    {% addtoblock "js" %}
+      {% for url in addon.RenderMedia.js %}
+        <script type="text/javascript" src="{{ STATIC_URL }}{{ url }}"></script>
+      {% endfor %}
+    {% endaddtoblock %}
+  {% endif %}
+  {% addtoblock "leftnav" %}
+  {% for nav in addon.navs %}
+    {% if nav.subnav %}
+    <li>
+      <a href="#" class="dropdown-toggle">
+        <i class="menu-icon {{nav.iconclass|default:addon.iconclass}}"></i>
+        <span class="menu-text">{{nav.nav_name}}</span>
+        <b class="arrow fa fa-angle-down"></b>
+      </a>
+      <ul class="submenu" style="display: none;">
+      {% for sub in nav.subnav %}
+        {% if sub.static %}
+        <li>
+          <a target="_blank" href="{{ sub.url }}">
+            <i class="menu-icon fa fa-angle-double-right"></i>
+            {{sub.nav_name}}
+          </a>
+        </li>
+        {% else %}
+        <li id="{{sub.nav_id}}">
+          <a href="{% url sub.url_name %}">
+            <i class="menu-icon fa fa-angle-double-right"></i>
+            {{sub.nav_name}}
+          </a>
+        </li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </li>
+    {% else %}
+      {% if nav.static %}
+      <li>
+        <a target="_blank" href="{{ nav.url }}">
+          <i class="menu-icon {{nav.iconclass|default:addon.iconclass}}"></i>
+          <span class="menu-text">{{nav.nav_name}}</span>
+        </a>
+      </li>
+      {% else %}
+      <li id="{{nav.nav_id}}">
+        <a href="{% url nav.url_name %}">
+          <i class="menu-icon {{nav.iconclass|default:addon.iconclass}}"></i>
+          <span class="menu-text">{{nav.nav_name}}</span>
+        </a>
+      </li>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  {% endaddtoblock %}
+{% endfor %}
