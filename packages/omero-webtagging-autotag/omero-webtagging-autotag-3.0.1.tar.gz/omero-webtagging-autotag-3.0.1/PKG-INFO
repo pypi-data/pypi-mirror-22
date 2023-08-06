@@ -1,0 +1,79 @@
+Metadata-Version: 1.1
+Name: omero-webtagging-autotag
+Version: 3.0.1
+Summary: OMERO webtagging autotag app
+Home-page: https://github.com/MicronOxford/webtagging
+Author: D.P.W. Russell
+Author-email: douglas_russell@hms.harvard.edu
+License: AGPL-3.0
+Download-URL: https://github.com/MicronOxford/webtagging/archive/v3.0.1.tar.gz
+Description: Installation
+        ============
+        
+        The recommended way to install autotag is using `pip`, but it is also possible
+        to install it manually as described `here <https://www.openmicroscopy.org/site/support/omero5/developers/Web/CreateApp.html#add-your-app-location-to-your-pythonpath>`_.
+        
+        ::
+        
+          # In the python environment of OMERO.web (virtualenv or global)
+          pip install omero-webtagging-autotag
+        
+          # Add autotag to webclient
+          omero config append omero.web.apps '"omero_webtagging_autotag"'
+        
+          # Add autotag to centre panel
+          omero config append omero.web.ui.center_plugins '["Auto Tag", "omero_webtagging_autotag/auto_tag_init.js.html", "auto_tag_panel"]'
+        
+        
+        Documentation
+        =============
+        
+        Available on the `OMERO website <http://www.openmicroscopy.org/site/support/partner/omero.webtagging>`_.
+        
+        
+        Development
+        ===========
+        
+        Uses node and webpack.
+        
+        This will detect changes and rebuild `static/autotag/js/bundle.js` when there
+        are any. This works in conjunction with django development server as that
+        will be monitoring `bundle.js` for any changes.
+        
+        To build the node components on changes
+        
+        ::
+        
+          cd omero_webtagging_autotag
+          npm install
+          node_modules/webpack/bin/webpack.js --watch
+        
+        To install using pip in development mode (in appropriate virtualenv)
+        
+        ::
+        
+          # In the top-level autotag directory containing setup.py
+          pip install -e .
+          cd $OMERO_PREFIX
+        
+        OMERO development server can then be started in the usual way. Remember to
+        configure the autotag settings the same as above.
+        
+Keywords: OMERO.web,webtagging,autotag
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: JavaScript
+Classifier: Programming Language :: Python :: 2
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Text Processing :: Markup :: HTML
