@@ -1,0 +1,154 @@
+Metadata-Version: 1.1
+Name: collective.fontawesome
+Version: 1.0.5
+Summary: Font Awesome for Plone
+Home-page: https://github.com/collective/collective.fontawesome
+Author: JeanMichel aka toutpt
+Author-email: toutpt@gmail.com
+License: gpl
+Description: Introduction
+        ============
+        
+        This addon registers `Font Awesome <http://fortawesome.github.io/Font-Awesome/>`_ into Plone CSS registry.
+        
+        Version of Font Awesome: 4.7.0
+        
+        License
+        =======
+        
+        - The Font Awesome font is licensed under the SIL Open Font License
+          http://scripts.sil.org/OFL
+        - Font Awesome CSS, LESS, and SASS files are licensed under the MIT License
+          http://opensource.org/licenses/mit-license.html
+        - The Font Awesome pictograms are licensed under the CC BY 3.0 License
+          http://creativecommons.org/licenses/by/3.0/
+        - Attribution is no longer required in Font Awesome 3.0, but much appreciated:
+          "Font Awesome by Dave Gandy - http://fortawesome.github.com/Font-Awesome "
+        
+        How to install
+        ==============
+        
+        This addon can be installed with the typical Plone addon installation process. Please see the official
+        documentation_ for a description.
+        
+        For Plone 5, import the "collective.fontawesome (Plone 5)" profile.
+        
+        .. _documentation: http://plone.org/documentation/kb/installing-add-ons-quick-how-to
+        
+        .. warning:: ie7 support has been removed
+        
+        How to use
+        ==========
+        
+        To use an icon you can add 'fa fa-X' to your tag where X is the icon you want::
+        
+        
+            <ul>
+                <li class="fa fa-glass">item 1</li>
+                <li class="fa fa-music">item 2</li>
+                <li class="fa fa-search">item 3</li>
+            </ul>
+        
+        Or just use CSS for your class 'myclass'::
+        
+            .myclass:before {
+                content: "\f000"; 
+                font-family: FontAwesome;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: inherit;
+            }
+        
+        Available CSS classes and values for the content attribute can be found in the `Font Awesome cheat sheet <http://fortawesome.github.io/Font-Awesome/cheatsheet/>`_ or in the `source code <https://github.com/FortAwesome/Font-Awesome/blob/master/css/font-awesome.css#L171>`_ (file: font-awesome.css#L171 at the time of writing).
+        
+        An example page is avaible in the addon, here is a screenshot:
+        
+        .. image:: https://raw.githubusercontent.com/collective/collective.fontawesome/master/docs/screenshot.png
+        
+        Replacing Plone's default icons with FontAwesome fonts
+        ======================================================
+        
+        There is now a separate Generic Setup profile called ``replace-plone-icons`` which
+        will replace Plone's default icons (e.g. for content types and actions) with
+        Font Awesome icons.
+        
+        IMPORTANT: You still need to install the ``default`` profile as well.
+        
+        Credits
+        =======
+        
+        Companies
+        ---------
+        
+        * Makina-Corpus http://www.makina-corpus.com
+        
+        People
+        ------
+        
+        - JeanMichel FRANCOIS aka toutpt <toutpt@gmail.com>
+        - Eric Bréhault, <ebrehault@gmail.com>
+        - Gauthier Bastien, <gauthier.bastien@imio.be>
+        
+        Changelog
+        =========
+        
+        1.0.5 (2017-05-23)
+        ------------------
+        
+        - Updated to fontawesome 4.7.0 [ewohnlich]
+        - Updated sample in @@example.collective.fontawesome to show what is
+          new in version 4.7.0 [gbastien]
+        
+        
+        1.0.4 (2016-12-05)
+        ------------------
+        
+        - Update to fontawesome 4.6.3 [gbastien]
+        - Include *.woff2 in MANIFEST.in so file is present in the release
+          or we have an error in the browser console while trying to import
+          file fontawesome-webfont.woff2 [gbastien]
+        
+        
+        1.0.3 (2015-07-10)
+        ------------------
+        
+        - Update to fontawesome 4.1.0 [jcbrand]
+        - Update to fontawesome 4.3.0 [ebrehault]
+        - Add new GenericSetup profile that replaces Plone's default icons for content
+          types and actions with FontAwesome fonts. [jcbrand]
+        - Plone 5 compliancy [ebrehault]
+        
+        
+        1.0.2 (2013-05-14)
+        ------------------
+        
+        - Update to fontawesome 3.1.1
+        
+        
+        1.0.1 (2013-05-06)
+        ------------------
+        
+        - Fix packaging (manifest)
+        
+        
+        1.0 (2013-05-06)
+        ----------------
+        
+        - Package created using templer
+          [JeanMichel aka toutpt]
+        
+Keywords: plone
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Classifier: Framework :: Zope2
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 4.0
+Classifier: Framework :: Plone :: 4.1
+Classifier: Framework :: Plone :: 4.2
+Classifier: Framework :: Plone :: 4.3
+Classifier: Framework :: Plone :: 5.0
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
