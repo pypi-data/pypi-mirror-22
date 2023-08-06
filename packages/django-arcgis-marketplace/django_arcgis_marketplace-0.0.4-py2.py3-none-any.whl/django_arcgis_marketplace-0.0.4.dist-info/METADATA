@@ -1,0 +1,119 @@
+Metadata-Version: 2.0
+Name: django-arcgis-marketplace
+Version: 0.0.4
+Summary: Arcgis marketplace app.
+Home-page: https://github.com/flavors/arcgis-marketplace/
+Author: mongkok
+Author-email: dani.pyc@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Framework :: Django
+Requires-Dist: Django (>=1.11)
+Requires-Dist: arcgis-sdk (>=0.0.5)
+Requires-Dist: core-flavor (>=0.0.11)
+Requires-Dist: django-filter (>=1.0.2)
+Requires-Dist: django-oauth-toolkit (>=0.12.0)
+Requires-Dist: django-paypal (>=0.3.6)
+Requires-Dist: django-polymorphic (>=1.2)
+Requires-Dist: django-taggit (>=0.22.1)
+Requires-Dist: djangorestframework (>=3.5.0)
+Requires-Dist: psycopg2 (>=2.6.2)
+Requires-Dist: social-auth-app-django (>=1.2.0)
+
+Django Arcgis Marketplace
+=========================
+
+|Pypi| |Wheel| |Build Status| |Codecov| |Code Climate|
+
+
+Arcgis marketplace application.
+
+Dependencies
+------------
+
+* Python ≥ 3.4
+* Django ≥ 1.11
+* Postgres
+
+
+Installation
+------------
+
+Install last stable version from Pypi.
+
+.. code:: sh
+
+    pip install django-arcgis-marketplace
+
+
+Add ``arcgis_marketplace`` to your INSTALLED_APPS setting.
+
+.. code:: python
+
+    INSTALLED_APPS = (
+        ...
+        'django_filters',
+        'oauth2_provider',
+        'paypal.standard.ipn',
+        'polymorphic',
+        'rest_framework',
+        'social_django',
+        'taggit',
+        ...
+        'core_flavor.apps.CoreAppConfig',
+        'arcgis_marketplace.apps.ArcgisMarketplaceAppConfig'
+    )
+
+Hook the Django urls into your URLconf.
+
+.. code:: python
+
+    from django.conf.urls import include
+    from django.conf.urls import url
+
+    urlpatterns = [
+        url(r'^', include(
+            'arcgis_marketplace.urls',
+            namespace='arcgis-marketplace')),
+
+        url(r'^', include(
+            'arcgis_marketplace.api.urls',
+            namespace='arcgis-marketplace-api')),
+
+        url(r'^paypal/', include('paypal.standard.ipn.urls'))
+    ]
+
+Apply migrations.
+
+.. code:: python
+
+    python manage.py migrate
+
+
+.. |Pypi| image:: https://img.shields.io/pypi/v/django-arcgis-marketplace.svg
+   :target: https://pypi.python.org/pypi/django-arcgis-marketplace
+
+.. |Wheel| image:: https://img.shields.io/pypi/wheel/django-arcgis-marketplace.svg
+   :target: https://pypi.python.org/pypi/django-arcgis-marketplace
+
+.. |Build Status| image:: https://travis-ci.org/flavors/arcgis-marketplace.svg?branch=master
+   :target: https://travis-ci.org/flavors/arcgis-marketplace
+
+.. |Codecov| image:: https://img.shields.io/codecov/c/github/flavors/arcgis-marketplace.svg
+   :target: https://codecov.io/gh/flavors/arcgis-marketplace
+
+.. |Code Climate| image:: https://codeclimate.com/github/flavors/arcgis-marketplace/badges/gpa.svg
+   :target: https://codeclimate.com/github/flavors/arcgis-marketplace
+
+
+
