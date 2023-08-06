@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: groundwork-sphinx-theme
+Version: 1.0.1
+Summary: Sphinx theme for groundwork projects (Based on flask_theme)
+Home-page: https://github.com/useblocks/groundwork-sphinx-theme
+Author: team useblocks
+Author-email: info@useblocks.com
+License: MIT
+Description: b'groundwork-sphinx-theme\n=======================\n\nThis repository contains sphinx styles, which are use by most groundwork related projects.\nIt is a drivative of Kenneth Reitz\'s themes for his projects and of Mitsuhiko\'s themes for Flask and Flask related\nprojects.  To use this style in your Sphinx documentation, follow this guide:\n\n1. put this folder as _themes into your docs folder.  Alternatively\n   you can also use git submodules to check out the contents there.\n\n2. add this to your conf.py::\n\n    sys.path.append(os.path.abspath(\'_themes\'))\n    html_theme_path = [\'_themes\']\n    html_theme = \'gw\'\n\nThe following themes exist:\n\n**gw**\n    the standard groundwork documentation theme for any kind of projects\n\nConfiguration\n-------------\nThe gwTheme provides the following configuration parameters:\n\n * **sidebar_width**: Allows the user to set the sidebar width in pixels. Good for deeply nested TOCs (Default: 220x)\n * **stickysidbar**: If True it makes the sidebar always visible if pages get longer (Default: True)\n * **stickysidbarscrollable**: Makes the sticky sidebar scrollable in small browser windows (Default: False)\n * **contribute**: If True, a contribute-area with github-buttons is shown inside the sidebar\n * **github_user**: Used the for github follow button. E.g.: useblocks\n * **github_fork**: Used for the github fork buttons. E.g.: useblocks/groundwork\n\nYou can change their value inside the file `conf.py` of your sphinx project::\n\n    html_theme_options = {\n        "sidebar_width": \'240px\',\n        "stickysidebar": True,\n        "stickysidebarscrollable": True,\n        "contribute": True,\n        "github_fork": "useblocks/groundwork",\n        "github_user": "useblocks",\n    }\n\nScreenshot\n----------\n\n.. image:: screenshot.png\n    :height: 400px\n    :alt: screenshot of groundwork sphinx theme\n    :align: center\n'
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
