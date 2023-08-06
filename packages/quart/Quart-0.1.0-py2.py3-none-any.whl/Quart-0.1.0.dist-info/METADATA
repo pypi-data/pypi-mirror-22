@@ -1,0 +1,92 @@
+Metadata-Version: 2.0
+Name: Quart
+Version: 0.1.0
+Summary: An asyncio web microframework with Flask's API
+Home-page: https://github.com/pgjones/quart/
+Author: P G Jones
+Author-email: philip.graham.jones@googlemail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: aiofiles
+Requires-Dist: h11
+Requires-Dist: h2
+Requires-Dist: itsdangerous
+Requires-Dist: jinja2
+Requires-Dist: multidict
+Requires-Dist: sortedcontainers
+
+Quart
+=====
+
+|Build Status|
+
+Quart is a microframework for Python based on Flask and asyncio.
+
+Quickstart
+----------
+
+.. code-block::
+
+    from quart import Quart
+
+    app = Quart(__name__)
+
+    @app.route('/')
+    async def hello():
+        return 'hello'
+
+    app.run()
+
+API Compatibility with Flask
+----------------------------
+
+The Flask API can be described as consisting of the Flask public and
+private API and Werkzeug upon which Flask is based. Quart is designed
+to be fully compatible with the Flask public API (aside from async and
+await keywords). Thereafter the aims is to be mostly compatible with
+the Flask private API and without guarantees with the Werkzeug API.
+
+Migrating from Flask
+~~~~~~~~~~~~~~~~~~~~
+
+It should be possible to migrate to Quart from Flask by a find and
+replace of ``flask`` to ``quart`` and then adding ``async`` and
+``await`` keywords.
+
+Known differences
+~~~~~~~~~~~~~~~~~
+
+* There is no ``getlist`` method on the ``request.args`` object,
+  rather ``getall`` should be used instead.
+
+
+Design decisions
+----------------
+
+The asyncio callback ``create_server`` approach is faster than the
+streaming ``start_server`` approach, and hence is used. This is based
+on benchmarking and the `uvloop <https://github.com/MagicStack/uvloop>`_
+research.
+
+Deploying
+---------
+
+This isn't ready for production. To deploy use gunicorn as follows
+``gunicorn --worker-class quart.worker.GunicornWorker ...`` or
+``gunicorn --worker-class quart.worker.GunicornUVLoopWorker ...``.
+
+
+.. |Build Status| image:: https://gitlab.com/pgjones/quart/badges/master/build.svg
+   :target: https://gitlab.com/pgjones/quart/commits/master
+
+
