@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+
+import argparse
+import os
+
+import secrets
+import sqlemon
+import sqlemon.connection_strings as sqlcs
+
+parser = argparse.ArgumentParser(description='Start SQL client')
+cloud_client_group = parser.add_mutually_exclusive_group(required=True)
+cloud_client_group.add_argument(
+        '--cloud',
+        dest='cloud',
+        action='store_true',
+        help="Connect to cloud database")
+cloud_client_group.add_argument(
+        '--local',
+        dest='cloud',
+        action='store_false',
+        help="Connect to local database")
+parser.add_argument(
+        '--project',
+        help=("Project name. If not set, we use the SQLEMON_PROJECT environment"
+              " variable."),
+        default=None)
+args = parser.parse_args()
+
+cloud = args.cloud
+project = args.project
+if project is None:
+    project = os.environ['SQLEMON_PROJECT']
+
+config = sqlemon.get_sql_configuration(
+        project,
+        'cloud' if cloud else 'local')
+app_config = sqlemon.get_app_configuration()
+
+if cloud is True:
+    command = sqlcs.MYSQL_CLIENT_CLOUD.format(
+            app_config['env_variables']['CLOUD_SQL_USER'],
+            config['PASSWORD'],
+            app_config['env_variables']['INSTANCE_CONNECTION_NAME'])
+elif cloud is False:
+    command = sqlcs.MYSQL_CLIENT_LOCAL.format(
+            config['USER'],
+            config['PASSWORD'],
+            config['HOST'],
+            config['PORT'])
+else:
+    raise ValueError("cloud value {} not supported".format(cloud))
+
+os.system(command)
