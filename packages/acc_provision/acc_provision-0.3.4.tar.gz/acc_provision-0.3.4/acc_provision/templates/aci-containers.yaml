@@ -1,0 +1,442 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aci-containers-config
+  namespace: kube-system
+  labels:
+    network-plugin: aci-containers
+data:
+  controller-config: |-
+    {
+        "log-level": {{config.logging.controller_log_level|json}},
+        "apic-hosts": {{config.aci_config.apic_hosts|json|indent(width=8)}},
+        "apic-username": {{config.aci_config.sync_login.username|json}},
+        "apic-private-key-path": "/usr/local/etc/aci-cert/user.key",
+        "aci-prefix": {{config.aci_config.system_id|json}},
+        "aci-vmm-domain": {{config.aci_config.vmm_domain.domain|json}},
+        "aci-vmm-controller": {{config.aci_config.vmm_domain.controller|json}},
+        "aci-policy-tenant": {{config.kube_config.default_endpoint_group.tenant|json}},
+        "aci-service-phys-dom": {{config.aci_config.physical_domain.domain|json}},
+        "aci-service-encap": {{ ("vlan-" ~ config.net_config.service_vlan)|json }},
+        "aci-vrf-tenant": {{config.aci_config.vrf.tenant|json}},
+        "aci-l3out": {{config.aci_config.l3out.name|json}},
+        "aci-ext-networks": {{ config.aci_config.l3out.external_networks|json|indent(width=8) }},
+        "aci-vrf": {{config.aci_config.vrf.name|json}},
+        "default-endpoint-group": {
+            "policy-space": {{config.kube_config.default_endpoint_group.tenant|json}},
+            "name": {{(config.kube_config.default_endpoint_group.app_profile ~ "|" ~ config.kube_config.default_endpoint_group.group)|json}}
+        },
+        "namespace-default-endpoint-group": {
+            {% for ns, val in config.kube_config.namespace_default_endpoint_group.iteritems() %}
+            "{{ns}}": {
+                "policy-space": {{val['tenant']|json}},
+                "name": {{(val['app_profile'] ~ "|" ~ val['group'])|json}}
+            }
+            {% endfor %}
+        },
+        "service-ip-pool": {{ config.kube_config.service_ip_pool|json|indent(width=8) }},
+        "static-service-ip-pool": {{ config.kube_config.static_service_ip_pool|json|indent(width=8) }},
+        "pod-ip-pool": {{ config.kube_config.pod_ip_pool|json|indent(width=8) }},
+        "node-service-ip-pool": {{ config.kube_config.node_service_ip_pool|json|indent(width=8) }},
+        "node-service-subnets": {{ config.kube_config.node_service_gw_subnets|json|indent(width=8) }}
+    }
+  host-agent-config: |-
+    {
+        "log-level": {{config.logging.hostagent_log_level|json}},
+        "aci-vmm-domain": {{config.aci_config.vmm_domain.domain|json}},
+        "aci-vmm-controller": {{config.aci_config.vmm_domain.controller|json}},
+        "aci-vrf": {{config.aci_config.vrf.name|json}},
+        "aci-vrf-tenant": {{config.aci_config.vrf.tenant|json}},
+        "uplink-iface": {{ config.node_config.uplink_iface|json }},
+        "service-vlan": {{ config.net_config.service_vlan|json }},
+        "encap-type": {{ config.node_config.encap_type|json }},
+        "aci-infra-vlan": {{ config.net_config.infra_vlan|json }},
+        "vxlan-iface": {{ config.node_config.vxlan_uplink_iface|json }},
+        "cni-netconfig": {{ config.kube_config.pod_network|json|indent(width=8) }}
+    }
+  opflex-agent-config: |-
+    {
+        "log": {
+            "level": {{config.logging.opflexagent_log_level|json}}
+        },
+        "opflex": {
+          {% if not config.aci_config.client_ssl %}
+            "ssl": { "mode": "disabled" }
+          {% endif %}
+        }
+    }
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: aci-user-cert
+  namespace: kube-system
+data:
+  user.key: {{config.aci_config.sync_login.key_data|base64enc}}
+  user.crt: {{config.aci_config.sync_login.cert_data|base64enc}}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aci-containers-controller
+  namespace: kube-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aci-containers-host-agent
+  namespace: kube-system
+---
+{% if config.kube_config.use_cluster_role %}
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  labels:
+    network-plugin: aci-containers
+  name: aci-containers:controller
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  - namespaces
+  - pods
+  - endpoints
+  - services
+  verbs:
+  - list
+  - watch
+  - get
+- apiGroups:
+  - "extensions"
+  resources:
+  - deployments
+  - replicasets
+  - networkpolicies
+  verbs:
+  - list
+  - watch
+  - get
+- apiGroups:
+  - "acicontainers.cisco.com"
+  resources:
+  - acis
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - delete
+  - deletecollection
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - nodes
+  - services/status
+  verbs:
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  labels:
+    network-plugin: aci-containers
+  name: aci-containers:host-agent
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  - pods
+  - endpoints
+  - services
+  verbs:
+  - list
+  - watch
+  - get
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: aci-containers:controller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aci-containers:controller
+subjects:
+- kind: ServiceAccount
+  name: aci-containers-controller
+  namespace: kube-system
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: aci-containers:host-agent
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aci-containers:host-agent
+subjects:
+- kind: ServiceAccount
+  name: aci-containers-host-agent
+  namespace: kube-system
+---
+{% endif %}
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: aci-containers-host
+  namespace: kube-system
+  labels:
+    network-plugin: aci-containers
+spec:
+  {% if config.kube_config.use_ds_rolling_update %}
+  updateStrategy:
+    type: RollingUpdate
+  {% endif %}
+  template:
+    metadata:
+      labels:
+        name: aci-containers-host
+        network-plugin: aci-containers
+    spec:
+      hostNetwork: true
+      hostPID: true
+      hostIPC: true
+      serviceAccountName: aci-containers-host-agent
+      {% if config.registry.image_pull_secret %}
+      imagePullSecrets:
+        - name: {{ config.registry.image_pull_secret|yaml_quote }}
+      {% endif %}
+      {% if config.kube_config.use_tolerations %}
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+      {% endif %}
+      containers:
+        - name: aci-containers-host
+          image: {{ config.registry.image_prefix }}/aci-containers-host
+          imagePullPolicy: {{ config.kube_config.image_pull_policy }}
+          securityContext:
+            capabilities:
+              add:
+                - SYS_ADMIN
+                - NET_ADMIN
+          env:
+            - name: KUBERNETES_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          volumeMounts:
+            - name: cni-bin
+              mountPath: /mnt/cni-bin
+            - name: cni-conf
+              mountPath: /mnt/cni-conf
+            - name: hostvar
+              mountPath: /usr/local/var
+            - name: hostrun
+              mountPath: /run
+            - name: hostrun
+              mountPath: /usr/local/run
+            - name: opflex-hostconfig-volume
+              mountPath: /usr/local/etc/opflex-agent-ovs/base-conf.d
+            - name: host-config-volume
+              mountPath: /usr/local/etc/aci-containers/
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: 8090
+        - name: opflex-agent
+          image: {{ config.registry.image_prefix }}/opflex
+          imagePullPolicy: {{ config.kube_config.image_pull_policy }}
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          volumeMounts:
+            - name: hostvar
+              mountPath: /usr/local/var
+            - name: hostrun
+              mountPath: /run
+            - name: hostrun
+              mountPath: /usr/local/run
+            - name: opflex-hostconfig-volume
+              mountPath: /usr/local/etc/opflex-agent-ovs/base-conf.d
+            - name: opflex-config-volume
+              mountPath: /usr/local/etc/opflex-agent-ovs/conf.d
+        - name: mcast-daemon
+          image: {{ config.registry.image_prefix }}/opflex
+          command: ["/bin/sh"]
+          args: ["/usr/local/bin/launch-mcastdaemon.sh"]
+          imagePullPolicy: {{ config.kube_config.image_pull_policy }}
+          volumeMounts:
+            - name: hostvar
+              mountPath: /usr/local/var
+            - name: hostrun
+              mountPath: /run
+            - name: hostrun
+              mountPath: /usr/local/run
+      restartPolicy: Always
+      volumes:
+        - name: cni-bin
+          hostPath:
+            path: /opt
+        - name: cni-conf
+          hostPath:
+            path: /etc
+        - name: hostvar
+          hostPath:
+            path: /var
+        - name: hostrun
+          hostPath:
+            path: /run
+        - name: host-config-volume
+          configMap:
+            name: aci-containers-config
+            items:
+              - key: host-agent-config
+                path: host-agent.conf
+        - name: opflex-hostconfig-volume
+          emptyDir:
+            medium: Memory
+        - name: opflex-config-volume
+          configMap:
+            name: aci-containers-config
+            items:
+              - key: opflex-agent-config
+                path: local.conf
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: aci-containers-openvswitch
+  namespace: kube-system
+  labels:
+    network-plugin: aci-containers
+spec:
+  {% if config.kube_config.use_ds_rolling_update %}
+  updateStrategy:
+    type: RollingUpdate
+  {% endif %}
+  template:
+    metadata:
+      labels:
+        name: aci-containers-openvswitch
+        network-plugin: aci-containers
+    spec:
+      hostNetwork: true
+      hostPID: true
+      hostIPC: true
+      {% if config.registry.image_pull_secret %}
+      imagePullSecrets:
+        - name: {{ config.registry.image_pull_secret|yaml_quote }}
+      {% endif %}
+      {% if config.kube_config.use_tolerations %}
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+      {% endif %}
+      containers:
+        - name: aci-containers-openvswitch
+          image: {{ config.registry.image_prefix }}/openvswitch
+          imagePullPolicy: {{ config.kube_config.image_pull_policy }}
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+                - SYS_MODULE
+                - SYS_NICE
+          env:
+            - name: OVS_RUNDIR
+              value: /usr/local/var/run/openvswitch
+          volumeMounts:
+            - name: hostvar
+              mountPath: /usr/local/var
+            - name: hostrun
+              mountPath: /run
+            - name: hostrun
+              mountPath: /usr/local/run
+            - name: hostetc
+              mountPath: /usr/local/etc
+            - name: hostmodules
+              mountPath: /lib/modules
+          livenessProbe:
+            exec:
+              command:
+                - /usr/local/bin/liveness-ovs.sh
+      restartPolicy: Always
+      volumes:
+        - name: hostetc
+          hostPath:
+            path: /etc
+        - name: hostvar
+          hostPath:
+            path: /var
+        - name: hostrun
+          hostPath:
+            path: /run
+        - name: hostmodules
+          hostPath:
+            path: /lib/modules
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: aci-containers-controller
+  namespace: kube-system
+  labels:
+    network-plugin: aci-containers
+    k8s-app: aci-containers-controller
+    name: aci-containers-controller
+  annotations:
+    scheduler.alpha.kubernetes.io/critical-pod: ''
+    {% if config.kube_config.use_tolerations %}
+    scheduler.alpha.kubernetes.io/tolerations: |
+      [{"key": "dedicated", "value": "master", "effect": "NoSchedule" },
+       {"key":"CriticalAddonsOnly", "operator":"Exists"}]
+    {% endif %}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: aci-containers-controller
+      namespace: kube-system
+      labels:
+        network-plugin: aci-containers
+        k8s-app: aci-containers-controller
+        name: aci-containers-controller
+    spec:
+      hostNetwork: true
+      serviceAccountName: aci-containers-controller
+      {% if config.registry.image_pull_secret %}
+      imagePullSecrets:
+        - name: {{ config.registry.image_pull_secret|yaml_quote }}
+      {% endif %}
+      containers:
+        - name: aci-containers-controller
+          image: {{ config.registry.image_prefix }}/aci-containers-controller
+          imagePullPolicy: {{ config.kube_config.image_pull_policy }}
+          volumeMounts:
+            - name: controller-config-volume
+              mountPath: /usr/local/etc/aci-containers/
+            - name: aci-user-cert-volume
+              mountPath: /usr/local/etc/aci-cert/
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: 8091
+      volumes:
+        - name: aci-user-cert-volume
+          secret:
+            secretName: aci-user-cert
+        - name: controller-config-volume
+          configMap:
+            name: aci-containers-config
+            items:
+              - key: controller-config
+                path: controller.conf
+
