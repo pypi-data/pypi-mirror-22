@@ -1,0 +1,43 @@
+{% load rating_tags i18n %}
+
+  <meta itemprop="bestRating" content="5">
+  <meta itemprop="worstRating" content="1">
+  <meta itemprop="ratingCount" content="1">
+  <meta itemprop="mainEntityOfPage" content="{{ object.get_absolute_url }}">
+  <meta itemprop="url" content="{{ object.get_absolute_url }}">
+
+  <form action="{% url 'update_rating' %}" id="js-rating-form" method="post">
+    {% csrf_token %}
+    <div class="js-star-rating star-rating {% if disabled %}disabled{% endif %}"
+          data-init='{{ vote_average|floatformat:"0" }}'></div>
+    <label for='id_object_id'></label>
+      <input class="form-control" value='{{ object.id }}'
+              id="id_object_id" name="object_id" type="hidden">
+
+    <label for='id_content_type'></label>
+      <input class="form-control" value='{{ object|content_type }}'
+              id="id_content_type" name="content_type" type="hidden">
+
+    <label for='id_rating'></label>
+      <input class="form-control" value=''
+              id="id_rating" name="rating" type="hidden">
+
+    <label for='id_user_id'></label>
+      <input class="form-control" value='{% if vote_user_id %}{{ vote_user_id }}{% endif %}'
+              id="id_user_id" name="user_id" type="hidden">
+
+    {{ form.non_field_errors }}
+
+    {% if not vote_amount %}
+      <p class='margTop20'>
+        {% trans 'Nobody voted yet' %}
+      </p>
+    {% else %}
+      <p class='margTop20'>
+        {% blocktrans %}Voted: <span itemprop="reviewCount">{{ vote_amount }}</span> times{% endblocktrans %}
+      </p>
+      <p>
+        {% trans 'Average mark' %}: <span itemprop="ratingValue">{{ vote_average|floatformat:"1" }}</span>
+      </p>
+    {% endif %}
+  </form>
