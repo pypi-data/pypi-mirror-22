@@ -1,0 +1,166 @@
+/*
+This is a non official port for jupyter notebook of the solarizedl theme, documented here:
+http://ethanschoonover.com/solarized
+*/
+
+/* solarized base colors */
+@yellow:                #b58900;
+@orange:                #cb4b16;
+@red:                   #dc322f;
+@magenta:               #d33682;
+@violet:                #6c71c4;
+@blue:                  #268bd2;
+@cyan:                  #2aa198;
+@green:                 #859900;
+
+@solar-base03:          #002b36;
+@solar-base02:          #073642;
+@solar-base01:          #586e75;
+@solar-base00:          #657b83;
+
+@solar-base0:           #839496;
+@solar-base1:           #93a1a1;
+@solar-base2:           #eee8d5;
+@solar-base3:           #fdf6e3;
+
+/* solarized notebook colors */
+@notebook-bg:           @solar-base2;
+@notebook-fg:           @solar-base01;
+@notebook-base:         @notebook-fg;
+
+/* jtplot figure style */
+@axisFace:              #eee8d5;
+@figureFace:            #eee8d5;
+@textColor:             #586e75;
+@edgeColor:             #657b83;
+@gridColor:             #D6D6D6;
+
+/* selection, hover, prompts, brackets colors */
+@selected-bg:           darken(@solar-base2, 5%);
+@selected-half:         darken(@solar-base2, 5%);
+@selected-third:        darken(@solar-base2, 3%);
+@selected-tenth:        darken(@solar-base2, 2%);
+@selected-error:        @red;
+@selected-active:       darken(@button-bg, 5%);
+@navbar-selected:       @selected-third;
+@selected-fg:           darken(@solar-base01, 8%);
+@selected-fg-bright:    @orange;
+@unemphasize-fg:        @solar-base1;
+
+/* code, text, markdown, & tooltip colors */
+@cc-input-bg:           @solar-base3;
+@cc-input-fg:           @notebook-fg;
+@cc-input-border:       @solar-base1;
+@cc-output-bg:          @solar-base2;
+@cc-output-fg:          @solar-base01;
+@text-cell-fg:          @notebook-fg;
+@unrendered-text:       @yellow;
+@header-fg:             @yellow;
+@tooltip-bg-color:      @solar-base2;
+@tooltip-fg-color:      @solar-base;
+@nb-name-fg:            @item-theme;
+@nb-name-hover:         #DE6D25;
+
+/* cell border colors */
+@cc-border-selected:    @solar-base1;
+@cc-border-edit:        #bbc4c5;
+@tc-border-selected:    @yellow;
+@tc-border-edit:        rgba(181, 137, 0, .4);
+@cell-selected-border-width: thin;
+
+/* menus, dividers, prompt-borders, brackets */
+@divider:               @selected-half;
+@disabled:              @solar-base1;
+@input-prompt:          @disabled;
+@prompt-line:           #bbc4c5; //@solar-base2;
+@tc-prompt-std:         rgba(181, 137, 0, .4);
+@matching-bracket:      @solar-base3;
+@dropdown-bg:           lighten(@notebook-bg, 5%);
+@dropdown-border:       darken(@notebook-bg, 7%);
+@dropdown-hover:        darken(@dropdown-bg, 4%);
+
+/* panels and form-control styles */
+@panel-header-bg:       darken(@solar-base2, 4%);
+@panel-bg:              lighten(@solar-base2, 3%);
+@modal-bg:              #ffffff;
+@alert-info-bg:         #fdfdfd;
+@form-input-bg:         #ffffff;
+@cmd-palette-bg:        @form-input-bg;
+@cmd-palette-form:      @panel-header-bg;
+@cmd-palette-hover:     @panel-bg;
+
+/* buttons, widgets, kernels colors */
+@item-theme:            @solar-base1;
+@item-blue:             @blue;
+@item-cyan:             @cyan;
+@item-green:            @green;
+@item-red:              @red;
+@item-orange:           @orange;
+@item-danger:           #a8524c;
+
+@item-danger:           @red;
+@item-success:          @green;
+@item-info:             @blue;
+@item-warning:          @yellow;
+
+/* tables and dataframes colors */
+@table-color:           #353535;
+@table-bg:              @notebook-bg;
+@table-border:          #D6D6D6;
+@df-header-bg:          @solar-base2;
+@df-header:             #353535; //@solar-base1;
+@df-header-border:      @solar-base1;
+@df-cell-bg:            @table-bg;
+@codeblock-bg:          #efefef;
+@codeblock-border:      darken(@codeblock-bg, 3%);
+
+/* btn, scrollbar and shadow colors */
+@button-bg:             lighten(@solar-base1, 23%);
+@button-border:         darken(@button-bg, 1%);
+@button-color:          @item-theme;
+@button-hover:          darken(@button-bg, 4%);
+@button-panel-bg:       @panel-header-bg;
+@button-panel-hover:    darken(@panel-header-bg, 2%);
+@scrollbar:             @item-theme;
+@scroll-trough:         darken(@notebook-bg, 9%); 
+@scrollbar-inactive:    @solar-base1;
+@box-shadow:            darken(@cc-output-bg, 4%);
+
+/* solarized ansi colors */
+@ansiblack:             @solar-base03;
+@ansiblue:              @blue;
+@ansigray:              @solar-base0;
+@ansigreen:             @green;
+@ansipurple:            @violet;
+@ansicyan:              @cyan;
+@ansiyellow:            @yellow;
+@ansired:               @red;
+@stderr-bg:             @orange;
+@stderr-fg:             @solar-base01;
+@js-error:              @ansired;
+
+/* solarized codemirror colors */
+@cm-selected:           lighten(@solar-base1, 28%);
+@cm-gutters:            @cm-selected;
+@cm-linenumber:         @solar-base00;
+@cm-atom:               @magenta;
+@cm-attribute:          @magenta;
+@cm-comment:            @solar-base1;
+@cm-property:           @blue;
+@cm-keyword:            @green;
+@cm-string:             @blue;
+@cm-number:             @blue;
+@cm-meta:               @violet;
+@cm-operator:           @blue;
+@cm-builtin:            @magenta;
+@cm-variable:           @cc-input-fg;
+@cm-variable2:          @cc-input-fg;
+@cm-variable3:          @cc-input-fg;
+
+@cm-def:                @blue;
+@cm-error:              @cc-input-bg;
+@cm-tag:                @blue;
+@cm-link:               @green;
+@cm-storage:            @magenta;
+@cm-entity:             @blue;
+@cm-latex:              @notebook-fg;
