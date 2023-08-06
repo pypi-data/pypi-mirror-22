@@ -1,0 +1,107 @@
+{% extends "index.html" %}
+{% block title %} About {% endblock %}
+{% block main %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/editablegrid.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/editablegrid_renderers.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/editablegrid_editors.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/editablegrid_validators.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/editablegrid_utils.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/editablegrid_charts.js') }}"></script>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            editableGrid = new EditableGrid("tableJSON");
+            editableGrid.tableLoaded = function() { this.renderGrid("tablecontent", "table table-editable", "names-table"); };
+            editableGrid.loadJSON("{{ url_for('static', filename='json/pretty_names_table.json') }}");
+        }
+
+        function tableToJson(table) {
+            var data = [];
+            var headers = [];
+            for (var i=0; i<table.rows[0].cells.length; i++) { headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');}
+            for (var i=1; i<table.rows.length; i++) {
+                var tableRow = table.rows[i];
+                var rowData = {};
+                for (var j=0; j<tableRow.cells.length; j++) {
+                    rowData[ headers[j] ] = tableRow.cells[j].innerHTML;}
+                    data.push(rowData);}
+            return data;
+        }
+
+        function submitJSON(data) {
+            var jsonDict = {};
+            var form = $("#table_data")
+            for (i in data) {
+                var key = Object.values(data[i])[0];
+                var values = Object.values(data[i])[1];
+                jsonDict[key] = values;
+            }
+            $("#hidden_table").val(JSON.stringify(jsonDict))
+            form.submit()
+        }
+    </script>
+
+
+
+    <form action="/config_page/" method="POST" accept-charset="utf-8">
+        <div class="row">
+            <!-- PRETTY NAMES PANEL -->
+            <div class="col-lg-5 col-md-6"">
+                <div class="panel panel-default">
+                    <div class="panel-heading"> Change/Add plotting variables</div>
+                    <div id="tablecontent" style="max-height: 500px; overflow-y: scroll;"></div>
+                    <input type="hidden" id="hidden_table" name="table_data" value="">
+                </div>
+            </div>
+
+            <!-- MAP DEFAULT LIMS -->
+            <div class="col-lg-4 col-md-6 left">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Change the default map limits</div>
+                    <div class="panel-body">
+                        <!-- NORTH -->
+                        <div class="row" style="margin-bottom: 15px;">
+                            <div class="input-group col-xs-offset-4 col-xs-4">
+                                <input class="form-control text-center" type="number" name="latmax" value="{{ latmax }}">
+                                <div class="input-group-addon">°N</div>
+                            </div>
+                        </div>
+                        <!-- WEST / EAST -->
+                        <div class="row" style="margin-bottom: 15px;">
+                            <!-- WEST -->
+                            <div class="input-group col-xs-4" style="float: left; margin-left: 10px">
+                                <input class="form-control text-center" type="number" name="lonmin" value="{{ lonmin }}">
+                                <div class="input-group-addon">°W</div>
+                            </div>
+                            <!-- EAST -->
+                            <div class="input-group col-xs-4" style="float:right; margin-right: 10px">
+                                <input class="form-control text-center" type="number" name="lonmax" value="{{ lonmax }}">
+                                <div class="input-group-addon">°E</div>
+                            </div>
+                        </div>
+                        <!-- SOUTH -->
+                        <div class="row">
+                            <div class="input-group col-xs-offset-4 col-xs-4">
+                                <input class="form-control text-center" type="number" name="latmin" value="{{ latmin }}">
+                                <div class="input-group-addon">°S</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAUNCH SETTINGS -->
+            <div class="col-lg-4 col-md-6 left">
+                <div class="panel panel-default" style="padding: 0px;">
+                    <div class="panel-heading">Launch settings</div>
+                    <div class="panel-body">
+                        This is a placeholder panel
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row btn-block col-xs-6 center-block">
+            <button class="btn btn-primary btn-block" onclick="submitJSON(tableToJson($('#names-table')[0]))">Commit changes</button>
+        </div>
+    </form>
+{% endblock%}

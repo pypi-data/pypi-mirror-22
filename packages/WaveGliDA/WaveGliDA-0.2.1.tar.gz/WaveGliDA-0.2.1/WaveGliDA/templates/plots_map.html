@@ -1,0 +1,54 @@
+{% extends "index.html" %}
+{% block title %}WaveGliDA: Map{% endblock %}
+{% block main %}
+  {% if data_processed %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plotly-1.26.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/d3-4.8.0.min.js') }}"></script>
+
+    <div class="row">
+      <div class="col-lg-3 col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">Choose variables to plot</div>
+          <div class="panel-body" style="padding: 0px; ">
+            <form action='/plots_map/' id="mapForm" method=POST enctype=multipart/form-data>
+              <select class="form-control form-select" size=18 name="selection[]">
+                {% for varname in plot_vars %}
+                  <option {% if varname in selected %} selected {% endif %}>
+                  {{ varname | safe }}
+                </option>
+              {% endfor %}
+            </select>
+            <button class="btn btn-primary btn-group btn-draw" type="submit"> Draw map </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9 col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">Plotly map</div>
+        <div class="panel-body">
+          {% for id in ids %}
+            <div id="{{id}}" style="margin: auto; display: block;"></div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {{ plot_script | safe }}
+
+
+  <script type="text/javascript">
+  var graphs = {{graphJSON | safe}};
+  var ids = {{ids | safe}};
+  for(var i in graphs) {Plotly.plot(ids[i], graphs[i].data, graphs[i].layout || {}, {displaylogo: true, displayModeBar: true});}
+  </script>
+  {% else %}
+  <div class="row">
+    <div class="col-lg-12" style="text-align: center;">
+      <p>You need to import and process data first.</p>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}
