@@ -1,0 +1,38 @@
+language: python
+
+python:
+  - "2.7"
+
+cache:
+  apt: true
+  directories:
+    - $HOME/miniconda
+
+before_install:
+  # install miniconda for Python dependencies
+  - wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
+  - chmod +x miniconda.sh
+  - ./miniconda.sh -b -p $HOME/miniconda -f
+  - export PATH=$HOME/miniconda/bin:$PATH
+  - conda update --yes conda
+  - conda config --add channels conda-forge                                     
+  - conda config --add channels defaults                                        
+  - conda config --add channels r                                               
+  - conda config --add channels bioconda   
+  - conda info -a
+  # Fix DISPLAY variable
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+
+
+install:
+  - conda install --yes python=$TRAVIS_PYTHON_VERSION numpy scipy matplotlib=2 pytest libgfortran=1 pysam htseq pybedtools bedtools colorbrewer Pycluster pyBigWig
+  - pip install coverage
+  - pip install coveralls
+
+# # command to run tests, e.g. python setup.py test
+script:  
+  - coverage run setup.py test
+ 
+after_sucess:
+  coveralls
