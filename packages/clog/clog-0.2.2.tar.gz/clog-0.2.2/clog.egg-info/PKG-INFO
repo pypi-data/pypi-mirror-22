@@ -1,0 +1,56 @@
+Metadata-Version: 1.1
+Name: clog
+Version: 0.2.2
+Summary: pretty-print with color
+Home-page: https://github.com/bradmontgomery/clog
+Author: Brad Montgomery
+Author-email: brad@bradmontgomery.net
+License: MIT
+Description: clog
+        ====
+        
+        **Pretty-print things with color.**
+        
+        This utility allows you to wrap `pprint` with colors.
+        
+        
+        ## Usage
+        
+        Pass any data into clog and it'll get pretty-printed.
+        
+            >>> from clog import clog
+            >>> data = {'here': 'is some data'}
+            >>> clog(data)
+        
+        You can also give it a title:
+        
+            >>> clog(data, title="My Data")
+        
+        Or change the color:
+        
+            >>> clog(data, title="My Data", color="red")
+        
+        
+        ## Colors
+        
+        This library uses the ANSI color codes from [fabric](http://www.fabfile.org/),
+        and it supports the following color strings:
+        
+        - blue
+        - cyan
+        - green
+        - magenta
+        - red
+        - white
+        - yellow
+        
+Keywords: debugging,log,color,pretty-print
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
