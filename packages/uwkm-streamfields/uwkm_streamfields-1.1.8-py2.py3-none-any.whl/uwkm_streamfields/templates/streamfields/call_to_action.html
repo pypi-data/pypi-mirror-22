@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+<div class="col-md-12">
+	{% for item in self %}
+		<div class="call-to-action">
+			{{ item.text }}
+			<a href="{% if item.button.link %}{{ item.button.link.url }}"{% else %}{{ item.button.ext_link }}" target="_blank"{% endif %} class="cta btn {{ item.button.width }}" style="background-color: {{ item.button.button_color }}; color: {{ item.button.color }}; font-size: {{ item.button.text_size }}px;">{% if item.icon %}<i class="fa fa-{{ item.button.icon }}" style="color: {{ item.button.color }};font-size: {{ item.button.icon_size }}px;"></i>{% endif %}{{ item.button.text }}</a>
+	   </div>
+	{% endfor %}
+</div>
