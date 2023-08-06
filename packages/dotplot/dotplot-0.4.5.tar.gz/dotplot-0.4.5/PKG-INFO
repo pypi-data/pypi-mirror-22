@@ -1,0 +1,150 @@
+Metadata-Version: 1.1
+Name: dotplot
+Version: 0.4.5
+Summary: Small bioinformatic package for dotplot's generation (in command line and in GUI)
+Home-page: https://github.com/kn-bibs/dotplot
+Author: kn_bibs
+Author-email: bibs.kn@uw.edu.pl
+License: LGPL-3.0
+Download-URL: https://github.com/kn-bibs/dotplot/tarball/v0.4.5-alpha
+Description: Dotplot
+        =======
+        
+        |Build Status| |Code Climate| |Coverage Status|
+        
+        Idea
+        ----
+        
+        Dotplot is a plot used mainly in biology for graphical visualisations of
+        sequences' similarity. [Read more on Wikipedia]
+        (https://en.wikipedia.org/wiki/Dot\_plot\_%28bioinformatics%29).
+        
+        Why to create a new package?
+        ----------------------------
+        
+        There are many programs that attempt to create dotplots already.
+        Unfortunately most of these programs was created long time ago and
+        written in old versions of Java. This Python3 package will allow new
+        generations of bioinformaticians to generate dotplots much easier.
+        
+        Installation & usage
+        --------------------
+        
+        Instalation with pip
+        ~~~~~~~~~~~~~~~~~~~~
+        
+        The easiest way to install this package with all dependencis is to use
+        pip:
+        
+        .. code:: bash
+        
+            pip install dotplot
+        
+        Manual installation
+        ~~~~~~~~~~~~~~~~~~~
+        
+        .. code:: bash
+        
+            git clone https://github.com/kn-bibs/dotplot
+        
+        To use graphical user interface, you will need to have pyqt5 installed,
+        e.g. with:
+        
+        .. code:: python3
+        
+            sudo apt-get install python3-pyqt5
+        
+        To use matplotlib for drawing, you need to have it installed, e.g. with:
+        
+        .. code:: bash
+        
+            sudo pip3 install matplotlib
+        
+        Note: If you have chosen manual installation, use ``python3 dotplot``
+        command to run the program (while in the ``dotplot`` directory) instead
+        of sole ``dotplot``.
+        
+        Basic usage
+        ~~~~~~~~~~~
+        
+        .. code:: bash
+        
+            dotplot --fasta 1.fa 2.fa
+        
+        To use graphical user interface, type:
+        
+        .. code:: bash
+        
+            dotplot --fasta 1.fa 2.fa --gui
+        
+        You can also fetch sequences from various sources (at once):
+        
+        .. code:: bash
+        
+            dotplot --gui --ncbi NP_001009852 --uniprot P03086
+        
+        Advanced options
+        ^^^^^^^^^^^^^^^^
+        
+        You can set window size to be used in plot creation:
+        
+        .. code:: bash
+        
+            dotplot --fasta 1.fa 2.fa --gui --window_size 2
+        
+        Furthermore, you can combine it with stringency:
+        
+        .. code:: bash
+        
+            dotplot --fasta 1.fa 2.fa --gui --window_size 2 --stringency 2
+        
+        And you can use a similarity matrix to compare aminoacids:
+        
+        .. code:: bash
+        
+            dotplot --fasta 1.fa 2.fa --gui --window_size 2 --stringency 2 --matrix PAM120
+        
+        Getting help
+        ^^^^^^^^^^^^
+        
+        To access list of available options run command above with added option
+        ``-h``.
+        
+        What will it do?
+        ----------------
+        
+        In the future our application will be able to read a wide range of input
+        formats, and users will be able to parametrize alignment process and
+        output format to their liking.
+        
+        Dependencies & development
+        --------------------------
+        
+        We are writing in ``Python3`` and strict on code styling, with pep8 and
+        pylint validation. We require all code merging to master to have at
+        least 7,5 pylint score. To check this, at first install pytlint with
+        pip3 and then, run the following command:
+        ``python3 -m pylint dotplot.py``, where in place of ``dotplot.py`` use
+        any name of the module to be tested.
+        
+        .. |Build Status| image:: https://travis-ci.org/kn-bibs/dotplot.svg?branch=master
+           :target: https://travis-ci.org/kn-bibs/dotplot
+        .. |Code Climate| image:: https://codeclimate.com/github/kn-bibs/dotplot/badges/gpa.svg
+           :target: https://codeclimate.com/github/kn-bibs/dotplot
+        .. |Coverage Status| image:: https://coveralls.io/repos/github/kn-bibs/dotplot/badge.svg
+           :target: https://coveralls.io/github/kn-bibs/dotplot
+        
+Keywords: dotplot,bioinformatic,gui
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Utilities
+Classifier: Environment :: X11 Applications :: Qt
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
