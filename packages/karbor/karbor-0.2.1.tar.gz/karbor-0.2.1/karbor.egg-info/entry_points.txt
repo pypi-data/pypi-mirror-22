@@ -1,0 +1,36 @@
+[console_scripts]
+karbor-api = karbor.cmd.api:main
+karbor-manage = karbor.cmd.manage:main
+karbor-operationengine = karbor.cmd.operationengine:main
+karbor-protection = karbor.cmd.protection:main
+
+[karbor.database.migration_backend]
+sqlalchemy = oslo_db.sqlalchemy.migration
+
+[karbor.operationengine.engine.executor]
+green_thread = karbor.services.operationengine.engine.executors.green_thread_executor:GreenThreadExecutor
+thread_pool = karbor.services.operationengine.engine.executors.thread_pool_executor:ThreadPoolExecutor
+
+[karbor.operationengine.engine.timetrigger.time_format]
+crontab = karbor.services.operationengine.engine.triggers.timetrigger.timeformats.crontab_time:Crontab
+
+[karbor.protectables]
+image = karbor.services.protection.protectable_plugins.image:ImageProtectablePlugin
+project = karbor.services.protection.protectable_plugins.project:ProjectProtectablePlugin
+server = karbor.services.protection.protectable_plugins.server:ServerProtectablePlugin
+share = karbor.services.protection.protectable_plugins.share:ShareProtectablePlugin
+volume = karbor.services.protection.protectable_plugins.volume:VolumeProtectablePlugin
+
+[karbor.protections]
+karbor-image-protection-plugin = karbor.services.protection.protection_plugins.image.image_protection_plugin:GlanceProtectionPlugin
+karbor-noop-protection-plugin = karbor.services.protection.protection_plugins.noop_plugin:NoopProtectionPlugin
+karbor-server-protection-plugin = karbor.services.protection.protection_plugins.server.nova_protection_plugin:NovaProtectionPlugin
+karbor-swift-bank-plugin = karbor.services.protection.bank_plugins.swift_bank_plugin:SwiftBankPlugin
+karbor-volume-protection-plugin = karbor.services.protection.protection_plugins.volume.cinder_protection_plugin:CinderBackupProtectionPlugin
+
+[karbor.provider]
+provider-registry = karbor.services.protection.provider:ProviderRegistry
+
+[wsgi_scripts]
+karbor-wsgi = karbor.wsgi.wsgi:initialize_application
+
