@@ -1,0 +1,120 @@
+=========
+Changelog
+=========
+
+Here you can find the recent changes to the project.
+
+- :release:`0.9.4 <2017-06-05>`
+- :bug:`-` Fix kIRG_GSource without location
+- :bug:`-` Fix kFenn output
+- :bug:`-` Fix kHanyuPinlu support output for n diacritics
+
+- :release:`0.9.3 <2017-05-31>`
+- :support:`-` Add expansion for kIRGKangXi
+
+- :release:`0.9.2 <2017-05-31>`
+- :support:`-` Normalize Radical-Stroke expansion for kRSUnicode
+- :support:`-` Migrate more fields to regular expressions
+- :feature:`-` Normalize character field for kDaeJaweon, kHanyuPinyin,
+  and kCheungBauer, kFennIndex, kCheungBauerIndex, kIICore,
+  kIRGHanyuDaZidian
+
+- :release:`0.9.1 <2017-05-27>`
+- :feature:`-` Support for expanding kGSR
+- :support:`-` Convert some field expansions to use regexes
+
+- :release:`0.9.0 <2017-05-26>`
+- :bug:`-` Fix bug where destination file was made into directory on
+  first run
+- :support:`-` Rename from unihan-tabular to unihan-etl
+- :feature:`-` Support for expanding multi-value fields
+- :feature:`-` Support for pruning empty fields
+- :support:`-` Improve help dialog
+- :support:`-` Added a page about UNIHAN and the project to documentation
+- :support:`-` Split constant values into their own module
+- :support:`-` Split functionality for expanding unstructured values into
+  its own module
+
+- :release:`0.8.1 <2017-05-20>`
+- :support:`-` Update to add *kJa* and adjust source file of
+  *kCompatibilityVariant* per Unicode 8.0.0.
+
+- :release:`0.8.0 <2017-05-17>`
+- :feature:`-` Support for configuring logging via options and CLI
+- :support:`-` Convert all print statements to use logger
+
+- :release:`0.7.4 <2017-05-14>`
+- :feature:`-` Allow for local / file system sources for Unihan.zip
+- :support:`-` Only extract zip if unextracted
+
+- :release:`0.7.3 <2017-05-13>`
+- :support:`-` Update package classifiers
+
+- :release:`0.7.2 <2017-05-13>`
+- :support:`-` Add back datapackage
+
+- :release:`0.7.1 <2017-05-12>`
+- :bug:`-` Fix python 2 CSV output
+- :support:`-` Default to CSV output
+
+- :release:`0.7.0 <2017-05-12>`
+- :support:`-` Move unicodecsv module to dependency package
+- :feature:`-` Support for XDG directory specification
+- :feature:`-` Support for custom destination output, including replacing
+  template variable ``{ext}``
+
+- :release:`0.6.3 <2017-05-11>`
+- :support:`-` Move *__about__.py* to module level
+
+- :release:`0.6.2 <2017-05-11>`
+- :bug:`-` Fix python package import
+
+- :release:`0.6.1 <2017-05-10>`
+- :bug:`-` Fix readme bug on pypi
+
+- :release:`0.6.0 <2017-05-10>`
+- :feature:`-` Support for exporting in YAML and JSON
+- :support:`-` More internal factoring and simplification
+- :support:`-` Return data as list
+
+- :release:`0.5.1 <2017-05-08>`
+- :support:`-` Drop python 3.3 an 3.4 support
+
+- :release:`0.5.0 <2017-05-08>`
+- :support:`-` Rename from cihaidata_unihan unihan_tabular
+- :support:`-` Drop datapackages in favor of a universal JSON, YAML and CSV
+  export.
+- :support:`-` Only use UnicodeWriter in Python 2, fixes issue with python
+  would encode `b` in front of values
+
+- :release:`0.4.2 <2017-05-07>`
+- :support:`-` Rename *scripts/* to *cihaidata_unihan/*
+
+- :release:`0.4.1 <2017-05-07>`
+- :support:`-` Enable invoking tool via ``$ cihaidata_unihan``
+
+- :release:`0.4.0 <2017-05-07>`
+- :support:`-` Major internal refactor and simplification
+- :support:`-` Convert to pytest ``assert`` statements
+- :support:`-` Convert full test suite to pytest functions and fixtures
+- :support:`-` Get CLI documentation up again
+- :support:`-` Improve test coverage
+- :support:`-` Lint code, remove unused imports
+- :support:`-` Switch license BSD -> MIT
+
+- :release:`0.3.0 <2017-04-17>`
+- :support:`-` Rebooted
+- :support:`-` Modernize *Makefile* in docs
+- :support:`-` Add Makefile to main project
+- :support:`-` Modernize package metadata to use *__about__.py*
+- :support:`-` Update requirements to use *requirements/* folder for
+  base, testing and doc dependencies.
+- :support:`-` Update sphinx theme to alabaster with new logo.
+- :support:`-` Update travis to use coverall
+- :support:`-` Update links on README to use https
+- :support:`-` Update travis to test up to python 3.6
+- :support:`-` Add support for pypy (why not)
+- :support:`-` Lock base dependencies
+- :support:`-` Add dev dependencies for isort, vulture and flake8
+
+.. vim: set filetype=rst:
