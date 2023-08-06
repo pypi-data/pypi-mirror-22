@@ -1,0 +1,26 @@
+language: python
+dist: trusty
+
+services:
+  - postgresql
+
+addons:
+  postgresql: '9.6'
+
+python:
+  - '3.4'
+  - '3.5'
+  - '3.6'
+
+before_script:
+  - psql -U postgres -c 'CREATE DATABASE test;'
+
+install:
+  - pip install tox tox-travis
+
+script:
+  - tox
+
+after_success:
+  - pip install codecov
+  - codecov
