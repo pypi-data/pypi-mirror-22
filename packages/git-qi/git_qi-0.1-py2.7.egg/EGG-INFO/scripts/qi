@@ -1,0 +1,53 @@
+#!/bin/python
+
+import sys
+from qi.Arguments import A
+from subprocess import call
+from datetime import datetime
+from qi import GitClient as git
+from qi import Stdout
+
+if __name__ == "__main__":
+    if not git.visitroot():
+        print "Run Qi from inside a Git repository."
+        sys.exit(1)
+
+    wherewestarted = git.currentpathspec()
+    exitcode = 0
+
+    try:
+        since = datetime.fromtimestamp(A.past)
+        start = datetime.fromtimestamp(git.committime('HEAD'))
+        it = A.every(since, start)
+        last = None
+        out = ""
+
+        while True:
+            candidate = it.next()
+            SHA = git.firstbefore(candidate)
+
+            if last != SHA: # Process only unique commits.
+                last = SHA
+
+                if A.command:
+                    git.checkout(SHA)
+                    call(A.command.format(SHA).split(' '), shell=False)
+                else:
+                    if A.dates:
+                        out = out + SHA + ": " + git.commitdate(SHA) + '\n'
+                    else:
+                        out = out + SHA + '\n'
+
+        sys.stdout.write(out)
+    except StopIteration:
+        exitcode = 0
+    except KeyboardInterrupt:
+        exitcode = 1
+    except:
+        print "Unexpected error: ", sys.exec_info()[0]
+        exitcode = 128
+    finally:
+        if A.command is not None:
+            git.checkout(wherewestarted)
+
+    sys.exit(exitcode)
