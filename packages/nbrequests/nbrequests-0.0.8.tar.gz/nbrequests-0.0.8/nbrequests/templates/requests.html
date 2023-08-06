@@ -1,0 +1,73 @@
+{% set color = '#5cb85c' if r.ok else '#d9534f' %}
+<style type="text/css">
+
+    div.dr-{{rq_id}} {
+        width: 100%;
+    }
+    div.dr-request-{{rq_id}} {
+        background-color: {{ color }};
+        color: white;
+        display: flex;
+        height: 20px;
+    }
+    div.dr-request-{{rq_id}} pre {
+        color: white;
+    }
+    div.dr-request-method-{{rq_id}} {
+        background-color: {{ color }};
+        color: white;
+        text-align: center;
+        flex: 0 0 50px;
+    }
+    div.dr-request-url-{{rq_id}} {
+        flex: 1;
+        padding: 0 5px;
+    }
+    div.dr-request-status-{{rq_id}} {
+        flex: 0 0 40px;
+        text-align: right;
+        padding: 0 5px;
+    }
+
+    div.dr-{{rq_id}} > h4 {
+        padding-bottom: 5px;
+        text-decoration: underline;
+    }
+    div.dr-elapsed-{{rq_id}} {
+        padding: 5px 0;
+        font-style: italic;
+        font-size: 0.9em;
+    }
+</style>
+
+<div class='dr-{{rq_id}}'>
+
+    <div class="dr-request-{{rq_id}}">
+        <div class="dr-request-method-{{rq_id}}">
+            {{r.request.method}}
+        </div>
+        <div class="dr-request-url-{{rq_id}}">
+            <pre>{{r.request.url}}</pre>
+        </div>
+        <div class="dr-request-status-{{rq_id}}">
+            <span title="{{r.reason}}">{{r.status_code}}</span>
+        </div>
+    </div>
+    {% if r.request.method != 'GET' %}
+        <h4>Request</h4>
+        <div id="{{rq_id}}" style="width:100%;">
+          {% if r.request.headers['Content-Type'] != 'application/json' %}
+            <pre>{{r.request.body|default('Empty Request', true)}}</pre>
+          {% endif %}
+        </div>
+    {% endif %}
+    <h4>Response</h4>
+    <div id="{{rs_id}}" style="width:100%;">
+      {% if r.headers['Content-Type'] != 'application/json' %}
+        <pre>{{r.text|default('Empty Response', true)}}</pre>
+      {% endif %}
+    </div>
+    <div class="dr-elapsed-{{rq_id}}">
+        took {{r.elapsed.total_seconds()}} seconds
+    </div>
+</div>
