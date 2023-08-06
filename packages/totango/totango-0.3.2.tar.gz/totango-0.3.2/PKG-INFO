@@ -1,0 +1,77 @@
+Metadata-Version: 1.1
+Name: totango
+Version: 0.3.2
+Summary: Totango Python Library
+Home-page: http://github.com/gbourdin/totango-python
+Author: German Bourdin
+Author-email: admin@gbourdin.com
+License: Apache 2.0
+Description: ==============
+        totango-python
+        ==============
+        
+        
+        Totango (http://www.totango.com) Python Library
+        
+        * Free software: Apache License, Version 2.0
+        
+        
+        Installation
+        ============
+        
+        ::
+        
+            pip install totango
+        
+        
+        Usage
+        =====
+        
+        ::
+        
+            import totango
+        
+            tt = totango.Totango('SP-XXXX-XX', 'user_id')
+            tt.track('module','action')
+        
+        
+        Changelog
+        =========
+        
+        0.3.2 (2017-06-1)
+        -----------------------------------------
+        
+        * Updates to the setup script so that requests doesn't need to be installed
+          manually
+        
+        0.3.1 (2017-06-1)
+        -----------------------------------------
+        
+        * Licensing and ownership change
+        
+        0.3.0 (2014-05-02)
+        -----------------------------------------
+        
+        * Set the user agent correctly when sending data to totango
+        
+        0.2 (2014-04-30)
+        -----------------------------------------
+        
+        * Fixed some typos in payload keys
+        
+        0.1 (2014-04-30)
+        -----------------------------------------
+        
+        * Initial Release
+        
+Keywords: totango api,totango python
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
