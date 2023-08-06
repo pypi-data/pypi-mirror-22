@@ -1,0 +1,12 @@
+IMAGE_NAME={{ image_name }}
+docker run  \
+  --rm  \
+  -v {{ dataset_path }}:/input_dataset:ro  \
+  -v {{ output_root }}:/output  \
+  -v {{ cwl_tool_wrapper_path }}:/tool.cwl:ro \
+  $IMAGE_NAME  \
+  _analyse_by_ids  \
+    --cwl_tool_wrapper_path=/tool.cwl  \
+    --input_dataset_path=/input_dataset  \
+    --output_root=/output  \
+    {{ hash_ids -}}
