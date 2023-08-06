@@ -1,0 +1,34 @@
+Metadata-Version: 2.0
+Name: configstack
+Version: 0.1.1
+Summary: ConfigStack: a library for configuring Python programs.
+Home-page: https://pagure.io/python-configstack/
+Author: Ben Finney
+Author-email: ben+python@benfinney.id.au
+License: GNU GPL-3+
+Keywords: configuration,config,commandline
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Intended Audience :: Developers
+Requires-Dist: docutils
+Requires-Dist: semver
+Requires-Dist: setuptools
+
+ConfigStack is a Python library for stacking program configuration:
+
+* Command-line options, defined with `argparse`.
+
+* Environment variables, derived from other configuration options.
+
+* Configuration files, defined with `configparser`.
+
+* Default values.
+
+These are all unified at run time, in a single collection of settings
+for the program to use.
+
