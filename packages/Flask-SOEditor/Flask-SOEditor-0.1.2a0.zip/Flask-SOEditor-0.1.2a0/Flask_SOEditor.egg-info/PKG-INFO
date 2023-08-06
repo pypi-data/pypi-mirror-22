@@ -1,0 +1,77 @@
+Metadata-Version: 1.1
+Name: Flask-SOEditor
+Version: 0.1.2a0
+Summary: A Stack Overflow editor extension for Flask.
+Home-page: https://github.com/zeleven/flask-soeditor
+Author: zeleven
+Author-email: chengsmo@outlook.com
+License: MIT
+Description: # Flask-SOEditor
+        A Stack Overflow editor extension for Flask.
+        ## Installation
+        `pip install Flask-SOEditor`
+        ## Usage
+        ### Initialization
+        The first step is to initialize the extension:
+        ```Python
+        from flask import Flask, render_template
+        from flask_soeditor import SOEditor
+        
+        app = Flask(__name__)
+        
+        soeditor = SOEditor(app)
+        
+        @app.route('/')
+        def index():
+          return render_template('index.html')
+        
+        if __name__ == '__main__':
+          app.run(debug=True)
+        ```
+        Alternatively, you could use the `init_app()` method, like this:
+        ```Python
+        from flask import Flask, render_template
+        from flask_soeditor import SOEditor
+        
+        soeditor = SOEditor()
+        
+        def create_app(config_name):
+          app = Flask(__name__)
+          app.config.from_object(config[config_name])
+          config[config_name].init_app(app)
+          
+          soeditor.init_app(app)
+          ...
+        ```
+        
+        ### Add editor in template
+        First, you have to load the css and js files, and then replace your textarea:
+        ```Html
+        <!DOCTYPE html>
+        <html>
+        <head>
+        	<title>Flask-SOEditor example</title>
+        	{{ soeditor.css }}
+        	{{ soeditor.js }}
+        </head>
+        <body>
+        <textarea id="mdeditor"></textarea>
+        <script type="text/javascript">
+        	var soeditor = new SOEditor("textarea#mdeditor");
+        </script>
+        </body>
+        </html>
+        ```
+        
+Platform: any
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
