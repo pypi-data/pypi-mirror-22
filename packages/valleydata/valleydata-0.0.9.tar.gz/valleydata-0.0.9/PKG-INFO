@@ -1,0 +1,121 @@
+Metadata-Version: 1.1
+Name: valleydata
+Version: 0.0.9
+Summary: ValleyData
+Home-page: https://github.com/valleyworks/valleydata
+Author: Nahuel Chaves
+Author-email: nahuel.chaves@valleyworks.us
+License: MIT
+Description: # Valleydata
+        
+        # Getting Started
+        
+        First you need to install a few necessary dependencies.
+        
+        * VirtualBox (https://www.virtualbox.org/).
+        * Vagrant (https://www.vagrantup.com/).
+        * Install Guest Additions plugin for Vagrant (`vagrant plugin install vagrant-vbguest`)
+        
+        If you already use Vagrant, please make sure you update your box before starting it, do it with `vagrant box update`.
+        
+        Then you can clone this project and run `vagrant up` at the root folder. After this finishes, `vagrant ssh` to get inside the vm. Note: if you already use vagrant, it wont hurt running `vagrant box update` so we use the latest version available.
+        
+        Packages included in the vm:
+        
+        * Python 3.5.2 with virtualenv.
+        * Latest Nodejs installed with nvm.
+        
+        # Usage
+        
+        ## MySql
+        
+        You can connect using cli or your favorite client using the following config:
+        
+        * Host: localhost
+        * Port: 33061
+        * User: root
+        * Password: root
+        
+        ## Python
+        
+        Run `vagrant ssh` to get inside the VM, then you will need to make a new virtualenv and install the dependencies.
+        
+        After that you should be able to run `python test.py`
+        
+        
+        # Testing
+        Run `python test.py`
+        
+        
+        # Usage
+        
+        ## valleydata class
+        
+        ```
+            valleydata = valleydata(date_list=<list_of_dates>)
+        ```
+        
+        Note that `date_list` is a required parameter
+        
+        ### Methods
+        
+        - **get_top_hours**: Returns a list of tuples ((str)hour, (int)occurrences) representing most active hours. For example:
+        ```
+            [('03 PM', 5), ('09 PM', 5), ('01 PM', 4)]
+        ```
+        
+        - **get_top_weekdays**: Returns a list of tuples ((str)weekday, (int)ocurrences) representing most active weekdays. For example:
+        ```
+            [('Saturday', 12), ('Sunday', 9), ('Tuesday', 7), ('Friday', 7), ('Monday', 6)]
+        ```
+        
+        - **get_ip_info**: Returns a dict with info about a valid ip address (uses `ipinfo.io` external api). For example:
+        ```
+            {
+                'loc': '45.5186,-73.5545',
+                'city': 'Montr\xe9al',
+                'country': 'CA',
+                'region': 'Quebec',
+                'hostname': '198-48-208-217.cpe.pppoe.ca', 
+                'ip': u'198.48.208.217', 
+                'org': u'AS5645 TekSavvy Solutions, Inc.',
+                'postal': u'H2L'
+            }
+        ```
+        
+        
+        ## TextAnalyzer class
+        
+        ```
+            text_analyzer = TextAnalyzer(texts=<list_of_dicts>)
+        ```
+        
+        Note that `texts` is a required parameter and should have the following structure:
+        
+        ```
+            {
+                'text': "string",
+                'status': "string" (texts will be grouped by this string)
+            }
+        ```
+        
+        ### Methods
+        
+        - **most_used_words (group=string)**: Returns a list of tuples ((str)word, (int)occurrences). For example:
+        ```
+            [(u'magni', 3), (u'praesentium', 3), (u'amet', 3), (u'quae', 2), (u'non', 2), (u'molestias', 2)]
+        ```
+        
+        - **get_group**: Returns a list of strings that belongs to the given group.
+        
+        - **get_ranking**: Returns a dict AND a int. The dict contains points for each group and the int indicates the total score. Currently the score goes up if the group is called `approved`, otherwise it will go down.
+        
+Keywords: valleydata valleyworks
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
