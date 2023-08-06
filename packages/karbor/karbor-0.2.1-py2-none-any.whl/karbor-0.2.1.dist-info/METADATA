@@ -1,0 +1,140 @@
+Metadata-Version: 2.0
+Name: karbor
+Version: 0.2.1
+Summary: Application Data Protection as a Service for OpenStack
+Home-page: http://docs.openstack.org/developer/karbor
+Author: OpenStack
+Author-email: openstack-dev@lists.openstack.org
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: OpenStack
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: Babel (>=2.3.4,!=2.4.0)
+Requires-Dist: Paste
+Requires-Dist: PasteDeploy (>=1.5.0)
+Requires-Dist: Routes (>=2.3.1)
+Requires-Dist: SQLAlchemy (>=1.0.10,!=1.1.6,!=1.1.5,!=1.1.8,!=1.1.7)
+Requires-Dist: WebOb (>=1.7.1)
+Requires-Dist: abclient (>=0.2.3)
+Requires-Dist: croniter (>=0.3.4)
+Requires-Dist: eventlet (!=0.18.3,<0.21.0,>=0.18.2)
+Requires-Dist: greenlet (>=0.3.2)
+Requires-Dist: icalendar (>=3.10)
+Requires-Dist: keystoneauth1 (>=2.20.0)
+Requires-Dist: keystonemiddleware (>=4.12.0)
+Requires-Dist: oslo.concurrency (>=3.8.0)
+Requires-Dist: oslo.config (>=3.22.0)
+Requires-Dist: oslo.context (>=2.12.0)
+Requires-Dist: oslo.db (>=4.19.0)
+Requires-Dist: oslo.i18n (>=2.1.0)
+Requires-Dist: oslo.log (>=3.22.0)
+Requires-Dist: oslo.messaging (>=5.19.0)
+Requires-Dist: oslo.middleware (>=3.10.0)
+Requires-Dist: oslo.policy (>=1.17.0)
+Requires-Dist: oslo.serialization (>=1.10.0)
+Requires-Dist: oslo.service (>=1.10.0)
+Requires-Dist: oslo.versionedobjects (>=1.17.0)
+Requires-Dist: pbr (!=2.1.0,>=2.0.0)
+Requires-Dist: python-cinderclient (>=2.0.1)
+Requires-Dist: python-glanceclient (>=2.5.0)
+Requires-Dist: python-heatclient (>=1.6.1)
+Requires-Dist: python-karborclient (>=0.2.0)
+Requires-Dist: python-manilaclient (>=1.12.0)
+Requires-Dist: python-neutronclient (>=5.1.0)
+Requires-Dist: python-novaclient (>=7.1.0)
+Requires-Dist: python-swiftclient (>=3.2.0)
+Requires-Dist: requests (!=2.13.0,!=2.12.2,>=2.10.0)
+Requires-Dist: six (>=1.9.0)
+Requires-Dist: sqlalchemy-migrate (>=0.9.6)
+Requires-Dist: stevedore (>=1.20.0)
+Requires-Dist: taskflow (>=2.7.0)
+
+========================
+Team and repository tags
+========================
+
+.. image:: https://governance.openstack.org/badges/karbor.svg
+    :target: https://governance.openstack.org/reference/tags/index.html
+
+.. Change things from this point on
+
+======
+Karbor
+======
+
+Application Data Protection as a Service for OpenStack
+
+.. image:: https://raw.githubusercontent.com/openstack/karbor/master/doc/images/mascot/OpenStack_Project_Karbor_vertical.png
+    :alt: Karbor
+    :width: 300
+    :height: 525
+    :align: center
+
+
+*****************
+Mission Statement
+*****************
+
+To protect the Data and Metadata that comprises an OpenStack-deployed
+Application against loss/damage (e.g. backup, replication) by providing a
+standard framework of APIs and services that allows vendors to provide plugins
+through a unified interface
+
+Open Architecture
+"""""""""""""""""
+
+Design for multiple perspectives:
+
+* User: Protect App Deployment
+
+  * Configure and manage custom protection plans on the deployed resources
+    (topology, VMs, volumes, images, …)
+
+* Admin: Define Protectable Resources
+
+  * Decide what plugins protect which resources, what is available for the user
+  * Decide where users can protect their resources
+
+* Vendors: Standard API for protection products
+
+  * Create plugins that implement Protection mechanisms for different OpenStack
+    resources
+
+*****
+Links
+*****
+
+* Free software: Apache license
+* Documentation: https://docs.openstack.org/developer/karbor
+* Source: https://git.openstack.org/cgit/openstack/karbor
+* Bugs: https://bugs.launchpad.net/karbor
+
+********
+Features
+********
+
+Version 0.1
+"""""""""""
+
+* Resource API
+* Plan API
+* Bank API
+* Ledger API
+* Cross-resource dependencies
+
+Limitations
+***********
+
+* Only 1 Bank plugin per Protection Plan
+* Automatic object discovery not supported
+
+
+
