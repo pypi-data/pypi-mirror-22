@@ -1,0 +1,134 @@
+from awlsim.core.statusword cimport *
+from awlsim.core.callstack cimport *
+from awlsim.core.offset cimport *
+from awlsim.core.operators cimport *
+from awlsim.core.memory cimport *
+from awlsim.core.blocks cimport *
+from awlsim.core.datablocks cimport *
+
+
+cdef class S7CPU(object):
+	cdef uint32_t _OPER_BLKREF_FC
+	cdef uint32_t _OPER_BLKREF_FB
+	cdef uint32_t _OPER_BLKREF_SFC
+	cdef uint32_t _OPER_BLKREF_SFB
+	cdef uint32_t _OPER_MULTI_FB
+	cdef uint32_t _OPER_MULTI_SFB
+	cdef uint32_t _OPER_INDIRECT
+
+	cdef public object cbCycleExit
+	cdef public object cbCycleExitData
+	cdef public object cbBlockExit
+	cdef public object cbBlockExitData
+	cdef public object cbPostInsn
+	cdef public object cbPostInsnData
+	cdef public object cbPeripheralRead
+	cdef public object cbPeripheralReadData
+	cdef public object cbPeripheralWrite
+	cdef public object cbPeripheralWriteData
+	cdef public object cbScreenUpdate
+	cdef public object cbScreenUpdateData
+
+	cdef public double now
+	cdef public double __nowOffset
+	cdef public object specs
+	cdef public object conf
+	cdef public object prog
+	cdef public double cycleTimeLimit
+	cdef public double __runtimeLimit
+	cdef public _Bool is4accu
+	cdef public _Bool __obTempPresetsEnabled
+	cdef public _Bool __extendedInsnsEnabled
+	cdef public _Bool mcrActive
+
+	cdef public dict udts
+	cdef public dict dbs
+	cdef public dict obs
+	cdef public dict obTempPresetHandlers
+	cdef public dict fcs
+	cdef public dict fbs
+	cdef public dict sfcs
+	cdef public dict sfbs
+
+	cdef public Accu accu1
+	cdef public Accu accu2
+	cdef public Accu accu3
+	cdef public Accu accu4
+	cdef public list timers
+	cdef public list counters
+	cdef public AwlMemory flags
+	cdef public AwlMemory inputs
+	cdef public AwlMemory outputs
+	cdef public Addressregister ar1
+	cdef public Addressregister ar2
+	cdef public DB dbRegister
+	cdef public DB diRegister
+	cdef public list callStack
+	cdef public CallStackElem callStackTop
+	cdef public list mcrStack
+	cdef public S7StatusWord statusWord
+	cdef public AwlOffset __clockMemByteOffset
+	cdef public double __nextClockMemTime
+	cdef public uint32_t __clockMemCount
+	cdef public uint32_t __clockMemCountLCM
+	cdef public int32_t relativeJump
+
+	cdef public uint32_t __insnCount
+	cdef public uint32_t __cycleCount
+	cdef public double insnPerSecond
+	cdef public double avgInsnPerCycle
+	cdef public double cycleStartTime
+	cdef public double minCycleTime
+	cdef public double maxCycleTime
+	cdef public double avgCycleTime
+	cdef public double startupTime
+	cdef public double __speedMeasureStartTime
+	cdef public uint32_t __speedMeasureStartInsnCount
+	cdef public uint32_t __speedMeasureStartCycleCount
+
+	cdef dict __fetchTypeMethods
+	cdef dict __storeTypeMethods
+
+	cdef parenStackAppend(self, uint32_t insnType, S7StatusWord statusWord)
+
+	cpdef object fetch(self, AwlOperator operator, frozenset enforceWidth=*)
+	cpdef store(self, AwlOperator operator, object value, frozenset enforceWidth=*)
+
+	cpdef bytearray fetchOutputRange(self, uint32_t byteOffset, uint32_t byteCount)
+	cpdef bytearray fetchInputRange(self, uint32_t byteOffset, uint32_t byteCount)
+	cpdef storeInputRange(self, uint32_t byteOffset, bytearray data)
+
+	cpdef updateTimestamp(self, object _getTime=*)
+	cdef __runTimeCheck(self)
+
+	cdef runCycle(self)
+	cdef __runOB(self, CodeBlock block)
+	cdef run_BE(self)
+	cdef run_AUF(self, AwlOperator dbOper)
+	cdef run_TDB(self)
+
+	cdef int32_t labelIdxToRelJump(self, uint32_t labelIndex)
+	cdef jumpToLabel(self, uint32_t labelIndex)
+	cdef jumpRelative(self, int32_t insnOffset)
+
+	cdef run_CALL(self, AwlOperator blockOper, AwlOperator dbOper=*, tuple parameters=*, _Bool raw=*)
+	cdef CallStackElem __call_FC(self, AwlOperator blockOper, AwlOperator dbOper, tuple parameters)
+	cdef CallStackElem __call_RAW_FC(self, AwlOperator blockOper, AwlOperator dbOper, tuple parameters)
+	cdef CallStackElem __call_FB(self, AwlOperator blockOper, AwlOperator dbOper, tuple parameters)
+	cdef CallStackElem __call_RAW_FB(self, AwlOperator blockOper, AwlOperator dbOper, tuple parameters)
+	cdef CallStackElem __call_SFC(self, AwlOperator blockOper, AwlOperator dbOper, tuple parameters)
+	cdef CallStackElem __call_RAW_SFC(self, AwlOperator blockOper, AwlOperator dbOper, tuple parameters)
+	cdef CallStackElem __call_SFB(self, AwlOperator blockOper, AwlOperator dbOper, tuple parameters)
+	cdef CallStackElem __call_RAW_SFB(self, AwlOperator blockOper, AwlOperator dbOper, tuple parameters)
+	cdef CallStackElem __call_INDIRECT(self, AwlOperator blockOper, AwlOperator dbOper, tuple parameters)
+	cdef CallStackElem __call_MULTI_FB(self, AwlOperator blockOper, AwlOperator dbOper, tuple parameters)
+	cdef CallStackElem __call_MULTI_SFB(self, AwlOperator blockOper, AwlOperator dbOper, tuple parameters)
+
+	cdef AwlOperator __translateFCNamedLocalOper(self, AwlOperator operator, _Bool store)
+
+cdef class ParenStackElem(object):
+	cdef public S7CPU cpu
+	cdef public uint32_t insnType
+	cdef public _Bool NER
+	cdef public _Bool VKE
+	cdef public _Bool OR
