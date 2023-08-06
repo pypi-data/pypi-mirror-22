@@ -1,0 +1,20 @@
+This is a fork of Casey Duncan's noise library that vectorizes all of the noise
+functions using NumPy. It is much faster than the original for computing noise
+values at many coordinates.
+
+Perlin noise is ubiquitous in modern CGI. Used for procedural texturing,
+animation, and enhancing realism, Perlin noise has been called the "salt" of
+procedural content. Perlin noise is a type of gradient noise, smoothly
+interpolating across a pseudo-random matrix of values.
+
+The vec_noise library includes native-code implementations of Perlin "improved"
+noise and Perlin simplex noise. It also includes a fast implementation of
+Perlin noise in GLSL, for use in OpenGL shaders. The shader code and many of
+the included examples require Pyglet (http://www.pyglet.org), the native-code
+noise functions themselves do not, however.
+
+The Perlin improved noise functions can also generate fBm (fractal Brownian
+motion) noise by combining multiple octaves of Perlin noise. Shader functions
+for convenient generation of turbulent noise are also included.
+
+
