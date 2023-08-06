@@ -1,0 +1,55 @@
+Metadata-Version: 1.1
+Name: nti.zodb
+Version: 1.0.0
+Summary: Utilities for ZODB
+Home-page: https://github.com/NextThought/nti.zodb
+Author: Jason Madden
+Author-email: jason@nextthought.com
+License: Apache
+Description: ==========
+         nti.zodb
+        ==========
+        
+        .. image:: https://travis-ci.org/NextThought/nti.zodb.svg?branch=master
+            :target: https://travis-ci.org/NextThought/nti.zodb
+        
+        .. image:: https://coveralls.io/repos/github/NextThought/nti.zodb/badge.svg?branch=master
+            :target: https://coveralls.io/github/NextThought/nti.zodb?branch=master
+        
+        .. image:: https://readthedocs.org/projects/ntizodb/badge/?version=latest
+            :target: http://ntizodb.readthedocs.io/en/latest/?badge=latest
+            :alt: Documentation Status
+        
+        Utilities for working with ZODB.
+        
+        Complete documents are found at http://ntizodb.readthedocs.io/
+        
+        
+        =========
+         Changes
+        =========
+        
+        
+        1.0.0 (2017-06-08)
+        ==================
+        
+        - First PyPI release.
+        - Add support for Python 3.
+        - Remove nti.zodb.common. See
+          https://github.com/NextThought/nti.zodb/issues/1.
+          ``ZlibClientStorageURIResolver`` will no longer try to set a ``var``
+          directory to store persistent cache files automatically.
+        - ``CopyingWeakRef`` now implements ``ICachingWeakRef``.
+        
+Keywords: ZODB
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Framework :: ZODB
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
