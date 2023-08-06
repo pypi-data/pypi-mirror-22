@@ -1,0 +1,95 @@
+Metadata-Version: 1.1
+Name: RachioPy
+Version: 0.1.1
+Summary: A Python module for the Rachio API.
+Home-page: https://github.com/rfverbruggen/rachiopy
+Author: Robbert Verbruggen
+Author-email: rfverbruggen@icloud.com
+License: MIT
+Download-URL: https://github.com/rfverbruggen/rachiopy/archive/0.1.1.tar.gz
+Description: Rachiopy
+        ========
+        This python package provides a interface to the Rachio public API.
+        
+        Usage
+        -----
+        ```python
+        from rachiopy import Rachio
+        
+        r = Rachio("authtoken")
+        
+        r.person.getInfo()
+        ```
+        
+        Commands
+        --------
+        ### Person
+        
+        `r.person.getInfo()`
+        
+        `r.person.get(id)`
+        
+        ### Device
+        
+        `r.device.get(id)`
+        
+        `r.device.getCurrentSchedule(id)`
+        
+        `r.device.getEvent(id, starttime, endtime)`
+        
+        `r.device.getScheduleItem(id)`
+        
+        `r.device.getForecast(self, id, units)`
+        
+        `r.device.stopWater(id)`
+        
+        `r.device.rainDelay(id, duration)`
+        
+        `r.device.on(id)`
+        
+        `r.device.off(id)`
+        
+        ### Zone
+        
+        `r.zone.start(id, duration)`
+        
+        `r.zone.startMultiple(zones)`
+        
+        `r.zone.get(id)`
+        
+        ### Schedulerule
+        
+        `r.schedulerule.skip(id)`
+        
+        `r.schedulerule.start(id)`
+        
+        `r.schedulerule.seasonalAdjustment(id, adjustment)`
+        
+        `r.schedulerule.get(id)`
+        
+        ### FlexSchedulerule
+        
+        `r.flexschedulerule.get(id)`
+        
+        ### Notification
+        
+        `r.notification.getWebhookEventType()`
+        
+        `r.notification.getDeviceWebhook(id)`
+        
+        `r.notification.postWebhook(webhook)`
+        
+        `r.notification.putWebhook(webhook)`
+        
+        `r.notification.deleteWebhook(id)`
+        
+        `r.notification.get(id)`
+        
+Platform: Cross Platform
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development
