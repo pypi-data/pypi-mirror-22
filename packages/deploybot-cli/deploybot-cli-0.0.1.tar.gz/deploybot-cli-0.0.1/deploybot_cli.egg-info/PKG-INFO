@@ -1,0 +1,46 @@
+Metadata-Version: 1.0
+Name: deploybot-cli
+Version: 0.0.1
+Summary: Deploybot API Client
+Home-page: https://github.com/mrprompt/deploybot-cli
+Author: Thiago Paes
+Author-email: mrprompt@gmail.com
+License: GPL
+Description: # Deploybot Client
+        
+        [![Build Status](https://travis-ci.org/mrprompt/deploybot-cli.svg?branch=master)](https://travis-ci.org/mrprompt/deploybot-cli)
+        
+        A client to [Deploybot](https://www.deploybot.com) service.
+        
+        # Install
+        
+        ```
+        pip install deploybot-cli
+        ```
+        
+        # Configuration
+        
+        ```
+        DEPLOYBOT_ACCOUNT="foo"
+        DEPLOYBOT_KEY="foo123bar456bar"
+        ```
+        
+        # Usage
+        
+        ```
+        - deploybot-cli --help
+        - deploybot-cli user
+        - deploybot-cli deploy [repository_id] [environment_id]
+        - deploybot-cli environment [repository_id]
+        - deploybot-cli repository 
+        - deploybot-cli server [repository_id] [environment_id]
+        
+        ```
+        
+        # Test
+        
+        ```
+        python setup.py test
+        ```
+Keywords: deploy,service,api,client,cli,deploybot,continuous,delivery,cd
+Platform: UNKNOWN
