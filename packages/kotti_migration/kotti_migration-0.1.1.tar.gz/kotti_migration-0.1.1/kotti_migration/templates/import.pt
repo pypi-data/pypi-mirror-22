@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="api.macro('kotti:templates/view/master.pt')"
+      i18n:domain="Kotti">
+
+  <article metal:fill-slot="content"
+           class="content import-view"
+           i18n:domain="kotti_migration">
+
+        <h1 class="user-import-header">Import Content Type</h1>
+
+       <form name="content-import" id="school-dropbox-uploader" action="${request.url}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+          <div class="form-group input-group ">
+              <input id="userfile" type="file" name="file" value="" placeholder="Upload file" class="form-control">
+              <input id="filesize" name="filesize" type="hidden" />
+          </div>
+        <div class="">
+        <input type="submit"  class="btn btn-primary" value="Import" />
+        </div>
+      </form>
+
+  </article>
+</html>
