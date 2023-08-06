@@ -1,0 +1,40 @@
+#! /usr/bin/env python
+import datadotworld as dw
+import requests
+import click
+client = dw.api_client()
+
+def download_socrata_metadata(domain, datasetid):
+    return requests.get('https://%s/views/%s.json' % (domain, datasetid)).json()
+
+def convert_socrata_licenseid_to_dw_code(licenseid): #see https: //gist.github.com/anonymous/1a559c153baf91ece8e6f7df0898b7db
+    socrata_to_dw_license_codes = {
+        'PUBLIC_DOMAIN': 'Public Domain',
+        'PDDL': 'PDDL',
+        'CC0_10': 'CC-0',
+        'CC_30_BY': 'CC-BY',
+        'ODC_BY': 'ODC-BY',
+        'CC_30_BY_SA': 'CC-BY-SA',
+        'ODBL': 'ODC-ODbL',
+        'CC_30_BY_NC': 'CC BY-NC',
+        'CC_30_BY_NC_SA': 'CC BY-NC-SA'
+    }
+    return socrata_to_dw_license_codes.get(licenseid, 'Other')
+
+@click.command()
+@click.option('--username', prompt = 'Your data.world username')
+@click.option('--domain', prompt = 'The Socrata domain such as data.seattle.gov')
+@click.option('--datasetid', prompt = 'The Socrata dataset id which you get from the url. It is eight characters and has a dash. For example for https://data.seattle.gov/Public-Safety/Seattle-Real-Time-Fire-911-Calls/kzjm-xkqj/data the id is kzjm-xkqj')
+def copy_socrata_dataset_to_datadotworld(username, domain, datasetid):
+    dataset_metadata = download_socrata_metadata(domain, datasetid)
+    title = '%s %s' % (domain, dataset_metadata['name'])
+    title = title[: 30]
+    license = convert_socrata_licenseid_to_dw_code(dataset_metadata.get('licenseId', ''))
+    dw_dataset_url = client.create_dataset(username, title = title, description = dataset_metadata.get('description')[:120], visibility = 'OPEN', license = license)
+    dw_dataset_key = dw_dataset_url[19: ]
+    client.add_files_via_url(dw_dataset_key, {
+        'data.csv': 'https://%s/api/views/%s/rows.csv?accessType=DOWNLOAD' % (domain, datasetid)
+    })
+
+if __name__ == '__main__':
+    copy_socrata_dataset_to_datadotworld()
