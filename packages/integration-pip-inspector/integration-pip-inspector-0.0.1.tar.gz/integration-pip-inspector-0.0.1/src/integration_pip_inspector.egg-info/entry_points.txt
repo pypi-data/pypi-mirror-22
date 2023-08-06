@@ -1,0 +1,6 @@
+[console_scripts]
+integration_pip_inspector = hub_pip.Main:cli
+
+[distutils.commands]
+integration_pip_inspector = integration_pip_inspector.BlackDuckPlugin:BlackDuckCommand
+
