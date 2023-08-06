@@ -1,0 +1,16 @@
+[console_scripts]
+microscopic = microscopic.__main__:main
+
+[microscopic.patterns]
+regex = microscopic.pattern:PatternContext
+
+[microscopic.pipelines]
+pattern_queue = microscopic.pipelines.pattern_queue:pipeline
+
+[microscopic.processors]
+request_processor = microscopic.processors.request:RequestProcessor
+
+[microscopic.transports]
+pipe = microscopic.transports.pipe:PipeTransport
+subprocess = microscopic.transports.subprocess:SubprocessTransport
+
