@@ -1,0 +1,39 @@
+Tf-Idf-CategoryWeighting
+------------------------------
+
+Tf-Idf-CategoryWeighting
+
+Train Data Format
+````````````````````
+
+==========  		=====================================================
+  Y_train                                 X_train
+==========  		=====================================================
+   game                  The LoL champions pro players would ban forever
+ society                   In Beijing you should keep the rules
+   etc.                                      etc.
+==========  		=====================================================
+
+Sample Usage
+````````````
+.. code:: python
+
+    >>> import TfIdfCategoryWeighting
+		#creat vectorizer
+    >>> Tf_idf_cw_vectorizer = TfIdfCategoryWeighting.TfidfPro_Vectorizer(use_idf=True,use_Wt=True)
+		#train vectorizer
+    >>> Tf_idf_cw_vectorizer.fit(X_train,Y_train)
+		#transform word to vector
+    >>> X_train = Tf_idf_cw_vectorizer.transform(X_train)
+
+
+Installation 
+```````````` 
+.. code:: bash 
+
+    $ pip install Tf-Idf-CategoryWeighting 
+
+Links 
+````` 
+
+* `Code on Github <https://github.com/ArnoldGaius/Tf-Idf-CategoryWeighting>`_
