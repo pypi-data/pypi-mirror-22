@@ -1,0 +1,18 @@
+include MANIFEST
+include Makefile
+include *.txt
+include *.md
+include *.py
+include tox.ini
+include .coveragerc
+include *.conf
+include *.yml
+include *.ico
+recursive-include suitedog *.py
+recursive-include suitedog *.py
+
+exclude TODO
+global-exclude *.swp
+recursive-exclude suitedog *.pyc
+prune config
+prune tests
