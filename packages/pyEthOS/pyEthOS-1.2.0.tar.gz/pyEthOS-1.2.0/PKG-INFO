@@ -1,0 +1,218 @@
+Metadata-Version: 1.1
+Name: pyEthOS
+Version: 1.2.0
+Summary: Python 2 and 3 interface to the EthOS custom Dashboard API
+Home-page: https://github.com/DEKHTIARJonathan/pyEthOS
+Author: Jonathan Dekhtiar
+Author-email: contact@jonathandekhtiar.eu
+License: GPLv3
+Description: PyEthOS
+        =======
+        
+        |Build Status| |PyPI version|
+        
+        Python 2 and 3 interface to the EthOS custom Dashboard API
+        
+        This library provides a pure Python interface to the EthOS Custom
+        Dashboard REST APIs.
+        
+        Maintainer
+        ----------
+        
+        `Jonathan Dekhtiar <https://github.com/DEKHTIARJonathan>`__
+        
+        Documentation is available here:
+        --------------------------------
+        
+        https://dekhtiarjonathan.github.io/pyEthOS/
+        
+        Installation
+        ------------
+        
+        The library is available with PIP:
+        
+        .. code:: shell
+        
+            pip install PyEthOS
+        
+        If prefered, the library can be compiled with following commands:
+        
+        .. code:: shell
+        
+            ## First clone the repository
+            git clone https://github.com/DEKHTIARJonathan/pyEthOS.git
+        
+            ## Then install the library
+            python setup.py install
+        
+        Example
+        -------
+        
+        .. code:: python
+        
+            import pyEthOS.pyEthOS as ethos
+        
+            if __name__ == '__main__':
+        
+                PANEL_NAME = "ethos1"
+                DEBUG = False # Allow development debug infos to be printed on the console
+                
+                api = ethos.EthOSApplication(PANEL_NAME, debug=DEBUG)
+        
+                print (api.get_summary())
+                
+                '''
+                {
+                    "rigs": {
+                        "######": {
+                            "condition": "######",
+                            "version": "######",
+                            "miner": "######",
+                            "gpus": "######",
+                            "miner_instance": "######",
+                            "miner_hashes": "######",
+                            "bioses": "######",
+                            "meminfo": "######",
+                            "vramsize": "######",
+                            "drive_name": "######",
+                            "mobo": "######",
+                            "lan_chip": "R######",
+                            "connected_displays": "",
+                            "ram": "######",
+                            "rack_loc": "######",
+                            "ip": "######",
+                            "driver": "######",
+                            "server_time": 0,
+                            "uptime": "######",
+                            "miner_secs": 0,
+                            "rx_kbps": "######",
+                            "tx_kbps": "######",
+                            "load": "######",
+                            "cpu_temp": "######",
+                            "freespace": 0,
+                            "hash": 0,
+                            "pool": "######",
+                            "temp": "######",
+                            "powertune": "######",
+                            "fanrpm": "######",
+                            "core": "######",
+                            "mem": "######"
+                        }
+                    },
+                    "total_hash": 0,
+                    "alive_gpus": 0,
+                    "total_gpus": 0,
+                    "alive_rigs": 0,
+                    "total_rigs": 0,
+                    "current_version": "######",
+                    "avg_temp": 0,
+                    "capacity": "######",
+                    "per_info": {
+                        "claymore": {
+                            "hash": 0,
+                            "per_alive_gpus": 0,
+                            "per_total_gpus": 0,
+                            "per_alive_rigs": 0,
+                            "per_total_rigs": 0,
+                            "per_hash-gpu": "######",
+                            "per_hash-rig": "######"
+                        }
+                    }
+                }
+                '''
+                
+                print(api.get_rig_status())
+                '''
+                {
+                    "success": "True",
+                    "timestamp": "2017-06-12 12:51:15",
+                    "payload": {
+                        "######": "unreachable",
+                        "######": "mining",
+                        "######": "mining",
+                        "######": "unreachable",
+                    }
+                }
+                '''
+                
+                print(api.get_rig_ids())
+                '''
+                {
+                    "success": "True",
+                    "rig_ids": [
+                        "######",
+                        "######",
+                        "######"
+                    ],
+                    "timestamp": "2017-06-12 12:54:15"
+                }
+                '''
+                #####################
+                # Available routes:
+                ######################
+                
+                # ethos.REQUEST_TYPES.RX_KBPS
+                # ethos.REQUEST_TYPES.TX_KBPS
+                # ethos.REQUEST_TYPES.SYSLOAD
+                # ethos.REQUEST_TYPES.CPU_LOAD
+                # ethos.REQUEST_TYPES.HASHRATE
+                # ethos.REQUEST_TYPES.GPU_CORECLOCK
+                # ethos.REQUEST_TYPES.GPU_MEMCLOCK
+                # ethos.REQUEST_TYPES.GPU_FANRPM
+                # ethos.REQUEST_TYPES.GPU_TEMP
+                # ethos.REQUEST_TYPES.GPU_HASHRATE
+                
+                print(api.get_graph_data(ethos.REQUEST_TYPES.SYSLOAD, "e057d6"))
+                '''
+                {
+                    "success": "True",
+                    "payload": {
+                        "e057d6 sysload": [
+                            "1494859237000 0.30",
+                            "1494859529000 0.30",
+                            "1494859835000 0.27",
+                            "1494860134000 0.27",
+                            "1494860439000 0.28"
+                        ]
+                    },
+                    "timestamp": "2017-06-12 13:37:22"
+                }
+                '''
+        
+        Disclaimer
+        ----------
+        
+        This Python Package is not affiliated with EthOS distribution available
+        on `ethosdistro.com <http://ethosdistro.com/>`__.
+        
+        The Author expressly disclaims any warranty for this product, including
+        all descriptions, documentation, and on-line documentation. This
+        Software is provided 'AS IS' without warranty of any kind, including
+        without limitation, any implied warranties of fitness for a particular
+        purpose or result. You agree to assume the entire risk for any damage or
+        result arising from its download, installation and use, including the
+        license process. In no event will the Author (or his agents and/or
+        associates) be liable to you for any incidental or consequential damages
+        or losses whatsoever, including without limitation, damage to data,
+        property or profits, arising from any use, or from any inability to use
+        said Software.
+        
+        .. |Build Status| image:: https://travis-ci.org/DEKHTIARJonathan/pyEthOS.svg?branch=master
+           :target: https://travis-ci.org/DEKHTIARJonathan/pyEthOS
+        .. |PyPI version| image:: https://badge.fury.io/py/pyEthOS.svg
+           :target: https://badge.fury.io/py/pyEthOS
+        
+Keywords: EthOS Etherium Bitcoin Cryptocurrencies API python python3 python2
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Natural Language :: English
