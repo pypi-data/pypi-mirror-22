@@ -1,0 +1,50 @@
+Metadata-Version: 2.0
+Name: logthing
+Version: 0.10.1
+Summary: Size based rotating log handler and various log config tools 
+Home-page: https://github.com/cltrudeau/logthing
+Author: Christopher Trudeau
+Author-email: ctrudeau+pypi@arsensa.com
+License: MIT
+Keywords: size rotating log handler,log configuration tools
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: portalocker (>=1.1.0)
+Requires-Dist: six (>=1.10)
+
+logthing
+********
+
+Some useful tools for logging.  First of is the SRotHandler, a rotating file
+handler with a size limit.  Second is a series of utilities for configuring
+your logging
+
+Installation
+============
+
+.. code-block:: bash
+
+    $ pip install logthing
+
+Supports
+========
+
+logthing has been tested with Python 2.7, 3.5, and 3.6
+
+Docs & Source
+=============
+
+Docs: http://logthing.readthedocs.io/en/latest/
+
+Source: https://github.com/cltrudeau/logthing
+
+
