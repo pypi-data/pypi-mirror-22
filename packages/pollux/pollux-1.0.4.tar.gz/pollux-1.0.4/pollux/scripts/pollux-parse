@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+
+"""
+A script to parse using corpkit
+
+:Example:
+
+$ pollux-parse junglebook --speaker-segmentation --metadata --multiprocess=3
+
+"""
+import os
+import sys
+from corpkit.corpus import Corpus
+from pollux.config import CORPUS_DIR
+from corpkit.process import cmd_line_to_kwargs
+
+if len(sys.argv) == 1:
+    raise ValueError('Please specify a corpus to parse.')
+
+args = sys.argv[2:]
+kwargs = cmd_line_to_kwargs(args)
+corp = Corpus(sys.argv[1], lang=kwargs.pop('lang', 'english'))
+
+move_to = CORPUS_DIR
+if kwargs.get('user'):
+    move_to = os.path.join(CORPUS_DIR, 'uploads', kwargs.get('user'))
+
+if not os.path.isdir(move_to):
+    os.makedirs(move_to)
+
+kwargs['outpath'] = move_to
+parsed = corp.parse(**kwargs)
+name = os.path.basename(parsed.path)
+
+print("\nParsing done! The parsed corpus is now in available at '%s/%s'\n" % (move_to, name))
+

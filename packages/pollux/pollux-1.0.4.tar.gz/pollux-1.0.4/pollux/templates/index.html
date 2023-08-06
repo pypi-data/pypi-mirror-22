@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block title %}pollux{% endblock %}
+{% block head %}
+  {{ super() }}
+
+<!--load all js-->
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- FEATURES WRAP -->
+<div id="features" class="hidden-xs">
+  <div class="container">
+    <div class="row">
+      <h1 class="centered">What is pollux?</h1>
+      <br><br>
+      <p>pollux is a web application for <b>hosting</b>, <b>building</b>, <b>searching</b>, <b>annotating</b> and <b>visualising</b> linguistic treebanks/corpora. You can explore a number of default treebanks, or upload and parse your own.</p>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="treebanks">
+  <h1 class="centered">Available datasets</h1>
+  <br>
+  <br>
+  <div id="corpora-table">
+  <table data-toggle="table" >
+    <thead>
+      <tr>
+        <th data-field="name" data-formatter="LinkFormatter" data-sortable="true">Name</th>
+        <th data-field="desc" data-sortable="true">Description</th>
+        <th data-field="lang" data-sortable="true">Language</th>
+        <th data-field="parsed" data-visible="false" data-sortable="true">Parsed</th>
+        <th data-field="path" data-visible="false" data-sortable="true">Path</th>
+        <th data-field="nfiles" data-visible="true" data-halign="right" data-sortable="true">Files</th>
+        <th data-field="nsents" data-visible="true" data-halign="right" data-sortable="true">Sentences</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for prev in corpora %}
+      <tr>
+        <td>{{ prev.name }}</td>
+        <td>{{ prev.desc }}</td>
+        <td>{{ prev.lang }}</td>
+        <td>{{ prev.parsed }}</td>
+        <td>{{ prev.path }}</td>
+        <td>{{ prev.nfiles }}</td>
+        <td>{{ prev.nsents }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  <button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#parse-modal">Upload</button>
+  <br>    
+</div>
+<script src="{{ url_for('static',filename='js/index.js') }}"></script>
+{{ parse_modal|safe }}
+
+{% endblock %}

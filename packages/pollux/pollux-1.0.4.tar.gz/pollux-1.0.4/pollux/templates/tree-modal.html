@@ -1,0 +1,30 @@
+
+<div class="row">
+  <div class="btn-group" style="padding-left:20px;">
+    <a href="#" id="view-tree-start" value="start" class="btn btn-default pull-left view-tree make-num start"><span class="glyphicon glyphicon-fast-backward"></span></a>
+    <a href="#" id="view-tree-minus" value="minus" class="btn btn-default view-tree make-num minus"><span class="glyphicon glyphicon-step-backward"></span></a>
+    <a href="#" id="view-tree-plus" value="plus" class="btn btn-default view-tree make-num plus"><span class="glyphicon glyphicon-step-forward"></span></a>
+    <a href="#" id="view-tree-end" value="end" class="btn btn-default view-tree make-num end"><span class="glyphicon glyphicon-fast-forward"></span></a>
+    <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-tree-deciduous"></span></a>
+    <a href="#" id="go-to-conc" class="btn btn-default"><span class="glyphicon glyphicon-list"></span></a>
+    <div data-num="0" id="sent-text" class="pull-right" style="padding: 10px"></div>
+  </div>
+</div>
+<div class="row">
+  <div id="diagram-div" style="overflow: auto;">
+  </div>
+</div>
+
+<script>
+$(document).on('click', '#go-to-conc', function () {
+    $("#conc-tab-button-text").click();
+    var pageSize = $('#conc-table').bootstrapTable('getOptions').pageSize;
+    var toShow = parseInt($("#sent-text").attr("data-num"));
+    var page = Math.ceil((toShow / pageSize));
+    if (page == 0) {
+      page = 1
+    }
+    $('#conc-table').bootstrapTable('selectPage', page);
+    $("#conc-table tr[data-index='" + toShow +"']").addClass('row-active');
+});
+</script>

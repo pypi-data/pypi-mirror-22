@@ -1,0 +1,32 @@
+<div class="row" >
+  <div class="col-xs-9 col-lg-10 col-xl-11">
+    <div>
+      <div id="area" style="height:600px;width:1100px;">
+        <svg></svg>
+      </div>
+      <div id="line" style="height:600px;width:1100px;display: none;"">
+        <svg></svg>
+      </div>
+      <div id="bar" style="height:600px;width:1100px;display: none;">
+        <svg></svg>
+      </div>
+      <div id="pie" style="height:600px;width:1100px;display: none;">
+        <svg></svg>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-3 col-lg-2 col-xl-1">
+    <div id="chart-toolbar">
+      <select class="selectpicker" id="chart-type" title="Chart type">
+        <option>Area</option>
+        <option>Line</option>
+        <option>Bar</option>
+        <option>Pie</option>
+      </select>
+      <div class="form-group row">
+        <label for="example-number-input" class="col-2 col-form-label">Number to plot</label>
+        <input class="form-control" type="number" value="10" max="50" id="num_to_plot">
+      </div>
+    </div>
+  </div>
+</div>

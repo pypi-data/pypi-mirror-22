@@ -1,0 +1,62 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="parse-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Upload and parse</h4>
+      </div>
+      <form class="form" action="{{ url_for('upload_parse') }}" method="post" name="parse-form" id="parse-form" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+      <div class="modal-body" style="overflow-y: auto;">
+          <div class="form-group">
+            <label class="form-control-label">Project title:</label>
+            <input type="text" class="form-control" id="projname" name="projname">
+          </div>
+          <div class="form-group">
+            <label class="form-control-label">Description:</label>
+            <textarea class="form-control" id="desc" name="desc"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="btn btn-default btn-file"><input type="file" name="txt" id="txt"></label>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label">YouTube link:</label>
+            <input type="text" class="form-control" id="youtube" name="youtube">
+          </div>
+          <div class="form-group">
+            <label class="form-control-label">Metadata: </label>
+            <select class="form-control-inline" id="lang" name="lang">
+                <option value="" selected hidden>Language</option>
+                <option>English</option>
+                <option>German</option>
+                <option>Arabic</option>
+                <option>Spanish</option>
+                <option>French</option>
+                <option>Chinese</option>
+            </select>
+
+
+            <label class="checkbox-inline"><input type="checkbox" id="speaker" name="speaker">Speaker IDs</label>
+            <label class="checkbox-inline"><input type="checkbox" id="metadata" name="metadata">XML metadata</label>
+          </div>
+
+          <div class="form-group">
+            <label for="message-text" class="form-control-label">Parser: </label>
+
+            <select class="form-control-inline" id="parse-parser" name="parse-parser">
+                <option value="" selected hidden>Parser</option>
+                <option>Stanford CoreNLP</option>
+                <option>Word features</option>
+            </select>
+            <label class="checkbox-inline"><input type="checkbox" value="">Coreference resolution</label>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Upload and parse</button>
+      </div>
+    </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

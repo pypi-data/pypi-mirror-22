@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# Download some CONLL-U data, turn it into HDF5 and start pollux.
+
+echo ""
+echo "=================================================="
+echo "            Downloading sample data"
+echo "=================================================="
+echo ""
+
+mkdir -p ~/corpora/UD_English-parsed
+mkdir -p ~/corpora/uploads
+
+if [ ! -f ~/corpora/UD_English-parsed/en-ud-train.conllu ]; then
+    curl -o ~/corpora/UD_English-parsed/en-ud-train.conllu https://raw.githubusercontent.com/UniversalDependencies/UD_English/master/en-ud-train.conllu
+fi
+
+if [ ! -f ~/corpora/UD_English-parsed/en-ud-dev.conllu ]; then
+    curl -o ~/corpora/UD_English-parsed/en-ud-dev.conllu https://raw.githubusercontent.com/UniversalDependencies/UD_English/master/en-ud-dev.conllu
+fi
+
+echo ""
+echo "=================================================="
+echo "               Compiling corpus"
+echo "=================================================="
+echo ""
+
+pollux-build
+
+echo ""
+echo "=================================================="
+echo "                Starting pollux"
+echo "=================================================="
+echo ""
+
+if [[ "$@" == "nostart" ]]
+then
+    echo "Done!"
+else
+    python -m pollux.start
+fi
+
+
