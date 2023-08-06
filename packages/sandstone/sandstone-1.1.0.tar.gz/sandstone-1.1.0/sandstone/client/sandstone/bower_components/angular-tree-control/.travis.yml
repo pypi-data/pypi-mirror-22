@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "0.10"
+
+notifications:
+    slack: rmacc:XuJOFyi7wxFivfqbHS6KDMSw
+
+before_script:
+  - npm install -g grunt-cli bower
+  - bower install
+
+after_success:
+  - cat ./coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+
+env:
+  - TREE_CI_ENV=travis

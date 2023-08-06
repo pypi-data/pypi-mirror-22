@@ -1,0 +1,2 @@
+<div uib-alert ng-repeat="(uuid, alert) in getAlerts() track by $index" ng-class="'alert-' + (alert.type || 'warning')" ng-show="!alert.close">{{alert.message}}</div>
+<div uib-alert ng-repeat="(uuid, alert) in getAlerts() track by $index" ng-class="'alert-' + (alert.type || 'warning')" close="removeAlert(uuid)" ng-show="alert.close">{{alert.message}}</div>

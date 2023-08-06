@@ -1,0 +1,163 @@
+/* Volume info styles */
+.fb-volume {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 50px;
+}
+
+.fb-volume > span {
+  font-weight: bold;
+}
+
+.fb-volume-info > .progress {
+  margin-bottom: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.fb-volume-listing > .list-group {}
+.fb-volume-listing > .list-group > li {
+  cursor: pointer;
+  text-align: left;
+}
+.fb-volume-listing > .list-group > li:hover {
+  background-color: #eee;
+}
+
+/* Filepath breadcrumb styles */
+.breadcrumb {
+  margin-bottom: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #fff;
+  cursor: pointer;
+  height: 64px;
+  border: none;
+}
+
+.breadcrumb a {
+  color: #555;
+}
+
+.breadcrumb > .active {
+  color: #93c54b;
+}
+
+/* Directory detail styles */
+.fb-dir-actions {
+  margin-top: 16px;
+}
+.fb-dir-actions .filedetails-bottom-actions > i.fa {
+  display: inline;
+  padding: 5px;
+}
+
+#download-file-btn {
+  padding-top: 10px;
+}
+
+/* File details styles */
+.file-details {
+  border-left: 1px solid #eee;
+  background-color: #FFFFFF;
+  overflow-y: scroll;
+  margin-top: 70px;
+  position: absolute;
+  right: 15px;
+  bottom: 30px;
+  top: 20px;
+}
+
+.file-details .filedetails-bottom-actions > i.fa {
+  font-size: 18px;
+}
+
+.file-upload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.file-upload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.file-detail {
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+.filedetails-filename {
+  font-size: 24px;
+  font-weight: 400;
+  color: #93c54b;
+  border-right: 0;
+  border-left: 0;
+  border-top: 0;
+  background-color: #FFFFFF !important;
+  width: 90%;
+}
+
+.filedetails-filename:focus {
+  color: black !important;
+}
+
+.filedetails-filename[disabled] {
+  cursor: not-allowed;
+}
+
+.filetable-filename {
+  cursor: pointer;
+}
+
+.filedetails-bottom-actions {
+  height:40px;
+  bottom: 5px;
+  position: absolute;
+}
+
+.filetable-filename-selected {
+  color: #93c54b;
+  font-weight: bold;
+}
+
+.main {
+  padding-right: 0;
+  overflow: hidden;
+}
+
+.scrollable-table {
+  overflow-y: scroll;
+  margin-top: 70px;
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 30px;
+  top: 20px;
+}
+
+td.perm {
+  padding: 10px;
+  text-align: center;
+}
+
+.st-sort-ascent:before{
+    content: '\25B2';
+}
+
+.st-sort-descent:before{
+    content: '\25BC';
+}
+
+/* Upload Modal styles */
+input.upload {
+  color: transparent;
+  margin-left: -25px;
+}
