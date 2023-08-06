@@ -1,0 +1,63 @@
+Metadata-Version: 2.0
+Name: TosKeriser
+Version: 0.0.1
+Summary: A tool to complete TosKer application description withsuitable Docker Images
+Home-page: https://github.com/di-unipi-socc/TosKeriser
+Author: lucarin91
+Author-email: to@lucar.in
+License: MIT
+Keywords: Docker match matcher TOSCA deployment complete development
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: System :: Installation/Setup
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: requests
+Requires-Dist: ruamel.yaml
+Requires-Dist: six
+Requires-Dist: termcolor
+Requires-Dist: tosca-parser
+Provides-Extra: dev
+Requires-Dist: check-manifest; extra == 'dev'
+Requires-Dist: isort; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+Requires-Dist: requests-mock; extra == 'test'
+
+TosKeriser
+==========
+
+Tool to complete TosKer application description with suitable Docker
+Images.
+
+Usage
+-----
+
+::
+
+    TosKeriser, a tool to complete TosKer application description with suitable Docker Images.
+
+    toskerise FILE [COMPONENT..] [OPTIONS]
+    toskerise --help|-h
+    toskerise --version|-v
+
+    FILE
+      TOSCA YAML file or a CSAR to be completed
+
+    COMPONENT
+      a list of component to be completed (by default all component are considered)
+
+    OPTIONS
+      --debug                              active debug mode
+      -q|--quiet                           active quiet mode
+      -i|--interactive                     active interactive mode
+      -f|--force                           force the update of all containers
+      --constraints=value                  constraint to give to DockerFinder
+                                           (e.g. --constraints 'size<=100MB pulls>30 stars>10')
+      --policy=top_rated|size|most_used    ordering of the images
+
+
