@@ -1,0 +1,26 @@
+
+
+<link href="/static/tables.css" rel="stylesheet">
+<div class="container" style="width: 90%">
+
+<!-- <p style="font-size: 13px"><b>INSTRUCTIONS: </b>Here you can view a shortened version of the data. The table is limited to 200 observations. You can save the full version of the data by clicking the green button. The reduced data shows only the data that corresponds with the "equil_pump_off" columns (this is also the data shown in the table, but limited to 200 values). </p> -->
+ <form action='/table/' method=POST enctype=multipart/form-data>
+    <div class="btn-group btn-lg btn-group-justified" role="group" aria-label="..." style="height: 30px; padding: 0px">
+      <div class="btn-group " role="group">
+        <input type="submit" name='btn' class="btn btn-primary" value="Save reduced.csv" {{ save_btn_status }}>
+      </div>
+      <div class="btn-group " role="group">
+        <input type="submit" name='btn' class="btn btn-success" value="Save full.csv" {{ save_btn_status }}>
+      </div>
+    </div>
+  </form>
+
+  <br>
+
+  <div class="panel panel-default" style="overflow: hidden; height: calc(100vh - 250px); margin: 0px">
+    <div style="overflow: scroll;" >
+      {{ table|safe }}
+    </div>
+  </div>
+
+</div>
