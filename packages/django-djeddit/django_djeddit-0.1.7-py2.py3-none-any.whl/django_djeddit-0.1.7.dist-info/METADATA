@@ -1,0 +1,196 @@
+Metadata-Version: 2.0
+Name: django-djeddit
+Version: 0.1.7
+Summary: Bare bones Django forum application with Reddit like features
+Home-page: https://github.com/EatEmAll/django-djeddit
+Author: Roman
+Author-email: megaclaff@gmail.com
+License: Apache Software License 2.0
+Keywords: django-djeddit
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.8
+Classifier: Framework :: Django :: 1.9
+Classifier: Framework :: Django :: 1.10
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: django-crispy-forms (>=1.6.1)
+Requires-Dist: django-model-utils (>=2.0)
+Requires-Dist: django-mptt (>=0.8.7)
+
+=============================
+django-djeddit
+=============================
+
+.. image:: https://badge.fury.io/py/django-djeddit.svg
+    :target: https://badge.fury.io/py/django-djeddit
+
+.. image:: https://travis-ci.org/EatEmAll/django-djeddit.svg?branch=master
+    :target: https://travis-ci.org/EatEmAll/django-djeddit
+
+.. image:: https://codecov.io/gh/EatEmAll/django-djeddit/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/EatEmAll/django-djeddit
+
+Bare bones Django forum application with Reddit like features. 
+
+* comments are displayed in a collapsable tree structure (using `django-mptt <https://github.com/django-mptt/django-mptt>`_)
+* voting functionality for threads & comments
+* compatible with mobile screen sizes (using `Bootstrap <https://github.com/twbs/bootstrap>`_)
+
+`django-registration-redux <https://github.com/macropin/django-registration>`_ is recommanded to go along with this app if you need out of the box user registration functionality.
+
+Working demo: http://eatemall.pythonanywhere.com/topics
+
+Documentation: https://django-djeddit.readthedocs.io.
+
+Screenshots
+-----------
+
+.. image:: https://raw.githubusercontent.com/EatEmAll/django-djeddit/master/media/Threads.jpg
+
+.. image:: https://raw.githubusercontent.com/EatEmAll/django-djeddit/master/media/User.jpg
+
+.. image:: https://raw.githubusercontent.com/EatEmAll/django-djeddit/master/media/Comments.jpg
+
+Quickstart
+----------
+
+Install django-djeddit::
+
+    pip install django-djeddit
+
+Add it and its dependencies to your `INSTALLED_APPS`:
+
+.. code-block:: python
+
+    INSTALLED_APPS = [
+        ...
+        'crispy_forms',
+        'mptt',
+        'djeddit',
+        ...
+        ]
+
+djeddit_settings to context_processors:
+
+.. code-block:: python
+
+    'context_processors': [
+        ...
+        'djeddit.context_processors.djeddit_settings',
+        ...
+    ]
+
+jango-djeddit's URL patterns:
+
+.. code-block:: python
+
+    urlpatterns = [
+        ...
+        url(r'^', include('djeddit.urls')),
+        ...
+    ]
+
+Migrate models:
+
+.. code-block:: python
+
+    python manage.py migrate djeddit
+
+
+Create a topic:
+
+You can use New Topic dialog in /topics page if you're logged in as a superuser or you can create one in a python console:
+
+.. code-block:: python
+
+    from djeddit.models import Topic
+    Topic.objects.create(title='Test Topic')
+
+Launch the app and go to /topics page.
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+Dependencies:
+
+*  django-mptt_
+*  crispy_forms_
+
+.. _django-mptt: https://github.com/django-mptt/django-mptt
+.. _crispy_forms: https://github.com/django-crispy-forms/django-crispy-forms
+
+Tools used in rendering this package:
+
+*  Cookiecutter_
+*  `cookiecutter-djangopackage`_
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`cookiecutter-djangopackage`: https://github.com/pydanny/cookiecutter-djangopackage
+
+
+
+
+History
+-------
+
+0.1.0 (2017-04-15)
+++++++++++++++++++
+
+* First release on PyPI.
+
+0.1.1 (2017-05-12)
+++++++++++++++++++
+
+* Added tests for models, forms, views
+* Urls that include topic titles with spaces in them don't work // fixed
+* Competability fixes for Django 1.9 and 1.8 and Python 2.7
+
+0.1.2 (2017-05-19)
+++++++++++++++++++
+
+* Updated documentation
+* client side fixes for added compatibility with mobile screen sizes
+
+0.1.3 (2017-05-23)
+++++++++++++++++++
+
+* font-awsome fonts are not loading // fixed
+
+0.1.4 (2017-05-24)
+++++++++++++++++++
+
+* Added description field for Topic
+* added description for topics in /topics page
+* updated migrations
+
+0.1.5 (2017-05-26)
+++++++++++++++++++
+
+* moved base.html to root template dir
+
+0.1.6 (2017-06-03)
+++++++++++++++++++
+
+* Admins can lock/unlock & delete threads, delete posts
+* Added description to Topic creation form
+
+0.1.7 (2017-06-09)
+++++++++++++++++++
+
+* Admins can thread title, url, and post content
+
+
