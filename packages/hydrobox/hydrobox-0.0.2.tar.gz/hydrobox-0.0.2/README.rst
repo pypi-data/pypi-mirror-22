@@ -1,0 +1,52 @@
+HydroBox
+========
+
+A proper description will follow.
+
+Installation
+------------
+
+Install the Hydrobox using pip. At the current stage, this package is
+not jet hosted on PyPI, due to the alpha state. Therefore it has to be
+downloaded from git and install locally. Once it is in alpha state, it
+will be available on PyPI.
+
+.. code:: bash
+
+    git clone https://git.scc.kit.edu/aw6481/hydrobox.git
+    cd hydrobox
+    pip install -r requirements.txt
+    pip install -e .
+
+Tests
+-----
+
+The hydrobox module uses unittest for setting up some test. The test
+routines are not yet added to setuptools. There are only some isolated
+TestCases so far. Once a full featured TestSuite is created, this will
+be passed to setuptools.
+Nevertheless, any of the test scripts can be run. To test the accept
+decorator from the util.decorators submodule run:
+
+.. code:: bash
+
+    python /path/to/hydrobox/tests/decorators.py 
+
+    ...
+    Ran 5 tests in 0.081s
+
+    OK
+
+
+Alternatively, nose is integrated to run either nosetests in the repository root
+or run it from the setup.py like:
+
+.. code:: bash
+
+    python setup.py test
+
+    ...
+    ----------------------------------------------------------------------
+    Ran 10 tests in 1.792s
+
+    OK
