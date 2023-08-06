@@ -1,0 +1,151 @@
+kwconfig
+========
+
+| Richard Wen
+| rrwen.dev@gmail.com
+
+* `Documentation <https://rrwen.github.io/kwconfig>`_
+* `PyPi Package <https://pypi.python.org/pypi/kwconfig>`_
+
+A Python module for managing config files in keyword style json format.
+
+
+Install
+-------
+
+1. Install `Python <https://www.python.org/downloads/>`_
+2. Install `kwconfig <https://pypi.python.org/pypi/kwconfig>`_ via ``pip``
+
+::
+  
+  pip install kwconfig
+  
+For the latest developer version, see `Developer Install`_.
+  
+Usage
+-----
+
+.. code-block:: python
+  
+  import kwconfig
+  
+  # Specify a file path for creating kwconfig object
+  config = kwconfig.manage('config.json', defaults={'key0': 'value0'})
+  
+  # Update the config file with a key and value dict
+  config.update({'key1': 'value1', 'key2': 'value2'})
+  
+  # Add a keyword dict to existing config file
+  # If a key exists, it will be updated
+  # If a key does not exist, it will be added
+  other_config = {'key3': 'value3'}
+  other_config = config.add(other_config)
+  
+  # Write new values using keyword dict
+  config.overwrite({
+    'new_key1': 'new_value1',
+    'new_key2': 'new_value2'
+  })
+  
+  # Obtain a dict of the config file contents
+  kw = config.read()
+  
+  # Remove the key named "key1"
+  config.remove('key1')
+  
+  # Reset to defaults
+  config.reset()
+  
+  # Parsing a keyword list into dict ----
+  
+  # Create a sample list of keyword arguments
+  argv = ['--key1=value1', '--key2=value2']
+  
+  # Parse into a keyword dict
+  kwdict = kwconfig.parse(argv)
+  
+  # View the values of key1 and key2
+  print('key1: ' + kwdict['key1'])
+  print('key2: ' + kwdict['key2'])
+  
+For more usage details, see the `Documentation <https://rrwen.github.io/kwconfig>`_.
+
+Developer Notes
+---------------
+
+Developer Install
+*****************
+
+Install the latest developer version with ``pip`` from github::
+  
+  pip install git+https://github.com/rrwen/kwconfig
+  
+Install from ``git`` cloned source:
+
+1. Ensure `git <https://git-scm.com/>`_ is installed
+2. Clone into current path
+3. Install via ``pip``
+
+::
+
+  git clone https://github.com/rrwen/kwconfig
+  cd kwconfig
+  pip install . -I
+  
+Tests
+*****
+
+1. Clone into current path ``git clone https://github.com/rrwen/kwconfig``
+2. Enter into folder ``cd kwconfig``
+3. Ensure `unittest <https://docs.python.org/2.7/library/unittest.html>`_ is available
+4. Run tests
+
+::
+  
+  pip install . -I
+  python -m unittest
+
+Documentation Maintenance
+*************************
+
+1. Ensure `sphinx <https://github.com/sphinx-doc/sphinx/>`_ is installed ``pip install -U sphinx``
+2. Update the documentation in ``docs/``
+
+::
+  
+  pip install . -I
+  sphinx-build -b html docs/source docs
+  
+Upload to Github
+****************
+
+1. Ensure `git <https://git-scm.com/>`_ is installed
+2. Add all files and commit changes
+3. Push to github
+
+::
+  
+  git add .
+  git commit -a -m "Generic update"
+  git push
+  
+Upload to PyPi
+**************
+
+1. Ensure `twine <https://pypi.python.org/pypi/twine>`_ is installed ``pip install twine``
+2. Ensure `sphinx <https://github.com/sphinx-doc/sphinx/>`_ is installed ``pip install -U sphinx``
+3. Run tests and check for OK status
+4. Delete ``dist`` directory
+5. Update the version in ``kwconfig/__init__.py``
+6. Update the documentation in ``docs/``
+7. Create source distribution
+8. Upload to `PyPi <https://pypi.python.org/pypi>`_
+
+::
+  
+  pip install . -I
+  python -m unittest
+  sphinx-build -b html docs/source docs
+  python setup.py sdist
+  twine upload dist/*
+  
