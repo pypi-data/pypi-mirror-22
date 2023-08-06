@@ -1,0 +1,44 @@
+Metadata-Version: 1.1
+Name: lightcli
+Version: 1.0
+Summary: A lightweight terminal interaction library for Python
+Home-page: https://github.com/dogoncouch/lightcli
+Author: Dan Persons
+Author-email: dpersonsdev@gmail.com
+License: UNKNOWN
+Description: 
+        Lightcli
+        --------
+        
+        Lightcli is a Python 3 library module for lightweight terminal interaction.
+        
+        Synopsis
+        ````````
+        
+        ::
+        
+            import lightcli
+            
+            choice = lightcli.choice_input([options=<options>], [prompt=<prompt>], [showopts={True|False}], [qopt={True|False}])
+            multiline = lightcli.long_input([prompt=<prompt>], [maxlines=<maxlines>], [maxlength=<maxlength>])
+            mylist = lightcli.list_input([prompt=<prompt>], [maxitems=<maxitems>], [maxlength=<maxlength>])
+            outputfile = lightcli.outfile_input([extension=<extension>])
+        
+        
+        Links
+        `````
+        
+        * `Documentation <https://github.com/dogoncouch/lightcli/blob/master/README.md>`_
+        * `Releases <https://github.com/dogoncouch/lightcli/releases/>`_
+        * `Changelog <https://github.com/dogoncouch/lightcli/blob/master/CHANGELOG.md>`_
+        
+Keywords: python-library,python3-library,input,input-method,python-module,python3-module,cli,cli-utilities,input-validation
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

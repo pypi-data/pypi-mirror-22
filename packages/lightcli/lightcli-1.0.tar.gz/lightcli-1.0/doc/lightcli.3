@@ -1,0 +1,74 @@
+.TH LIGHTCLI 3
+.SH NAME
+lightcli is a Python 3 module for lightweight terminal interaction.
+
+.SH SYNOPSIS
+    \fBimport lightcli\fR
+    choice = \fBlightcli.choice_input(\fR[options=\fI<options>\fR], [prompt=\fI<prompt>\fR], [qopt={\fITrue\fR|\fIFalse\fR}]\fB)\fR
+    multiline = \fBlightcli.long_input(\fR[prompt=\fI<prompt>\fR]\fB)\fR
+    mylist = \fBlightcli.list_input(\fR[prompt=\fI<prompt>\fR]\fB)\fR
+    outputfile = \fBlightcli.outfile_input(\fR[extension=\fI<extension>\fR]\fB)\fR
+
+
+.SH DESCRIPTION
+\fBlightcli\fP is a Python 3 module for lightweight terminal interaction.
+
+.SH FUNCTIONS
+\fBlightcli.choice_input(\fR[options=\fI<options>\fR], [prompt=\fI<prompt>\fR], [qopt={\fITrue\fR|\fIFalse\fR}]\fB)\fR
+.br
+Options:
+    \fBoptions\fR - list of acceptable answers (list of strings)
+    \fBprompt\fR - text shown when asking for input (a string)
+    \fBshowopts\fR - toggles display of options list (default is True).
+    \fBqopt\fR - toggles a 'q to quit' option (default is False).
+
+\fBchoice_input\fR prompts for and returns input from a list of choices.
+
+\fBlightcli.long_input(\fR[prompt=\fI<prompt>\fR], [maxlines=\fI<maxlines>\fR], [maxlength=\fI<maxlength>\fR]\fB)\fR
+.br
+Options:
+    \fBprompt\fR - text shown when asking for input (a string)
+    \fBmaxlines\fR - sets the maximum number of lines
+    \fBmaxlength\fR - sets the maximum line length
+
+\fBlong_input\fR gets a multi-line string as input. Entering an EOF on a blank line ends the input (ctrl-D in *nix, ctrl-Z in Windows).
+
+\fBlightcli.list_input(\fR[prompt=\fI<prompt>\fR], [maxitems=\fI<maxitems>\fR], [maxlength=\fI<maxlength>\fR]\fB)\fR
+.br
+Options:
+    \fBprompt\fR - text shown when asking for input (a string)
+    \fBmaxitems\fR - sets the maximum number of items
+    \fBmaxlength\fR - sets the maximum item length
+
+\fBlist_input\fR gets a list of strings as input. Each item is entered on a separate line; entering an EOF on a blank line ends the input (ctrl-D in *nix, ctrl-Z in Windows).
+
+\fBlightcli.outfile_input(\fR[extension=\fI<extension>\fR]\fB)\fR
+.br
+Options:
+    \fBextension\fR - sets the file extension
+
+\fBoutfile_input\fR returns the name of a writeable output file.
+
+.SH FILES
+    /usr/share/doc/lightcli/README.md
+    /usr/share/doc/lightcli/LICENSE
+
+.SH AUTHOR
+Dan Persons (dpersonsdev@gmail.com)
+
+.SH COPYRIGHT
+Copyright (C) 2017 Dan Persons (dpersonsdev@gmail.com)
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Library General Public
+License as published by the Free Software Foundation; either
+version 2 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Library General Public License for more details.
+
+You should have received a copy of the GNU Library General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
