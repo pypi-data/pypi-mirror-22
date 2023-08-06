@@ -1,0 +1,14 @@
+
+* migrate to argparse
+* allow unset configuration options
+* implement INFORM forwarding support (may require pysnmp's NotificationReceiver rework)
+* add more configuration examples
+* add some drawings explaining network topology in different configurations
+* unify network endpoint string parser defaulting port part
+* implement GETBULK handling at the "oidfilter" plugin
+* implement PDU split at content map
+* formalize request splitting-merging logic
+* improve logging plugin to expand snmp-* options in log file path
+* migrate the logging plugin to use its own logger infrastructure
+* cross-link options in configuration docs
+* count runtime errors, report them periodically or serve as SNMP table
