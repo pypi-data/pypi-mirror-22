@@ -1,0 +1,59 @@
+Metadata-Version: 1.1
+Name: pyRedmineClient
+Version: 1.0.0
+Summary: CLI library to manage and operate all the entities of the service directory via HTTP
+Home-page: https://github.com/palmerabollo/redmine-cli
+Author: 4pf team
+Author-email: guido.garciabernardo@telefonica.com, eduardo.alonsogarcia@telefonica.com
+License: (C) Telefonica I+D
+Description: # redmine-cli
+        A simple redmine client
+        
+        ## Installation
+        
+        The project is available at Pypy and you can simply install in the usually way:
+        
+        ```bash
+        pip install red
+        ```
+        
+        You can install the last version in github in this way:
+        
+        ```bash
+        python setup.py install
+        ```
+        
+        If you get the warning InsecureRequestWarning while running the command, this is likely that you are running an old
+        python version that uses a deprecated ssl version.
+        
+        You'd better upgrade to a newer python interpreter but if you can not, you can omit the warning with this command:
+        
+        ```bash
+        pip install 'requests[security]'
+        ```
+        
+        ## Usage
+        
+        ```sh
+        export REDMINE_ENDPOINT=xxx
+        export REDMINE_API_KEY=xxx
+        
+        ./redmine --help
+        
+        ./redmine list --help
+        ./redmine detail --help
+        ./redmine close --help
+        ```
+        
+        ## TODO
+        
+        - pip install
+        - create issue
+        - docs
+        
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
