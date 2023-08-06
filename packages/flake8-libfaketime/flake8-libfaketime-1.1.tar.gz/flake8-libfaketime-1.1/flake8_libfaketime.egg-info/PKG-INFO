@@ -1,0 +1,45 @@
+Metadata-Version: 1.1
+Name: flake8-libfaketime
+Version: 1.1
+Summary: libfaketime checker plugin for flake8
+Home-page: https://github.com/vikingco/flake8-libfaketime
+Author: VikingCo NV
+Author-email: technology@vikingco.com
+License: MIT
+Description: Flake8 libfaketime plugin
+        =========================
+        This blocks usages of ``from libfaketime import fake_time``.
+        
+        This module provides a plugin for ``flake8``, the Python code checker.
+        
+        
+        Installation
+        ------------
+        
+        You can install or upgrade ``flake8-libfaketime`` with these commands::
+        
+          $ pip install flake8-libfaketime
+          $ pip install --upgrade flake8-libfaketime
+        
+        
+        Plugin for Flake8
+        -----------------
+        
+        When both ``flake8`` and ``flake8-pytest`` are installed, the plugin is
+        available in ``flake8``::
+        
+            $ flake8 --version
+            2.0 (pep8: 1.4.5, flake8-libfaketime: 1.0, pyflakes: 0.6.1)
+        
+Keywords: flake8 libfaketime
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Quality Assurance
