@@ -1,0 +1,37 @@
+JOB examplejob1_arg_0 condor/submit/examplejob1_20170607_01.submit
+VARS examplejob1_arg_0 ARGS="--length 10"
+Retry examplejob1_arg_0 7
+JOB examplejob1_arg_1 condor/submit/examplejob1_20170607_01.submit
+VARS examplejob1_arg_1 ARGS="--length 20"
+Retry examplejob1_arg_1 7
+JOB examplejob1_arg_2 condor/submit/examplejob1_20170607_01.submit
+VARS examplejob1_arg_2 ARGS="--length 30"
+Retry examplejob1_arg_2 7
+JOB examplejob1_arg_3 condor/submit/examplejob1_20170607_01.submit
+VARS examplejob1_arg_3 ARGS="--length 40"
+Retry examplejob1_arg_3 7
+JOB examplejob1_arg_4 condor/submit/examplejob1_20170607_01.submit
+VARS examplejob1_arg_4 ARGS="--length 50"
+Retry examplejob1_arg_4 7
+JOB examplejob1_arg_5 condor/submit/examplejob1_20170607_01.submit
+VARS examplejob1_arg_5 ARGS="--length 60"
+Retry examplejob1_arg_5 7
+JOB examplejob1_arg_6 condor/submit/examplejob1_20170607_01.submit
+VARS examplejob1_arg_6 ARGS="--length 70"
+Retry examplejob1_arg_6 7
+JOB examplejob1_arg_7 condor/submit/examplejob1_20170607_01.submit
+VARS examplejob1_arg_7 ARGS="--length 80"
+Retry examplejob1_arg_7 7
+JOB examplejob1_arg_8 condor/submit/examplejob1_20170607_01.submit
+VARS examplejob1_arg_8 ARGS="--length 90"
+Retry examplejob1_arg_8 7
+JOB examplejob2_arg_0 condor/submit/examplejob2_20170607_01.submit
+VARS examplejob2_arg_0 ARGS="--length 200"
+VARS examplejob2_arg_0 job_name="examplejob2_20170607_02_200jobname"
+JOB examplejob2_arg_1 condor/submit/examplejob2_20170607_01.submit
+VARS examplejob2_arg_1 ARGS="--length 400"
+VARS examplejob2_arg_1 job_name="examplejob2_20170607_02_400jobname"
+Retry examplejob2_arg_1 3
+
+#Inter-job dependencies
+Parent examplejob1_arg_0 examplejob1_arg_1 examplejob1_arg_2 examplejob1_arg_3 examplejob1_arg_4 examplejob1_arg_5 examplejob1_arg_6 examplejob1_arg_7 examplejob1_arg_8 Child examplejob2_arg_0 examplejob2_arg_1

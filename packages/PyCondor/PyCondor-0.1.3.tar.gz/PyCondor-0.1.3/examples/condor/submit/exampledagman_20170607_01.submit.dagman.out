@@ -1,0 +1,260 @@
+06/07/17 12:13:20 I am: hostname: submitter, fully qualified doman name: submitter.icecube.wisc.edu, IP: 172.16.223.61, IPv4: 172.16.223.61, IPv6: 
+06/07/17 12:13:20 I am: hostname: submitter, fully qualified doman name: submitter.icecube.wisc.edu, IP: 172.16.223.61, IPv4: 172.16.223.61, IPv6: 
+06/07/17 12:13:20 I am: hostname: submitter, fully qualified doman name: submitter.icecube.wisc.edu, IP: 172.16.223.61, IPv4: 172.16.223.61, IPv6: 
+06/07/17 12:13:20 Setting maximum file descriptors to 80000.
+06/07/17 12:13:20 ******************************************************
+06/07/17 12:13:20 ** condor_scheduniv_exec.241783815.0 (CONDOR_DAGMAN) STARTING UP
+06/07/17 12:13:20 ** /usr/bin/condor_dagman
+06/07/17 12:13:20 ** SubsystemInfo: name=DAGMAN type=DAGMAN(10) class=DAEMON(1)
+06/07/17 12:13:20 ** Configuration: subsystem:DAGMAN local:<NONE> class:DAEMON
+06/07/17 12:13:20 ** $CondorVersion: 8.3.8 Aug 27 2015 BuildID: 338845 $
+06/07/17 12:13:20 ** $CondorPlatform: X86_64-RedHat_6.6 $
+06/07/17 12:13:20 ** PID = 7809
+06/07/17 12:13:20 ** Log last touched time unavailable (No such file or directory)
+06/07/17 12:13:20 ******************************************************
+06/07/17 12:13:20 Using config source: /etc/condor/condor_config
+06/07/17 12:13:20 Using local config sources: 
+06/07/17 12:13:20    /etc/condor/config.d/00_logging
+06/07/17 12:13:20    /etc/condor/config.d/00_security
+06/07/17 12:13:20    /etc/condor/config.d/20_ganglia
+06/07/17 12:13:20    /etc/condor/config.d/20_master_daemons
+06/07/17 12:13:20    /etc/condor/config.d/20_schedd
+06/07/17 12:13:20    /etc/condor/config.d/20_schedd_limit_num_jobs
+06/07/17 12:13:20    /etc/condor/config.d/20_schedd_stats
+06/07/17 12:13:20    /etc/condor/config.d/20_schedd_stats_rss
+06/07/17 12:13:20    /etc/condor/config.d/20_submit
+06/07/17 12:13:20    /etc/condor/config.d/60_npx_submit
+06/07/17 12:13:20    /etc/condor/config.d/60_npx_submit_sane_reqs
+06/07/17 12:13:20    /etc/condor/config.d/99_block_submissions_group_long
+06/07/17 12:13:20    /etc/condor/condor_config.local
+06/07/17 12:13:20 config Macros = 131, Sorted = 131, StringBytes = 5292, TablesBytes = 4860
+06/07/17 12:13:20 CLASSAD_CACHING is ENABLED
+06/07/17 12:13:20 Daemon Log is logging: D_ALWAYS D_ERROR
+06/07/17 12:13:20 DaemonCore: No command port requested.
+06/07/17 12:13:20 DAGMAN_USE_STRICT setting: 1
+06/07/17 12:13:20 DAGMAN_VERBOSITY setting: 3
+06/07/17 12:13:20 DAGMAN_DEBUG_CACHE_SIZE setting: 5242880
+06/07/17 12:13:20 DAGMAN_DEBUG_CACHE_ENABLE setting: False
+06/07/17 12:13:20 DAGMAN_SUBMIT_DELAY setting: 1
+06/07/17 12:13:20 DAGMAN_MAX_SUBMIT_ATTEMPTS setting: 6
+06/07/17 12:13:20 DAGMAN_STARTUP_CYCLE_DETECT setting: False
+06/07/17 12:13:20 DAGMAN_MAX_SUBMITS_PER_INTERVAL setting: 5
+06/07/17 12:13:20 DAGMAN_USER_LOG_SCAN_INTERVAL setting: 5
+06/07/17 12:13:20 DAGMAN_DEFAULT_PRIORITY setting: 0
+06/07/17 12:13:20 DAGMAN_SUPPRESS_NOTIFICATION setting: True
+06/07/17 12:13:20 allow_events (DAGMAN_ALLOW_EVENTS) setting: 114
+06/07/17 12:13:20 DAGMAN_RETRY_SUBMIT_FIRST setting: True
+06/07/17 12:13:20 DAGMAN_RETRY_NODE_FIRST setting: False
+06/07/17 12:13:20 DAGMAN_MAX_JOBS_IDLE setting: 1000
+06/07/17 12:13:20 DAGMAN_MAX_JOBS_SUBMITTED setting: 0
+06/07/17 12:13:20 DAGMAN_MAX_PRE_SCRIPTS setting: 20
+06/07/17 12:13:20 DAGMAN_MAX_POST_SCRIPTS setting: 20
+06/07/17 12:13:20 DAGMAN_ALLOW_LOG_ERROR setting: False
+06/07/17 12:13:20 DAGMAN_MUNGE_NODE_NAMES setting: True
+06/07/17 12:13:20 DAGMAN_PROHIBIT_MULTI_JOBS setting: False
+06/07/17 12:13:20 DAGMAN_SUBMIT_DEPTH_FIRST setting: False
+06/07/17 12:13:20 DAGMAN_ALWAYS_RUN_POST setting: True
+06/07/17 12:13:20 DAGMAN_ABORT_DUPLICATES setting: True
+06/07/17 12:13:20 DAGMAN_ABORT_ON_SCARY_SUBMIT setting: True
+06/07/17 12:13:20 DAGMAN_PENDING_REPORT_INTERVAL setting: 600
+06/07/17 12:13:20 DAGMAN_AUTO_RESCUE setting: True
+06/07/17 12:13:20 DAGMAN_MAX_RESCUE_NUM setting: 100
+06/07/17 12:13:20 DAGMAN_WRITE_PARTIAL_RESCUE setting: True
+06/07/17 12:13:20 DAGMAN_DEFAULT_NODE_LOG setting: @(DAG_DIR)/@(DAG_FILE).nodes.log
+06/07/17 12:13:20 DAGMAN_GENERATE_SUBDAG_SUBMITS setting: True
+06/07/17 12:13:20 DAGMAN_MAX_JOB_HOLDS setting: 100
+06/07/17 12:13:20 DAGMAN_HOLD_CLAIM_TIME setting: 20
+06/07/17 12:13:20 ALL_DEBUG setting: 
+06/07/17 12:13:20 DAGMAN_DEBUG setting: 
+06/07/17 12:13:20 DAGMAN_SUPPRESS_JOB_LOGS setting: False
+06/07/17 12:13:20 argv[0] == "condor_scheduniv_exec.241783815.0"
+06/07/17 12:13:20 argv[1] == "-Lockfile"
+06/07/17 12:13:20 argv[2] == "condor/submit/exampledagman_20170607_01.submit.lock"
+06/07/17 12:13:20 argv[3] == "-AutoRescue"
+06/07/17 12:13:20 argv[4] == "1"
+06/07/17 12:13:20 argv[5] == "-DoRescueFrom"
+06/07/17 12:13:20 argv[6] == "0"
+06/07/17 12:13:20 argv[7] == "-Dag"
+06/07/17 12:13:20 argv[8] == "condor/submit/exampledagman_20170607_01.submit"
+06/07/17 12:13:20 argv[9] == "-MaxJobs"
+06/07/17 12:13:20 argv[10] == "3000"
+06/07/17 12:13:20 argv[11] == "-Suppress_notification"
+06/07/17 12:13:20 argv[12] == "-CsdVersion"
+06/07/17 12:13:20 argv[13] == "$CondorVersion: 8.3.8 Aug 27 2015 BuildID: 338845 $"
+06/07/17 12:13:20 argv[14] == "-Dagman"
+06/07/17 12:13:20 argv[15] == "/usr/bin/condor_dagman"
+06/07/17 12:13:22 Warning: failed to get attribute DAGNodeName
+06/07/17 12:13:22 Default node log file is: </home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log>
+06/07/17 12:13:22 DAG Lockfile will be written to condor/submit/exampledagman_20170607_01.submit.lock
+06/07/17 12:13:22 DAG Input file is condor/submit/exampledagman_20170607_01.submit
+06/07/17 12:13:22 Parsing 1 dagfiles
+06/07/17 12:13:22 Parsing condor/submit/exampledagman_20170607_01.submit ...
+06/07/17 12:13:22 Dag contains 11 total jobs
+06/07/17 12:13:22 Sleeping for 3 seconds to ensure ProcessId uniqueness
+06/07/17 12:13:25 Bootstrapping...
+06/07/17 12:13:25 Number of pre-completed nodes: 0
+06/07/17 12:13:25 MultiLogFiles: truncating log file /home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log
+06/07/17 12:13:25 DAG status: 0 (DAG_STATUS_OK)
+06/07/17 12:13:25 Of 11 nodes total:
+06/07/17 12:13:25  Done     Pre   Queued    Post   Ready   Un-Ready   Failed
+06/07/17 12:13:25   ===     ===      ===     ===     ===        ===      ===
+06/07/17 12:13:25     0       0        0       0       9          2        0
+06/07/17 12:13:25 0 job proc(s) currently held
+06/07/17 12:13:25 Registering condor_event_timer...
+06/07/17 12:13:26 Sleeping for 1 s (DAGMAN_SUBMIT_DELAY) to throttle submissions...
+06/07/17 12:13:27 Submitting Condor Node examplejob1_arg_0 job(s)...
+06/07/17 12:13:27 Adding a DAGMan workflow log /home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log
+06/07/17 12:13:27 Masking the events recorded in the DAGMAN workflow log
+06/07/17 12:13:27 Mask for workflow log is 0,1,2,4,5,7,9,10,11,12,13,16,17,24,27
+06/07/17 12:13:27 submitting: /usr/bin/condor_submit -a dag_node_name' '=' 'examplejob1_arg_0 -a +DAGManJobId' '=' '241783815 -a DAGManJobId' '=' '241783815 -a submit_event_notes' '=' 'DAG' 'Node:' 'examplejob1_arg_0 -a dagman_log' '=' '/home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log -a +DAGManNodesMask' '=' '"0,1,2,4,5,7,9,10,11,12,13,16,17,24,27" -a ARGS' '=' '--length' '10 -a DAG_STATUS' '=' '0 -a FAILED_COUNT' '=' '0 -a +DAGParentNodeNames' '=' '"" -a +KeepClaimIdle' '=' '20 -a notification' '=' 'never condor/submit/examplejob1_20170607_01.submit
+06/07/17 12:13:28 From submit: Submitting job(s).
+06/07/17 12:13:28 From submit: 1 job(s) submitted to cluster 241784896.
+06/07/17 12:13:28 	assigned Condor ID (241784896.0.0)
+06/07/17 12:13:28 Sleeping for 1 s (DAGMAN_SUBMIT_DELAY) to throttle submissions...
+06/07/17 12:13:29 Submitting Condor Node examplejob1_arg_1 job(s)...
+06/07/17 12:13:29 Adding a DAGMan workflow log /home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log
+06/07/17 12:13:29 Masking the events recorded in the DAGMAN workflow log
+06/07/17 12:13:29 Mask for workflow log is 0,1,2,4,5,7,9,10,11,12,13,16,17,24,27
+06/07/17 12:13:29 submitting: /usr/bin/condor_submit -a dag_node_name' '=' 'examplejob1_arg_1 -a +DAGManJobId' '=' '241783815 -a DAGManJobId' '=' '241783815 -a submit_event_notes' '=' 'DAG' 'Node:' 'examplejob1_arg_1 -a dagman_log' '=' '/home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log -a +DAGManNodesMask' '=' '"0,1,2,4,5,7,9,10,11,12,13,16,17,24,27" -a ARGS' '=' '--length' '20 -a DAG_STATUS' '=' '0 -a FAILED_COUNT' '=' '0 -a +DAGParentNodeNames' '=' '"" -a +KeepClaimIdle' '=' '20 -a notification' '=' 'never condor/submit/examplejob1_20170607_01.submit
+06/07/17 12:13:29 From submit: Submitting job(s).
+06/07/17 12:13:29 From submit: 1 job(s) submitted to cluster 241784907.
+06/07/17 12:13:29 	assigned Condor ID (241784907.0.0)
+06/07/17 12:13:29 Sleeping for 1 s (DAGMAN_SUBMIT_DELAY) to throttle submissions...
+06/07/17 12:13:30 Submitting Condor Node examplejob1_arg_2 job(s)...
+06/07/17 12:13:30 Adding a DAGMan workflow log /home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log
+06/07/17 12:13:30 Masking the events recorded in the DAGMAN workflow log
+06/07/17 12:13:30 Mask for workflow log is 0,1,2,4,5,7,9,10,11,12,13,16,17,24,27
+06/07/17 12:13:30 submitting: /usr/bin/condor_submit -a dag_node_name' '=' 'examplejob1_arg_2 -a +DAGManJobId' '=' '241783815 -a DAGManJobId' '=' '241783815 -a submit_event_notes' '=' 'DAG' 'Node:' 'examplejob1_arg_2 -a dagman_log' '=' '/home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log -a +DAGManNodesMask' '=' '"0,1,2,4,5,7,9,10,11,12,13,16,17,24,27" -a ARGS' '=' '--length' '30 -a DAG_STATUS' '=' '0 -a FAILED_COUNT' '=' '0 -a +DAGParentNodeNames' '=' '"" -a +KeepClaimIdle' '=' '20 -a notification' '=' 'never condor/submit/examplejob1_20170607_01.submit
+06/07/17 12:13:30 From submit: Submitting job(s).
+06/07/17 12:13:30 From submit: 1 job(s) submitted to cluster 241784919.
+06/07/17 12:13:30 	assigned Condor ID (241784919.0.0)
+06/07/17 12:13:30 Sleeping for 1 s (DAGMAN_SUBMIT_DELAY) to throttle submissions...
+06/07/17 12:13:31 Submitting Condor Node examplejob1_arg_3 job(s)...
+06/07/17 12:13:31 Adding a DAGMan workflow log /home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log
+06/07/17 12:13:31 Masking the events recorded in the DAGMAN workflow log
+06/07/17 12:13:31 Mask for workflow log is 0,1,2,4,5,7,9,10,11,12,13,16,17,24,27
+06/07/17 12:13:31 submitting: /usr/bin/condor_submit -a dag_node_name' '=' 'examplejob1_arg_3 -a +DAGManJobId' '=' '241783815 -a DAGManJobId' '=' '241783815 -a submit_event_notes' '=' 'DAG' 'Node:' 'examplejob1_arg_3 -a dagman_log' '=' '/home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log -a +DAGManNodesMask' '=' '"0,1,2,4,5,7,9,10,11,12,13,16,17,24,27" -a ARGS' '=' '--length' '40 -a DAG_STATUS' '=' '0 -a FAILED_COUNT' '=' '0 -a +DAGParentNodeNames' '=' '"" -a +KeepClaimIdle' '=' '20 -a notification' '=' 'never condor/submit/examplejob1_20170607_01.submit
+06/07/17 12:13:31 From submit: Submitting job(s).
+06/07/17 12:13:31 From submit: 1 job(s) submitted to cluster 241784931.
+06/07/17 12:13:31 	assigned Condor ID (241784931.0.0)
+06/07/17 12:13:31 Sleeping for 1 s (DAGMAN_SUBMIT_DELAY) to throttle submissions...
+06/07/17 12:13:32 Submitting Condor Node examplejob1_arg_4 job(s)...
+06/07/17 12:13:32 Adding a DAGMan workflow log /home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log
+06/07/17 12:13:32 Masking the events recorded in the DAGMAN workflow log
+06/07/17 12:13:32 Mask for workflow log is 0,1,2,4,5,7,9,10,11,12,13,16,17,24,27
+06/07/17 12:13:32 submitting: /usr/bin/condor_submit -a dag_node_name' '=' 'examplejob1_arg_4 -a +DAGManJobId' '=' '241783815 -a DAGManJobId' '=' '241783815 -a submit_event_notes' '=' 'DAG' 'Node:' 'examplejob1_arg_4 -a dagman_log' '=' '/home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log -a +DAGManNodesMask' '=' '"0,1,2,4,5,7,9,10,11,12,13,16,17,24,27" -a ARGS' '=' '--length' '50 -a DAG_STATUS' '=' '0 -a FAILED_COUNT' '=' '0 -a +DAGParentNodeNames' '=' '"" -a +KeepClaimIdle' '=' '20 -a notification' '=' 'never condor/submit/examplejob1_20170607_01.submit
+06/07/17 12:13:32 From submit: Submitting job(s).
+06/07/17 12:13:32 From submit: 1 job(s) submitted to cluster 241784943.
+06/07/17 12:13:32 	assigned Condor ID (241784943.0.0)
+06/07/17 12:13:32 Just submitted 5 jobs this cycle...
+06/07/17 12:13:32 Currently monitoring 1 Condor log file(s)
+06/07/17 12:13:32 Reassigning the id of job examplejob1_arg_0 from (241784896.0.0) to (241784896.0.0)
+06/07/17 12:13:32 Event: ULOG_SUBMIT for Condor Node examplejob1_arg_0 (241784896.0.0)
+06/07/17 12:13:32 Number of idle job procs: 1
+06/07/17 12:13:32 Reassigning the id of job examplejob1_arg_1 from (241784907.0.0) to (241784907.0.0)
+06/07/17 12:13:32 Event: ULOG_SUBMIT for Condor Node examplejob1_arg_1 (241784907.0.0)
+06/07/17 12:13:32 Number of idle job procs: 2
+06/07/17 12:13:32 Reassigning the id of job examplejob1_arg_2 from (241784919.0.0) to (241784919.0.0)
+06/07/17 12:13:32 Event: ULOG_SUBMIT for Condor Node examplejob1_arg_2 (241784919.0.0)
+06/07/17 12:13:32 Number of idle job procs: 3
+06/07/17 12:13:32 Reassigning the id of job examplejob1_arg_3 from (241784931.0.0) to (241784931.0.0)
+06/07/17 12:13:32 Event: ULOG_SUBMIT for Condor Node examplejob1_arg_3 (241784931.0.0)
+06/07/17 12:13:32 Number of idle job procs: 4
+06/07/17 12:13:32 Reassigning the id of job examplejob1_arg_4 from (241784943.0.0) to (241784943.0.0)
+06/07/17 12:13:32 Event: ULOG_SUBMIT for Condor Node examplejob1_arg_4 (241784943.0.0)
+06/07/17 12:13:32 Number of idle job procs: 5
+06/07/17 12:13:32 DAG status: 0 (DAG_STATUS_OK)
+06/07/17 12:13:32 Of 11 nodes total:
+06/07/17 12:13:32  Done     Pre   Queued    Post   Ready   Un-Ready   Failed
+06/07/17 12:13:32   ===     ===      ===     ===     ===        ===      ===
+06/07/17 12:13:32     0       0        5       0       4          2        0
+06/07/17 12:13:32 0 job proc(s) currently held
+06/07/17 12:13:37 Sleeping for 1 s (DAGMAN_SUBMIT_DELAY) to throttle submissions...
+06/07/17 12:13:38 Submitting Condor Node examplejob1_arg_5 job(s)...
+06/07/17 12:13:38 Adding a DAGMan workflow log /home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log
+06/07/17 12:13:38 Masking the events recorded in the DAGMAN workflow log
+06/07/17 12:13:38 Mask for workflow log is 0,1,2,4,5,7,9,10,11,12,13,16,17,24,27
+06/07/17 12:13:38 submitting: /usr/bin/condor_submit -a dag_node_name' '=' 'examplejob1_arg_5 -a +DAGManJobId' '=' '241783815 -a DAGManJobId' '=' '241783815 -a submit_event_notes' '=' 'DAG' 'Node:' 'examplejob1_arg_5 -a dagman_log' '=' '/home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log -a +DAGManNodesMask' '=' '"0,1,2,4,5,7,9,10,11,12,13,16,17,24,27" -a ARGS' '=' '--length' '60 -a DAG_STATUS' '=' '0 -a FAILED_COUNT' '=' '0 -a +DAGParentNodeNames' '=' '"" -a +KeepClaimIdle' '=' '20 -a notification' '=' 'never condor/submit/examplejob1_20170607_01.submit
+06/07/17 12:13:38 From submit: Submitting job(s).
+06/07/17 12:13:38 From submit: 1 job(s) submitted to cluster 241784993.
+06/07/17 12:13:38 	assigned Condor ID (241784993.0.0)
+06/07/17 12:13:38 Sleeping for 1 s (DAGMAN_SUBMIT_DELAY) to throttle submissions...
+06/07/17 12:13:39 Submitting Condor Node examplejob1_arg_6 job(s)...
+06/07/17 12:13:39 Adding a DAGMan workflow log /home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log
+06/07/17 12:13:39 Masking the events recorded in the DAGMAN workflow log
+06/07/17 12:13:39 Mask for workflow log is 0,1,2,4,5,7,9,10,11,12,13,16,17,24,27
+06/07/17 12:13:39 submitting: /usr/bin/condor_submit -a dag_node_name' '=' 'examplejob1_arg_6 -a +DAGManJobId' '=' '241783815 -a DAGManJobId' '=' '241783815 -a submit_event_notes' '=' 'DAG' 'Node:' 'examplejob1_arg_6 -a dagman_log' '=' '/home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log -a +DAGManNodesMask' '=' '"0,1,2,4,5,7,9,10,11,12,13,16,17,24,27" -a ARGS' '=' '--length' '70 -a DAG_STATUS' '=' '0 -a FAILED_COUNT' '=' '0 -a +DAGParentNodeNames' '=' '"" -a +KeepClaimIdle' '=' '20 -a notification' '=' 'never condor/submit/examplejob1_20170607_01.submit
+06/07/17 12:13:39 From submit: Submitting job(s).
+06/07/17 12:13:39 From submit: 1 job(s) submitted to cluster 241784999.
+06/07/17 12:13:39 	assigned Condor ID (241784999.0.0)
+06/07/17 12:13:39 Sleeping for 1 s (DAGMAN_SUBMIT_DELAY) to throttle submissions...
+06/07/17 12:13:40 Submitting Condor Node examplejob1_arg_7 job(s)...
+06/07/17 12:13:40 Adding a DAGMan workflow log /home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log
+06/07/17 12:13:40 Masking the events recorded in the DAGMAN workflow log
+06/07/17 12:13:40 Mask for workflow log is 0,1,2,4,5,7,9,10,11,12,13,16,17,24,27
+06/07/17 12:13:40 submitting: /usr/bin/condor_submit -a dag_node_name' '=' 'examplejob1_arg_7 -a +DAGManJobId' '=' '241783815 -a DAGManJobId' '=' '241783815 -a submit_event_notes' '=' 'DAG' 'Node:' 'examplejob1_arg_7 -a dagman_log' '=' '/home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log -a +DAGManNodesMask' '=' '"0,1,2,4,5,7,9,10,11,12,13,16,17,24,27" -a ARGS' '=' '--length' '80 -a DAG_STATUS' '=' '0 -a FAILED_COUNT' '=' '0 -a +DAGParentNodeNames' '=' '"" -a +KeepClaimIdle' '=' '20 -a notification' '=' 'never condor/submit/examplejob1_20170607_01.submit
+06/07/17 12:13:41 From submit: Submitting job(s).
+06/07/17 12:13:41 From submit: 1 job(s) submitted to cluster 241785007.
+06/07/17 12:13:41 	assigned Condor ID (241785007.0.0)
+06/07/17 12:13:41 Sleeping for 1 s (DAGMAN_SUBMIT_DELAY) to throttle submissions...
+06/07/17 12:13:42 Submitting Condor Node examplejob1_arg_8 job(s)...
+06/07/17 12:13:42 Adding a DAGMan workflow log /home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log
+06/07/17 12:13:42 Masking the events recorded in the DAGMAN workflow log
+06/07/17 12:13:42 Mask for workflow log is 0,1,2,4,5,7,9,10,11,12,13,16,17,24,27
+06/07/17 12:13:42 submitting: /usr/bin/condor_submit -a dag_node_name' '=' 'examplejob1_arg_8 -a +DAGManJobId' '=' '241783815 -a DAGManJobId' '=' '241783815 -a submit_event_notes' '=' 'DAG' 'Node:' 'examplejob1_arg_8 -a dagman_log' '=' '/home/jbourbeau/software/pycondor/examples/condor/submit/exampledagman_20170607_01.submit.nodes.log -a +DAGManNodesMask' '=' '"0,1,2,4,5,7,9,10,11,12,13,16,17,24,27" -a ARGS' '=' '--length' '90 -a DAG_STATUS' '=' '0 -a FAILED_COUNT' '=' '0 -a +DAGParentNodeNames' '=' '"" -a +KeepClaimIdle' '=' '20 -a notification' '=' 'never condor/submit/examplejob1_20170607_01.submit
+06/07/17 12:13:42 From submit: Submitting job(s).
+06/07/17 12:13:42 From submit: 1 job(s) submitted to cluster 241785020.
+06/07/17 12:13:42 	assigned Condor ID (241785020.0.0)
+06/07/17 12:13:42 Just submitted 4 jobs this cycle...
+06/07/17 12:13:42 Currently monitoring 1 Condor log file(s)
+06/07/17 12:13:42 Reassigning the id of job examplejob1_arg_5 from (241784993.0.0) to (241784993.0.0)
+06/07/17 12:13:42 Event: ULOG_SUBMIT for Condor Node examplejob1_arg_5 (241784993.0.0)
+06/07/17 12:13:42 Number of idle job procs: 6
+06/07/17 12:13:42 Reassigning the id of job examplejob1_arg_6 from (241784999.0.0) to (241784999.0.0)
+06/07/17 12:13:42 Event: ULOG_SUBMIT for Condor Node examplejob1_arg_6 (241784999.0.0)
+06/07/17 12:13:42 Number of idle job procs: 7
+06/07/17 12:13:42 Reassigning the id of job examplejob1_arg_7 from (241785007.0.0) to (241785007.0.0)
+06/07/17 12:13:42 Event: ULOG_SUBMIT for Condor Node examplejob1_arg_7 (241785007.0.0)
+06/07/17 12:13:42 Number of idle job procs: 8
+06/07/17 12:13:42 Reassigning the id of job examplejob1_arg_8 from (241785020.0.0) to (241785020.0.0)
+06/07/17 12:13:42 Event: ULOG_SUBMIT for Condor Node examplejob1_arg_8 (241785020.0.0)
+06/07/17 12:13:42 Number of idle job procs: 9
+06/07/17 12:13:42 DAG status: 0 (DAG_STATUS_OK)
+06/07/17 12:13:42 Of 11 nodes total:
+06/07/17 12:13:42  Done     Pre   Queued    Post   Ready   Un-Ready   Failed
+06/07/17 12:13:42   ===     ===      ===     ===     ===        ===      ===
+06/07/17 12:13:42     0       0        9       0       0          2        0
+06/07/17 12:13:42 0 job proc(s) currently held
+06/07/17 12:23:42 600 seconds since last log event
+06/07/17 12:23:42 Pending DAG nodes:
+06/07/17 12:23:42   Node examplejob1_arg_0, Condor ID 241784896, status STATUS_SUBMITTED
+06/07/17 12:23:42   Node examplejob1_arg_1, Condor ID 241784907, status STATUS_SUBMITTED
+06/07/17 12:23:42   Node examplejob1_arg_2, Condor ID 241784919, status STATUS_SUBMITTED
+06/07/17 12:23:42   Node examplejob1_arg_3, Condor ID 241784931, status STATUS_SUBMITTED
+06/07/17 12:23:42   Node examplejob1_arg_4, Condor ID 241784943, status STATUS_SUBMITTED
+06/07/17 12:23:42   Node examplejob1_arg_5, Condor ID 241784993, status STATUS_SUBMITTED
+06/07/17 12:23:42   Node examplejob1_arg_6, Condor ID 241784999, status STATUS_SUBMITTED
+06/07/17 12:23:42   Node examplejob1_arg_7, Condor ID 241785007, status STATUS_SUBMITTED
+06/07/17 12:23:42   Node examplejob1_arg_8, Condor ID 241785020, status STATUS_SUBMITTED
+06/07/17 12:33:43 1201 seconds since last log event
+06/07/17 12:33:43 Pending DAG nodes:
+06/07/17 12:33:43   Node examplejob1_arg_0, Condor ID 241784896, status STATUS_SUBMITTED
+06/07/17 12:33:43   Node examplejob1_arg_1, Condor ID 241784907, status STATUS_SUBMITTED
+06/07/17 12:33:43   Node examplejob1_arg_2, Condor ID 241784919, status STATUS_SUBMITTED
+06/07/17 12:33:43   Node examplejob1_arg_3, Condor ID 241784931, status STATUS_SUBMITTED
+06/07/17 12:33:43   Node examplejob1_arg_4, Condor ID 241784943, status STATUS_SUBMITTED
+06/07/17 12:33:43   Node examplejob1_arg_5, Condor ID 241784993, status STATUS_SUBMITTED
+06/07/17 12:33:43   Node examplejob1_arg_6, Condor ID 241784999, status STATUS_SUBMITTED
+06/07/17 12:33:43   Node examplejob1_arg_7, Condor ID 241785007, status STATUS_SUBMITTED
+06/07/17 12:33:43   Node examplejob1_arg_8, Condor ID 241785020, status STATUS_SUBMITTED
+06/07/17 12:43:44 1802 seconds since last log event
+06/07/17 12:43:44 Pending DAG nodes:
+06/07/17 12:43:44   Node examplejob1_arg_0, Condor ID 241784896, status STATUS_SUBMITTED
+06/07/17 12:43:44   Node examplejob1_arg_1, Condor ID 241784907, status STATUS_SUBMITTED
+06/07/17 12:43:44   Node examplejob1_arg_2, Condor ID 241784919, status STATUS_SUBMITTED
+06/07/17 12:43:44   Node examplejob1_arg_3, Condor ID 241784931, status STATUS_SUBMITTED
+06/07/17 12:43:44   Node examplejob1_arg_4, Condor ID 241784943, status STATUS_SUBMITTED
+06/07/17 12:43:44   Node examplejob1_arg_5, Condor ID 241784993, status STATUS_SUBMITTED
+06/07/17 12:43:44   Node examplejob1_arg_6, Condor ID 241784999, status STATUS_SUBMITTED
+06/07/17 12:43:44   Node examplejob1_arg_7, Condor ID 241785007, status STATUS_SUBMITTED
+06/07/17 12:43:44   Node examplejob1_arg_8, Condor ID 241785020, status STATUS_SUBMITTED

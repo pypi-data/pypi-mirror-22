@@ -1,0 +1,10 @@
+universe = vanilla
+executable = savelist.py
+getenv = True
+notification = never
+log = condor/log/$(job_name).log
+output = condor/output/$(job_name).output
+error = condor/error/$(job_name).error
+arguments = $(ARGS)
+job_name = $(job_name)
+queue

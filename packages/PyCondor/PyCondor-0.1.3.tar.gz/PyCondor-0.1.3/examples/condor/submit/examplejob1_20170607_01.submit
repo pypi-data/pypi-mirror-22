@@ -1,0 +1,9 @@
+universe = vanilla
+executable = savelist.py
+getenv = True
+notification = never
+log = condor/log/examplejob1_20170607_01.log
+output = condor/output/examplejob1_20170607_01.output
+error = condor/error/examplejob1_20170607_01.error
+arguments = $(ARGS)
+queue
