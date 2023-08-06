@@ -1,0 +1,17 @@
+{% for vpn in openvpn %}
+# openvpn config: {{ vpn.pop('name') }}
+
+    {% for key, value in vpn.items() %}
+        {% set key = key.replace('_', '-') %}
+        {% if value is sameas True %}
+            {{ key }}
+        {% elif value is string or value is number %}
+            {{ key }} {{ value }}
+        {% elif value is iterable %}
+            {% for element in value %}
+                {{ key }} {{ element }}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+{% endfor %}
