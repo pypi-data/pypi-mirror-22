@@ -1,0 +1,41 @@
+Change Log
+==========
+
+Version 0.1.1
+-------------
+
+(bugfix release)
+
+- Update Manifest.in entries (#63)
+- fix VERSION path in Manifest.in (#62 contributed by @MinchinWeb)
+
+
+Version 0.1.0
+-------------
+
+- Update tests and provide better compatibility with pywin32 for
+  Resource functions
+- Fix: Python 3.5 and 3.6 support (#52).
+- API additions to allow pywin32-ctypes to work with pyinstaller (#46
+  and #57 contributed by @virtuald).
+- Fix: do not update the global copy of the windows dlls (#42)
+- Add documentation and setup automatic builds in ReadTheDocs (#3, #36).
+- Add cffi backend to be used when available (#31).
+- Fix: EnumResourceTypes and EnumResourceNames would only return ints
+  (#21, #30).
+- Restructure package layout to split core wrapping modules from
+  pywin32 emulation (#15, #17).
+
+Version 0.0.1
+-------------
+
+7/04/2014
+
+- Python 2.6 support (#13)
+- Python 3 support (#12)
+- Basic maintenance work (#11, #7)
+- Fix error raising to be pywin32 compatible (#8)
+- Package rename mini_pywin32 -> pywin32-ctypes
+- Add travis-ci integration using wine! (#2)
+- Support basic library and resource loading (#1)
+- mini_pywin32 is born
