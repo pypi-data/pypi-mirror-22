@@ -1,0 +1,82 @@
+Metadata-Version: 2.0
+Name: vrun
+Version: 0.1
+Summary: Adds the virtual environment's bin directory to PATH before executing a command
+Home-page: https://github.com/bertjwregeer/vrun
+Author: Bert JW Regeer
+Author-email: bertjw@regeer.org
+License: MIT
+Keywords: virtualenv
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*
+Provides-Extra: docs
+Requires-Dist: Sphinx; extra == 'docs'
+Provides-Extra: testing
+Requires-Dist: pytest; extra == 'testing'
+Requires-Dist: pytest-cov; extra == 'testing'
+
+vrun
+====
+
+A small Python helper tool that will modify the ``PATH`` in the environment
+before executing the provided executable. This is useful when programs expect
+certain binaries to be available in ``PATH`` so they can execute them using
+``os.popen()`` and friends or even for shell scripts that are executing Python
+tools that one would prefer to not globally install.
+
+Scripts may detect that vrun has been used by looking for the environment
+variable ``VRUN_ACTIVATED`` which is set to ``1`` when run. It is not
+recommended that script writers do this.
+
+Use
+---
+
+.. code::
+
+    $ python3 -mvenv ./env/
+    $ ./env/bin/pip install vrun
+    $ ./env/bin/vrun /bin/bash -c 'echo $PATH'
+
+
+If for example there is a script that executes ``pip`` without explicitly
+providing a PATH that includes a virtual environment the system installed
+``pip`` may accidentally be invoked instead. With vrun the virtual environment
+will come first in the search path and thus ``pip`` will be safely executed
+within the context of the virtual environment.
+
+.. code::
+
+    $ ./env/bin/vrun ./myscript.sh
+
+vrun or vexec
+-------------
+
+vrun installs itself as both ``vrun`` and ``vexec``. The later may be typed
+with the left hand only and is slightly faster to roll off the keyboard!
+
+License
+-------
+
+Please see the `LICENSE
+<https://github.com/bertjwregeer/vrun/blob/master/LICENSE>`_ file in the source
+code repository 
+
+
+0.1 (2017-06-08)
+================
+
+- Initial release and implementation of the vrun functionality
+
+
