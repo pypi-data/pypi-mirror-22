@@ -1,0 +1,9 @@
+
+import will
+import argparse
+parser = argparse.ArgumentParser(description='Send a message to william.')
+parser.add_argument('message', metavar='message', type=str, nargs='+', help="The message to send to william.")
+parser.add_argument('--from', '-f', '--sender', '-s', '--name', '-n', metavar='name', type=str, help="Your name.", default="annonymous")
+parser.add_argument('--to','-t', metavar='to', type=str, help="To whom you are sending the message.", default="will")
+args=parser.parse_args()
+will.send(' '.join(args.message), args.name, args.to)
