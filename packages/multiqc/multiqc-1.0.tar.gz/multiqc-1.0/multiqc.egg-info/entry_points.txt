@@ -1,0 +1,46 @@
+[multiqc.modules.v1]
+adapterRemoval = multiqc.modules.adapterRemoval:MultiqcModule
+bamtools = multiqc.modules.bamtools:MultiqcModule
+bcftools = multiqc.modules.bcftools:MultiqcModule
+bismark = multiqc.modules.bismark:MultiqcModule
+bowtie1 = multiqc.modules.bowtie1:MultiqcModule
+bowtie2 = multiqc.modules.bowtie2:MultiqcModule
+busco = multiqc.modules.busco:MultiqcModule
+clusterflow = multiqc.modules.clusterflow:MultiqcModule
+custom_content = multiqc.modules.custom_content:custom_module_classes
+cutadapt = multiqc.modules.cutadapt:MultiqcModule
+fastq_screen = multiqc.modules.fastq_screen:MultiqcModule
+fastqc = multiqc.modules.fastqc:MultiqcModule
+featureCounts = multiqc.modules.featureCounts:MultiqcModule
+gatk = multiqc.modules.gatk:MultiqcModule
+goleft_indexcov = multiqc.modules.goleft_indexcov:MultiqcModule
+hicup = multiqc.modules.hicup:MultiqcModule
+htseq = multiqc.modules.htseq:MultiqcModule
+kallisto = multiqc.modules.kallisto:MultiqcModule
+methylQA = multiqc.modules.methylQA:MultiqcModule
+peddy = multiqc.modules.peddy:MultiqcModule
+picard = multiqc.modules.picard:MultiqcModule
+preseq = multiqc.modules.preseq:MultiqcModule
+prokka = multiqc.modules.prokka:MultiqcModule
+qualimap = multiqc.modules.qualimap:MultiqcModule
+quast = multiqc.modules.quast:MultiqcModule
+rna_seqc = multiqc.modules.rna_seqc:MultiqcModule
+rseqc = multiqc.modules.rseqc:MultiqcModule
+salmon = multiqc.modules.salmon:MultiqcModule
+samblaster = multiqc.modules.samblaster:MultiqcModule
+samtools = multiqc.modules.samtools:MultiqcModule
+skewer = multiqc.modules.skewer:MultiqcModule
+slamdunk = multiqc.modules.slamdunk:MultiqcModule
+snpeff = multiqc.modules.snpeff:MultiqcModule
+sortmerna = multiqc.modules.sortmerna:MultiqcModule
+star = multiqc.modules.star:MultiqcModule
+tophat = multiqc.modules.tophat:MultiqcModule
+trimmomatic = multiqc.modules.trimmomatic:MultiqcModule
+
+[multiqc.templates.v1]
+default = multiqc.templates.default
+default_dev = multiqc.templates.default_dev
+geo = multiqc.templates.geo
+sections = multiqc.templates.sections
+simple = multiqc.templates.simple
+
