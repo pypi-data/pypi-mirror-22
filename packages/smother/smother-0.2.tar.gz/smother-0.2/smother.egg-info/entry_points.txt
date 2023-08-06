@@ -1,0 +1,9 @@
+[console_scripts]
+smother = smother.cli:cli
+
+[nose.plugins.0.10]
+smother = smother.nose_plugin:SmotherNose
+
+[pytest11]
+smother = smother.pytest_plugin
+
