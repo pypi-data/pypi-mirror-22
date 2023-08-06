@@ -1,0 +1,47 @@
+Metadata-Version: 2.0
+Name: marduk
+Version: 0.0.0a1
+Summary: Transpile your Python 3.6 code to older python versions
+Home-page: https://github.com/graingert/marduk
+Author: Thomas Grainger
+Author-email: marduk@graingert.co.uk
+License: AGPL3+
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Requires-Python: >=3.5
+
+Marduk
+------
+Transpile your Python 3.6 code to 3.5
+
+supported features:
+
+* PEP 498 f-strings
+* PEP 526 variable annotations to mypy # type: comments.
+
+missing features:
+
+* PEP 530 async comprehensions
+* PEP 525 async generators
+
+
+Why Marduk?
+-----------
+
+Marduk is the snake-dragon protector god of Babel.
+
+
+Why AGPL3+?
+-----------
+
+The license of this package does not affect generated code or code that you parse.
+
+
