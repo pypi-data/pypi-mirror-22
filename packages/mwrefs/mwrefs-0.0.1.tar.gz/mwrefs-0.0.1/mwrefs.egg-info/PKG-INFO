@@ -1,0 +1,32 @@
+Metadata-Version: 1.0
+Name: mwrefs
+Version: 0.0.1
+Summary: A set of utilities for extracting and processing <ref>s MediaWiki Projects
+Home-page: https://github.com/mediawiki-utilities/python-mwrefs
+Author: Aaron Halfaker
+Author-email: aaron.halfaker@gmail.com
+License: MIT
+Description: # MediaWiki References
+        
+        Extracts references from MediaWiki with a focus on Wikipedia
+        
+        This library provides a command-line utility for extracting references from MediaWiki XML database dumps. 
+        
+        
+            $ mwrefs -h
+            
+            This script provides access to a set of utilities for processing references
+            in Wikipedia.
+            
+            * extract -- All <ref> tags from articles
+            * diffs -- Extracts changes in references historically.
+            
+            Usage:
+                mwrefs (-h | --help)
+                mwrefs <utility> [-h | --help]
+            
+            Options:
+                -h | --help  Shows this documentation
+                <utility>    The name of the utility to run
+        
+Platform: UNKNOWN
