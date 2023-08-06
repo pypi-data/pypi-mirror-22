@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
+from py_tat_morphan.morphan import Morphan
+
+def main():
+    print('Tatar Language Morphological Analyser Lookup v1.02')
+    print('==================================================')
+
+    tatmorphan = Morphan()
+    while True:
+        try:
+            word = raw_input('>> ')
+            print(tatmorphan.analyse(word))
+        except KeyboardInterrupt:
+            break
+
+if __name__ == '__main__':
+    main()

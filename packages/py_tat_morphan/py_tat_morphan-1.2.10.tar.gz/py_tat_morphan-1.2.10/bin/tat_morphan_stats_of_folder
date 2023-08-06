@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
+import sys
+import time
+import os
+
+def get_stats(path, filename, sdelimeter='\n', fdelimeter='\n'):
+    with open(os.path.join(path, filename), 'r') as stream:
+        text = stream.read()
+    lines = text.split(fdelimeter)
+    i = 0
+    amc = 0
+    while i < len(lines) - 1:
+        if len(lines[i+1].strip(';').split(';')) > 1:
+            amc += 1
+        i += 2
+    luc = int(len(lines) / 2)
+    nrc = text.count('NR')
+    errc = text.count('Error')
+    othc = text.count('Type1')\
+           + text.count('Type2')\
+           + text.count('Type3')\
+           + text.count('Type4')\
+           + text.count('Latin')\
+           + text.count('Num')\
+           + text.count('Letter')\
+           + text.count('Sign')\
+           + text.count('Rus')
+    wfc = luc - nrc - errc - othc
+    return (filename, luc, wfc, amc, nrc, errc, othc)
+
+def main():
+    print('Tatar Language Morphological Analyser v1.02')
+    print('===========================================')
+    if len(sys.argv) > 1 and os.path.isdir(sys.argv[1]):
+        path_from = sys.argv[1] if sys.argv[1][:-1] == '/' else sys.argv[1] + '/'
+        result = 'Tatar Language Morphological Analyser v1.02\n' + '='*58 + '\n'
+        result += 'Filename\tLexical Units\tWordforms\tAmbiguous\nNR\tErrors\tOther\n' + '-'*58 + '\n'
+        aluc = 0
+        awfc = 0
+        aamc = 0
+        anrc = 0
+        aerrc = 0
+        aothc = 0
+        for file in os.listdir(path_from):
+            if os.path.isfile(os.path.join(path_from, file)):
+                stats = get_stats(path_from, file)
+                aluc += stats[1]
+                awfc += stats[2]
+                aamc += stats[3]
+                anrc += stats[4]
+                aerrc += stats[5]
+                aothc += stats[6]
+                result += '%s\t%s\t%s\t%s\t%s\t%s\t%s\n' % stats
+                print('File %s' % file)
+                print('\tLexical Units: %s (100%%)' % stats[1])
+                print('\tWordforms: %s (%.1f%%)' % (stats[2], 100.0*stats[2]/stats[1]))
+                print('\tAmbiguous: %s (%.1f%%)' % (stats[3], 100.0*stats[3]/stats[1]))
+                print('\tNot Recognized(NR): %s (%.1f%%)' % (stats[4], 100.0*stats[4]/stats[1]))
+                print('\tErrors: %s (%.1f%%)' % (stats[5], 100.0*stats[5]/stats[1]))
+                print('\tOthers: %s (%.1f%%)\n' % (stats[6], 100.0*stats[6]/stats[1]))
+        result += '='*58 + '\n'
+        result += 'Summary:\t%s(100%%)\t%s(%.2f%%)\t%s(%.2f%%)\t%s(%.2f%%)\t%s(%.2f%%)\t%s(%.2f%%)'\
+                  % (aluc, awfc, 100.0*awfc/aluc, aamc, 100.0*aamc/aluc, anrc, 100.0*anrc/aluc, aerrc, 100.0*aerrc/aluc, aothc, 100.0*aothc/aluc)
+        with open(sys.argv[1][:-1] + '_stats.csv', 'w') as stream:
+            stream.write(result)
+
+    else:
+        print('Provide folder to analyse!')
+
+if __name__ == '__main__':
+    main()
