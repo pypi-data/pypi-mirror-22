@@ -1,0 +1,33 @@
+Metadata-Version: 2.0
+Name: google-api-helper
+Version: 0.1.0
+Summary: Python helper class to streamlime interaction with Google APIs. Based on python-google-api-client.
+Home-page: https://github.com/paulwoelfel/pygapi
+Author: Paul Woelfel
+Author-email: paul.woelfel@zirrus.eu
+License: GNU GPL v3
+Keywords: google api python
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: google-api-python-client
+Provides-Extra: dev
+Provides-Extra: test
+
+# pygapi
+Python Google API helper
+
+## Building and publishing
+```
+python setup.py bdist_wheel --universal
+python -m twine upload dist/*
+```
+
