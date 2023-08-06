@@ -1,0 +1,980 @@
+2017-05-06 12:59:20+0100 [-] Log opened.
+2017-05-06 12:59:20+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_CYRILLIC <--
+2017-05-06 12:59:20+0100 [-] PBServerFactory starting on 57172
+2017-05-06 12:59:20+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f44d6c8>
+2017-05-06 12:59:20+0100 [-] Site starting on 1401
+2017-05-06 12:59:20+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f4766c8>
+2017-05-06 12:59:20+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10f4768c0>
+2017-05-06 12:59:20+0100 [AmqpProtocol,client] PBServerFactory starting on 57174
+2017-05-06 12:59:20+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f621248>
+2017-05-06 12:59:20+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f621638>
+2017-05-06 12:59:20+0100 [Uninitialized] LastClientFactory starting on 57185
+2017-05-06 12:59:20+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f621320>
+2017-05-06 12:59:20+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f63d518>
+2017-05-06 12:59:20+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f6472d8>
+2017-05-06 12:59:20+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f6577e8>
+2017-05-06 12:59:20+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%89%A0%8A%E7%DF%24%EEb_%2B%D8%A7%C3lKT%E9%8C%C4m%B5%DC%99e3%21t%88%FDB%B3J0%EB%D5%3C%7Ckvo%BE%8F%23%5C%25%3AX%BA%7E%3F%C9%9F%F5%2A%AC%22%83%D6%86%FB6s%C1%E8%F0Ud%8D%98+71%C0%A5%84O%E6%AF%FF%A6%AA%DD%94Q2%E2%82%2FC%EC%F6%CA%3E%F2%85%60P%D1NM%FC%C6%DB%ED%81%90%27W%CB%A8E%F7%D0Ag%9BIa%95%AB9%D4%F8%C2j%2C%8B%91f%B4%CDw%B2%9A%D2%BB%E5y%5B%EA%7D.%AE%9C%EFR%26x%A3%BCFVi%DE%5E%E0%92%97%B1%E1q%CC%87%C8H%F4%A98%29%9D%B6%B9zc%B7%5D%CE%96%40Z%A4%D7%ADG%FA%93D%B0%3B%7Bnh%FE%D3%A2%E4%28%F9rY%E3%80%C5%D9%BD%3D%DA5S%F34uLp%CF%A1%B8%BF%C7-%F1%9E%8EV%E8%7D%81%3A%E7Y%96%C2%9CcK_%80%2A6%94%92%CFqa%B2%E4%D8%9E%B8%FB%5D%AC%D1%97f%7C%CE%FEP%25%24%E0%F75%D7X%9D%C8%DC%F0U%AE%3D%9B%DA%98%F9i%7E%A6%8B%86%84F%BFg%C1%89J%5E%F6mG%E1H%F8%BE%D6B+z%85%2CQ%B3%C7%DD%8A%D2n%29%FC%B9l%EBv%B6%28%EA%CDC%ABN%60A%E2Or%EC%BB%FDS%A3x%DF.%93%C3%B0e%8D%A9%3F%A0%E68j%AD%D9%21%A5%E3%2B%AAL%A8W%26%5C%F4T%D0%CA%FAR%87%D5%C9%CB%AF%CCk%B1w%9F3%EF%DB%B4%A1%40E2%91%7B%23%D4%B7%3E7%A74%95%BC%F1%82%88%C6%22%C5%C4%5B%D3y%8CD%FFpdo0b-%E5%2F%3B1%C0%F3s%EE%8Ft%83%A4%BA9%F5Iu%9A%90%DE%B5M%8E%ED%27%99%3C%F2Z%A2%E9%BDh%F0%B7%8B%9F%2CH%DA%F1%B0%E9%93%5B%FA%9C%8D%84%E6V%5D%F6d%24%F5%C4%2BTW%EB%EA%E7%90s%28%2Ay%22%DE%97S%5E%DF%88%BAEe0%8A%C7%E1Lax%89%CF%29K7%E4%FF%B1%FC%238%95B%BC%40%3F%CA6%8EP%AF%EE%AA%BB%C9J5%DD%C6%E3%EC%E8f%7B%A3%AE%7DA%27-RQu%B5%99%C3%D7%BE%2F%AC%AD%D8%A0z%D4%D5%26%92%A6%A9%3B%F9F%8CwZ%B3%7EX%CD%9D%FENq%822%B9%CE%B6%A7v%B2%EF%A8%83%C0%85rG%60%FBn4%3E%25%87%80%BD%E2%F3%94%A2%F7%9B%8FI1%CC%C5%B8%86%DB%BFpig%9E%CBh_D%D2%FDm%A1%D1kj3%F8%989%A4%D0%3Db%D6%96%F2.%C1%3C%7C%A5l%AB%DCC%E0%C2c%5C%F4%D9Mt%21oO%E5UY%3A+%91%B4%81%ED%D3%9A%C8e&coding=6>
+2017-05-06 12:59:20+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:20 +0000] "GET /send?username=username&to=06155423&password=password&content=%89%A0%8A%E7%DF%24%EEb_%2B%D8%A7%C3lKT%E9%8C%C4m%B5%DC%99e3%21t%88%FDB%B3J0%EB%D5%3C%7Ckvo%BE%8F%23%5C%25%3AX%BA%7E%3F%C9%9F%F5%2A%AC%22%83%D6%86%FB6s%C1%E8%F0Ud%8D%98+71%C0%A5%84O%E6%AF%FF%A6%AA%DD%94Q2%E2%82%2FC%EC%F6%CA%3E%F2%85%60P%D1NM%FC%C6%DB%ED%81%90%27W%CB%A8E%F7%D0Ag%9BIa%95%AB9%D4%F8%C2j%2C%8B%91f%B4%CDw%B2%9A%D2%BB%E5y%5B%EA%7D.%AE%9C%EFR%26x%A3%BCFVi%DE%5E%E0%92%97%B1%E1q%CC%87%C8H%F4%A98%29%9D%B6%B9zc%B7%5D%CE%96%40Z%A4%D7%ADG%FA%93D%B0%3B%7Bnh%FE%D3%A2%E4%28%F9rY%E3%80%C5%D9%BD%3D%DA5S%F34uLp%CF%A1%B8%BF%C7-%F1%9E%8EV%E8%7D%81%3A%E7Y%96%C2%9CcK_%80%2A6%94%92%CFqa%B2%E4%D8%9E%B8%FB%5D%AC%D1%97f%7C%CE%FEP%25%24%E0%F75%D7X%9D%C8%DC%F0U%AE%3D%9B%DA%98%F9i%7E%A6%8B%86%84F%BFg%C1%89J%5E%F6mG%E1H%F8%BE%D6B+z%85%2CQ%B3%C7%DD%8A%D2n%29%FC%B9l%EBv%B6%28%EA%CDC%ABN%60A%E2Or%EC%BB%FDS%A3x%DF.%93%C3%B0e%8D%A9%3F%A0%E68j%AD%D9%21%A5%E3%2B%AAL%A8W%26%5C%F4T%D0%CA%FAR%87%D5%C9%CB%AF%CCk%B1w%9F3%EF%DB%B4%A1%40E2%91%7B%23%D4%B7%3E7%A74%95%BC%F1%82%88%C6%22%C5%C4%5B%D3y%8CD%FFpdo0b-%E5%2F%3B1%C0%F3s%EE%8Ft%83%A4%BA9%F5Iu%9A%90%DE%B5M%8E%ED%27%99%3C%F2Z%A2%E9%BDh%F0%B7%8B%9F%2CH%DA%F1%B0%E9%93%5B%FA%9C%8D%84%E6V%5D%F6d%24%F5%C4%2BTW%EB%EA%E7%90s%28%2Ay%22%DE%97S%5E%DF%88%BAEe0%8A%C7%E1Lax%89%CF%29K7%E4%FF%B1%FC%238%95B%BC%40%3F%CA6%8EP%AF%EE%AA%BB%C9J5%DD%C6%E3%EC%E8f%7B%A3%AE%7DA%27-RQu%B5%99%C3%D7%BE%2F%AC%AD%D8%A0z%D4%D5%26%92%A6%A9%3B%F9F%8CwZ%B3%7EX%CD%9D%FENq%822%B9%CE%B6%A7v%B2%EF%A8%83%C0%85rG%60%FBn4%3E%25%87%80%BD%E2%F3%94%A2%F7%9B%8FI1%CC%C5%B8%86%DB%BFpig%9E%CBh_D%D2%FDm%A1%D1kj3%F8%989%A4%D0%3Db%D6%96%F2.%C1%3C%7C%A5l%AB%DCC%E0%C2c%5C%F4%D9Mt%21oO%E5UY%3A+%91%B4%81%ED%D3%9A%C8e&coding=6 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:20+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%89%A0%8A%E7%DF%24%EEb_%2B%D8%A7%C3lKT%E9%8C%C4m%B5%DC%99e3%21t%88%FDB%B3J0%EB%D5%3C%7Ckvo%BE%8F%23%5C%25%3AX%BA%7E%3F%C9%9F%F5%2A%AC%22%83%D6%86%FB6s%C1%E8%F0Ud%8D%98+71%C0%A5%84O%E6%AF%FF%A6%AA%DD%94Q2%E2%82%2FC%EC%F6%CA%3E%F2%85%60P%D1NM%FC%C6%DB%ED%81%90%27W%CB%A8E%F7%D0Ag%9BIa%95%AB9%D4%F8%C2j%2C%8B%91f%B4%CDw%B2%9A%D2%BB%E5y%5B%EA%7D.%AE%9C%EFR%26x%A3%BCFVi%DE%5E%E0%92%97%B1%E1q%CC%87%C8H%F4%A98%29%9D%B6%B9zc%B7%5D%CE%96%40Z%A4%D7%ADG%FA%93D%B0%3B%7Bnh%FE%D3%A2%E4%28%F9rY%E3%80%C5%D9%BD%3D%DA5S%F34uLp%CF%A1%B8%BF%C7-%F1%9E%8EV%E8%7D%81%3A%E7Y%96%C2%9CcK_%80%2A6%94%92%CFqa%B2%E4%D8%9E%B8%FB%5D%AC%D1%97f%7C%CE%FEP%25%24%E0%F75%D7X%9D%C8%DC%F0U%AE%3D%9B%DA%98%F9i%7E%A6%8B%86%84F%BFg%C1%89J%5E%F6mG%E1H%F8%BE%D6B+z%85%2CQ%B3%C7%DD%8A%D2n%29%FC%B9l%EBv%B6%28%EA%CDC%ABN%60A%E2Or%EC%BB%FDS%A3x%DF.%93%C3%B0e%8D%A9%3F%A0%E68j%AD%D9%21%A5%E3%2B%AAL%A8W%26%5C%F4T%D0%CA%FAR%87%D5%C9%CB%AF%CCk%B1w%9F3%EF%DB%B4%A1%40E2%91%7B%23%D4%B7%3E7%A74%95%BC%F1%82%88%C6%22%C5%C4%5B%D3y%8CD%FFpdo0b-%E5%2F%3B1%C0%F3s%EE%8Ft%83%A4%BA9%F5Iu%9A%90%DE%B5M%8E%ED%27%99%3C%F2Z%A2%E9%BDh%F0%B7%8B%9F%2CH%DA%F1%B0%E9%93%5B%FA%9C%8D%84%E6V%5D%F6d%24%F5%C4%2BTW%EB%EA%E7%90s%28%2Ay%22%DE%97S%5E%DF%88%BAEe0%8A%C7%E1Lax%89%CF%29K7%E4%FF%B1%FC%238%95B%BC%40%3F%CA6%8EP%AF%EE%AA%BB%C9J5%DD%C6%E3%EC%E8f%7B%A3%AE%7DA%27-RQu%B5%99%C3%D7%BE%2F%AC%AD%D8%A0z%D4%D5%26%92%A6%A9%3B%F9F%8CwZ%B3%7EX%CD%9D%FENq%822%B9%CE%B6%A7v%B2%EF%A8%83%C0%85rG%60%FBn4%3E%25%87%80%BD%E2%F3%94%A2%F7%9B%8FI1%CC%C5%B8%86%DB%BFpig%9E%CBh_D%D2%FDm%A1%D1kj3%F8%989%A4%D0%3Db%D6%96%F2.%C1%3C%7C%A5l%AB%DCC%E0%C2c%5C%F4%D9Mt%21oO%E5UY%3A+%91%B4%81%ED%D3%9A%C8e&coding=6>
+2017-05-06 12:59:22+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f6577e8>
+2017-05-06 12:59:23+0100 [-] (TCP Port 57172 Closed)
+2017-05-06 12:59:23+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f44d6c8>
+2017-05-06 12:59:23+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f63d518>
+2017-05-06 12:59:23+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:23+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f4766c8>
+2017-05-06 12:59:23+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f6472d8>
+2017-05-06 12:59:23+0100 [-] (TCP Port 57174 Closed)
+2017-05-06 12:59:23+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f621248>
+2017-05-06 12:59:23+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f621638>
+2017-05-06 12:59:23+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10f4768c0>
+2017-05-06 12:59:23+0100 [-] (TCP Port 57185 Closed)
+2017-05-06 12:59:23+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f621320>
+2017-05-06 12:59:23+0100 [-] Main loop terminated.
+2017-05-06 12:59:23+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_EXTENDED_KANJI_JIS <--
+2017-05-06 12:59:23+0100 [-] PBServerFactory starting on 57190
+2017-05-06 12:59:23+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f476830>
+2017-05-06 12:59:23+0100 [-] Site starting on 1401
+2017-05-06 12:59:23+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f635c20>
+2017-05-06 12:59:23+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10f635e60>
+2017-05-06 12:59:23+0100 [AmqpProtocol,client] PBServerFactory starting on 57192
+2017-05-06 12:59:23+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f8363b0>
+2017-05-06 12:59:23+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f836098>
+2017-05-06 12:59:23+0100 [Uninitialized] LastClientFactory starting on 57203
+2017-05-06 12:59:23+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f836f38>
+2017-05-06 12:59:23+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f848248>
+2017-05-06 12:59:23+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f848638>
+2017-05-06 12:59:23+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f848d40>
+2017-05-06 12:59:23+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%8B90%FC4B%8B89%8BC9%8B89%8BC9%8B90%FC4B%8BC9%8B89%8B90%FC4B%8B89%8B90%8BC9%FC4B%8B90%8B89%8BC9%FC4B%FC4B%8BC9%8B89%8B90%8B90%8BC9%FC4B%8B89%8B90%8B89%FC4B%8BC9%8B90%8B89%8BC9%FC4B%8BC9%8B90%8B89%FC4B%8BC9%8B89%8B90%FC4B%FC4B%8BC9%8B89%8B90%8B89%8B90%FC4B%8BC9%FC4B%8BC9%8B89%8B90%8BC9%FC4B%8B90%8B89%8B89%8BC9%8B90%FC4B%FC4B%8BC9%8B89%8B90%8BC9%8B90%8B89%FC4B%8B90%FC4B%8BC9%8B89%8BC9%FC4B%8B89%8B90%8BC9%8B89%FC4B%8B90%8B89%FC4B%8BC9%8B90%8BC9%8B90%8B89%FC4B%8B89%8BC9%8B90%FC4B%8BC9%8B90%8B89%FC4B%8B90%FC4B%8B89%8BC9%8BC9%FC4B%8B89%8B90%8BC9%FC4B%8B89%8B9&coding=13>
+2017-05-06 12:59:23+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:23 +0000] "GET /send?username=username&to=06155423&password=password&content=%8B90%FC4B%8B89%8BC9%8B89%8BC9%8B90%FC4B%8BC9%8B89%8B90%FC4B%8B89%8B90%8BC9%FC4B%8B90%8B89%8BC9%FC4B%FC4B%8BC9%8B89%8B90%8B90%8BC9%FC4B%8B89%8B90%8B89%FC4B%8BC9%8B90%8B89%8BC9%FC4B%8BC9%8B90%8B89%FC4B%8BC9%8B89%8B90%FC4B%FC4B%8BC9%8B89%8B90%8B89%8B90%FC4B%8BC9%FC4B%8BC9%8B89%8B90%8BC9%FC4B%8B90%8B89%8B89%8BC9%8B90%FC4B%FC4B%8BC9%8B89%8B90%8BC9%8B90%8B89%FC4B%8B90%FC4B%8BC9%8B89%8BC9%FC4B%8B89%8B90%8BC9%8B89%FC4B%8B90%8B89%FC4B%8BC9%8B90%8BC9%8B90%8B89%FC4B%8B89%8BC9%8B90%FC4B%8BC9%8B90%8B89%FC4B%8B90%FC4B%8B89%8BC9%8BC9%FC4B%8B89%8B90%8BC9%FC4B%8B89%8B9&coding=13 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:23+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%8B90%FC4B%8B89%8BC9%8B89%8BC9%8B90%FC4B%8BC9%8B89%8B90%FC4B%8B89%8B90%8BC9%FC4B%8B90%8B89%8BC9%FC4B%FC4B%8BC9%8B89%8B90%8B90%8BC9%FC4B%8B89%8B90%8B89%FC4B%8BC9%8B90%8B89%8BC9%FC4B%8BC9%8B90%8B89%FC4B%8BC9%8B89%8B90%FC4B%FC4B%8BC9%8B89%8B90%8B89%8B90%FC4B%8BC9%FC4B%8BC9%8B89%8B90%8BC9%FC4B%8B90%8B89%8B89%8BC9%8B90%FC4B%FC4B%8BC9%8B89%8B90%8BC9%8B90%8B89%FC4B%8B90%FC4B%8BC9%8B89%8BC9%FC4B%8B89%8B90%8BC9%8B89%FC4B%8B90%8B89%FC4B%8BC9%8B90%8BC9%8B90%8B89%FC4B%8B89%8BC9%8B90%FC4B%8BC9%8B90%8B89%FC4B%8B90%FC4B%8B89%8BC9%8BC9%FC4B%8B89%8B90%8BC9%FC4B%8B89%8B9&coding=13>
+2017-05-06 12:59:25+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f848d40>
+2017-05-06 12:59:25+0100 [-] (TCP Port 57190 Closed)
+2017-05-06 12:59:25+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f476830>
+2017-05-06 12:59:25+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f848248>
+2017-05-06 12:59:25+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:25+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f635c20>
+2017-05-06 12:59:25+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f848638>
+2017-05-06 12:59:25+0100 [-] (TCP Port 57192 Closed)
+2017-05-06 12:59:25+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f8363b0>
+2017-05-06 12:59:25+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10f635e60>
+2017-05-06 12:59:26+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f836098>
+2017-05-06 12:59:26+0100 [-] (TCP Port 57203 Closed)
+2017-05-06 12:59:26+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f836f38>
+2017-05-06 12:59:26+0100 [-] Main loop terminated.
+2017-05-06 12:59:26+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_IA5_ASCII <--
+2017-05-06 12:59:26+0100 [-] PBServerFactory starting on 57208
+2017-05-06 12:59:26+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f846b90>
+2017-05-06 12:59:26+0100 [-] Site starting on 1401
+2017-05-06 12:59:26+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f83e4d0>
+2017-05-06 12:59:26+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10f83ec20>
+2017-05-06 12:59:26+0100 [AmqpProtocol,client] PBServerFactory starting on 57210
+2017-05-06 12:59:26+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f9e5050>
+2017-05-06 12:59:26+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f9e5518>
+2017-05-06 12:59:26+0100 [Uninitialized] LastClientFactory starting on 57221
+2017-05-06 12:59:26+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f9e55a8>
+2017-05-06 12:59:26+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f9f3248>
+2017-05-06 12:59:26+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f9f3bd8>
+2017-05-06 12:59:26+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f9ff440>
+2017-05-06 12:59:26+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%0F%29p%09%2F.%25%212%19%0AI%14%16%1A-%04%1E%3A%5C%2B%1CYl0%5B6x%2C4%3C%05%60%01%7D%17%0BXS%24mtEy3%5DH%23%7Cs71%28P%035QAzCi%3DMBhr%1Fwf%11LO%27dRNK%1D%07%08%22Dj9+%0C%7Ev%0DF%13%3Fa%26%00%5E%7Be%3B%10%40U%068%15oJuG%3EbW%02%2Aqg%0EnT%7F_%12Z%18VckKT%05litr%14%24%0F%110%13%0E%156%03vhRC%3E%3CxZyX%40I%5D2%02d%10qJ%12mV%1EPQ%7E%60%0A1%23N%07%3D4u-n9%2F%7C%19D%1A%7F%3BOokM%5B%18%3A%3F%26eUb%005%1C%08fc3%2B%227sLFz%29%1FA%5Cp%17wB%0DYS%5Ea%25Hj%0C%04%16%1D_.+%09%0B%06G%7Bg%2C%28E8%7D%21%2AW%27%01%08%14%00-P2Fun%5B%5CcL%2A%270%2F%1EH%40RYZ%5Elj%261+%11%01%12AX8g%0CEG%02%09%0F.%29%0BpWm%16%3E%1D%07%3D9ei%1A%2C%60h%0DQ%2Bs%3A%7BUB%7E%0A%3F%17%1F%5D_%18%3C%21Cw4b%10%23%3B6%13xa%15O%7D%19%22%04%05%1C%25t%03%06V5K3vr%28MS7%7FN%7Cq%0EfyJoTD%24dzIk%3B%7Cuwl5F%60%16%5Eq%09%15%1E%7EI%25%04b%3DZ0U%1F%27%037A%3A%0E%1D2%7FW+s%10%3F%29%1C%28_Nk%2A%40%0DhG%13L%01ot%26%3CYm%18DcTvfRyaJi%12%14%0BK8X%02%191V%0C%0F%7D%2F%07%2C%0AO%5C.PE6%5D%5Bxz9%00rdpQg%1A3n-%7BjC%21%08%05%2B%06%24%11S%22BM%234eH%3E%17%1C%3Ce%19%0Eb%00%2Cu62%7C+%12P%03SJ9%14%22%06%05xK%23%1Ew%0B5U%10O%2BLcG4NE%2FX%241%07lVI8%11%5D%2A%1DM%01%21D%5E%3A%16%7E%1A%09ot%15Fz%7F%0F%25-B7Qaj%3Eq%5Bn%3FRApfkh%1F%26%3Bgv_%28%3D%04%27ryY.%08d&coding=1>
+2017-05-06 12:59:26+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:26 +0000] "GET /send?username=username&to=06155423&password=password&content=%0F%29p%09%2F.%25%212%19%0AI%14%16%1A-%04%1E%3A%5C%2B%1CYl0%5B6x%2C4%3C%05%60%01%7D%17%0BXS%24mtEy3%5DH%23%7Cs71%28P%035QAzCi%3DMBhr%1Fwf%11LO%27dRNK%1D%07%08%22Dj9+%0C%7Ev%0DF%13%3Fa%26%00%5E%7Be%3B%10%40U%068%15oJuG%3EbW%02%2Aqg%0EnT%7F_%12Z%18VckKT%05litr%14%24%0F%110%13%0E%156%03vhRC%3E%3CxZyX%40I%5D2%02d%10qJ%12mV%1EPQ%7E%60%0A1%23N%07%3D4u-n9%2F%7C%19D%1A%7F%3BOokM%5B%18%3A%3F%26eUb%005%1C%08fc3%2B%227sLFz%29%1FA%5Cp%17wB%0DYS%5Ea%25Hj%0C%04%16%1D_.+%09%0B%06G%7Bg%2C%28E8%7D%21%2AW%27%01%08%14%00-P2Fun%5B%5CcL%2A%270%2F%1EH%40RYZ%5Elj%261+%11%01%12AX8g%0CEG%02%09%0F.%29%0BpWm%16%3E%1D%07%3D9ei%1A%2C%60h%0DQ%2Bs%3A%7BUB%7E%0A%3F%17%1F%5D_%18%3C%21Cw4b%10%23%3B6%13xa%15O%7D%19%22%04%05%1C%25t%03%06V5K3vr%28MS7%7FN%7Cq%0EfyJoTD%24dzIk%3B%7Cuwl5F%60%16%5Eq%09%15%1E%7EI%25%04b%3DZ0U%1F%27%037A%3A%0E%1D2%7FW+s%10%3F%29%1C%28_Nk%2A%40%0DhG%13L%01ot%26%3CYm%18DcTvfRyaJi%12%14%0BK8X%02%191V%0C%0F%7D%2F%07%2C%0AO%5C.PE6%5D%5Bxz9%00rdpQg%1A3n-%7BjC%21%08%05%2B%06%24%11S%22BM%234eH%3E%17%1C%3Ce%19%0Eb%00%2Cu62%7C+%12P%03SJ9%14%22%06%05xK%23%1Ew%0B5U%10O%2BLcG4NE%2FX%241%07lVI8%11%5D%2A%1DM%01%21D%5E%3A%16%7E%1A%09ot%15Fz%7F%0F%25-B7Qaj%3Eq%5Bn%3FRApfkh%1F%26%3Bgv_%28%3D%04%27ryY.%08d&coding=1 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:26+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%0F%29p%09%2F.%25%212%19%0AI%14%16%1A-%04%1E%3A%5C%2B%1CYl0%5B6x%2C4%3C%05%60%01%7D%17%0BXS%24mtEy3%5DH%23%7Cs71%28P%035QAzCi%3DMBhr%1Fwf%11LO%27dRNK%1D%07%08%22Dj9+%0C%7Ev%0DF%13%3Fa%26%00%5E%7Be%3B%10%40U%068%15oJuG%3EbW%02%2Aqg%0EnT%7F_%12Z%18VckKT%05litr%14%24%0F%110%13%0E%156%03vhRC%3E%3CxZyX%40I%5D2%02d%10qJ%12mV%1EPQ%7E%60%0A1%23N%07%3D4u-n9%2F%7C%19D%1A%7F%3BOokM%5B%18%3A%3F%26eUb%005%1C%08fc3%2B%227sLFz%29%1FA%5Cp%17wB%0DYS%5Ea%25Hj%0C%04%16%1D_.+%09%0B%06G%7Bg%2C%28E8%7D%21%2AW%27%01%08%14%00-P2Fun%5B%5CcL%2A%270%2F%1EH%40RYZ%5Elj%261+%11%01%12AX8g%0CEG%02%09%0F.%29%0BpWm%16%3E%1D%07%3D9ei%1A%2C%60h%0DQ%2Bs%3A%7BUB%7E%0A%3F%17%1F%5D_%18%3C%21Cw4b%10%23%3B6%13xa%15O%7D%19%22%04%05%1C%25t%03%06V5K3vr%28MS7%7FN%7Cq%0EfyJoTD%24dzIk%3B%7Cuwl5F%60%16%5Eq%09%15%1E%7EI%25%04b%3DZ0U%1F%27%037A%3A%0E%1D2%7FW+s%10%3F%29%1C%28_Nk%2A%40%0DhG%13L%01ot%26%3CYm%18DcTvfRyaJi%12%14%0BK8X%02%191V%0C%0F%7D%2F%07%2C%0AO%5C.PE6%5D%5Bxz9%00rdpQg%1A3n-%7BjC%21%08%05%2B%06%24%11S%22BM%234eH%3E%17%1C%3Ce%19%0Eb%00%2Cu62%7C+%12P%03SJ9%14%22%06%05xK%23%1Ew%0B5U%10O%2BLcG4NE%2FX%241%07lVI8%11%5D%2A%1DM%01%21D%5E%3A%16%7E%1A%09ot%15Fz%7F%0F%25-B7Qaj%3Eq%5Bn%3FRApfkh%1F%26%3Bgv_%28%3D%04%27ryY.%08d&coding=1>
+2017-05-06 12:59:28+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f9ff440>
+2017-05-06 12:59:28+0100 [-] (TCP Port 57208 Closed)
+2017-05-06 12:59:28+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f846b90>
+2017-05-06 12:59:28+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f9f3248>
+2017-05-06 12:59:28+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:28+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f83e4d0>
+2017-05-06 12:59:28+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f9f3bd8>
+2017-05-06 12:59:28+0100 [-] (TCP Port 57210 Closed)
+2017-05-06 12:59:28+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f9e5050>
+2017-05-06 12:59:28+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10f83ec20>
+2017-05-06 12:59:28+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f9e5518>
+2017-05-06 12:59:29+0100 [-] (TCP Port 57221 Closed)
+2017-05-06 12:59:29+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f9e55a8>
+2017-05-06 12:59:29+0100 [-] Main loop terminated.
+2017-05-06 12:59:29+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_ISO_2022_JP <--
+2017-05-06 12:59:29+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_ISO_8859_8 <--
+2017-05-06 12:59:29+0100 [-] PBServerFactory starting on 57226
+2017-05-06 12:59:29+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f647a70>
+2017-05-06 12:59:29+0100 [-] Site starting on 1401
+2017-05-06 12:59:29+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f44d1b8>
+2017-05-06 12:59:29+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10f62e7a0>
+2017-05-06 12:59:29+0100 [AmqpProtocol,client] PBServerFactory starting on 57228
+2017-05-06 12:59:29+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fb97170>
+2017-05-06 12:59:29+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fb97248>
+2017-05-06 12:59:29+0100 [Uninitialized] LastClientFactory starting on 57239
+2017-05-06 12:59:29+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fb82e60>
+2017-05-06 12:59:29+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fba12d8>
+2017-05-06 12:59:29+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fba1cb0>
+2017-05-06 12:59:29+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fba9170>
+2017-05-06 12:59:29+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%841%3E%94%01%BD%A03%88%96b%FEC%8E%2C%EC%5D7%E8%60%1Da+%82%1C%AEAS%9C%15%BCcO%EE%91%E2g_B%86%98%2AwEe%16s%9F%A35%B8pt%8C%A4%3C%87Y%8F%09%DF%F1Q%1FT%E9%A7.l%E6%26%07%22%11%AA%80%7C%E4-%E3%B9%12%A5%25Rq%18%B5X%7F%F2%F8%0F%FA%89I%1E%13%B3%E5%AFP4%02Ld%90%14%93H%F4%99%7E%5Ch%9Bj%27%8D%ABn%A2%81%F3v%EA%0D%ED%23%1B%05%BE%0C%B6%8B%B4%0B8%0E9%F9%5E%A9%97%19%BA%9DF%3Bk%85fJ%95%F6M%AC%AD%29%EF%17m%F5i%A8%04%83u%08rU%03%9E%3F2%00%10V%8A%5B%E0%F7%1A%24%3Dz6%21%3A%06%B2K%40%EB%B0%E7%92%E1yo%0A%FD%28%BB%A6%2BGx%B7%F0D%7B%2FWZ%9A0%7D%B1N%F5%E9%BErW%21%05%AE%FD_%E2e%A3%12%09%A53l1%EF%1DH%8E%94%BA%1E+U%FA%BC%9E%8B%97%89zJphf%3E%EAD%26%27%B3-q%84%2B%3F%2A%7B%83A%BDw%06Ek%1A%EB%00%9A%2F%03%3C%B0%0D%7D%18%1C%93%F6y%E6%8D%9CF.%96%B29%3AO%F3%1B%3D%23%882t%25RTa%B1%B78%B4o%FE5u%A9n%F0%B5X%7F%24%E8c%08%F2%AF%B9%60%82P%7E%107%29V%91%98%E3j%5C%2CQsGg%0C%AD%99%02L%130%DF%0A%92%04%0F%8C%A7%22%07x%F1%E7%EE%5E%16%5B%5D4%E0%19%F9%E1iN%E5%F8%ED6KZ%A4%BB%AA%9B%0E%ABIS%B6%14%8Fv%A8%B8dM%EC%A0%7C%9F%F4%1F%3B%0BC%9D%95%A2%81%A6B%80%F7b%AC%40Y%11%85%86%90%15%E4%8A%01%87m%28%17%02W%A0%B7-%99%14LV%85%1D%EAd%3C%AE%B3j%80%B5%25%04%29%8EBw7%A7X%BD%9C%E79%19%12%5C%AC%F1tK%9A%8F%09%5E%82%94%7F%1F%9B%26%F8%8C%F7%18o1vz%E2%B4%8D%21%EF%BA%81%F2%9DT%0Cl%0EA%96pQ.%97%FD%17%9FU%AA%E4%B8%2BN%B2G%01%EC5%98%918%22+%27%F5x%3D%7EI%2A%2F%03%83%AF%ED%8Ay%FE%07Y%7C%A9%2C%B1%1C%7B%FAEZ%1A%F9%EB%3Br%7D%E0u%0F%3Ea%A3%E3m%16M%40%B9e%B0%1E%A2fiRJg%60%89%A8%8B%EE%1B%86%902q%93%F6H%AB4C%DF%AD%A6c%11%E5%24%A5k%BB%3A_%84n%0DD%A4%95%BC%3F%9E%28%13%0B6b%E1%BE%08%23%F3%E6%05F%063%92%F4%5DhP%E90%87%E8s%0A%10%F0O%00%5B%15S%88%B6%0F%E9%5E%E1i%A6%2Br%9Da&coding=7>
+2017-05-06 12:59:29+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:29 +0000] "GET /send?username=username&to=06155423&password=password&content=%841%3E%94%01%BD%A03%88%96b%FEC%8E%2C%EC%5D7%E8%60%1Da+%82%1C%AEAS%9C%15%BCcO%EE%91%E2g_B%86%98%2AwEe%16s%9F%A35%B8pt%8C%A4%3C%87Y%8F%09%DF%F1Q%1FT%E9%A7.l%E6%26%07%22%11%AA%80%7C%E4-%E3%B9%12%A5%25Rq%18%B5X%7F%F2%F8%0F%FA%89I%1E%13%B3%E5%AFP4%02Ld%90%14%93H%F4%99%7E%5Ch%9Bj%27%8D%ABn%A2%81%F3v%EA%0D%ED%23%1B%05%BE%0C%B6%8B%B4%0B8%0E9%F9%5E%A9%97%19%BA%9DF%3Bk%85fJ%95%F6M%AC%AD%29%EF%17m%F5i%A8%04%83u%08rU%03%9E%3F2%00%10V%8A%5B%E0%F7%1A%24%3Dz6%21%3A%06%B2K%40%EB%B0%E7%92%E1yo%0A%FD%28%BB%A6%2BGx%B7%F0D%7B%2FWZ%9A0%7D%B1N%F5%E9%BErW%21%05%AE%FD_%E2e%A3%12%09%A53l1%EF%1DH%8E%94%BA%1E+U%FA%BC%9E%8B%97%89zJphf%3E%EAD%26%27%B3-q%84%2B%3F%2A%7B%83A%BDw%06Ek%1A%EB%00%9A%2F%03%3C%B0%0D%7D%18%1C%93%F6y%E6%8D%9CF.%96%B29%3AO%F3%1B%3D%23%882t%25RTa%B1%B78%B4o%FE5u%A9n%F0%B5X%7F%24%E8c%08%F2%AF%B9%60%82P%7E%107%29V%91%98%E3j%5C%2CQsGg%0C%AD%99%02L%130%DF%0A%92%04%0F%8C%A7%22%07x%F1%E7%EE%5E%16%5B%5D4%E0%19%F9%E1iN%E5%F8%ED6KZ%A4%BB%AA%9B%0E%ABIS%B6%14%8Fv%A8%B8dM%EC%A0%7C%9F%F4%1F%3B%0BC%9D%95%A2%81%A6B%80%F7b%AC%40Y%11%85%86%90%15%E4%8A%01%87m%28%17%02W%A0%B7-%99%14LV%85%1D%EAd%3C%AE%B3j%80%B5%25%04%29%8EBw7%A7X%BD%9C%E79%19%12%5C%AC%F1tK%9A%8F%09%5E%82%94%7F%1F%9B%26%F8%8C%F7%18o1vz%E2%B4%8D%21%EF%BA%81%F2%9DT%0Cl%0EA%96pQ.%97%FD%17%9FU%AA%E4%B8%2BN%B2G%01%EC5%98%918%22+%27%F5x%3D%7EI%2A%2F%03%83%AF%ED%8Ay%FE%07Y%7C%A9%2C%B1%1C%7B%FAEZ%1A%F9%EB%3Br%7D%E0u%0F%3Ea%A3%E3m%16M%40%B9e%B0%1E%A2fiRJg%60%89%A8%8B%EE%1B%86%902q%93%F6H%AB4C%DF%AD%A6c%11%E5%24%A5k%BB%3A_%84n%0DD%A4%95%BC%3F%9E%28%13%0B6b%E1%BE%08%23%F3%E6%05F%063%92%F4%5DhP%E90%87%E8s%0A%10%F0O%00%5B%15S%88%B6%0F%E9%5E%E1i%A6%2Br%9Da&coding=7 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:29+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%841%3E%94%01%BD%A03%88%96b%FEC%8E%2C%EC%5D7%E8%60%1Da+%82%1C%AEAS%9C%15%BCcO%EE%91%E2g_B%86%98%2AwEe%16s%9F%A35%B8pt%8C%A4%3C%87Y%8F%09%DF%F1Q%1FT%E9%A7.l%E6%26%07%22%11%AA%80%7C%E4-%E3%B9%12%A5%25Rq%18%B5X%7F%F2%F8%0F%FA%89I%1E%13%B3%E5%AFP4%02Ld%90%14%93H%F4%99%7E%5Ch%9Bj%27%8D%ABn%A2%81%F3v%EA%0D%ED%23%1B%05%BE%0C%B6%8B%B4%0B8%0E9%F9%5E%A9%97%19%BA%9DF%3Bk%85fJ%95%F6M%AC%AD%29%EF%17m%F5i%A8%04%83u%08rU%03%9E%3F2%00%10V%8A%5B%E0%F7%1A%24%3Dz6%21%3A%06%B2K%40%EB%B0%E7%92%E1yo%0A%FD%28%BB%A6%2BGx%B7%F0D%7B%2FWZ%9A0%7D%B1N%F5%E9%BErW%21%05%AE%FD_%E2e%A3%12%09%A53l1%EF%1DH%8E%94%BA%1E+U%FA%BC%9E%8B%97%89zJphf%3E%EAD%26%27%B3-q%84%2B%3F%2A%7B%83A%BDw%06Ek%1A%EB%00%9A%2F%03%3C%B0%0D%7D%18%1C%93%F6y%E6%8D%9CF.%96%B29%3AO%F3%1B%3D%23%882t%25RTa%B1%B78%B4o%FE5u%A9n%F0%B5X%7F%24%E8c%08%F2%AF%B9%60%82P%7E%107%29V%91%98%E3j%5C%2CQsGg%0C%AD%99%02L%130%DF%0A%92%04%0F%8C%A7%22%07x%F1%E7%EE%5E%16%5B%5D4%E0%19%F9%E1iN%E5%F8%ED6KZ%A4%BB%AA%9B%0E%ABIS%B6%14%8Fv%A8%B8dM%EC%A0%7C%9F%F4%1F%3B%0BC%9D%95%A2%81%A6B%80%F7b%AC%40Y%11%85%86%90%15%E4%8A%01%87m%28%17%02W%A0%B7-%99%14LV%85%1D%EAd%3C%AE%B3j%80%B5%25%04%29%8EBw7%A7X%BD%9C%E79%19%12%5C%AC%F1tK%9A%8F%09%5E%82%94%7F%1F%9B%26%F8%8C%F7%18o1vz%E2%B4%8D%21%EF%BA%81%F2%9DT%0Cl%0EA%96pQ.%97%FD%17%9FU%AA%E4%B8%2BN%B2G%01%EC5%98%918%22+%27%F5x%3D%7EI%2A%2F%03%83%AF%ED%8Ay%FE%07Y%7C%A9%2C%B1%1C%7B%FAEZ%1A%F9%EB%3Br%7D%E0u%0F%3Ea%A3%E3m%16M%40%B9e%B0%1E%A2fiRJg%60%89%A8%8B%EE%1B%86%902q%93%F6H%AB4C%DF%AD%A6c%11%E5%24%A5k%BB%3A_%84n%0DD%A4%95%BC%3F%9E%28%13%0B6b%E1%BE%08%23%F3%E6%05F%063%92%F4%5DhP%E90%87%E8s%0A%10%F0O%00%5B%15S%88%B6%0F%E9%5E%E1i%A6%2Br%9Da&coding=7>
+2017-05-06 12:59:31+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fba9170>
+2017-05-06 12:59:31+0100 [-] (TCP Port 57226 Closed)
+2017-05-06 12:59:31+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f647a70>
+2017-05-06 12:59:31+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fba12d8>
+2017-05-06 12:59:31+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:31+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f44d1b8>
+2017-05-06 12:59:31+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fba1cb0>
+2017-05-06 12:59:31+0100 [-] (TCP Port 57228 Closed)
+2017-05-06 12:59:31+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fb97170>
+2017-05-06 12:59:31+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10f62e7a0>
+2017-05-06 12:59:31+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fb97248>
+2017-05-06 12:59:31+0100 [-] (TCP Port 57239 Closed)
+2017-05-06 12:59:31+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fb82e60>
+2017-05-06 12:59:31+0100 [-] Main loop terminated.
+2017-05-06 12:59:31+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_JIS <--
+2017-05-06 12:59:31+0100 [-] PBServerFactory starting on 57244
+2017-05-06 12:59:31+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fb97cf8>
+2017-05-06 12:59:31+0100 [-] Site starting on 1401
+2017-05-06 12:59:31+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10fb82dd0>
+2017-05-06 12:59:31+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10fb82b00>
+2017-05-06 12:59:32+0100 [AmqpProtocol,client] PBServerFactory starting on 57246
+2017-05-06 12:59:32+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fd50320>
+2017-05-06 12:59:32+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fd502d8>
+2017-05-06 12:59:32+0100 [Uninitialized] LastClientFactory starting on 57257
+2017-05-06 12:59:32+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fd3ef80>
+2017-05-06 12:59:32+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fd5ca70>
+2017-05-06 12:59:32+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fa0b440>
+2017-05-06 12:59:32+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fba1b48>
+2017-05-06 12:59:32+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%E062%EAA2%8140%96BA%8140%E062%96BA%EAA2%8140%E062%EAA2%96BA%EAA2%8140%96BA%E062%E062%EAA2%8140%96BA%96BA%EAA2%E062%8140%8140%96BA%EAA2%E062%EAA2%8140%96BA%E062%EAA2%E062%96BA%8140%96BA%EAA2%8140%E062%8140%E062%EAA2%96BA%96BA%EAA2%E062%8140%E062%96BA%EAA2%8140%8140%EAA2%96BA%E062%96BA%E062%EAA2%8140%8140%EAA2%E062%96BA%E062%EAA2%96BA%8140%96BA%8140%EAA2%E062%8140%EAA2%E062%96BA%E062%8140%EAA2%96BA%96BA%8140%E062%EAA2%96BA%E062%EAA2%8140%E062%96BA%EAA2%8140%8140%96BA%E062%EAA2%EAA2%E062%96BA%8140%EAA2%E062%96BA%8140%96BA%8140%EAA2%E062%8140%E062%96BA%EAA&coding=5>
+2017-05-06 12:59:32+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:31 +0000] "GET /send?username=username&to=06155423&password=password&content=%E062%EAA2%8140%96BA%8140%E062%96BA%EAA2%8140%E062%EAA2%96BA%EAA2%8140%96BA%E062%E062%EAA2%8140%96BA%96BA%EAA2%E062%8140%8140%96BA%EAA2%E062%EAA2%8140%96BA%E062%EAA2%E062%96BA%8140%96BA%EAA2%8140%E062%8140%E062%EAA2%96BA%96BA%EAA2%E062%8140%E062%96BA%EAA2%8140%8140%EAA2%96BA%E062%96BA%E062%EAA2%8140%8140%EAA2%E062%96BA%E062%EAA2%96BA%8140%96BA%8140%EAA2%E062%8140%EAA2%E062%96BA%E062%8140%EAA2%96BA%96BA%8140%E062%EAA2%96BA%E062%EAA2%8140%E062%96BA%EAA2%8140%8140%96BA%E062%EAA2%EAA2%E062%96BA%8140%EAA2%E062%96BA%8140%96BA%8140%EAA2%E062%8140%E062%96BA%EAA&coding=5 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:32+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%E062%EAA2%8140%96BA%8140%E062%96BA%EAA2%8140%E062%EAA2%96BA%EAA2%8140%96BA%E062%E062%EAA2%8140%96BA%96BA%EAA2%E062%8140%8140%96BA%EAA2%E062%EAA2%8140%96BA%E062%EAA2%E062%96BA%8140%96BA%EAA2%8140%E062%8140%E062%EAA2%96BA%96BA%EAA2%E062%8140%E062%96BA%EAA2%8140%8140%EAA2%96BA%E062%96BA%E062%EAA2%8140%8140%EAA2%E062%96BA%E062%EAA2%96BA%8140%96BA%8140%EAA2%E062%8140%EAA2%E062%96BA%E062%8140%EAA2%96BA%96BA%8140%E062%EAA2%96BA%E062%EAA2%8140%E062%96BA%EAA2%8140%8140%96BA%E062%EAA2%EAA2%E062%96BA%8140%EAA2%E062%96BA%8140%96BA%8140%EAA2%E062%8140%E062%96BA%EAA&coding=5>
+2017-05-06 12:59:34+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fba1b48>
+2017-05-06 12:59:34+0100 [-] (TCP Port 57244 Closed)
+2017-05-06 12:59:34+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fb97cf8>
+2017-05-06 12:59:34+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fd5ca70>
+2017-05-06 12:59:34+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:34+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10fb82dd0>
+2017-05-06 12:59:34+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fa0b440>
+2017-05-06 12:59:34+0100 [-] (TCP Port 57246 Closed)
+2017-05-06 12:59:34+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fd50320>
+2017-05-06 12:59:34+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10fb82b00>
+2017-05-06 12:59:34+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fd502d8>
+2017-05-06 12:59:34+0100 [-] (TCP Port 57257 Closed)
+2017-05-06 12:59:34+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fd3ef80>
+2017-05-06 12:59:34+0100 [-] Main loop terminated.
+2017-05-06 12:59:34+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_KS_C_5601 <--
+2017-05-06 12:59:34+0100 [-] PBServerFactory starting on 57262
+2017-05-06 12:59:34+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fd599e0>
+2017-05-06 12:59:34+0100 [-] Site starting on 1401
+2017-05-06 12:59:34+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10fd3ef38>
+2017-05-06 12:59:34+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10fb97830>
+2017-05-06 12:59:34+0100 [AmqpProtocol,client] PBServerFactory starting on 57264
+2017-05-06 12:59:34+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fef93b0>
+2017-05-06 12:59:34+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10ff02248>
+2017-05-06 12:59:34+0100 [Uninitialized] LastClientFactory starting on 57275
+2017-05-06 12:59:34+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fef99e0>
+2017-05-06 12:59:34+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10ff0a4d0>
+2017-05-06 12:59:34+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10ff0a950>
+2017-05-06 12:59:34+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10ff1a320>
+2017-05-06 12:59:34+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%E1D7%8141%FDFE%A496%A496%E1D7%8141%FDFE%8141%FDFE%A496%E1D7%FDFE%8141%A496%E1D7%FDFE%E1D7%A496%8141%A496%8141%FDFE%E1D7%8141%E1D7%FDFE%A496%8141%E1D7%A496%FDFE%8141%E1D7%FDFE%A496%8141%FDFE%A496%E1D7%A496%E1D7%FDFE%8141%8141%FDFE%E1D7%A496%A496%8141%FDFE%E1D7%8141%E1D7%A496%FDFE%A496%FDFE%8141%E1D7%E1D7%A496%8141%FDFE%E1D7%8141%FDFE%A496%8141%E1D7%FDFE%A496%FDFE%8141%E1D7%A496%A496%FDFE%E1D7%8141%8141%FDFE%E1D7%A496%8141%E1D7%A496%FDFE%8141%E1D7%A496%FDFE%FDFE%8141%A496%E1D7%A496%E1D7%FDFE%8141%8141%A496%FDFE%E1D7%E1D7%8141%A496%FDFE%8141%A496%FDFE%E1D&coding=14>
+2017-05-06 12:59:34+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:34 +0000] "GET /send?username=username&to=06155423&password=password&content=%E1D7%8141%FDFE%A496%A496%E1D7%8141%FDFE%8141%FDFE%A496%E1D7%FDFE%8141%A496%E1D7%FDFE%E1D7%A496%8141%A496%8141%FDFE%E1D7%8141%E1D7%FDFE%A496%8141%E1D7%A496%FDFE%8141%E1D7%FDFE%A496%8141%FDFE%A496%E1D7%A496%E1D7%FDFE%8141%8141%FDFE%E1D7%A496%A496%8141%FDFE%E1D7%8141%E1D7%A496%FDFE%A496%FDFE%8141%E1D7%E1D7%A496%8141%FDFE%E1D7%8141%FDFE%A496%8141%E1D7%FDFE%A496%FDFE%8141%E1D7%A496%A496%FDFE%E1D7%8141%8141%FDFE%E1D7%A496%8141%E1D7%A496%FDFE%8141%E1D7%A496%FDFE%FDFE%8141%A496%E1D7%A496%E1D7%FDFE%8141%8141%A496%FDFE%E1D7%E1D7%8141%A496%FDFE%8141%A496%FDFE%E1D&coding=14 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:34+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%E1D7%8141%FDFE%A496%A496%E1D7%8141%FDFE%8141%FDFE%A496%E1D7%FDFE%8141%A496%E1D7%FDFE%E1D7%A496%8141%A496%8141%FDFE%E1D7%8141%E1D7%FDFE%A496%8141%E1D7%A496%FDFE%8141%E1D7%FDFE%A496%8141%FDFE%A496%E1D7%A496%E1D7%FDFE%8141%8141%FDFE%E1D7%A496%A496%8141%FDFE%E1D7%8141%E1D7%A496%FDFE%A496%FDFE%8141%E1D7%E1D7%A496%8141%FDFE%E1D7%8141%FDFE%A496%8141%E1D7%FDFE%A496%FDFE%8141%E1D7%A496%A496%FDFE%E1D7%8141%8141%FDFE%E1D7%A496%8141%E1D7%A496%FDFE%8141%E1D7%A496%FDFE%FDFE%8141%A496%E1D7%A496%E1D7%FDFE%8141%8141%A496%FDFE%E1D7%E1D7%8141%A496%FDFE%8141%A496%FDFE%E1D&coding=14>
+2017-05-06 12:59:36+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10ff1a320>
+2017-05-06 12:59:36+0100 [-] (TCP Port 57262 Closed)
+2017-05-06 12:59:36+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fd599e0>
+2017-05-06 12:59:36+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10ff0a4d0>
+2017-05-06 12:59:36+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:36+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10fd3ef38>
+2017-05-06 12:59:36+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10ff0a950>
+2017-05-06 12:59:36+0100 [-] (TCP Port 57264 Closed)
+2017-05-06 12:59:36+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fef93b0>
+2017-05-06 12:59:36+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10fb97830>
+2017-05-06 12:59:36+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10ff02248>
+2017-05-06 12:59:37+0100 [-] (TCP Port 57275 Closed)
+2017-05-06 12:59:37+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fef99e0>
+2017-05-06 12:59:37+0100 [-] Main loop terminated.
+2017-05-06 12:59:37+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_LATIN_1 <--
+2017-05-06 12:59:37+0100 [-] PBServerFactory starting on 57281
+2017-05-06 12:59:37+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10ff022d8>
+2017-05-06 12:59:37+0100 [-] Site starting on 1401
+2017-05-06 12:59:37+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10ff09c20>
+2017-05-06 12:59:37+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10ff09e18>
+2017-05-06 12:59:37+0100 [AmqpProtocol,client] PBServerFactory starting on 57283
+2017-05-06 12:59:37+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1100a74d0>
+2017-05-06 12:59:37+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1100b00e0>
+2017-05-06 12:59:37+0100 [Uninitialized] LastClientFactory starting on 57294
+2017-05-06 12:59:37+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1100a7830>
+2017-05-06 12:59:37+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x1100b9c68>
+2017-05-06 12:59:37+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x1100b94d0>
+2017-05-06 12:59:37+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fd5cf38>
+2017-05-06 12:59:37+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%D0%E98%D7%C3%E1%BAFH4v%B2%A2%B5%3D%A6%2C%23+%F3%C1%FA%25bcw%A4%D91T3%3A0S%28J%ED%E7%FC%F9%7D%D6q%EA%F7%BD%EBu%26o%AEp%AB%DC%7E%E8%C5%B9%A5zK%A1%F8%C2%7B%B0%5BI%EF%B76%A8%FD%C4%B1%DFy%C8C%D4X2%D5_%DB%2AV%B4%A3%CD%A0%E3%D37%E2%F4%A9%D2md%DDiBG%C0%B6%AFj-%ECE%F2%F6%3E%BE%5D%5E%CB%27%E4%B3g%DAlARW%3C%F09%CEtN%CF.%22%C9%2BMY%3BD%5C%21%2F%DE%AAZ%A7n%FB%AD%24%F5Q%60%E0%C6%B8L%AC%CCfx%EE5hO%F1r%FFs%3F%BF%40%29%FE%D8%E5P%CA%7C%C7kea%BB%BC%E6%D1U%FD4%EBy%A43e%CDB%3A%A3VR%A1%B7%3C%F5%E3t%B1odF%ECX%B9H%BFb%D0W%5B%F2%C0%E4%A0%B6%E0.n%AC%DE%3D%B2i%3F%FA%24_%CF%EDj%7D%F9%FCQ%C9%5D%22u%CBvA%CA%D25L%D7%BA%E5q%3Bf27M%29%3E%F4pG9%C3%A9%2B%2CD%D6%F3%D3%EE%BB%B0%C7Th%C1+Ua%D4E%E8%AEJ%D9%F8CK%7CP%25%BD%AB-%C51%F7%ADZ%E2%60%B40%23%DBc%C6%D1lz%B5%BEr%EF%7B%2AY6I%A2%A5%AA%5C%27x%28%C4%26%A6%F0%FBO%7E%2F%FE%A7%C2N%DC%5E%DF%21%DA%E7%E6%E1%CC%EAs8%F1%D8gS%A8%B3%B8%E9%C8m%40%FFk%CE%AF%D5%BC%F6w%DD%26.%F8Z%FEW%E8%C8%D5%DB%A3%EA%F2%3B%7D6%D0%7Bq%DE+%BC%FA%EC%F3%29%FDA%A5%C9z%BB%E95%DDF%DF%60%A7U%F4OV%EEmhK8%C5-%CAi%3E9B2%C0%A8b%E6%B9%C3%F9%3D%DC%23%CCNR%40a%F6Mg%BF%E2G%A4%CD%24%B1eY%A0%3F%EF%F5%B6%5Du13%D3d%E4s%2C%FC%A9%B7%2FLxy%BD%F1%E5D%D7%A1%E0%D8C%25S%AF%AE%EBn4X%C7%C4%27%B2%BE%A6k%FF%D6%E7H%AC%EDo%3A%C1%5C%E1c%B0fEQw%FB%F0j%B4%2Av%C6%B5%AA7%22_%B3%A2%D9l%21%2B%AD%7C%B8%5Ep%3CI%CE%CBJP%7E%D2%280%BAt%D1%C2%D4%AB%CF%F7%E3%5Br%DATP%B1B%3D%F0%CA%C6%B4%ED%EBC%F2g%B3%A3%23%C4%C2J%EC%FE4x%A7%B5%C7%5B%EF%3A%C3+%B9%FD%CEi%5ED%AF%D2F%F5bK%EA%29wvs%7B%D0u%C1%2Fhk%F7%F8%2B%E2%C5%B8A%DB%DA%AC7%D8%5DId%CD%3F2%D1Rl%B0%22%F3%3EUNH%7D%DE%3B%E6%A2tm%DF_f%40S%A9%F6&coding=3>
+2017-05-06 12:59:37+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:37 +0000] "GET /send?username=username&to=06155423&password=password&content=%D0%E98%D7%C3%E1%BAFH4v%B2%A2%B5%3D%A6%2C%23+%F3%C1%FA%25bcw%A4%D91T3%3A0S%28J%ED%E7%FC%F9%7D%D6q%EA%F7%BD%EBu%26o%AEp%AB%DC%7E%E8%C5%B9%A5zK%A1%F8%C2%7B%B0%5BI%EF%B76%A8%FD%C4%B1%DFy%C8C%D4X2%D5_%DB%2AV%B4%A3%CD%A0%E3%D37%E2%F4%A9%D2md%DDiBG%C0%B6%AFj-%ECE%F2%F6%3E%BE%5D%5E%CB%27%E4%B3g%DAlARW%3C%F09%CEtN%CF.%22%C9%2BMY%3BD%5C%21%2F%DE%AAZ%A7n%FB%AD%24%F5Q%60%E0%C6%B8L%AC%CCfx%EE5hO%F1r%FFs%3F%BF%40%29%FE%D8%E5P%CA%7C%C7kea%BB%BC%E6%D1U%FD4%EBy%A43e%CDB%3A%A3VR%A1%B7%3C%F5%E3t%B1odF%ECX%B9H%BFb%D0W%5B%F2%C0%E4%A0%B6%E0.n%AC%DE%3D%B2i%3F%FA%24_%CF%EDj%7D%F9%FCQ%C9%5D%22u%CBvA%CA%D25L%D7%BA%E5q%3Bf27M%29%3E%F4pG9%C3%A9%2B%2CD%D6%F3%D3%EE%BB%B0%C7Th%C1+Ua%D4E%E8%AEJ%D9%F8CK%7CP%25%BD%AB-%C51%F7%ADZ%E2%60%B40%23%DBc%C6%D1lz%B5%BEr%EF%7B%2AY6I%A2%A5%AA%5C%27x%28%C4%26%A6%F0%FBO%7E%2F%FE%A7%C2N%DC%5E%DF%21%DA%E7%E6%E1%CC%EAs8%F1%D8gS%A8%B3%B8%E9%C8m%40%FFk%CE%AF%D5%BC%F6w%DD%26.%F8Z%FEW%E8%C8%D5%DB%A3%EA%F2%3B%7D6%D0%7Bq%DE+%BC%FA%EC%F3%29%FDA%A5%C9z%BB%E95%DDF%DF%60%A7U%F4OV%EEmhK8%C5-%CAi%3E9B2%C0%A8b%E6%B9%C3%F9%3D%DC%23%CCNR%40a%F6Mg%BF%E2G%A4%CD%24%B1eY%A0%3F%EF%F5%B6%5Du13%D3d%E4s%2C%FC%A9%B7%2FLxy%BD%F1%E5D%D7%A1%E0%D8C%25S%AF%AE%EBn4X%C7%C4%27%B2%BE%A6k%FF%D6%E7H%AC%EDo%3A%C1%5C%E1c%B0fEQw%FB%F0j%B4%2Av%C6%B5%AA7%22_%B3%A2%D9l%21%2B%AD%7C%B8%5Ep%3CI%CE%CBJP%7E%D2%280%BAt%D1%C2%D4%AB%CF%F7%E3%5Br%DATP%B1B%3D%F0%CA%C6%B4%ED%EBC%F2g%B3%A3%23%C4%C2J%EC%FE4x%A7%B5%C7%5B%EF%3A%C3+%B9%FD%CEi%5ED%AF%D2F%F5bK%EA%29wvs%7B%D0u%C1%2Fhk%F7%F8%2B%E2%C5%B8A%DB%DA%AC7%D8%5DId%CD%3F2%D1Rl%B0%22%F3%3EUNH%7D%DE%3B%E6%A2tm%DF_f%40S%A9%F6&coding=3 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:37+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%D0%E98%D7%C3%E1%BAFH4v%B2%A2%B5%3D%A6%2C%23+%F3%C1%FA%25bcw%A4%D91T3%3A0S%28J%ED%E7%FC%F9%7D%D6q%EA%F7%BD%EBu%26o%AEp%AB%DC%7E%E8%C5%B9%A5zK%A1%F8%C2%7B%B0%5BI%EF%B76%A8%FD%C4%B1%DFy%C8C%D4X2%D5_%DB%2AV%B4%A3%CD%A0%E3%D37%E2%F4%A9%D2md%DDiBG%C0%B6%AFj-%ECE%F2%F6%3E%BE%5D%5E%CB%27%E4%B3g%DAlARW%3C%F09%CEtN%CF.%22%C9%2BMY%3BD%5C%21%2F%DE%AAZ%A7n%FB%AD%24%F5Q%60%E0%C6%B8L%AC%CCfx%EE5hO%F1r%FFs%3F%BF%40%29%FE%D8%E5P%CA%7C%C7kea%BB%BC%E6%D1U%FD4%EBy%A43e%CDB%3A%A3VR%A1%B7%3C%F5%E3t%B1odF%ECX%B9H%BFb%D0W%5B%F2%C0%E4%A0%B6%E0.n%AC%DE%3D%B2i%3F%FA%24_%CF%EDj%7D%F9%FCQ%C9%5D%22u%CBvA%CA%D25L%D7%BA%E5q%3Bf27M%29%3E%F4pG9%C3%A9%2B%2CD%D6%F3%D3%EE%BB%B0%C7Th%C1+Ua%D4E%E8%AEJ%D9%F8CK%7CP%25%BD%AB-%C51%F7%ADZ%E2%60%B40%23%DBc%C6%D1lz%B5%BEr%EF%7B%2AY6I%A2%A5%AA%5C%27x%28%C4%26%A6%F0%FBO%7E%2F%FE%A7%C2N%DC%5E%DF%21%DA%E7%E6%E1%CC%EAs8%F1%D8gS%A8%B3%B8%E9%C8m%40%FFk%CE%AF%D5%BC%F6w%DD%26.%F8Z%FEW%E8%C8%D5%DB%A3%EA%F2%3B%7D6%D0%7Bq%DE+%BC%FA%EC%F3%29%FDA%A5%C9z%BB%E95%DDF%DF%60%A7U%F4OV%EEmhK8%C5-%CAi%3E9B2%C0%A8b%E6%B9%C3%F9%3D%DC%23%CCNR%40a%F6Mg%BF%E2G%A4%CD%24%B1eY%A0%3F%EF%F5%B6%5Du13%D3d%E4s%2C%FC%A9%B7%2FLxy%BD%F1%E5D%D7%A1%E0%D8C%25S%AF%AE%EBn4X%C7%C4%27%B2%BE%A6k%FF%D6%E7H%AC%EDo%3A%C1%5C%E1c%B0fEQw%FB%F0j%B4%2Av%C6%B5%AA7%22_%B3%A2%D9l%21%2B%AD%7C%B8%5Ep%3CI%CE%CBJP%7E%D2%280%BAt%D1%C2%D4%AB%CF%F7%E3%5Br%DATP%B1B%3D%F0%CA%C6%B4%ED%EBC%F2g%B3%A3%23%C4%C2J%EC%FE4x%A7%B5%C7%5B%EF%3A%C3+%B9%FD%CEi%5ED%AF%D2F%F5bK%EA%29wvs%7B%D0u%C1%2Fhk%F7%F8%2B%E2%C5%B8A%DB%DA%AC7%D8%5DId%CD%3F2%D1Rl%B0%22%F3%3EUNH%7D%DE%3B%E6%A2tm%DF_f%40S%A9%F6&coding=3>
+2017-05-06 12:59:39+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fd5cf38>
+2017-05-06 12:59:39+0100 [-] (TCP Port 57281 Closed)
+2017-05-06 12:59:39+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10ff022d8>
+2017-05-06 12:59:39+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x1100b9c68>
+2017-05-06 12:59:39+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:39+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10ff09c20>
+2017-05-06 12:59:39+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x1100b94d0>
+2017-05-06 12:59:39+0100 [-] (TCP Port 57283 Closed)
+2017-05-06 12:59:39+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1100a74d0>
+2017-05-06 12:59:39+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10ff09e18>
+2017-05-06 12:59:39+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1100b00e0>
+2017-05-06 12:59:39+0100 [-] (TCP Port 57294 Closed)
+2017-05-06 12:59:39+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1100a7830>
+2017-05-06 12:59:39+0100 [-] Main loop terminated.
+2017-05-06 12:59:39+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_OCTET_UNSPECIFIED <--
+2017-05-06 12:59:39+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_OCTET_UNSPECIFIED_COMMON <--
+2017-05-06 12:59:39+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_PICTOGRAM <--
+2017-05-06 12:59:39+0100 [-] PBServerFactory starting on 57299
+2017-05-06 12:59:39+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1100b99e0>
+2017-05-06 12:59:39+0100 [-] Site starting on 1401
+2017-05-06 12:59:39+0100 [-] Starting factory <twisted.web.server.Site instance at 0x1100b0f38>
+2017-05-06 12:59:39+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x1100b0d88>
+2017-05-06 12:59:39+0100 [AmqpProtocol,client] PBServerFactory starting on 57301
+2017-05-06 12:59:39+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x11025c050>
+2017-05-06 12:59:39+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x11025c518>
+2017-05-06 12:59:39+0100 [Uninitialized] LastClientFactory starting on 57312
+2017-05-06 12:59:39+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x11024c908>
+2017-05-06 12:59:39+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x1102677a0>
+2017-05-06 12:59:39+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x110267c20>
+2017-05-06 12:59:39+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x110277320>
+2017-05-06 12:59:39+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%8B89%8B90%FC4B%8BC9%8B90%FC4B%8B89%8BC9%FC4B%8B89%8B90%8BC9%8BC9%FC4B%8B89%8B90%8B90%8BC9%8B89%FC4B%FC4B%8B89%8BC9%8B90%FC4B%8B89%8B90%8BC9%8B90%8B89%8BC9%FC4B%8B90%8BC9%8B89%FC4B%8B90%8B89%FC4B%8BC9%8B90%8BC9%FC4B%8B89%8B89%8BC9%FC4B%8B90%8B90%8BC9%8B89%FC4B%8B89%FC4B%8B90%8BC9%8BC9%FC4B%8B90%8B89%8B90%8B89%FC4B%8BC9%8B89%8BC9%8B90%FC4B%8B89%8B90%8BC9%FC4B%8BC9%8B89%FC4B%8B90%8B89%8BC9%8B90%FC4B%8B90%FC4B%8B89%8BC9%8BC9%8B89%FC4B%8B90%8B89%FC4B%8B90%8BC9%FC4B%8B89%8B90%8BC9%8B89%FC4B%8BC9%8B90%FC4B%8B89%8B90%8BC9%8B90%FC4B%8B89%8BC9%FC4B%8B89%8BC9%8B9&coding=9>
+2017-05-06 12:59:40+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:39 +0000] "GET /send?username=username&to=06155423&password=password&content=%8B89%8B90%FC4B%8BC9%8B90%FC4B%8B89%8BC9%FC4B%8B89%8B90%8BC9%8BC9%FC4B%8B89%8B90%8B90%8BC9%8B89%FC4B%FC4B%8B89%8BC9%8B90%FC4B%8B89%8B90%8BC9%8B90%8B89%8BC9%FC4B%8B90%8BC9%8B89%FC4B%8B90%8B89%FC4B%8BC9%8B90%8BC9%FC4B%8B89%8B89%8BC9%FC4B%8B90%8B90%8BC9%8B89%FC4B%8B89%FC4B%8B90%8BC9%8BC9%FC4B%8B90%8B89%8B90%8B89%FC4B%8BC9%8B89%8BC9%8B90%FC4B%8B89%8B90%8BC9%FC4B%8BC9%8B89%FC4B%8B90%8B89%8BC9%8B90%FC4B%8B90%FC4B%8B89%8BC9%8BC9%8B89%FC4B%8B90%8B89%FC4B%8B90%8BC9%FC4B%8B89%8B90%8BC9%8B89%FC4B%8BC9%8B90%FC4B%8B89%8B90%8BC9%8B90%FC4B%8B89%8BC9%FC4B%8B89%8BC9%8B9&coding=9 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:40+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%8B89%8B90%FC4B%8BC9%8B90%FC4B%8B89%8BC9%FC4B%8B89%8B90%8BC9%8BC9%FC4B%8B89%8B90%8B90%8BC9%8B89%FC4B%FC4B%8B89%8BC9%8B90%FC4B%8B89%8B90%8BC9%8B90%8B89%8BC9%FC4B%8B90%8BC9%8B89%FC4B%8B90%8B89%FC4B%8BC9%8B90%8BC9%FC4B%8B89%8B89%8BC9%FC4B%8B90%8B90%8BC9%8B89%FC4B%8B89%FC4B%8B90%8BC9%8BC9%FC4B%8B90%8B89%8B90%8B89%FC4B%8BC9%8B89%8BC9%8B90%FC4B%8B89%8B90%8BC9%FC4B%8BC9%8B89%FC4B%8B90%8B89%8BC9%8B90%FC4B%8B90%FC4B%8B89%8BC9%8BC9%8B89%FC4B%8B90%8B89%FC4B%8B90%8BC9%FC4B%8B89%8B90%8BC9%8B89%FC4B%8BC9%8B90%FC4B%8B89%8B90%8BC9%8B90%FC4B%8B89%8BC9%FC4B%8B89%8BC9%8B9&coding=9>
+2017-05-06 12:59:42+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x110277320>
+2017-05-06 12:59:42+0100 [-] (TCP Port 57299 Closed)
+2017-05-06 12:59:42+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1100b99e0>
+2017-05-06 12:59:42+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x1102677a0>
+2017-05-06 12:59:42+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:42+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x1100b0f38>
+2017-05-06 12:59:42+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x110267c20>
+2017-05-06 12:59:42+0100 [-] (TCP Port 57301 Closed)
+2017-05-06 12:59:42+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x11025c050>
+2017-05-06 12:59:42+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x1100b0d88>
+2017-05-06 12:59:42+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x11025c518>
+2017-05-06 12:59:42+0100 [-] (TCP Port 57312 Closed)
+2017-05-06 12:59:42+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x11024c908>
+2017-05-06 12:59:42+0100 [-] Main loop terminated.
+2017-05-06 12:59:42+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_UCS2 <--
+2017-05-06 12:59:42+0100 [-] PBServerFactory starting on 57318
+2017-05-06 12:59:42+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1100a7fc8>
+2017-05-06 12:59:42+0100 [-] Site starting on 1401
+2017-05-06 12:59:42+0100 [-] Starting factory <twisted.web.server.Site instance at 0x110266248>
+2017-05-06 12:59:42+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x110266560>
+2017-05-06 12:59:42+0100 [AmqpProtocol,client] PBServerFactory starting on 57320
+2017-05-06 12:59:42+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x11040d488>
+2017-05-06 12:59:42+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x110414098>
+2017-05-06 12:59:42+0100 [Uninitialized] LastClientFactory starting on 57331
+2017-05-06 12:59:42+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x11040d7e8>
+2017-05-06 12:59:42+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x11041e320>
+2017-05-06 12:59:42+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x11041e7a0>
+2017-05-06 12:59:42+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x11041ee18>
+2017-05-06 12:59:42+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%0646%0628%0631%0623%0623%0646%0631%0628%0631%0646%0628%0623%0623%0631%0646%0628%0628%0623%0631%0646%0628%0631%0623%0646%0646%0631%0623%0628%0628%0631%0646%0623%0623%0628%0631%0646%0628%0623%0646%0631%0631%0628%0623%0646%0646%0623%0628%0631%0631%0646%0623%0628%0646%0628%0623%0631%0623%0631%0628%0646%0623%0646%0628%0631%0623%0631%0646%0628%0631%0623%0628%0646%0646%0623%0628%0631%0646%0628%0623%0631%0628%0623%0631%0646%0623%0628%0631%0646%0623%0631%0628%0646%0623%0631%0646%0628%0646%0631%0623%0628%0631%0623%0646%0628%0623%0628%0646%0631%0628%0631%0646%062&coding=8>
+2017-05-06 12:59:42+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:42 +0000] "GET /send?username=username&to=06155423&password=password&content=%0646%0628%0631%0623%0623%0646%0631%0628%0631%0646%0628%0623%0623%0631%0646%0628%0628%0623%0631%0646%0628%0631%0623%0646%0646%0631%0623%0628%0628%0631%0646%0623%0623%0628%0631%0646%0628%0623%0646%0631%0631%0628%0623%0646%0646%0623%0628%0631%0631%0646%0623%0628%0646%0628%0623%0631%0623%0631%0628%0646%0623%0646%0628%0631%0623%0631%0646%0628%0631%0623%0628%0646%0646%0623%0628%0631%0646%0628%0623%0631%0628%0623%0631%0646%0623%0628%0631%0646%0623%0631%0628%0646%0623%0631%0646%0628%0646%0631%0623%0628%0631%0623%0646%0628%0623%0628%0646%0631%0628%0631%0646%062&coding=8 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:42+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%0646%0628%0631%0623%0623%0646%0631%0628%0631%0646%0628%0623%0623%0631%0646%0628%0628%0623%0631%0646%0628%0631%0623%0646%0646%0631%0623%0628%0628%0631%0646%0623%0623%0628%0631%0646%0628%0623%0646%0631%0631%0628%0623%0646%0646%0623%0628%0631%0631%0646%0623%0628%0646%0628%0623%0631%0623%0631%0628%0646%0623%0646%0628%0631%0623%0631%0646%0628%0631%0623%0628%0646%0646%0623%0628%0631%0646%0628%0623%0631%0628%0623%0631%0646%0623%0628%0631%0646%0623%0631%0628%0646%0623%0631%0646%0628%0646%0631%0623%0628%0631%0623%0646%0628%0623%0628%0646%0631%0628%0631%0646%062&coding=8>
+2017-05-06 12:59:44+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x11041ee18>
+2017-05-06 12:59:45+0100 [-] (TCP Port 57318 Closed)
+2017-05-06 12:59:45+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1100a7fc8>
+2017-05-06 12:59:45+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x11041e320>
+2017-05-06 12:59:45+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:45+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x110266248>
+2017-05-06 12:59:45+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x11041e7a0>
+2017-05-06 12:59:45+0100 [-] (TCP Port 57320 Closed)
+2017-05-06 12:59:45+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x11040d488>
+2017-05-06 12:59:45+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x110266560>
+2017-05-06 12:59:45+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x110414098>
+2017-05-06 12:59:45+0100 [-] (TCP Port 57331 Closed)
+2017-05-06 12:59:45+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x11040d7e8>
+2017-05-06 12:59:45+0100 [-] Main loop terminated.
+2017-05-06 12:59:45+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingSARTestCases.test_gsm0338_at <--
+2017-05-06 12:59:45+0100 [-] PBServerFactory starting on 57337
+2017-05-06 12:59:45+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x110430050>
+2017-05-06 12:59:45+0100 [-] Site starting on 1401
+2017-05-06 12:59:45+0100 [-] Starting factory <twisted.web.server.Site instance at 0x11041da70>
+2017-05-06 12:59:45+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x11041d0e0>
+2017-05-06 12:59:45+0100 [AmqpProtocol,client] PBServerFactory starting on 57339
+2017-05-06 12:59:45+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f303248>
+2017-05-06 12:59:45+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f32b758>
+2017-05-06 12:59:45+0100 [Uninitialized] LastClientFactory starting on 57350
+2017-05-06 12:59:45+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f303b00>
+2017-05-06 12:59:45+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fbc8cb0>
+2017-05-06 12:59:45+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fbc85a8>
+2017-05-06 12:59:45+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fd7b248>
+2017-05-06 12:59:45+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40>
+2017-05-06 12:59:45+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:45 +0000] "GET /send?username=username&to=06155423&password=password&content=%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:45+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40>
+2017-05-06 12:59:47+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fd7b248>
+2017-05-06 12:59:47+0100 [-] (TCP Port 57337 Closed)
+2017-05-06 12:59:47+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x110430050>
+2017-05-06 12:59:47+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fbc8cb0>
+2017-05-06 12:59:47+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:47+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x11041da70>
+2017-05-06 12:59:47+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fbc85a8>
+2017-05-06 12:59:47+0100 [-] (TCP Port 57339 Closed)
+2017-05-06 12:59:47+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f303248>
+2017-05-06 12:59:47+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x11041d0e0>
+2017-05-06 12:59:47+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f32b758>
+2017-05-06 12:59:48+0100 [-] (TCP Port 57350 Closed)
+2017-05-06 12:59:48+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f303b00>
+2017-05-06 12:59:48+0100 [-] Main loop terminated.
+2017-05-06 12:59:48+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_CYRILLIC <--
+2017-05-06 12:59:48+0100 [-] PBServerFactory starting on 57355
+2017-05-06 12:59:48+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fbc8248>
+2017-05-06 12:59:48+0100 [-] Site starting on 1401
+2017-05-06 12:59:48+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f330dd0>
+2017-05-06 12:59:48+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10f330200>
+2017-05-06 12:59:48+0100 [AmqpProtocol,client] PBServerFactory starting on 57357
+2017-05-06 12:59:48+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fef99e0>
+2017-05-06 12:59:48+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fef9bd8>
+2017-05-06 12:59:48+0100 [Uninitialized] LastClientFactory starting on 57368
+2017-05-06 12:59:48+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fef9f38>
+2017-05-06 12:59:48+0100 [Uninitialized] Site starting on 1402
+2017-05-06 12:59:48+0100 [-] Starting factory <twisted.web.server.Site instance at 0x1100b9a70>
+2017-05-06 12:59:48+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x1100b9170>
+2017-05-06 12:59:48+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x1100b9290>
+2017-05-06 12:59:48+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fd59320>
+2017-05-06 12:59:48+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%94q%FB7U%BC%80S%9F%BD%CC_5%7D%22%ECAp%29+%BF%9B%B7Is%E7C%89%D7%F6%3B%A8%AEy%EB%F4%8FY%83%D9%40%23vB9%5B%A4%F1M%2F%D2%C1%D8%2B8%A1%D5.j%AA%26t%9C%A7%C6%A64%84%E9%D62%21crm%86%ABh%92-%3F6%DC%A9%E1%E2%FF%91%B1%8BR%2A%B8%C4%C9%AC%AD%FEN%DF%FD%EE%28%85Z%95Qbw1n%CF%8D%A0%DB%FCaH%82%B0o%8A%8E%C7i%C2%7C%C3%CE%3D%90%E5%3E%9A%81Fl%CB%DD%24V%99%EF%96%E3%2CW%60E%E4L%FAeD%F9%25%D3T%5Dd%D1%B9%3A%C8u%CDf%B6%F8%E8%F0%7E%BA%7BGX%88%9D%DE%B4%5E%ED%930zg%BE%F7%A3%8C%97%EA%B5%D0%A5%27%3Cx%9E%BB%E0%B2%AF%A2%E6%F5%F3K%C5P3O%B3%CA%5C%F2%87%D4J%DA%C0%98k%9E%85%98%CC%D8%28bK%AFD4%F2%C4%C3%B2%25%E2%B9vE%3B%FC%D7O%C7%26yd%A4%DAS%E5%7D%AD%BF%92%FE%F9%CAU%C9%A2%3D%409c%8C%EA%C1j%3Cr%E93%94gz%87%A7%7EC%DC%91%81%93o%95%B3I%80P2%C6%AA%5D%8E%24%D6%A9%BA%DD%E8f%83%5B1%2F%D4Vx%F77AT%E6%9A%FA%8F%96%E7%90%AC%97k%D3%FF%F1%A0%9F%86%D1%C5FuYJh%CB%2C%21LB%A3%E0%82%7B%C0%29W%B0%A6%ECZ5%A1%5Ee%DB%3A%EE%BE%9D%D5q%2B%B5%F4%CFl%FDi%C8%BD%F8%F6+%C2%F0%FB%8B%EF%BC-N%D9%B7%AB%CE_%E3%AEH%E1%EB%CDR%5C6%22%99w%27.%9C%60m%F3%E4%EDM%DE%A5G%A8t%89%2A%B1%84%8A%8D0%3F%B6%3EXsQ%23%B4%9B%DF%BBp8%7Ca%88%D0n%F5%B8%D2l%FFj%40cM%B0%88%CA%E5%E9%82S%9E%DA%C5J%D7%BF%25%E1y%89%D6%B7D%E0OF%F3%BB%E29%3F.%FB%3B%96%98%5B%C2%2CPB%D5%D4n%E8%AE%BD%BAA8%A4%A2%7Ci%99%D81%23%5E%D3%A5%93%AC%FE%E6%D9%91%83%D1%B6V%AA%CC%EB%3C%2B%CB%A3%CEY%CD%DFu%27%3E%9C%84%86%D2+G%A8mC0%C3%F2%9F%AFf%97%2Aqr%FC%C1%B9%7D%5CIh_%DB%DC%C0%AB6XE%8C%A0%215%C4%7E%F7p%60%8D%ECg%F1%29%A9v%F0%C8%22b%3A%EA%95%CFw%B3%F4%B27%A1%C9%BC%EF%94%B5%E3H%DE%81%AD3%8FK%92N%85%8Ex%D0U%E4%FDLR%C7%9DZe-%EE%90%9AkzW%3D%2Fs%24%5D%A7%DD%9B%BE%B8%EDt%8B4%F6%26d2%A6%FA%F8%28o%7BQ%B4a%C6%E7%F9%87%F5%B1%80T%8A%A0&coding=6>
+2017-05-06 12:59:48+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:48 +0000] "GET /send?username=username&to=06155423&password=password&content=%94q%FB7U%BC%80S%9F%BD%CC_5%7D%22%ECAp%29+%BF%9B%B7Is%E7C%89%D7%F6%3B%A8%AEy%EB%F4%8FY%83%D9%40%23vB9%5B%A4%F1M%2F%D2%C1%D8%2B8%A1%D5.j%AA%26t%9C%A7%C6%A64%84%E9%D62%21crm%86%ABh%92-%3F6%DC%A9%E1%E2%FF%91%B1%8BR%2A%B8%C4%C9%AC%AD%FEN%DF%FD%EE%28%85Z%95Qbw1n%CF%8D%A0%DB%FCaH%82%B0o%8A%8E%C7i%C2%7C%C3%CE%3D%90%E5%3E%9A%81Fl%CB%DD%24V%99%EF%96%E3%2CW%60E%E4L%FAeD%F9%25%D3T%5Dd%D1%B9%3A%C8u%CDf%B6%F8%E8%F0%7E%BA%7BGX%88%9D%DE%B4%5E%ED%930zg%BE%F7%A3%8C%97%EA%B5%D0%A5%27%3Cx%9E%BB%E0%B2%AF%A2%E6%F5%F3K%C5P3O%B3%CA%5C%F2%87%D4J%DA%C0%98k%9E%85%98%CC%D8%28bK%AFD4%F2%C4%C3%B2%25%E2%B9vE%3B%FC%D7O%C7%26yd%A4%DAS%E5%7D%AD%BF%92%FE%F9%CAU%C9%A2%3D%409c%8C%EA%C1j%3Cr%E93%94gz%87%A7%7EC%DC%91%81%93o%95%B3I%80P2%C6%AA%5D%8E%24%D6%A9%BA%DD%E8f%83%5B1%2F%D4Vx%F77AT%E6%9A%FA%8F%96%E7%90%AC%97k%D3%FF%F1%A0%9F%86%D1%C5FuYJh%CB%2C%21LB%A3%E0%82%7B%C0%29W%B0%A6%ECZ5%A1%5Ee%DB%3A%EE%BE%9D%D5q%2B%B5%F4%CFl%FDi%C8%BD%F8%F6+%C2%F0%FB%8B%EF%BC-N%D9%B7%AB%CE_%E3%AEH%E1%EB%CDR%5C6%22%99w%27.%9C%60m%F3%E4%EDM%DE%A5G%A8t%89%2A%B1%84%8A%8D0%3F%B6%3EXsQ%23%B4%9B%DF%BBp8%7Ca%88%D0n%F5%B8%D2l%FFj%40cM%B0%88%CA%E5%E9%82S%9E%DA%C5J%D7%BF%25%E1y%89%D6%B7D%E0OF%F3%BB%E29%3F.%FB%3B%96%98%5B%C2%2CPB%D5%D4n%E8%AE%BD%BAA8%A4%A2%7Ci%99%D81%23%5E%D3%A5%93%AC%FE%E6%D9%91%83%D1%B6V%AA%CC%EB%3C%2B%CB%A3%CEY%CD%DFu%27%3E%9C%84%86%D2+G%A8mC0%C3%F2%9F%AFf%97%2Aqr%FC%C1%B9%7D%5CIh_%DB%DC%C0%AB6XE%8C%A0%215%C4%7E%F7p%60%8D%ECg%F1%29%A9v%F0%C8%22b%3A%EA%95%CFw%B3%F4%B27%A1%C9%BC%EF%94%B5%E3H%DE%81%AD3%8FK%92N%85%8Ex%D0U%E4%FDLR%C7%9DZe-%EE%90%9AkzW%3D%2Fs%24%5D%A7%DD%9B%BE%B8%EDt%8B4%F6%26d2%A6%FA%F8%28o%7BQ%B4a%C6%E7%F9%87%F5%B1%80T%8A%A0&coding=6 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:48+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%94q%FB7U%BC%80S%9F%BD%CC_5%7D%22%ECAp%29+%BF%9B%B7Is%E7C%89%D7%F6%3B%A8%AEy%EB%F4%8FY%83%D9%40%23vB9%5B%A4%F1M%2F%D2%C1%D8%2B8%A1%D5.j%AA%26t%9C%A7%C6%A64%84%E9%D62%21crm%86%ABh%92-%3F6%DC%A9%E1%E2%FF%91%B1%8BR%2A%B8%C4%C9%AC%AD%FEN%DF%FD%EE%28%85Z%95Qbw1n%CF%8D%A0%DB%FCaH%82%B0o%8A%8E%C7i%C2%7C%C3%CE%3D%90%E5%3E%9A%81Fl%CB%DD%24V%99%EF%96%E3%2CW%60E%E4L%FAeD%F9%25%D3T%5Dd%D1%B9%3A%C8u%CDf%B6%F8%E8%F0%7E%BA%7BGX%88%9D%DE%B4%5E%ED%930zg%BE%F7%A3%8C%97%EA%B5%D0%A5%27%3Cx%9E%BB%E0%B2%AF%A2%E6%F5%F3K%C5P3O%B3%CA%5C%F2%87%D4J%DA%C0%98k%9E%85%98%CC%D8%28bK%AFD4%F2%C4%C3%B2%25%E2%B9vE%3B%FC%D7O%C7%26yd%A4%DAS%E5%7D%AD%BF%92%FE%F9%CAU%C9%A2%3D%409c%8C%EA%C1j%3Cr%E93%94gz%87%A7%7EC%DC%91%81%93o%95%B3I%80P2%C6%AA%5D%8E%24%D6%A9%BA%DD%E8f%83%5B1%2F%D4Vx%F77AT%E6%9A%FA%8F%96%E7%90%AC%97k%D3%FF%F1%A0%9F%86%D1%C5FuYJh%CB%2C%21LB%A3%E0%82%7B%C0%29W%B0%A6%ECZ5%A1%5Ee%DB%3A%EE%BE%9D%D5q%2B%B5%F4%CFl%FDi%C8%BD%F8%F6+%C2%F0%FB%8B%EF%BC-N%D9%B7%AB%CE_%E3%AEH%E1%EB%CDR%5C6%22%99w%27.%9C%60m%F3%E4%EDM%DE%A5G%A8t%89%2A%B1%84%8A%8D0%3F%B6%3EXsQ%23%B4%9B%DF%BBp8%7Ca%88%D0n%F5%B8%D2l%FFj%40cM%B0%88%CA%E5%E9%82S%9E%DA%C5J%D7%BF%25%E1y%89%D6%B7D%E0OF%F3%BB%E29%3F.%FB%3B%96%98%5B%C2%2CPB%D5%D4n%E8%AE%BD%BAA8%A4%A2%7Ci%99%D81%23%5E%D3%A5%93%AC%FE%E6%D9%91%83%D1%B6V%AA%CC%EB%3C%2B%CB%A3%CEY%CD%DFu%27%3E%9C%84%86%D2+G%A8mC0%C3%F2%9F%AFf%97%2Aqr%FC%C1%B9%7D%5CIh_%DB%DC%C0%AB6XE%8C%A0%215%C4%7E%F7p%60%8D%ECg%F1%29%A9v%F0%C8%22b%3A%EA%95%CFw%B3%F4%B27%A1%C9%BC%EF%94%B5%E3H%DE%81%AD3%8FK%92N%85%8Ex%D0U%E4%FDLR%C7%9DZe-%EE%90%9AkzW%3D%2Fs%24%5D%A7%DD%9B%BE%B8%EDt%8B4%F6%26d2%A6%FA%F8%28o%7BQ%B4a%C6%E7%F9%87%F5%B1%80T%8A%A0&coding=6>
+2017-05-06 12:59:50+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fd59320>
+2017-05-06 12:59:50+0100 [-] (TCP Port 57355 Closed)
+2017-05-06 12:59:50+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fbc8248>
+2017-05-06 12:59:50+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x1100b9170>
+2017-05-06 12:59:50+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:50+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f330dd0>
+2017-05-06 12:59:50+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x1100b9290>
+2017-05-06 12:59:50+0100 [-] (TCP Port 57357 Closed)
+2017-05-06 12:59:50+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fef99e0>
+2017-05-06 12:59:50+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10f330200>
+2017-05-06 12:59:50+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fef9bd8>
+2017-05-06 12:59:50+0100 [-] (TCP Port 57368 Closed)
+2017-05-06 12:59:50+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fef9f38>
+2017-05-06 12:59:50+0100 [-] Main loop terminated.
+2017-05-06 12:59:50+0100 [-] (TCP Port 1402 Closed)
+2017-05-06 12:59:50+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x1100b9a70>
+2017-05-06 12:59:50+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_EXTENDED_KANJI_JIS <--
+2017-05-06 12:59:50+0100 [-] PBServerFactory starting on 57373
+2017-05-06 12:59:50+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x110267290>
+2017-05-06 12:59:50+0100 [-] Site starting on 1401
+2017-05-06 12:59:50+0100 [-] Starting factory <twisted.web.server.Site instance at 0x11041e488>
+2017-05-06 12:59:50+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10fef95a8>
+2017-05-06 12:59:50+0100 [AmqpProtocol,client] PBServerFactory starting on 57375
+2017-05-06 12:59:50+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1102e1320>
+2017-05-06 12:59:50+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1102e1998>
+2017-05-06 12:59:50+0100 [Uninitialized] LastClientFactory starting on 57386
+2017-05-06 12:59:50+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1102e13f8>
+2017-05-06 12:59:50+0100 [Uninitialized] Site starting on 1402
+2017-05-06 12:59:50+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10ff43b90>
+2017-05-06 12:59:50+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10ff29680>
+2017-05-06 12:59:51+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10ff29878>
+2017-05-06 12:59:51+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10ff29ef0>
+2017-05-06 12:59:51+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%FC4B%8B90%8BC9%8B89%8B89%8B90%8BC9%FC4B%8B89%8BC9%8B90%FC4B%FC4B%8BC9%8B89%8B90%8B90%FC4B%8BC9%8B89%FC4B%8BC9%8B90%8B89%8B89%8B90%FC4B%8BC9%8BC9%8B89%8B90%FC4B%8BC9%FC4B%8B89%8B90%8B89%8BC9%FC4B%8B90%8BC9%8B90%FC4B%8B89%FC4B%8B90%8BC9%8B89%8BC9%FC4B%8B90%8B89%8B90%8BC9%FC4B%8B89%8BC9%8B89%FC4B%8B90%FC4B%8BC9%8B89%8B90%8BC9%8B89%FC4B%8B90%8BC9%FC4B%8B90%8B89%8B89%8B90%8BC9%FC4B%8B89%FC4B%8B90%8BC9%FC4B%8B90%8B89%8BC9%8B89%FC4B%8B90%8BC9%FC4B%8B90%8B89%8BC9%FC4B%8B90%8BC9%8B89%FC4B%8BC9%8B89%8B90%8BC9%8B90%FC4B%8B89%8B89%8BC9%FC4B%8B90%8B90%FC4B%8BC9%8B8&coding=13>
+2017-05-06 12:59:51+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:50 +0000] "GET /send?username=username&to=06155423&password=password&content=%FC4B%8B90%8BC9%8B89%8B89%8B90%8BC9%FC4B%8B89%8BC9%8B90%FC4B%FC4B%8BC9%8B89%8B90%8B90%FC4B%8BC9%8B89%FC4B%8BC9%8B90%8B89%8B89%8B90%FC4B%8BC9%8BC9%8B89%8B90%FC4B%8BC9%FC4B%8B89%8B90%8B89%8BC9%FC4B%8B90%8BC9%8B90%FC4B%8B89%FC4B%8B90%8BC9%8B89%8BC9%FC4B%8B90%8B89%8B90%8BC9%FC4B%8B89%8BC9%8B89%FC4B%8B90%FC4B%8BC9%8B89%8B90%8BC9%8B89%FC4B%8B90%8BC9%FC4B%8B90%8B89%8B89%8B90%8BC9%FC4B%8B89%FC4B%8B90%8BC9%FC4B%8B90%8B89%8BC9%8B89%FC4B%8B90%8BC9%FC4B%8B90%8B89%8BC9%FC4B%8B90%8BC9%8B89%FC4B%8BC9%8B89%8B90%8BC9%8B90%FC4B%8B89%8B89%8BC9%FC4B%8B90%8B90%FC4B%8BC9%8B8&coding=13 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:51+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%FC4B%8B90%8BC9%8B89%8B89%8B90%8BC9%FC4B%8B89%8BC9%8B90%FC4B%FC4B%8BC9%8B89%8B90%8B90%FC4B%8BC9%8B89%FC4B%8BC9%8B90%8B89%8B89%8B90%FC4B%8BC9%8BC9%8B89%8B90%FC4B%8BC9%FC4B%8B89%8B90%8B89%8BC9%FC4B%8B90%8BC9%8B90%FC4B%8B89%FC4B%8B90%8BC9%8B89%8BC9%FC4B%8B90%8B89%8B90%8BC9%FC4B%8B89%8BC9%8B89%FC4B%8B90%FC4B%8BC9%8B89%8B90%8BC9%8B89%FC4B%8B90%8BC9%FC4B%8B90%8B89%8B89%8B90%8BC9%FC4B%8B89%FC4B%8B90%8BC9%FC4B%8B90%8B89%8BC9%8B89%FC4B%8B90%8BC9%FC4B%8B90%8B89%8BC9%FC4B%8B90%8BC9%8B89%FC4B%8BC9%8B89%8B90%8BC9%8B90%FC4B%8B89%8B89%8BC9%FC4B%8B90%8B90%FC4B%8BC9%8B8&coding=13>
+2017-05-06 12:59:53+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10ff29ef0>
+2017-05-06 12:59:53+0100 [-] (TCP Port 57373 Closed)
+2017-05-06 12:59:53+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x110267290>
+2017-05-06 12:59:53+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10ff29680>
+2017-05-06 12:59:53+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:53+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x11041e488>
+2017-05-06 12:59:53+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10ff29878>
+2017-05-06 12:59:53+0100 [-] (TCP Port 57375 Closed)
+2017-05-06 12:59:53+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1102e1320>
+2017-05-06 12:59:53+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10fef95a8>
+2017-05-06 12:59:53+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1102e1998>
+2017-05-06 12:59:53+0100 [-] (TCP Port 57386 Closed)
+2017-05-06 12:59:53+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1102e13f8>
+2017-05-06 12:59:53+0100 [-] Main loop terminated.
+2017-05-06 12:59:53+0100 [-] (TCP Port 1402 Closed)
+2017-05-06 12:59:53+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10ff43b90>
+2017-05-06 12:59:53+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_IA5_ASCII <--
+2017-05-06 12:59:53+0100 [-] PBServerFactory starting on 57392
+2017-05-06 12:59:53+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10ff43878>
+2017-05-06 12:59:53+0100 [-] Site starting on 1401
+2017-05-06 12:59:53+0100 [-] Starting factory <twisted.web.server.Site instance at 0x1102af1b8>
+2017-05-06 12:59:53+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x1102af0e0>
+2017-05-06 12:59:53+0100 [AmqpProtocol,client] PBServerFactory starting on 57394
+2017-05-06 12:59:53+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1103a3128>
+2017-05-06 12:59:53+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1103a37a0>
+2017-05-06 12:59:53+0100 [Uninitialized] LastClientFactory starting on 57405
+2017-05-06 12:59:53+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1103a3200>
+2017-05-06 12:59:53+0100 [Uninitialized] Site starting on 1402
+2017-05-06 12:59:53+0100 [-] Starting factory <twisted.web.server.Site instance at 0x110337998>
+2017-05-06 12:59:53+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x110337dd0>
+2017-05-06 12:59:53+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x110337128>
+2017-05-06 12:59:53+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x110360d88>
+2017-05-06 12:59:53+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=9%3Ep%24i%02%23%3A%1383_%5C%18%5Dh%26%7Fqo%050%60%07%3FHL%3Be%0E%2AXE%1DP+%27%01%06JY%2F%40%0C%195%25B%5B%1A%04%5EG%0F%0Am%7E%7B%0B%156%1CsM%21xnv%11r7klF%10%2Cd%16jS%7C%09%17ACI%3DK%28%122%7D-a%14b%2BgOWNQt.u%3CT%0D%29fUZ1%22%034%1FycVz%08D%1ER%00w%0EbA%07%60LY.%2C%13%0A%0F%3F6knhRIrUq%0902O%01%3AWz%27%1Dl%169%06%2F%26XJ_vSp%2A7co%1Fi%3D%28B%1A%22HEV%12MmgZ%1E%5D%7C%7EF%04s%14C%08%3B%0DT8u%00Qwx%5C%05ND%1C1Ke%3Cj%7BG5t%5E%5B%3E%40%18%0B4+%7D%7F%23%11%153a%17%0Cf%2B%10%03-%19%25%21%02y%29%24dP%03%04Ff%1Aj%16%40E%0D%19%11%15e%5B%5D%0Cov%2B%09%3C.3w%2F%0E%28%7F76W+b%12Z4%0A%01QidR%18x%26t5-J%10h8%14%0B%24qAY%0Fn%1E%06T%22%170p%2C%08%5E%23OB%05%5C%07U%3FaMkX%2A9%13Dg%3D_PGH%25%27%1FS2l%60cz%1C%7D%3E%29%7CIK%3AsLr%7Bm%02%21%7E%00V1%1DuyCN%3B%064%0C%27E2m%3D%23%03R%1F%16p%1AG%1DUN%3F%7E%18%0D_Tb%10%04IL%171%3C%25%02d%3E0w%14%29H%19S%13%24%00%11%08j%5C%3Atx9k3%5B8Jo%07%15-%2Cv%2A%5E%7C%5D%12%0A%0F%0E5r%05i%7F%0BF.%1C%09Z%28hAsKQ%21BDz%7BY%1EV%3Be6laf%2Buq%40n7P%7DXO%2Fy+MgCc%22W%26%60%014%11z%3Dhti%7D%3C6%09%40%01%23%0Fu%18%5B%24E9na%2FZ%1C%2B1%13W%28%03F%16%158%5D%08Sqe%3B%22s%0Bo.gj%7CTP%2A%17%04%1A+%07%10%5EYO%25_r%7Fp%2CBv7%0DI%1F%7BG%02%5CD-%1D%26N%27b5KRJ%293Xw%05%0E%1E%19%0AdML%60%0C2&coding=1>
+2017-05-06 12:59:53+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:53 +0000] "GET /send?username=username&to=06155423&password=password&content=9%3Ep%24i%02%23%3A%1383_%5C%18%5Dh%26%7Fqo%050%60%07%3FHL%3Be%0E%2AXE%1DP+%27%01%06JY%2F%40%0C%195%25B%5B%1A%04%5EG%0F%0Am%7E%7B%0B%156%1CsM%21xnv%11r7klF%10%2Cd%16jS%7C%09%17ACI%3DK%28%122%7D-a%14b%2BgOWNQt.u%3CT%0D%29fUZ1%22%034%1FycVz%08D%1ER%00w%0EbA%07%60LY.%2C%13%0A%0F%3F6knhRIrUq%0902O%01%3AWz%27%1Dl%169%06%2F%26XJ_vSp%2A7co%1Fi%3D%28B%1A%22HEV%12MmgZ%1E%5D%7C%7EF%04s%14C%08%3B%0DT8u%00Qwx%5C%05ND%1C1Ke%3Cj%7BG5t%5E%5B%3E%40%18%0B4+%7D%7F%23%11%153a%17%0Cf%2B%10%03-%19%25%21%02y%29%24dP%03%04Ff%1Aj%16%40E%0D%19%11%15e%5B%5D%0Cov%2B%09%3C.3w%2F%0E%28%7F76W+b%12Z4%0A%01QidR%18x%26t5-J%10h8%14%0B%24qAY%0Fn%1E%06T%22%170p%2C%08%5E%23OB%05%5C%07U%3FaMkX%2A9%13Dg%3D_PGH%25%27%1FS2l%60cz%1C%7D%3E%29%7CIK%3AsLr%7Bm%02%21%7E%00V1%1DuyCN%3B%064%0C%27E2m%3D%23%03R%1F%16p%1AG%1DUN%3F%7E%18%0D_Tb%10%04IL%171%3C%25%02d%3E0w%14%29H%19S%13%24%00%11%08j%5C%3Atx9k3%5B8Jo%07%15-%2Cv%2A%5E%7C%5D%12%0A%0F%0E5r%05i%7F%0BF.%1C%09Z%28hAsKQ%21BDz%7BY%1EV%3Be6laf%2Buq%40n7P%7DXO%2Fy+MgCc%22W%26%60%014%11z%3Dhti%7D%3C6%09%40%01%23%0Fu%18%5B%24E9na%2FZ%1C%2B1%13W%28%03F%16%158%5D%08Sqe%3B%22s%0Bo.gj%7CTP%2A%17%04%1A+%07%10%5EYO%25_r%7Fp%2CBv7%0DI%1F%7BG%02%5CD-%1D%26N%27b5KRJ%293Xw%05%0E%1E%19%0AdML%60%0C2&coding=1 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:53+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=9%3Ep%24i%02%23%3A%1383_%5C%18%5Dh%26%7Fqo%050%60%07%3FHL%3Be%0E%2AXE%1DP+%27%01%06JY%2F%40%0C%195%25B%5B%1A%04%5EG%0F%0Am%7E%7B%0B%156%1CsM%21xnv%11r7klF%10%2Cd%16jS%7C%09%17ACI%3DK%28%122%7D-a%14b%2BgOWNQt.u%3CT%0D%29fUZ1%22%034%1FycVz%08D%1ER%00w%0EbA%07%60LY.%2C%13%0A%0F%3F6knhRIrUq%0902O%01%3AWz%27%1Dl%169%06%2F%26XJ_vSp%2A7co%1Fi%3D%28B%1A%22HEV%12MmgZ%1E%5D%7C%7EF%04s%14C%08%3B%0DT8u%00Qwx%5C%05ND%1C1Ke%3Cj%7BG5t%5E%5B%3E%40%18%0B4+%7D%7F%23%11%153a%17%0Cf%2B%10%03-%19%25%21%02y%29%24dP%03%04Ff%1Aj%16%40E%0D%19%11%15e%5B%5D%0Cov%2B%09%3C.3w%2F%0E%28%7F76W+b%12Z4%0A%01QidR%18x%26t5-J%10h8%14%0B%24qAY%0Fn%1E%06T%22%170p%2C%08%5E%23OB%05%5C%07U%3FaMkX%2A9%13Dg%3D_PGH%25%27%1FS2l%60cz%1C%7D%3E%29%7CIK%3AsLr%7Bm%02%21%7E%00V1%1DuyCN%3B%064%0C%27E2m%3D%23%03R%1F%16p%1AG%1DUN%3F%7E%18%0D_Tb%10%04IL%171%3C%25%02d%3E0w%14%29H%19S%13%24%00%11%08j%5C%3Atx9k3%5B8Jo%07%15-%2Cv%2A%5E%7C%5D%12%0A%0F%0E5r%05i%7F%0BF.%1C%09Z%28hAsKQ%21BDz%7BY%1EV%3Be6laf%2Buq%40n7P%7DXO%2Fy+MgCc%22W%26%60%014%11z%3Dhti%7D%3C6%09%40%01%23%0Fu%18%5B%24E9na%2FZ%1C%2B1%13W%28%03F%16%158%5D%08Sqe%3B%22s%0Bo.gj%7CTP%2A%17%04%1A+%07%10%5EYO%25_r%7Fp%2CBv7%0DI%1F%7BG%02%5CD-%1D%26N%27b5KRJ%293Xw%05%0E%1E%19%0AdML%60%0C2&coding=1>
+2017-05-06 12:59:55+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x110360d88>
+2017-05-06 12:59:55+0100 [-] (TCP Port 57392 Closed)
+2017-05-06 12:59:55+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10ff43878>
+2017-05-06 12:59:55+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x110337dd0>
+2017-05-06 12:59:55+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:55+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x1102af1b8>
+2017-05-06 12:59:55+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x110337128>
+2017-05-06 12:59:55+0100 [-] (TCP Port 57394 Closed)
+2017-05-06 12:59:55+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1103a3128>
+2017-05-06 12:59:55+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x1102af0e0>
+2017-05-06 12:59:55+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1103a37a0>
+2017-05-06 12:59:56+0100 [-] (TCP Port 57405 Closed)
+2017-05-06 12:59:56+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1103a3200>
+2017-05-06 12:59:56+0100 [-] Main loop terminated.
+2017-05-06 12:59:56+0100 [-] (TCP Port 1402 Closed)
+2017-05-06 12:59:56+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x110337998>
+2017-05-06 12:59:56+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_ISO_2022_JP <--
+2017-05-06 12:59:56+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_ISO_8859_8 <--
+2017-05-06 12:59:56+0100 [-] PBServerFactory starting on 57410
+2017-05-06 12:59:56+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x11032e098>
+2017-05-06 12:59:56+0100 [-] Site starting on 1401
+2017-05-06 12:59:56+0100 [-] Starting factory <twisted.web.server.Site instance at 0x11032e560>
+2017-05-06 12:59:56+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x11032ecf8>
+2017-05-06 12:59:56+0100 [AmqpProtocol,client] PBServerFactory starting on 57412
+2017-05-06 12:59:56+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x11009a710>
+2017-05-06 12:59:56+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f89a3b0>
+2017-05-06 12:59:56+0100 [Uninitialized] LastClientFactory starting on 57423
+2017-05-06 12:59:56+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x11009ab48>
+2017-05-06 12:59:56+0100 [Uninitialized] Site starting on 1402
+2017-05-06 12:59:56+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f862050>
+2017-05-06 12:59:56+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f862440>
+2017-05-06 12:59:56+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f862c20>
+2017-05-06 12:59:56+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f883488>
+2017-05-06 12:59:56+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%BA%3Bm%1A%1D%22%29p%2C%2F%1Ed%7D%5D%EE%9B%0E%F2%F5%E3L%81%82w%16%A4%0D%B3%1F%24%21%93jy%B5%3A%80X%2A%98%AC%00%B6%E9%23%E8H%7Cf%5C%0AI%EC%281%AE%89%01%AAg%A6M%EF%8C%B1%04%60%9E%2B%27%FD%B8%26%BC%9C%19n%96Z%A7%A0%0Cx%0F%8F%B0%1B%940%8D%EDe%A8k%8Ev%F9Qo%1CzG_%84u%95V%12l%EB%25%BD%AFa%3C%9D%9A23%BE%F1%FEN%87P%86%85%09%8A%3F%F6%F4Y%A9F%B29s%E5%90%06%B7%3EJ%DF%40CD%E4.%83%FA%3DE%AD%03%7B%15%08%18%E7%E08%10RU6%14%BBS4%17%05O%9F%AB%8B%7F%92%7E%E6%07%97%99%EAbr%F0%E1%91i%5B%B9K-%A5W%A2BT%F3%5Eh7%11%A3+qc%13%F8%88A%F7%B4t%E25%0B%02%A4%21%F7%F30%5CT%B5%EA%B0%F5P%FAQ%19%7F%A0%05M%26%92_%9A%91cf%0C%E2%1C%BC%E6%5B%A3%97%FE%BB8%EC%29W%0Fu%A5%0B%8A%82%F0%EB36k%3E%83r%87%3A%F4%F6x%EF%135V%2B%01X%23%1A%2C%90%22av%95%8FR%A9%172%AC%0D%11%AB%E5%B1%9E%06%9B%8EHB%B4F%7B%84q%3B%80bC%F9%AA%ED%DF%EE%14%98%E4%2A%AF%AE%1EJ%16%A7%E0%27+N%88%B7%BDt%A6%B9%85%E1-m%2FL%3FyZG%E94i%B3n%08%0A%04%E7%F1%81E%8C%F8o%93%28s%07%10S%E8p%3D%8BI%12D%86%AD%BE%09%15%189el%B8Yd%40KzO%1Bj%24%B6%E3%00U%96%7C%5E%1F.%A87g%9F%A2%F2%99%8D%3C%7E%60%7D%FDA%02%9Cw%5D%BA%89%94%0Eh%25%B2%1D%03%9D1p3%E1%23%E6Yn0%ED%A3%EF%3D%5C+%22%E2%7BJ%929%5B_%06s%8B%A2T4%29%1AN%1EW%B5%F2-%18%EC%801%B2Bb%F8RiDx%5EQ%E3%1Bo%F7H.%FEm%A8%9B%95%13%86%7F%9C%B7%EB%27%9E%8E%98%BE%0A%1C%E4%A4%5D%09%F6%E9%F4z%3C%ABf%25%BD%97%93%AE%7DP%E5h7%28%3E%60E%85%01v%91%24%02%07%7Ct%E8eK%94%B1%40%9D%17Z%87q%2B%90L%A9k%F5%8Dd%BA%B9%7E%AA28%1D%0BS%88y%9A%B8%F9%8C%99%21%89%0C%10%08wj%03%A6%F1%26%A5%19Gr%0E%81%BC%DF%84%FA6u%83X%12%05%2Fl%E0%F3%3Bg%96aM%9FAV%155U%AD%11%A7%3A%82%B6%3FO%14%EA%AF%2C%04%16%FD%EE%8F%00%A0%F0%AC%2A%0FI%1F%0D%E7c%B3%B4FC%BB%B0%8A%93%8B%AEPb%09%22S%A7%E0&coding=7>
+2017-05-06 12:59:56+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:56 +0000] "GET /send?username=username&to=06155423&password=password&content=%BA%3Bm%1A%1D%22%29p%2C%2F%1Ed%7D%5D%EE%9B%0E%F2%F5%E3L%81%82w%16%A4%0D%B3%1F%24%21%93jy%B5%3A%80X%2A%98%AC%00%B6%E9%23%E8H%7Cf%5C%0AI%EC%281%AE%89%01%AAg%A6M%EF%8C%B1%04%60%9E%2B%27%FD%B8%26%BC%9C%19n%96Z%A7%A0%0Cx%0F%8F%B0%1B%940%8D%EDe%A8k%8Ev%F9Qo%1CzG_%84u%95V%12l%EB%25%BD%AFa%3C%9D%9A23%BE%F1%FEN%87P%86%85%09%8A%3F%F6%F4Y%A9F%B29s%E5%90%06%B7%3EJ%DF%40CD%E4.%83%FA%3DE%AD%03%7B%15%08%18%E7%E08%10RU6%14%BBS4%17%05O%9F%AB%8B%7F%92%7E%E6%07%97%99%EAbr%F0%E1%91i%5B%B9K-%A5W%A2BT%F3%5Eh7%11%A3+qc%13%F8%88A%F7%B4t%E25%0B%02%A4%21%F7%F30%5CT%B5%EA%B0%F5P%FAQ%19%7F%A0%05M%26%92_%9A%91cf%0C%E2%1C%BC%E6%5B%A3%97%FE%BB8%EC%29W%0Fu%A5%0B%8A%82%F0%EB36k%3E%83r%87%3A%F4%F6x%EF%135V%2B%01X%23%1A%2C%90%22av%95%8FR%A9%172%AC%0D%11%AB%E5%B1%9E%06%9B%8EHB%B4F%7B%84q%3B%80bC%F9%AA%ED%DF%EE%14%98%E4%2A%AF%AE%1EJ%16%A7%E0%27+N%88%B7%BDt%A6%B9%85%E1-m%2FL%3FyZG%E94i%B3n%08%0A%04%E7%F1%81E%8C%F8o%93%28s%07%10S%E8p%3D%8BI%12D%86%AD%BE%09%15%189el%B8Yd%40KzO%1Bj%24%B6%E3%00U%96%7C%5E%1F.%A87g%9F%A2%F2%99%8D%3C%7E%60%7D%FDA%02%9Cw%5D%BA%89%94%0Eh%25%B2%1D%03%9D1p3%E1%23%E6Yn0%ED%A3%EF%3D%5C+%22%E2%7BJ%929%5B_%06s%8B%A2T4%29%1AN%1EW%B5%F2-%18%EC%801%B2Bb%F8RiDx%5EQ%E3%1Bo%F7H.%FEm%A8%9B%95%13%86%7F%9C%B7%EB%27%9E%8E%98%BE%0A%1C%E4%A4%5D%09%F6%E9%F4z%3C%ABf%25%BD%97%93%AE%7DP%E5h7%28%3E%60E%85%01v%91%24%02%07%7Ct%E8eK%94%B1%40%9D%17Z%87q%2B%90L%A9k%F5%8Dd%BA%B9%7E%AA28%1D%0BS%88y%9A%B8%F9%8C%99%21%89%0C%10%08wj%03%A6%F1%26%A5%19Gr%0E%81%BC%DF%84%FA6u%83X%12%05%2Fl%E0%F3%3Bg%96aM%9FAV%155U%AD%11%A7%3A%82%B6%3FO%14%EA%AF%2C%04%16%FD%EE%8F%00%A0%F0%AC%2A%0FI%1F%0D%E7c%B3%B4FC%BB%B0%8A%93%8B%AEPb%09%22S%A7%E0&coding=7 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:56+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%BA%3Bm%1A%1D%22%29p%2C%2F%1Ed%7D%5D%EE%9B%0E%F2%F5%E3L%81%82w%16%A4%0D%B3%1F%24%21%93jy%B5%3A%80X%2A%98%AC%00%B6%E9%23%E8H%7Cf%5C%0AI%EC%281%AE%89%01%AAg%A6M%EF%8C%B1%04%60%9E%2B%27%FD%B8%26%BC%9C%19n%96Z%A7%A0%0Cx%0F%8F%B0%1B%940%8D%EDe%A8k%8Ev%F9Qo%1CzG_%84u%95V%12l%EB%25%BD%AFa%3C%9D%9A23%BE%F1%FEN%87P%86%85%09%8A%3F%F6%F4Y%A9F%B29s%E5%90%06%B7%3EJ%DF%40CD%E4.%83%FA%3DE%AD%03%7B%15%08%18%E7%E08%10RU6%14%BBS4%17%05O%9F%AB%8B%7F%92%7E%E6%07%97%99%EAbr%F0%E1%91i%5B%B9K-%A5W%A2BT%F3%5Eh7%11%A3+qc%13%F8%88A%F7%B4t%E25%0B%02%A4%21%F7%F30%5CT%B5%EA%B0%F5P%FAQ%19%7F%A0%05M%26%92_%9A%91cf%0C%E2%1C%BC%E6%5B%A3%97%FE%BB8%EC%29W%0Fu%A5%0B%8A%82%F0%EB36k%3E%83r%87%3A%F4%F6x%EF%135V%2B%01X%23%1A%2C%90%22av%95%8FR%A9%172%AC%0D%11%AB%E5%B1%9E%06%9B%8EHB%B4F%7B%84q%3B%80bC%F9%AA%ED%DF%EE%14%98%E4%2A%AF%AE%1EJ%16%A7%E0%27+N%88%B7%BDt%A6%B9%85%E1-m%2FL%3FyZG%E94i%B3n%08%0A%04%E7%F1%81E%8C%F8o%93%28s%07%10S%E8p%3D%8BI%12D%86%AD%BE%09%15%189el%B8Yd%40KzO%1Bj%24%B6%E3%00U%96%7C%5E%1F.%A87g%9F%A2%F2%99%8D%3C%7E%60%7D%FDA%02%9Cw%5D%BA%89%94%0Eh%25%B2%1D%03%9D1p3%E1%23%E6Yn0%ED%A3%EF%3D%5C+%22%E2%7BJ%929%5B_%06s%8B%A2T4%29%1AN%1EW%B5%F2-%18%EC%801%B2Bb%F8RiDx%5EQ%E3%1Bo%F7H.%FEm%A8%9B%95%13%86%7F%9C%B7%EB%27%9E%8E%98%BE%0A%1C%E4%A4%5D%09%F6%E9%F4z%3C%ABf%25%BD%97%93%AE%7DP%E5h7%28%3E%60E%85%01v%91%24%02%07%7Ct%E8eK%94%B1%40%9D%17Z%87q%2B%90L%A9k%F5%8Dd%BA%B9%7E%AA28%1D%0BS%88y%9A%B8%F9%8C%99%21%89%0C%10%08wj%03%A6%F1%26%A5%19Gr%0E%81%BC%DF%84%FA6u%83X%12%05%2Fl%E0%F3%3Bg%96aM%9FAV%155U%AD%11%A7%3A%82%B6%3FO%14%EA%AF%2C%04%16%FD%EE%8F%00%A0%F0%AC%2A%0FI%1F%0D%E7c%B3%B4FC%BB%B0%8A%93%8B%AEPb%09%22S%A7%E0&coding=7>
+2017-05-06 12:59:58+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f883488>
+2017-05-06 12:59:58+0100 [-] (TCP Port 57410 Closed)
+2017-05-06 12:59:58+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x11032e098>
+2017-05-06 12:59:58+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f862440>
+2017-05-06 12:59:58+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 12:59:58+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x11032e560>
+2017-05-06 12:59:58+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f862c20>
+2017-05-06 12:59:58+0100 [-] (TCP Port 57412 Closed)
+2017-05-06 12:59:58+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x11009a710>
+2017-05-06 12:59:58+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x11032ecf8>
+2017-05-06 12:59:58+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f89a3b0>
+2017-05-06 12:59:59+0100 [-] (TCP Port 57423 Closed)
+2017-05-06 12:59:59+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x11009ab48>
+2017-05-06 12:59:59+0100 [-] Main loop terminated.
+2017-05-06 12:59:59+0100 [-] (TCP Port 1402 Closed)
+2017-05-06 12:59:59+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f862050>
+2017-05-06 12:59:59+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_JIS <--
+2017-05-06 12:59:59+0100 [-] PBServerFactory starting on 57428
+2017-05-06 12:59:59+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f897cf8>
+2017-05-06 12:59:59+0100 [-] Site starting on 1401
+2017-05-06 12:59:59+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f862368>
+2017-05-06 12:59:59+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10f862a70>
+2017-05-06 12:59:59+0100 [AmqpProtocol,client] PBServerFactory starting on 57430
+2017-05-06 12:59:59+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fbf2368>
+2017-05-06 12:59:59+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fbf2320>
+2017-05-06 12:59:59+0100 [Uninitialized] LastClientFactory starting on 57441
+2017-05-06 12:59:59+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fc1afc8>
+2017-05-06 12:59:59+0100 [Uninitialized] Site starting on 1402
+2017-05-06 12:59:59+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10fa844d0>
+2017-05-06 12:59:59+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fa84f80>
+2017-05-06 12:59:59+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fa7ac20>
+2017-05-06 12:59:59+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fa85680>
+2017-05-06 12:59:59+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%96BA%E062%8140%EAA2%E062%8140%EAA2%96BA%E062%96BA%8140%EAA2%E062%EAA2%8140%96BA%8140%96BA%E062%EAA2%EAA2%8140%E062%96BA%96BA%EAA2%E062%8140%E062%EAA2%8140%96BA%96BA%8140%E062%EAA2%96BA%EAA2%E062%8140%EAA2%96BA%8140%E062%E062%EAA2%96BA%8140%EAA2%96BA%E062%8140%EAA2%96BA%8140%E062%8140%EAA2%96BA%E062%EAA2%96BA%8140%E062%8140%E062%96BA%EAA2%E062%EAA2%96BA%8140%E062%EAA2%96BA%8140%E062%8140%96BA%EAA2%EAA2%8140%96BA%E062%96BA%EAA2%E062%8140%EAA2%E062%8140%96BA%96BA%E062%8140%EAA2%EAA2%8140%E062%96BA%E062%96BA%EAA2%8140%EAA2%E062%8140%96BA%E062%96BA%8140%EAA&coding=5>
+2017-05-06 12:59:59+0100 [-] "127.0.0.1" - - [06/May/2017:11:59:59 +0000] "GET /send?username=username&to=06155423&password=password&content=%96BA%E062%8140%EAA2%E062%8140%EAA2%96BA%E062%96BA%8140%EAA2%E062%EAA2%8140%96BA%8140%96BA%E062%EAA2%EAA2%8140%E062%96BA%96BA%EAA2%E062%8140%E062%EAA2%8140%96BA%96BA%8140%E062%EAA2%96BA%EAA2%E062%8140%EAA2%96BA%8140%E062%E062%EAA2%96BA%8140%EAA2%96BA%E062%8140%EAA2%96BA%8140%E062%8140%EAA2%96BA%E062%EAA2%96BA%8140%E062%8140%E062%96BA%EAA2%E062%EAA2%96BA%8140%E062%EAA2%96BA%8140%E062%8140%96BA%EAA2%EAA2%8140%96BA%E062%96BA%EAA2%E062%8140%EAA2%E062%8140%96BA%96BA%E062%8140%EAA2%EAA2%8140%E062%96BA%E062%96BA%EAA2%8140%EAA2%E062%8140%96BA%E062%96BA%8140%EAA&coding=5 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 12:59:59+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%96BA%E062%8140%EAA2%E062%8140%EAA2%96BA%E062%96BA%8140%EAA2%E062%EAA2%8140%96BA%8140%96BA%E062%EAA2%EAA2%8140%E062%96BA%96BA%EAA2%E062%8140%E062%EAA2%8140%96BA%96BA%8140%E062%EAA2%96BA%EAA2%E062%8140%EAA2%96BA%8140%E062%E062%EAA2%96BA%8140%EAA2%96BA%E062%8140%EAA2%96BA%8140%E062%8140%EAA2%96BA%E062%EAA2%96BA%8140%E062%8140%E062%96BA%EAA2%E062%EAA2%96BA%8140%E062%EAA2%96BA%8140%E062%8140%96BA%EAA2%EAA2%8140%96BA%E062%96BA%EAA2%E062%8140%EAA2%E062%8140%96BA%96BA%E062%8140%EAA2%EAA2%8140%E062%96BA%E062%96BA%EAA2%8140%EAA2%E062%8140%96BA%E062%96BA%8140%EAA&coding=5>
+2017-05-06 13:00:01+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fa85680>
+2017-05-06 13:00:01+0100 [-] (TCP Port 57428 Closed)
+2017-05-06 13:00:01+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f897cf8>
+2017-05-06 13:00:01+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fa84f80>
+2017-05-06 13:00:01+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:01+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f862368>
+2017-05-06 13:00:01+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fa7ac20>
+2017-05-06 13:00:01+0100 [-] (TCP Port 57430 Closed)
+2017-05-06 13:00:01+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fbf2368>
+2017-05-06 13:00:01+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fbf2320>
+2017-05-06 13:00:01+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10f862a70>
+2017-05-06 13:00:01+0100 [-] (TCP Port 57441 Closed)
+2017-05-06 13:00:01+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fc1afc8>
+2017-05-06 13:00:01+0100 [-] Main loop terminated.
+2017-05-06 13:00:01+0100 [-] (TCP Port 1402 Closed)
+2017-05-06 13:00:01+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10fa844d0>
+2017-05-06 13:00:01+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_KS_C_5601 <--
+2017-05-06 13:00:01+0100 [-] PBServerFactory starting on 57446
+2017-05-06 13:00:01+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x11032e6c8>
+2017-05-06 13:00:01+0100 [-] Site starting on 1401
+2017-05-06 13:00:01+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f89a3f8>
+2017-05-06 13:00:01+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10f89a830>
+2017-05-06 13:00:01+0100 [AmqpProtocol,client] PBServerFactory starting on 57448
+2017-05-06 13:00:01+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fdfb3f8>
+2017-05-06 13:00:01+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fdfb368>
+2017-05-06 13:00:01+0100 [Uninitialized] LastClientFactory starting on 57459
+2017-05-06 13:00:01+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fdfb200>
+2017-05-06 13:00:01+0100 [Uninitialized] Site starting on 1402
+2017-05-06 13:00:01+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10fded560>
+2017-05-06 13:00:01+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fde3dd0>
+2017-05-06 13:00:01+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fded1b8>
+2017-05-06 13:00:01+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fde39e0>
+2017-05-06 13:00:01+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%8141%E1D7%FDFE%A496%8141%E1D7%FDFE%A496%E1D7%A496%8141%FDFE%8141%FDFE%A496%E1D7%8141%E1D7%A496%FDFE%FDFE%E1D7%A496%8141%E1D7%FDFE%8141%A496%E1D7%A496%FDFE%8141%A496%8141%FDFE%E1D7%8141%A496%E1D7%FDFE%E1D7%FDFE%A496%8141%FDFE%A496%E1D7%8141%E1D7%FDFE%A496%8141%8141%E1D7%A496%FDFE%E1D7%8141%A496%FDFE%8141%E1D7%FDFE%A496%E1D7%A496%FDFE%8141%FDFE%A496%8141%E1D7%E1D7%A496%8141%FDFE%8141%E1D7%FDFE%A496%A496%FDFE%8141%E1D7%E1D7%FDFE%A496%8141%A496%FDFE%E1D7%8141%E1D7%8141%A496%FDFE%A496%8141%E1D7%FDFE%E1D7%8141%FDFE%A496%A496%8141%FDFE%E1D7%FDFE%8141%A496%E1D&coding=14>
+2017-05-06 13:00:01+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:01 +0000] "GET /send?username=username&to=06155423&password=password&content=%8141%E1D7%FDFE%A496%8141%E1D7%FDFE%A496%E1D7%A496%8141%FDFE%8141%FDFE%A496%E1D7%8141%E1D7%A496%FDFE%FDFE%E1D7%A496%8141%E1D7%FDFE%8141%A496%E1D7%A496%FDFE%8141%A496%8141%FDFE%E1D7%8141%A496%E1D7%FDFE%E1D7%FDFE%A496%8141%FDFE%A496%E1D7%8141%E1D7%FDFE%A496%8141%8141%E1D7%A496%FDFE%E1D7%8141%A496%FDFE%8141%E1D7%FDFE%A496%E1D7%A496%FDFE%8141%FDFE%A496%8141%E1D7%E1D7%A496%8141%FDFE%8141%E1D7%FDFE%A496%A496%FDFE%8141%E1D7%E1D7%FDFE%A496%8141%A496%FDFE%E1D7%8141%E1D7%8141%A496%FDFE%A496%8141%E1D7%FDFE%E1D7%8141%FDFE%A496%A496%8141%FDFE%E1D7%FDFE%8141%A496%E1D&coding=14 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:01+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%8141%E1D7%FDFE%A496%8141%E1D7%FDFE%A496%E1D7%A496%8141%FDFE%8141%FDFE%A496%E1D7%8141%E1D7%A496%FDFE%FDFE%E1D7%A496%8141%E1D7%FDFE%8141%A496%E1D7%A496%FDFE%8141%A496%8141%FDFE%E1D7%8141%A496%E1D7%FDFE%E1D7%FDFE%A496%8141%FDFE%A496%E1D7%8141%E1D7%FDFE%A496%8141%8141%E1D7%A496%FDFE%E1D7%8141%A496%FDFE%8141%E1D7%FDFE%A496%E1D7%A496%FDFE%8141%FDFE%A496%8141%E1D7%E1D7%A496%8141%FDFE%8141%E1D7%FDFE%A496%A496%FDFE%8141%E1D7%E1D7%FDFE%A496%8141%A496%FDFE%E1D7%8141%E1D7%8141%A496%FDFE%A496%8141%E1D7%FDFE%E1D7%8141%FDFE%A496%A496%8141%FDFE%E1D7%FDFE%8141%A496%E1D&coding=14>
+2017-05-06 13:00:03+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fde39e0>
+2017-05-06 13:00:04+0100 [-] (TCP Port 57446 Closed)
+2017-05-06 13:00:04+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x11032e6c8>
+2017-05-06 13:00:04+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fde3dd0>
+2017-05-06 13:00:04+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:04+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f89a3f8>
+2017-05-06 13:00:04+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fded1b8>
+2017-05-06 13:00:04+0100 [-] (TCP Port 57448 Closed)
+2017-05-06 13:00:04+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fdfb3f8>
+2017-05-06 13:00:04+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10f89a830>
+2017-05-06 13:00:04+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fdfb368>
+2017-05-06 13:00:04+0100 [-] (TCP Port 57459 Closed)
+2017-05-06 13:00:04+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fdfb200>
+2017-05-06 13:00:04+0100 [-] Main loop terminated.
+2017-05-06 13:00:04+0100 [-] (TCP Port 1402 Closed)
+2017-05-06 13:00:04+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10fded560>
+2017-05-06 13:00:04+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_LATIN_1 <--
+2017-05-06 13:00:04+0100 [-] PBServerFactory starting on 57464
+2017-05-06 13:00:04+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fded248>
+2017-05-06 13:00:04+0100 [-] Site starting on 1401
+2017-05-06 13:00:04+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10fdf25a8>
+2017-05-06 13:00:04+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10fe15638>
+2017-05-06 13:00:04+0100 [AmqpProtocol,client] PBServerFactory starting on 57466
+2017-05-06 13:00:04+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f7fb638>
+2017-05-06 13:00:04+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f7fb5a8>
+2017-05-06 13:00:04+0100 [Uninitialized] LastClientFactory starting on 57477
+2017-05-06 13:00:04+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f7fb440>
+2017-05-06 13:00:04+0100 [Uninitialized] Site starting on 1402
+2017-05-06 13:00:04+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f80a7a0>
+2017-05-06 13:00:04+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f80ab90>
+2017-05-06 13:00:04+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f80aea8>
+2017-05-06 13:00:04+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f80f830>
+2017-05-06 13:00:04+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=8Jxy%A8%D5%B5n%2F%F0%3A%EFf%CA%EB%CF%26%E5%7Cw%F6%A6Q%A5%E6%D2%E3%F2%CC%F5%FF%C6D%B3%24%C9X20%D9%21%FB%E4F%CD%CE9m5%F7t%7BNH%E1%AEsE%7D%A43b%EAk%DC%EER%7E%B8o%ACh%23%B6%ADIqM4u%BD%C5%29%A2d%DB%D0%B1z%BC%BA%ECg%3D%AA%C4%2AVA%D3%E2%C2%F8K%DA%C8%3Fe%5Dr%A0p%A1%B0%60%BF%FAO%3BL%C3%C7%3C%C16caS%C0%28%F4%E8%B7%E0%5ET%2B%A3jB%F3l%27%F1%DF%2C%5B%FC+%D1%22UC%AF%E7%3E%FEZ%D4%E9%DD%BB%5C.P%F9_%A9W%CBiY%AB%ED1%407G-%D7%D8v%B4%DE%B2%FD%D6%A7%25%BE%B9%F5%E2%CF%DE9%5D%FBJB%B2%D2jq%C4%C1%FC%27%E8G%E6Af7%BF%E0%A8d%E5%AE%AC%F6lh%CE%D9%DF%A1D%2C%F0%B0%B4%B8ut%CD%B6S%C3%C7%EC%40M%E9%A6%E7%D1F%B5X%A5%B1%F1.%7C%24%BC%C82w%D4%CC%F9%606%F8%DB%AF%DA%B9%29%3D%ABpa%BD%F2%E4%2F%A4%D7%FD%7D%AD%3A%E1b%B7%EE%A7R%7EQ%255v%5EK%D3x%7B%F7%3EL%ED%A3UHW1%FA%268kz%CA%22V%21%F4s%FFN%D6m%C0+%A0I%EA%C5%FE0c%5C%2A%2B%DCE%C6%DDi%28Z%AAO%D03r_%D8Y%A9%3B%3F%A2%EF%23nCy%BE-%D5%C9%E3o%B3%F3%C2%BA%5BP%EB4%3Ce%CBgT%BBs%E5%3F%C7%AA%605%F6Y%3C%CF8%294%FF%3A%F9K%5E%BB%F0%ABa%5C%F1%DA.%3B%BE%BA%23%D1P%7E%E7Lwed%C671n%22R%B1z%F2r%2Ai%E8%2FM%E9%ACk%28%D9%CE%F4+%A3%E6%B8oExb%AFqW%C4%CD%FBCJ%C0%A5H%DF%DE%D7%D5%AE%A4%E2%D0u%E4%FC%D3%F7B%CC%E13%EF%DCc%7C%27%7B%C9%D6%3D%BC%EAQDI%B4%E32%B7%CB%A89%A2-%BD%D8%B3Z%C8%B9m%26%40T%C3yU%BFg%C1%D2G%7D%5D%A9%FD6%F3%B0%B5%ED%EBt%F8_%B6l%A0v%2CXf0%25N%F5%E0%B2%A6%2BO%DB%EEA%CA%DD%C5%FE%3E%24%A7%FAp%5B%A1jS%C2V%D4h%EC%21%ADFX%25%FD%E2y%A7%A4q%D6%B4g%3B7%EBu%D9%B7%ACB%EF%F9_%C5m4I%C3%DD%A5%B2%F2d%F4%B1%CC1WP%FF0%5D%2CY%C0%7E%EAp%B9%CBl%26%3C%B8v9%A1%FBi%F3%CF%606h%F8%5CD%D3%B6Eexo%B0H%F0%ED%DA%3F8J%A6%BAnz%FAca%A2%A8%3DS%C2-%C1%B5%3AL&coding=3>
+2017-05-06 13:00:04+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:04 +0000] "GET /send?username=username&to=06155423&password=password&content=8Jxy%A8%D5%B5n%2F%F0%3A%EFf%CA%EB%CF%26%E5%7Cw%F6%A6Q%A5%E6%D2%E3%F2%CC%F5%FF%C6D%B3%24%C9X20%D9%21%FB%E4F%CD%CE9m5%F7t%7BNH%E1%AEsE%7D%A43b%EAk%DC%EER%7E%B8o%ACh%23%B6%ADIqM4u%BD%C5%29%A2d%DB%D0%B1z%BC%BA%ECg%3D%AA%C4%2AVA%D3%E2%C2%F8K%DA%C8%3Fe%5Dr%A0p%A1%B0%60%BF%FAO%3BL%C3%C7%3C%C16caS%C0%28%F4%E8%B7%E0%5ET%2B%A3jB%F3l%27%F1%DF%2C%5B%FC+%D1%22UC%AF%E7%3E%FEZ%D4%E9%DD%BB%5C.P%F9_%A9W%CBiY%AB%ED1%407G-%D7%D8v%B4%DE%B2%FD%D6%A7%25%BE%B9%F5%E2%CF%DE9%5D%FBJB%B2%D2jq%C4%C1%FC%27%E8G%E6Af7%BF%E0%A8d%E5%AE%AC%F6lh%CE%D9%DF%A1D%2C%F0%B0%B4%B8ut%CD%B6S%C3%C7%EC%40M%E9%A6%E7%D1F%B5X%A5%B1%F1.%7C%24%BC%C82w%D4%CC%F9%606%F8%DB%AF%DA%B9%29%3D%ABpa%BD%F2%E4%2F%A4%D7%FD%7D%AD%3A%E1b%B7%EE%A7R%7EQ%255v%5EK%D3x%7B%F7%3EL%ED%A3UHW1%FA%268kz%CA%22V%21%F4s%FFN%D6m%C0+%A0I%EA%C5%FE0c%5C%2A%2B%DCE%C6%DDi%28Z%AAO%D03r_%D8Y%A9%3B%3F%A2%EF%23nCy%BE-%D5%C9%E3o%B3%F3%C2%BA%5BP%EB4%3Ce%CBgT%BBs%E5%3F%C7%AA%605%F6Y%3C%CF8%294%FF%3A%F9K%5E%BB%F0%ABa%5C%F1%DA.%3B%BE%BA%23%D1P%7E%E7Lwed%C671n%22R%B1z%F2r%2Ai%E8%2FM%E9%ACk%28%D9%CE%F4+%A3%E6%B8oExb%AFqW%C4%CD%FBCJ%C0%A5H%DF%DE%D7%D5%AE%A4%E2%D0u%E4%FC%D3%F7B%CC%E13%EF%DCc%7C%27%7B%C9%D6%3D%BC%EAQDI%B4%E32%B7%CB%A89%A2-%BD%D8%B3Z%C8%B9m%26%40T%C3yU%BFg%C1%D2G%7D%5D%A9%FD6%F3%B0%B5%ED%EBt%F8_%B6l%A0v%2CXf0%25N%F5%E0%B2%A6%2BO%DB%EEA%CA%DD%C5%FE%3E%24%A7%FAp%5B%A1jS%C2V%D4h%EC%21%ADFX%25%FD%E2y%A7%A4q%D6%B4g%3B7%EBu%D9%B7%ACB%EF%F9_%C5m4I%C3%DD%A5%B2%F2d%F4%B1%CC1WP%FF0%5D%2CY%C0%7E%EAp%B9%CBl%26%3C%B8v9%A1%FBi%F3%CF%606h%F8%5CD%D3%B6Eexo%B0H%F0%ED%DA%3F8J%A6%BAnz%FAca%A2%A8%3DS%C2-%C1%B5%3AL&coding=3 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:04+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=8Jxy%A8%D5%B5n%2F%F0%3A%EFf%CA%EB%CF%26%E5%7Cw%F6%A6Q%A5%E6%D2%E3%F2%CC%F5%FF%C6D%B3%24%C9X20%D9%21%FB%E4F%CD%CE9m5%F7t%7BNH%E1%AEsE%7D%A43b%EAk%DC%EER%7E%B8o%ACh%23%B6%ADIqM4u%BD%C5%29%A2d%DB%D0%B1z%BC%BA%ECg%3D%AA%C4%2AVA%D3%E2%C2%F8K%DA%C8%3Fe%5Dr%A0p%A1%B0%60%BF%FAO%3BL%C3%C7%3C%C16caS%C0%28%F4%E8%B7%E0%5ET%2B%A3jB%F3l%27%F1%DF%2C%5B%FC+%D1%22UC%AF%E7%3E%FEZ%D4%E9%DD%BB%5C.P%F9_%A9W%CBiY%AB%ED1%407G-%D7%D8v%B4%DE%B2%FD%D6%A7%25%BE%B9%F5%E2%CF%DE9%5D%FBJB%B2%D2jq%C4%C1%FC%27%E8G%E6Af7%BF%E0%A8d%E5%AE%AC%F6lh%CE%D9%DF%A1D%2C%F0%B0%B4%B8ut%CD%B6S%C3%C7%EC%40M%E9%A6%E7%D1F%B5X%A5%B1%F1.%7C%24%BC%C82w%D4%CC%F9%606%F8%DB%AF%DA%B9%29%3D%ABpa%BD%F2%E4%2F%A4%D7%FD%7D%AD%3A%E1b%B7%EE%A7R%7EQ%255v%5EK%D3x%7B%F7%3EL%ED%A3UHW1%FA%268kz%CA%22V%21%F4s%FFN%D6m%C0+%A0I%EA%C5%FE0c%5C%2A%2B%DCE%C6%DDi%28Z%AAO%D03r_%D8Y%A9%3B%3F%A2%EF%23nCy%BE-%D5%C9%E3o%B3%F3%C2%BA%5BP%EB4%3Ce%CBgT%BBs%E5%3F%C7%AA%605%F6Y%3C%CF8%294%FF%3A%F9K%5E%BB%F0%ABa%5C%F1%DA.%3B%BE%BA%23%D1P%7E%E7Lwed%C671n%22R%B1z%F2r%2Ai%E8%2FM%E9%ACk%28%D9%CE%F4+%A3%E6%B8oExb%AFqW%C4%CD%FBCJ%C0%A5H%DF%DE%D7%D5%AE%A4%E2%D0u%E4%FC%D3%F7B%CC%E13%EF%DCc%7C%27%7B%C9%D6%3D%BC%EAQDI%B4%E32%B7%CB%A89%A2-%BD%D8%B3Z%C8%B9m%26%40T%C3yU%BFg%C1%D2G%7D%5D%A9%FD6%F3%B0%B5%ED%EBt%F8_%B6l%A0v%2CXf0%25N%F5%E0%B2%A6%2BO%DB%EEA%CA%DD%C5%FE%3E%24%A7%FAp%5B%A1jS%C2V%D4h%EC%21%ADFX%25%FD%E2y%A7%A4q%D6%B4g%3B7%EBu%D9%B7%ACB%EF%F9_%C5m4I%C3%DD%A5%B2%F2d%F4%B1%CC1WP%FF0%5D%2CY%C0%7E%EAp%B9%CBl%26%3C%B8v9%A1%FBi%F3%CF%606h%F8%5CD%D3%B6Eexo%B0H%F0%ED%DA%3F8J%A6%BAnz%FAca%A2%A8%3DS%C2-%C1%B5%3AL&coding=3>
+2017-05-06 13:00:06+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f80f830>
+2017-05-06 13:00:06+0100 [-] (TCP Port 57464 Closed)
+2017-05-06 13:00:06+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fded248>
+2017-05-06 13:00:06+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f80ab90>
+2017-05-06 13:00:06+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:06+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10fdf25a8>
+2017-05-06 13:00:06+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f80aea8>
+2017-05-06 13:00:06+0100 [-] (TCP Port 57466 Closed)
+2017-05-06 13:00:06+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f7fb638>
+2017-05-06 13:00:06+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10fe15638>
+2017-05-06 13:00:06+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f7fb5a8>
+2017-05-06 13:00:07+0100 [-] (TCP Port 57477 Closed)
+2017-05-06 13:00:07+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f7fb440>
+2017-05-06 13:00:07+0100 [-] Main loop terminated.
+2017-05-06 13:00:07+0100 [-] (TCP Port 1402 Closed)
+2017-05-06 13:00:07+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f80a7a0>
+2017-05-06 13:00:07+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_OCTET_UNSPECIFIED <--
+2017-05-06 13:00:07+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_OCTET_UNSPECIFIED_COMMON <--
+2017-05-06 13:00:07+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_PICTOGRAM <--
+2017-05-06 13:00:07+0100 [-] PBServerFactory starting on 57482
+2017-05-06 13:00:07+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f80afc8>
+2017-05-06 13:00:07+0100 [-] Site starting on 1401
+2017-05-06 13:00:07+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f7fb6c8>
+2017-05-06 13:00:07+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10f7fb830>
+2017-05-06 13:00:07+0100 [AmqpProtocol,client] PBServerFactory starting on 57484
+2017-05-06 13:00:07+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fc6c710>
+2017-05-06 13:00:07+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fc703b0>
+2017-05-06 13:00:07+0100 [Uninitialized] LastClientFactory starting on 57495
+2017-05-06 13:00:07+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fc6cb48>
+2017-05-06 13:00:07+0100 [Uninitialized] Site starting on 1402
+2017-05-06 13:00:07+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10fc75050>
+2017-05-06 13:00:07+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fc75b00>
+2017-05-06 13:00:07+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fc75cf8>
+2017-05-06 13:00:07+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fc83200>
+2017-05-06 13:00:07+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%8B90%8B89%8BC9%FC4B%8B90%8BC9%8B89%FC4B%FC4B%8BC9%8B89%8B90%8B90%8BC9%8B89%FC4B%8B89%8B90%8BC9%FC4B%8B90%8B89%8BC9%FC4B%8B89%8BC9%8B90%FC4B%FC4B%8B89%8BC9%8B90%8B90%8B89%FC4B%8BC9%FC4B%8BC9%8B90%8B89%8B89%8BC9%FC4B%8B90%FC4B%8B90%8BC9%8B89%8BC9%FC4B%8B90%8B89%8BC9%8B89%FC4B%8B90%8BC9%8B90%8B89%FC4B%8B89%8BC9%8B90%FC4B%FC4B%8BC9%8B90%8B89%8B89%8BC9%FC4B%8B90%8B89%8B90%FC4B%8BC9%8BC9%8B90%FC4B%8B89%8B89%8B90%FC4B%8BC9%FC4B%8BC9%8B89%8B90%8BC9%8B90%FC4B%8B89%8B90%8B89%8BC9%FC4B%FC4B%8BC9%8B90%8B89%8BC9%8B90%FC4B%8B89%8B89%8B90%8BC9%FC4B%8B90%8B89%FC4B%8BC&coding=9>
+2017-05-06 13:00:07+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:07 +0000] "GET /send?username=username&to=06155423&password=password&content=%8B90%8B89%8BC9%FC4B%8B90%8BC9%8B89%FC4B%FC4B%8BC9%8B89%8B90%8B90%8BC9%8B89%FC4B%8B89%8B90%8BC9%FC4B%8B90%8B89%8BC9%FC4B%8B89%8BC9%8B90%FC4B%FC4B%8B89%8BC9%8B90%8B90%8B89%FC4B%8BC9%FC4B%8BC9%8B90%8B89%8B89%8BC9%FC4B%8B90%FC4B%8B90%8BC9%8B89%8BC9%FC4B%8B90%8B89%8BC9%8B89%FC4B%8B90%8BC9%8B90%8B89%FC4B%8B89%8BC9%8B90%FC4B%FC4B%8BC9%8B90%8B89%8B89%8BC9%FC4B%8B90%8B89%8B90%FC4B%8BC9%8BC9%8B90%FC4B%8B89%8B89%8B90%FC4B%8BC9%FC4B%8BC9%8B89%8B90%8BC9%8B90%FC4B%8B89%8B90%8B89%8BC9%FC4B%FC4B%8BC9%8B90%8B89%8BC9%8B90%FC4B%8B89%8B89%8B90%8BC9%FC4B%8B90%8B89%FC4B%8BC&coding=9 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:07+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%8B90%8B89%8BC9%FC4B%8B90%8BC9%8B89%FC4B%FC4B%8BC9%8B89%8B90%8B90%8BC9%8B89%FC4B%8B89%8B90%8BC9%FC4B%8B90%8B89%8BC9%FC4B%8B89%8BC9%8B90%FC4B%FC4B%8B89%8BC9%8B90%8B90%8B89%FC4B%8BC9%FC4B%8BC9%8B90%8B89%8B89%8BC9%FC4B%8B90%FC4B%8B90%8BC9%8B89%8BC9%FC4B%8B90%8B89%8BC9%8B89%FC4B%8B90%8BC9%8B90%8B89%FC4B%8B89%8BC9%8B90%FC4B%FC4B%8BC9%8B90%8B89%8B89%8BC9%FC4B%8B90%8B89%8B90%FC4B%8BC9%8BC9%8B90%FC4B%8B89%8B89%8B90%FC4B%8BC9%FC4B%8BC9%8B89%8B90%8BC9%8B90%FC4B%8B89%8B90%8B89%8BC9%FC4B%FC4B%8BC9%8B90%8B89%8BC9%8B90%FC4B%8B89%8B89%8B90%8BC9%FC4B%8B90%8B89%FC4B%8BC&coding=9>
+2017-05-06 13:00:09+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fc83200>
+2017-05-06 13:00:09+0100 [-] (TCP Port 57482 Closed)
+2017-05-06 13:00:09+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f80afc8>
+2017-05-06 13:00:09+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fc75b00>
+2017-05-06 13:00:09+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:09+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f7fb6c8>
+2017-05-06 13:00:09+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fc75cf8>
+2017-05-06 13:00:09+0100 [-] (TCP Port 57484 Closed)
+2017-05-06 13:00:09+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fc6c710>
+2017-05-06 13:00:09+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10f7fb830>
+2017-05-06 13:00:09+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fc703b0>
+2017-05-06 13:00:10+0100 [-] (TCP Port 57495 Closed)
+2017-05-06 13:00:10+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fc6cb48>
+2017-05-06 13:00:10+0100 [-] Main loop terminated.
+2017-05-06 13:00:10+0100 [-] (TCP Port 1402 Closed)
+2017-05-06 13:00:10+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10fc75050>
+2017-05-06 13:00:10+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_UCS2 <--
+2017-05-06 13:00:10+0100 [-] PBServerFactory starting on 57501
+2017-05-06 13:00:10+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fc7a488>
+2017-05-06 13:00:10+0100 [-] Site starting on 1401
+2017-05-06 13:00:10+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10fc6cea8>
+2017-05-06 13:00:10+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10fc75170>
+2017-05-06 13:00:10+0100 [AmqpProtocol,client] PBServerFactory starting on 57503
+2017-05-06 13:00:10+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1105da3f8>
+2017-05-06 13:00:10+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1105e0290>
+2017-05-06 13:00:10+0100 [Uninitialized] LastClientFactory starting on 57514
+2017-05-06 13:00:10+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1105daa28>
+2017-05-06 13:00:10+0100 [Uninitialized] Site starting on 1402
+2017-05-06 13:00:10+0100 [-] Starting factory <twisted.web.server.Site instance at 0x1105e2ef0>
+2017-05-06 13:00:10+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x1105eb9e0>
+2017-05-06 13:00:10+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x1105ebd88>
+2017-05-06 13:00:10+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x1105fa368>
+2017-05-06 13:00:10+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%0623%0646%0628%0631%0631%0628%0646%0623%0631%0623%0646%0628%0628%0623%0631%0646%0646%0623%0628%0631%0631%0623%0646%0628%0628%0623%0631%0646%0628%0646%0631%0623%0628%0646%0631%0623%0646%0623%0628%0631%0623%0631%0628%0646%0646%0631%0623%0628%0623%0628%0631%0646%0628%0631%0646%0623%0646%0623%0628%0631%0646%0623%0631%0628%0628%0646%0631%0623%0631%0646%0623%0628%0646%0628%0631%0623%0628%0631%0623%0646%0628%0623%0631%0646%0623%0631%0646%0628%0628%0646%0623%0631%0623%0646%0628%0631%0646%0628%0623%0631%0631%0628%0623%0646%0631%0628%0646%0623%0623%0631%0646%062&coding=8>
+2017-05-06 13:00:10+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:10 +0000] "GET /send?username=username&to=06155423&password=password&content=%0623%0646%0628%0631%0631%0628%0646%0623%0631%0623%0646%0628%0628%0623%0631%0646%0646%0623%0628%0631%0631%0623%0646%0628%0628%0623%0631%0646%0628%0646%0631%0623%0628%0646%0631%0623%0646%0623%0628%0631%0623%0631%0628%0646%0646%0631%0623%0628%0623%0628%0631%0646%0628%0631%0646%0623%0646%0623%0628%0631%0646%0623%0631%0628%0628%0646%0631%0623%0631%0646%0623%0628%0646%0628%0631%0623%0628%0631%0623%0646%0628%0623%0631%0646%0623%0631%0646%0628%0628%0646%0623%0631%0623%0646%0628%0631%0646%0628%0623%0631%0631%0628%0623%0646%0631%0628%0646%0623%0623%0631%0646%062&coding=8 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:10+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%0623%0646%0628%0631%0631%0628%0646%0623%0631%0623%0646%0628%0628%0623%0631%0646%0646%0623%0628%0631%0631%0623%0646%0628%0628%0623%0631%0646%0628%0646%0631%0623%0628%0646%0631%0623%0646%0623%0628%0631%0623%0631%0628%0646%0646%0631%0623%0628%0623%0628%0631%0646%0628%0631%0646%0623%0646%0623%0628%0631%0646%0623%0631%0628%0628%0646%0631%0623%0631%0646%0623%0628%0646%0628%0631%0623%0628%0631%0623%0646%0628%0623%0631%0646%0623%0631%0646%0628%0628%0646%0623%0631%0623%0646%0628%0631%0646%0628%0623%0631%0631%0628%0623%0646%0631%0628%0646%0623%0623%0631%0646%062&coding=8>
+2017-05-06 13:00:12+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x1105fa368>
+2017-05-06 13:00:12+0100 [-] (TCP Port 57501 Closed)
+2017-05-06 13:00:12+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fc7a488>
+2017-05-06 13:00:12+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x1105eb9e0>
+2017-05-06 13:00:12+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:12+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10fc6cea8>
+2017-05-06 13:00:12+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x1105ebd88>
+2017-05-06 13:00:12+0100 [-] (TCP Port 57503 Closed)
+2017-05-06 13:00:12+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1105da3f8>
+2017-05-06 13:00:12+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10fc75170>
+2017-05-06 13:00:12+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1105e0290>
+2017-05-06 13:00:13+0100 [-] (TCP Port 57514 Closed)
+2017-05-06 13:00:13+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1105daa28>
+2017-05-06 13:00:13+0100 [-] Main loop terminated.
+2017-05-06 13:00:13+0100 [-] (TCP Port 1402 Closed)
+2017-05-06 13:00:13+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x1105e2ef0>
+2017-05-06 13:00:13+0100 [-] --> jasmin.routing.test.test_encoding.LongSubmitSmCodingUsingUDHTestCases.test_gsm0338_at <--
+2017-05-06 13:00:13+0100 [-] PBServerFactory starting on 57519
+2017-05-06 13:00:13+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fde3cb0>
+2017-05-06 13:00:13+0100 [-] Site starting on 1401
+2017-05-06 13:00:13+0100 [-] Starting factory <twisted.web.server.Site instance at 0x1105e21b8>
+2017-05-06 13:00:13+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x1105e2cb0>
+2017-05-06 13:00:13+0100 [AmqpProtocol,client] PBServerFactory starting on 57521
+2017-05-06 13:00:13+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x110793170>
+2017-05-06 13:00:13+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x110793248>
+2017-05-06 13:00:13+0100 [Uninitialized] LastClientFactory starting on 57532
+2017-05-06 13:00:13+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x110784e60>
+2017-05-06 13:00:13+0100 [Uninitialized] Site starting on 1402
+2017-05-06 13:00:13+0100 [-] Starting factory <twisted.web.server.Site instance at 0x11079f3b0>
+2017-05-06 13:00:13+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x1107a3cb0>
+2017-05-06 13:00:13+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x11079da28>
+2017-05-06 13:00:13+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x1107ab248>
+2017-05-06 13:00:13+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40>
+2017-05-06 13:00:13+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:13 +0000] "GET /send?username=username&to=06155423&password=password&content=%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:13+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1402/send?username=username&to=06155423&password=password&content=%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40>
+2017-05-06 13:00:15+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x1107ab248>
+2017-05-06 13:00:15+0100 [-] (TCP Port 57519 Closed)
+2017-05-06 13:00:15+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fde3cb0>
+2017-05-06 13:00:15+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x1107a3cb0>
+2017-05-06 13:00:15+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:15+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x1105e21b8>
+2017-05-06 13:00:15+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x11079da28>
+2017-05-06 13:00:15+0100 [-] (TCP Port 57521 Closed)
+2017-05-06 13:00:15+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x110793170>
+2017-05-06 13:00:15+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x1105e2cb0>
+2017-05-06 13:00:15+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x110793248>
+2017-05-06 13:00:16+0100 [-] (TCP Port 57532 Closed)
+2017-05-06 13:00:16+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x110784e60>
+2017-05-06 13:00:16+0100 [-] Main loop terminated.
+2017-05-06 13:00:16+0100 [-] (TCP Port 1402 Closed)
+2017-05-06 13:00:16+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x11079f3b0>
+2017-05-06 13:00:16+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_CYRILLIC <--
+2017-05-06 13:00:16+0100 [-] PBServerFactory starting on 57539
+2017-05-06 13:00:16+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1105e0b90>
+2017-05-06 13:00:16+0100 [-] Site starting on 1401
+2017-05-06 13:00:16+0100 [-] Starting factory <twisted.web.server.Site instance at 0x11079f680>
+2017-05-06 13:00:16+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x11079f488>
+2017-05-06 13:00:16+0100 [AmqpProtocol,client] PBServerFactory starting on 57541
+2017-05-06 13:00:16+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1107c67a0>
+2017-05-06 13:00:16+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1107a3b00>
+2017-05-06 13:00:16+0100 [Uninitialized] LastClientFactory starting on 57552
+2017-05-06 13:00:16+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1107c6098>
+2017-05-06 13:00:16+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x11076b998>
+2017-05-06 13:00:16+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x110614878>
+2017-05-06 13:00:16+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fe22b00>
+2017-05-06 13:00:16+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%9F%9C5e%E7%28%A7%FB%A3%BFM%9E%F6%F5%24A%A6YE%CF%9B2W%93%80%2F%EAL7%BA%CC%CE%83%F8Qj%EE%99%BD%3C%D10%E8Ov%5C%E5%5Bf%23%D2a%FD%C8%C1%8A%BC%FF%96J%90%B9%CB%7B%DA%3D%B6%EF%81SN8%C3qV%97%92C%F9G.%E0%AAo%7E%C7%E4%A4%26%FA%F2%D5%D8%AF3%A9%E1B%FE%A1%B5%C6%3A%A0%F1%8E%98Kcp%5D%60T%B0%7D%9A%A2H%F4%B7%EB-zZui%F3%F7%E2y%94%A8%85%5E%AE%40P%D6%C06&coding=6>
+2017-05-06 13:00:16+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:16 +0000] "GET /send?username=username&to=06155423&password=password&content=%9F%9C5e%E7%28%A7%FB%A3%BFM%9E%F6%F5%24A%A6YE%CF%9B2W%93%80%2F%EAL7%BA%CC%CE%83%F8Qj%EE%99%BD%3C%D10%E8Ov%5C%E5%5Bf%23%D2a%FD%C8%C1%8A%BC%FF%96J%90%B9%CB%7B%DA%3D%B6%EF%81SN8%C3qV%97%92C%F9G.%E0%AAo%7E%C7%E4%A4%26%FA%F2%D5%D8%AF3%A9%E1B%FE%A1%B5%C6%3A%A0%F1%8E%98Kcp%5D%60T%B0%7D%9A%A2H%F4%B7%EB-zZui%F3%F7%E2y%94%A8%85%5E%AE%40P%D6%C06&coding=6 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:16+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%9F%9C5e%E7%28%A7%FB%A3%BFM%9E%F6%F5%24A%A6YE%CF%9B2W%93%80%2F%EAL7%BA%CC%CE%83%F8Qj%EE%99%BD%3C%D10%E8Ov%5C%E5%5Bf%23%D2a%FD%C8%C1%8A%BC%FF%96J%90%B9%CB%7B%DA%3D%B6%EF%81SN8%C3qV%97%92C%F9G.%E0%AAo%7E%C7%E4%A4%26%FA%F2%D5%D8%AF3%A9%E1B%FE%A1%B5%C6%3A%A0%F1%8E%98Kcp%5D%60T%B0%7D%9A%A2H%F4%B7%EB-zZui%F3%F7%E2y%94%A8%85%5E%AE%40P%D6%C06&coding=6>
+2017-05-06 13:00:18+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fe22b00>
+2017-05-06 13:00:18+0100 [-] (TCP Port 57539 Closed)
+2017-05-06 13:00:18+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1105e0b90>
+2017-05-06 13:00:18+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x11076b998>
+2017-05-06 13:00:18+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:18+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x11079f680>
+2017-05-06 13:00:18+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x110614878>
+2017-05-06 13:00:18+0100 [-] (TCP Port 57541 Closed)
+2017-05-06 13:00:18+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1107c67a0>
+2017-05-06 13:00:18+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x11079f488>
+2017-05-06 13:00:18+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1107a3b00>
+2017-05-06 13:00:18+0100 [-] (TCP Port 57552 Closed)
+2017-05-06 13:00:18+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1107c6098>
+2017-05-06 13:00:18+0100 [-] Main loop terminated.
+2017-05-06 13:00:18+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_EXTENDED_KANJI_JIS <--
+2017-05-06 13:00:18+0100 [-] PBServerFactory starting on 57558
+2017-05-06 13:00:18+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1107c65a8>
+2017-05-06 13:00:18+0100 [-] Site starting on 1401
+2017-05-06 13:00:18+0100 [-] Starting factory <twisted.web.server.Site instance at 0x110612290>
+2017-05-06 13:00:18+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x110612a70>
+2017-05-06 13:00:18+0100 [AmqpProtocol,client] PBServerFactory starting on 57560
+2017-05-06 13:00:18+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f2f4dd0>
+2017-05-06 13:00:18+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f476998>
+2017-05-06 13:00:18+0100 [Uninitialized] LastClientFactory starting on 57571
+2017-05-06 13:00:18+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f2f4488>
+2017-05-06 13:00:18+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10ff09830>
+2017-05-06 13:00:18+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10ff09248>
+2017-05-06 13:00:18+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fd5cd40>
+2017-05-06 13:00:18+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%8BC9%8B90%FC4B%8B89%FC4B%8B89%8BC9%8B90%FC4B%8BC9%8B89%8B90%FC4B%8BC9%8B90%8B89%8B89%8BC9%FC4B%8B90%8B89%8B90%FC4B%8B&coding=13>
+2017-05-06 13:00:18+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:18 +0000] "GET /send?username=username&to=06155423&password=password&content=%8BC9%8B90%FC4B%8B89%FC4B%8B89%8BC9%8B90%FC4B%8BC9%8B89%8B90%FC4B%8BC9%8B90%8B89%8B89%8BC9%FC4B%8B90%8B89%8B90%FC4B%8B&coding=13 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:18+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%8BC9%8B90%FC4B%8B89%FC4B%8B89%8BC9%8B90%FC4B%8BC9%8B89%8B90%FC4B%8BC9%8B90%8B89%8B89%8BC9%FC4B%8B90%8B89%8B90%FC4B%8B&coding=13>
+2017-05-06 13:00:20+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fd5cd40>
+2017-05-06 13:00:20+0100 [-] (TCP Port 57558 Closed)
+2017-05-06 13:00:20+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1107c65a8>
+2017-05-06 13:00:20+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10ff09830>
+2017-05-06 13:00:20+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:20+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x110612290>
+2017-05-06 13:00:20+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10ff09248>
+2017-05-06 13:00:20+0100 [-] (TCP Port 57560 Closed)
+2017-05-06 13:00:20+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f2f4dd0>
+2017-05-06 13:00:20+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f476998>
+2017-05-06 13:00:20+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x110612a70>
+2017-05-06 13:00:21+0100 [-] (TCP Port 57571 Closed)
+2017-05-06 13:00:21+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f2f4488>
+2017-05-06 13:00:21+0100 [-] Main loop terminated.
+2017-05-06 13:00:21+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_IA5_ASCII <--
+2017-05-06 13:00:21+0100 [-] PBServerFactory starting on 57576
+2017-05-06 13:00:21+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f2f4c68>
+2017-05-06 13:00:21+0100 [-] Site starting on 1401
+2017-05-06 13:00:21+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f2e8b48>
+2017-05-06 13:00:21+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10ff0a5f0>
+2017-05-06 13:00:21+0100 [AmqpProtocol,client] PBServerFactory starting on 57578
+2017-05-06 13:00:21+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f7fb200>
+2017-05-06 13:00:21+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1105eb7a0>
+2017-05-06 13:00:21+0100 [Uninitialized] LastClientFactory starting on 57589
+2017-05-06 13:00:21+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f7fbcf8>
+2017-05-06 13:00:21+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f80fb48>
+2017-05-06 13:00:21+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f80f2d8>
+2017-05-06 13:00:21+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fc7a170>
+2017-05-06 13:00:21+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=E%29%05%0E%3A%16Y4W%27%281cn-x%22%15%02%1F%1Ae%7E%5BR%0C%01%03%0A%2A%7C%0F%1D6O%3Fkvr%7F%06Ia%2BZ+%07JMz%11qb8yD%5D3%5Cd9sFAU%04%60.%13K%0DmH%0BNQ%000%18%10%1CgV%08%26%14%5E%3Dp%3E2%3B75%24GB%2F%7BTjt%17lu%23fSh%25w%1E%21_%40%7DX%12LP%19io%3C%2C%09Cd%5E+%12%116%2CDf%251%0Dz%05%22JE%1AU%3D-%10%2B%27.K%40%2FhwW%14V&coding=1>
+2017-05-06 13:00:21+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:21 +0000] "GET /send?username=username&to=06155423&password=password&content=E%29%05%0E%3A%16Y4W%27%281cn-x%22%15%02%1F%1Ae%7E%5BR%0C%01%03%0A%2A%7C%0F%1D6O%3Fkvr%7F%06Ia%2BZ+%07JMz%11qb8yD%5D3%5Cd9sFAU%04%60.%13K%0DmH%0BNQ%000%18%10%1CgV%08%26%14%5E%3Dp%3E2%3B75%24GB%2F%7BTjt%17lu%23fSh%25w%1E%21_%40%7DX%12LP%19io%3C%2C%09Cd%5E+%12%116%2CDf%251%0Dz%05%22JE%1AU%3D-%10%2B%27.K%40%2FhwW%14V&coding=1 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:21+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=E%29%05%0E%3A%16Y4W%27%281cn-x%22%15%02%1F%1Ae%7E%5BR%0C%01%03%0A%2A%7C%0F%1D6O%3Fkvr%7F%06Ia%2BZ+%07JMz%11qb8yD%5D3%5Cd9sFAU%04%60.%13K%0DmH%0BNQ%000%18%10%1CgV%08%26%14%5E%3Dp%3E2%3B75%24GB%2F%7BTjt%17lu%23fSh%25w%1E%21_%40%7DX%12LP%19io%3C%2C%09Cd%5E+%12%116%2CDf%251%0Dz%05%22JE%1AU%3D-%10%2B%27.K%40%2FhwW%14V&coding=1>
+2017-05-06 13:00:23+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fc7a170>
+2017-05-06 13:00:23+0100 [-] (TCP Port 57576 Closed)
+2017-05-06 13:00:23+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f2f4c68>
+2017-05-06 13:00:23+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f80fb48>
+2017-05-06 13:00:23+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:23+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f2e8b48>
+2017-05-06 13:00:23+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f80f2d8>
+2017-05-06 13:00:23+0100 [-] (TCP Port 57578 Closed)
+2017-05-06 13:00:23+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f7fb200>
+2017-05-06 13:00:23+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10ff0a5f0>
+2017-05-06 13:00:23+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1105eb7a0>
+2017-05-06 13:00:24+0100 [-] (TCP Port 57589 Closed)
+2017-05-06 13:00:24+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f7fbcf8>
+2017-05-06 13:00:24+0100 [-] Main loop terminated.
+2017-05-06 13:00:24+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_ISO_2022_JP <--
+2017-05-06 13:00:24+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_ISO_8859_8 <--
+2017-05-06 13:00:24+0100 [-] PBServerFactory starting on 57595
+2017-05-06 13:00:24+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1105da170>
+2017-05-06 13:00:24+0100 [-] Site starting on 1401
+2017-05-06 13:00:24+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f476d88>
+2017-05-06 13:00:24+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10ff0a638>
+2017-05-06 13:00:24+0100 [AmqpProtocol,client] PBServerFactory starting on 57597
+2017-05-06 13:00:24+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1105a6368>
+2017-05-06 13:00:24+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1105a6320>
+2017-05-06 13:00:24+0100 [Uninitialized] LastClientFactory starting on 57608
+2017-05-06 13:00:24+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1105cefc8>
+2017-05-06 13:00:24+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x110455368>
+2017-05-06 13:00:24+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x110455dd0>
+2017-05-06 13:00:24+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x110442290>
+2017-05-06 13:00:24+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%1Dwzx%FA%29%A9%F5%E2%7Ch%22%EB%96%E3%AAF%89R%91%F9%1BJO3%F1y-a%26%21%16%8D%F7%3A%7D%B0kI%3CK%14%075%E4n%2A%8C%0FP%5E%A5%AD%1CZ0Y%90%80%85V%E9_%01%0E%F8t%03%97%E7%B8A%2C%5D.q%ECS%17%BEX%E1Hd%3Fs%60C%F2%B3%9C%BB7%08%23%81%A6jg%19B%DF2%B1%1E%9F%95%94%3E%09%11%F0U%BAT%9E%87%AC%5B%86Qe%8E8%B6%E8ir%24D%3D%28%9Am%9B%FD%E5G%25%A0&coding=7>
+2017-05-06 13:00:24+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:24 +0000] "GET /send?username=username&to=06155423&password=password&content=%1Dwzx%FA%29%A9%F5%E2%7Ch%22%EB%96%E3%AAF%89R%91%F9%1BJO3%F1y-a%26%21%16%8D%F7%3A%7D%B0kI%3CK%14%075%E4n%2A%8C%0FP%5E%A5%AD%1CZ0Y%90%80%85V%E9_%01%0E%F8t%03%97%E7%B8A%2C%5D.q%ECS%17%BEX%E1Hd%3Fs%60C%F2%B3%9C%BB7%08%23%81%A6jg%19B%DF2%B1%1E%9F%95%94%3E%09%11%F0U%BAT%9E%87%AC%5B%86Qe%8E8%B6%E8ir%24D%3D%28%9Am%9B%FD%E5G%25%A0&coding=7 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:24+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%1Dwzx%FA%29%A9%F5%E2%7Ch%22%EB%96%E3%AAF%89R%91%F9%1BJO3%F1y-a%26%21%16%8D%F7%3A%7D%B0kI%3CK%14%075%E4n%2A%8C%0FP%5E%A5%AD%1CZ0Y%90%80%85V%E9_%01%0E%F8t%03%97%E7%B8A%2C%5D.q%ECS%17%BEX%E1Hd%3Fs%60C%F2%B3%9C%BB7%08%23%81%A6jg%19B%DF2%B1%1E%9F%95%94%3E%09%11%F0U%BAT%9E%87%AC%5B%86Qe%8E8%B6%E8ir%24D%3D%28%9Am%9B%FD%E5G%25%A0&coding=7>
+2017-05-06 13:00:26+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x110442290>
+2017-05-06 13:00:26+0100 [-] (TCP Port 57595 Closed)
+2017-05-06 13:00:26+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1105da170>
+2017-05-06 13:00:26+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x110455368>
+2017-05-06 13:00:26+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:26+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f476d88>
+2017-05-06 13:00:26+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x110455dd0>
+2017-05-06 13:00:26+0100 [-] (TCP Port 57597 Closed)
+2017-05-06 13:00:26+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1105a6368>
+2017-05-06 13:00:26+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10ff0a638>
+2017-05-06 13:00:26+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1105a6320>
+2017-05-06 13:00:26+0100 [-] (TCP Port 57608 Closed)
+2017-05-06 13:00:26+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1105cefc8>
+2017-05-06 13:00:26+0100 [-] Main loop terminated.
+2017-05-06 13:00:26+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_JIS <--
+2017-05-06 13:00:26+0100 [-] PBServerFactory starting on 57614
+2017-05-06 13:00:26+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1105a6b90>
+2017-05-06 13:00:26+0100 [-] Site starting on 1401
+2017-05-06 13:00:26+0100 [-] Starting factory <twisted.web.server.Site instance at 0x1105ac7e8>
+2017-05-06 13:00:26+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x1105ac518>
+2017-05-06 13:00:26+0100 [AmqpProtocol,client] PBServerFactory starting on 57616
+2017-05-06 13:00:26+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fd6c1b8>
+2017-05-06 13:00:26+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fd6c290>
+2017-05-06 13:00:26+0100 [Uninitialized] LastClientFactory starting on 57627
+2017-05-06 13:00:26+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fd99e60>
+2017-05-06 13:00:26+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fd813b0>
+2017-05-06 13:00:26+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fd81cf8>
+2017-05-06 13:00:26+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fd671b8>
+2017-05-06 13:00:26+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%E062%8140%96BA%EAA2%8140%96BA%EAA2%E062%8140%96BA%EAA2%E062%EAA2%E062%8140%96BA%96BA%E062%8140%EAA2%E062%EAA2%8140%96&coding=5>
+2017-05-06 13:00:26+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:26 +0000] "GET /send?username=username&to=06155423&password=password&content=%E062%8140%96BA%EAA2%8140%96BA%EAA2%E062%8140%96BA%EAA2%E062%EAA2%E062%8140%96BA%96BA%E062%8140%EAA2%E062%EAA2%8140%96&coding=5 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:26+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%E062%8140%96BA%EAA2%8140%96BA%EAA2%E062%8140%96BA%EAA2%E062%EAA2%E062%8140%96BA%96BA%E062%8140%EAA2%E062%EAA2%8140%96&coding=5>
+2017-05-06 13:00:28+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10fd671b8>
+2017-05-06 13:00:29+0100 [-] (TCP Port 57614 Closed)
+2017-05-06 13:00:29+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1105a6b90>
+2017-05-06 13:00:29+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fd813b0>
+2017-05-06 13:00:29+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:29+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x1105ac7e8>
+2017-05-06 13:00:29+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fd81cf8>
+2017-05-06 13:00:29+0100 [-] (TCP Port 57616 Closed)
+2017-05-06 13:00:29+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fd6c1b8>
+2017-05-06 13:00:29+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x1105ac518>
+2017-05-06 13:00:29+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10fd6c290>
+2017-05-06 13:00:29+0100 [-] (TCP Port 57627 Closed)
+2017-05-06 13:00:29+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10fd99e60>
+2017-05-06 13:00:29+0100 [-] Main loop terminated.
+2017-05-06 13:00:29+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_KS_C_5601 <--
+2017-05-06 13:00:29+0100 [-] PBServerFactory starting on 57649
+2017-05-06 13:00:29+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10fd99ab8>
+2017-05-06 13:00:29+0100 [-] Site starting on 1401
+2017-05-06 13:00:29+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10fd81680>
+2017-05-06 13:00:29+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10fd84e18>
+2017-05-06 13:00:29+0100 [AmqpProtocol,client] PBServerFactory starting on 57652
+2017-05-06 13:00:29+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x110442ab8>
+2017-05-06 13:00:29+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1105ac200>
+2017-05-06 13:00:29+0100 [Uninitialized] LastClientFactory starting on 57663
+2017-05-06 13:00:29+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1105a6d88>
+2017-05-06 13:00:29+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x1106423b0>
+2017-05-06 13:00:29+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x110642638>
+2017-05-06 13:00:29+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x11063c4d0>
+2017-05-06 13:00:29+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%8141%A496%FDFE%E1D7%FDFE%E1D7%A496%8141%8141%A496%FDFE%E1D7%E1D7%8141%A496%FDFE%E1D7%A496%FDFE%8141%8141%E1D7%FDFE%A4&coding=14>
+2017-05-06 13:00:29+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:29 +0000] "GET /send?username=username&to=06155423&password=password&content=%8141%A496%FDFE%E1D7%FDFE%E1D7%A496%8141%8141%A496%FDFE%E1D7%E1D7%8141%A496%FDFE%E1D7%A496%FDFE%8141%8141%E1D7%FDFE%A4&coding=14 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:29+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%8141%A496%FDFE%E1D7%FDFE%E1D7%A496%8141%8141%A496%FDFE%E1D7%E1D7%8141%A496%FDFE%E1D7%A496%FDFE%8141%8141%E1D7%FDFE%A4&coding=14>
+2017-05-06 13:00:31+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x11063c4d0>
+2017-05-06 13:00:31+0100 [-] (TCP Port 57649 Closed)
+2017-05-06 13:00:31+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10fd99ab8>
+2017-05-06 13:00:31+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x1106423b0>
+2017-05-06 13:00:31+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:31+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10fd81680>
+2017-05-06 13:00:31+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x110642638>
+2017-05-06 13:00:31+0100 [-] (TCP Port 57652 Closed)
+2017-05-06 13:00:31+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x110442ab8>
+2017-05-06 13:00:31+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10fd84e18>
+2017-05-06 13:00:31+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1105ac200>
+2017-05-06 13:00:32+0100 [-] (TCP Port 57663 Closed)
+2017-05-06 13:00:32+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1105a6d88>
+2017-05-06 13:00:32+0100 [-] Main loop terminated.
+2017-05-06 13:00:32+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_LATIN_1 <--
+2017-05-06 13:00:32+0100 [-] PBServerFactory starting on 57669
+2017-05-06 13:00:32+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1105ebbd8>
+2017-05-06 13:00:32+0100 [-] Site starting on 1401
+2017-05-06 13:00:32+0100 [-] Starting factory <twisted.web.server.Site instance at 0x11043e0e0>
+2017-05-06 13:00:32+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x110639368>
+2017-05-06 13:00:32+0100 [AmqpProtocol,client] PBServerFactory starting on 57671
+2017-05-06 13:00:32+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x110258440>
+2017-05-06 13:00:32+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x11025acf8>
+2017-05-06 13:00:32+0100 [Uninitialized] LastClientFactory starting on 57682
+2017-05-06 13:00:32+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x11025ad88>
+2017-05-06 13:00:32+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f9c5ea8>
+2017-05-06 13:00:32+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f9c52d8>
+2017-05-06 13:00:32+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f9bdcb0>
+2017-05-06 13:00:32+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%A38%C9%E4l%AD%E1%E7s%C3b%B2%BA%CC%C0%AC%CB%EC%DDD%2C%C1_a%BCW4%B8%F0%B6%EBX%3C%5E.%FE%F5U%C2%3D%D8%A7%60%40%D5%EE%F4%26h%F3%A0L%CDIOQm%F7%2Fq%5D%F6%EDM%BE%AB%3F%BFFT%DE%B1+%AE%A2%FF%27%25g%B9xn%AFkwH%D2%C6N%E8%BDP%7CV%2A%EA%FD%D7eS%CFR%CE%A16j%D6%F8u%A89o%5BA%D4%A9%7D%D0%DA%7B%E0%B5%E3%D3K%3A%AA%5C%CA7%D9%29%F2%C8c%C7%C5%A6%C43&coding=3>
+2017-05-06 13:00:32+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:32 +0000] "GET /send?username=username&to=06155423&password=password&content=%A38%C9%E4l%AD%E1%E7s%C3b%B2%BA%CC%C0%AC%CB%EC%DDD%2C%C1_a%BCW4%B8%F0%B6%EBX%3C%5E.%FE%F5U%C2%3D%D8%A7%60%40%D5%EE%F4%26h%F3%A0L%CDIOQm%F7%2Fq%5D%F6%EDM%BE%AB%3F%BFFT%DE%B1+%AE%A2%FF%27%25g%B9xn%AFkwH%D2%C6N%E8%BDP%7CV%2A%EA%FD%D7eS%CFR%CE%A16j%D6%F8u%A89o%5BA%D4%A9%7D%D0%DA%7B%E0%B5%E3%D3K%3A%AA%5C%CA7%D9%29%F2%C8c%C7%C5%A6%C43&coding=3 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:32+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%A38%C9%E4l%AD%E1%E7s%C3b%B2%BA%CC%C0%AC%CB%EC%DDD%2C%C1_a%BCW4%B8%F0%B6%EBX%3C%5E.%FE%F5U%C2%3D%D8%A7%60%40%D5%EE%F4%26h%F3%A0L%CDIOQm%F7%2Fq%5D%F6%EDM%BE%AB%3F%BFFT%DE%B1+%AE%A2%FF%27%25g%B9xn%AFkwH%D2%C6N%E8%BDP%7CV%2A%EA%FD%D7eS%CFR%CE%A16j%D6%F8u%A89o%5BA%D4%A9%7D%D0%DA%7B%E0%B5%E3%D3K%3A%AA%5C%CA7%D9%29%F2%C8c%C7%C5%A6%C43&coding=3>
+2017-05-06 13:00:34+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f9bdcb0>
+2017-05-06 13:00:34+0100 [-] (TCP Port 57669 Closed)
+2017-05-06 13:00:34+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1105ebbd8>
+2017-05-06 13:00:34+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f9c5ea8>
+2017-05-06 13:00:34+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:34+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x11043e0e0>
+2017-05-06 13:00:34+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f9c52d8>
+2017-05-06 13:00:34+0100 [-] (TCP Port 57671 Closed)
+2017-05-06 13:00:34+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x110258440>
+2017-05-06 13:00:34+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x110639368>
+2017-05-06 13:00:34+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x11025acf8>
+2017-05-06 13:00:34+0100 [-] (TCP Port 57682 Closed)
+2017-05-06 13:00:34+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x11025ad88>
+2017-05-06 13:00:34+0100 [-] Main loop terminated.
+2017-05-06 13:00:34+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_OCTET_UNSPECIFIED <--
+2017-05-06 13:00:34+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_OCTET_UNSPECIFIED_COMMON <--
+2017-05-06 13:00:34+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_PICTOGRAM <--
+2017-05-06 13:00:34+0100 [-] PBServerFactory starting on 57693
+2017-05-06 13:00:34+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1105ac4d0>
+2017-05-06 13:00:34+0100 [-] Site starting on 1401
+2017-05-06 13:00:34+0100 [-] Starting factory <twisted.web.server.Site instance at 0x10f9c5830>
+2017-05-06 13:00:34+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10f9c5440>
+2017-05-06 13:00:35+0100 [AmqpProtocol,client] PBServerFactory starting on 57695
+2017-05-06 13:00:35+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x1104f75a8>
+2017-05-06 13:00:35+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1104f7518>
+2017-05-06 13:00:35+0100 [Uninitialized] LastClientFactory starting on 57706
+2017-05-06 13:00:35+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1104f73b0>
+2017-05-06 13:00:35+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f5a9440>
+2017-05-06 13:00:35+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10f5a9170>
+2017-05-06 13:00:35+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f5bcd40>
+2017-05-06 13:00:35+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%8BC9%8B90%FC4B%8B89%8B89%8BC9%FC4B%8B90%FC4B%8B89%8BC9%8B90%8BC9%8B89%FC4B%8B90%8BC9%FC4B%8B90%8B89%FC4B%8B90%8BC9%8B&coding=9>
+2017-05-06 13:00:35+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:34 +0000] "GET /send?username=username&to=06155423&password=password&content=%8BC9%8B90%FC4B%8B89%8B89%8BC9%FC4B%8B90%FC4B%8B89%8BC9%8B90%8BC9%8B89%FC4B%8B90%8BC9%FC4B%8B90%8B89%FC4B%8B90%8BC9%8B&coding=9 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:35+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%8BC9%8B90%FC4B%8B89%8B89%8BC9%FC4B%8B90%FC4B%8B89%8BC9%8B90%8BC9%8B89%FC4B%8B90%8BC9%FC4B%8B90%8B89%FC4B%8B90%8BC9%8B&coding=9>
+2017-05-06 13:00:37+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f5bcd40>
+2017-05-06 13:00:37+0100 [-] (TCP Port 57693 Closed)
+2017-05-06 13:00:37+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1105ac4d0>
+2017-05-06 13:00:37+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f5a9440>
+2017-05-06 13:00:37+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:37+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x10f9c5830>
+2017-05-06 13:00:37+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10f5a9170>
+2017-05-06 13:00:37+0100 [-] (TCP Port 57695 Closed)
+2017-05-06 13:00:37+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x1104f75a8>
+2017-05-06 13:00:37+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10f9c5440>
+2017-05-06 13:00:37+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x1104f7518>
+2017-05-06 13:00:37+0100 [-] (TCP Port 57706 Closed)
+2017-05-06 13:00:37+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x1104f73b0>
+2017-05-06 13:00:37+0100 [-] Main loop terminated.
+2017-05-06 13:00:37+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_UCS2 <--
+2017-05-06 13:00:37+0100 [-] PBServerFactory starting on 57711
+2017-05-06 13:00:37+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x110510950>
+2017-05-06 13:00:37+0100 [-] Site starting on 1401
+2017-05-06 13:00:37+0100 [-] Starting factory <twisted.web.server.Site instance at 0x1104f7e18>
+2017-05-06 13:00:37+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x10f5bcf80>
+2017-05-06 13:00:37+0100 [AmqpProtocol,client] PBServerFactory starting on 57713
+2017-05-06 13:00:37+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10f54a5f0>
+2017-05-06 13:00:37+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f54a560>
+2017-05-06 13:00:37+0100 [Uninitialized] LastClientFactory starting on 57724
+2017-05-06 13:00:37+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f54a3f8>
+2017-05-06 13:00:37+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fff6710>
+2017-05-06 13:00:37+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10fff6e60>
+2017-05-06 13:00:37+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x1100fa998>
+2017-05-06 13:00:37+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%0646%0623%0631%0628%0631%0623%0646%0628%0646%0631%0628%0623%0628%0623%0646%0631%0628%0646%0631%0623%0623%0646%0631%06&coding=8>
+2017-05-06 13:00:37+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:37 +0000] "GET /send?username=username&to=06155423&password=password&content=%0646%0623%0631%0628%0631%0623%0646%0628%0646%0631%0628%0623%0628%0623%0646%0631%0628%0646%0631%0623%0623%0646%0631%06&coding=8 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:37+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%0646%0623%0631%0628%0631%0623%0646%0628%0646%0631%0628%0623%0628%0623%0646%0631%0628%0646%0631%0623%0623%0646%0631%06&coding=8>
+2017-05-06 13:00:39+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x1100fa998>
+2017-05-06 13:00:39+0100 [-] (TCP Port 57711 Closed)
+2017-05-06 13:00:39+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x110510950>
+2017-05-06 13:00:39+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fff6710>
+2017-05-06 13:00:39+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:39+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x1104f7e18>
+2017-05-06 13:00:39+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10fff6e60>
+2017-05-06 13:00:39+0100 [-] (TCP Port 57713 Closed)
+2017-05-06 13:00:39+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10f54a5f0>
+2017-05-06 13:00:39+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x10f5bcf80>
+2017-05-06 13:00:39+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10f54a560>
+2017-05-06 13:00:40+0100 [-] (TCP Port 57724 Closed)
+2017-05-06 13:00:40+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10f54a3f8>
+2017-05-06 13:00:40+0100 [-] Main loop terminated.
+2017-05-06 13:00:40+0100 [-] --> jasmin.routing.test.test_encoding.SubmitSmCodingTestCases.test_gsm0338_at <--
+2017-05-06 13:00:40+0100 [-] PBServerFactory starting on 57729
+2017-05-06 13:00:40+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x110010b90>
+2017-05-06 13:00:40+0100 [-] Site starting on 1401
+2017-05-06 13:00:40+0100 [-] Starting factory <twisted.web.server.Site instance at 0x110010758>
+2017-05-06 13:00:40+0100 [-] Starting factory <jasmin.queues.factory.AmqpFactory instance at 0x110010200>
+2017-05-06 13:00:40+0100 [AmqpProtocol,client] PBServerFactory starting on 57731
+2017-05-06 13:00:40+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory instance at 0x10ff753f8>
+2017-05-06 13:00:40+0100 [-] Starting factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10ff75368>
+2017-05-06 13:00:40+0100 [Uninitialized] LastClientFactory starting on 57742
+2017-05-06 13:00:40+0100 [-] Starting factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10ff75200>
+2017-05-06 13:00:40+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x10ff9e998>
+2017-05-06 13:00:40+0100 [-] Starting factory <twisted.spread.pb.PBClientFactory instance at 0x1100fa950>
+2017-05-06 13:00:40+0100 [-] Starting factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f5bc320>
+2017-05-06 13:00:40+0100 [-] Starting factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40>
+2017-05-06 13:00:40+0100 [-] "127.0.0.1" - - [06/May/2017:12:00:40 +0000] "GET /send?username=username&to=06155423&password=password&content=%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40 HTTP/1.0" 200 46 "-" "Twisted PageGetter"
+2017-05-06 13:00:40+0100 [-] Stopping factory <HTTPClientFactory: http://127.0.0.1:1401/send?username=username&to=06155423&password=password&content=%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40%40>
+2017-05-06 13:00:42+0100 [-] Stopping factory <jasmin.protocols.smpp.factory.SMPPClientFactory instance at 0x10f5bc320>
+2017-05-06 13:00:42+0100 [-] (TCP Port 57729 Closed)
+2017-05-06 13:00:42+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x110010b90>
+2017-05-06 13:00:42+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x10ff9e998>
+2017-05-06 13:00:42+0100 [-] (TCP Port 1401 Closed)
+2017-05-06 13:00:42+0100 [-] Stopping factory <twisted.web.server.Site instance at 0x110010758>
+2017-05-06 13:00:42+0100 [-] Stopping factory <twisted.spread.pb.PBClientFactory instance at 0x1100fa950>
+2017-05-06 13:00:42+0100 [-] (TCP Port 57731 Closed)
+2017-05-06 13:00:42+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory instance at 0x10ff753f8>
+2017-05-06 13:00:42+0100 [-] Stopping factory <jasmin.queues.factory.AmqpFactory instance at 0x110010200>
+2017-05-06 13:00:42+0100 [-] Stopping factory <jasmin.redis.client.RedisForJasminFactory instance at 0x10ff75368>
+2017-05-06 13:00:43+0100 [-] (TCP Port 57742 Closed)
+2017-05-06 13:00:43+0100 [-] Stopping factory <jasmin.routing.test.test_router.LastClientFactory instance at 0x10ff75200>
+2017-05-06 13:00:43+0100 [-] Main loop terminated.
