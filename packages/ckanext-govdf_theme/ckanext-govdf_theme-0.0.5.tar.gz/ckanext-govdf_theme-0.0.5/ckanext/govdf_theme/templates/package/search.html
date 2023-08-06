@@ -1,0 +1,14 @@
+{% ckan_extends %}
+
+{% block breadcrumb_content %}
+  <span property="itemListElement" typeof="ListItem">
+     {{ h.nav_link(_('Datasets'), controller='package', action='search', highlight_actions = 'new index') }}
+  </span>
+{% endblock %}
+
+{% block secondary_content %}
+  {% for facet in c.facet_titles %}
+    {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
+   {% endfor %}
+    <a class="close no-text hide-filters"><i class="icon-remove-sign"></i><span class="text">close</span></a>
+{% endblock %}
