@@ -1,0 +1,126 @@
+{%import "commonExecuteCallback.js" as commons%}
+<script id="demoScript{{prefix}}">
+window.Pixiedust = window.Pixiedust || {};
+window.Pixiedust.tlidemo = window.Pixiedust.tlidemo || {};
+
+(function(pix) {
+  var BEGINSTREAM = '@BEGINSTREAM@';
+  var ENDSTREAM = '@ENDSTREAM@';
+  var jsHandlers = [];
+
+  var fromPython = function(msg) {
+    var msg_type = msg.header.msg_type;
+    var content = msg.content;
+    console.log('***callbacks.iopub.output:', msg);
+    if (msg_type === 'stream') {
+      var s = content.text.split('\\n');
+      for (var i = 0; i < s.length; i++) {
+        if (s[i].indexOf(BEGINSTREAM) === 0) {
+          toJavascript({message: 'Streaming started', status: 'started'});
+        } else if (s[i].indexOf(ENDSTREAM) === 0) {
+          toJavascript({message: 'Streaming stopped', status: 'stopped'});
+        } else {
+          try{
+            toJavascript(JSON.parse(s[i]));
+          }catch(e){
+            console.log(e)
+          }
+        }
+      }
+    }
+    else if (msg_type === 'error') {
+      var c = document.createElement('span');
+      c.appendChild(document.createTextNode('<span>Streaming failed</span>'));
+      document.getElementById('wrapperHTML{1}').appendChild(c);
+      for (m in msg) {
+        toJavascript({message: 'error: ' + JSON.stringify(msg)});
+      }
+      toJavascript({'action': 'stop'});
+    }
+  };
+
+  var toPython = function(params) {
+    //TODO: include cell_id
+    var command = "display(TLIDemoPluginMeta,cell_id='cellId',handlerId='tlidemo',prefix='{{prefix}}'," + params + ")";
+
+    IPython.notebook.session.kernel.execute(
+      command,
+      {'iopub': {'output': fromPython}},
+      {silent: false, store_history: false, stop_on_error: true}
+    );
+  };
+
+  var toJavascript = function() {
+    for (var h in jsHandlers) {
+      jsHandlers[h].apply(this, arguments);
+    }
+  };
+
+  pix.tlidemo = {
+    refreshDataId : null,
+    startCollectData : function(){
+      if (this.refreshDataId){
+        return;
+      }
+
+      this.refreshDataId = setInterval(function(){
+        {% call(results) commons.ipython_execute("getTLIData()",prefix) %}
+          try{
+            toJavascript(JSON.parse({{results}}));
+          }catch(e){
+            console.log(e);
+          }
+          console.log({{results["error"] or results}});
+        {% endcall %};
+      }, 2000)
+    },
+
+    stopCollectData : function(){
+      if (this.refreshDataId){
+        clearInterval(this.refreshDataId);
+        this.refreshDataId = null;
+      }
+    },
+
+    start: function(filter) {
+      toJavascript({message: 'Starting streaming...', status: 'starting'});
+      var options = "stream='true'";
+      if (filter) {
+        options += ",filter='" + filter.replace(/'/g, "\'") + "'";
+      }
+      pix.tlidemo.send('python', options);
+      this.startCollectData();
+    },
+
+    stop: function() {
+      toJavascript({message: 'Stopping streaming...', status: 'stopping'});
+      var options = "stream='false'";
+      pix.tlidemo.send('python', options);
+      //this.stopCollectData();
+    },
+
+    send: function(destination) {
+      if (typeof destination === 'string') {
+        switch(destination) {
+          case 'python':
+            toPython(arguments.length > 1 ? Array.prototype.slice.call(arguments, 1) : null);
+            break;
+          case 'javascript':
+            toJavascript(arguments.length > 1 ? Array.prototype.slice.call(arguments, 1) : null);
+            break;
+          default:
+            toJavascript({message: 'Unsupported destination:' + destination});
+            break;
+        }
+      }
+      else {
+        toJavascript({message: 'Unsupported destination:' + destination});
+      }
+    },
+
+    register: function(h) {
+      jsHandlers.push(h);
+    }
+  };
+})(window.Pixiedust);
+</script>

@@ -1,0 +1,577 @@
+{%extends "basedialog.html"%}
+{%block title %}Thought Leader Identification Powered by IBM Watson Data Platform {%endblock%}
+
+{%block body%}
+  <style>
+    #demo .tab-pane-stream {
+      height: 72vh;
+    }
+    #demo .tab-pane-stream > div {
+      height: 100%;
+    }
+    .chart-wrapper {
+      background: #fff;
+      margin: 10px;
+      padding: 10px;
+    }
+    .chart-wrapper .chart-title {
+      border-bottom: 1px solid #152935;
+      color: #152935;
+      font-size: 1.25em;
+      font-weight: 400;
+      padding: 10px 0px 5px;
+    }
+    .chart-wrapper .chart-stage {
+      overflow: hidden;
+      position: relative;
+      margin: 10px 0px 5px;
+    }
+    .tli-cards-list-wrapper {
+      height: calc(70vh - 115px);
+      margin-top: 35px;
+      overflow: auto;
+      text-align: center;
+    }
+    .stream-log .chart-stage {
+      height: calc(70vh - 50px);
+      margin-top: 0px;
+      overflow: auto;
+      padding: 10px;
+    }
+    .stream-log .chart-stage * {
+      background: transparent;
+      display: block;
+      font-family: monospace;
+      line-height: 15px;
+      white-space: pre;
+    }
+    .trending-hashtags,
+    .trending-sentiments {
+      height: 100%;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .trending-sentiments .chart-stage {
+      height: 30vh;
+      min-height: 250px;
+      overflow: auto;
+      text-align: center;
+    }
+    .trending-hashtags .chart-stage {
+      height: 25vh;
+      min-height: 200px;
+      overflow: auto;
+      text-align: center;
+    }
+    .tli-cards-msg {
+      float: right;
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 25px;
+    }
+    .streaming-spinner {
+      color: #fff;
+      font-size: 24px;
+      margin-top: 2px;
+    }
+    .starting-spinner {
+      font-size: 24px;
+      margin-top: 2px;
+    }
+    .tli-cards-list {
+      list-style: none;
+      padding: 0 10px;
+      text-align: initial;
+    }
+    .tli-cards-list li {
+      background: #ffffff none repeat scroll 0 0;
+      border: 2px solid #152935;
+      box-shadow: 1px 2px 7px 1px rgba(0, 0, 0, 0.25);
+      color: #152935;
+      font: 300 16px/1.25 "Helvetica Neue",Helvetica,Arial,sans-serif;
+      margin: 10px 0 20px;
+    }
+    .tli-cards-list .row {
+      padding: 10px 15px 15px;
+    }
+    .tli-cards-list .row:nth-child(1) > div:nth-child(2) {
+      padding-left: 10px;
+    }
+    .tli-cards-list .sentiment {
+      color: #fff;
+      font-size: 12px;
+      font-weight: 300;
+      display: none;
+    }
+    .tli-cards-list .sentiment span:nth-child(2) {
+      font-weight: 500;
+    }
+    .tli-card-pic {
+      max-height: 50px;
+      max-width: 50px;
+    }
+    .tli-card-name {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding-bottom: 3px;
+    }
+    .tli-filter {
+      padding: 10px;
+    }
+    .tli-filter label {
+      font-size: 24px;
+      left: 15px;
+      line-height: 32px;
+      margin: 0;
+      position: absolute;
+    }
+    .tli-filter input {
+      border: 1px solid #1d3649;
+      display: inline-block;
+      font-size: 1.2em;
+      font-weight: 300;
+      padding: 5px 10px 5px 30px;
+    }
+    .tli-filter input:focus,
+    .tli-filter input.focus {
+      border-color: #a6266e;
+    }
+    .simple-box {
+      background-color: transparent !important;
+      border: 0 none !important;
+      margin: 0;
+      padding: 0 !important;
+    }
+    .pixiedust .modal-header {
+      background-color: #152935;
+      color: #ffffff;
+    }
+    .pixiedust .modal-body {
+      padding: 10px;
+    }
+    .pixiedust .modal-dialog .btn.focus,
+    .pixiedust .modal-dialog .btn:focus {
+      outline: none;
+    }
+    .pixiedust .modal-dialog .btn-cancel,
+    .pixiedust .modal-dialog .btn-ok {
+      display: none;
+    }
+    .pixiedust .modal-dialog .btn-back,
+    .pixiedust .modal-dialog .btn-no {
+      background-color: #fff;
+      border: 2px solid #082632;
+      color: #082632;
+      font-weight: 500;
+      padding: 0.625em 1.375em;
+    }
+    .pixiedust .modal-dialog .btn-back:hover,
+    .pixiedust .modal-dialog .btn-no:hover {
+      background-color: #082632;
+      border-color: #082632;
+      color: #fff;
+    }
+    .pixiedust .modal-dialog .btn-start,
+    .pixiedust .modal-dialog .btn-yes {
+      background-color: #a6266e;
+      border: 2px solid #a6266e;
+      color: #fff;
+      font-weight: 500;
+      padding: 0.625em 1.375em;
+    }
+    .pixiedust .modal-dialog .btn-start:hover,
+    .pixiedust .modal-dialog .btn-yes:hover {
+      background-color: #fff;
+      color: #a6266e;
+    }
+    .pixiedust .modal-footer {
+      border-top: 0px;
+      padding: 20px 30px;
+    }
+    .pixiedust .modal-dialog svg text {
+      fill: black;
+      font-size: 11px;
+      font-weight: normal;
+    }
+    .modal-dialog-stream .btn-yes,
+    .modal-dialog-stream .btn-no,
+    .modal-dialog-confirm .btn-start,
+    .modal-dialog-confirm .btn-back {
+      display: none;
+    }
+    .modal-dialog-stream {
+      width: 95% !important;
+    }
+    .modal-dialog-confirm {
+      padding: 50px;
+      width: 50% !important;
+    }
+    .modal-header .note {
+      color: lightgray;
+      display: inline-block;
+      float: right;
+      font-size: 12px;
+      padding: 4px 10px;
+    }
+  </style>
+  <div class="tab-content container-fluid" id="demo">
+
+    <div class="tab-pane tab-pane-stream row active">
+        <div class="col-sm-3">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="chart-wrapper tli-cards">
+                <div class="chart-title">
+                  <span>tli Feed</span> <span class="tli-cards-msg"><span>0</span> <span>Tweets</span></span></div>
+                <div class="chart-stage">
+                  <div class="tli-filter">
+                    <input id="tli-filter-input" name="tli-filter-input" class="col-sm-12" type="search" placeholder="Filter tweets">
+                    <label for="tli-filter-input"><i class="fa fa-filter" aria-hidden="true"></i></label>
+                  </div>
+                  <div class="tli-cards-list-wrapper">
+                    <ol class="tli-cards-list"></ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="chart-wrapper tli-vis trending-sentiments">
+                <div class="chart-title">Trending Sentiments</div>
+                <div class="chart-stage">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="chart-wrapper tli-vis trending-hashtags">
+                <div class="chart-title">Trending Hashtags</div>
+                <div class="chart-stage">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="chart-wrapper stream-log">
+                  <div class="chart-title"><span>Streaming Logs</span></div>
+                  <div class="chart-stage"></div>
+                </div>
+              </div>
+            </div>
+            <div style="display:none;">
+              <button id="startStreamBtn" type="button" class="btn btn-sm btn-start">Start Streaming</button>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane tab-pane-confirm">
+      <p>Streaming in progress. Are you sure you want to close?</p>
+    </div>
+<!--
+    <div class="tab-pane tab-pane-config">
+      <p>Missing configuration. Please add configuration and try again!</p>
+    </div>
+-->
+  </div>
+{%endblock%}
+
+{%block onCancel%}
+  $('#demoScript{{prefix}}').remove();
+  $('#results{{prefix}}').html('<p class="text-center">TLI Analysis is cacelled.</p>');
+  $('#loading{{prefix}}').css('display','none');
+{%endblock%}
+
+{%block onOK%}
+  $('#demoScript{{prefix}}').remove();
+  $('#results{{prefix}}').html('<p class="text-center">A dataframe with the tweets has been created. You can access it via a variable named __tweets.</p>');
+  $('#loading{{prefix}}').css('display','none');
+{%endblock%}
+
+{%block onDialogShown%}
+  window.Pixiedust = window.Pixiedust || {};
+  window.Pixiedust.tlidemo = window.Pixiedust.tlidemo || {};
+  var pix = window.Pixiedust.tlidemo;
+
+  var tdiag = $(this).find('.modal-dialog')
+    .addClass('modal-dialog-stream');
+  
+  var startBtn = $('#startStreamBtn', tdiag);
+  var logDiv = $('.stream-log > .chart-stage', tdiag);
+  var filterInput = $('#tli-filter-input', tdiag);
+  var resultsDiv = $('#results{{prefix}}');
+  var loadingDiv = $('#loading{{prefix}}');
+  var cardList = $('.tli-cards-list');
+  var streamingSpinner = $('.pixiedust .modal-header button.close')
+    .html('<i class="fa fa-spinner fa-spin streaming-spinner"></i>')
+    .prop('disabled', true)
+    .css({display: 'none'});
+  var tweetsCount = $('.tli-cards-msg > span:first-child');
+  var numTweets = 0;
+  var pauseScroll = false;
+  var hiddenCards = [];
+  var sentimentColor = (function() {
+    var domain = [
+      'agreeableness_big5',
+      'analytical',
+      'anger',
+      'confident',
+      'conscientiousness_big5',
+      'disgust',
+      'extraversion_big5',
+      'fear',
+      'joy',
+      'neuroticism_big5',
+      'openness_big5',
+      'sadness',
+      'tentative'
+    ];
+    var colors = [
+      '#1F77B4','#AEC7E8','#FF7F0E','#FFBB78','#2CA02C',
+      '#98DF8A','#D62728','#FF9896','#9467BD','#C5B0D5',
+      '#8C564B','#C49C94','#E377C2','#F7B6D2','#7F7F7F',
+      '#C7C7C7','#BCBD22','#DBDB8D','#17BECF','#9EDAE5'
+    ]
+    return function(sentiment) {
+      return colors[Math.max(domain.indexOf(sentiment), 0)];
+    }
+  })();
+
+  var logMsg = function(data) {
+    var BEGINSTREAM = '@BEGINSTREAM@';
+    var ENDSTREAM = '@ENDSTREAM@';
+    function doLogMsg(msg){
+      if (msg.indexOf && msg.indexOf(BEGINSTREAM) === 0) {
+        updateBtns('started');
+      }else if (msg.indexOf && msg.indexOf(ENDSTREAM) === 0) {
+        updateBtns('stopped');
+      }else{
+        logDiv.append('<span>' + msg + '</span>');
+      }
+    }
+    if (Array.isArray(data)){
+      data.forEach(function(msg, index){
+        doLogMsg(msg);
+      });
+    }else{
+      doLogMsg(data)
+    }
+  };
+
+  var updateBtns = function(status) {
+    switch (status) {
+      case 'starting':
+        logMsg(new Date());
+        tdiag.attr('data-streaming', 'starting');
+        startBtn.prop('disabled', true);
+        startBtn.text('Starting...');
+        streamingSpinner.css({display: 'inline'});
+        $('.trending-hashtags > .chart-stage', tdiag).html('<i class="fa fa-spinner fa-spin starting-spinner"></i>');
+        $('.trending-sentiments > .chart-stage', tdiag).html('<i class="fa fa-spinner fa-spin starting-spinner"></i>');
+        $('.tli-cards-list', tdiag).empty();
+        $('.tli-cards-list-wrapper', tdiag).prepend('<i class="fa fa-spinner fa-spin starting-spinner"></i>');
+
+        filterInput.prop('disabled', true)
+          .parent().css({'opacity': 0.5});
+        numTweets = 0;
+        tweetsCount.html(numTweets);
+        break;
+      case 'started':
+        tdiag.attr('data-streaming', true);
+        startBtn.prop('disabled', false);
+        startBtn.text('Stop Streaming');
+        streamingSpinner.css({display: 'inline'});
+        filterInput.prop('disabled', true)
+          .parent().css({'opacity': 0.5});
+        break;
+      case 'stopping':
+        tdiag.attr('data-streaming', 'stopping');
+        startBtn.prop('disabled', true);
+        startBtn.text('Stopping...');
+        streamingSpinner.css({display: 'inline'});
+        filterInput.prop('disabled', true)
+          .parent().css({'opacity': 0.5});
+        break;
+      case 'stopped':
+        tdiag.attr('data-streaming', false);
+        startBtn.prop('disabled', false);
+        startBtn.text('Start Streaming');
+        streamingSpinner.css({display: 'none'});
+        filterInput.prop('disabled', false)
+          .parent().css({'opacity': 1});
+        $('.starting-spinner', tdiag).remove();
+        logMsg(new Date());
+        break;
+    }
+  };
+
+  var processHashtags = function(data) {
+    $('.trending-hashtags > .chart-stage > :not(svg)', tdiag).remove();
+    pix.piechart('.trending-hashtags > .chart-stage', data[data.length-1]);
+  };
+
+  var processSentiments = function(data) {
+    $('.trending-sentiments > .chart-stage > :not(svg)', tdiag).remove();
+    pix.groupedchart('.trending-sentiments > .chart-stage', data[data.length-1], sentimentColor);
+  };
+
+  var scrollCards = function() {
+    tweetsCount.html(numTweets);
+    if (!pauseScroll) {
+      cardList.parent().animate({ scrollTop: cardList.parent().prop('scrollHeight') }, 1500, function() {
+        while (cardList.children('li').length > 50) {
+          $('li', cardList).first().remove();
+        }
+      });
+    }
+  };
+
+  var maxSentiment = function(obj) {
+    var max;
+    for (var o in obj) {
+      if (!max || obj[o] > max.value) {
+        max = { key: o, value: obj[o] };
+      }
+    }
+    return max;
+  };
+
+  var showTweets = function(tweets) {
+    $('.tli-cards-list-wrapper > .starting-spinner', tdiag).remove();
+    var template = '<li style="border-color:{color}"><div class="row">'
+      + '<div class="col-sm-2"><div class="chart-wrapper simple-box"><img class="tli-card-pic" src="{pic}"></div></div>'
+      + '<div class="col-sm-10"><div class="chart-wrapper simple-box">'
+      + '<div class="tli-card-name"><span style="color:{color}">{author}</span></div>'
+      + '<p class="tli-card-tweet">{text}</p>'
+      + '</div></div></div><div class="row sentiment" style="background-color:{color}">{thesentiments}'
+      + '</div></li>';
+    numTweets += tweets.length;
+    tweets.forEach(function(tweet, index) {
+      if (tweet.sentiment) {
+        tweet.color = sentimentColor(maxSentiment(tweet.sentiment).key);
+      }
+      tweet.thesentiments = '';
+      for (var sentiment in tweet.sentiment) {
+        tweet.thesentiments += '<div class="col-sm-6"><span>' + sentiment + '</span>: <span>' + parseFloat(tweet.sentiment[sentiment]).toFixed(0) + '%</span></div>';
+      }
+      var t = $(template.replace(/\{(.+?)\}/g, function($0, $1) {
+        return tweet.hasOwnProperty($1) ? tweet[$1] : $0;
+      }));
+
+      t.hover(function() {
+        $(this).find('.sentiment').slideToggle();
+      }, function() {
+        $(this).find('.sentiment').slideToggle();
+      });
+
+      cardList.append(t);
+    });
+
+    scrollCards();
+  };
+
+  pix.register(function(data) {
+    if (data) {
+      if (data.log) {
+        logMsg(data.log);
+      }
+      if (data.status) {
+        updateBtns(data.status);
+      }
+      if (data.topHashtags) {
+        processHashtags(data.topHashtags);
+      }
+      if (data.toneScores) {
+        processSentiments(data.toneScores);
+      }
+      if (data.tweets) {
+        showTweets(data.tweets);
+      }
+      if (data.stdout){
+        console.log("stdout", data.stdout)
+      }
+    }
+  });
+
+  startBtn.click(function() {
+    var idx = startBtn.text().indexOf('Start');
+    if (idx == -1) {
+      pix.stop();
+    }
+    else {
+      pix.start(filterInput.val());
+    }
+  });
+
+  cardList.hover(
+    function() {
+      pauseScroll = true;
+    },
+    function() {
+      pauseScroll = false;
+    }
+  );
+
+  filterInput
+    .focus(function() {
+      tdiag.find('.tli-filter label').css({color:'#a6266e'})
+    })
+    .blur(function() {
+      tdiag.find('.tli-filter label').css({color:'#1d3649'})
+    });
+
+  var okBtn = $('.btn-ok', tdiag);
+  var backBtn = $('<button class="btn btn-sm btn-back">Back to Notebook</button>');
+  var yesBtn = $('<button class="btn btn-sm btn-yes">Yes</button>');
+  var noBtn = $('<button class="btn btn-sm btn-no">No</button>');
+  okBtn.parent().append(backBtn);
+  okBtn.parent().append(yesBtn);
+  okBtn.parent().append(noBtn);
+
+  backBtn
+    .click(function(event) {
+      event.preventDefault();
+      var streaming = tdiag.attr('data-streaming');
+      if (!streaming || streaming.toLowerCase() === 'false') {
+        okBtn.click();
+      }
+      else {
+        $('.tab-pane-stream').removeClass('active');
+        $('.tab-pane-confirm').addClass('active');
+        tdiag
+          .removeClass('modal-dialog-stream')
+          .addClass('modal-dialog-confirm');
+      }
+    });
+
+  noBtn.click(function(event) {
+    $('.tab-pane-confirm').removeClass('active');
+    $('.tab-pane-stream').addClass('active');
+    tdiag
+      .removeClass('modal-dialog-confirm')
+      .addClass('modal-dialog-stream');
+  });
+
+  yesBtn.click(function(event) {
+    pix.stop();
+    okBtn.click();
+  });
+
+  $('.modal-footer').prepend(startBtn);
+  streamingSpinner.after('<a class="note" target="_blank" href="https://github.com/ibm-cds-labs/pixiedust_incubator/tree/master/tlidemo">Fork me on GitHub</a>');
+  logMsg(':: Though Leader Identification Analysis ::');
+{%endblock%}
+
+{%block onDialogHide%}
+  window.Pixiedust.tlidemo.stopCollectData();
+{%endblock%}
+
+{%block cellOuputHTML%}
+  <div id="results{{prefix}}"></div>
+{%endblock%}
