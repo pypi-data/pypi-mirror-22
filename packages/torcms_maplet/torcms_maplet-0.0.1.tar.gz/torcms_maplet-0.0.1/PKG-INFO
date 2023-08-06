@@ -1,0 +1,43 @@
+Metadata-Version: 1.1
+Name: torcms_maplet
+Version: 0.0.1
+Summary: Maplet 
+Home-page: UNKNOWN
+Author: bukun
+Author-email: bukun@osgeo.cn
+License: MIT License
+Description: Maplet
+        =======
+        
+        Source codes for http://www.maplet.org
+        
+        Introduction
+        ------------------------
+        
+        The CMS was desinged as the container for GIS showing as the very beginning.
+        It has the basic map showing, map overlaying, GIS data editing funtion now.
+        And, the CMS could used to publish different kind the information,
+        such as basic HTML page, JavaScript app, maps, multimedias.
+        
+        Setup
+        -----------------------
+        ## Database
+        
+        
+            \set dbname maplet
+            CREATE USER :dbname WITH PASSWORD '131322' ;
+            CREATE DATABASE :dbname OWNER :dbname ;
+            GRANT ALL PRIVILEGES ON DATABASE :dbname to :dbname ;
+            \c :dbname ;
+            create extension hstore;
+            \q
+Keywords: torcms,tornado
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
