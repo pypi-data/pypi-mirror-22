@@ -1,0 +1,136 @@
+Metadata-Version: 1.2
+Name: Lempel-Ziv_Complexity
+Version: 0.1
+Summary: Lempel-Ziv complexity for a binary sequence, in naive Python code.
+Home-page: https://github.com/Naereen/Lempel-Ziv_Complexity
+License: OSI Approved :: MIT License
+Author: Naereen
+Author-email: naereen@crans.org
+Requires-Python: >=2.7, >=3.1
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Development Status :: 4 - Beta
+Classifier: Natural Language :: English
+
+Python implementation of Lempel-Ziv Complexity
+==============================================
+
+This repository contains a small, simple and efficient implement of the `Lempel-Ziv complexity <https://en.wikipedia.org/wiki/Lempel-Ziv_complexity>`__ algorithm.
+
+Examples
+--------
+
+Simple usage
+~~~~~~~~~~~~
+
+If the `lempel_ziv_complexity.py <https://github.com/Naereen/Lempel-Ziv_Complexity/blob/master/src/lempel_ziv_complexity.py>`__ file is accessible in your PATH or in Python's path:
+
+.. code:: python
+
+    >>> from lempel_ziv_complexity import lempel_ziv_complexity
+    >>> s = '1001111011000010'
+    >>> lempel_ziv_complexity(s)  # 1 / 0 / 01 / 1110 / 1100 / 0010
+    6
+
+
+Documentation
+~~~~~~~~~~~~~
+
+See `this file <https://naereen.github.io/Lempel-Ziv_Complexity/doc/index.html>`__.
+
+With the C extension
+~~~~~~~~~~~~~~~~~~~~
+
+If the `lempel_ziv_complexity.so <https://github.com/Naereen/Lempel-Ziv_Complexity/blob/master/src/lempel_ziv_complexity.pyx>`__ file is accessible in your PATH or in Python's path, the same can be used.
+
+Small benchmark
+~~~~~~~~~~~~~~~
+
+There is also a Cython version, to have a faster implementation:
+
+.. code:: python
+
+    $ ipython
+    ...
+    >>> s = '1001111011000010'
+    >>> %timeit lempel_ziv_complexity(s)
+    6.1 µs ± 33.6 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+    >>> %timeit lempel_ziv_complexity_cython(s)
+    132 ns ± 2.55 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+
+
+The speedup is typically between x50 and x100.
+It is not shipped with the `PyPi` version, see `directly on GitHub <https://github.com/Naereen/Lempel-Ziv_Complexity/blob/master/src/lempel_ziv_complexity.pyx>`_ if needed.
+
+Demo on a `Jupyter notebook <https://www.Jupyter.org/>`__
+---------------------------------------------------------
+
+See this notebook: `on nbviewever <https://nbviewer.jupyter.org/github/Naereen/Lempel-Ziv_Complexity/blob/master/Short_study_of_the_Lempel-Ziv_complexity.ipynb>`__.
+
+--------------
+
+Install and build
+-----------------
+
+Manually ?
+~~~~~~~~~~
+
+Easy!
+
+Clone this repository, go in the folder, compile, test, and if it works,
+install it.
+
+.. code:: bash
+
+    cd /tmp/
+    git clone https://GitHub.com/Naereen/Lempel-Ziv_Complexity
+    cd Lempel-Ziv_Complexity/src/
+    make build
+    make test     # should pass
+    make install  # mv the build/lib*/*.so files where you need them
+
+
+Be sure to include the dynamic library when you need it, or in a folder
+accessible by your Python interpreter (somewhere in ``sys.path``). The
+file is ``lempel_ziv_complexity_cython.so`` (for Python 2) or the
+``lempel_ziv_complexity_cython.cpython-35m-x86_64-linux-gnu.so`` (for
+Python 3.5, or higher, adapt the name).
+
+With pip ?
+----------
+
+This project is hosted on `the Pypi package repository <https://pypi.org/lempel_ziv_complexity>`__.
+
+
+.. code:: bash
+
+   sudo pip install lempel_ziv_complexity
+   python -c "from lempel_ziv_complexity import lempel_ziv_complexity; print(lempel_ziv_complexity('1001111011000010') == 6)"  # test
+
+--------------
+
+About
+-----
+
+Language?
+~~~~~~~~~
+
+Python v2.7+ or Python v3.1+.
+
+-  `Numba <http://numba.pydata.org/>`__ can be used to speed up the pure
+   Python version.
+-  `Cython <http://cython.org/>`__ is *needed* to build the C extension
+   (faster).
+
+License ?
+~~~~~~~~~
+
+`MIT Licensed <https://lbesson.mit-license.org/>`__ (file
+`LICENSE <LICENSE>`__). © `Lilian
+Besson <https://GitHub.com/Naereen>`__, 2017.
+
