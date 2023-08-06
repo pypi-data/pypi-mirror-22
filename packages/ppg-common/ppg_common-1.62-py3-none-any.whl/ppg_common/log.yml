@@ -1,0 +1,39 @@
+version: 1
+formatters:
+  simple:
+    format: '%(asctime)s %(module)s %(levelno)s %(levelname)s %(message)s'
+  custom:
+    format: '{{ custom_format }}'
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: {% if debug_flag %} DEBUG {% else %} INFO {% endif %}
+    formatter: '{{ formatter }}'
+    stream: ext://sys.stdout
+  filePPG:
+    class: logging.handlers.RotatingFileHandler
+    level: {% if debug_flag %} DEBUG {% else %} INFO {% endif %}
+    formatter: '{{ formatter }}'
+    filename: '{{ ppg_path }}'
+    maxBytes: 5242880
+    backupCount: 0
+    encoding: utf8
+  fileSys:
+    class: logging.handlers.RotatingFileHandler
+    level: {% if debug_flag %} DEBUG {% else %} INFO {% endif %}
+    formatter: '{{ formatter }}'
+    filename: /var/log/syslog
+    maxBytes: 5242880
+    backupCount: 0
+loggers:
+  PPG:
+    level: {% if debug_flag %} DEBUG {% else %} INFO {% endif %}
+    handlers: [filePPG,fileSys]
+    propagate: 0
+  tornado:
+    level: {% if debug_flag %} DEBUG {% else %} INFO {% endif %}
+    handlers: [filePPG, fileSys]
+    propagate: 0
+root:
+  level: {% if debug_flag %} DEBUG {% else %} INFO {% endif %}
+  handlers: [filePPG,fileSys]
