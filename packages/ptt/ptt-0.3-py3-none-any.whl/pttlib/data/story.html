@@ -1,0 +1,159 @@
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" class="ui" href="http://ipfs.hobbs.cz/ipfs/QmWsQUkavRCYugBZ2mp4dtsb4xZv6uUhMeJegViDvVoToG/Semantic-UI-CSS-master/semantic.min.css">
+<style>
+body {
+    background: #eeefff
+}
+
+input[type="radio"].track {
+  display: none;
+}
+</style>
+<title>%%TITLE</title>
+<div class="top">
+<div class="ui raised very padded text container segment">
+<h1 class="ui header" id="title">
+%%TITLE
+</h1>
+<button class="ui right floated  button active"  onclick="window.location.href='story.zip'"><i class="download icon"></i> Dowload story as .zip </button>
+%%DESCRIPTION
+<div class="ui divider"></div>
+<div id="audios"/>
+<center>
+<b>Use the Up/Down arrow keys to move through the story.<br/>
+If you want to play a track again press the Enter key.</b>
+<br/>
+<div class="massive ui vertical labeled icon buttons" id="story">
+<button class="ui button" id="play_all_button" onclick="play_all()"><i class="play icon"></i>Play all</button>
+</div>
+</center>
+<div class="ui divider"></div>
+<div>
+<b>
+This story was created using the Push to Talk audio editor. To find out more, or to share your own stories, please visit <a href="http://timothy.hobbs.cz/push-to-talk">the push to talk website</a>.</b>
+</div>
+</div>
+</div>
+<div style="display:none" id="m3u">
+%%M3U
+</div>
+<script>
+switched_away = false
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+  load_m3u(document.getElementById("m3u").innerHTML)
+});
+
+function load_m3u(m3u) {
+  text = ""
+  audios = ""
+  i = 1
+  duration = 0
+  for (let line of m3u.split("\n")) {
+    if (line.startsWith("#EXTM3U")) { continue; }
+    else if (line.startsWith("#EXTINF")) {
+      duration = parseInt(line.split(":")[1].split(",")[0])
+      continue;
+    } else if (line.trim()) {
+      text += "<button class=\"ui button\" id=\"track_"+i+"\" onclick=\"play_track("+i+")\" onblur=\"stop_track("+i+")\"><i class=\"play icon\"></i>"+ " ♫ ".repeat(duration+1)+"</button>"
+      audios += "<audio src=\""+line.trim()+"\" id=\"track_"+i+"_audio\" onended=\"play_next_if_play_all()\"/>"
+      i++
+    }
+  }
+  document.getElementById('story').innerHTML += text
+  document.getElementById('audios').innerHTML += audios
+}
+
+document.addEventListener("visibilitychange", function() {
+    if (document.hidden){
+     switched_away = true
+    }});
+
+function play_track(i) {
+  if (switched_away) { switched_away = false ; return ; }
+  audio = document.getElementById("track_"+i+"_audio")
+  audio.play()
+}
+
+function stop_track(i) {
+  audio = document.getElementById("track_"+i+"_audio")
+  audio.pause()
+  audio.currentTime = 0
+}
+
+function play_next() {
+  next_button = document.activeElement.nextSibling;
+  next_button.focus();
+  next_button.onclick();
+}
+
+function play_prev() {
+  prev_button = document.activeElement.previousSibling;
+  prev_button.focus();
+  prev_button.onclick();
+}
+
+playing_all = false
+function play_all() {
+  playing_all = true
+  track_1 = document.getElementById("track_1");
+  track_1.focus();
+  track_1.onclick();
+}
+
+function play_next_if_play_all() {
+  if ( playing_all ) {
+    play_next();
+  }
+}
+
+function isElementVisible(el) { // Taken from http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+    var rect     = el.getBoundingClientRect(),
+        vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+        vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+        efp      = function (x, y) { return document.elementFromPoint(x, y) };     
+
+    // Return false if it's not in the viewport
+    if (rect.right < 0 || rect.bottom < 0 
+            || rect.left > vWidth || rect.top > vHeight)
+        return false;
+
+    // Return true if any of its four corners are visible
+    return (
+          el.contains(efp(rect.left,  rect.top))
+      ||  el.contains(efp(rect.right, rect.top))
+      ||  el.contains(efp(rect.right, rect.bottom))
+      ||  el.contains(efp(rect.left,  rect.bottom))
+    );
+}
+
+document.onkeydown = function(e) { // Stolen from http://stackoverflow.com/questions/33790668/arrow-keys-navigation-through-li-no-jquery
+  id = document.activeElement.id
+  if (id && id.startsWith("track_")) {
+    UP_ARROW = 38
+    DOWN_ARROW = 40
+    switch (e.keyCode) {
+      case UP_ARROW:
+        playing_all = false;
+        play_prev();
+        e.preventDefault();
+        break;
+      case DOWN_ARROW:
+        if (id == "track_1") {
+          audio = document.getElementById("track_1_audio")
+          if (!(audio.ended || audio.currentTime == 0)) { return; }
+        }
+        playing_all = false;
+        play_next();
+        e.preventDefault();
+        break;
+    }
+  } else if (document.getElementById("track_1") && isElementVisible(document.getElementById("track_1"))) {
+    if ( e.keyCode == DOWN_ARROW ) {
+      track_1 = document.getElementById("track_1");
+      track_1.focus();
+      track_1.onclick();
+    }
+  }
+}
+</script>

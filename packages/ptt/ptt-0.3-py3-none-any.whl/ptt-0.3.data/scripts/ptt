@@ -1,0 +1,9 @@
+#!python
+import pttlib.PttEditor
+from PyQt5.QtWidgets import QApplication
+import sys
+
+app = QApplication(sys.argv)
+editor = pttlib.PttEditor.PttEditor()
+editor.show()
+sys.exit(app.exec_())

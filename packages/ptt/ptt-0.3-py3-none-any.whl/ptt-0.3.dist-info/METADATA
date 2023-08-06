@@ -1,0 +1,33 @@
+Metadata-Version: 2.0
+Name: ptt
+Version: 0.3
+Summary: ptt - a program for recording, editing, and sharing audio essays.
+Home-page: UNKNOWN
+Author: Timothy Hobbs
+Author-email: timothy@hobbs.cz
+License: AGPL-3.0
+Keywords: audio
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Programming Language :: Python :: 3.0
+Requires-Dist: requests
+
+Push to Talk Audio Editor
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Push to Talk allows you to edit audio in the same way you edit text.
+
+To install on debian run:
+
+1. `Install ipfs <https://ipfs.io/docs/install/>`_
+
+2. ::
+
+   $ su
+   # apt-get install python3-pip python3-pyqt5 sox
+   # apt-get install libsox-fmt-pulse # If you use pulseaudio
+   # pip3 install ptt
+
+
+
