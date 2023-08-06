@@ -1,0 +1,80 @@
+Metadata-Version: 1.1
+Name: julpyter
+Version: 0.0.2
+Summary: A python package which converts a jupyter notebook to a Galvanize Learn challenge
+Home-page: https://github.com/embanner/julpyter
+Author: Edward Banner
+Author-email: edward.banner@galvanize.com
+License: BSD
+Download-URL: https://github.com/embanner/julpyter/tarball/0.0.2
+Description: Jupyter Notebook to Learn Challenge
+        ===============================
+        
+        julpyter = julia + **Learn** + python + R
+        
+        version number: 0.0.2
+        author: Edward Banner
+        
+        Overview
+        --------
+        
+        A python package which provides an nbconvert exporter for converting jupyter notebooks to a Galvanize Learn challenges
+        
+        Installation / Usage
+        --------------------
+        
+        To install use pip:
+        
+            $ pip install julpyter
+        
+        
+        Or clone the repo:
+        
+            $ git clone https://github.com/embanner/julpyter.git
+            $ python setup.py install
+        
+        Contributing
+        ------------
+        
+        TBD
+        
+        Example
+        -------
+        
+        1. Develop your Learn challenge in a jupyter notebook called `050_lr.coding.md.ipynb`
+        
+        ![](examples/images/ipynb.png)
+        
+        2. Run 
+        
+        ```bash
+        $ jupyter nbconvert --to learn 050_lr.coding.md.ipynb
+        ```
+        
+        to convert the jupyter notebook to a Learn-style challenge markdown file `050_lr.coding.md`.
+        
+        ![](examples/images/markdown.png)
+        
+        3. Upload `050_lr.coding.md` to Learn
+        
+        ![](examples/images/learn.png)
+            
+        See more examples in [`examples/`](examples).
+        
+        Conventions
+        -----------
+        
+        The file name format needs to follow the convention `<name>.<challenge_type>.md.ipynb` where `<challenge_type>` is one of
+        
+        - coding
+        - multiple_choice
+        - number
+        - paragraph
+        - raw
+        
+        julpyter relies on jupyter tags to pull out sections which correspond to sections within Learn challenges.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
