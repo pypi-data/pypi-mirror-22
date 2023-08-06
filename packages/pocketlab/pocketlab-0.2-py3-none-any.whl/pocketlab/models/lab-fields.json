@@ -1,0 +1,151 @@
+{
+  "schema": {
+    "service_name": "lab",
+    "service_path": "~/lab",
+    "service_list": [ "lab" ],
+    "vcs_service": "git",
+    "resource_type": "services",
+    "virtualbox": "default",
+	"container_alias": "server",
+    "image_name": "flaskserver",
+    "module_name": "pocketlab",
+    "verbose": true,
+    "all": true,
+    "overwrite": true,
+    "print_path": true,
+    "paginate": true
+  },
+  "components": {
+    ".service_name": {
+      "field_description": "Name of service in lab registry",
+      "default_value": "",
+      "max_length": 64,
+      "must_not_contain": [ "[^\\w\\-_]" ],
+      "field_metadata": {
+        "cli_flag": [ "-s", "--service" ],
+        "cli_help": "name of service in lab registry",
+        "cli_metavar": "SERVICE"
+      }
+    },
+    ".service_path": {
+      "field_description": "Path to service root on localhost",
+      "default_value": "",
+      "field_metadata": {
+        "cli_flags": [ "--path" ],
+        "cli_help": "path to service root"
+      }
+    },
+    ".service_list": {
+      "field_description": "List of services in lab registry.",
+      "min_size": 0,
+      "field_metadata": {
+        "cli_flag": [ "-s", "--services" ],
+        "cli_help": "list of services in lab registry",
+        "cli_metavar": "SERVICES"
+      }
+    },
+    ".service_list[0]": {
+      "field_description": "Service in list of services from lab registry",
+      "default_value": "",
+      "max_length": 64,
+      "must_not_contain": [ "[^\\w\\-_]" ]
+    },
+    ".vcs_service": {
+      "field_description": "Version control system used by service",
+      "default_value": "",
+      "discrete_values": [ "", "git", "Git", "mercurial", "Mercurial" ],
+      "field_metadata": {
+        "cli_flags": [ "--vcs" ],
+        "cli_help": "VCS service to generate ignore file"
+      }
+    },
+    ".resource_type": {
+      "field_description": "Type of lab resource. eg. services, images...",
+      "default_value": "services",
+      "discrete_values": [ "services" ],
+      "field_metadata": {
+        "cli_flags": [ "--resource" ],
+        "cli_help": "type of lab resource. eg. services, images...",
+        "cli_metavar": "RESOURCE"
+      }
+    },
+    ".virtualbox": {
+      "field_description": "Name of virtualbox image in which to run service.",
+      "default_value": "default",
+      "max_length": 64,
+      "field_metadata": {
+        "cli_flags": [ "--virtualbox" ],
+        "cli_help": "name of docker virtualbox on Win7/8 (default: %(default)s)"
+      }
+    },
+    ".container_alias": {
+      "field_description": "Docker container alias for service",
+      "default_value": "",
+      "max_length": 64,
+      "must_not_contain": [ "[^\\w\\-_]" ],
+      "field_metadata": {
+        "cli_flags": [ "--container" ],
+        "cli_help": "alias of docker container for service"
+      }
+    },
+    ".image_name": {
+      "field_description": "Docker image name for service",
+      "default_value": "",
+      "max_length": 64,
+      "must_not_contain": [ "[^\\w\\-_/:]" ],
+      "field_metadata": {
+        "cli_flags": [ "--image" ],
+        "cli_help": "name of docker image for service"
+      }
+    },
+    ".module_name": {
+      "field_description": "Python module name",
+      "max_length": 64,
+      "must_contain": [ "^[a-z\\d\\-]+$" ],
+      "field_metadata": {
+        "cli_flags": [ "--module" ],
+        "cli_help": "name for python module"
+      }
+    },
+    ".verbose": {
+      "field_description": "Toggle to enable/disable lab messages.",
+      "default_value": true,
+      "field_metadata": {
+          "cli_flags": [ "-q", "--quiet" ],
+          "cli_help": "turn off lab process messages"
+      }
+    },
+    ".all": {
+      "field_description": "Apply action to all services in registry.",
+      "default_value": false,
+      "field_metadata": {
+        "cli_flags": [ "-a", "--all" ],
+        "cli_help": "apply to all services in registry"
+      }
+    },
+    ".overwrite": {
+      "field_description": "Overwrites the existing resource.",
+      "default_value": false,
+      "field_metadata": {
+        "cli_flags": [ "-f", "--force" ],
+        "cli_help": "overwrite the existing resource"
+      }
+    },
+    ".print_path": {
+      "field_description": "Prints out path to terminal.",
+      "default_value": false,
+      "field_metadata": {
+          "cli_flags": [ "--print" ],
+          "cli_help": "prints path of service root"
+      }
+    },
+    ".paginate": {
+      "field_description": "Break up results into separate results.",
+      "default_value": false,
+      "field_metadata": {
+        "cli_flags": [ "--more" ],
+        "cli_help": "paginate results longer than console height"
+      }
+    }
+  }
+}
