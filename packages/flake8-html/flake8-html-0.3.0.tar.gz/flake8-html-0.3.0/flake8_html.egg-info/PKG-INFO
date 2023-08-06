@@ -1,0 +1,94 @@
+Metadata-Version: 1.1
+Name: flake8-html
+Version: 0.3.0
+Summary: Generate HTML reports of flake8 violations
+Home-page: https://github.com/lordmauve/flake8-html
+Author: Daniel Pope
+Author-email: mauve@mauveweb.co.uk
+License: Apache Software License 2.0
+Description: ===========
+        flake8-html
+        ===========
+        
+        
+        .. image:: https://img.shields.io/pypi/v/flake8-html.svg
+                :target: https://pypi.python.org/pypi/flake8-html
+        
+        .. image:: https://img.shields.io/travis/lordmauve/flake8-html.svg
+                :target: https://travis-ci.org/lordmauve/flake8-html
+        
+        .. image:: https://pyup.io/repos/github/lordmauve/flake8-html/shield.svg
+             :target: https://pyup.io/repos/github/lordmauve/flake8-html/
+             :alt: Updates
+        
+        
+        A flake8 plugin to generate HTML reports of flake8 violations.
+        
+        Simply
+        
+        .. code-block:: bash
+        
+           $ pip install flake8-html
+        
+        Then run flake8 passing the ``--format=html`` option and a ``--htmldir``:
+        
+        .. code-block:: bash
+        
+           $ flake8 --format=html --htmldir=flake-report
+        
+        
+        Screenshots
+        -----------
+        
+        Report index page:
+        
+        .. image:: https://github.com/lordmauve/flake8-html
+                   /raw/master/screenshots/report-index.png
+        
+        Per-file report, grouped by error code:
+        
+        .. image:: https://github.com/lordmauve/flake8-html
+                   /raw/master/screenshots/file-report.png
+        
+        Annotated, syntax-highlighed source code:
+        
+        .. image:: https://github.com/lordmauve/flake8-html
+                   /raw/master/screenshots/annotated-source.png
+        
+        
+        License
+        -------
+        
+        * Free software: Apache Software License 2.0
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2017-03-01)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: flake8 html
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
