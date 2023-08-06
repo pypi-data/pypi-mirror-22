@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Usage &#8212; mando 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="mando - CLI interfaces for Humans" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="mando - CLI interfaces for Humans"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">mando 0.2 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="defining-commands">
+<h2>Defining commands<a class="headerlink" href="#defining-commands" title="Permalink to this headline">¶</a></h2>
+<p>A command is a function decorated with <code class="docutils literal"><span class="pre">&#64;command</span></code>. mando tries to extract as
+much as information as possible from the function&#8217;s docstring and its
+signature.</p>
+<p>The paragraph of the docstring is the command&#8217;s <strong>help</strong>. For optimal results
+it shouldn&#8217;t be longer than one line. The second paragraph contains the
+command&#8217;s <strong>description</strong>, which can be as long as needed. If only one
+paragraph is present, it is used for both the help and the description.
+You can document the parameters with the common Sphinx&#8217;s <code class="docutils literal"><span class="pre">:param::</span></code> syntax.</p>
+<p>For example, this program generates the following helps:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mando</span> <span class="k">import</span> <span class="n">command</span><span class="p">,</span> <span class="n">main</span>
+
+
+<span class="nd">@command</span>
+<span class="k">def</span> <span class="nf">cmd</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Here stands the help.</span>
+
+<span class="sd">    And here the description of this useless command.</span>
+
+<span class="sd">    :param foo: Well, the first arg.</span>
+<span class="sd">    :param bar: Obviously the second arg. Nonsense.&#39;&#39;&#39;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">bar</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> python command.py -h
+<span class="go">usage: command.py [-h] {cmd} ...</span>
+
+<span class="go">positional arguments:</span>
+<span class="go">  {cmd}</span>
+<span class="go">    cmd       Here stands the help.</span>
+
+<span class="go">optional arguments:</span>
+<span class="go">  -h, --help  show this help message and exit</span>
+<span class="gp">$</span> python command.py cmd -h
+<span class="go">usage: command.py cmd [-h] foo bar</span>
+
+<span class="go">And here the description of this useless command.</span>
+
+<span class="go">positional arguments:</span>
+<span class="go">  foo         Well, the first arg.</span>
+<span class="go">  bar         Obviously the second arg. Nonsense.</span>
+
+<span class="go">optional arguments:</span>
+<span class="go">  -h, --help  show this help message and exit</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="long-and-short-options-flags">
+<h2>Long and short options (flags)<a class="headerlink" href="#long-and-short-options-flags" title="Permalink to this headline">¶</a></h2>
+<p>You can specify short options in the docstring as well, with the <code class="docutils literal"><span class="pre">:param:</span></code>
+syntax. The recognized formats are these:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">:param</span> <span class="pre">-O:</span> <span class="pre">Option</span> <span class="pre">help</span></code></li>
+<li><code class="docutils literal"><span class="pre">:param</span> <span class="pre">--option:</span> <span class="pre">Option</span> <span class="pre">help</span></code></li>
+<li><code class="docutils literal"><span class="pre">:param</span> <span class="pre">-o,</span> <span class="pre">--output:</span> <span class="pre">Option</span> <span class="pre">help</span></code></li>
+</ul>
+</div></blockquote>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mando</span> <span class="k">import</span> <span class="n">command</span><span class="p">,</span> <span class="n">main</span>
+
+
+<span class="nd">@command</span>
+<span class="k">def</span> <span class="nf">ex</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spam</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Nothing interesting.</span>
+
+<span class="sd">    :param foo: Bla bla.</span>
+<span class="sd">    :param -b: A little flag.</span>
+<span class="sd">    :param -s, --spam: Spam spam spam spam.&#39;&#39;&#39;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Usage:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> python short_options.py ex -h
+<span class="go">usage: short_options.py ex [-h] [-b B] [-s SPAM] foo</span>
+
+<span class="go">Nothing interesting.</span>
+
+<span class="go">positional arguments:</span>
+<span class="go">  foo                   Bla bla.</span>
+
+<span class="go">optional arguments:</span>
+<span class="go">  -h, --help            show this help message and exit</span>
+<span class="go">  -b B                  A little flag.</span>
+<span class="go">  -s SPAM, --spam SPAM  Spam spam spam spam.</span>
+<span class="gp">$</span> python short_options.py ex <span class="m">2</span>
+<span class="go">(&#39;2&#39;, None, None)</span>
+<span class="gp">$</span> python short_options.py ex <span class="m">2</span> -b <span class="m">8</span>
+<span class="go">(&#39;2&#39;, &#39;8&#39;, None)</span>
+<span class="gp">$</span> python short_options.py ex <span class="m">2</span> -b <span class="m">8</span> -s <span class="m">9</span>
+<span class="go">(&#39;2&#39;, &#39;8&#39;, &#39;9&#39;)</span>
+<span class="gp">$</span> python short_options.py ex <span class="m">2</span> -b <span class="m">8</span> --spam <span class="m">9</span>
+<span class="go">(&#39;2&#39;, &#39;8&#39;, &#39;9&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-default-arguments-are-handled">
+<h2>How default arguments are handled<a class="headerlink" href="#how-default-arguments-are-handled" title="Permalink to this headline">¶</a></h2>
+<p>If an argument has a default, then mando takes it as an optional argument,
+while those which do not have a default are interpreted as positional
+arguments. Here are the actions taken by mando when a default argument is
+encountered:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Default argument type</th>
+<th class="head">What mando specifies in <code class="docutils literal"><span class="pre">add_argument()</span></code></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>bool</td>
+<td><em>action</em> <code class="docutils literal"><span class="pre">store_true</span></code> or <code class="docutils literal"><span class="pre">store_false</span></code> is added</td>
+</tr>
+<tr class="row-odd"><td>list</td>
+<td><em>action</em> <code class="docutils literal"><span class="pre">append</span></code> is added.</td>
+</tr>
+<tr class="row-even"><td>int</td>
+<td><em>type</em> <code class="docutils literal"><span class="pre">int()</span></code> is added.</td>
+</tr>
+<tr class="row-odd"><td>float</td>
+<td><em>type</em> <code class="docutils literal"><span class="pre">float()</span></code> is added.</td>
+</tr>
+<tr class="row-even"><td>str</td>
+<td><em>type</em> <code class="docutils literal"><span class="pre">str()</span></code> is added.</td>
+</tr>
+</tbody>
+</table>
+<p>So, for example, if a default argument is an integer, mando will automatically
+convert command line arguments to <code class="docutils literal"><span class="pre">int()</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mando</span> <span class="k">import</span> <span class="n">command</span><span class="p">,</span> <span class="n">main</span>
+
+
+<span class="nd">@command</span>
+<span class="k">def</span> <span class="nf">po</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="n">b</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> python default_args.py po -h
+<span class="go">usage: default_args.py po [-h] [-a A] [-b B]</span>
+
+<span class="go">optional arguments:</span>
+<span class="go">  -h, --help  show this help message and exit</span>
+<span class="go">  -a A</span>
+<span class="go">  -b B</span>
+<span class="gp">$</span> python default_args.py po -a <span class="m">4</span> -b <span class="m">9</span>
+<span class="go">262144</span>
+</pre></div>
+</div>
+<p>Note that passing the arguments positionally does not work, because <code class="docutils literal"><span class="pre">argparse</span></code>
+expects optional args and <code class="docutils literal"><span class="pre">a</span></code> and <code class="docutils literal"><span class="pre">b</span></code> are already filled with defaults:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> python default_args.py po
+<span class="go">8</span>
+<span class="gp">$</span> python default_args.py po <span class="m">9</span> <span class="m">8</span>
+<span class="go">usage: default_args.py [-h] {po} ...</span>
+<span class="go">default_args.py: error: unrecognized arguments: 9 8</span>
+</pre></div>
+</div>
+<p>To overcome this, mando allows you to specify positional arguments&#8217; types in
+the docstring, as explained in the next section.</p>
+</div>
+<div class="section" id="adding-type-and-metavar-in-the-docstring">
+<h2>Adding <em>type</em> and <em>metavar</em> in the docstring<a class="headerlink" href="#adding-type-and-metavar-in-the-docstring" title="Permalink to this headline">¶</a></h2>
+<p>This is especially useful for positional arguments, but it is usually used for
+all type of arguments.
+The notation is this: <code class="docutils literal"><span class="pre">:param</span> <span class="pre">{opt-name}</span> <span class="pre">&lt;type&gt;:</span> <span class="pre">Help</span></code>. <code class="docutils literal"><span class="pre">&lt;type&gt;</span></code> must be a
+built-in type among the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">&lt;i&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;int&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;integer&gt;</span></code> to cast to <code class="docutils literal"><span class="pre">int()</span></code>;</li>
+<li>also <code class="docutils literal"><span class="pre">&lt;n&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;num&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;number&gt;</span></code> to cast to <code class="docutils literal"><span class="pre">int()</span></code>;</li>
+<li><code class="docutils literal"><span class="pre">&lt;s&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;str&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;string&gt;</span></code> to cast to <code class="docutils literal"><span class="pre">str()</span></code>;</li>
+<li><code class="docutils literal"><span class="pre">&lt;f&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;float&gt;</span></code> to cast to <code class="docutils literal"><span class="pre">float()</span></code>.</li>
+</ul>
+</div></blockquote>
+<p>mando also adds <code class="docutils literal"><span class="pre">&lt;type&gt;</span></code> as a metavar.
+Actual usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mando</span> <span class="k">import</span> <span class="n">command</span><span class="p">,</span> <span class="n">main</span>
+
+
+<span class="nd">@command</span>
+<span class="k">def</span> <span class="nf">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mod</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Mimic Python&#39;s pow() function.</span>
+
+<span class="sd">    :param a &lt;float&gt;: The base.</span>
+<span class="sd">    :param b &lt;float&gt;: The exponent.</span>
+<span class="sd">    :param -m, --mod &lt;int&gt;: Modulus.&#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">mod</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">((</span><span class="n">a</span> <span class="o">**</span> <span class="n">b</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="n">b</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> python types.py pow -h
+<span class="go">usage: types.py pow [-h] [-m &lt;int&gt;] a b</span>
+
+<span class="go">Mimic Python&#39;s pow() function.</span>
+
+<span class="go">positional arguments:</span>
+<span class="go">a                     The base.</span>
+<span class="go">b                     The exponent.</span>
+
+<span class="go">optional arguments:</span>
+<span class="go">-h, --help            show this help message and exit</span>
+<span class="go">-m &lt;int&gt;, --mod &lt;int&gt;</span>
+<span class="go">                    Modulus.</span>
+<span class="gp">$</span> python types.py pow <span class="m">5</span> <span class="m">8</span>
+<span class="go">390625.0</span>
+<span class="gp">$</span> python types.py pow <span class="m">4</span>.5 <span class="m">8</span>.3
+<span class="go">264036.437449</span>
+<span class="gp">$</span> python types.py pow <span class="m">5</span> <span class="m">8</span> -m <span class="m">8</span>
+<span class="go">1.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="overriding-arguments-with-arg">
+<h2>Overriding arguments with <code class="docutils literal"><span class="pre">&#64;arg</span></code><a class="headerlink" href="#overriding-arguments-with-arg" title="Permalink to this headline">¶</a></h2>
+<p>You may need to specify some argument to argparse, and it is not possible to
+include in the docstring. mando provides the <code class="docutils literal"><span class="pre">&#64;arg</span></code> decorator to accomplish
+this. Its signature is as follows: <code class="docutils literal"><span class="pre">&#64;arg(arg_name,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code>, where
+<code class="docutils literal"><span class="pre">arg_name</span></code> must be among the function&#8217;s arguments, while the remaining
+arguments will be directly passed to <code class="docutils literal"><span class="pre">argparse.add_argument()</span></code>.
+Note that this decorator will override other arguments that mando inferred
+either from the defaults or from the docstring.</p>
+</div>
+<div class="section" id="command-arguments">
+<h2><code class="docutils literal"><span class="pre">&#64;command</span></code> Arguments<a class="headerlink" href="#command-arguments" title="Permalink to this headline">¶</a></h2>
+<p>There are three special arguments to the <code class="docutils literal"><span class="pre">&#64;command()</span></code> decorator to allow for
+special processing for the decorated function. The first argument, also
+available as keyword <code class="docutils literal"><span class="pre">name='alias_name'</span></code> will allow for an alias of the
+command. The second argument, also available as keyword <code class="docutils literal"><span class="pre">doctype='rest'</span></code>
+allows for Numpy or Google formatted docstrings to be used. The third is only
+available as keyword <code class="docutils literal"><span class="pre">formatter_class='argparse_formatter_class'</span></code> to format
+the display of the docstring.</p>
+<div class="section" id="aliasing-commands">
+<h3>Aliasing Commands<a class="headerlink" href="#aliasing-commands" title="Permalink to this headline">¶</a></h3>
+<p>A common use-case for this is represented by a function with underscores in it.
+Usually commands have dashes instead. So, you may specify the aliasing name to
+the <code class="docutils literal"><span class="pre">&#64;command()</span></code> decorator, this way:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="p">(</span><span class="s1">&#39;very-powerful-cmd&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">very_powerful_cmd</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>And call it as follows:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> python prog.py very-powerful-cmd <span class="m">2</span> --verbose
+</pre></div>
+</div>
+<p>Note that the original name will be discarded and won&#8217;t be usable.</p>
+</div>
+<div class="section" id="other-docstring-formats">
+<span id="docstring-style"></span><h3>Other Docstring Formats<a class="headerlink" href="#other-docstring-formats" title="Permalink to this headline">¶</a></h3>
+<p>There are three commonly accepted formats for docstrings. The Sphinx docstring,
+and the mando dialect of Sphinx described in this documentation are treated
+equally and is the default documentation style named <code class="docutils literal"><span class="pre">rest</span></code> for REStructured
+Text. The other two available styles are <code class="docutils literal"><span class="pre">numpy</span></code> and <code class="docutils literal"><span class="pre">google</span></code>. This allows
+projects that use mando, but already have docstrings in these other formats not
+to have to convert the docstrings.</p>
+<p>An example of using a Numpy formatted docstring in mando:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="p">(</span><span class="n">doctype</span><span class="o">=</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">simple_numpy_docstring</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;One line summary.</span>
+
+<span class="sd">    Extended description.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    arg1 : int</span>
+<span class="sd">        Description of `arg1`</span>
+<span class="sd">    arg2 : str</span>
+<span class="sd">        Description of `arg2`</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        Description of return value.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">arg1</span><span class="p">)</span> <span class="o">*</span> <span class="n">arg2</span>
+</pre></div>
+</div>
+<p>An example of using a Google formatted docstring in mando:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@program</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">doctype</span><span class="o">=</span><span class="s1">&#39;google&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">simple_google_docstring</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;One line summary.</span>
+
+<span class="sd">    Extended description.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      arg1(int): Description of `arg1`</span>
+<span class="sd">      arg2(str): Description of `arg2`</span>
+<span class="sd">    Returns:</span>
+<span class="sd">      str: Description of return value.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">arg1</span><span class="p">)</span> <span class="o">*</span> <span class="n">arg2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="formatter-class">
+<h3>Formatter Class<a class="headerlink" href="#formatter-class" title="Permalink to this headline">¶</a></h3>
+<p>For the help display there is the opportunity to use special formatters. Any
+argparse compatible formatter class can be used. There is an alternative
+formatter class available with mando that will display on ANSI terminals.</p>
+<p>The ANSI formatter class has to be imported from mando and used as follows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mando.rst_text_formatter</span> <span class="k">import</span> <span class="n">RSTHelpFormatter</span>
+
+<span class="nd">@command</span><span class="p">(</span><span class="n">formatter_class</span><span class="o">=</span><span class="n">RSTHelpFormatter</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mod</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Mimic Python&#39;s pow() function.</span>
+
+<span class="sd">    :param a &lt;float&gt;: The base.</span>
+<span class="sd">    :param b &lt;float&gt;: The exponent.</span>
+<span class="sd">    :param -m, --mod &lt;int&gt;: Modulus.&#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">mod</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">((</span><span class="n">a</span> <span class="o">**</span> <span class="n">b</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="shell-autocompletion">
+<h2>Shell autocompletion<a class="headerlink" href="#shell-autocompletion" title="Permalink to this headline">¶</a></h2>
+<p>Mando supports autocompletion via the optional dependency <code class="docutils literal"><span class="pre">argcomplete</span></code>. If
+that package is installed, mando detects it automatically without the need to
+do anything else.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Usage</a><ul>
+<li><a class="reference internal" href="#defining-commands">Defining commands</a></li>
+<li><a class="reference internal" href="#long-and-short-options-flags">Long and short options (flags)</a></li>
+<li><a class="reference internal" href="#how-default-arguments-are-handled">How default arguments are handled</a></li>
+<li><a class="reference internal" href="#adding-type-and-metavar-in-the-docstring">Adding <em>type</em> and <em>metavar</em> in the docstring</a></li>
+<li><a class="reference internal" href="#overriding-arguments-with-arg">Overriding arguments with <code class="docutils literal"><span class="pre">&#64;arg</span></code></a></li>
+<li><a class="reference internal" href="#command-arguments"><code class="docutils literal"><span class="pre">&#64;command</span></code> Arguments</a><ul>
+<li><a class="reference internal" href="#aliasing-commands">Aliasing Commands</a></li>
+<li><a class="reference internal" href="#other-docstring-formats">Other Docstring Formats</a></li>
+<li><a class="reference internal" href="#formatter-class">Formatter Class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#shell-autocompletion">Shell autocompletion</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">mando - CLI interfaces for Humans</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/usage.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="mando - CLI interfaces for Humans"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">mando 0.2 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Michele Lacchia.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>
