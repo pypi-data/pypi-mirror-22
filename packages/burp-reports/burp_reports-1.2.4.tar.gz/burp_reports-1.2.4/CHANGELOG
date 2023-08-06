@@ -1,0 +1,28 @@
+1.2.4: 
+        * fix #10 not working with burpui standalone due to wrong test for multi-agent
+1.2.3:
+        * change to new burpui demo url
+        * fix tests removing unnecesary pandas dependencies as it is not used
+        * fix multiplatform usage, changing temp files from os.getuid() to getpass.getuser()
+1.2.2:
+        * remove unncesesary pandas dependency for now
+1.2.1:
+        * fix non passing --detail correctly from cmd
+1.2.0: 
+        * Refactor debug usage with logging
+        * improve more tests
+        * increase performance and better error proven when no data comes from burpui
+        * first experiments with pandas library (not yet in use from cli, only preparing future usage)
+1.1.1: 
+        * Small changes to get more tests done
+        * Enhanced behaviour when burpui returns [] in the api
+1.1.0:
+        * More unittests
+        * Parallel ping (deco concurrent)
+        * Small fixes
+1.0.3:
+        * fix #2 missing status for inactive client not in burp
+1.0.2:
+        * Added retry 3 times to urlget lib
+1.0.1:
+        * fix bug when no complete backup is reported to a client but it has date that seems to be the last backup running
