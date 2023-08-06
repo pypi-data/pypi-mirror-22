@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to Flask-HTTPAuth’s documentation! &mdash; Flask-HTTPAuth  documentation</title>
+    
+    <link rel="stylesheet" href="_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Flask-HTTPAuth  documentation" href="#" /> 
+  </head>
+  <body role="document">
+  
+  
+  <div class=indexwrapper>
+  
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-flask-httpauth-s-documentation">
+<h1>Welcome to Flask-HTTPAuth&#8217;s documentation!<a class="headerlink" href="#welcome-to-flask-httpauth-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p><strong>Flask-HTTPAuth</strong> is a simple extension that provides Basic and Digest HTTP authentication for Flask routes.</p>
+<div class="section" id="basic-authentication-example">
+<h2>Basic authentication example<a class="headerlink" href="#basic-authentication-example" title="Permalink to this headline">¶</a></h2>
+<p>The following example application uses HTTP Basic authentication to protect route <code class="docutils literal"><span class="pre">'/'</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_httpauth</span> <span class="kn">import</span> <span class="n">HTTPBasicAuth</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">HTTPBasicAuth</span><span class="p">()</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;john&quot;</span><span class="p">:</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;susan&quot;</span><span class="p">:</span> <span class="s2">&quot;bye&quot;</span>
+<span class="p">}</span>
+
+<span class="nd">@auth.get_password</span>
+<span class="k">def</span> <span class="nf">get_pw</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">username</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">users</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">None</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="nd">@auth.login_required</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello, </span><span class="si">%s</span><span class="s2">!&quot;</span> <span class="o">%</span> <span class="n">auth</span><span class="o">.</span><span class="n">username</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">get_password</span></code> callback needs to return the password associated with the username given as argument. Flask-HTTPAuth will allow access only if <code class="docutils literal"><span class="pre">get_password(username)</span> <span class="pre">==</span> <span class="pre">password</span></code>.</p>
+<p>If the passwords are stored hashed in the user database then an additional callback is needed:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@auth.hash_password</span>
+<span class="k">def</span> <span class="nf">hash_pw</span><span class="p">(</span><span class="n">password</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">md5</span><span class="p">(</span><span class="n">password</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>When the <code class="docutils literal"><span class="pre">hash_password</span></code> callback is provided access will be granted when <code class="docutils literal"><span class="pre">get_password(username)</span> <span class="pre">==</span> <span class="pre">hash_password(password)</span></code>.</p>
+<p>If the hashing algorithm requires the username to be known then the callback can take two arguments instead of one:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@auth.hash_password</span>
+<span class="k">def</span> <span class="nf">hash_pw</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="n">get_salt</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">salt</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the most degree of flexibility the <cite>get_password</cite> and <cite>hash_password</cite> callbacks can be replaced with <cite>verify_password</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@auth.verify_password</span>
+<span class="k">def</span> <span class="nf">verify_pw</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">call_custom_verify_function</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="digest-authentication-example">
+<h2>Digest authentication example<a class="headerlink" href="#digest-authentication-example" title="Permalink to this headline">¶</a></h2>
+<p>The following example is similar to the previous one, but HTTP Digest authentication is used:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_httpauth</span> <span class="kn">import</span> <span class="n">HTTPDigestAuth</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;secret key here&#39;</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">HTTPDigestAuth</span><span class="p">()</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;john&quot;</span><span class="p">:</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;susan&quot;</span><span class="p">:</span> <span class="s2">&quot;bye&quot;</span>
+<span class="p">}</span>
+
+<span class="nd">@auth.get_password</span>
+<span class="k">def</span> <span class="nf">get_pw</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">username</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">users</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">None</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="nd">@auth.login_required</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello, </span><span class="si">%s</span><span class="s2">!&quot;</span> <span class="o">%</span> <span class="n">auth</span><span class="o">.</span><span class="n">username</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="security-concerns-with-digest-authentication">
+<h3>Security Concerns with Digest Authentication<a class="headerlink" href="#security-concerns-with-digest-authentication" title="Permalink to this headline">¶</a></h3>
+<p>The digest authentication algorihtm requires a <em>challenge</em> to be sent to the client for use in encrypting the password for transmission. This challenge needs to be used again when the password is decoded at the server, so the challenge information needs to be stored so that it can be recalled later.</p>
+<p>By default, Flask-HTTPAuth stores the challenge data in the Flask session. To make the authentication flow secure when using session storage, it is required that server-side sessions are used instead of the default Flask cookie based sessions, as this ensures that the challenge data is not at risk of being captured as it moves in a cookie between server and client. The Flask-Session and Flask-KVSession extensions are both very good options to implement server-side sessions.</p>
+<p>As an alternative to using server-side sessions, an application can implement its own generation and storage of challenge data. To do this, there are four callback functions that the application needs to implement:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@auth.generate_nonce</span>
+<span class="k">def</span> <span class="nf">generate_nonce</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return the nonce value to use for this client.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+<span class="nd">@auth.generate_opaque</span>
+<span class="k">def</span> <span class="nf">generate_opaque</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return the opaque value to use for this client.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+<span class="nd">@auth.verify_nonce</span>
+<span class="k">def</span> <span class="nf">verify_nonce</span><span class="p">(</span><span class="n">nonce</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Verify that the nonce value sent by the client is correct.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+<span class="nd">@auth.verify_opaque</span>
+<span class="k">def</span> <span class="nf">verify_opaque</span><span class="p">(</span><span class="n">opaque</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Verify that the opaque value sent by the client is correct.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>For information of what the <code class="docutils literal"><span class="pre">nonce</span></code> and <code class="docutils literal"><span class="pre">opaque</span></code> values are and how they are used in digest authentication, consult <a class="reference external" href="http://tools.ietf.org/html/rfc2617#section-3.2.1">RFC 2617</a>.</p>
+</div>
+</div>
+<div class="section" id="deployment-considerations">
+<h2>Deployment Considerations<a class="headerlink" href="#deployment-considerations" title="Permalink to this headline">¶</a></h2>
+<p>Be aware that some web servers do not pass the <code class="docutils literal"><span class="pre">Authorization</span></code> headers to the WSGI application by default. For example, if you use Apache with mod_wsgi, you have to set option <code class="docutils literal"><span class="pre">WSGIPassAuthorization</span> <span class="pre">On</span></code> as <a class="reference external" href="https://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGIPassAuthorization/">documented here</a>.</p>
+</div>
+<div class="section" id="module-flask_httpauth">
+<span id="api-documentation"></span><h2>API Documentation<a class="headerlink" href="#module-flask_httpauth" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="flask_httpauth.HTTPBasicAuth">
+<em class="property">class </em><code class="descclassname">flask_httpauth.</code><code class="descname">HTTPBasicAuth</code><a class="headerlink" href="#flask_httpauth.HTTPBasicAuth" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class that handles HTTP Basic authentication for Flask routes.</p>
+<dl class="method">
+<dt id="flask_httpauth.HTTPBasicAuth.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>scheme=None</em>, <em>realm=None</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.HTTPBasicAuth.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a basic authentication object.</p>
+<p>If the optional <code class="docutils literal"><span class="pre">scheme</span></code> argument is provided, it will be used instead of the standard &#8220;Basic&#8221; scheme in the <code class="docutils literal"><span class="pre">WWW-Authenticate</span></code> response. A fairly common practice is to use a custom scheme to prevent browsers from prompting the user to login.</p>
+<p>The <code class="docutils literal"><span class="pre">realm</span></code> argument can be used to provide an application defined realm with the <code class="docutils literal"><span class="pre">WWW-Authenticate</span></code> header.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.HTTPBasicAuth.get_password">
+<code class="descname">get_password</code><span class="sig-paren">(</span><em>password_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.HTTPBasicAuth.get_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>This callback function will be called by the framework to obtain the password for a given user. Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@auth.get_password</span>
+<span class="k">def</span> <span class="nf">get_password</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">db</span><span class="o">.</span><span class="n">get_user_password</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.HTTPBasicAuth.hash_password">
+<code class="descname">hash_password</code><span class="sig-paren">(</span><em>hash_password_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.HTTPBasicAuth.hash_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>If defined, this callback function will be called by the framework to apply a custom hashing algorithm to the password provided by the client. If this callback isn&#8217;t provided the password will be checked unchanged. The callback can take one or two arguments. The one argument version receives the password to hash, while the two argument version receives the username and the password in that order. Example single argument callback:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@auth.hash_password</span>
+<span class="k">def</span> <span class="nf">hash_password</span><span class="p">(</span><span class="n">password</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">md5</span><span class="p">(</span><span class="n">password</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Example two argument callback:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@auth.hash_password</span>
+<span class="k">def</span> <span class="nf">hash_pw</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="n">get_salt</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">salt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.HTTPBasicAuth.verify_password">
+<code class="descname">verify_password</code><span class="sig-paren">(</span><em>verify_password_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.HTTPBasicAuth.verify_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>If defined, this callback function will be called by the framework to verify that the username and password combination provided by the client are valid. The callback function takes two arguments, the username and the password and must return <code class="docutils literal"><span class="pre">True</span></code> or <code class="docutils literal"><span class="pre">False</span></code>. Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@auth.verify_password</span>
+<span class="k">def</span> <span class="nf">verify_password</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="n">passlib</span><span class="o">.</span><span class="n">hash</span><span class="o">.</span><span class="n">sha256_crypt</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">user</span><span class="o">.</span><span class="n">password_hash</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If this callback is defined, it is also invoked when the request does not have the <code class="docutils literal"><span class="pre">Authorization</span></code> header with user credentials, and in this case both the <code class="docutils literal"><span class="pre">username</span></code> and <code class="docutils literal"><span class="pre">password</span></code> arguments are set to empty strings. The client can opt to return <code class="docutils literal"><span class="pre">True</span></code> and that will allow anonymous users access to the route. The callback function can indicate that the user is anonymous by writing a state variable to <code class="docutils literal"><span class="pre">flask.g</span></code>, which the route can then check to generate an appropriate response.</p>
+<p>Note that when a <code class="docutils literal"><span class="pre">verify_password</span></code> callback is provided the <code class="docutils literal"><span class="pre">get_password</span></code> and <code class="docutils literal"><span class="pre">hash_password</span></code> callbacks are not used.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.HTTPBasicAuth.error_handler">
+<code class="descname">error_handler</code><span class="sig-paren">(</span><em>error_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.HTTPBasicAuth.error_handler" title="Permalink to this definition">¶</a></dt>
+<dd><p>If defined, this callback function will be called by the framework when it is necessary to send an authentication error back to the client. The return value from this function can be the body of the response as a string or it can also be a response object created with <code class="docutils literal"><span class="pre">make_response</span></code>. If this callback isn&#8217;t provided a default error response is generated. Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@auth.error_handler</span>
+<span class="k">def</span> <span class="nf">auth_error</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;&amp;lt;h1&amp;gt;Access Denied&amp;lt;/h1&amp;gt;&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.HTTPBasicAuth.login_required">
+<code class="descname">login_required</code><span class="sig-paren">(</span><em>view_function_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.HTTPBasicAuth.login_required" title="Permalink to this definition">¶</a></dt>
+<dd><p>This callback function will be called when authentication is succesful. This will typically be a Flask view function. Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/private&#39;</span><span class="p">)</span>
+<span class="nd">@auth.login_required</span>
+<span class="k">def</span> <span class="nf">private_page</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;Only for authorized people!&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.HTTPBasicAuth.username">
+<code class="descname">username</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.HTTPBasicAuth.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>A view function that is protected with this class can access the logged username through this method. Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="nd">@auth.login_required</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello, </span><span class="si">%s</span><span class="s2">!&quot;</span> <span class="o">%</span> <span class="n">auth</span><span class="o">.</span><span class="n">username</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="flask_httpauth.flask_httpauth.HTTPDigestAuth">
+<em class="property">class </em><code class="descclassname">flask_httpauth.</code><code class="descname">HTTPDigestAuth</code><a class="headerlink" href="#flask_httpauth.flask_httpauth.HTTPDigestAuth" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class that handles HTTP Digest authentication for Flask routes. The <code class="docutils literal"><span class="pre">SECRET_KEY</span></code> configuration must be set in the Flask application to enable the session to work. Flask by default stores user sessions in the client as secure cookies, so the client must be able to handle cookies. To support clients that are not web browsers or that cannot handle cookies a <a class="reference external" href="http://flask.pocoo.org/docs/api/#flask.Flask.session_interface">session interface</a> that writes sessions in the server must be used.</p>
+<dl class="method">
+<dt id="flask_httpauth.flask_httpauth.HTTPDigestAuth.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>scheme=None</em>, <em>realm=None</em>, <em>use_ha1_pw=False</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.flask_httpauth.HTTPDigestAuth.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a digest authentication object.</p>
+<p>If the optional <code class="docutils literal"><span class="pre">scheme</span></code> argument is provided, it will be used instead of the &#8220;Digest&#8221; scheme in the <code class="docutils literal"><span class="pre">WWW-Authenticate</span></code> response. A fairly common practice is to use a custom scheme to prevent browsers from prompting the user to login.</p>
+<p>The <code class="docutils literal"><span class="pre">realm</span></code> argument can be used to provide an application defined realm with the <code class="docutils literal"><span class="pre">WWW-Authenticate</span></code> header.</p>
+<p>If <code class="docutils literal"><span class="pre">use_ha1_pw</span></code> is False, then the <code class="docutils literal"><span class="pre">get_password</span></code> callback needs to return the plain text password for the given user. If <code class="docutils literal"><span class="pre">use_ha1_pw</span></code> is True, the <code class="docutils literal"><span class="pre">get_password</span></code> callback needs to return the HA1 value for the given user. The advantage of setting <code class="docutils literal"><span class="pre">use_ha1_pw</span></code> to <code class="docutils literal"><span class="pre">True</span></code> is that it allows the application to store the HA1 hash of the password in the user database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.flask_httpauth.HTTPDigestAuth.generate_ha1">
+<code class="descname">generate_ha1</code><span class="sig-paren">(</span><em>username</em>, <em>password</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.flask_httpauth.HTTPDigestAuth.generate_ha1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the HA1 hash that can be stored in the user database when <code class="docutils literal"><span class="pre">use_ha1_pw</span></code> is set to True in the constructor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.flask_httpauth.HTTPDigestAuth.generate_nonce">
+<code class="descname">generate_nonce</code><span class="sig-paren">(</span><em>nonce_making_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.flask_httpauth.HTTPDigestAuth.generate_nonce" title="Permalink to this definition">¶</a></dt>
+<dd><p>If defined, this callback function will be called by the framework to
+generate a nonce.  If this is defined, <code class="docutils literal"><span class="pre">verify_nonce</span></code> should
+also be defined.</p>
+<p>This can be used to use a state storage mechanism other than the session.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.flask_httpauth.HTTPDigestAuth.verify_nonce">
+<code class="descname">verify_nonce</code><span class="sig-paren">(</span><em>nonce_verify_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.flask_httpauth.HTTPDigestAuth.verify_nonce" title="Permalink to this definition">¶</a></dt>
+<dd><p>If defined, this callback function will be called by the framework to
+verify that a nonce is valid.  It will be called with a single argument:
+the nonce to be verified.</p>
+<p>This can be used to use a state storage mechanism other than the session.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.flask_httpauth.HTTPDigestAuth.generate_opaque">
+<code class="descname">generate_opaque</code><span class="sig-paren">(</span><em>opaque_making_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.flask_httpauth.HTTPDigestAuth.generate_opaque" title="Permalink to this definition">¶</a></dt>
+<dd><p>If defined, this callback function will be called by the framework to
+generate an opaque value.  If this is defined, <code class="docutils literal"><span class="pre">verify_opaque</span></code> should
+also be defined.</p>
+<p>This can be used to use a state storage mechanism other than the session.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.flask_httpauth.HTTPDigestAuth.verify_opaque">
+<code class="descname">verify_opaque</code><span class="sig-paren">(</span><em>opaque_verify_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.flask_httpauth.HTTPDigestAuth.verify_opaque" title="Permalink to this definition">¶</a></dt>
+<dd><p>If defined, this callback function will be called by the framework to
+verify that an opaque value is valid.  It will be called with a single
+argument: the opaque value to be verified.</p>
+<p>This can be used to use a state storage mechanism other than the session.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.flask_httpauth.HTTPDigestAuth.get_password">
+<code class="descname">get_password</code><span class="sig-paren">(</span><em>password_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.flask_httpauth.HTTPDigestAuth.get_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>See basic authentication for documentation and examples.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.flask_httpauth.HTTPDigestAuth.error_handler">
+<code class="descname">error_handler</code><span class="sig-paren">(</span><em>error_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.flask_httpauth.HTTPDigestAuth.error_handler" title="Permalink to this definition">¶</a></dt>
+<dd><p>See basic authentication for documentation and examples.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.flask_httpauth.HTTPDigestAuth.login_required">
+<code class="descname">login_required</code><span class="sig-paren">(</span><em>view_function_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.flask_httpauth.HTTPDigestAuth.login_required" title="Permalink to this definition">¶</a></dt>
+<dd><p>See basic authentication for documentation and examples.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="flask_httpauth.flask_httpauth.HTTPDigestAuth.username">
+<code class="descname">username</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flask_httpauth.flask_httpauth.HTTPDigestAuth.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>See basic authentication for documentation and examples.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <a href="http://github.com/miguelgrinberg/Flask-HTTPAuth"><img style="position: fixed; top: 0; right: 0; border: 0;"
+    src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  
+
+  
+  </div>
+  
+
+  </body>
+</html>
