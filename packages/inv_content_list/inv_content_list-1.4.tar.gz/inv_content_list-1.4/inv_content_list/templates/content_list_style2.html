@@ -1,0 +1,11 @@
+this is the list page
+
+{% if content %}
+<ul>
+    {% for course in content %}
+    <li><a href="{% url 'course_detail' course_id=course.course_id %}">{{ course.course_name }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No polls are available.</p>
+{% endif %}
