@@ -1,0 +1,56 @@
+Metadata-Version: 1.0
+Name: deploybot-cli
+Version: 0.2.2
+Summary: Deploybot API Client
+Home-page: https://github.com/mrprompt/deploybot-cli
+Author: Thiago Paes
+Author-email: mrprompt@gmail.com
+License: GPL
+Description: # Deploybot Client
+        
+        [![Build Status](https://travis-ci.org/mrprompt/deploybot-cli.svg?branch=master)](https://travis-ci.org/mrprompt/deploybot-cli)
+        [![Code Climate](https://codeclimate.com/github/mrprompt/deploybot-cli/badges/gpa.svg)](https://codeclimate.com/github/mrprompt/deploybot-cli)
+        [![Test Coverage](https://codeclimate.com/github/mrprompt/deploybot-cli/badges/coverage.svg)](https://codeclimate.com/github/mrprompt/deploybot-cli/coverage)
+        
+        A client to [Deploybot](https://www.deploybot.com) service.
+        
+        # Install
+        
+        ```
+        pip install deploybot-cli
+        ```
+        
+        # Configuration
+        
+        ```
+        DEPLOYBOT_ACCOUNT="foo"
+        DEPLOYBOT_KEY="foo123bar456bar"
+        COLUMN_WIDTH=15 (optional - default = 32)
+        COLUMN_STYLE="block" (optional - default = fancy_grid, availables = round, fancy_grid, grid, clean and block)
+        ```
+        
+        # Usage
+        
+        ```
+        - deploybot-cli help
+        - deploybot-cli user list
+        - deploybot-cli user get [user_id]
+        - deploybot-cli deploy list [repository_id] [environment_id]
+        - deploybot-cli deploy get [deploy_id]
+        - deploybot-cli deploy trigger [deploy_id]
+        - deploybot-cli environment list [repository_id]
+        - deploybot-cli environment get [environment_id]
+        - deploybot-cli repository list
+        - deploybot-cli repository get [repository_id]
+        - deploybot-cli server list [repository_id] [environment_id]
+        - deploybot-cli server get [server_id]
+        
+        ```
+        
+        # Test
+        
+        ```
+        python setup.py test
+        ```
+Keywords: deploy,service,api,client,cli,deploybot,continuous,delivery,cd
+Platform: UNKNOWN
