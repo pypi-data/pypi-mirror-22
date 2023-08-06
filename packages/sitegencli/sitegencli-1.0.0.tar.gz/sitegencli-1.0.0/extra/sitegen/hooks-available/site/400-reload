@@ -1,0 +1,16 @@
+#! /usr/bin/env sh
+
+event="${1}"
+host="${2}"
+root_dir="${3}"
+conf_conf="${4}"
+conf_include="${5}"
+site_conf="${6}"
+site_include="${7}"
+
+if [ "${event}" != "post" ]
+then
+    exit 0
+fi
+
+service apache2 reload

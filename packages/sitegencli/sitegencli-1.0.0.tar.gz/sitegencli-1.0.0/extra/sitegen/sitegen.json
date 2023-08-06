@@ -1,0 +1,42 @@
+{
+  "siteConfDir": "/etc/apache2/sites-available/",
+  "siteDir": "/var/",
+  "confDir": "/etc/sitegen/",
+  "certRenewTime": 5356800,
+  "letsencryptCommands": [
+    {
+      "patterns": [
+        "example.com",
+        "*.example.com"
+      ],
+      "command": {
+        "letsencryptCommand": "certbot",
+        "letsencryptArgs": [
+          "--agree-tos",
+          "--text",
+          "--renew-by-default",
+          "--webroot",
+          "--webroot-path",
+          "/tmp/acme-challenge/",
+          "certonly"
+        ]
+      }
+    },
+    {
+      "patterns": "*",
+      "command": {
+        "letsencryptCommand": "certbot",
+        "letsencryptArgs": [
+          "--agree-tos",
+          "--text",
+          "--renew-by-default",
+          "--authenticator",
+          "certbot-pdns:auth",
+          "certonly"
+        ]
+      }
+    }
+  ],
+  "letsencryptDir": "/etc/letsencrypt/live/",
+  "certDir": "/etc/ssl/private/"
+}
