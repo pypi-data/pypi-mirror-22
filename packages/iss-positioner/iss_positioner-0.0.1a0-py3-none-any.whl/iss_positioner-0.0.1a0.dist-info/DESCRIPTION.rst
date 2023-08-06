@@ -1,0 +1,58 @@
+Requirements
+------------
+
+- aiohttp >= 2.1.0
+- aioredis >= 0.3.1
+- dateutils >= 0.6.6
+- pyaml >= 16.12.2
+- pyephem >= 3.7.6.0
+- tqdm >= 4.14.0
+- ujson >= 1.35
+
+Extra
+-----
+
+- redis
+
+
+Installing
+----------
+
+::
+
+    pip install iss-positioner
+
+
+Getting started
+---------------
+
+Start aiohttp application:
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+    # -*- coding: utf-8 -*-
+    import logging
+    import os
+
+    from aiohttp.web import run_app
+
+    from iss_positioner import ISSPositionerService, util, LOG_FORMAT
+
+    DIR = os.path.join(os.path.dirname(__file__))
+    CFG = util.load_cfg(path=os.path.join(DIR, 'iss-positioner.yml'))
+
+    if __name__ == '__main__':
+        logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
+        app = ISSPositionerService(config=CFG)
+        run_app(app, port=80)
+
+
+More code examples into `examples` directory
+
+Source code
+-----------
+
+The latest developer version is available in a github repository:
+https://github.com/nkoshell/iss-positioner
+
