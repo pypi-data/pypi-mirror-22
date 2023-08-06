@@ -1,0 +1,83 @@
+Metadata-Version: 2.0
+Name: pyim
+Version: 0.2.1
+Summary: Tool for identifying transposon insertions from targeted DNA-sequencing data.
+Home-page: https://github.com/jrderuiter/pyim
+Author: Julian de Ruiter
+Author-email: julianderuiter@gmail.com
+License: MIT license
+Keywords: pyim
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: cutadapt (>=1.8)
+Requires-Dist: intervaltree (>=2.1)
+Requires-Dist: natsort
+Requires-Dist: numpy
+Requires-Dist: pandas (>=0.18)
+Requires-Dist: pyfaidx (>=0.4.8.1)
+Requires-Dist: pysam (>=0.9)
+Requires-Dist: rpy2 (>=2.8.2)
+Requires-Dist: toolz (>=0.8)
+Requires-Dist: tqdm (>=4.7)
+Provides-Extra: dev
+Requires-Dist: bumpversion; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: pytest-cov; extra == 'dev'
+Requires-Dist: pytest-helpers-namespace; extra == 'dev'
+Requires-Dist: pytest-mock; extra == 'dev'
+Requires-Dist: python-coveralls; extra == 'dev'
+Requires-Dist: sphinx; extra == 'dev'
+Requires-Dist: sphinx-autobuild; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme; extra == 'dev'
+
+PyIM
+====
+
+.. image:: https://img.shields.io/travis/jrderuiter/pyim.svg
+        :target: https://travis-ci.org/jrderuiter/pyim
+
+PyIM (Python Insertional Mutagenesis) is a python package for analyzing
+insertional mutagenesis data from targeted sequencing of transposon insertion
+sites. The package provides several command line tools for identifying
+insertions, calling common insertion sites (CISs) and annotating
+insertions/CISs directly from the command line. It also aims to provides
+the basic building blocks for implementing new pipelines, CIS callers, etc.
+
+Documentation
+=============
+
+PyIM's documentation is available at
+`jrderuiter.github.io/pyim <http://jrderuiter.github.io/pyim/>`_.
+
+License
+=======
+
+This software is released under the MIT license.
+
+
+=======
+History
+=======
+
+0.2.1 (2017-06-08)
+------------------
+
+* Updated documentation for PyPI.
+
+0.2.0 (2017-05-10)
+------------------
+
+* Refactored pipeline structure.
+* Added ShearSplink and Nextera pipelines.
+
+0.1.0 (2016-09-01)
+------------------
+
+* Initial release.
+
+
