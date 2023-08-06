@@ -1,0 +1,844 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>smsc package &mdash; smsc 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="smsc 0.1.0 documentation" href="index.html"/>
+        <link rel="prev" title="Welcome to smsc’s documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> smsc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">smsc package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-smsc.api">smsc.api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-smsc.exceptions">smsc.exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-smsc.messages">smsc.messages module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-smsc.responses">smsc.responses module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-smsc">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">smsc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>smsc package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/smsc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="smsc-package">
+<h1>smsc package<a class="headerlink" href="#smsc-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-smsc.api">
+<span id="smsc-api-module"></span><h2>smsc.api module<a class="headerlink" href="#module-smsc.api" title="Permalink to this headline">¶</a></h2>
+<p>smsc.api module.</p>
+<p>This module implements the SMSC.ru HTTP API.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2017 by Alexey Shevchenko.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">MIT, see LICENSE for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="smsc.api.SMSC">
+<em class="property">class </em><code class="descclassname">smsc.api.</code><code class="descname">SMSC</code><span class="sig-paren">(</span><em>login: str</em>, <em>password: str</em>, <em>sender: typing.Union[str</em>, <em>NoneType] = None</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/smsc/api.html#SMSC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.api.SMSC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class for interaction with smsc.ru API.</p>
+<p>Usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smsc.api</span> <span class="k">import</span> <span class="n">SMSC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">SMSC</span><span class="p">(</span><span class="n">login</span><span class="o">=</span><span class="s2">&quot;alexey&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;psw&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span>
+<span class="go">&lt;SMSC login=&#39;alexey&#39; sender=&#39;SMSC.ru&#39;&gt;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>login</strong> (<em>str</em>) – Account login name</li>
+<li><strong>password</strong> (<em>str</em>) – Password or MD5 hash of password in lower case</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="smsc.api.SMSC.get_balance">
+<code class="descname">get_balance</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; smsc.responses.BalanceResponse<a class="reference internal" href="_modules/smsc/api.html#SMSC.get_balance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.api.SMSC.get_balance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current account balance.</p>
+<p>Usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smsc.api</span> <span class="k">import</span> <span class="n">SMSC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">SMSC</span><span class="p">(</span><span class="n">login</span><span class="o">=</span><span class="s1">&#39;alexey&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;psw&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_balance</span><span class="p">()</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span>  
+<span class="go">&lt;BalanceResponse balance=100.01 credit=None currency=RUR&gt;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Returns the API answer wrapped in the <cite>BalanceResponse</cite> object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#smsc.responses.BalanceResponse" title="smsc.responses.BalanceResponse">BalanceResponse</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="smsc.api.SMSC.get_cost">
+<code class="descname">get_cost</code><span class="sig-paren">(</span><em>to: typing.Union[str, typing.List[str]], message: smsc.messages.Message</em><span class="sig-paren">)</span> &#x2192; smsc.responses.CostResponse<a class="reference internal" href="_modules/smsc/api.html#SMSC.get_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.api.SMSC.get_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve cost of the message.</p>
+<p>Usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smsc.messages</span> <span class="k">import</span> <span class="n">SMSMessage</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smsc.api</span> <span class="k">import</span> <span class="n">SMSC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">SMSC</span><span class="p">(</span><span class="n">login</span><span class="o">=</span><span class="s1">&#39;alexey&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;psw&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_cost</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="s1">&#39;79999999999&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">SMSMessage</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Hello, World!&#39;</span><span class="p">))</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">count</span>  
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">cost</span>  
+<span class="go">1.44</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>to</strong> (<em>str|List</em><em>[</em><em>str</em><em>]</em>) – Phone number or list of phone numbers</li>
+<li><strong>message</strong> (<a class="reference internal" href="#smsc.messages.Message" title="smsc.messages.Message"><em>Message</em></a>) – Concrete message instance for measure cost</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Returns the API answer wrapped in the <cite>CostResponse</cite> object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#smsc.responses.CostResponse" title="smsc.responses.CostResponse">CostResponse</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="smsc.api.SMSC.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><em>to: typing.Union[str, typing.List[str]], msg_id: typing.Union[str, typing.List[str]]</em><span class="sig-paren">)</span> &#x2192; typing.List[smsc.responses.StatusResponse]<a class="reference internal" href="_modules/smsc/api.html#SMSC.get_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.api.SMSC.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current status of sent message.</p>
+<p>Usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smsc.api</span> <span class="k">import</span> <span class="n">SMSC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">SMSC</span><span class="p">(</span><span class="n">login</span><span class="o">=</span><span class="s1">&#39;alexey&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;psw&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="s1">&#39;79999999999&#39;</span><span class="p">,</span> <span class="n">msg_id</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">status</span>  
+<span class="go">&lt;Status status=1 name=Доставлено&gt;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>to</strong> (<em>str|List</em><em>[</em><em>str</em><em>]</em>) – Phone number or list of phone numbers</li>
+<li><strong>msg_id</strong> (<em>str|List</em><em>[</em><em>str</em><em>]</em>) – Identification of sent message or list of them</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Returns the API answer wrapped in the list of <cite>StatusResponse</cite> objects</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List[<a class="reference internal" href="#smsc.responses.StatusResponse" title="smsc.responses.StatusResponse">StatusResponse</a>]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="smsc.api.SMSC.send">
+<code class="descname">send</code><span class="sig-paren">(</span><em>to: typing.Union[str, typing.List[str]], message: smsc.messages.Message</em><span class="sig-paren">)</span> &#x2192; smsc.responses.SendResponse<a class="reference internal" href="_modules/smsc/api.html#SMSC.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.api.SMSC.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the message.</p>
+<p>Usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smsc.messages</span> <span class="k">import</span> <span class="n">SMSMessage</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smsc.api</span> <span class="k">import</span> <span class="n">SMSC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">SMSC</span><span class="p">(</span><span class="n">login</span><span class="o">=</span><span class="s1">&#39;alexey&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;psw&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="s1">&#39;79999999999&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">SMSMessage</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Hello, World!&#39;</span><span class="p">))</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">count</span>  
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">cost</span>  
+<span class="go">1.44</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>to</strong> (<em>str|List</em><em>[</em><em>str</em><em>]</em>) – Phone number or list of phone numbers</li>
+<li><strong>message</strong> (<a class="reference internal" href="#smsc.messages.Message" title="smsc.messages.Message"><em>Message</em></a>) – Concrete message instance for sending</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Returns the API answer wrapped in the <cite>SendResponse</cite> object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#smsc.responses.SendResponse" title="smsc.responses.SendResponse">SendResponse</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-smsc.exceptions">
+<span id="smsc-exceptions-module"></span><h2>smsc.exceptions module<a class="headerlink" href="#module-smsc.exceptions" title="Permalink to this headline">¶</a></h2>
+<p>smsc.exceptions module.</p>
+<p>This module contains the set of smsc’ exceptions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2017 by Alexey Shevchenko.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">MIT, see LICENSE for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="exception">
+<dt id="smsc.exceptions.GetBalanceError">
+<em class="property">exception </em><code class="descclassname">smsc.exceptions.</code><code class="descname">GetBalanceError</code><a class="reference internal" href="_modules/smsc/exceptions.html#GetBalanceError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.exceptions.GetBalanceError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#smsc.exceptions.SMSCException" title="smsc.exceptions.SMSCException"><code class="xref py py-class docutils literal"><span class="pre">smsc.exceptions.SMSCException</span></code></a></p>
+<p>A Get Balance error occurred.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="smsc.exceptions.GetCostError">
+<em class="property">exception </em><code class="descclassname">smsc.exceptions.</code><code class="descname">GetCostError</code><a class="reference internal" href="_modules/smsc/exceptions.html#GetCostError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.exceptions.GetCostError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#smsc.exceptions.SMSCException" title="smsc.exceptions.SMSCException"><code class="xref py py-class docutils literal"><span class="pre">smsc.exceptions.SMSCException</span></code></a></p>
+<p>A Get Cost error occurred.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="smsc.exceptions.GetStatusError">
+<em class="property">exception </em><code class="descclassname">smsc.exceptions.</code><code class="descname">GetStatusError</code><a class="reference internal" href="_modules/smsc/exceptions.html#GetStatusError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.exceptions.GetStatusError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#smsc.exceptions.SMSCException" title="smsc.exceptions.SMSCException"><code class="xref py py-class docutils literal"><span class="pre">smsc.exceptions.SMSCException</span></code></a></p>
+<p>A Get Status error occurred.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="smsc.exceptions.SMSCException">
+<em class="property">exception </em><code class="descclassname">smsc.exceptions.</code><code class="descname">SMSCException</code><a class="reference internal" href="_modules/smsc/exceptions.html#SMSCException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.exceptions.SMSCException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>There was an ambiguous exception that occurred while handling your SMSC API request.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="smsc.exceptions.SendError">
+<em class="property">exception </em><code class="descclassname">smsc.exceptions.</code><code class="descname">SendError</code><a class="reference internal" href="_modules/smsc/exceptions.html#SendError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.exceptions.SendError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#smsc.exceptions.SMSCException" title="smsc.exceptions.SMSCException"><code class="xref py py-class docutils literal"><span class="pre">smsc.exceptions.SMSCException</span></code></a></p>
+<p>A Send Message error occurred.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-smsc.messages">
+<span id="smsc-messages-module"></span><h2>smsc.messages module<a class="headerlink" href="#module-smsc.messages" title="Permalink to this headline">¶</a></h2>
+<p>smsc.messages module.</p>
+<p>This module contains the messages objects that power smsc library.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2017 by Alexey Shevchenko.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">MIT, see LICENSE for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="smsc.messages.FlashMessage">
+<em class="property">class </em><code class="descclassname">smsc.messages.</code><code class="descname">FlashMessage</code><span class="sig-paren">(</span><em>text: str</em>, <em>**kwargs: dict</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/smsc/messages.html#FlashMessage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.messages.FlashMessage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#smsc.messages.Message" title="smsc.messages.Message"><code class="xref py py-class docutils literal"><span class="pre">smsc.messages.Message</span></code></a></p>
+<p>Flash-SMS message type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>text</strong> (<em>str</em>) – Text of the message</li>
+<li><strong>kwargs</strong> (<em>dict</em>) – Dictionary for optional API parameters</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smsc</span> <span class="k">import</span> <span class="n">FlashMessage</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">FlashMessage</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">&lt;FlashMessage text=Hello, World! format=flash&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="smsc.messages.Message">
+<em class="property">class </em><code class="descclassname">smsc.messages.</code><code class="descname">Message</code><span class="sig-paren">(</span><em>text: str</em>, <em>msg_format: typing.Union[str</em>, <em>NoneType] = None</em>, <em>**kwargs: dict</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/smsc/messages.html#Message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.messages.Message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Basic class for messages of ant type.</p>
+<p>Preferred for internal usage.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>text</strong> (<em>str</em>) – Text of the message</li>
+<li><strong>msg_format</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Message format. If None or empty - default, SMS message</li>
+<li><strong>kwargs</strong> (<em>dict</em>) – Dictionary for optional API parameters</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="smsc.messages.Message.encode">
+<code class="descname">encode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; typing.Dict[str, typing.Any]<a class="reference internal" href="_modules/smsc/messages.html#Message.encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.messages.Message.encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Message parameters in dict, prepared for the API.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="smsc.messages.Message.format">
+<code class="descname">format</code><a class="headerlink" href="#smsc.messages.Message.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format of the message. Default is SMS Message.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="smsc.messages.Message.text">
+<code class="descname">text</code><a class="headerlink" href="#smsc.messages.Message.text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Text of the message.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="smsc.messages.SMSMessage">
+<em class="property">class </em><code class="descclassname">smsc.messages.</code><code class="descname">SMSMessage</code><span class="sig-paren">(</span><em>text: str</em>, <em>**kwargs: dict</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/smsc/messages.html#SMSMessage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.messages.SMSMessage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#smsc.messages.Message" title="smsc.messages.Message"><code class="xref py py-class docutils literal"><span class="pre">smsc.messages.Message</span></code></a></p>
+<p>SMS message type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>text</strong> (<em>str</em>) – Text of the message</li>
+<li><strong>kwargs</strong> (<em>dict</em>) – Dictionary for optional API parameters</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smsc</span> <span class="k">import</span> <span class="n">SMSMessage</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">SMSMessage</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">&lt;SMSMessage text=Hello, World! format=None&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="smsc.messages.ViberMessage">
+<em class="property">class </em><code class="descclassname">smsc.messages.</code><code class="descname">ViberMessage</code><span class="sig-paren">(</span><em>text: str</em>, <em>**kwargs: dict</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/smsc/messages.html#ViberMessage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.messages.ViberMessage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#smsc.messages.Message" title="smsc.messages.Message"><code class="xref py py-class docutils literal"><span class="pre">smsc.messages.Message</span></code></a></p>
+<p>Viber messenger message type.</p>
+<p>Note: Seems currently not working now.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>text</strong> (<em>str</em>) – Text of the message</li>
+<li><strong>kwargs</strong> (<em>dict</em>) – Dictionary for optional API parameters</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smsc</span> <span class="k">import</span> <span class="n">ViberMessage</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">ViberMessage</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">&lt;ViberMessage text=Hello, World! format=viber&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-smsc.responses">
+<span id="smsc-responses-module"></span><h2>smsc.responses module<a class="headerlink" href="#module-smsc.responses" title="Permalink to this headline">¶</a></h2>
+<p>smsc.responses module.</p>
+<p>This module contains the responses objects wrapping SMSC.ru API answers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2017 by Alexey Shevchenko.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">MIT, see LICENSE for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="smsc.responses.BalanceResponse">
+<em class="property">class </em><code class="descclassname">smsc.responses.</code><code class="descname">BalanceResponse</code><span class="sig-paren">(</span><em>obj: typing.Dict[str, typing.Any]</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/smsc/responses.html#BalanceResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.responses.BalanceResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#smsc.responses.Response" title="smsc.responses.Response"><code class="xref py py-class docutils literal"><span class="pre">smsc.responses.Response</span></code></a></p>
+<p>Response for get account balance API command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj</strong> (<em>dict</em>) – Dictionary from API JSON response</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="smsc.responses.BalanceResponse.balance">
+<code class="descname">balance</code><a class="headerlink" href="#smsc.responses.BalanceResponse.balance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actual account balance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="smsc.responses.BalanceResponse.credit">
+<code class="descname">credit</code><a class="headerlink" href="#smsc.responses.BalanceResponse.credit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Available credit of account (if applied).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="smsc.responses.BalanceResponse.currency">
+<code class="descname">currency</code><a class="headerlink" href="#smsc.responses.BalanceResponse.currency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Currency for current account.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="smsc.responses.CostResponse">
+<em class="property">class </em><code class="descclassname">smsc.responses.</code><code class="descname">CostResponse</code><span class="sig-paren">(</span><em>obj: typing.Dict[str, typing.Any]</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/smsc/responses.html#CostResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.responses.CostResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#smsc.responses.Response" title="smsc.responses.Response"><code class="xref py py-class docutils literal"><span class="pre">smsc.responses.Response</span></code></a></p>
+<p>Response for get cost (send variation) API command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj</strong> (<em>dict</em>) – Dictionary from API JSON response</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="smsc.responses.CostResponse.cost">
+<code class="descname">cost</code><a class="headerlink" href="#smsc.responses.CostResponse.cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cost of message.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="smsc.responses.CostResponse.count">
+<code class="descname">count</code><a class="headerlink" href="#smsc.responses.CostResponse.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count of billed message parts.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="smsc.responses.Response">
+<em class="property">class </em><code class="descclassname">smsc.responses.</code><code class="descname">Response</code><span class="sig-paren">(</span><em>obj: typing.Dict[str, typing.Any]</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/smsc/responses.html#Response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.responses.Response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Basic class for response wrappers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj</strong> (<em>dict</em>) – Dictionary from API JSON response</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="smsc.responses.Response.error">
+<code class="descname">error</code><a class="headerlink" href="#smsc.responses.Response.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Error in response, if present.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="smsc.responses.SMSCError">
+<em class="property">class </em><code class="descclassname">smsc.responses.</code><code class="descname">SMSCError</code><a class="reference internal" href="_modules/smsc/responses.html#SMSCError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.responses.SMSCError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#smsc.responses.SMSCError" title="smsc.responses.SMSCError"><code class="xref py py-class docutils literal"><span class="pre">smsc.responses.SMSCError</span></code></a></p>
+<p>Named tuple for error description with code.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>code</strong> (<em>int</em>) – Code of error</li>
+<li><strong>error</strong> (<em>str</em>) – Description of error</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="smsc.responses.SendResponse">
+<em class="property">class </em><code class="descclassname">smsc.responses.</code><code class="descname">SendResponse</code><span class="sig-paren">(</span><em>obj: typing.Dict[str, typing.Any]</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/smsc/responses.html#SendResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.responses.SendResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#smsc.responses.Response" title="smsc.responses.Response"><code class="xref py py-class docutils literal"><span class="pre">smsc.responses.Response</span></code></a></p>
+<p>Response for send API command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj</strong> (<em>dict</em>) – Dictionary from API JSON response</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="smsc.responses.SendResponse.cost">
+<code class="descname">cost</code><a class="headerlink" href="#smsc.responses.SendResponse.cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cost of sent message.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="smsc.responses.SendResponse.count">
+<code class="descname">count</code><a class="headerlink" href="#smsc.responses.SendResponse.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count of billed message parts.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="smsc.responses.SendResponse.message_id">
+<code class="descname">message_id</code><a class="headerlink" href="#smsc.responses.SendResponse.message_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Id of sent message.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="smsc.responses.Status">
+<em class="property">class </em><code class="descclassname">smsc.responses.</code><code class="descname">Status</code><span class="sig-paren">(</span><em>obj: typing.Dict[str, typing.Any]</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/smsc/responses.html#Status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.responses.Status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Message delivery status with identification.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj</strong> (<em>dict</em>) – Dictionary from API JSON response</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="smsc.responses.Status.name">
+<code class="descname">name</code><a class="headerlink" href="#smsc.responses.Status.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delivery status description.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="smsc.responses.Status.status_id">
+<code class="descname">status_id</code><a class="headerlink" href="#smsc.responses.Status.status_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Id of delivery status.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="smsc.responses.StatusResponse">
+<em class="property">class </em><code class="descclassname">smsc.responses.</code><code class="descname">StatusResponse</code><span class="sig-paren">(</span><em>obj: typing.Dict[str, typing.Any]</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/smsc/responses.html#StatusResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#smsc.responses.StatusResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#smsc.responses.Response" title="smsc.responses.Response"><code class="xref py py-class docutils literal"><span class="pre">smsc.responses.Response</span></code></a></p>
+<p>Response for get status API command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj</strong> (<em>dict</em>) – Dictionary from API JSON response</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="smsc.responses.StatusResponse.data">
+<code class="descname">data</code><a class="headerlink" href="#smsc.responses.StatusResponse.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delivery status detailed data.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="smsc.responses.StatusResponse.status">
+<code class="descname">status</code><a class="headerlink" href="#smsc.responses.StatusResponse.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Message delivery status with identification.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-smsc">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-smsc" title="Permalink to this headline">¶</a></h2>
+<p>SMSC.ru API Library.</p>
+<p>Smsc is an library to send messages through SMSC.ru HTTP API.
+Basic usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smsc.messages</span> <span class="k">import</span> <span class="n">SMSMessage</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smsc.api</span> <span class="k">import</span> <span class="n">SMSC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">SMSC</span><span class="p">(</span><span class="n">login</span><span class="o">=</span><span class="s1">&#39;alexey&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;psw&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="s1">&#39;79999999999&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">SMSMessage</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Hello, World!&#39;</span><span class="p">))</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">count</span> 
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">cost</span> 
+<span class="go">1.44</span>
+</pre></div>
+</div>
+<p>The some other API methods are supported - see <cite>smsc.api</cite>. Full documentation is at
+<a class="reference external" href="http://smsc_python.readthedocs.io/en/latest/">Read the Docs</a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2017 by Alexey Shevchenko.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">MIT, see LICENSE for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to smsc’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Alexey Shevchenko.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

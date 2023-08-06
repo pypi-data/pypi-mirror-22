@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>smsc.api &mdash; smsc 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="smsc 0.1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> smsc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../smsc.html">smsc package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">smsc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>smsc.api</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for smsc.api</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">smsc.api module.</span>
+
+<span class="sd">This module implements the SMSC.ru HTTP API.</span>
+
+<span class="sd">:copyright: (c) 2017 by Alexey Shevchenko.</span>
+<span class="sd">:license: MIT, see LICENSE for more details.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>  <span class="c1"># noqa: T005</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>  <span class="c1"># noqa: T005</span>
+<span class="kn">from</span> <span class="nn">furl</span> <span class="k">import</span> <span class="n">furl</span>
+
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="k">import</span> <span class="n">GetBalanceError</span><span class="p">,</span> <span class="n">GetCostError</span><span class="p">,</span> <span class="n">GetStatusError</span><span class="p">,</span> <span class="n">SendError</span>
+<span class="kn">from</span> <span class="nn">.messages</span> <span class="k">import</span> <span class="n">Message</span>
+<span class="kn">from</span> <span class="nn">.responses</span> <span class="k">import</span> <span class="n">BalanceResponse</span><span class="p">,</span> <span class="n">CostResponse</span><span class="p">,</span> <span class="n">SendResponse</span><span class="p">,</span> <span class="n">StatusResponse</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> {</span><span class="si">%(pathname)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">} </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SMSC"><a class="viewcode-back" href="../../smsc.html#smsc.api.SMSC">[docs]</a><span class="k">class</span> <span class="nc">SMSC</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for interaction with smsc.ru API.</span>
+
+<span class="sd">    Usage::</span>
+
+<span class="sd">        &gt;&gt;&gt; from smsc.api import SMSC</span>
+<span class="sd">        &gt;&gt;&gt; client = SMSC(login=&quot;alexey&quot;, password=&quot;psw&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; client</span>
+<span class="sd">        &lt;SMSC login=&#39;alexey&#39; sender=&#39;SMSC.ru&#39;&gt;</span>
+
+<span class="sd">    :param str login: Account login name</span>
+<span class="sd">    :param str password: Password or MD5 hash of password in lower case</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_url</span> <span class="o">=</span> <span class="s2">&quot;https://smsc.ru/sys/&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">login</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sender</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D102</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__login</span> <span class="o">=</span> <span class="n">login</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__password</span> <span class="o">=</span> <span class="n">password</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__sender</span> <span class="o">=</span> <span class="n">sender</span> <span class="k">if</span> <span class="n">sender</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;SMSC.ru&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Represent object as string.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;</span><span class="si">%s</span><span class="s2"> login=&#39;</span><span class="si">%s</span><span class="s2">&#39; sender=&#39;</span><span class="si">%s</span><span class="s2">&#39;&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__login</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sender</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Represent object for debug purposes.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">__auth</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;login&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__login</span><span class="p">,</span> <span class="s2">&quot;psw&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__password</span><span class="p">,</span> <span class="s2">&quot;fmt&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+
+<div class="viewcode-block" id="SMSC.send"><a class="viewcode-back" href="../../smsc.html#smsc.api.SMSC.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">message</span><span class="p">:</span> <span class="n">Message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SendResponse</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Send the message.</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            &gt;&gt;&gt; from smsc.messages import SMSMessage</span>
+<span class="sd">            &gt;&gt;&gt; from smsc.api import SMSC</span>
+<span class="sd">            &gt;&gt;&gt; client = SMSC(login=&#39;alexey&#39;, password=&#39;psw&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; res = client.send(to=&#39;79999999999&#39;, message=SMSMessage(text=&#39;Hello, World!&#39;))  # doctest: +SKIP</span>
+<span class="sd">            &gt;&gt;&gt; res.count  # doctest: +SKIP</span>
+<span class="sd">            1</span>
+<span class="sd">            &gt;&gt;&gt; res.cost  # doctest: +SKIP</span>
+<span class="sd">            1.44</span>
+
+<span class="sd">        :param str|List[str] to: Phone number or list of phone numbers</span>
+<span class="sd">        :param Message message: Concrete message instance for sending</span>
+<span class="sd">        :return: Returns the API answer wrapped in the `SendResponse` object</span>
+<span class="sd">        :rtype: SendResponse</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">furl</span><span class="p">(</span><span class="n">SMSC</span><span class="o">.</span><span class="n">_url</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;send.php&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__auth</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s2">&quot;sender&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sender</span><span class="p">})</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s2">&quot;cost&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;phones&quot;</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">to</span> <span class="ow">or</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">to</span><span class="p">)})</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SendError</span><span class="p">(</span><span class="nb">str</span><span class="p">([</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">SendResponse</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="SMSC.get_cost"><a class="viewcode-back" href="../../smsc.html#smsc.api.SMSC.get_cost">[docs]</a>    <span class="k">def</span> <span class="nf">get_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">message</span><span class="p">:</span> <span class="n">Message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CostResponse</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve cost of the message.</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            &gt;&gt;&gt; from smsc.messages import SMSMessage</span>
+<span class="sd">            &gt;&gt;&gt; from smsc.api import SMSC</span>
+<span class="sd">            &gt;&gt;&gt; client = SMSC(login=&#39;alexey&#39;, password=&#39;psw&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; res = client.get_cost(to=&#39;79999999999&#39;, message=SMSMessage(text=&#39;Hello, World!&#39;))  # doctest: +SKIP</span>
+<span class="sd">            &gt;&gt;&gt; res.count  # doctest: +SKIP</span>
+<span class="sd">            1</span>
+<span class="sd">            &gt;&gt;&gt; res.cost  # doctest: +SKIP</span>
+<span class="sd">            1.44</span>
+
+<span class="sd">        :param str|List[str] to: Phone number or list of phone numbers</span>
+<span class="sd">        :param Message message: Concrete message instance for measure cost</span>
+<span class="sd">        :return: Returns the API answer wrapped in the `CostResponse` object</span>
+<span class="sd">        :rtype: CostResponse</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">furl</span><span class="p">(</span><span class="n">SMSC</span><span class="o">.</span><span class="n">_url</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;send.php&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__auth</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s2">&quot;sender&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sender</span><span class="p">})</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s2">&quot;cost&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;phones&quot;</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">to</span> <span class="ow">or</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">to</span><span class="p">)})</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">GetCostError</span><span class="p">(</span><span class="nb">str</span><span class="p">([</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">CostResponse</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="SMSC.get_status"><a class="viewcode-back" href="../../smsc.html#smsc.api.SMSC.get_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">msg_id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">StatusResponse</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get current status of sent message.</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            &gt;&gt;&gt; from smsc.api import SMSC</span>
+<span class="sd">            &gt;&gt;&gt; client = SMSC(login=&#39;alexey&#39;, password=&#39;psw&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; res = client.get_status(to=&#39;79999999999&#39;, msg_id=&#39;1&#39;)  # doctest: +SKIP</span>
+<span class="sd">            &gt;&gt;&gt; res[0].status  # doctest: +SKIP</span>
+<span class="sd">            &lt;Status status=1 name=Доставлено&gt;</span>
+
+<span class="sd">        :param str|List[str] to: Phone number or list of phone numbers</span>
+<span class="sd">        :param str|List[str] msg_id: Identification of sent message or list of them</span>
+<span class="sd">        :return: Returns the API answer wrapped in the list of `StatusResponse` objects</span>
+<span class="sd">        :rtype: List[StatusResponse]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">furl</span><span class="p">(</span><span class="n">SMSC</span><span class="o">.</span><span class="n">_url</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;status.php&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__auth</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s2">&quot;charset&quot;</span><span class="p">:</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s2">&quot;phone&quot;</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">to</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">])</span> <span class="ow">or</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">to</span><span class="p">)})</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg_id</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">msg_id</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">])</span> <span class="ow">or</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">msg_id</span><span class="p">)})</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">GetStatusError</span><span class="p">(</span><span class="nb">str</span><span class="p">([</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">]))</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">GetStatusError</span><span class="p">(</span><span class="nb">str</span><span class="p">([</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">res</span><span class="p">]))</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StatusResponse</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="SMSC.get_balance"><a class="viewcode-back" href="../../smsc.html#smsc.api.SMSC.get_balance">[docs]</a>    <span class="k">def</span> <span class="nf">get_balance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BalanceResponse</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get current account balance.</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            &gt;&gt;&gt; from smsc.api import SMSC</span>
+<span class="sd">            &gt;&gt;&gt; client = SMSC(login=&#39;alexey&#39;, password=&#39;psw&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; res = client.get_balance()  # doctest: +SKIP</span>
+<span class="sd">            &gt;&gt;&gt; res  # doctest: +SKIP</span>
+<span class="sd">            &lt;BalanceResponse balance=100.01 credit=None currency=RUR&gt;</span>
+
+<span class="sd">        :return: Returns the API answer wrapped in the `BalanceResponse` object</span>
+<span class="sd">        :rtype: BalanceResponse</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">furl</span><span class="p">(</span><span class="n">SMSC</span><span class="o">.</span><span class="n">_url</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;balance.php&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__auth</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s2">&quot;cur&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">GetBalanceError</span><span class="p">(</span><span class="nb">str</span><span class="p">([</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">BalanceResponse</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span></div></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Alexey Shevchenko.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
