@@ -1,0 +1,38 @@
+image: python:3.6
+before_script:
+  - pip install tox
+stages:
+  - style
+  - test
+  - deploy
+
+flake8:
+  stage: style
+  script:
+    - tox -e flake8
+
+# We only run with one because AFIP doesn't like us logging in too fast and
+# that breaks concurrent tests.
+py36-django1.10:
+  stage: test
+  script:
+    - echo -e $AFIP_TEST_KEY > testapp/test.key
+    - echo -e $AFIP_TEST_CRT > testapp/test.crt
+    - tox -e django1.10
+  after_script:
+    - pip install codecov
+    - codecov
+
+docs:
+  stage: test
+  script:
+    - tox -e docs
+
+pypi:
+  stage: deploy
+  script:
+    - pip install twine wheel
+    - python setup.py sdist bdist_wheel
+    - twine upload --config-file .pypirc -u $PYPI_USER -p $PYPI_PASSWORD dist/*
+  only:
+    - tags@hobarrera/django-afip
