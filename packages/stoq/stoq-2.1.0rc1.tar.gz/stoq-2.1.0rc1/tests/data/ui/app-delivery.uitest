@@ -1,0 +1,159 @@
+app: DeliveryApp
+GtkWindow(toplevel): title='[Moda Stoq] - Deliveries', hidden
+  GtkVBox():
+    GtkMenuBar():
+      GtkImageMenuItem(): '_File'
+        GtkMenu(): hidden
+          GtkImageMenuItem(): 'New'
+            GtkMenu(): hidden
+              GtkImageMenuItem(): '_Window'
+          GtkSeparatorMenuItem():
+          GtkImageMenuItem(): 'Print...'
+          GtkImageMenuItem(): 'Export to spreadsheet...'
+          GtkSeparatorMenuItem():
+          GtkImageMenuItem(): 'Change password...', hidden
+          GtkImageMenuItem(): 'Sign out...', hidden
+          GtkImageMenuItem(): 'Close'
+          GtkImageMenuItem(): 'Quit', hidden
+      GtkImageMenuItem(): '_Edit'
+        GtkMenu(): hidden
+          GtkImageMenuItem(): '_Preferences'
+      GtkImageMenuItem(): '_View'
+        GtkMenu(): hidden
+          GtkCheckMenuItem(): '_Toolbar'
+          GtkCheckMenuItem(): '_Statusbar'
+          GtkSeparatorMenuItem():
+          GtkCheckMenuItem(): '_Fullscreen'
+      GtkImageMenuItem(): 'Delivery'
+        GtkMenu(): hidden
+          GtkImageMenuItem(): 'Edit...', insensitive
+          GtkSeparatorMenuItem():
+          GtkImageMenuItem(): 'Pick...', insensitive
+          GtkImageMenuItem(): 'Pack...', insensitive
+          GtkImageMenuItem(): 'Send...', insensitive
+          GtkImageMenuItem(): 'Mark as received...', insensitive
+          GtkImageMenuItem(): 'Cancel...', insensitive
+      GtkImageMenuItem(): '_Search', hidden
+        GtkMenu(): hidden
+          GtkMenuItem(): 'Empty', insensitive
+      GtkImageMenuItem(): '_Help'
+        GtkMenu(): hidden
+          GtkImageMenuItem(): 'Delivery help'
+          GtkImageMenuItem(): 'Contents'
+          GtkSeparatorMenuItem():
+          GtkImageMenuItem(): 'Get support online...'
+          GtkImageMenuItem(): 'Online chat...'
+          GtkImageMenuItem(): 'Translate Stoq...'
+          GtkSeparatorMenuItem():
+          GtkImageMenuItem(): '_About'
+    GtkToolbar():
+      GtkMenuToolButton(): 'Home'
+          GtkMenu(): hidden
+            GtkImageMenuItem(): 'Accounts Payable'
+            GtkImageMenuItem(): 'Accounts Receivable'
+            GtkImageMenuItem(): 'Administrative'
+            GtkImageMenuItem(): 'Calendar'
+            GtkImageMenuItem(): 'Delivery', hidden
+            GtkImageMenuItem(): 'Financial'
+            GtkImageMenuItem(): 'Inventory'
+            GtkImageMenuItem(): 'Point of Sales'
+            GtkImageMenuItem(): 'Production'
+            GtkImageMenuItem(): 'Purchase'
+            GtkImageMenuItem(): 'Sales'
+            GtkImageMenuItem(): 'Services'
+            GtkImageMenuItem(): 'Stock'
+            GtkImageMenuItem(): 'Stoq.Link'
+            GtkImageMenuItem(): 'Till'
+      GtkSeparatorToolItem():
+      GtkMenuToolButton(): 'New'
+          GtkMenu(): hidden
+            GtkSeparatorMenuItem():
+            GtkImageMenuItem(): '_Window'
+      GtkMenuToolButton(): 'Search'
+          GtkMenu(): hidden
+            GtkImageMenuItem(): 'Products'
+            GtkImageMenuItem(): 'Services'
+            GtkImageMenuItem(): 'Transporters'
+            GtkImageMenuItem(): 'Clients'
+      GtkSeparatorToolItem():
+      GtkToolButton(): 'Print'
+      GtkToolButton(): 'Quit', hidden
+      GtkSeparatorToolItem():
+      GtkToolButton(): 'Edit...', insensitive
+      GtkToolButton(): 'Send...', insensitive
+      GtkToolButton(): 'Mark as received...', insensitive
+      GtkToolButton(): 'Cancel...', insensitive
+    GtkVBox(expand=True, fill=True):
+      GtkVBox(main_vbox, expand=True, fill=True):
+        GtkHBox(menu_hbox, fill=True):
+        GtkVBox(list_vbox, expand=True, fill=True):
+          GtkEventBox(search_holder, expand=True, fill=True): slave SearchSlave is attached
+            GtkVBox(vbox):
+              GtkHBox(fill=True, padding=6):
+                GtkVBox(filters_box, padding=6):
+                  GtkHBox(hbox):
+                    ComboSearchFilter():
+                      GtkLabel(): 'Branch:'
+                      ProxyComboBox(padding=6):
+                        item: 'Any'
+                        item: 'Moda Stoq', selected
+                        item: 'Stoq Elite Fashion'
+                    ComboSearchFilter(main_filter):
+                      GtkLabel(): 'Show'
+                      ProxyComboBox(padding=6):
+                        item: 'All Deliveries', selected
+                        item: 'Received'
+                        item: 'Waiting'
+                        item: 'Sent'
+                        item: 'Picked'
+                        item: 'Cancelled'
+                        item: 'Packed'
+                    SearchFilter(_primary_filter):
+                      GtkLabel(): 'matching:'
+                      ProxyComboBox(padding=6): hidden
+                        item: 'Contains All Words', selected
+                        item: 'Contains Exactly'
+                        item: 'Identical to'
+                        item: 'Does Not Contain'
+                      HintedEntry(search_entry, padding=6): ''
+                    GtkButton(search_button): 'gtk-find'
+              SearchResultListView(result_view, expand=True, fill=True):
+                column: title='Sale #'
+                column: title='Status'
+                column: title='Client', expand
+                column: title='Status (Description)'
+                column: title='Branch', hidden
+                column: title='Transporter'
+                column: title='Open date'
+                column: title='Cancel date', hidden
+                column: title='Pick date', hidden
+                column: title='Pack date', hidden
+                column: title='Send date'
+                column: title='Receive date', hidden
+                row: 666, u'Waiting', None, None, u'Moda Stoq', None, datetime.datetime(2017, 1, 1, 0, 0), None, None, None, None, None
+                row: 667, u'Waiting', None, None, u'Moda Stoq', None, datetime.datetime(2017, 1, 1, 0, 0), None, None, None, None, None
+    ShellStatusbar():
+      GtkFrame(expand=True, fill=True): hidden
+        GtkHBox():
+          GtkLabel(expand=True, fill=True):
+      GtkHBox(expand=True, fill=True):
+        GtkAlignment(expand=True, fill=True):
+          GtkHBox():
+            GtkLabel(expand=True, fill=True): 'Test Statusbar test'
+            GtkVSeparator():
+            GtkButton(): 'Feedback'
+            GtkVSeparator():
+        GtkHBox(_summary_label):
+          GtkLabel(expand=True, fill=True, padding=6): '<b>Number of deliveries:</b>'
+          GtkLabel(): '<b>2</b>'
+        GtkButton(pack-end):
+
+popup: DeliverySelection
+GtkMenu(popup): hidden
+  GtkImageMenuItem(): 'Edit...', insensitive
+  GtkSeparatorMenuItem():
+  GtkImageMenuItem(): 'Pick...', insensitive
+  GtkImageMenuItem(): 'Pack...', insensitive
+  GtkImageMenuItem(): 'Send...', insensitive
+  GtkImageMenuItem(): 'Mark as received...', insensitive
+  GtkImageMenuItem(): 'Cancel...', insensitive

@@ -1,0 +1,65 @@
+editor: SellableMassEditorDialog
+GtkDialog(main_dialog.toplevel): title='Price Change Dialog', hidden
+  GtkVBox(main_dialog._main_vbox):
+    GtkVBox(main_dialog.vbox, expand=True, fill=True):
+      GtkEventBox(main_dialog.header):
+      GtkEventBox(main_dialog.main, expand=True, fill=True, padding=6): slave SellableMassEditorDialog is attached
+        GtkVBox(toplevel):
+          GtkHBox(field_selector, fill=True):
+            GtkLabel(label5, fill=True): 'Update'
+            ProxyComboBox(field_combo, fill=True):
+              item: 'Code', selected
+              item: 'Barcode'
+              item: 'Description'
+              item: 'Cost'
+              item: 'Default Price'
+              item: 'cat1 Price'
+              item: 'cat2 Price'
+            GtkEventBox(editor_placeholder, fill=True):
+              GtkHBox(_editor):
+                ProxyComboBox(expand=True, fill=True):
+                  item: 'Replace', selected
+                  item: 'Set value to'
+                GtkHBox(expand=True, fill=True):
+                  ProxyEntry(): '', invalid
+                  GtkLabel(): 'by'
+                  ProxyEntry(): '', invalid
+            GtkButton(apply, fill=True): 'gtk-apply'
+          GtkEventBox(on_slave_holder, expand=True, fill=True): slave ListSlave is attached
+            kiwi+ui+listdialog+ListContainer(listcontainer):
+              ObjectList(expand=True, fill=True):
+                column: title='Code'
+                column: title='Barcode'
+                column: title='Description'
+                column: title='Cost'
+                column: title='Default Price'
+                column: title='cat1 Price'
+                column: title='cat2 Price'
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+                row: uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid(), uuid.uuid()
+              GtkVBox(fill=True):
+                GtkButton(fill=True): 'gtk-add', hidden
+                GtkButton(fill=True): 'gtk-remove', hidden, insensitive
+                GtkButton(fill=True): 'gtk-edit', hidden, insensitive
+      GtkHBox(fill=True):
+        GtkEventBox(main_dialog.extra_holder, expand=True, fill=True, padding=6):
+        GtkEventBox(main_dialog.print_holder, expand=True, fill=True):
+        GtkEventBox(main_dialog.notice, fill=True):
+        GtkEventBox(main_dialog.details_holder, padding=6, pack-end):
+    GtkHButtonBox(fill=True, pack-end):
+      GtkButton(main_dialog.cancel_button, expand=True, fill=True, padding=6): 'gtk-cancel'
+      GtkButton(main_dialog.ok_button, expand=True, fill=True, padding=6): 'gtk-ok'
