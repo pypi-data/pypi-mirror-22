@@ -1,0 +1,114 @@
+Metadata-Version: 1.1
+Name: inqbus.rainflow
+Version: 0.6
+Summary: Cython optimized rainflow algorithm
+Home-page: https://github.com/sandrarum/inqbus.rainflow
+Author: volker.jaenisch@inqbus.de
+Author-email: volker.jaenisch@inqbus.de
+License: UNKNOWN
+Description: README
+        ======
+        
+        This package provides a cython optimized rainflow algorithm. Data can be
+        provided as hdf5-table or as numpy array.
+        
+        Installation
+        ------------
+        
+        For installing this package just run the setup.py.
+        
+        Requirements:
+        * numpy
+        * tables
+        * pandas
+        * cython
+        * numexpr
+        
+        Or use the pypi-package and install it via pip.
+        
+            pip install inqbus.rainflow
+        
+        Examples and Usage
+        ------------------
+        
+        There are examples included in
+        inqbus.rainflow/src/inqbus/rainflow/examples
+        
+        The main mehtods are located and described in
+        inqbus.rainflow/src/inqbus/rainflow/run_rainflow
+        
+        
+        HISTORY
+        =======
+        
+        0.6 - Add Axis to matrix
+        ------------------------
+        
+        * You can store axis to matrix if you want using parameter axis
+        
+        0.5 - BugFixes
+        --------------
+        
+        * Fixed Bug on filtering data with pairs
+        
+        0.4 - Added Matrix-calculation
+        -------------------------------
+        
+        * User can decide between matrix and table format for classification
+        * Added examples for both
+        * BugFix in count-method
+        * Style improvements
+        * Filter outliers in binning
+        
+        0.2 - Syntax Improvement
+        ------------------------
+        
+        * Better documentation
+        * Improved parameters of functions
+        
+        0.1 - Initial release
+        ---------------------
+        
+        * Rainflow for HDF5 and Numpy-Arrays
+        * Classification before and after algorithm
+        * Removing peaks from data before calculation
+        LICENSE
+        =======
+        
+        Copyright (c) 2012, Continuum Analytics, Inc.
+        All rights reserved.
+        
+        Redistribution and use in source and binary forms, with or without modification,
+        are permitted provided that the following conditions are met:
+        
+        Redistributions of source code must retain the above copyright notice,
+        this list of conditions and the following disclaimer.
+        
+        Redistributions in binary form must reproduce the above copyright notice,
+        this list of conditions and the following disclaimer in the documentation
+        and/or other materials provided with the distribution.
+        
+        Neither the name of Continuum Analytics nor the names of any contributors
+        may be used to endorse or promote products derived from this software
+        without specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+        ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+        LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+        CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+        SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+        INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+        CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+        ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+        THE POSSIBILITY OF SUCH DAMAGE.
+Keywords: rainflow
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Environment :: Plugins
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: Other/Proprietary License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
