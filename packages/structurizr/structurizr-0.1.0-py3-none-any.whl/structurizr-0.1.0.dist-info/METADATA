@@ -1,0 +1,63 @@
+Metadata-Version: 2.0
+Name: structurizr
+Version: 0.1.0
+Summary: Visualise, document and explore your software architecture 
+Home-page: https://github.com/sixty-north/structurizr
+Author: Sixty North AS
+Author-email: rob@sixty-north.com
+License: Apache Software License 2
+Keywords: software-architecture diagrams
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Topic :: Multimedia :: Graphics :: Presentation
+Classifier: Topic :: Software Development :: Documentation
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3 :: Only
+Provides-Extra: dev
+Requires-Dist: check-manifest; extra == 'dev'
+Requires-Dist: wheel; extra == 'dev'
+Provides-Extra: doc
+Requires-Dist: cartouche; extra == 'doc'
+Requires-Dist: sphinx; extra == 'doc'
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+Requires-Dist: hypothesis; extra == 'test'
+Requires-Dist: pytest; extra == 'test'
+
+It's been said that "software is eating the world", yet software
+development teams waste time and money because they struggle to
+communicate software architecture. Existing CASE/modelling tools
+are complex and have become unfashionable after the "agile"
+movement started in 2001. Teams now tend to favour whiteboards
+and general purpose tooling instead. The resulting diagrams,
+however, are typically ad hoc and confusing, which slows
+communication and learning. The diagrams are also disconnected
+from the code, which limits their usefulness for architectural
+improvement.
+
+
+Status
+======
+
+*Structurizr Python* is currently in development.
+
+
+What It Does
+============
+
+How To Get It
+=============
+
+*Structurizr Python* is available on the Python Package index and can be installed with ``pip``::
+
+  $ pip install structurizr
+
+
+Requirements
+============
+
+*Structurizr* work with Python 3.3 and higher.
+
+
