@@ -1,0 +1,61 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/fixes.html' as fixes %}
+
+{% block title %}libenable.so{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Configuration</h1>
+      <a href="/" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-home"></span>
+        <span>Home</span>
+      </a>
+    </div>
+    <div class="row center-block">
+      <form action="/config/save" method="post">
+        <h2>Default</h2>
+        <div class="form-group">
+          <label for="host">Host</label>
+          <input type="text" class="form-control" value="{{ config['DEFAULT']['host'] }}" name="host">
+        </div>
+        <div class="form-group">
+          <label for="port">Port</label>
+          <input type="number" class="form-control" value="{{ config['DEFAULT']['port'] }}" name="port">
+        </div>
+        <div class="form-group">
+          <label for="path">Path</label>
+          <input type="text" class="form-control" value="{{ config['DEFAULT']['path'] }}" name="path">
+        </div>
+        <h2>ruCAPTCHA</h2>
+        <div class="form-group">
+          <label for="host">API Key</label>
+          <input type="text" class="form-control" value="{{ config['ruCAPTCHA']['key'] }}" name="ruCAPTCHA_key">
+        </div>
+        <div class="form-group">
+          <label for="host">Currency</label>
+          <input type="text" class="form-control" value="{{ config['ruCAPTCHA']['currency'] }}" name="ruCAPTCHA_currency">
+        </div>
+        <h2>d3cryp7</h2>
+        <div class="form-group">
+          <label for="host">URL</label>
+          <input type="text" class="form-control" value="{{ config['d3cryp7']['url'] }}" name="d3cryp7_url">
+        </div>
+        <div class="form-group">
+          <label for="host">Currency</label>
+          <input type="text" class="form-control" value="{{ config['d3cryp7']['currency'] }}" name="d3cryp7_currency">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+  </div>
+  <footer style="margin-top: 1cm; text-align: center">
+    <p>Copyright 2017 Justin Willis</p>
+    <a href="https://bitbucket.org/bkvaluemeal/libenable.so" class="btn btn-link" role="button">Bitbucket</a>
+  </footer>
+{% endblock %}

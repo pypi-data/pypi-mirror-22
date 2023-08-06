@@ -1,0 +1,36 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/fixes.html' as fixes %}
+
+{% block title %}libenable.so{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="jumbotron">
+      <h1>libenable.so</h1>
+      <p>A Python module for enabling access to different protected domains</p>
+    </div>
+    <div class="row center-block">
+      <a href="/api" class="btn btn-default col-sm-4 center-block" role="button">
+        <h3>Documentation</h3>
+        <p>A list of all functions provided by the application</p>
+      </a>
+      <a href="/config" class="btn btn-default col-sm-4 center-block" role="button">
+        <h3>Configuration</h3>
+        <p>Edit the settings for the application</p>
+      </a>
+      <a href="/activity" class="btn btn-default col-sm-4 center-block" role="button">
+        <h3>Activity Log</h3>
+        <p>See all requests made through the application</p>
+      </a>
+    </div>
+  </div>
+  <footer style="margin-top: 1cm; text-align: center">
+    <p>Copyright 2017 Justin Willis</p>
+    <a href="https://bitbucket.org/bkvaluemeal/libenable.so" class="btn btn-link" role="button">Bitbucket</a>
+  </footer>
+{% endblock %}
