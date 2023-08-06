@@ -1,0 +1,6 @@
+[console_scripts]
+docker-dev = docker_dev.cli:main
+
+[docker_dev.project_name_generator]
+git = docker_dev.plugins.git_integration:get_project_name
+
