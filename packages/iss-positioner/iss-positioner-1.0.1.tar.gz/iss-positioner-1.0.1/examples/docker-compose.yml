@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  server:
+    build: .
+    volumes:
+      - ./iss-positioner.yml:/opt/iss-positioner/iss-positioner.yml:ro
+    links:
+      - redis
+    ports:
+      - 8081:80
+  redis:
+    image: redis:alpine
