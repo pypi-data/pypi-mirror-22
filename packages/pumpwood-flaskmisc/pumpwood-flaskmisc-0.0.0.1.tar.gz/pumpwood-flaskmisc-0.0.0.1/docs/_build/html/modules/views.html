@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Custom PumpWood Views &mdash; PumpWood Views Utils 0.3.8.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.3.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="PumpWood Views Utils 0.3.8.0 documentation" href="../index.html" />
+    <link rel="prev" title="Custom PumpWood Static Files Serve Functions" href="serve.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="serve.html" title="Custom PumpWood Static Files Serve Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">PumpWood Views Utils 0.3.8.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pumpwood_viewutils.views">
+<span id="custom-pumpwood-views"></span><h1>Custom PumpWood Views<a class="headerlink" href="#module-pumpwood_viewutils.views" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pumpwood_viewutils.views.PumpWoodDataBaseRestService">
+<em class="property">class </em><code class="descclassname">pumpwood_viewutils.views.</code><code class="descname">PumpWoodDataBaseRestService</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodDataBaseRestService" title="Permalink to this definition">¶</a></dt>
+<dd><p>This view extends PumpWoodRestService, including pivot function.</p>
+<dl class="attribute">
+<dt id="pumpwood_viewutils.views.PumpWoodDataBaseRestService.model_variables">
+<code class="descname">model_variables</code><em class="property"> = []</em><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodDataBaseRestService.model_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify which model variables will be returned in pivot. Line index are the model_variables - columns (function pivot parameter) itens.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pumpwood_viewutils.views.PumpWoodDataBaseRestService.pivot">
+<code class="descname">pivot</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodDataBaseRestService.pivot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pivot QuerySet data acording to columns selected, and filters passed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request.data['filter_dict']</strong> (<em>dict</em>) &#8211; Dictionary passed as objects.filter(<a href="#id1"><span class="problematic" id="id2">**</span></a>filter_dict)</li>
+<li><strong>request.data['exclude_dict']</strong> (<em>dict</em>) &#8211; Dictionary passed as objects.exclude(<a href="#id3"><span class="problematic" id="id4">**</span></a>exclude_dict)</li>
+<li><strong>request.data['ordering_list']</strong> (<a class="reference internal" href="#pumpwood_viewutils.views.PumpWoodRestService.list" title="pumpwood_viewutils.views.PumpWoodRestService.list"><em>list</em></a>) &#8211; List passed as objects.order_by(<a href="#id5"><span class="problematic" id="id6">*</span></a>ordering_list)</li>
+<li><strong>request.data['columns']</strong> (<em>str</em>) &#8211; Variables to be used as pivot collumns</li>
+<li><strong>request.data['format']</strong> &#8211; Format used in pandas.DataFrame().to_dict()</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Return database data pivoted acording to columns parameter</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rtyoe:</th><td class="field-body"><p class="first last">panas.Dataframe converted to disctionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pumpwood_viewutils.views.PumpWoodRestService">
+<em class="property">class </em><code class="descclassname">pumpwood_viewutils.views.</code><code class="descname">PumpWoodRestService</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodRestService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Basic View-Set for pumpwood rest end-points</p>
+<dl class="method">
+<dt id="pumpwood_viewutils.views.PumpWoodRestService.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>request</em>, <em>pk=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodRestService.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete view, it is not implemented. Coder must do it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pk</strong> (<em>int</em>) &#8211; Object pk to be retrieve</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>PumpWoodForbidden</strong> &#8211; &#8216;Delete case has not been implemented&#8217; if not implemented.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pumpwood_viewutils.views.PumpWoodRestService.execute_action">
+<code class="descname">execute_action</code><span class="sig-paren">(</span><em>request</em>, <em>action</em>, <em>pk=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodRestService.execute_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute action over objects defined by the pk.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>action</strong> (<em>str</em>) &#8211; The action that will be performed</li>
+<li><strong>pk</strong> (<em>int</em>) &#8211; Pk of the object that the action will be performed over. If it is a staic action, pk must be None</li>
+<li><strong>request.data</strong> (<em>dict</em>) &#8211; Parameters to used on the action</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A dictionary {&#8216;result&#8217;: action result, &#8216;action&#8217;: action name, &#8216;parameters&#8217;: parameters used in the action, &#8216;obj&#8217;: the serialized object that was used in the action }</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">dict</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><strong>PumpWoodForbidden</strong> &#8211; &#8216;There is no method {action} in rest actions for {class_name}&#8217; if action not found</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pumpwood_viewutils.views.PumpWoodRestService.list">
+<code class="descname">list</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodRestService.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>View function to list objects. number of objects are limited by settings.REST_FRAMEWORK[&#8216;PAGINATE_BY&#8217;]. To get next page, use exclude_dict[&#8216;pk__in&#8217;: [list of the received pks]]
+to get more objects.</p>
+<p>Use to limit the query .query.filter_by_dict function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request.data['filter_dict']</strong> (<em>dict</em>) &#8211; Dictionary passed as objects.filter(<a href="#id7"><span class="problematic" id="id8">**</span></a>filter_dict)</li>
+<li><strong>request.data['exclude_dict']</strong> (<em>dict</em>) &#8211; Dictionary passed as objects.exclude(<a href="#id9"><span class="problematic" id="id10">**</span></a>exclude_dict)</li>
+<li><strong>request.data['ordering_list']</strong> (<a class="reference internal" href="#pumpwood_viewutils.views.PumpWoodRestService.list" title="pumpwood_viewutils.views.PumpWoodRestService.list"><em>list</em></a>) &#8211; List passed as objects.order_by(<a href="#id11"><span class="problematic" id="id12">*</span></a>ordering_list)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of objects using list_serializer</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pumpwood_viewutils.views.PumpWoodRestService.list_actions">
+<code class="descname">list_actions</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodRestService.list_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>List model actions flaged with &#64;rest_function wrapper. It returns the list of the actions and its descriptions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of actions descriptions using .serializer.SerializerObjectActions</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pumpwood_viewutils.views.PumpWoodRestService.list_options">
+<code class="descname">list_options</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodRestService.list_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return options for object update acording its partial data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request.data</strong> (<em>dict</em>) &#8211; Partial object data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary with options for diferent objects values</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Must be implemented</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pumpwood_viewutils.views.PumpWoodRestService.list_search_options">
+<code class="descname">list_search_options</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodRestService.list_search_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return options to be used in list funciton.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Dictionary with options for list parameters</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Must be implemented</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pumpwood_viewutils.views.PumpWoodRestService.list_without_pag">
+<code class="descname">list_without_pag</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodRestService.list_without_pag" title="Permalink to this definition">¶</a></dt>
+<dd><p>View function to list objects. Basicaley the same of list, but without limitation by settings.REST_FRAMEWORK[&#8216;PAGINATE_BY&#8217;].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request.data['filter_dict']</strong> (<em>dict</em>) &#8211; Dictionary passed as objects.filter(<a href="#id13"><span class="problematic" id="id14">**</span></a>filter_dict)</li>
+<li><strong>request.data['exclude_dict']</strong> (<em>dict</em>) &#8211; Dictionary passed as objects.exclude(<a href="#id15"><span class="problematic" id="id16">**</span></a>exclude_dict)</li>
+<li><strong>request.data['ordering_list']</strong> (<a class="reference internal" href="#pumpwood_viewutils.views.PumpWoodRestService.list" title="pumpwood_viewutils.views.PumpWoodRestService.list"><em>list</em></a>) &#8211; List passed as objects.order_by(<a href="#id17"><span class="problematic" id="id18">*</span></a>ordering_list)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of objects using list_serializer</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Be careful with the number of the objects that will be retrieved</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pumpwood_viewutils.views.PumpWoodRestService.retrieve">
+<code class="descname">retrieve</code><span class="sig-paren">(</span><em>request</em>, <em>pk=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodRestService.retrieve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve view, uses the retrive_serializer to return object with pk.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pk</strong> (<em>int</em>) &#8211; Object pk to be retrieve</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The representation of the object passed by self.retrive_serializer</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pumpwood_viewutils.views.PumpWoodRestService.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.views.PumpWoodRestService.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves and updates object acording to request.data. Object will be updated if request.data[&#8216;pk&#8217;] is not None.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request.data</strong> (<em>dict</em>) &#8211; Object representation as self.retrive_serializer</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>PumpWoodException</strong> &#8211; &#8216;Object model class diferent from {service_model} : {model_class}&#8217; request.data[&#8216;model_class&#8217;] not the same as self.service_model.__name__</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="serve.html"
+                        title="previous chapter">Custom PumpWood Static Files Serve Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/views.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="serve.html" title="Custom PumpWood Static Files Serve Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">PumpWood Views Utils 0.3.8.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Murabei Data Science.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

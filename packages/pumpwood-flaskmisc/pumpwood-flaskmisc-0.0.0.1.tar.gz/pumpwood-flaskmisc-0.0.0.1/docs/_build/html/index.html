@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to PumpWood Views Utils’s documentation! &mdash; PumpWood Views Utils 0.3.8.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.3.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="PumpWood Views Utils 0.3.8.0 documentation" href="#" />
+    <link rel="next" title="Query" href="modules/query.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules/query.html" title="Query"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">PumpWood Views Utils 0.3.8.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-pumpwood-views-utils-s-documentation">
+<h1>Welcome to PumpWood Views Utils&#8217;s documentation!<a class="headerlink" href="#welcome-to-pumpwood-views-utils-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>PumpWood View Utils creates a default way to interact with rest apps in a PumpWood style. It concentrates all
+interation over the models and object, in a way similar to Class orientated programing.</p>
+<p>Extends Django and Rest FrameWork exceptions in order to give a better detail over model miss-especification and permit serialization of the error data to facilitate front-end debug.</p>
+<div class="section" id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Add &#8220;pumpwood_viewutils&#8221; to your Django INSTALLED_APPS setting like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">...</span>
+    <span class="s1">&#39;pumpwood_viewutils&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Each model exposed by a PumpWood View have nine basic end-poitns exposed througth PumpWood router.</p>
+<ul class="simple">
+<li>list, served as POST: {slugfied model_name}/list</li>
+<li>list_without_pag, served as POST: {slugfied model_name}/list-without-pag</li>
+<li>retrieve, served as POST: {slugfied model_name}/retrieve/(?pk)</li>
+<li>delete, served as DELETE: {slugfied model_name}/retrieve/(?pk)</li>
+<li>save, served as POST, PUT: {slugfied model_name}/save/</li>
+<li>list_actions, served as GET {slugfied model_name}/actions/</li>
+<li>execute_action, served as POST {slugfied model_name}/execute_action/(?pk)</li>
+<li>list_search_options, served as GET {slugfied model_name}/options</li>
+<li>list_options, served as POST {slugfied model_name}/options</li>
+</ul>
+<div class="section" id="list">
+<h3>list<a class="headerlink" href="#list" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of objects acording with the filter dict passed as msg body. List is retricted with the maximum
+length defined on REST_FRAMEWORK[[&#8216;PAGINATE_BY&#8217;]]</p>
+</div>
+<div class="section" id="list-without-pag">
+<h3>list-without-pag<a class="headerlink" href="#list-without-pag" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of objects acording with the filter dict passed as msg body, but without length limit</p>
+</div>
+<div class="section" id="retrieve">
+<h3>retrieve<a class="headerlink" href="#retrieve" title="Permalink to this headline">¶</a></h3>
+<p>Returns the object as a dictionary, serialized by retrive_serializer. Usualy, when an object is retrieved it have more
+information than when it is listed.</p>
+</div>
+<div class="section" id="delete">
+<h3>delete<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h3>
+<p>Delete de object. For security reason, the url is maped but the code for deleting the object is not implemented (it raises an error, must be overrided).</p>
+</div>
+<div class="section" id="save">
+<h3>save<a class="headerlink" href="#save" title="Permalink to this headline">¶</a></h3>
+<p>Save and updates an object acording to msg body dictionary. If msg body have a pk the object with this pk will be updated, other wise it will be created</p>
+</div>
+<div class="section" id="list-actions">
+<h3>list_actions<a class="headerlink" href="#list-actions" title="Permalink to this headline">¶</a></h3>
+<p>List Class functions that have been marked with &#64;rest_function wrapper. Returns a list with the path of the action, a short description, an indication for an
+icon to be used in the front end and necessary parameter, optional parameter and what the function will return.</p>
+</div>
+<div class="section" id="execute-action">
+<h3>execute_action<a class="headerlink" href="#execute-action" title="Permalink to this headline">¶</a></h3>
+<p>Execute an action over an object, if pk was filled, or a class method. Returns a dictionary with the results, the action name, parameters used in the action and the object
+on which the action was performed.</p>
+</div>
+<div class="section" id="list-search-options">
+<h3>list_search_options<a class="headerlink" href="#list-search-options" title="Permalink to this headline">¶</a></h3>
+<p>Return options to be user in dropdowns and other filter to be used in the search of the object.</p>
+</div>
+<div class="section" id="list-options">
+<h3>list_options<a class="headerlink" href="#list-options" title="Permalink to this headline">¶</a></h3>
+<p>List the options on the object creation according to parcial filment of the object.</p>
+<p>This project is on beta phase, use it with carefull.</p>
+</div>
+</div>
+<div class="section" id="contents">
+<h2>Contents:<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/query.html">Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/rest_function.html">Rest Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/routers.html">PumpWood Rest Routers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/serializers.html">Custom PumpWood Serializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/serve.html">Custom PumpWood Static Files Serve Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/views.html">Custom PumpWood Views</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to PumpWood Views Utils&#8217;s documentation!</a><ul>
+<li><a class="reference internal" href="#quick-start">Quick start</a></li>
+<li><a class="reference internal" href="#description">Description</a><ul>
+<li><a class="reference internal" href="#list">list</a></li>
+<li><a class="reference internal" href="#list-without-pag">list-without-pag</a></li>
+<li><a class="reference internal" href="#retrieve">retrieve</a></li>
+<li><a class="reference internal" href="#delete">delete</a></li>
+<li><a class="reference internal" href="#save">save</a></li>
+<li><a class="reference internal" href="#list-actions">list_actions</a></li>
+<li><a class="reference internal" href="#execute-action">execute_action</a></li>
+<li><a class="reference internal" href="#list-search-options">list_search_options</a></li>
+<li><a class="reference internal" href="#list-options">list_options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contents">Contents:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="modules/query.html"
+                        title="next chapter">Query</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules/query.html" title="Query"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">PumpWood Views Utils 0.3.8.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Murabei Data Science.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

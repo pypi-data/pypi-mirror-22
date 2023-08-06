@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Rest Functions &mdash; PumpWood Views Utils 0.3.8.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.3.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="PumpWood Views Utils 0.3.8.0 documentation" href="../index.html" />
+    <link rel="next" title="PumpWood Rest Routers" href="routers.html" />
+    <link rel="prev" title="Query" href="query.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="routers.html" title="PumpWood Rest Routers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="query.html" title="Query"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">PumpWood Views Utils 0.3.8.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pumpwood_viewutils.rest_function">
+<span id="rest-functions"></span><h1>Rest Functions<a class="headerlink" href="#module-pumpwood_viewutils.rest_function" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pumpwood_viewutils.rest_function.RestAction">
+<em class="property">class </em><code class="descclassname">pumpwood_viewutils.rest_function.</code><code class="descname">RestAction</code><span class="sig-paren">(</span><em>fn</em>, <em>model_class</em>, <em>icon</em>, <em>description</em>, <em>validation_dict</em>, <em>static</em>, <em>parameters</em>, <em>opt_parameters</em>, <em>return_dict</em>, <em>request_user=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.rest_function.RestAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class responsible for keeping the instructions to expose an action as a rest service. This class is also used to keep information
+about the function that will be exposed so it can be retrived and passed to front end when it is serialized.</p>
+<p>It is used inside &#64;rest_function wrapper.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>fn</strong> (<em>function</em>) &#8211; Function to extract name and class</li>
+<li><strong>model_class</strong> (<em>str</em>) &#8211; Name of the model of the function that will be exposed</li>
+<li><strong>icon</strong> (<em>str</em>) &#8211; Path to the icon of the function.</li>
+<li><strong>description</strong> (<em>str</em>) &#8211; String to describe action.</li>
+<li><strong>validation_dict</strong> (<em>dict</em>) &#8211; A dictonary that indicates validations that will be performed when data is received</li>
+<li><strong>static</strong> (<em>bool</em>) &#8211; Tell if the function is static and not associated to an specific object</li>
+<li><strong>parameters</strong> (<em>dict</em>) &#8211; A dictionary containing the description of the parameters necessary to run the fucntion</li>
+<li><strong>opt_parameters</strong> (<em>dict</em>) &#8211; A dictionary containing the description of the optional parameters to run the fucntion</li>
+<li><strong>return_dict</strong> (<em>dict</em>) &#8211; A dictionary containing the description of what the function will return</li>
+<li><strong>request_user</strong> (<em>string</em>) &#8211; A string telling if the request user will be used as as argument in function. None no, a string name of the kwargs key that will hold user name</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="pumpwood_viewutils.rest_function.RestFunctionSerializer">
+<em class="property">class </em><code class="descclassname">pumpwood_viewutils.rest_function.</code><code class="descname">RestFunctionSerializer</code><a class="headerlink" href="#pumpwood_viewutils.rest_function.RestFunctionSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps SerializerDictionary and taget function to run the function and validates if all necessary parameters were passed</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>function</strong> (<em>function</em>) &#8211; Function that will be used to process request income data</li>
+<li><strong>request</strong> &#8211; Income Django request</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Function results in serializable simples Python objects (int, list, dict, ...)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="pumpwood_viewutils.rest_function.RestFunctionSerializer.fun_args_parser">
+<em class="property">static </em><code class="descname">fun_args_parser</code><span class="sig-paren">(</span><em>action_obj</em>, <em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.rest_function.RestFunctionSerializer.fun_args_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses function action_obj to transform request.data so it can be used to run the function</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>RestAction</strong> (<em>action_obj</em>) &#8211; action_obj associated with the function by rest_function wrapper</li>
+<li><strong>request</strong> &#8211; Inconme Django request</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a dictionary of the function kwargs</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="pumpwood_viewutils.rest_function.RestFunctionSerializer.result_parser">
+<em class="property">static </em><code class="descname">result_parser</code><span class="sig-paren">(</span><em>action_obj</em>, <em>results</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.rest_function.RestFunctionSerializer.result_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses function action_obj to transform function results to python serializible simple functions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>RestAction</strong> (<em>action_obj</em>) &#8211; action_obj associated with the function by rest_function wrapper</li>
+<li><strong>request</strong> &#8211; Inconme Django request</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">function result in serializible objects (int, list, dict, ...)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pumpwood_viewutils.rest_function.SerializerDictionary">
+<em class="property">class </em><code class="descclassname">pumpwood_viewutils.rest_function.</code><code class="descname">SerializerDictionary</code><a class="headerlink" href="#pumpwood_viewutils.rest_function.SerializerDictionary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class used to store how the function variables will be serialized.</p>
+<dl class="classmethod">
+<dt id="pumpwood_viewutils.rest_function.SerializerDictionary.add_serializer_in">
+<em class="property">classmethod </em><code class="descname">add_serializer_in</code><span class="sig-paren">(</span><em>var_type</em>, <em>one_lambda</em>, <em>many_lambda</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.rest_function.SerializerDictionary.add_serializer_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a receiving data serializer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>str</strong> (<em>var_type</em>) &#8211; String corresponding to a type that will be later used in &#64;rest_function parameters or opt_parameters definition</li>
+<li><strong>function</strong> (<em>many_lambda</em>) &#8211; Function defining how the income data will be converted to Python simple or complex (Model Objects, pandas.DataFrame, ...), when data is not many (list)</li>
+<li><strong>function</strong> &#8211; Function defining how the income data will be converted to Python simple objects (list, dict, int, ...)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pumpwood_viewutils.rest_function.SerializerDictionary.add_serializer_out">
+<em class="property">classmethod </em><code class="descname">add_serializer_out</code><span class="sig-paren">(</span><em>var_type</em>, <em>one_lambda</em>, <em>many_lambda</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.rest_function.SerializerDictionary.add_serializer_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a sending data serializer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>str</strong> (<em>var_type</em>) &#8211; String corresponding to a type that will be later used in &#64;rest_function parameters or opt_parameters definition</li>
+<li><strong>function</strong> (<em>many_lambda</em>) &#8211; Function defining how the sending data will be converted to Python simple or complex (Model Objects, pandas.DataFrame, ...), when data is not many (list)</li>
+<li><strong>function</strong> &#8211; Function defining how the sending data will be converted to Python simple objects (list, dict, int, ...)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pumpwood_viewutils.rest_function.SerializerDictionary.get_in_serializer">
+<em class="property">classmethod </em><code class="descname">get_in_serializer</code><span class="sig-paren">(</span><em>var_type</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.rest_function.SerializerDictionary.get_in_serializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if in serializer is avaible for var_type</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>str</strong> (<em>var_type</em>) &#8211; String corresponding to variable type</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">var_type in serializer</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><strong>PumpWoodException</strong> &#8211; If in serializer for var_type have not been added</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pumpwood_viewutils.rest_function.SerializerDictionary.get_out_serializer">
+<em class="property">classmethod </em><code class="descname">get_out_serializer</code><span class="sig-paren">(</span><em>var_type</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.rest_function.SerializerDictionary.get_out_serializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if out serializer is avaible for var_type</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>str</strong> (<em>var_type</em>) &#8211; String corresponding to variable type</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">var_type out serializer</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><strong>PumpWoodException</strong> &#8211; If out serializer for var_type have not been added</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pumpwood_viewutils.rest_function.SerializerDictionary.serialize_in">
+<em class="property">classmethod </em><code class="descname">serialize_in</code><span class="sig-paren">(</span><em>var_type</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.rest_function.SerializerDictionary.serialize_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize income data acording to its var_type</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>str</strong> (<em>var_type</em>) &#8211; var_type of the income data</li>
+<li><strong>variable</strong> (<em>data</em>) &#8211; Data to be serialized</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Data serialized acording to __serializer_in_dict[var_type]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pumpwood_viewutils.rest_function.SerializerDictionary.serialize_out">
+<em class="property">classmethod </em><code class="descname">serialize_out</code><span class="sig-paren">(</span><em>var_type</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.rest_function.SerializerDictionary.serialize_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize sending data acording to its var_type</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>str</strong> (<em>var_type</em>) &#8211; var_type of the sending data</li>
+<li><strong>variable</strong> (<em>data</em>) &#8211; Data to be serialized</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Data serialized acording to __serializer_out_dict[var_type]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pumpwood_viewutils.rest_function.rest_function">
+<code class="descclassname">pumpwood_viewutils.rest_function.</code><code class="descname">rest_function</code><span class="sig-paren">(</span><em>model_class</em>, <em>icon</em>, <em>description</em>, <em>validation_dict</em>, <em>static</em>, <em>parameters</em>, <em>opt_parameters</em>, <em>return_dict</em>, <em>request_user=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pumpwood_viewutils.rest_function.rest_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function Wrapper defining rest caracteristics to be used for income data a</p>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleModel</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+  <span class="o">...</span>
+
+  <span class="nd">@rest_function</span><span class="p">(</span><span class="n">model_class</span><span class="o">=</span><span class="s1">&#39;ExampleModel&#39;</span>
+               <span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s1">&#39;example_icon&#39;</span>
+               <span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A great description for a example function&#39;</span>
+               <span class="p">,</span> <span class="n">validation_dict</span><span class="o">=</span><span class="p">{}</span>
+               <span class="p">,</span> <span class="n">static</span><span class="o">=</span><span class="bp">False</span>
+               <span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;arg1&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;dict&#39;</span><span class="p">,</span> <span class="s1">&#39;many&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
+                            <span class="p">,</span> <span class="s1">&#39;arg2&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;many&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
+                            <span class="p">,</span> <span class="s1">&#39;arg3&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;PandasDataframe&#39;</span><span class="p">,</span> <span class="s1">&#39;many&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span> <span class="p">}</span>
+               <span class="p">,</span> <span class="n">opt_parameters</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;arg4&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;bool&#39;</span><span class="p">,</span> <span class="s1">&#39;many&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
+                                <span class="p">,</span> <span class="s1">&#39;arg5&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;many&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
+                                <span class="p">,</span> <span class="s1">&#39;arg6&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;many&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span> <span class="p">}</span>
+               <span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;return1&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;many&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
+                             <span class="p">,</span> <span class="s1">&#39;return2&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;many&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
+                             <span class="p">,</span> <span class="s1">&#39;return3&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;bool&#39;</span><span class="p">,</span> <span class="s1">&#39;many&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span> <span class="p">}</span>
+               <span class="p">,</span> <span class="n">request_user</span><span class="o">=</span><span class="s1">&#39;user&#39;</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">example_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span><span class="p">,</span> <span class="n">arg4</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">arg5</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">arg6</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;pineapple&#39;</span><span class="p">]):</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;return1&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;return2&#39;</span><span class="p">:</span> <span class="s1">&#39;Chubaca&#39;</span><span class="p">,</span> <span class="s1">&#39;return3&#39;</span><span class="p">:</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">]}</span>
+
+  <span class="nd">@rest_function</span><span class="p">(</span><span class="n">model_class</span><span class="o">=</span><span class="s1">&#39;ExampleModel&#39;</span>
+               <span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s1">&#39;example_icon&#39;</span>
+               <span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A great description for a example function&#39;</span>
+               <span class="p">,</span> <span class="n">validation_dict</span><span class="o">=</span><span class="p">{}</span>
+               <span class="p">,</span> <span class="n">static</span><span class="o">=</span><span class="bp">False</span>
+               <span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;arg1&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;many&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span> <span class="p">}</span>
+               <span class="p">,</span> <span class="n">opt_parameters</span><span class="o">=</span><span class="p">{}</span>
+               <span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;flat&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;pandas.DataFrame&#39;</span><span class="p">,</span> <span class="s1">&#39;many&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span> <span class="p">}</span>
+               <span class="p">,</span> <span class="n">request_user</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+  <span class="nd">@classmethod</span>
+  <span class="k">def</span> <span class="nf">example_cls_function</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">arg1</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="p">[</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_set1</span><span class="p">),</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_set2</span><span class="p">)</span> <span class="p">]</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>RestAction</strong> (<em>action_obj</em>) &#8211; action_obj associated with the function by rest_function wrapper</li>
+<li><strong>request</strong> &#8211; Inconme Django request</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">function result in serializible objects (int, list, dict, ...)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>par_dict</strong> &#8211; </li>
+<li><strong>KeyError</strong> &#8211; Transformation dict {error_name} entry {par_dict_key} does not have type and many keys&#8217; if parameter dict does not have type and many keys</li>
+<li><strong>KeyError</strong> &#8211; Transformation dict {error_name} entry {par_dict_key} does not have type and many keys&#8217;</li>
+<li><strong>TypeError</strong> &#8211; </li>
+<li><strong>Exception</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="query.html"
+                        title="previous chapter">Query</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="routers.html"
+                        title="next chapter">PumpWood Rest Routers</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/rest_function.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="routers.html" title="PumpWood Rest Routers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="query.html" title="Query"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">PumpWood Views Utils 0.3.8.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Murabei Data Science.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>
