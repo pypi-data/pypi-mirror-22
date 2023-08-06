@@ -1,0 +1,3 @@
+Django BulkSMS library/API
+
+
