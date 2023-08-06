@@ -1,0 +1,91 @@
+2017-06-07 03:15:11 [scrapy.utils.log] INFO: Scrapy 1.3.3 started (bot: open_news)
+2017-06-07 03:15:11 [scrapy.utils.log] INFO: Overridden settings: {'LOG_FILE': 'logs/default/article_spider/6b3ba80a4b5911e7ac238438356148b4.log', 'SPIDER_MODULES': ['dynamic_scraper.spiders', 'open_news.scraper'], 'USER_AGENT': 'open_news/1.0', 'LOG_LEVEL': 'INFO', 'BOT_NAME': 'open_news'}
+2017-06-07 03:15:11 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2017-06-07 03:15:11 [dds] INFO: Django settings used: example_project.settings
+2017-06-07 03:15:11 [dds] INFO: Use ALL images store format (Scrapy behaviour, save both original and thumbnail images)
+2017-06-07 03:15:11 [dds] INFO: Runtime config: run_type TASK, do_action True
+2017-06-07 03:15:11 [dds] INFO: Scraper set to run on 1 start URL.
+2017-06-07 03:15:11 [dds] INFO: Spider for NewsWebsite "Wikinews" (1) initialized.
+2017-06-07 03:15:11 [scrapy.core.engine] INFO: Spider opened
+2017-06-07 03:15:11 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-06-07 03:15:11 [dds] INFO: 
+2017-06-07 03:15:11 [dds] INFO: [1m======================================================================================[0m
+2017-06-07 03:15:11 [dds] INFO: [1m[95mScraping data from page 1.[0m[0m
+2017-06-07 03:15:11 [dds] INFO: URL: http://en.wikinews.org/wiki/Main_Page
+2017-06-07 03:15:11 [dds] INFO: [1m======================================================================================[0m
+2017-06-07 03:15:12 [scrapy.core.scraper] ERROR: Spider error processing <GET https://en.wikinews.org/wiki/Main_Page> (referer: None)
+Traceback (most recent call last):
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py", line 337, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: dynamic_scraper_scraperelem.use_default_procs
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/scrapy/utils/defer.py", line 102, in iter_errback
+    yield next(it)
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/scrapy/spidermiddlewares/offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/scrapy/spidermiddlewares/referer.py", line 22, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/scrapy/spidermiddlewares/urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/scrapy/spidermiddlewares/depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/django-dynamic-scraper/example_project/open_news/scraper/../../../dynamic_scraper/spiders/django_spider.py", line 535, in parse
+    base_elem = self.scraper.get_base_elem()
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/django-dynamic-scraper/example_project/open_news/scraper/../../../dynamic_scraper/models.py", line 153, in get_base_elem
+    return self.scraperelem_set.get(scraped_obj_attr__attr_type='B')
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/models/query.py", line 379, in get
+    num = len(clone)
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/models/query.py", line 238, in __len__
+    self._fetch_all()
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/models/query.py", line 1087, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/models/query.py", line 54, in __iter__
+    results = compiler.execute_sql()
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/models/sql/compiler.py", line 835, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/utils/six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/hdrewes/Documents/DEV/fernsehsuche-de/venv_dds_35/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py", line 337, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: dynamic_scraper_scraperelem.use_default_procs
+2017-06-07 03:15:12 [scrapy.core.engine] INFO: Closing spider (finished)
+2017-06-07 03:15:12 [dds] INFO: Scheduler runtime updated (Next action time: 2017-06-07 03:06, Next action factor: 2.072, Zero actions: 6)
+2017-06-07 03:15:12 [dds] INFO: Closing Django DB connection.
+2017-06-07 03:15:12 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 487,
+ 'downloader/request_count': 2,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/response_bytes': 20665,
+ 'downloader/response_count': 2,
+ 'downloader/response_status_count/200': 1,
+ 'downloader/response_status_count/301': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2017, 6, 7, 8, 15, 12, 281826),
+ 'log_count/ERROR': 1,
+ 'log_count/INFO': 16,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 2,
+ 'scheduler/dequeued/memory': 2,
+ 'scheduler/enqueued': 2,
+ 'scheduler/enqueued/memory': 2,
+ 'spider_exceptions/OperationalError': 1,
+ 'start_time': datetime.datetime(2017, 6, 7, 8, 15, 11, 803874)}
+2017-06-07 03:15:12 [scrapy.core.engine] INFO: Spider closed (finished)
