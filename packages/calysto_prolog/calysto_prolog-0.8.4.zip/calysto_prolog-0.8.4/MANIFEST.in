@@ -1,0 +1,13 @@
+include *.txt
+include *.rst
+include *.md
+include calysto_prolog/images/*.png
+include Makefile
+recursive-include docs *.rst
+recursive-include docs *.png
+recursive-include docs *.py
+prune .git
+prune docs/build
+prune dist
+prune build
+prune docs
