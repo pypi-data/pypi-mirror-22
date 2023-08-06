@@ -1,0 +1,27 @@
+---
+outputs:
+    ClusterEndpointAddress:
+        Description: The address of the cluster endpoint.
+        Value:
+            "Fn::GetAtt":
+                - RedshiftCluster
+                - "Endpoint.Address"
+
+    ClusterEndpointPort:
+        Description: The port of the cluster endpoint.
+        Value:
+            "Fn::GetAtt":
+                - RedshiftCluster
+                - "Endpoint.Port"
+
+    {% if domain %}
+    DnsName:
+        Description:
+            The pretty DNS name of the cluster.
+        Value:
+            {% if subdomain %}
+            "{{subdomain}}.{{domain}}"
+            {% else %}
+            "{{context.environment.name}}-{{context.stage.lower()}}-{{context.layer.name}}.{{domain}}"
+            {% endif %}
+    {% endif %}
