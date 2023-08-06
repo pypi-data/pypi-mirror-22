@@ -1,0 +1,26 @@
+# Simple module for Python level access to OS information.
+
+This module is used as part of NOVA HA module used in OpenStack Deployment at CRA.
+
+## Development
+
+Running tests
+
+```console
+python -m pytest
+```
+
+## Release
+
+Before release bump version number in setup.py and then push it to pypi servers.
+
+##### Test release upload first
+
+```console
+python setup.py sdist upload -r pypitest
+```
+
+##### Release upload
+```console
+python setup.py sdist upload -r pypi
+```
