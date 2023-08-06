@@ -1,0 +1,47 @@
+Changelog
+=========
+
+1.1 (2017-05-23)
+----------------
+
+- Add MANIFEST.in [kingel]
+- Fix getSite import error on Plone 4.3 [toutpt]
+- added development buildout configurations [macagua]
+- added support for Travis CI service [macagua]
+- added support for plone.app.testing [macagua]
+- added Spanish translation [macagua]
+- added support for plone domain [macagua]
+- added more improvements for i18n support [macagua]
+- Bugfix: added an include of permissions.zcml file from Products.CMFCore for support 
+  "browser/configure.zcml" browser:page permission. Resolve github issue number [1] [macagua]
+
+1.0 (2012-06-13)
+----------------
+- Stable release
+
+0.2dvl (unreleased)
+-------------------
+- Changed template fill-slot definitions to a more saner one [kcleong]
+- Use ZCatalog instead of portal_catalog.unrestrictedSearchResults, the
+  ZCatalog is really unrestricted. [kcleong]
+- Improved and simplified retrieving of came form object in section view [kcleong]
+- Added an event subscriber so the folder is reindexed when subtyped with a section [kcleong]
+
+
+0.1 (2011-11-21)
+----------------
+
+No changes.
+
+0.1a1 (2011-10-24)
+------------------
+
+- Updated setup.py: url, author.
+- Check if user exists before including them in subscriptions/requests list.
+- Bugfix: Define Section's title and description in proper place in 
+  `insufficient_privileges` template.
+
+0.1-dvl (2011-10-21)
+--------------------
+
+- Initial release
