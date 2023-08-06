@@ -1,0 +1,27 @@
+sudo: false
+cache: pip
+
+language: python
+
+python:
+    - 3.6
+    - 2.7
+
+env:
+    matrix:
+      - TOXENV=py
+      - TOXENV=docs
+
+matrix:
+    include:
+        - python: 3.6
+          env: TOXENV=manifest
+    allow_failures:
+        - python: 2.7
+
+install:
+    - pip install tox
+    - pip install codecov
+
+script:
+    - tox
