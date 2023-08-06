@@ -1,0 +1,67 @@
+﻿.. PySptools documentation master file, created by
+   sphinx-quickstart on Sun Sep 29 09:27:46 2013.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. meta::
+	:description: Python tools for hyperspectral imaging
+	:keywords: python, hyperspectral imaging, signal processing, library, software, endmembers, unmixing, pysptools, sam, sid, atgp, N-FINDR, NFINDR, spectroscopy, target detection, georessources, geoimaging, chemical imaging, pharmaceutical, pharma, minerals, spectral, remote sensing, hyperspectral drill core imaging
+
+Welcome to the PySptools Documentation
+**************************************
+
+Tools for hyperspectral imaging ::
+
+	Documentation at 2017-05-12.
+
+.. figure:: ./pic/pic_burner1.png
+   :scale: 100 %
+   :align: center
+   :alt: stacked abundance maps
+
+Hyperspectral imaging is used to **visualize chemistry**, the spatial relation between chemicals and the proportion of them. PySptools is a python module that implements spectral and hyperspectral algorithms. Specializations of the library are the endmembers extraction, unmixing process, supervised classification, target detection, noise reduction, convex hull removal and features extraction at spectrum level. The library is designed to be easy to use and almost all functionality has a plot function to save you time with the data analysis process. The actual sources of the algorithms are the Matlab Hyperspectral Toolbox of Isaac Gerg, the pwctools of M. A. Little, the Endmember Induction Algorithms toolbox (EIA), the HySime Matlab module of José Bioucas-Dias and José Nascimento and research papers. Starting with version 0.14.0, PySptools add a bridge to the scikit-learn library. You can download PySptools from the PySptools
+Project Page hosted by Sourceforge.net or from the pypi packages repository.
+
+`My personal web site <http://ctherien.netlify.com/>`_ 
+
+What's New : version 0.14.2 (beta)
+==================================
+
+The pysptools.skl (previously pysptools.sklearn) module clean up continue! Fix to the matplotlib version problem, a better plot_feature_importances and many small improvements.
+
+* Update: the module pysptools.sklearn is rename pysptools.skl, to avoid name clash
+* Fix: The class classification.Output is compatible with matplotlib version 2.0.x and keep compatibility with matplotlib previous versions.
+* Update: The function skl._plot_feature_importances support new keywords: n_labels, height and sort.
+* New: scikit-learn ensemble estimators HyperAdaBoostClassifier, HyperBaggingClassifier and HyperExtraTreesClassifier added to the pysptools.skl module.
+* Improvements to the documentation.
+
+Documentation
+=============
+
+.. toctree::
+   :maxdepth: 2
+
+   introduction
+   installation
+   examples_front
+   abundance_maps
+   classification
+   noise
+   detection
+   distance
+   eea
+   material_count
+   sigproc
+   skl
+   spectro
+   util
+   glossary
+   links
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
