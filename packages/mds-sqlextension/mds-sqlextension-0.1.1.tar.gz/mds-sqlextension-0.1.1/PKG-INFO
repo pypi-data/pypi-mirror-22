@@ -1,0 +1,52 @@
+Metadata-Version: 1.1
+Name: mds-sqlextension
+Version: 0.1.1
+Summary: Library to use more sql-commands
+Home-page: https://www.m-ds.de/
+Author: m-ds GmbH
+Author-email: service@m-ds.de
+License: GPL-3
+Description: sqlextension
+        =================
+        This module makes some SQL commands available for use with python-sql.
+        
+        Install
+        =======
+        pip install mds-sqlextension
+        
+        Available SQL commands
+        ======================
+        
+        - StringAgg (string_agg)
+        - Ascii (ascii)
+        - Concat2 (concat)
+        - RPad (rpad)
+        - Lower (lower)
+        - ArrayAgg (array_agg)
+        - Replace (replace)
+        - AnyInArray (any)
+        - FuzzyEqal (%)
+        
+        To make FuzzyEqual work, call *CREATE EXTENSION pg_trgm;* in PostgreSQL.
+        
+        Requires
+        ========
+        - python-sql
+        
+        Changes
+        =======
+        
+        *0.1.1 - 06/09/2017*
+        
+        - first public version
+        
+Keywords: sql library
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Database
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
