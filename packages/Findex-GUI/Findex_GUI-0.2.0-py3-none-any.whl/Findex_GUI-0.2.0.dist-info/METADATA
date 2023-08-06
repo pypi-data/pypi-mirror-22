@@ -1,0 +1,80 @@
+Metadata-Version: 2.0
+Name: Findex-GUI
+Version: 0.2.0
+Summary: Multi-purpose search engine for various protocols.
+Home-page: https://github.com/skftn/findex-gui
+Author: Sander Ferdinand
+Author-email: sa.ferdinand@gmail.com
+License: MIT
+Keywords: findex ftp http smb crawler search engine
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Flask
+Classifier: Framework :: Pytest
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Security
+Requires-Dist: IPy (==0.83)
+Requires-Dist: flask (==0.12)
+Requires-Dist: flask-auth (==0.85)
+Requires-Dist: flask-babel
+Requires-Dist: flask-wtf (==0.14.2)
+Requires-Dist: furl (==0.5.7)
+Requires-Dist: gevent (==1.2.1)
+Requires-Dist: humanfriendly (==2.4)
+Requires-Dist: jinja2 (==2.9.5)
+Requires-Dist: psycopg2 (==2.7.1)
+Requires-Dist: pysocks
+Requires-Dist: python-magic
+Requires-Dist: requests (==2.13.0)
+Requires-Dist: sqlalchemy (==1.1.6)
+Requires-Dist: sqlalchemy-utils (==0.32.13)
+Requires-Dist: sqlalchemy-zdb (>=0.1.0)
+
+Findex
+========
+
+is a file indexer for FTP, SMB and HTTP servers.
+
+Features
+--------
+- Scalable/fast
+- [Searching](http://i.imgur.com/WpTTkxx.png) (file name, category, size, extension)
+- [File browsing](http://i.imgur.com/6UkGBzB.png)
+- [IMDB powered 'popcorn' view](http://i.imgur.com/8nk8rbY.png) (release year, director, actors/actresses, genre)
+- User login / registration
+- Languages: Dutch/English
+- Reverse proxying files from the (ftp/http) backend through the web interface
+
+Stack
+----------
+[Postgres 9.5](https://www.postgresql.org/), [RabbitMQ](https://www.rabbitmq.com/), [ElasticSearch 1.7](https://www.elastic.co/), [ZomboDB](https://github.com/zombodb/zombodb), [Flask](http://flask.pocoo.org/),  [Twisted](https://twistedmatrix.com/trac/)
+
+Requirements
+------------
+  - Linux (Debian >= **7** | Ubuntu >= **11** | CentOS >= **6**)
+  - Python >= **3.5**
+  - Postgres **9.5**
+  - ElasticSearch **1.7.6**
+  - RabbitMQ >= **3.5.4**
+
+
+### Screenshot
+[![pic](http://i.imgur.com/WpTTkxx.png)](w0w)
+
+### Installation
+
+Docker containers will be provided soon. For now, don't attempt to manually install. You've been warned! :)
+
+### Streetcred
+- Volkskrant (http://i.imgur.com/9oqlKU2.png) (dutch)
+- Security.nl (dutch): [Duizenden openstaande FTP-servers in Nederland](https://www.security.nl/posting/440684)
+- Motherboard (dutch) [440 terabytes aan Nederlandse privébestanden zijn nu makkelijk doorzoekbaar](https://motherboard.vice.com/nl/article/440-terabytes-aan-nederlandse-privbestanden-zijn-nu-makkelijk-doorzoekbaar)
+- [@hdmoore](http://i.imgur.com/nyP0EEq.png)
+
