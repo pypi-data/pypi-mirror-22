@@ -1,0 +1,123 @@
+CHANGES
+=======
+
+0.4.0
+-----
+
+* apply the proposed enhancement for the docker-py error
+* fix unintended typo (. vs _)
+* the one true warning against docker-py
+* remove unused imports
+* minor code style fixes
+* update to new docker api - first version that seems to run
+
+0.3.2
+-----
+
+* checkout should no longer give you an expired or destroyed container
+* docs & examples updated
+* image pull and rebalance intervals are configurable
+* added some more pool status logging
+* corrected a grep fail
+* containers are always running, so status no longer reports it
+* fixed a stupid
+* improve selenium check some more
+* better organization of container kill logic, fixed image matching
+* container "upness" check also checks status (ports weren't enough)
+* (re)add selenium upness check in rebalance
+* image name properly displays in docker list again
+* Using last pulled image id on container creation to further limit docker api hits
+* change is_running logic to drastically reduce docker api hits
+* docker client timeout is way more forgiving of slow dockers
+* "All container checked in" only logged once, not once per container
+* expanded the rebalance diaper to include all docker interactions
+* catching an error in rebalance doesn't stop rebalancing
+* balance containers checks selenium up-ness as well
+* log the exception that prevented a container from starting
+* double-check selenium up-ness on checkout
+* using autoversionclient, lowered client timeout (from 60 to 20)
+* container balancer wrapped in a diaper
+
+0.3.1
+-----
+
+* fix broken apierror_squasher usage
+* minor logging tweaks
+* container start is no longer threaded, only the selenium poller is
+* handle apierrors when checking if a container is running
+
+0.3.0
+-----
+
+* container start is multithreaded, timeout is in seconds
+* corrected fileviewer url, log level tweak
+* eliminate docker container id -> name race condition
+* convert from bottle to flask
+* out with ssh, in with http
+
+0.2.2
+-----
+
+* checkout includes image_id
+* apscheduler requirement update (no longer using the beta)
+* rebalance view
+* stop_async triggers a rebalance when the stop completes
+* docker-py requirement updated
+* renew_url included in status views
+* renew_url included in checkout and renew returns
+
+0.2.1
+-----
+
+* stop only stops running containers
+* expiry information is included in checkout and renew responses
+
+0.2.0
+-----
+
+* wharf aggressively destroys containers, they must be periodically renewed
+
+0.1.4
+-----
+
+* WEBDRIVER_WHARF_POOL_SIZE must be an int
+* Attempting to remove the old image after a pull was silly
+* Container destroys now only happen in cleanup
+* Cleanup compares against the last pulled image ID
+* Typo in comment removed
+
+0.1.3
+-----
+
+* Minor lint/comment
+* Remove old images when a pull from a tag tracks a new id
+* Selenium wait time after starting an instance bumped to 120 seconds
+* Pull logging improvements
+* interactions.destroy is tolerant of api errors
+* Containers are sortable by creation datetime (ascending)
+* Containers are balanced on image pull
+* cleanup properly calls checkin
+
+0.1.2
+-----
+
+* sqlalchemy no longer omitted from requirements (doh!)
+* Container id length truncated to manageable and predicatable 12 chars
+* destroy_all no actually destroys all containers
+* Status view returns JSON instead of pprinted reprs
+* Version is logged on startup
+* Example systemd service file
+
+0.1.1
+-----
+
+* The correct VNC port is actually mapped
+* Containers no longer destroyed on shutdown
+* Logging warm and fuzzies
+* Logging tweaks to work better as a systemd service
+
+0.1.0
+-----
+
+* First release
+* Initial commit
