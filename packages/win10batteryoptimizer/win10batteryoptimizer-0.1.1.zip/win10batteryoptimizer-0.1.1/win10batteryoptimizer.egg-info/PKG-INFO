@@ -1,0 +1,52 @@
+Metadata-Version: 1.1
+Name: win10batteryoptimizer
+Version: 0.1.1
+Summary: An easy-to-use Python library for maintaing the optimal battery life for windows 10
+Home-page: https://github.com/arunkumarpalaniappan/win10batteryoptimizer
+Author: Arunkumar Palaniappan
+Author-email: akrp@live.in
+License: MIT
+Download-URL: https://github.com/arunkumarpalaniappan/win10batteryoptimizer/tarball/0.0.1
+Description: ##Battery Optimizer
+        
+        An easy-to-use Python library for maintaing the optimal battery life for windows 10.
+        
+        
+        ## Installation
+        
+        ```
+        pip install win10batteryoptimizer
+        ```
+        
+        ## Requirements
+        
+        ### Installation of pywin32
+        ```
+        pypiwin32
+        setuptools
+        time
+        win10toast
+        ```
+        
+        ## Example
+        
+        ```
+        from win10batteryoptimizer import Notifier
+        notifier = Notifier()
+            battery_percent = notifier.get_battery_level()
+            battery_line_status = notifier.get_battery_line()
+            while ((int)(battery_percent>80) and (int)(battery_line_status)):
+                notifier.create_plug_out_toast()
+                time.sleep(600)
+            while ((int)(battery_percent<40) and (int)(battery_line_status)==0):
+                notifier.create_plug_in_toast()
+                time.sleep(600)
+            while ((int)(battery_percent)>39 and (int)(battery_percent)<81):
+                time.sleep(600)
+        ```
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Utilities
+Classifier: Operating System :: Microsoft
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: License :: OSI Approved :: MIT License
