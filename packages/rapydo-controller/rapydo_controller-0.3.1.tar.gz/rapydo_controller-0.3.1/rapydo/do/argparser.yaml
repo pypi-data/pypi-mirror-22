@@ -1,0 +1,159 @@
+
+description: Do actions with your RAPyDo project
+action:
+  name: action
+  help: all possible commands
+
+options:
+
+  project:
+    # NOTE: this is the equivalent of the old concept of `blueprint`
+    type: str
+    metavalue: PROJECT_NAME
+    help: The name of the project to use inside the './projects' directory
+    # The only one if exists otherwise list the projects.
+    default: null
+
+  mode:
+    type: str
+    metavalue: CONTAINERS_YAML_SELECTED_MODE
+    default: debug
+    help: The mode is like a 'blueprint' marker of the configuration to launch
+
+  log-level:
+    type: str
+    metavalue: LEVEL_OF_DEBUGGER
+    default: DEBUG
+    help: Level of verbosity
+
+  hostname:
+    type: str
+    metavalue: MACHINE_HOST_NAME
+    default: localhost
+    help: "Host name of the current machine where running the server
+        (NOTE: only used in production mode)"
+
+  services:
+    type: str
+    metavalue: SERVICES_COMA_SEPARATED
+    default: active services
+    help: List of services referring to a command
+
+  force_env:
+    type: bool
+    default: False
+    help: Force recreation of the docker compose .env file even if existing
+
+  development:
+    type: bool
+    # metavalue: TRUE_OR_FALSE
+    default: False
+    help: Allow to execute the code directly from rapydo core
+
+subcommands:
+  check:
+    description: "only verify if currently compliant to RAPyDo specs
+        (NOTE: this is done at every call)"
+    suboptions:
+      ignore_submodule:
+        type: str
+        metavalue: IGNORE_SUBMODULE
+        default: 'upstream'
+        help: ignore a given list of submodules (command delimited)
+      skip_heavy_git_ops:
+        type: bool
+        default: False
+        help: ignore the heaviest check operations on git commits
+      verify_upstream:
+        type: bool
+        metavalue: TRUE_OR_FALSE
+        default: False
+        help: include upstream repo (rapydo-core) to checked submodules
+  init:
+    description: "
+      make current project compliant to RAPyDo requirements
+      (if not yet being)"
+  update:
+    description: update the current project
+    suboptions:
+      ignore_submodule:
+        type: str
+        metavalue: IGNORE_SUBMODULE
+        default: 'upstream'
+        help: ignore a given list of submodules (command delimited)
+  # TODO: a tutorial mode to improve the project step by step
+  # instead of all at once like init
+  # tutorial:
+  #   description: Step-by-step guide to make your project RAPyDo compliant
+  status:
+    description: list current status of containers
+  build:
+    description: force building of one or more services docker images
+    suboptions:
+      rebuild_templates:
+        type: bool
+        # metavalue: TRUE_OR_FALSE
+        default: False
+        help: Force building of templates docker images used in other builds
+      force:
+        type: bool
+        # metavalue: TRUE_OR_FALSE
+        default: False
+        help: remove caches of previous builds on this service
+  log:
+    description: watch log tails of all or specified containers
+  custom:
+    description: execute predefined custom commands inside containers
+  ssl_certificate:
+    description: Issue a production certificate with service Letsencrypt
+    container_exec:
+      name: letsencrypt
+      command: updatecertificates
+      service: proxy
+      user: root
+      # description: useless here
+  interfaces:
+    description: run off some predefined interfaces to services
+    suboptions:
+      port:
+        type: int
+        metavalue: INTEGER_PORT_FOR_SERVICE
+        default: null
+        help: the port which would be associated to the service
+  shell:
+    description: open a shell inside the specified container
+    suboptions:
+      user:
+        type: str
+        metavalue: UNIX_EXISTING_USER
+        default: ''
+        help: user existing inside selected service
+      command:
+        type: str
+        metavalue: TERMINAL_COMMAND_UNIX-LIKE
+        default: bash
+        help: UNIX command to be executed on selected running service
+  control:
+    description: manage start/stop of the framework based on  current specified blueprint
+    controlrequired: True
+    controlcommands:
+      start:
+        - Start containers for this configuration
+      stop:
+        - Stop running containers, but do not remove them
+      restart:
+        - Restart running containers
+      remove:
+        - Stop containers if running and remove them
+      toggle_freeze:
+        - Toggle a temporary block/pause of running services
+  clean:
+    description: "remove all:
+      containers, networks and OPTIONALLY data volumes"
+    suboptions:
+      rm-volumes:
+        type: bool
+        metavalue: TRUE_OR_FALSE
+        default: False
+        help: remove also containers persistent data
+
