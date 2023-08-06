@@ -1,0 +1,74 @@
+Metadata-Version: 1.1
+Name: pycovfefe
+Version: 0.1a0
+Summary: Python Interface for covfefe caliber content generation.
+Home-page: https://bitbucket.org/petersanchez/pycovfefe/
+Author: Peter Sanchez
+Author-email: petersanchez@gmail.com
+License: UNKNOWN
+Description: ==============================
+        covfefe
+        ==============================
+        :Info: Simple module to convert content to "covfefe" quality
+        :Version: 0.1a0
+        :Author: Peter Sanchez (http://www.petersanchez.com)
+        
+        Credit
+        ============
+        
+        Now any Python developer can take their content and improve it to "covfefe" quality with ease.
+        
+        `End tweets with style <https://archive.is/f7UL3>`_
+        
+        `It's a framework <https://twitter.com/OngEmil/status/869779870682935296>`_
+        
+        Nod to Kyle Kelley for his JS library - https://github.com/rgbkrk/covfefe
+        
+        Installation
+        ============
+        
+        PIP::
+        
+            pip install pycovfefe
+        
+        Basic Manual Install::
+        
+            $ python setup.py build
+            $ sudo python setup.py install
+        
+        
+        Usage
+        =====
+        
+        Usage -- Python ::
+        
+           >>> from confefe import convert
+           >>> convert('Despite the constant negative press')
+           u'Despite the constant negative press covfefe'
+        
+        Usage -- CLI ::
+        
+           $ covfefe Despite the constant negative press
+           Despite the constant negative press covfefe
+        
+        Testing
+        =======
+        
+        To test the library run ::
+        
+            $ python tests.py
+        
+        Copyright & Warranty
+        ====================
+        All documentation, libraries, and sample code are
+        Copyright 2017 Peter Sanchez <petersanchez@gmail.com>. The library
+        and sample code are made available to you under the terms of the BSD license
+        which is contained in the included file, BSD-LICENSE.
+        
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
