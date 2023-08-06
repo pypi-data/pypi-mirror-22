@@ -1,0 +1,214 @@
+#! python
+
+import os
+import sys
+import logging
+from PyQt4 import QtGui
+
+# setting up logging
+logger = logging.getLogger()
+handler = logging.StreamHandler()
+formatter = logging.Formatter(
+        '%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+logger.setLevel(logging.CRITICAL)
+
+
+logger.debug("Begin to import weightanalysers modules")
+import weightanalyser.cli as cli
+import weightanalyser.datahandeling as datahandeling
+import weightanalyser.visualisation as visualisation
+from weightanalyser.add_measurement import Ui_AddMeasurementWindow
+from weightanalyser.main_gui import Ui_MainWindow
+logger.debug("All weightanalyser modules are imported")
+
+
+
+
+class AddMeasurementWindow(QtGui.QWidget):
+    def __init__(self, weightanalyser_path):
+        logger.debug("Initialise AddMeasurementWindow")
+        QtGui.QWidget.__init__(self)
+
+        self.weightanalyser_path = weightanalyser_path
+
+        self.ui = Ui_AddMeasurementWindow()
+        self.ui.setupUi(self)
+
+        # set properties to widgets
+        self.ui.date_lineEdit.setReadOnly(True)
+        self.ui.calendarWidget.setFirstDayOfWeek(1) # 1 = monday
+        self.ui.full_weight_lineEdit.setFocus()
+
+        # add action listeners to widgets
+        self.ui.add_pushButton.clicked.connect(self.add_measurement)
+        self.ui.calendarWidget.clicked.connect(self.read_calendar_widget)
+        self.ui.full_weight_lineEdit.returnPressed.connect(self.ui.fat_perc_lineEdit.setFocus)
+        self.ui.fat_perc_lineEdit.returnPressed.connect(self.ui.mus_perc_lineEdit.setFocus)
+        self.ui.mus_perc_lineEdit.returnPressed.connect(self.add_measurement)
+
+        # put current date as default
+        self.read_calendar_widget()
+
+        # center window
+        self.move(QtGui.QDesktopWidget().availableGeometry().center() - self.frameGeometry().center())
+
+        self.show()
+
+    def add_measurement(self):
+        logger.debug("Call add_measurement function")
+
+        weight = float(self.ui.full_weight_lineEdit.text().replace(',', '.'))
+        fat_perc = float(self.ui.fat_perc_lineEdit.text().replace(',', '.'))
+        mus_perc = float(self.ui.mus_perc_lineEdit.text().replace(',', '.'))
+        date_str = str(self.ui.date_lineEdit.text())
+
+        measurement = {"date": date_str,
+                       "weight": weight,
+                       "fat_perc": fat_perc,
+                       "fat_mass": weight * fat_perc / 100.0,
+                       "mus_perc": mus_perc,
+                       "mus_mass": weight * mus_perc / 100.0}
+
+        logger.debug("Write measurement to disk.")
+        cli.add_measurement(self.weightanalyser_path, measurement)
+        self.close()
+
+    def read_calendar_widget(self):
+        logger.debug("Call read_calendar_widget function")
+
+        selected_date = self.ui.calendarWidget.selectedDate()
+        selected_date_string = selected_date.toString("dd-MM-yyyy")
+        logger.debug("Write selected date into date_lineEdit.")
+        self.ui.date_lineEdit.setText(selected_date_string)
+
+
+class MainWindow(QtGui.QMainWindow):
+    def __init__(self):
+        logger.debug("Initialise MainWindow")
+
+        QtGui.QMainWindow.__init__(self)
+
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+
+        # set the default weightanalyser location and create it if it doesn't exist.
+        self.weightanalyser_path = os.path.expanduser("~") + "/.weightanalyser/"
+        if not os.path.exists(self.weightanalyser_path):
+            logger.debug("Make weightanalyser folder because it does not exist.")
+            os.makedirs(self.weightanalyser_path)
+
+        # set properties to widgets
+        self.ui.grid_checkBox.setChecked(True)
+        self.ui.fit_ra_lineEdit.setText("7")
+        self.ui.plot_full_weight_checkBox.setChecked(True)
+        self.ui.plot_fat_checkBox.setChecked(True)
+        self.ui.plot_muscle_checkBox.setChecked(True)
+        self.ui.goal_lineEdit.setText("-500")
+
+        # add action listener to widgets
+        self.ui.plot_Button.clicked.connect(self.plot)
+        self.ui.add_mea_Button.clicked.connect(self.open_add_measurement_window)
+
+        # center window
+        self.move(QtGui.QDesktopWidget().availableGeometry().center() - self.frameGeometry().center())
+
+        # show the gui
+        self.show()
+        logger.debug("Call the plot function initially.")
+        self.plot()
+
+    def plot(self):
+        logger.debug("Call plot function.")
+
+        self.ui.mat.fig.clear()
+
+        number_of_plots = 0
+
+        logger.debug("Read state of the plot check boxes.")
+        if self.ui.plot_full_weight_checkBox.checkState():
+            number_of_plots += 1
+
+        if self.ui.plot_fat_checkBox.checkState():
+            number_of_plots += 1
+
+        if self.ui.plot_muscle_checkBox.checkState():
+            number_of_plots += 1
+
+
+        if number_of_plots == 3:
+            plot_height = 0.2
+
+        if number_of_plots == 2:
+            plot_height = 0.35
+
+        if number_of_plots == 1:
+            plot_height = 0.8
+
+
+        logger.debug("Set positions and sizes of the axes.")
+        if self.ui.plot_full_weight_checkBox.checkState():
+            if number_of_plots == 3:
+                self.ui.mat.ax1 = self.ui.mat.fig.add_axes([.10, 0.7, .8, plot_height])
+            if number_of_plots == 2:
+                self.ui.mat.ax1 = self.ui.mat.fig.add_axes([.10, 0.6, .8, plot_height])
+            if number_of_plots == 1:
+                self.ui.mat.ax1 = self.ui.mat.fig.add_axes([.10, 0.1, .8, plot_height])
+
+        if self.ui.plot_fat_checkBox.checkState():
+            if number_of_plots == 3:
+                self.ui.mat.ax2 = self.ui.mat.fig.add_axes([.10, .4, .8, plot_height])
+            if number_of_plots == 2:
+                if self.ui.plot_full_weight_checkBox.checkState():
+                    self.ui.mat.ax2 = self.ui.mat.fig.add_axes([.10, 0.1, .8, plot_height])
+                if self.ui.plot_muscle_checkBox.checkState():
+                    self.ui.mat.ax2 = self.ui.mat.fig.add_axes([.10, 0.6, .8, plot_height])
+            if number_of_plots == 1:
+                self.ui.mat.ax2 = self.ui.mat.fig.add_axes([.10, 0.1, .8, plot_height])
+
+        if self.ui.plot_muscle_checkBox.checkState():
+            if number_of_plots == 3:
+                self.ui.mat.ax3 = self.ui.mat.fig.add_axes([.10, .1, .8, plot_height])
+            if number_of_plots == 2:
+                self.ui.mat.ax3 = self.ui.mat.fig.add_axes([.10, 0.1, .8, plot_height])
+            if number_of_plots == 1:
+                self.ui.mat.ax3 = self.ui.mat.fig.add_axes([.10, 0.1, .8, plot_height])
+
+        dataset_path = self.weightanalyser_path + "dataset.js"
+        logger.debug("Read dataset from file")
+        dataset = datahandeling.read_dataset(dataset_path)
+
+        logger.debug("Read fit range from line Edit.")
+        fit_ra = int(self.ui.fit_ra_lineEdit.text())
+        logger.debug("Call make_plot function")
+        fat_change_per_week = visualisation.make_plot(self.weightanalyser_path, dataset, self.ui.mat.ax1, self.ui.mat.ax2, self.ui.mat.ax3, fit_ra, self.ui.mat.fig)
+        fat_change_goal = int(self.ui.goal_lineEdit.text())
+        adjustment = fat_change_goal - fat_change_per_week * 1000
+        self.ui.adjustment_lineEdit.setText(str(adjustment))
+
+        # set settings of the gui / user
+        logger.debug("Get state of the grid_checkBox.")
+        if self.ui.grid_checkBox.checkState():
+            visualisation.set_custom_grid(self.ui.mat.ax1)
+            visualisation.set_custom_grid(self.ui.mat.ax2)
+            visualisation.set_custom_grid(self.ui.mat.ax3)
+
+        logger.debug("Read display range from line Edit.")
+        disp_ra = self.ui.disp_ra_lineEdit.text()
+        if disp_ra != "":
+            visualisation.set_custom_disp_ra(disp_ra, self.ui.mat.ax1)
+            visualisation.set_custom_disp_ra(disp_ra, self.ui.mat.ax2)
+            visualisation.set_custom_disp_ra(disp_ra, self.ui.mat.ax3)
+
+        logger.debug("Draw the figure (axes).")
+        self.ui.mat.draw()
+
+    def open_add_measurement_window(self):
+        logger.debug("Call open_add_measurement_window function")
+        self.add_measurement_window = AddMeasurementWindow(self.weightanalyser_path)
+
+if __name__ == "__main__":
+    app = QtGui.QApplication(sys.argv)
+    main = MainWindow()
+    sys.exit(app.exec_())

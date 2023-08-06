@@ -1,0 +1,66 @@
+#! python
+
+import os
+from datetime import date
+import matplotlib.pyplot as plt
+
+import weightanalyser.cli as cli
+import weightanalyser.datahandeling as datahandeling
+import weightanalyser.visualisation as visualisation
+
+def check_format_general(question, check_function):
+    checker = False
+    string = ""
+    while checker == False:
+        string = raw_input(question)
+        checker = check_function(string)
+        if not checker:
+            print "Input has wrong format"
+    return string
+
+def run():
+    path = os.path.expanduser("~") + "/Dropbox/weightanalyser/data/dataset.js"
+    print "Hello, this is the WeightAnalyser!"
+    date_format = "%d-%m-%Y"
+
+    do_add = "y"
+    while do_add == "y":
+        do_add = raw_input("Do you want to add a new measurement? [y/n] ")
+        if do_add == "y":
+            before_today = raw_input("Is the measurement taken before today? [y/n] ")
+            if before_today == "y":
+                question = "Please enter the date you took the measurement (dd-mm-yyyy)! "
+                date_str = check_format_general(question, cli.check_date_format)
+            else:
+                date_object = date.today()
+                date_str = date_object.strftime(date_format)
+
+            print date_str
+
+            question = "Enter full weight in kg!"
+            weight = float(check_format_general(question, cli.check_mass_value_format))
+
+            question = "Enter fat perc! "
+            fat_perc = float(check_format_general(question, cli.check_percent_value_format))
+
+            question = "Enter mus perc! "
+            mus_perc = float(check_format_general(question, cli.check_percent_value_format))
+
+            measurement = { "date" : date_str,
+                            "weight" : weight,
+                            "fat_perc" : fat_perc,
+                            "fat_mass" : weight * fat_perc / 100.0,
+                            "mus_perc" : mus_perc,
+                            "mus_mass" : weight * mus_perc / 100.0 }
+
+            dataset = cli.add_measurement(measurement)
+        else:
+            dataset = datahandeling.read_dataset(path)
+
+    f, (ax1, ax2, ax3) = plt.subplots(3, sharex=True)
+    visualisation.make_plot(dataset, ax1, ax2, ax3)
+
+
+if __name__ == "__main__":
+    run()
+
