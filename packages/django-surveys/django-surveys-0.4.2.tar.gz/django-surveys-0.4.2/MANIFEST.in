@@ -1,0 +1,11 @@
+graft src
+
+include AUTHORS.rst
+include CONTRIBUTING.rst
+include HISTORY.rst
+include LICENSE
+include README.rst
+
+recursive-exclude tests *
+
+global-exclude *.py[cod] __pycache__ *.so *.dylib
