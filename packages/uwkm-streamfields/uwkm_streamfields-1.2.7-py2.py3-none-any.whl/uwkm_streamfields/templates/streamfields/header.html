@@ -1,0 +1,9 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+<div class="col-md-12">
+	{% for item in self %}
+	    <{{ item.header }}>{{ item.text }}</{{ item.header }}>
+	{% endfor %}
+</div>
