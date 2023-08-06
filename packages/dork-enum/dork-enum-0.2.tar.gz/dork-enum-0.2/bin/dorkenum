@@ -1,0 +1,58 @@
+#!/usr/bin/env python
+import click
+import signal
+from requests.exceptions import ProxyError, ConnectionError
+from dorkenum.helpers import Logger, GoogleSearchResponse, SIGINT_handler, get_next_link, get_page_or_die
+from dorkenum import user_options, headers
+
+
+@click.command()
+@click.option('-d', '--dork', type=str, required=True, help=u'the particular google dork you wish to search.')
+@click.option('-a', '--action', type=click.File(), help=u'optional json file to perform a specific action.')
+@click.option('-p', '--proxy', type=str, help=u'syntax: 10.10.20.40:8080')
+@click.option('-l', '--limit', type=int, default=20, help=u'only show a portion of the results.')
+@click.option('-v', '--verbose', is_flag=True, help=u'reveal error messages.')
+@click.option('-o', '--outfile', type=click.Path(), help=u'where to save the results.')
+def d0rk(dork, action, proxy, limit, verbose, outfile):
+    user_options.update({
+        'dork': dork,
+        'proxy': {
+            'http': 'http://%s' % proxy,
+            'https': 'https://%s' % proxy,
+        } if proxy else None,
+        'limit': 20 if not limit else limit,
+        'verbose': verbose,
+        'logger': Logger(outfile) if outfile else Logger(),
+        'visited': [],
+        'param_file': action.read() if action else None,
+    })
+    logger = user_options['logger']
+    logger.log([(u'searching google using: ', 'success', 0),
+                (u'dork://%s' % dork, 'warn', -1)])
+    try:
+        logger.log((u'deploying d0rk...', 'success', 1))
+        content = get_page_or_die('https://www.google.com/search', params={
+                                  'q': dork, 'btnG': 'Google Search', 'num': user_options['limit']}, indent=1, headers=headers, proxies=user_options['proxy'])
+        logger.log((u'parsing results...', 'success', 1))
+        GoogleSearchResponse(content)
+
+        next_link = get_next_link(content)
+        if next_link:
+            while [x for x in next_link.find_all('span') if 'Next' in x.text]:
+                next_page = u'https://www.google.com%s' % next_link.get('href')
+                content = get_page_or_die(
+                    next_page, indent=2, headers=headers, proxies=user_options['proxy'])
+                GoogleSearchResponse(content)
+                next_link = get_next_link(content)
+
+    except ProxyError:
+        logger.log((u'connection thru proxy failed.', 'fail', 1))
+        return
+    except ConnectionError:
+        pass
+
+
+if __name__ == '__main__':
+    handler = SIGINT_handler()
+    signal.signal(signal.SIGINT, handler.signal_handler)
+    d0rk()
