@@ -1,0 +1,30 @@
+Metadata-Version: 1.1
+Name: 311devs_peewee
+Version: 2.10.1.2
+Summary: a little orm
+Home-page: https://github.com/311devs/peewee
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: .. image:: http://media.charlesleifer.com/blog/photos/p1423749536.32.png
+        
+        peewee
+        ======
+        This is just `peewee-2.10.1 <https://github.com/coleifer/peewee>` with some changes we need:
+        
+        * Simple LEFT JOIN LATERAL. No need make subquery, just join to model.
+        .. code-block:: python
+        
+            # make some compound select query
+            subq = ModelB.select(ModelB.id).where(ModelB.id > ModelA.id).limit(1)
+            # make query lateral joining subquery
+            ModelA.select(ModelA, subq.c.id).join(subq, join_type=JOIN.LATERAL)
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
