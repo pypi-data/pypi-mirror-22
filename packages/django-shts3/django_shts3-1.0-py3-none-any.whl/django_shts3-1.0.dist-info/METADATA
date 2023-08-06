@@ -1,0 +1,70 @@
+Metadata-Version: 2.0
+Name: django-shts3
+Version: 1.0
+Summary: You spend way too much time typing 'python3 manage.py'
+Home-page: https://github.com/wolphin/django-shts3
+Author: Nikita Khabarov
+Author-email: nikita.khabarov.al@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+
+Django shortcuts
+================
+
+You spend too much time typing ``python manage.py``.
+
+Usage
+-----
+
+Django shortcuts installs ``django``, ``dj``, ``d`` binaries that proxies
+Django's ``manage.py``  scripts.
+
+::
+
+    $ django <command or shortcut>
+
+    $ cd any/project/subdirectory
+    $ d <command or shortcut>
+
+
+Shortcuts
+---------
+
+::
+
+  # Django
+    'c'  : 'collectstatic',
+    'r'  : 'runserver',
+    'sp' : 'startproject',
+    'sa' : 'startapp',
+    't'  : 'test',
+
+    # Shell
+    's'  : 'shell',
+    'sh' : 'shell',
+
+    # Auth
+    'csu': 'createsuperuser',
+    'cpw': 'changepassword',
+
+    # Migrations
+    'm'  : 'migrate',
+    'mg' : 'migrate'
+    'mkm' : 'makemigrations',
+
+Installation
+------------
+
+::
+
+    $ pip3 install django-shts3
+
+
