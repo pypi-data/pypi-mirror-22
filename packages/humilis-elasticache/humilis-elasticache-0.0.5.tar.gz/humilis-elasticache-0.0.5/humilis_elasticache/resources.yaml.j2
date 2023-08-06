@@ -1,0 +1,38 @@
+---
+resources:
+    CacheCluster:
+    {% if engine == "redis" and num_cache_nodes > 1 %}
+        Type: "AWS::ElastiCache::ReplicationGroup"
+        Properties:
+            ReplicationGroupDescription:
+                "Deployed in Humilis env : {{_env.name}}-{{_env.stage}}"
+            CacheNodeType: {{cache_node_type}}
+            Engine: {{engine}}
+            {% if redis_cluster_mode %}
+            NumNodeGroups: {{num_cache_nodes}}
+            ReplicasPerNodeGroup: {{replicas_per_group}}
+            {% elif not redis_cluster_mode %}
+            NumCacheClusters: {{num_cache_nodes}}
+            {% endif %}
+            SecurityGroupIds: {{vpc_security_group_ids}}
+            CacheSubnetGroupName:
+                Ref: SubnetGroup
+    {% else %}
+        Type: "AWS::ElastiCache::CacheCluster"
+        Properties:
+            AZMode: {{az_mode}}
+            CacheNodeType: {{cache_node_type}}
+            Engine: {{engine}}
+            NumCacheNodes: {{num_cache_nodes}}
+            VpcSecurityGroupIds: {{vpc_security_group_ids}}
+            CacheSubnetGroupName:
+                Ref: SubnetGroup
+    {% endif %}
+    SubnetGroup:
+        Type: "AWS::ElastiCache::SubnetGroup"
+        Properties:
+            CacheSubnetGroupName: "{{_env.name}}-{{_layer.name}}-{{_env.stage}}"
+            Description:
+                "Elasticache ({{_env.name}}-{{_layer.name}}-{{_env.stage}})"
+            SubnetIds:
+                {{subnet_ids}}
