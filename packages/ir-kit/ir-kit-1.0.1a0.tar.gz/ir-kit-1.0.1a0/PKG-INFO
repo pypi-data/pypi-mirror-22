@@ -1,0 +1,50 @@
+Metadata-Version: 1.1
+Name: ir-kit
+Version: 1.0.1a0
+Summary: Utilities for information retrieval in python
+Home-page: https://github.com/hscells/ir-kit
+Author: Harry Scells
+Author-email: harryscells@gmail.com
+License: MIT
+Description: IR Kit
+        ======
+        
+        Information Retrieval Kit - Utilities for IR in python
+        
+        Installing
+        ----------
+        
+        IR Kit can be installed via pip:
+        
+        ``pip3 install ir-kit``
+        
+        Usage
+        -----
+        
+        Command line tools:
+        ^^^^^^^^^^^^^^^^^^^
+        
+        For generating precision-recall curves and plotting the average precision of a topic there is trecplot:
+        
+        ``trecplot --help``
+        
+        Libraries
+        ^^^^^^^^^
+        
+        Dealing with trec-related files is done using the ``trec`` package. This package contains classes for dealing with qrel
+        files, trec run files, and trec result files. For documentation of these packages, use ``pydoc3``. For example:
+        
+        ::
+        
+            pydoc3 irkit.trec.qrels
+        
+Keywords: information retrieval ir
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
