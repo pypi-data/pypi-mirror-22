@@ -1,0 +1,24 @@
+<select data-width="fit" class="selectpicker" id="viewer-relative" name="viewer-relative" title="Calculate">
+  <optgroup label="Relative of">
+    <option value="relative-self">Self</option>
+    {% for prev, edits in prevdata %}
+      <option value='relative-{{ prev.id }}'>{{ prev.sstring|safe }}</option>
+      {% if edits %}
+        {% for edit in edits %}
+          <option value='relative-{{ edit.id }}'><i>&nbsp;&nbsp;{{ edit.sstring|safe }}</i></option>
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  </optgroup>
+  <optgroup label="Keyness by">
+    <option value="keyness-self">Self</option>
+        {% for prev, edits in prevdata %}
+    <option value='keyness-{{ prev.id }}'>{{ prev.sstring|safe }}</option>
+    {% if edits %}
+      {% for edit in edits %}
+        <option value='keyness-{{ edit.id }}'><i>&nbsp;&nbsp;{{ edit.sstring|safe }}</i></option>
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+  </optgroup>
+</select>

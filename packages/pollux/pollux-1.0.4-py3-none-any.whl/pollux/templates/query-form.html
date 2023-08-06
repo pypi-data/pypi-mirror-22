@@ -1,0 +1,34 @@
+
+</script>
+
+<div class="container-fluid pull-left">
+<form class="form-inline" action="{{ url_for('do_search') }}" method="post" name="query-form" id="query-form">
+{{ form.hidden_tag() }}
+  <select data-width="fit" class="selectpicker" id="search_type" name="search_type">
+  <optgroup label="Grammar">
+    <option>Dependencies</option>
+    {% if parse_trees %}
+        <option>Trees</option>
+    {% endif %}
+    <option>CQL</option>
+  </optgroup>
+  <optgroup label="Feature">
+    {% for subfield in features %}
+    <option>{{ subfield }}</option>
+  {% endfor %}
+  </optgroup>
+  <optgroup label="Metadata">
+  {% for subfield in metadatas %}
+    <option>{{ subfield }}</option>
+  {% endfor %}
+  </optgroup>
+  </select>
+  <input type="checkbox" class="matching-toggle" name="inverse" id="inverse" checked data-toggle="toggle" data-on="matching" data-off="not matching" data-onstyle="success" data-offstyle="danger">
+  <input type="text" class="form-control" name="querystring" id="querystring" value="" placeholder="Enter query here" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <input type="hidden" class="form-control searchfrom" name="searchfrom" id="searchfrom" value="0" style="visibility: hidden;">
+  <input type="hidden" class="form-control" name="just_update" id="just_update" value="none" style="visibility: hidden;">
+  <button type="submit" id="query-submit-button" class="btn btn-primary">
+    <span class="glyphicon glyphicon-search" id="query-submit-button-icon"></span> Search
+  </button>
+</form>
+</div>

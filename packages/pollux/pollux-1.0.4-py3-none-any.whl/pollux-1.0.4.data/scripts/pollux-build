@@ -1,0 +1,18 @@
+#!python
+
+"""
+python script to make an hdf5 store of all corpora
+"""
+import sys
+from corpkit.hdf5 import make_all
+from corpkit.process import cmd_line_to_kwargs
+colmax = cmd_line_to_kwargs(list(sys.argv))
+
+kwargs = {}
+if 'chunksize' in colmax:
+    kwargs['chunksize'] = colmax.pop('chunksize')
+    
+if colmax:
+    print("Column sizes defined: ", colmax)
+make_all(table=True, colmax=colmax, **kwargs)
+print("\n\nDone! You can now start pollux with the command:\n\n    pollux\n\n")

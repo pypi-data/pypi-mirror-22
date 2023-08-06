@@ -1,0 +1,24 @@
+<!--an embedded grid, to store previous queries on the left,
+    tab views in the middle, and a show/misc space on the right -->
+
+<div class="list-group list-group-root well" id="prev-list" style="padding-left: 5px;">
+  {% for search, edits in data %}
+    <a id={{search.id}} class="list-group-item {{ search.active }}" data-edits="{{ edits|length }}" data-toggle="collapse" data-searchnum="{{search.searchnum}}">
+      <i class="{{search.icon}}"></i>{{search.sstring|safe}}
+      {% if not loop.first %}
+        {% if edits|length %}
+        <span class="badge badge-default badge-pill">{{ edits|length }}</span>
+        {% endif %}
+      {% endif %}
+    </a>
+    {% if edits %}
+      <div class="list-group collapse {{ search.in }}" id="search-{{search.id}}">
+        {% for edit in edits %}
+          <a id="{{edit.id}}" class="list-group-item {{ edit.active }}" data-searchnum="{{edit.searchnum}}">
+            <i class="glyphicon glyphicon-filter"></i><i>{{edit.sstring|safe}}</i>
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+        </style>
+      <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+                    
+                $("#output").pivotUI( 
+                    $.csv.toArrays($("#output").text()), 
+                    { 
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers, 
+                            $.pivotUtilities.c3_renderers, 
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">{{ res_csv }}</div>
+    </body>
+</html>  

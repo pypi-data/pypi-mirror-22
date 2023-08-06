@@ -1,0 +1,298 @@
+<!--Toolbar to appear with table view, allowing editing, sorting, etc-->
+<div id="extra-toolbar-table" style="display:none;">
+  <form action="{{ url_for('update_result', kind='table') }}" method="post" id="table-form" name="table-form">
+  {{ form.hidden_tag() }}
+    <select data-container="body" data-width="fit" class="selectpicker keep-dels" id="viewer-rowselect-action" name="viewer-rowselect-action" title="Selection" disabled>
+    <option>Keep</option>
+    <option>Delete</option>
+    <option>Merge</option>
+    <option>None</option>
+    </select>
+    <select data-container="body" id="viewer-subcorpora" data-width="fit" class="selectpicker" name="viewer-subcorpora[]" multiple title="Rows">
+    <optgroup label="Metadata">
+      {% for subfield in metadata %}
+        <option style="font-weight: bold;">{{ subfield }}</option>
+      {% endfor %}
+      </optgroup>
+      <optgroup label="Features">
+      {% for subfield in features %}
+        <option>{{ subfield }}</option>
+      {% endfor %}
+    </optgroup>
+    </select>
+    <select data-container="body" id="viewer-features[]" data-width="fit" class="selectpicker" name="viewer-features[]" multiple title="Columns">
+      <optgroup label="Features">
+      {% for subfield in features %}
+        <option style="font-weight: bold;">{{ subfield }}</option>
+      {% endfor %}
+      <optgroup label="Metadata">
+      {% for subfield in metadata %}
+        <option>{{ subfield }}</option>
+      {% endfor %}
+      </optgroup>
+    </optgroup>
+    </select>
+    <select data-container="body" data-width="fit" class="selectpicker" id="viewer-sort" name="viewer-sort" title="Sort by">
+      <option>Total</option>
+      <option>Least first</option>
+      <option>Alphabetical</option>
+      <option>Increase</option>
+      <option>Decrease</option>
+      <option>Static</option>
+      <option>Turbulent</option>
+      <option>Reverse</option>
+    </select>
+    {{ viewer_relative|safe }}
+    <div style="padding-left:15px;padding-right:15px;display:inline-block"> <input id="table-ngram-slider" name="ngram-slider" class="ngram-slider" type="text"/> </div>
+    <input type="hidden" class="form-control searchfrom" name="searchfrom" id="table-searchfrom" value="0" style="visibility: hidden;">
+    <input type="hidden" class="form-control selection" name="selection" id="table-selection" value="0" style="visibility: hidden;">
+    <button type="submit" class="btn">Update</button>
+  </form>
+</div>
+
+<!--Toolbar to appear with conc, allowing keeping, colouring, etc-->
+<div id="extra-toolbar-conc" style="display:none;">
+  <form class="form-inline" action="{{ url_for('update_result', kind='conc') }}" method="post" name="conc-form" id="conc-form">
+  {{ form.hidden_tag() }}
+    <select data-container="body" data-width="fit" class="selectpicker keep-dels" id="conc-viewer-rowselect-action" name="viewer-rowselect-action" title="Selection" disabled>
+    <option>Keep</option>
+    <option>Delete</option>
+    <option>None</option>
+    </select>
+  <select data-container="body" id="viewer-conc-features" data-width="fit" class="selectpicker" name="viewer-features[]" multiple title="Format">
+    {% for subfield in features %}
+      <option>{{ subfield }}</option>
+    {% endfor %}
+  </select>
+  <select data-container="body" id="viewer-conc-colour" data-width="fit" class="selectpicker" name="viewer-conc-colour" title="Highlight">
+    <option>POS</option>
+    <option>NER</option>
+    <option>Function</option>
+    <option>Mood</option>
+    <option>Transitivity</option>
+    <option>None</option>
+  </select>
+  <div style="padding-left:15px;padding-right:15px;display:inline-block"> <input id="conc-ngram-slider" name="ngram-slider" class="ngram-slider" type="text"/> </div>
+  <input type="hidden" class="form-control searchfrom" name="searchfrom" id="conc-searchfrom" value="0" style="visibility: hidden;">
+    <input type="hidden" class="form-control selection" name="selection" id="conc-selection" value="0" style="visibility: hidden;">
+    <button type="submit" class="btn">Update</button>
+  </form>
+</div>
+
+<!--Tabbed carousel for each view style="width:100%;margin:0 auto"-->
+<div id="viewer-tabs" class="carousel slide carousel-tabs" data-ride="carousel" data-interval="false">
+  <ul class="nav nav-pills nav-justified" style="background-color:#EEEEEE;">
+    <li id="conc-tab-button" data-target="#viewer-tabs" data-slide-to="0" class="active"><a id="conc-tab-button-text" href="#">Sentences</a></li>
+    <li id="table-tab-button" data-target="#viewer-tabs" data-slide-to="1"><a href="#">Table</a></li>
+    <li id="pivot-tab-button" data-target="#viewer-tabs" data-slide-to="2"><a href="#">Pivot</a></li>
+    <li id="tree-tab-button" data-target="#viewer-tabs" data-slide-to="3"><a id="tree-tab-button-text" href="#">Tree</a></li>
+    <li id="chart-tab-button" data-target="#viewer-tabs" data-slide-to="4"><a href="#" id="goto-charts">Chart</a></li>
+  </ul>
+  <div class="carousel-inner">
+    <div class="item active" id="conc-tab">
+      <table class="table table-sm"
+             id="conc-table"
+             data-search="true"
+             data-show-columns="true"
+             data-show-export="true"
+             data-show-pagination-switch="true"
+             data-pagination="true"
+             data-page-size=25
+             data-page-list="[10, 25, 50, 100, ALL]"
+             data-resizable="true"
+             data-export="true"
+             data-showExport="true"
+             data-toolbar="#extra-toolbar-conc"
+             data-showRefresh="true"
+             data-resizeMode="overflow"
+             data-stickyHeader="true"
+             data-advanced-search="true"
+             data-fixed="true"
+             style="font-size:12px;white-space:nowrap;border-spacing:10px 0">
+      </table>
+    </div>
+    <div class="item">
+      <div class="item" id="table-tab">
+        <table class="table table-sm"
+               id="table-table"
+               data-search="true"
+               data-show-columns="true"
+               data-show-export="true"
+               data-show-pagination-switch="true"
+               data-pagination="true"
+               data-page-size=25
+               data-page-list="[10, 25, 50, 100, ALL]"
+               data-export="true"
+               data-showExport="true"
+               data-toolbar="#extra-toolbar-table"
+               data-advanced-search="true"
+               data-showRefresh="true"
+               data-stickyHeader="true"
+               style="font-size:10px;white-space:nowrap;border-spacing:10px 0">
+        </table>
+      </div>
+    </div>
+    <div class="item">
+      <div id="pivot-space" style="font-size:10px;white-space:nowrap;border-spacing:10px 0;overflow-x:scroll;overflow-y:scroll;margin-top: 10px;margin-bottom: 10px;"></div>
+    </div>
+    <div class="item">
+      <div id="tree-space" style="font-size:10px;white-space:nowrap;border-spacing:10px 0;overflow-x:scroll;overflow-y:scroll;margin-top: 10px;margin-bottom: 10px;">
+      {{ tree_space|safe }}
+      </div>
+    </div>
+    <div class="item">
+      <div id="chart-space" style="font-size:10px;white-space:nowrap;border-spacing:10px 0;overflow-x:scroll;overflow-y:scroll;margin-top: 10px;margin-bottom: 10px;">
+      {{ chart_space|safe }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+});
+</script>
+
+<script>
+// if the user wants to update the table or the conc
+$(function(){
+  $('form[name="table-form"]').submit(function(){
+    $("#table-table").bootstrapTable("showLoading");
+    // get any selected rows
+    var corp_id = $("#prev-list a.active").attr("id");
+    var checkedBoxes = $("#table-table").bootstrapTable('getSelections');
+    
+    // make a dict of {subcorpus: [vals]}
+    var ixDict = {};
+    for (i = 0; i < selections.length; i++) {
+      var name = selections[i];
+      checkedBoxes = $.map(checkedBoxes, function(i) {
+        return i[name];
+      });
+      ixDict[name.trim()] = checkedBoxes;
+    }
+    checkedBoxes = JSON.stringify(ixDict);
+
+    $('.searchfrom').attr("value", corp_id);
+    $('.selection').attr("value", checkedBoxes);
+    var subcorpora = $("#viewer-subcorpora option:selected")
+    var relative = $("#viewer-relative option:selected").val();
+    if (relative.indexOf('relative-') == 0) {
+        yAxisFormat = ',.2f';
+      } else {
+        yAxisFormat = false;
+      }    
+    $.post($(this).attr('action'), $(this).serialize(), function(data) {
+      updateViews(data);
+      // remake selections with current value
+      selections = [];
+      $.each(subcorpora, function(){
+        selections.push($(this).val());
+      });
+      if (selections.length == 0) {
+        selections = ["file "];
+      }
+
+      
+    }, 'json');
+    return false;
+  });
+});
+</script>
+
+<script>
+$(function(){
+  $('form[name="conc-form"]').submit(function(){
+    $("#conc-table").bootstrapTable("showLoading");
+    concSelections = $("#conc-table").bootstrapTable('getSelections');
+    concSelections = $.map(concSelections, function(i) {
+      return i["#"];
+    });
+    concSelections = JSON.stringify(concSelections);
+    var corp_id = $("#prev-list a.active").attr("id");
+    // append input control at end of form
+    $('.searchfrom').attr("value", corp_id);
+    $('.selection').attr("value", concSelections);
+    $.post($(this).attr('action'), $(this).serialize(), function(data) {
+      updateViews(data);
+      }, 'json');
+    return false;
+  });
+});
+</script>
+
+<script type=text/javascript>
+$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  // to show in modal?
+function youtubeFormatter(value, row, index) {
+    var endurl = row.video_url.concat('?t=', row.start, 's');
+  return "<a href='" + endurl + "' data-toggle='lightbox' data-type='youtube'>" + value + "</a>";
+}
+function ixFormatter(value, row, index) {
+  return '<b>' + value; + '</b>'
+}
+function fsiFormatter(value, row, index) {
+  var fsi = row.file.replace('/', '_') + '/' + row.s + '/' + row.i;
+  // return "<div id='view-tree" + row.index + " value='" + fsi + "'><a href='#'>" + value "</div>";
+  return '<a data-num="' + index + '" href="#" value="' + fsi + '" class="view-tree">' + value + '</a>'
+}
+</script>
+
+<script>
+// sort concordance left column by last word
+  function leftSorter(a, b) {
+    var a = a.toLowerCase().trim();
+    var b = b.toLowerCase().trim();
+    // if there's nothing there, these go at the top
+    if (!a) {
+      return -1
+    }
+    // now, remove punctuation and keep just last word
+    a = a.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/^.* /g,"").trim();
+    b = b.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/^.* /g,"").trim();
+    
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    return 0;
+  }
+</script>
+
+<script>
+$('#goto-charts').on('click', function (e) {
+  $.getScript("{{ url_for('static',filename='js/charts/area.js') }}");
+});
+
+// if the user selects a new kind of chart, hide the others and show this one
+$(function() {
+  $('#chart-type').on('changed.bs.select', function(){
+    var selected = $(this).find("option:selected").val().toLowerCase();
+    updateChart(selected);
+  });
+});
+
+</script>
+
+
+<script>
+$(".ngram-slider").bootstrapSlider({ id: "slider12c", min: -3, max: 3, range: true, value: [0, 0],
+                                  ticks: [-3, -2, -1, 0, 1, 2, 3],
+                                  formatter: function(value) {
+                                    if (value.length) {var first = value[0].toString();} else {var first = 0;}
+                                    if (value.length > 1) {var sec = value[1].toString();} else {var sec = 0;}
+                                    if (value[1] > 0) {sec = '+' + sec;}
+                                    if (value[0] == 0) {first = 'match';}
+                                    if (value[1] == 0) {sec = 'match';}
+                                    if (value[0] == value[1]) {
+                                      if (first == 'match') {return "unigram";} else {return 'unigram: ' + first;}
+                                    }
+                                    return 'n-gram: ' + first + ' to ' + sec;
+                                  },
+                                  tooltip_position:'bottom',
+                                  ticks_snap_bounds: 30});
+</script>

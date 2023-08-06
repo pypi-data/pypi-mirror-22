@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+"""
+python script to make an hdf5 store of all corpora
+"""
+import sys
+from corpkit.corpus import Corpus
+from corpkit.hdf5 import make_all
+from corpkit.process import cmd_line_to_kwargs
+
+colmax = cmd_line_to_kwargs(list(sys.argv[2:]))
+
+kwargs = {}
+if 'chunksize' in colmax:
+    kwargs['chunksize'] = kwargs.pop('chunksize')
+if colmax:
+    print("Column sizes defined: ", colmax)
+
+corpus = Corpus(sys.argv[1])
+name = corpus.name.replace('-parsed', '')
+loaded = corpus.load(load_trees=False, multiprocess=3)
+loaded.store_as_hdf(name=name, colmax=colmax, **kwargs)
+print("\n\n%s added." % name )
