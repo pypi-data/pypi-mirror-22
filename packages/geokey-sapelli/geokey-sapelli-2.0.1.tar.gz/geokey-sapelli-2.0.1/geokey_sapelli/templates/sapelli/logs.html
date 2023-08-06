@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %} | Sapelli: {{ sapelli_project.geokey_project.name }} - Log files{% endblock %}
+
+{% block main %}
+{% include 'sapelli/snippets/header.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            {% include 'sapelli/snippets/navigation.html' %}
+        </div>
+
+        <div class="col-sm-8">
+            <h2 class="header">
+                <span>Log files</span>
+
+                {% if logs.paginator.count > 1 %}
+                    <a role="button" href="{% url 'geokey_sapelli:logs_zip' sapelli_project.geokey_project.id 'Logs' %}.zip{% if date_from or date_to %}?{% endif %}{% if date_from %}date_from={{ date_from }}{% endif %}{% if date_to %}{% if date_from %}&{% endif %}date_to={{ date_to }}{% endif %}" class="btn btn-md btn-primary pull-right">
+                        <span class="glyphicon glyphicon-export"></span>
+                        <span>Download {% if date_from or date_to %}filtered{% else %}all{% endif %}</span>
+                    </a>
+                {% endif %}
+            </h2>
+
+            <form role="form" method="POST" action="{% url 'geokey_sapelli:logs' sapelli_project.geokey_project.id %}" class="row" novalidate>
+                {% csrf_token %}
+
+                <div class="form-group col-md-6">
+                    <label for="date-from">Created from</label>
+                    <input type="text" class="form-control date" id="date-from" name="date-from" data-date-format="YYYY-MM-DD" value="{% if date_from %}{{ date_from }}{% endif %}" />
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="date-to">Created until</label>
+                    <input type="text" class="form-control date" id="date-to" name="date-to" data-date-format="YYYY-MM-DD" value="{% if date_to %}{{ date_to }}{% endif %}" />
+                </div>
+
+                <div class="form-group col-md-12">
+                    <button type="submit" class="btn btn-md btn-primary">Filter log files</button>
+                </div>
+            </form>
+
+            {% for log in logs %}
+                {% if forloop.first %}
+                    <ul class="list-unstyled overview-list">
+                {% endif %}
+
+                <li>
+                    <a href="{{ log.file.url }}" download>{{ log.name }}</a><br />
+                    <small>Created {{ log.created_at|timesince }} ago | Uploaded {{ log.uploaded_at|timesince }} ago by {% if log.creator.display_name == 'AnonymousUser' %}Anonymous User{% else %}{{ log.creator.display_name }}{% endif %}</small>
+                </li>
+
+                {% if forloop.last %}
+                    </ul>
+
+                    <nav>
+                        <ul class="pager">
+                            {% if logs.has_next %}
+                                <li class="previous">
+                                    <a href="?page={{ logs.next_page_number }}{% if date_from %}&date_from={{ date_from }}{% endif %}{% if date_to %}&date_to={{ date_to }}{% endif %}"><span aria-hidden="true">&larr;</span> Older</a>
+                                </li>
+                            {% endif %}
+
+                            {% if logs.has_previous %}
+                                <li class="next">
+                                    <a href="?page={{ logs.previous_page_number }}{% if date_from %}&date_from={{ date_from }}{% endif %}{% if date_to %}&date_to={{ date_to }}{% endif %}">Newer <span aria-hidden="true">&rarr;</span></a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            {% empty %}
+                <div class="well empty-list">
+                    {% if date_from or date_to %}
+                        <p class="lead">We couldn't find any logs within this date range.</p>
+                    {% else %}
+                        <p class="lead">We couldn't find any logs uploaded for this project.</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block libraries %}
+<script src="/static/lib/moment/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+<script src="/static/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/static/js/admin.ui.filters.data.js"></script>
+{% endblock %}
