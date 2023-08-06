@@ -1,0 +1,19 @@
+<div class='dr'>
+    {% if r.ok %}
+      <div class='dr_status dr_success' style='height: 24px; width: 100%; background-color: lightgreen;'>Successful response {{r.status_code}} for {{r.request.url}}</div>
+    {% else %}
+      <div class='dr_status dr_error' style='height: 24px; width: 100%; background-color: goldenrod;'>Received response {{r.status_code}} for {{r.request.url}}</div>
+    {% endif %}
+    <h4>Request</h4>
+    <div id="{{rq_id}}" style="max-height: 600px; width:100%;">
+      {% if r.request.headers['Content-Type'] != 'application/json' %}
+        <pre>{{r.request.body}}</pre>
+      {% endif %}
+    </div>
+    <h4>Response</h4>
+    <div id="{{rs_id}}" style="max-height: 600px; width:100%;">
+      {% if r.request.headers['Content-Type'] != 'application/json' %}
+        <pre>{{r.text}}</pre>
+      {% endif %}
+    </div>
+</div>
