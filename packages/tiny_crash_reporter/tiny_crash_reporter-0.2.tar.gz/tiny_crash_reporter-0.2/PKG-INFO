@@ -1,0 +1,67 @@
+Metadata-Version: 1.1
+Name: tiny_crash_reporter
+Version: 0.2
+Summary: A Python library to log any exceptions to standard out.
+Home-page: https://github.com/tim81cortes/
+Author: Tim Aylott
+Author-email: tsa29@bath.ac.uk
+License: MIT
+Description: Tiny Crash Reporter
+        ====================
+        
+        This library is designed to print any crashes which a Python program encounters when it is run to standard out. 
+        
+        Install:
+        pip install TinyCrashReporter
+        
+        Setup: 
+        1. Import the library into your program.
+        2. Add the line -> sys.excepthook  = tinycrashreporter.crashReportExceptHook <- bellow oyu imports.
+        3. Run your program in the command line e.g. Python3 ~/PythonFiles/MyTinyCrashReporterProgram.py
+        
+        Warning: IDLE and other IDE's appear to use the same method override as Tiny Crash Reporter and are not currently supported. Please run in a command line instead.
+        
+        Example:
+        Add the following lines of code into a blank python file.
+        #!/usr/bin/env python
+        # set up tiny crash reporter:
+        import sys
+        import (...any_other_module...)
+        import tinycrashreporter
+        
+        
+        sys.excepthook  = tinycrashreporter.crashReportExceptHook
+        
+        
+        # Add some crashy code 
+        1/0
+        
+        Blank file:
+        A blank file, which includes the code above and conforms to the specification has been included LibraryLocation/Samples/ImportedLibraryOnly.py
+        
+        In teminal run -> python3 ImportedLibraryOnly.py
+        The library also works in python 2.7.
+        
+        File with options:
+        A file called CrashyProgram.py has also been set up which supports the execution of code passed as an argument. This is for testing purposes and this code should not be published as part of a release project due to it's inherent insecurities.
+        
+        In terminal run -> python3 CrashyProgram.py
+        
+        Unit tests:
+        8 Tests are available in LibraryLocation/CrashTest.py to run these, manually edit the file path in CrashTest.py to point to CrashyProgram.py. Then...
+        
+        In terminal run -> python3 ~/SampleLocation/CrashTest.py -v
+        
+        One of the tests requests user to input some crashy code. This facility doesn't work with " or ' characters and the inclusion of some other special characters may cause similar errors. More work is needed to properly escape the input.
+        
+        
+Keywords: crash report
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
