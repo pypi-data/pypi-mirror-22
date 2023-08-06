@@ -1,0 +1,74 @@
+Metadata-Version: 1.0
+Name: query_string
+Version: 0.0.12
+Summary: query_string(string) function - get url query string dict
+Home-page: https://github.com/russianidiot/query_string.py
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: .. README generated with readmemako.py (github.com/russianidiot/readme-mako.py) and .README dotfiles (github.com/russianidiot-dotfiles/.README)
+        
+        .. image:: https://img.shields.io/badge/Language-Python-blue.svg?style=plastic
+        
+        .. image:: https://img.shields.io/pypi/pyversions/query_string.svg
+            :target: https://pypi.python.org/pypi/query_string
+        
+        |
+        
+        .. image:: https://codeclimate.com/github/russianidiot/query_string.py/badges/gpa.svg
+            :target: https://codeclimate.com/russianidiot/query_string.py
+        
+        .. image:: https://landscape.io/github/russianidiot/query_string.py/master/landscape.svg?style=flat
+            :target: https://landscape.io/github/russianidiot/query_string.py
+        
+        .. image:: https://scrutinizer-ci.com/g/russianidiot/query_string.py/badges/quality-score.png?b=master
+            :target: https://scrutinizer-ci.com/g/russianidiot/query_string.py/
+        
+        
+        
+        Usage
+        `````
+        
+        
+        .. code:: python
+        
+        	>>> from query_string import query_string
+        	
+        	>>> query_string(url)
+        
+        
+        Examples
+        ````````
+        
+        
+        .. code:: python
+        
+        	>>> query_string('https://site.org/index.php?k=v&k2=v2&k3=v3#anchor')
+        	{'k': 'v','k2': 'v2', 'k3': 'v3'}
+        	
+        	>>> query_string('k=v&k2=v2&k3=v3')
+        	{'k': 'v','k2': 'v2', 'k3': 'v3'}
+        	```
+        
+        
+        Feedback |github_follow| |github_issues|
+        
+        .. |github_follow| image:: https://img.shields.io/github/followers/russianidiot.svg?style=social&label=Follow
+        	:target: https://github.com/russianidiot
+        
+        .. |github_issues| image:: https://img.shields.io/github/issues/russianidiot/query_string.py.svg
+        	:target: https://github.com/russianidiot/query_string.py/issues
+        
+Keywords: query, url
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
