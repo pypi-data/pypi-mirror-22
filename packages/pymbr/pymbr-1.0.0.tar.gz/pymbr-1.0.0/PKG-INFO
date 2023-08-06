@@ -1,0 +1,58 @@
+Metadata-Version: 1.1
+Name: pymbr
+Version: 1.0.0
+Summary: A python module to manipulate and create MBRs.
+Home-page: https://github.com/0xGiddi/pymbr
+Author: Gideon S. (0xGiddi)
+Author-email: elmocia@gmail.com
+License: GPLv3
+Description: # PyMBR
+        
+        PyMBR is a simple module that allows the user to parse, manipulate or create MBR/Bootsectors easily.
+        
+          - Parse full MBR dump
+          - Parse parts of the MBR such as the partition table.
+          - Change the bootcode or the artition table values.
+          - Compose the changes made into a a new MBR binary string.
+        
+        ## Installation
+        ``` sh
+        python setup.py install
+        ```
+        
+        ## Sample usage - Creating a simple MBR 
+        ``` python
+        import pymbr
+        mbr = pymbr.MBR()
+        mbr.bootcode = pymbr.Bootcode.ZOIDBERG
+        mbr.partitionTable = pymbr.PartitionTable.parse('\x00' * 64)
+        mbr.signature = 0xaa55
+        bin = mbr.compose()
+        with open('mbr.bin', 'wb') as file:
+            file.write(bin)
+        ```
+        ## TODOs:
+        * Add more common filesystems to the Filesystem class
+        * Add common MBR bootcode to he Bootcode class
+        * Add LBA to CHS converion
+        * Add overlapping partition prevention
+        * Tests?
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft
+Classifier: Topic :: System :: Boot
+Classifier: Topic :: System :: Operating System
+Classifier: Topic :: System :: Recovery Tools
+Classifier: Topic :: System :: Systems Administration
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Utilities
