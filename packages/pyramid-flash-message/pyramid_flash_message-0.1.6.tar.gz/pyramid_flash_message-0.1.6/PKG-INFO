@@ -1,0 +1,65 @@
+Metadata-Version: 1.1
+Name: pyramid_flash_message
+Version: 0.1.6
+Summary: Small tool to add and show flash messages
+Home-page: https://github.com/sahama/pyramid_flash_message
+Author: Sayyid Hamid Mahdavi
+Author-email: sayyid.hamid.mahdavi@gmail.com
+License: UNKNOWN
+Description: Pyramid FLASH MESSAGE
+        =====================
+        
+        Small tool to add and show flash messages
+        
+        Installation
+        ------------
+        
+        .. code-block:: bash
+        
+            pip install pyramid_flash_message
+        
+        add then add this package to your application
+        
+        .. code-block:: ini
+        
+            pyramid.includes =
+                pyramid_layout
+                pyramid_jinja2
+                pyramid_flash_message
+        
+        
+        or
+        
+        .. code-block:: python
+        
+            config.include('pyramid_layout')
+            config.include('pyramid_jinja2')
+            config.include('pyramid_flash_message')
+        
+        
+        Support
+        -------
+        
+        You can use `project issue page <https://github.com/sahama/pyramid_flash_message/issues/>`_ to submit your issue
+        
+        
+        Changes
+        =======
+        
+        
+        v 0.1
+        -----
+        
+         - refactor as package
+         - some debug
+        
+        v 0.0
+        -----
+        
+         - init project and create skeleton of it
+Keywords: web wsgi bfg pylons pyramid flash message
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Framework :: Pyramid
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
