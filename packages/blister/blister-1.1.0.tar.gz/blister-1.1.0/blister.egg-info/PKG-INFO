@@ -1,0 +1,105 @@
+Metadata-Version: 1.1
+Name: blister
+Version: 1.1.0
+Summary: Import hook that minimizes file stats
+Home-page: https://gitlab.com/shredwheat/blister
+Author: Peter Shinners
+Author-email: pete@shinners.org
+License: MIT
+Description: Blister
+        =======
+        
+        An import hook for Python 2.7 that minimizes the amount of disk access.
+        There will be no change in functionality or feature when the import hook
+        is installed, applications run over the network have reduced startup by
+        **45 seconds**!
+        
+        Applications like
+        [Autodesk Maya](https://www.autodesk.com/products/maya/overview) and
+        [Sidefx Houdini](https://www.sidefx.com/) have Python deeply embedded.
+        Studios will deploy many custom and third party modules
+        in these environments. This can lead to over 60 entries in the `sys.path`,
+        which is not a situation the native Python importer is equipped to deal with.
+        
+        The software is distributed under the MIT open source license.
+        
+        How To
+        ------
+        
+        Get the `blister.py` module onto your `$PYTHONPATH`, or use
+        a package manager like `pip install blister`. You'll also want to edit
+        or create a `sitecustomize.py` module with code that looks like this:
+        
+        ```
+        import blister
+        blister.install()
+        ```
+        
+        Results
+        -------
+        
+        A test script was created that imports several large dependencies.
+        This operation creates 479 new modules into `sys.modules`. On Linux, using
+        `strace -e trace=file` this generates 13,619 file operations. By inventing
+        a new unit, disk operations per module, the vanilla Python interpreter runs
+        at an abusive 28.4 DOPM.
+        
+        By installing the import hook, this is reduced to 4,139 operations, giving
+        8.6 DOPM.
+        
+        Performance
+        -----------
+        
+        So what does this mean for actual performance? These results from several
+        environments should give you an idea of what to expect.
+        
+        ### Linux on network nfs drive
+        
+        The performance gained for the cold cache on the network drive is a big
+        success. In this case the cold cache time are actually faster coming over
+        the network than on a local spinning disk.
+        
+        |                     | Hot Cache | Cold Cache |
+        |---------------------|-----------|------------|
+        | Vanilla Python 2.7  | 0.70 sec  | 7.89 sec   |
+        | Blister import hook | 0.65 sec  | 2.71 sec   |
+        
+        ### Linux on local hard disk
+        
+        It appears cutting thousands of file operations has no affect on performance.
+        The cold cache timing likely has too much fluxuation to gather any results.
+        This is on a traditional spinning platters drive, not SSD.
+        
+        |                     | Hot Cache | Cold Cache |
+        |---------------------|-----------|------------|
+        | Vanilla Python 2.7  | 0.43 sec  | 9.21 sec   |
+        | Blister import hook | 0.43 sec  | 9.97 sec   |
+        
+        ### Windows on local drive
+        
+        Windows does a good job with the cold cache. It seemed odd that the less
+        file operations resulted in slightly slower times. I expect windows cold
+        cache timings are subject to fluxuations. Blister gives a moderate
+        performance bump for the hot cache imports.
+        
+        |                     | Hot Cache | Cold Cache |
+        |---------------------|-----------|------------|
+        | Vanilla Python 2.7  | 1.37 sec  | 2.15 sec   |
+        | Blister import hook | 0.99 sec  | 2.37 sec   |
+        
+        ### Windows on network drive
+        
+        This network drive was both twice as fast for the cold and warm cache tests
+        on Windows.
+        
+        |                     | Hot Cache | Cold Cache |
+        |---------------------|-----------|------------|
+        | Vanilla Python 2.7  | 6.63 sec  | 8.92 sec   |
+        | Blister import hook | 3.95 sec  | 5.12 sec   |
+        
+Keywords: import hook file stat disk
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
