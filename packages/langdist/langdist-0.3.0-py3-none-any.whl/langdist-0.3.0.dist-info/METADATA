@@ -1,0 +1,74 @@
+Metadata-Version: 2.0
+Name: langdist
+Version: 0.3.0
+Summary: Multilingual Language Modeling Toolkit
+Home-page: https://github.com/kensk8er/langdist
+Author: Kensuke Muraki
+Author-email: kensk8er1017@gmail.com
+License: UNKNOWN
+Keywords: language-model natural-language-processing natural-language-generation machine-learning tensorflow deep-learning recurrent-neural-networks lstm multilingual nlp python neural-network character-embeddings data-science
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: docopt (>=0.6.2)
+Requires-Dist: jieba (>=0.38)
+Requires-Dist: numpy (>=1.12.0)
+Requires-Dist: pinyin (>=0.4.0)
+Requires-Dist: regex (>=2017.2.8)
+Requires-Dist: scikit-learn (>=0.18.1)
+Requires-Dist: scipy (>=0.18.1)
+Requires-Dist: tensorflow (>=1.0.1)
+
+langdist - Character-level Multilingual Language Modeling Toolkit
+=================================================================
+
+`langdist` is a Python project for experimenting *Character-level Multilingual Language Modeling*, which is to see how learning a character-level language model in one language helps learning another character-level language model in a different language. The project is still **under development** and can offer limited functionality.
+
+
+Features
+--------
+- Download and preprocess multilingual parallel corpora ([Multilingual Bible Parallel Corpus](http://christos-c.com/bible/))
+- Train a *monolingual language model*
+  - This is a language model trained in one language
+- Train a *bilingual language model*
+  - This is a language model that is trained on top of another language model (the parameters are initialized using another language model's parameters)
+- Sample sentences using a pre-trained language model
+
+
+Installation
+------------
+- This repository can run on Ubuntu 14.04 LTS & Mac OSX 10.x (not tested on other OSs)
+- Tested only on Python 3.5
+
+This package depends on various 3rd party packages that are tried to be installed via `pip`, but some of the dependencies might fail to be installed depending on your environment. It is recommended to install the following packages before you install `langdist`:
+
+- `numpy>=1.12.0`
+- `tensorflow>=1.0.1`
+- `scikit-learn>=0.18.1`
+- `scipy>=0.18.1`
+
+Simply clone the git repository and run `pip install requirements.txt` on the project root. Installation of `langdist` via `pip` is not provided yet.
+
+
+Usage
+-----
+1. Download corpora
+
+CLI for downloading corpora isn't provided yet, but you can edit and run `download-corpora.sh` to download corpora.
+
+2. Training a language model
+
+CLI is provided for training a language model using a corpus downloaded. `python langdist/trainer.py --help` to see the usage of the CLI.
+
+
+TODO: Add a link to the blog post *Bilingual Character-level Neural Language Modeling*
+
+
