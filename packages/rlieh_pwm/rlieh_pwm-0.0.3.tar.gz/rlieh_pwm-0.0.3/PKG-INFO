@@ -1,0 +1,42 @@
+Metadata-Version: 1.1
+Name: rlieh_pwm
+Version: 0.0.3
+Summary: This module provides an interface to manage PWM on RLIEH systems
+Home-page: http://github.com/owatte/rlieh-pwm
+Author: Olivier Watté - RLIEH project
+Author-email: owatte@lebiklab.com
+License: UNKNOWN
+Description: # RLIEH PWM
+        
+        This module is intended to provide an interface to manage PWM on RLIEH systems.
+        
+        rlieh-pwm is a part of the RLIEH project and can be used on Raspberry Pi.
+        
+        ## Prerequiristies
+        
+        
+        ## Install
+        
+        ### From source
+        
+        ### From pip
+        
+        ## Usage
+        
+        ## Licence
+        ```
+          >>> from core import RliehLeds
+          >>> light = RliehLeds(pin=18)
+          >>> light.pwm = 0.420
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering
