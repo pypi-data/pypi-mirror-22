@@ -1,0 +1,298 @@
+Metadata-Version: 1.1
+Name: collective.easyform
+Version: 2.0.0b1
+Summary: Forms for Plone
+Home-page: https://github.com/collective/collective.easyform
+Author: Roman Kozlovskyi
+Author-email: krzroman@gmail.com
+License: GPLv2
+Description: =================================
+        EasyForm - Form Builder for Plone
+        =================================
+        
+        .. image:: https://badge.fury.io/py/collective.easyform.svg
+        	:target: https://badge.fury.io/py/collective.easyform
+        	:alt: latest release version badge by Badge Fury
+        
+        .. image:: https://travis-ci.org/collective/collective.easyform.png?branch=master
+        	:target: https://travis-ci.org/collective/collective.easyform
+        	:alt: Travis CI status
+        
+        .. image:: https://coveralls.io/repos/github/collective/collective.easyform/badge.svg?branch=master
+        	:target: https://coveralls.io/github/collective/collective.easyform?branch=master
+        	:alt: Coveralls status
+        
+        
+        The add on ``collective.easyform`` adds Plone content types for form creation.
+        
+        EasyForm provides a Plone form builder through-the-web using fields, widgets, actions and validators (based on `Dexterity <https://github.com/plone/plone.dexterity>`_).
+        
+        Form input can be saved or emailed.
+        A simple and user-friendly interface allows non-programmers to create custom forms.
+        
+        **Note:** This Plone package is similar to `Archetypes <http://docs.plone.org/develop/plone/content/archetypes/>`_ based `Products.PloneFormGen <https://github.com/smcmahon/Products.PloneFormGen>`_ for Plone versions 1 to 4.
+        
+        Dexterity is the default framework for building content types in Plone 5.
+        
+        Installation
+        ============
+        
+        Install collective.easyform by adding it to your buildout:
+        
+        .. code-block:: shell
+        
+        	[buildout]
+        
+        	...
+        
+        	eggs =
+        		collective.easyform
+        
+        
+        Run buildout:
+        
+        .. code-block:: shell
+        
+        	bin/buildout
+        
+        The last step is to activate ``EasyForm`` in the Control Panel.
+        
+        Usage
+        =====
+        
+        - Choose EasyForm from the toolbars 'Add new' menu.
+          Insert form title, description and other settings.
+        - Add fields or fieldsets to create a unique form that will meet your particular requirements.
+          There are enough basic field types to satisfy any demands:
+        
+          - File Upload,
+          - Text line (String),
+          - Integer,
+          - Yes/No,
+          - Date, Date/Time,
+          - Floating-point number,
+          - Choice,
+          - Rich Text,
+          - Image,
+          - Multiple Choice,
+          - Text,
+          - Password,
+          - ReСaptcha.
+        
+        - Continue to customize form by setting the order of fields,
+          defining required and hidden ones,
+          choosing validator, if necessary,
+          and other field type specific settings.
+        
+        Click on the picture below for a short introduction video:
+        
+        .. image:: http://quintagroup.com/services/plone-development/products/easyform/easyform-youtube.png
+        	:target: https://www.youtube.com/watch?v=DMCYnYE9RKU
+        	:alt: EasyForm instructional video
+        
+        
+        Source Code and Contributions
+        =============================
+        
+        If you want to help with the development (improvement, update, bug-fixing, ...) of ``collective.easyform`` this is a great idea!
+        
+        - `Source code at Github <https://github.com/collective/collective.easyform>`_
+        - `Issue tracker at Github <https://github.com/collective/collective.easyform/issues>`_
+        
+        You can clone it or `get access to the github-collective <https://github.com/collective>`_ and work directly on the project.
+        
+        Please do larger changes on a branch and submit a Pull Request.
+        
+        Maintainer of ``collective.easyform`` is the Plone Collective community.
+        
+        We appreciate any contribution !
+        
+        For new release, please contact one of the owners or maintainers mentioned at the `Python Package Index page <https://pypi.python.org/pypi/collective.easyform>`_.
+        
+        Contribute
+        ==========
+        
+        - Issue Tracker: https://github.com/collective/collective.easyform/issues
+        - Source Code: https://github.com/collective/collective.easyform
+        
+        
+        License
+        =======
+        
+        The project is licensed under the GPLv2.
+        
+        
+        Compatibility
+        =============
+        
+        - 1.x targets Plone 4.x
+        - 2.x targets Plone 5.x
+        
+        Changelog
+        =========
+        
+        2.0.0b1 (2017-06-14)
+        --------------------
+        
+        Fixes:
+        
+        - Update german translations.
+          [tomgross, jensens]
+        
+        - Keep line breaks for body_pre, body_post and body_footer field.
+          Changed field type to RichText with TextAreaWidget and default_mime_type='text/x-web-intelligent'.
+          Updated default mailer template.
+          [agitator]
+        
+        - Use site email address as default recipient address also for Plone 5.
+          [tmassman]
+        
+        - Update README
+          [svx]
+        
+        - Allow emails (CC, BCC) separated by ';' and newlines
+          https://github.com/collective/collective.easyform/issues/49
+          [tomgross]
+        
+        - Allow managment of fields enabled for c.easyform in controlpanel
+          [karalics]
+        
+        2.0.0a2 (2016-10-14)
+        --------------------
+        
+        New:
+        
+        - Rename api.get_fields to api.get_schema
+          [jensens, agitator]
+        
+        Fixes:
+        
+        - Fix field order
+          [jensens, agitator]
+        
+        
+        2.0.0a1 (2016-10-13)
+        --------------------
+        
+        New:
+        
+        - Update for Plone 5, no longer support Plone 4.x
+          [agitator]
+        
+        Fixes:
+        
+        - Fix: Overhaul TravisCI setup to really use caches.
+          Use bobtemplates.plone travis setup as best practice.
+          [jensens]
+        
+        - Don't show the reset button after form submission at the summary page.
+          [thet]
+        
+        - Housekeeping: isort, zca decorators, autopep8 and major manual cleanup.
+          Includes structural cleanup and
+          [jensens, agitator]
+        
+        
+        1.0a4 (unreleased)
+        ------------------
+        
+        New:
+        
+        - Change recipient address field to Email type so it gets properly validated
+          [davilima6]
+        
+        - Make the default buildout use Plone 5. Update travis setup to the point where
+          tests actually run, though many still fail.
+          [smcmahon]
+        
+        
+        - look up email_from_address in registry
+          [kcleong]
+        
+        - Move the default xml configuration out into xml files. These can be picked up
+          by ``i18ndude`` or other po file generators for translations strings. Also
+          translate the ``FIELDS_DEFAULT`` fields.
+          [thet]
+        
+        - Add German translations.
+          [thet]
+        
+        - Allow the definition of some EasyForm default values via the i18n translation
+          mechanism.
+          [thet]
+        
+        - Reworked mail address formating, avoiding recipient address in the form of
+          ``name <<account@domain.com>>`` and having instead
+          ``name <account@domain.com>``.
+          [thet]
+        
+        - Depend on plone.schemaeditor > 2.0 for JS compatibility.
+          [thet]
+        
+        - fix plone.schemaeditor i18n factory import. This fixes 5.0.1 support.
+          [vangheem]
+        
+        - Fix modeleditor.pt markup so it works with barceloneta.
+          [ebrehault]
+        
+        Fixes:
+        
+        - fix plone.schemaeditor i18n factory import. This fixes 5.0.1 support
+        
+        
+        1.0a3 (2015-06-02)
+        ------------------
+        
+        - Fixed templates
+          [kroman0]
+        
+        - Fixed field order #17
+          [kroman0]
+        
+        - Fixed Plone 5 support
+          [kroman0]
+        
+        - Fixed dependencies
+          [kroman0]
+        
+        - Set script type correctly
+          [fredvd]
+        
+        
+        1.0a2 (2014-06-13)
+        ------------------
+        
+        - Fixed conflict with plone.app.multilingual[dexterity]
+          [kroman0]
+        
+        - Fixed rendering saved data form
+          [kroman0]
+        
+        - Fixed and updated tests
+          [kroman0]
+        
+        - Fix unicode encoding in download csv
+          [gborelli]
+        
+        - Added Italian translation
+          [gborelli]
+        
+        - Added fields parameter in Mailer override expressions
+          [gborelli]
+        
+        
+        1.0a1 (2014-03-18)
+        ------------------
+        
+        - Initial release
+        
+Keywords: form plone ttw builder email
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 5.0
+Classifier: Framework :: Plone :: 5.1
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
