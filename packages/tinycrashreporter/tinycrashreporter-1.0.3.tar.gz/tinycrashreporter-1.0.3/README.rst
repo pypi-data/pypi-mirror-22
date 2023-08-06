@@ -1,0 +1,67 @@
+Tiny Crash Reporter
+====================
+
+This library is designed to print any crashes which a Python program encounters when it is run to standard out. 
+
+Install:
+
+In terminal run -> pip3 install tinycrashreporter
+
+This is enough to get the modlue working as it should. However, to run the samples and unit tests. Also...
+
+Navigate to the location that you want to keep the package.
+In terminal run -> pip download tinycrashreporter
+
+Then in the same folder...
+
+In terminal run-> tar -xvzf tinycrashreporter-1.0.3.tar.gz to extract the downloaded files.
+
+You're ready to get started!
+
+The library code also workes in Python 2.7 but there is not yet a PIP package for that one.
+
+Setup: 
+1. Import the library into your program.
+2. Add the line -> sys.excepthook  = tinycrashreporter.crashReportExceptHook <- bellow your imports.
+3. Run your program in the command line e.g. Python3 ~/PythonFiles/MyTinyCrashReporterProgram.py
+
+Warning: IDLE and other IDE's appear to use the same method override as Tiny Crash Reporter and are not currently supported. Please run from a command line  instead.
+
+Example:
+Add the following lines of code into a blank python file.
+#!/usr/bin/env python
+# set up tiny crash reporter:
+import sys
+
+import (...any_other_module...)
+
+import tinycrashreporter
+
+
+sys.excepthook  = tinycrashreporter.crashReportExceptHook
+
+
+# Add some crashy code 
+
+1/0
+
+Blank file:
+
+A blank file, which includes the code above and conforms to the specification has been included DownloadedPackageLocation/Samples/ImportedLibraryOnly.py
+
+In teminal run -> python3 ImportedLibraryOnly.py
+
+File with options:
+
+A file called CrashyProgram.py has also been set up which supports the execution of code passed as an argument. This is for testing purposes and this code should not be published as part of a release project due to it's inherent insecurities.
+
+In terminal run -> python3 CrashyProgram.py
+
+Unit tests:
+
+8 Tests are available in DownloadedPackageLocation/Samples/CrashTest.py. To run these, open ownloadedPackageLocation/Tests/CrashTest.py manually edit the file path to point to CrashyProgram.py. Then...
+
+In terminal run -> python3 ~/SampleLocation/CrashTest.py -v
+
+One of the tests requests user to input some crashy code. This facility doesn't work with " or ' characters and the inclusion of some other special characters may cause similar errors. More work is needed to properly escape the input. If in doubt, the default test will run on pressing enter. 
+
