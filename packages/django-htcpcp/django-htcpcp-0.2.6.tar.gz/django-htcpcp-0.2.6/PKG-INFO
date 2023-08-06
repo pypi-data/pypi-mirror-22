@@ -1,0 +1,65 @@
+Metadata-Version: 1.1
+Name: django-htcpcp
+Version: 0.2.6
+Summary: Django HyperText Coffee Pot Protocol Middleware (HTCPCP)
+Home-page: https://github.com/dashdanw/django-htcpcp
+Author: Dash Winterson
+Author-email: dashdanw@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/dashdanw/django-htcpcp/archive/0.2.6.tar.gz
+Description: Django HyperText Coffee Pot Protocol Middleware (HTCPCP)
+        --------------------------------------------------------
+        
+        Implemented HTCPCP as per RFC 2324.
+        
+        https://www.ietf.org/rfc/rfc2324.txt
+        
+        Setup
+        -----
+        
+        Install by downloading the source and running:
+        
+        ::
+        
+            python setup.py install
+        
+        or
+        
+        ::
+        
+            pip install django-htcpcp
+        
+        and then add it to your installed apps:
+        
+        ::
+        
+            INSTALLED_APPS = (
+                ...
+                'djhtcpcp',
+                ...
+            )
+        
+        You will also need to add a middleware class to listen in on responses:
+        
+        Django 1.10+
+        
+        ::
+        
+            MIDDLEWARE = [
+                ...
+                'djhtcpcp.middleware.HTCPCPMiddleware',
+                ...
+            ]
+        
+        Django 1.8-1.10:
+        
+        ::
+        
+            MIDDLEWARE_CLASSES = [
+                ...
+                'djhtcpcp.middleware.HTCPCPMiddleware',
+                ...
+            ]
+        
+Keywords: htcpcp,django,middleware,RFC 2324,coffee
+Platform: UNKNOWN
