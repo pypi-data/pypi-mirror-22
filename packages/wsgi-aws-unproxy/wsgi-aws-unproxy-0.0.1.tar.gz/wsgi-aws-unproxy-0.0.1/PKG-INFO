@@ -1,0 +1,47 @@
+Metadata-Version: 1.1
+Name: wsgi-aws-unproxy
+Version: 0.0.1
+Summary: Simple wsgi middleware to unproxy AWS
+Home-page: https://github.com/labd/wsgi-aws-unproxy
+Author: Lab Digital
+Author-email: opensource@labdigital.nl
+License: MIT
+Description: ================
+        WSGI AWS Unproxy
+        ================
+        
+        Set the correct REMOTE_ADDR based on the X-Forwarded-For header while only
+        trusting the CloudFront IP addresses.
+        
+        
+        Getting started
+        ===============
+        
+        Using this module is really simple.  In Django for example edit the wsgi.py
+        file and add the following to the end of the file.
+        
+        .. code-block:: python
+        
+          from wsgi_aws_unproxy import UnProxy
+          application = UnProxy(application)
+        
+        
+        Installation
+        ============
+        
+        You can install the latest version using pip::
+        
+            pip install wsgi-aws-unproxy
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
