@@ -1,0 +1,48 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: /build
+    docker:
+      - image: python:3.6
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: ci-venv-{{ checksum "ci-requirements.txt" }}
+      - run:
+          name: install ci-requirements
+          command: |
+            test -e venv && exit 0
+            python -m venv venv
+            venv/bin/pip install -r ci-requirements.txt
+      - save_cache:
+          key: ci-venv-{{ checksum "ci-requirements.txt" }}
+          paths:
+            - "venv"
+
+      - restore_cache:
+          key: microscopic-{{ checksum "requirements.txt" }}-{{ checksum "test-requirements.txt" }}-{{ checksum "doc-requirements.txt" }}
+      - run:
+          name: install deps
+          command: |
+            venv/bin/tox --notest
+      - save_cache:
+          key: microscopic-{{ checksum "requirements.txt" }}-{{ checksum "test-requirements.txt" }}-{{ checksum "doc-requirements.txt" }}
+          paths:
+            - ".tox"
+
+      - run:
+          name: run tests
+          command: |
+            venv/bin/tox
+
+      - run:
+          name: upload coverage
+          command: |
+            venv/bin/codecov
+
+      - run:
+          name: upload pypi
+          command: |
+            venv/bin/tox -e pypi
