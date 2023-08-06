@@ -1,0 +1,89 @@
+Metadata-Version: 2.0
+Name: pyplanet
+Version: 0.4.1
+Summary: Maniaplanet Server Controller
+Home-page: http://pypla.net/
+Author: Tom Valk
+Author-email: tomvalk@lt-box.info
+License: GNU General Public License v3 (GPLv3)
+Keywords: maniaplanet,controller,plugins,apps
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Developers
+Requires-Dist: colorlog (==2.10.0)
+Requires-Dist: Jinja2 (==2.9.6)
+Requires-Dist: peewee (==2.10.1)
+Requires-Dist: peewee-async (==0.5.7)
+Requires-Dist: aiopg (==0.13.0)
+Requires-Dist: aiomysql (==0.0.9)
+Requires-Dist: pymysql (==0.7.11)
+Requires-Dist: apyio (==0.2.0)
+Requires-Dist: aiofiles (==0.3.1)
+Requires-Dist: asyncssh (==1.10.1)
+Requires-Dist: aiohttp (==2.1.0)
+Requires-Dist: requests (==2.17.3)
+Requires-Dist: urllib3 (==1.21.1)
+Requires-Dist: cached-property (==1.3.0)
+Requires-Dist: watchdog (==0.8.3)
+Requires-Dist: pandas (==0.20.1)
+Requires-Dist: numpy (==1.12.1)
+Requires-Dist: async-generator (==1.7)
+Requires-Dist: asyncio-extras (==1.3.0)
+Requires-Dist: bcrypt (==3.1.3)
+Requires-Dist: raven (==6.1.0)
+Requires-Dist: xmltodict (==0.11.0)
+
+PyPlanet
+========
+
+.. image:: https://travis-ci.org/PyPlanet/PyPlanet.svg?branch=master
+  :target: https://travis-ci.org/PyPlanet/PyPlanet
+.. image:: https://codecov.io/gh/PyPlanet/PyPlanet/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/PyPlanet/PyPlanet
+.. image:: https://readthedocs.org/projects/pyplanet/badge/?version=stable
+  :target: http://pyplanet.readthedocs.io/en/stable/?badge=stable
+  :alt: Documentation Status
+
+This repo contains the PyPlanet package.
+
+**For installation, configuration and development instructions head towards our website:**
+http://pypla.net/
+
+Git Structure
+-------------
+
+Master is always the latest development environment. We develop features in different branches ``feature/*`` or ``app/*``.
+
+Crafting releases is done at the ``release/vX.X.X`` branches. The branch is created from the master at the moment the freeze moment goes in.
+Only bug fixes are accepted to be merged into the release/* branches, name these branches ``bugfix/ISSUE-ID``.
+
+After releasing (from the release branch) it gets a version tag. From this point there is no way back, new bug releases will be crafted
+from the release/version branch (``release/v0.1.0`` -> ``release/v0.1.2`` and is accepting merges from ``bugfix/*``).
+
+Visualization of our current release schedule can be found here: `Release Schedule <https://github.com/PyPlanet/PyPlanet/projects/3>`_
+
+Versioning
+----------
+
+All PyPlanet versions bellow 1.0.0 are not using semantic versioning.
+After 1.0.0, there is a strict semantic versioning (v2) versioning policy in use.
+
+Contributions
+-------------
+
+Pull requests and issues are more then welcome.
+Please open a ticket before a pull request if you are not yet sure how to solve or want opinions before your implementation. (optional).
+
+
