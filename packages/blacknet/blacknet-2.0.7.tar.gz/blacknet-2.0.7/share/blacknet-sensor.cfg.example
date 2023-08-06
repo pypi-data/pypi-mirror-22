@@ -1,0 +1,31 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;    Blacknet Project, see LICENSE    ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Configuration file for Blacknet sensor (honeypot).
+
+[honeypot]
+; SSH server listening interface(s)
+listen = 0.0.0.0:2200
+; SSH server key(s) for client (paramiko)
+ssh_keys = /etc/blacknet/ssh/honeypot00
+; Customize SSH server banner
+;ssh_banner = SSH-2.0-OpenSSH_6.7p1 Debian-5+deb8u3
+
+; MainServer to connect to (address:port or unix socket path)
+server = /var/run/blacknet/main.socket
+
+; Client name override (default is to use commonName from cert)
+; This field is mandatory when connecting through local unix socket.
+;name = honeypot00
+
+; SSL parameters bellow are disabled when connecting through local unix socket.
+; Server certificate hostname for additional security (comment to disable)
+;server_hostname = maestro
+; Client private key and certificate (all in one file)
+cert = /etc/blacknet/ssl/honeypot00.pem
+; Certificate authority (used for both clients and servers)
+cafile = /etc/blacknet/ssl/ca.crt
+; Blacknet sensor log file
+log_file = /var/log/blacknet/honeypot00.log
+; Blacknet sensor server log level (from emerg (0) to debug (7))
+;log_level = 6

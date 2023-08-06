@@ -1,0 +1,60 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;    Blacknet Project, see LICENSE    ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Configuration file for Blacknet master server.
+
+[mysql]
+; Unix sockets are faster than just connecting throught the IP protocol.
+; Comment "socket" here to connect using standard TCP stack
+socket = /var/run/mysqld/mysqld.sock
+; "host" is ignored when "socket" is defined
+host = localhost
+username = blacknet
+database = blacknet
+password =
+
+
+[server]
+; Listening interfaces for blacknet server (coma separated)
+; You can add unix sockets by specifying a path
+; When using unix sockets only, SSL is disabled.
+listen = 0.0.0.0:10443,/var/run/blacknet/main.socket
+; Set permissions for unix socket (if any) and ensure permissions are set
+; in order to allow connections from clients.
+;listen_owner = blacknet
+;listen_group = blacknet
+;listen_mode = 0660
+
+; The following fields are automatically disabled when server only uses unix sockets.
+; Server key and certificate (all in one file)
+cert = /etc/blacknet/ssl/maestro.pem
+; Certificate authority (used for both clients and servers)
+cafile = /etc/blacknet/ssl/ca.crt
+
+; Blacknet master server log file
+log_file = /var/log/blacknet/blacknet.log
+; Blacknet master server log level (from emerg (0) to debug (7))
+;log_level = 6
+
+; Extra location for the blacklist file
+; Blacklist files are checked at /etc/blacknet/blacklist.cfg and ${HOME}/.blacknet/blacklist.cfg
+;blacklist_file = /path/to/blacknet/blacklist.cfg
+
+; Minimal duration to consider 2 attempts as being from different sessions.
+session_interval = 3600
+
+
+[monitor]
+; Directory in which cache data for the monitor shoud be written.
+cache_path = /var/www/blacknet/cache/
+; double sha1 for administrator access (default is "test").
+dbl_hash_admin = c4033bff94b567a190e33faa551f411caef444f2
+; Number of entries retrieved each time (reduce to improve performances).
+limit = 7
+; A target is considered recent if there's any activity within X days.
+; Non recent targets will be ignored in the statistics pages.
+; This is also the period on which computational statistics are restrained.
+recent_delta = 200
+; A target is considered alive if there's any activity withon X days.
+; Used to skip some stats and minimap generation in cache_generator.
+alive_delta = 2
