@@ -1,0 +1,89 @@
+<cppa:CPA xmlns:cppa="http://docs.oasis-open.org/ebcore/ns/cppa/v3.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+  <cppa:PartyInfo>
+    <cppa:PartyName href="http://CompanyA.com/about.html">CompanyA</cppa:PartyName>
+    <cppa:PartyId type="urn:oasis:names:tc:ebxml-cppa:partyid-type:duns"/>
+  </cppa:PartyInfo>
+  <cppa:CounterPartyInfo>
+    <cppa:PartyName href="http://CompanyB.com/about.html">CompanyB</cppa:PartyName>
+    <cppa:PartyId type="urn:oasis:names:tc:ebxml-cppa:partyid-type:duns"/>
+  </cppa:CounterPartyInfo>
+  <cppa:ServiceSpecification name="PIP3A4RequestPurchaseOrder" version="2.0" uuid="urn:icann:rosettanet.org:bpid:3A4$2.0">
+    <cppa:PartyRole>Buyer</cppa:PartyRole>
+    <cppa:CounterPartyRole>Seller</cppa:CounterPartyRole>
+    <cppa:ServiceBinding>
+      <cppa:Service>bpid:icann:rosettanet.org:3A4$2.0</cppa:Service>
+      <cppa:ActionBinding action="Purchase Order Request Action" id="companyA_ABID1" sendOrReceive="send" isNonRepudiationRequired="true" isNonRepudiationReceiptRequired="true" isConfidential="transient" isAuthenticated="persistent" isTamperProof="persistent" isAuthorizationRequired="true" timeToAcknowledgeReceipt="PT2H" timeToPerform="P1D" binaryCollaboration="Request Purchase Order" businessTransactionActivity="Request Purchase Order" requestOrResponseAction="Purchase Order Request Action">
+        <cppa:ChannelId>asyncChannelA1_asyncChannelB1_send</cppa:ChannelId>
+      </cppa:ActionBinding>
+      <cppa:ActionBinding action="ReceiptAcknowledgement" id="companyA_ABID2" sendOrReceive="send" isNonRepudiationRequired="true" isNonRepudiationReceiptRequired="true" isConfidential="transient" isAuthenticated="persistent" isTamperProof="persistent" isAuthorizationRequired="true">
+        <cppa:ChannelId>asyncChannelA1_asyncChannelB1_send</cppa:ChannelId>
+      </cppa:ActionBinding>
+      <cppa:ActionBinding action="Purchase Order Confirmation Action" id="companyA_ABID3" sendOrReceive="receive" isNonRepudiationRequired="true" isNonRepudiationReceiptRequired="true" isConfidential="transient" isAuthenticated="persistent" isTamperProof="persistent" isAuthorizationRequired="true" timeToAcknowledgeReceipt="PT2H" binaryCollaboration="Request Purchase Order" businessTransactionActivity="Request Purchase Order" requestOrResponseAction="Purchase Order Confirmation Action">
+        <cppa:ChannelId>asyncChannelA1_asyncChannelB1_receive</cppa:ChannelId>
+      </cppa:ActionBinding>
+      <cppa:ActionBinding action="ReceiptAcknowledgment" id="companyA_ABID4" sendOrReceive="receive" isNonRepudiationRequired="true" isNonRepudiationReceiptRequired="true" isConfidential="transient" isAuthenticated="persistent" isTamperProof="persistent" isAuthorizationRequired="true">
+        <cppa:ChannelId>asyncChannelA1_asyncChannelB1_receive</cppa:ChannelId>
+      </cppa:ActionBinding>
+      <cppa:ActionBinding action="Exception" id="companyA_ABID5" sendOrReceive="receive" isNonRepudiationRequired="true" isNonRepudiationReceiptRequired="true" isConfidential="transient" isAuthenticated="persistent" isTamperProof="persistent" isAuthorizationRequired="true">
+        <cppa:ChannelId>asyncChannelA1_asyncChannelB1_receive</cppa:ChannelId>
+      </cppa:ActionBinding>
+    </cppa:ServiceBinding>
+    <cppa:ActionBinding action="Purchase Order Request Action" id="companyA_ABID1" sendOrReceive="send" isNonRepudiationRequired="true" isNonRepudiationReceiptRequired="true" isConfidential="transient" isAuthenticated="persistent" isTamperProof="persistent" isAuthorizationRequired="true" timeToAcknowledgeReceipt="PT2H" timeToPerform="P1D" binaryCollaboration="Request Purchase Order" businessTransactionActivity="Request Purchase Order" requestOrResponseAction="Purchase Order Request Action">
+      <cppa:ChannelId>asyncChannelA1_asyncChannelB1_send</cppa:ChannelId>
+    </cppa:ActionBinding>
+    <cppa:ActionBinding action="ReceiptAcknowledgement" id="companyA_ABID2" sendOrReceive="send" isNonRepudiationRequired="true" isNonRepudiationReceiptRequired="true" isConfidential="transient" isAuthenticated="persistent" isTamperProof="persistent" isAuthorizationRequired="true">
+      <cppa:ChannelId>asyncChannelA1_asyncChannelB1_send</cppa:ChannelId>
+    </cppa:ActionBinding>
+    <cppa:ActionBinding action="Purchase Order Confirmation Action" id="companyA_ABID3" sendOrReceive="receive" isNonRepudiationRequired="true" isNonRepudiationReceiptRequired="true" isConfidential="transient" isAuthenticated="persistent" isTamperProof="persistent" isAuthorizationRequired="true" timeToAcknowledgeReceipt="PT2H" binaryCollaboration="Request Purchase Order" businessTransactionActivity="Request Purchase Order" requestOrResponseAction="Purchase Order Confirmation Action">
+      <cppa:ChannelId>asyncChannelA1_asyncChannelB1_receive</cppa:ChannelId>
+    </cppa:ActionBinding>
+    <cppa:ActionBinding action="ReceiptAcknowledgment" id="companyA_ABID4" sendOrReceive="receive" isNonRepudiationRequired="true" isNonRepudiationReceiptRequired="true" isConfidential="transient" isAuthenticated="persistent" isTamperProof="persistent" isAuthorizationRequired="true">
+      <cppa:ChannelId>asyncChannelA1_asyncChannelB1_receive</cppa:ChannelId>
+    </cppa:ActionBinding>
+    <cppa:ActionBinding action="Exception" id="companyA_ABID5" sendOrReceive="receive" isNonRepudiationRequired="true" isNonRepudiationReceiptRequired="true" isConfidential="transient" isAuthenticated="persistent" isTamperProof="persistent" isAuthorizationRequired="true">
+      <cppa:ChannelId>asyncChannelA1_asyncChannelB1_receive</cppa:ChannelId>
+    </cppa:ActionBinding>
+  </cppa:ServiceSpecification>
+  <cppa:ebMS2Channel id="asyncChannelA1_asyncChannelB1_receive_SIGNALMESSAGE" transport="transportA1_transportB1_receive"/>
+  <cppa:ebMS2Channel id="asyncChannelA1_asyncChannelB1_send_SIGNALMESSAGE" transport="transportA1_transportB1_send"/>
+  <cppa:ebMS2Channel id="asyncChannelA1_asyncChannelB1_receive" transport="transportA1_transportB1_receive">
+    <cppa:ErrorHandling>
+      <cppa:ReceiverErrorsReportChannelId>asyncChannelA1_asyncChannelB1_send_SIGNALMESSAGE</cppa:ReceiverErrorsReportChannelId>
+    </cppa:ErrorHandling>
+    <cppa:ReceiptHandling>
+      <cppa:ReceiptChannelId>asyncChannelA1_asyncChannelB1_send_SIGNALMESSAGE</cppa:ReceiptChannelId>
+    </cppa:ReceiptHandling>
+    <cppa:ebMS2ReliableMessaging ordered="true">
+      <cppa:DuplicateHandling>
+        <cppa:DuplicateElimination>true</cppa:DuplicateElimination>
+      </cppa:DuplicateHandling>
+      <cppa:RetryHandling>
+        <cppa:Retries>3</cppa:Retries>
+        <cppa:RetryInterval>PT2H</cppa:RetryInterval>
+      </cppa:RetryHandling>
+    </cppa:ebMS2ReliableMessaging>
+  </cppa:ebMS2Channel>
+  <cppa:ebMS2Channel id="asyncChannelA1_asyncChannelB1_send" transport="transportA1_transportB1_send">
+    <cppa:ErrorHandling>
+      <cppa:ReceiverErrorsReportChannelId>asyncChannelA1_asyncChannelB1_receive_SIGNALMESSAGE</cppa:ReceiverErrorsReportChannelId>
+    </cppa:ErrorHandling>
+    <cppa:ReceiptHandling>
+      <cppa:ReceiptChannelId>asyncChannelA1_asyncChannelB1_receive_SIGNALMESSAGE</cppa:ReceiptChannelId>
+    </cppa:ReceiptHandling>
+    <cppa:ebMS2ReliableMessaging ordered="true">
+      <cppa:DuplicateHandling>
+        <cppa:DuplicateElimination>true</cppa:DuplicateElimination>
+      </cppa:DuplicateHandling>
+      <cppa:RetryHandling>
+        <cppa:Retries>3</cppa:Retries>
+        <cppa:RetryInterval>PT2H</cppa:RetryInterval>
+      </cppa:RetryHandling>
+    </cppa:ebMS2ReliableMessaging>
+  </cppa:ebMS2Channel>
+  <HTTPTransport id="transportA1_transportB1_receive" version="1.1">
+    <cppa:Endpoint>https://www.CompanyA.com/servlets/ebxmlhandler/async</cppa:Endpoint>
+  </HTTPTransport>
+  <HTTPTransport id="transportA1_transportB1_send" version="1.1">
+    <cppa:Endpoint>https://www.CompanyB.com/servlets/ebxmlhandler/async</cppa:Endpoint>
+  </HTTPTransport>
+</cppa:CPA>
