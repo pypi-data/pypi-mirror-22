@@ -1,0 +1,22 @@
+Feed handler
+============
+Incorporate RSS and Atom feeds as MH messages.
+
+Install::
+
+    pip3 install fh
+
+View help::
+
+    $ fh -help
+    SYNOPSIS
+      fh [-help] [options] 
+    INPUTS
+      (None)
+    OPTIONS
+      folder: Root MH Folder to store feeds in
+      feedsfile: File with feeds, with one feed per row, each row containing the
+                 feed identifier, a colon, then the URL. This format is a subset of
+                 mh-alias foramt. The URL may include "${page}", which will be
+                 substituted for page numbers to download multiple pages.
+      rcvstore: rcvstore executable
