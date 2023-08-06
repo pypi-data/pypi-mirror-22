@@ -1,0 +1,40 @@
+HISTORY
+=======
+
+0.7 - Remove small cycles option
+--------------------------------
+
+* During normal rainflow cycles like 1 to 1 can not exist, but with the classification afterwards small cycles will lead to such pairs. They will be removed now
+
+
+0.6 - Add Axis to matrix
+------------------------
+
+* You can store axis to matrix if you want using parameter axis
+
+0.5 - BugFixes
+--------------
+
+* Fixed Bug on filtering data with pairs
+
+0.4 - Added Matrix-calculation
+-------------------------------
+
+* User can decide between matrix and table format for classification
+* Added examples for both
+* BugFix in count-method
+* Style improvements
+* Filter outliers in binning
+
+0.2 - Syntax Improvement
+------------------------
+
+* Better documentation
+* Improved parameters of functions
+
+0.1 - Initial release
+---------------------
+
+* Rainflow for HDF5 and Numpy-Arrays
+* Classification before and after algorithm
+* Removing peaks from data before calculation
