@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+
+import argparse
+from cocoag.configuration.config import config
+from cocoag.generator.coverage_generator import CoverageGenerator
+
+parser = argparse.ArgumentParser(description="Argument parser to run tests, generate coverage info, "
+                                             "create a coverage badge, upload the badge to S3, "
+                                             "and add the badge to README files.")
+parser.add_argument('--init', dest='init', action='store_true',
+                    help='Run this command to generate the initial configuration file.')
+parser.set_defaults(init=False)
+
+if __name__ == "__main__":
+    args = parser.parse_args()
+    if args.init:
+        # The config file has already been created upon the import of the config script
+        pass
+    else:
+        CoverageGenerator.generate()
