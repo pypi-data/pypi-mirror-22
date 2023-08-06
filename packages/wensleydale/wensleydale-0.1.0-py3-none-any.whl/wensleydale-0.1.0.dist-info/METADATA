@@ -1,0 +1,49 @@
+Metadata-Version: 2.0
+Name: wensleydale
+Version: 0.1.0
+Summary: Mr Wensleydale. Query the AST.
+Home-page: https://github.com/RishiRamraj/wensleydale
+Author: Rishi Ramraj
+Author-email: thereisnocowlevel@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: setuptools
+Requires-Dist: pbr
+Requires-Dist: click
+
+Wensleydale
+===========
+
+Mr Wensleydale. Query Python, get the AST as JSON.
+
+Why?
+----
+
+The AST, or abstract syntax tree, is a set of data structures that describe
+your python script. By exposing the AST to json, it can be treated as data,
+which means it can be reported on.
+
+Sample use cases include:
+
+* Visualizing the routing tree of a web application.
+* Visualizing a class hierarchy.
+* Auditing large code bases using queries.
+
+Support
+-------
+
+Currently only Python 3.5 is supported.
+
+Upcoming features:
+
+* *Recursive imports:* Trace into calls.
+* *Pythonic paths:* Use python dotted paths instead of file paths.
+
+
+
