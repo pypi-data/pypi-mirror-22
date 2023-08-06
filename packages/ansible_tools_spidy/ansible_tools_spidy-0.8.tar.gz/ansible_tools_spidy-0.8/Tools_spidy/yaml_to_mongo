@@ -1,0 +1,84 @@
+#! /usr/local/bin/python
+import sys,pprint,os
+sys.path.append("../")
+import constrains_spidy.contrain_checker as constrains
+import FILE_spidy.file_functions as file
+import Utilities_spidy.mongo_functions as mongo
+import Utilities_spidy.command_line as command_line
+from termcolor import colored
+
+class yaml_to_mongo:
+
+      def __init__(self):
+         self.start()
+
+      def start(self):
+          parser_obj = {
+              "args_list": ["-f", "-m", "-c","-o"],
+              "args_var": ["--file_path", "--mongo_param", "--mongo-collection-name","--overwrite"],
+              "args_action": ["store", "store", "store","store_true"],
+              "args_help": ["Kindly specify file path", \
+                            "mongo params file path, used to connect to Database, a reference file is available in /~/mongo_connect.json", \
+                            "collection name which contains the yaml config to be used to push",
+                            "overwrite collection flag, to overwrite if a collection exists"
+                            ],
+              "args_required" : ["True","True","True","False"]
+          }
+          cmd_parser = command_line.command_line(parser_obj)
+          parser = cmd_parser.argument_parser()
+          self.args = parser.parse_args()
+
+          ### Metadata Creation for mongo connectivity and yaml to mongo load
+          baseline = {"mongo_params_file" : self.args.mongo_param, "collection_name" : self.args.mongo_collection_name, "yaml_file" : self.args.file_path}
+          self.mongo_connect(baseline)
+
+      def mongo_connect(self,baseline={}):
+
+          self.__baseline__ = baseline
+
+          ### Check Metadata
+          metadata_header = ["mongo_params_file","collection_name","yaml_file"]
+          constrain = constrains.constrain_check()
+          constrain.metadata_checks(self.__baseline__,metadata_header)
+
+          ### Retrieve mongo params File Parameters
+          file_name = self.__baseline__["mongo_params_file"].split("/")[-1]
+          file_loc = self.__baseline__["mongo_params_file"].rsplit("/",1)[0]
+
+          ### mongo_parameters for Connectivity
+          file_ops = file.file_functions({"file_name" : file_name, "file_loc" : file_loc } )
+          self.__mongo_info__ = file_ops.get_json()
+
+
+          ### Retrive the Yaml file prameters
+          file_name = self.__baseline__["yaml_file"].split("/")[-1]
+          file_loc = self.__baseline__["yaml_file"].rsplit("/",1)[0]
+
+          ### Yaml file data fetch
+          file_ops = file.file_functions({"file_name" : file_name, "file_loc" : file_loc })
+          data_obj = file_ops.get_yaml()
+          self.mongo_data_load(data_obj)
+
+
+      def mongo_data_load(self,data_obj=[{}]):
+
+          mongo_conn = mongo.mongo_functions(self.__mongo_info__)
+          db_details = mongo_conn.mongo_get_info()
+
+          ### Delete the collection if it exists
+          if db_details["collections"].__contains__(self.__baseline__["collection_name"]):
+             if self.args.overwrite:
+                mongo_conn.mongo_remove_collection(self.__baseline__["collection_name"])
+             else:
+                print(colored("Kindly use the -o overwrite option to overwrite the collection  \
+                              or Use a Different Collection Name", 'magenta'))
+                sys.exit(1)
+
+          ### Create the Collection
+          mongo_conn.mongo_append_collection(self.__baseline__["collection_name"],data_obj)
+
+
+yaml_loader = yaml_to_mongo()
+yaml_loader.start()
+
+
