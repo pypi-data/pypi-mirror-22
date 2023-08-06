@@ -1,0 +1,53 @@
+libraries: [gdi32, user32, comdlg32, comctl32, shell32]
+modules: [win32.types, win32._com]
+windows_h_version: 1280
+extra_compile_args: [-D_AFXDLL, -D_AFXEXT, -D_MBCS, -DBUILD_PYW]
+pch_header: stdafx.h
+optional_headers: [afxres.h]
+modules: [win32.types, win32._com, win32.gui]
+depends:
+  - stdafx.h
+  - win32uiExt.h
+  - dibapi.h
+  - pythoncbar.h
+  - pythondoc.h
+  - pythonframe.h
+  - pythonppage.h
+  - pythonpsheet.h
+  - pythonRichEdit.h
+  - pythonRichEditCntr.h
+  - pythonRichEditDoc.h
+  - pythonview.h
+  - pythonwin.h
+  - Win32app.h
+  - win32assoc.h
+  - win32bitmap.h
+  - win32brush.h
+  - win32cmd.h
+  - win32cmdui.h
+  - win32control.h
+  - win32ctrlList.h
+  - win32ctrlTree.h
+  - win32dc.h
+  - win32dlg.h
+  - win32dlgbar.h
+  - win32dynamicdialog.h
+  - win32dll.h
+  - win32doc.h
+  - win32font.h
+  - win32gdi.h
+  - win32hl.h
+  - win32ImageList.h
+  - win32menu.h
+  - win32pen.h
+  - win32prinfo.h
+  - win32prop.h
+  - win32rgn.h
+  - win32RichEdit.h
+  - win32RichEditDocTemplate.h
+  - win32splitter.h
+  - win32template.h
+  - win32toolbar.h
+  - win32ui.h
+  - Win32uiHostGlue.h
+  - win32win.h
