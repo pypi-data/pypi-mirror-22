@@ -1,0 +1,45 @@
+CHANGES
+=======
+
+0.0.7
+-----
+
+* Use decorator and Alchemy sessionmaker to manage DB session per request
+
+0.0.6
+-----
+
+* Update pytest from 3.1.0 to 3.1.1
+* Pin pytest-cov to latest version 2.5.1
+* Add basic tests
+* Fix numeric comparisons in ModelCollection filters
+* Remove dead code from AlchemyJSONEncoder
+* Add coverage support to tests
+* Update pytest from 3.0.7 to 3.1.0
+* Pin flake8 to latest version 3.3.0
+* Pin pytest to latest version 3.0.7
+
+0.0.5
+-----
+
+* Use double underscore for filter operations
+* Revert faulty improvement
+* Use pytest in tox
+* Add naive support for timedelta fields (Postgre's interval type)
+
+0.0.3
+-----
+
+* Use SQLAlchemy object_mapper for testing Alchemy objects
+
+0.0.2
+-----
+
+* Fix comparing with __class__ of class
+* Fix classifiers
+
+0.0.1
+-----
+
+* Sources migration from older project
+* Initial commit
