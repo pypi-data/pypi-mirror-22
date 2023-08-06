@@ -1,0 +1,122 @@
+.page {
+    height: 100vh;
+}
+
+#main-content {
+    height: 100%;
+    display: block;
+}
+
+
+#output {
+    flex:1;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: "Lucida Console", Monaco, monospace;
+    white-space:pre;
+    overflow-y: auto;
+    height: 100%;
+}
+
+@media (min-width:40em) {
+    #main-content {
+        display: flex;
+    }
+    #sendButton::after{
+        content: " start";
+    }
+    #pauseButton::after{
+        content: " pause";
+    }
+    #resumeButton::after{
+        content: " resume";
+    }
+    #stopButton::after{
+        content: " stop";
+    }
+    #reloadButton::after{
+        content: " reload";
+    }
+    #downloadButton::after{
+        content: " download";
+    }
+    #clear-button::after{
+        content: " clear";
+    }
+}
+
+ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+li.action{
+    position: relative;
+}
+
+li.subparser {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+#arguments {
+    padding: 0px;
+    overflow-y: auto;
+}
+
+.tabs-panel {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#output .out {
+    color: #FFFFFF;
+}
+
+.helpbutton {
+    position: relative;
+    z-index: 1;
+}
+
+#output .err {
+    color: #990000;
+}
+
+#output_wrap {
+    padding: 0px;
+}
+#control-buttons {
+    position: fixed;
+    right: 5px;
+    top: 5px;
+    width: auto;
+    z-index: 2;
+}
+
+html, body {
+    background: #FAFAFA; }
+
+.action label {
+    margin-bottom:0px;
+}
+
+li.action {
+    padding: 1rem 0;
+}
+
+.unlock-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.5;
+    transition: width 0.5s;
+}
+
+html, body {
+background: #FAFAFA; }
+
+
