@@ -1,0 +1,41 @@
+Metadata-Version: 1.1
+Name: metadater
+Version: 0.1
+Summary: Easy way to get version and other metadata from GIT or PEFILE
+Home-page: https://github.com/pypa/sampleproject
+Author: Hylke Postma
+Author-email: info@hylkepostma.nl
+License: MIT
+Description: Metadater
+        =========
+        
+        Easy way to get an app's version and other metadata from GIT (development) or PEFILE (frozen exe)
+        
+        Install package with pip:
+        	pip install metadater
+        
+        Uninstall package with pip:
+        	pip uninstall metadater
+        
+        Usage:
+        	$ python
+        	>>> from metadater import MetaData
+        	>>> metadata = MetaData()
+        	>>> metadata.get_version() 
+        	'0.0.0.0'  
+        
+            	>>> metadata = MetaData().get()
+           	>>> for field in metadata:
+            	>>>     print(field, metadata[field])
+            	'repo repo-name
+             	name Repo Name
+             	build master-5f26241-dirty
+             	etc...'
+Keywords: sample setuptools development bootstrap python package
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
