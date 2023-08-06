@@ -1,0 +1,93 @@
+Resyndicator
+============
+
+Purpose
+-------
+
+The Resyndicator aggregates data from various sources into Atom feeds.
+If you have a list of a couple hundred data sources – such as feeds,
+sitemaps, and Twitter users – and want to share the aggregate of those
+entries or updates between your various devices (computers, phones,
+etc.), your colleagues, or even the visitors of your website, then
+that’s just what the Resyndicator is for.
+
+-  It allows for queries as sophisticated as SQLAlchemy allows to filter
+   your aggregate feed.
+-  It allows you to subclass the fetchers, so you can write fetchers for
+   endpoints as obscure as Adobe’s AMF.
+-  It keeps all entries in Postgres, so you have a backup.
+
+Setup
+-----
+
+When you’ve installed it though Buildout or pip, you should get an
+endpoint like ``bin/resyndicator``. If not and you know why, then please
+tell me, because I have the same problem. Otherwise just copy the
+``entry_points`` parameter from ``setup.py`` to your ``setup.py`` to
+create a new one.
+
+In your own package, you’ll need to create at least a ``settings.py``
+and a ``resources.py``. In ``settings.py``, you can specify your
+database credential with something like
+``DATABASE = 'postgresql://foo:bar@localhost/impactfeeder'`` (you may
+need to create the database and grant access rights to the user). For
+more options, see the ``settings.py`` included in the Resyndicator.
+
+In ``resources.py``, you list the feeds and (eponymous) resyndicators
+like so for example:
+
+::
+
+    from datetime import timedelta
+    from sqlalchemy.sql import or_
+    from resyndicator import settings
+    from resyndicator.models import Entry
+    from resyndicator.fetchers import (
+        FeedFetcher, SitemapIndexFetcher, SitemapFetcher,
+        TwitterStreamer, ContentFetcher)
+    from resyndicator.resyndicators import Resyndicator
+
+    PAST = timedelta(days=7)
+
+    CONTENT_FETCHER = ContentFetcher(past=PAST, timeout=10)
+
+    RESYNDICATORS = [
+        Resyndicator(
+            title='Effective Altruism',
+            past=PAST,
+            query=or_(
+                Entry.source_link.in_([
+                    'http://feeds.feedburner.com/TheGivewellBlog',
+                    'http://www.openphilanthropy.org/sitemap.xml',
+                ])
+            )
+        )
+    ]
+
+    FETCHERS = [
+        FeedFetcher('http://feeds.feedburner.com/TheGivewellBlog',
+                    interval=10*60),
+        SitemapFetcher('http://www.openphilanthropy.org/sitemap.xml',
+                       defaults={'title': 'Open Phil Sitemap',
+                                 'author': 'Open Philanthropy Project'},
+                       interval=30*60),
+    ]
+
+    STREAMS = [
+        TwitterStreamer(
+            oauth_token=settings.OAUTH_TOKEN,
+            oauth_secret=settings.OAUTH_SECRET,
+            timeout=30*60),
+    ]
+
+For each resyndicator, you define a query and a title which will
+determine its ID and thus its identity. If you change the title you
+create a different feed. The query determine the entries of the feed and
+are written are SQLAlchemy where statements.
+
+You can then start the scheduler of the fetchers with
+``bin/resyndicator -s mypackage.settings fetchers``, the first stream
+with ``bin/resyndicator -s mypackage.settings stream 0`` (other streams
+analogously), and the content fetcher with
+``bin/resyndicator -s mypackage.settings content`` unless your Buildout
+is configured some weird way.
