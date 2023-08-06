@@ -1,0 +1,343 @@
+
+/*
+* Gov DF styles
+*/
+.media-grid{
+	list-style: none;
+	margin-top: 35px;
+	padding-bottom: 0px;
+	background: none;
+	border: 0;
+
+	.media-view{
+		left: 15px;
+		right: 15px;
+		margin-bottom: 30px;
+		
+		&:hover,
+		&:hovered{
+			box-shadow: none;
+			border: 0;
+		}
+
+	}
+}
+.media-view{
+	&:hover{
+		box-shadow: none;
+	}
+}
+.group-item{
+	background-color: @white;	
+	padding-top: 40px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-bottom: 30px;
+	.border-radius(3px);
+	.gray-border;	
+}
+.group-icon{
+	width: 80px;
+	height: 80px;	
+	background-color: @white-two;
+	.border-radius(100%);
+	.gray-border;
+	padding: 20px;
+
+	img{
+		margin: auto;
+		display: block;
+	}
+}
+.group-heading{
+	font-family: "Montserrat";
+	font-size: 17px;
+	color: rgb(81, 81, 81);
+	text-transform: none;
+	text-align: center;
+}
+.organization-item{
+	color: @deep-gray;
+	background-color: @white;	
+	padding-top: 30px;
+	padding-bottom: 30px;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-bottom: 30px;
+	.border-radius(3px);
+	.gray-border;	
+
+	.organization-heading{
+		font-family: "Titillium Web";
+		font-size: 15pt;
+		color: rgb(79, 141, 200);
+		text-transform: none;
+		margin: 0 0 5px 0;
+	}
+}
+#field-order-by{
+	color: rgb(79, 141, 200);
+	border-color: @white-four;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	height: 40px;
+	margin-top: 5px;
+	background-color: @white;
+	background-image: url(../../../../elements/seta-selecao-azul.svg);
+	background-position: 100% 0;
+	background-repeat: no-repeat;
+	.appearance(none);
+}
+.search-title{
+	font-family: "Montserrat";
+	font-size: 14pt;
+	color: @green;	text-transform: none;
+	margin-top: 44px;
+	text-align: right;
+}
+.transparence-module{
+	background-color: @white;
+	height: 260px;
+	width: 100%;
+	.gray-border; 
+	h2{
+		color: @black;
+		text-transform: none;
+		margin-top: 64px;
+		font-weight: 300;
+	}
+}
+.btn{
+	border: 0;
+	.border-radius(10px);
+	padding: 10px 20px;
+	box-shadow: 0px 1px 1px @faded-gray;
+	text-shadow: none;
+}
+.btn-primary{
+	background: @blue;
+	color: @white;
+
+	&:hover,
+	&:focus{
+		background: @deep-blue;
+	}
+}
+.btn-success{
+	background: @green;
+	color: @white;
+
+	&:hover,
+	&:focus{
+		background: @deep-green;
+	}
+}
+.btn-warning{
+	background: @yellow;
+	color: @deep-black;
+
+	&:hover,
+	&:focus{
+		background: @deep-yellow;
+	}
+}
+.btn-bordered-success{
+	background: @white;
+	color: @green;
+	border: 2px solid @green;
+	font-family: "Montserrat";
+
+	&:hover,
+	&:focus{
+		background-color: @white;
+		color: @green;
+	}
+	a{
+		color: inherit;
+
+		&:hover,
+		&:focus{
+			color: @green;
+		}
+	}
+}
+.open{
+	> .dropdown-toggle{
+		&.btn-success{
+			&:hover,
+			&:focus{
+				background: @deep-green;
+			}
+		}
+		&.btn-primary{
+			&:hover,
+			&:focus{
+				background: @deep-blue;
+			}
+		}
+	}
+}
+.table{
+	color: @faded-blue;
+	.gray-border;
+}
+.table-striped{
+	thead{
+		font-family: "Titillium Web";
+		font-size: 24px;
+		background-color: @white;
+	}
+	> tbody{
+		> tr{
+			&:nth-of-type(odd){
+				background-color: transparent;
+			}
+		}
+	}
+	tbody{
+		tr{
+			&:nth-of-type(even){
+				td,
+				th{
+					background-color: @white;
+				}
+			}
+		}
+	}
+}
+.additional-info{
+	.table{
+		thead{
+			th{
+				font-weight: 300;
+			}
+		}
+	}
+}
+.no-margin-top{
+	margin-top: 0;
+}
+.filter-list{
+	margin-bottom: 30px;
+}
+.facet{
+	margin: 10px 0;
+}
+.pill{
+	color: @white;
+	border-radius: 0;
+	background-color: @teal;
+	border: 1px solid @teal;
+	font-weight: 600;
+	box-shadow: none;
+	padding: 0 6px;
+	margin-right: 5px;
+}
+.buttons-block{
+	width: 583px;
+	margin-top: 40px;
+
+	.btn{
+		margin: 0px 15px;
+	}
+}
+[role=main], 
+.main{
+	padding-bottom: 0;
+	min-height: 452px;
+}
+
+#perguntas.panel-group{
+	.panel{
+		margin-bottom: 10px;
+		.border-radius(0);
+		border: 0;
+
+		.panel-heading{
+			height: 60px;
+			padding: 0;
+			.border-radius(10px);
+		}
+		.panel-heading-active{
+			.border-radius(0);
+			.border-top-left-radius(10px);
+			.border-top-right-radius(10px);
+		}
+		.panel-title{
+			font-family: "Montserrat";
+			font-size: 16px;
+			position: relative;
+			height: 100%;
+
+			a{
+				padding: 20px;
+				position: absolute;
+				top: 0;
+	
+				right: 0;
+				bottom: 0;
+				left: 0;
+
+				background-image: url(../../../../elements/icone-fechar-azul.svg);
+				background-position: calc(~"100% - 20px");
+				background-repeat: no-repeat;
+				.transition(background-image 0.4s);
+
+				&:hover,
+				&:focus{
+					color: @white;
+				}
+
+				&.collapsed{
+					background-image: url(../../../../elements/icone-abrir-azul.svg);
+				}
+			}
+		}
+		.panel-body{
+			.gray-border;
+			border-top: 0;
+			line-height: 1.4;
+		}
+
+		&.panel-primary{
+			> .panel-heading{
+				color: @white;
+				background-color: @deep-blue;
+				border-color: @deep-blue;
+
+				&.panel-heading-active{
+					background-color: @blue;
+					border-color: @blue;
+				}
+			}
+		}
+	}
+}
+.gt-content{
+	p{
+		line-height: 1.7em;
+		margin-bottom: 30px;
+		font-size: 16px;
+		a{
+			color: @blue;
+			text-decoration: underline;
+		}
+	}
+
+	ol{
+		margin-left: 45px;
+		font-size: 16px;
+		margin-bottom: 30px;
+		li{
+			margin: 5px 0;
+		}
+	}
+}
+.module-shallow{
+	p{
+		font-family: "Montserrat";
+		line-height: 1.2;
+
+	}
+}

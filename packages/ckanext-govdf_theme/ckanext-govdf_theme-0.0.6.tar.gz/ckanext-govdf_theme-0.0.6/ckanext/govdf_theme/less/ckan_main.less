@@ -1,0 +1,317 @@
+/*
+* Overriding main.css
+*/ 
+button, input{
+	vertical-align: initial;
+}
+.account-masthead{
+	background: @green;
+
+	.account{
+		ul{
+			li{
+				border: 0;
+				a{
+					color: @white;
+					font-family: "Montserrat";
+					font-weight: normal;
+
+					&:hover,
+					&:focus{
+						background-color: @deep-green;
+					}
+				}
+			}
+		}
+		.notifications{
+			a{
+				span{
+					&.badge{
+						background-color: darken(@deep-green, 10%);
+						padding: 3px 6px;
+						color: @white;
+						font-weight: bold;
+					}
+				}
+			}
+		}
+	}
+}
+[role=main], .main{
+	background: @white-two;
+	padding-top: 0px;
+}
+.navbar{
+	.nav {
+		> li{
+			> a{
+				text-shadow: none;
+			}
+		}
+	}
+}
+.search-form{
+	border: 0;
+	margin: 0;
+}
+.module-heading{
+	border: 0;
+	background: none;
+	font-family: "Open Sans";
+	font-size: 16pt;
+	padding-top: 0;
+	padding-left: 0;
+}
+.module-narrow{
+	.module-heading{
+		padding-left: 0;
+		font-size: 20pt;
+	}
+}
+.module-content{
+	font-family: "Open Sans";
+	font-size: 12pt;
+	padding: 0;
+	margin: 0;
+	&:last-child,
+	&:first-child{
+		padding: 0;
+		margin: 0;
+	}
+
+	h1{
+		font-family: "Titillium Web";
+		text-transform: uppercase;
+		color: @faded-blue;
+	}
+	> .resource-view{
+		margin-top: -40px;
+	}
+}
+.resource-view-container{
+	position: relative;
+}
+.module-footer{
+	border: 0;
+	padding: 0;
+	padding-bottom: 20px;
+	a{
+		margin-left: 24px;
+		padding-bottom: 20px;
+		color: @green;
+		font-family: "Montserrat";
+		font-weight: 500;
+	}
+}
+.secondary{
+	.heading{
+		font-weight: 300;
+	}
+}
+.dataset-item{
+	border: 0;
+	.dataset-content{
+		font-family: "Open sans";
+		.dataset-heading{
+			color: @blue;
+			text-transform: none;
+			font-family: "sans-serif";
+			font-size: 24pt;
+			a{
+				color: inherit;
+			}
+		}
+	}
+	.dataset-resources{
+		li{
+			.label{
+				color: @white;
+				font-family: "Open sans";
+				font-size: 11px;
+				text-transform: uppercase;
+				border-radius: 0;
+				padding: 4px 10px;
+				font-weight: normal;
+				text-shadow: none;
+				margin-right: 6px;
+			}
+		}
+	}
+}
+.resource-item{
+
+	&:hover{
+		background-color: @white;
+		.gray-border();
+		> a{
+			color: @green;
+		}
+	}
+
+	.heading{
+		color: @faded-blue;
+		font-size: 16px;
+		font-weight: 400;
+	}
+
+	.format-label{
+		width: 35px;
+		height: 35px;
+		background-image: none;
+		text-indent: initial;
+		color: @white;
+		text-align: center;
+		text-transform: uppercase;
+		font-weight: 600;
+		font-size: 11px;
+		padding: 8px 0px;
+	}
+
+	.btn-group{
+		font-family: "Montserrat";
+		font-weight: 600;
+		top: 10px;
+		ul{
+			li{
+				a{
+					color: @green;					
+
+					&:hover,
+					&:focus{
+						color: @white;
+						background: @green;
+					}
+				}
+			}
+		}
+	}
+}
+.format-label,
+.label{
+
+	&[data-format=csv],
+	&[data-format*=csv],
+	&[data-format^=csv]{
+		background-color: #28bbb6 !important;
+	}
+	&[data-format=geojson],
+	&[data-format*=geojson],
+	&[data-format^=geojson]{
+		background-color: #ffcc29 !important;
+	}
+	&[data-format=ods],
+	&[data-format*=ods],
+	&[data-format^=ods]{
+		background-color: #ca75cd !important;
+	}
+	&[data-format=json],
+	&[data-format*=json],
+	&[data-format^=json]{
+		background-color: #f6a623 !important;
+	}
+	&[data-format=xls],
+	&[data-format*=xls],
+	&[data-format^=xls]{
+		background-color: #00a859 !important;
+	}
+	&[data-format=txt],
+	&[data-format*=txt],
+	&[data-format^=txt]{
+		background-color: #4d4d4d !important;
+	}
+	&[data-format=pdf],
+	&[data-format*=pdf],
+	&[data-format^=pdf]{
+		background-color: #eb5757 !important;
+	}
+	&[data-format=kml],
+	&[data-format*=kml],
+	&[data-format^=kml]{
+		background-color: #8bc34a !important;
+	}
+	&[data-format=html],
+	&[data-format*=html],
+	&[data-format^=html]{
+		background-color: #4761fb !important;
+	}
+	&[data-format=xml],
+	&[data-format*=xml],
+	&[data-format^=kml]{
+		background-color: #9575cd !important;
+	}
+}
+.resource-url{
+	white-space: normal;
+	padding: 20px;
+	.gray-border();
+	background-color: @white;
+	color: @green;
+	font-weight: 900;
+
+	a{
+		font-weight: 400;
+		color: @black;
+	}
+}
+a{
+	&.tag{
+		color: @white;
+		border-radius: 0;
+		background: @teal;
+		border: 1px solid @teal;
+		font-weight: 600;
+		box-shadow: none;
+
+		&:hover,
+		&:focus{
+			color: @teal;
+			background: @white;
+			border-color: @teal;
+		}
+	}
+}
+.media-view{
+	border: 0;
+	border-radius: 0;
+}
+.media-edit{
+	position: relative;
+}
+[class^="icon-"],
+[class*=" icon-"]{
+	font-size: inherit;
+}
+.activity{
+	.item{
+		&.new-resource{
+			.icon{
+				background-color: @faded-green;
+			}
+		}
+		&.deleted-resource{
+			.icon{
+				background-color: @faded-red;
+			}
+		}
+		&.changed-resource{
+			.icon{
+				background-color: @faded-blue;
+			}
+		}
+		&.new-package{
+			.icon{
+				background-color: @green;
+			}
+		}
+		&.deleted-package{
+			.icon{
+				background-color: @red;
+			}
+		}
+		&.changed-package{
+			.icon{
+				background-color: @blue;
+			}
+		}
+	}
+}
