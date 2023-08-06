@@ -1,0 +1,56 @@
+Metadata-Version: 1.1
+Name: netra
+Version: 0.1.2
+Summary: Train MNIST with different models using Tensorflow.
+Home-page: https://github.com/chillaranand/netra
+Author: chillar
+Author-email: anand21nanda@gmail.com
+License: BSD
+Description: # netra
+        
+        Train & query MNIST dataset with different models using Tensorflow.
+        
+        
+        # Installation
+        
+        
+            $ pip install netra
+        
+        
+        # Usage
+        
+        Help:
+        
+            $ netra --help
+        
+        Querying model:
+        
+            $ netra query -i https://i.imgur.com/GbreNv2.png
+            $ netra query -i /foo/bar/foo.png
+        
+        Training model:
+        
+            $ netra train --model regression
+            $ netra train --model regression --epochs 1000 --batch_size 100
+            $ netra train -m regression -e 1000 -b 100
+        
+        
+        # Sample output:
+        
+        ![netra](https://user-images.githubusercontent.com/4463796/26892117-e1a77a34-4bd4-11e7-91d2-11af0d1294f7.png)
+        
+        ![netra2](https://user-images.githubusercontent.com/4463796/26892600-773b27fc-4bd6-11e7-9bfd-38b60b88b8bf.png)
+        
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Unix
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
