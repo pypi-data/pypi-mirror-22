@@ -1,0 +1,15 @@
+name: ipywidget_docs
+channels:
+- conda-forge
+- defaults
+dependencies:
+- ipykernel
+- jupyter_client
+- jupyter_sphinx
+- nbsphinx
+- python=3
+- sphinx
+- pip:
+  - ipywidgets>=7.0.0a2
+  - jupyter-alabaster-theme
+  - recommonmark
