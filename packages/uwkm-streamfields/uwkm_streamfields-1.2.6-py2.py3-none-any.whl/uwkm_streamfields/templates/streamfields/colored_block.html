@@ -1,0 +1,11 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+<div class="col-md-12">
+	{% for item in self %}
+		<div class="colored-block {{ item.text_color }} {{ item.background_color }}" style="background-color: {{ item.bg_color }}; color: {{ item.color }};">
+			{{ item.text }}
+	    </div>
+	{% endfor %}
+</div>
