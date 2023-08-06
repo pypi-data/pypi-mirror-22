@@ -1,0 +1,18 @@
+
+<head>
+<link rel="stylesheet" media="screen" href="/static/default.css">
+<script src="/static/default.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+{% block head %}{% endblock %}
+
+</head>
+
+<body>
+	{% include "top_bar.html" %}
+
+	<div class="body">
+	{% block body %}{% endblock %}
+	</div>
+</body>
+

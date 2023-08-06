@@ -1,0 +1,32 @@
+
+<div class="top">
+<div class="left">
+	<h1><a href="/">Web Sheets</a></h1>
+</div>
+<div class="right">
+
+{% if user_is_authenticated %}
+	<div class="dropdown">
+	<img src="{{ profile_image_url }}" class="dropbtn">
+	<div id="myDropdown" class="dropdown-content">
+		<!--<a href="% url "sheets:index" %}">My Sheets</a>-->
+		<a
+		class="select_account" 
+		href="/google_oauth2_login?next=/">
+		select account
+		</a>
+		<!--<a href="% url "logout" %}?next={{ url_logout_redirect }}">
+		logout
+		</a>-->
+	</div>
+	</div>
+{% else %}
+	<a 
+	class="login" 
+	href="/google_oauth2_login?next=/">
+	</a>
+{% endif %}
+
+</div>
+</div>
+

@@ -1,0 +1,68 @@
+<head>
+<script src="/static/sheet.js"></script>
+<script src="/static/handsontable/handsontable.full.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/handsontable/handsontable.full.css">
+</head>
+<body>
+
+<div class="toolbar">
+	<div><h2>book name here</h2></div>
+	<div><button id="button_add_col">add column</button></div>
+	<div><button id="button_add_row">add row</button></div>
+</div>
+
+<div id="tablediv"></div>
+
+<div>
+	<textarea id="script_pre" rows="10" cols="50">{{ script_pre }}</textarea>
+</div>
+
+<button id="button_script_pre">execute</button>
+
+<div>
+	<textarea id="script_pre_output" rows="10" cols="50">{{ script_pre_output }}</textarea>
+</div>
+
+<div>
+	<textarea id="script_post" rows="10" cols="50"
+		>{{ script_post }}</textarea>
+</div>
+
+<button id="button_script_post">execute</button>
+
+<div>
+	<textarea id="script_post_output" rows="10" cols="50">{{ script_post_output }}</textarea>
+</div>
+
+<div id="book_docs">
+	{% autoescape off %}{{ docs_html }}{% endautoescape %}
+</div>
+
+<button id="button_ws_connect">test websocket</button>
+<button id="button_ws_send">test websocket send</button>
+
+
+<script>
+
+var data_hot = [[]];
+
+var book_id = '{{ book_id }}';
+var sheet_id = '{{ sheet_id }}';
+
+var ws_url = '{{ ws_url }}';
+
+
+var url_add_column = '{{ url_add_column }}';
+var url_add_row = '{{ url_add_row }}';
+var url_set_cell = '{{ url_set_cell }}';
+var url_set_script_pre = '{{ url_set_script_pre }}';
+var url_set_script_post = '{{ url_set_script_post }}';
+var url_get_sheet_data = '{{ url_get_sheet_data }}';
+
+
+$(document).ready(sheet_page_load);
+
+</script>
+</body>
+
