@@ -1,0 +1,171 @@
+dj12. 12factor config support for Django.
+=========================================
+
+What is it?
+-----------
+
+`Django <https://www.djangoproject.com/>`__ is an awesome Python web framework.
+
+"`The Twelve-Factor App <https://12factor.net/>`__" is an awesome methodology for building SaaS apps.
+
+``dj12`` makes Django more 12factor-y. Right now, this focuses on the `Config <https://12factor.net/config>`__ - "Store config in the environment"; `Heroku <https://www.heroku.com/>`__ users with addons will be particularly familiar with this.
+
+Still not sure of the benefits? Check out "`Twelve-Factor Config: Misunderstandings and Advice <https://blog.doismellburning.co.uk/2014/10/06/twelve-factor-config-misunderstandings-and-advice/>`__".
+
+Installation
+------------
+
+.. code-block:: python
+
+    pip install dj12
+
+At the end of your settings.py, add:
+
+.. code-block:: python
+
+    from dj12.config import *
+
+And it's done, your app supports 12factor config!
+
+Still, you may want to delete obsolete config variables:
+
+* SECRET_KEY
+* ALLOWED_HOSTS
+* DEBUG
+* DATABASES
+* CACHES
+* EMAIL_*
+* DEFAULT_FROM_EMAIL
+* SECURE_PROXY_SSL_HEADER
+* LANGUAGE_CODE
+* TIME_ZONE
+
+We also provide modern defaults for these variables, so you don't need to set them yourself:
+
+* USE_I18N = True
+* USE_L10N = True
+* USE_TZ = True
+
+
+Usage
+-----
+
+Default settings are optimized for the development environments, and for doing nothing if you don't use that particular Django feature. Change them only when you need to do so - for example, set DATABASE_URL when you need database persistency on production, and CACHE_URL when you need out-of-process cache on production.
+
+SECRET_KEY (required when DEBUG=off)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:Type: string
+
+A secret key for a particular environment. This is used to provide cryptographic signing, and should be set to a unique, unpredictable value.
+
+This is the only required setting, because it's a security issue to run without SECRET_KEY on production.
+
+Keep this value secret.
+
+Running Django with a known SECRET_KEY defeats many of Django’s security protections, and can lead to privilege escalation and remote code execution vulnerabilities.
+
+Read more at `Django: SECRET_KEY <https://docs.djangoproject.com/en/1.11/ref/settings/#secret-key>`__.
+
+ALLOWED_HOSTS
+~~~~~~~~~~~~~
+:Type: comma separated list
+:Default value: localhost
+
+A list of strings representing the host/domain names that this Django site can serve. This is a security measure to prevent HTTP Host header attacks, which are possible even under many seemingly-safe web server configurations.
+
+Read more at `Django: ALLOWED_HOSTS <https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-hosts>`__.
+
+DEBUG
+~~~~~
+:Type: boolean
+:Default value: off
+
+A boolean that turns on/off debug mode.
+
+Never deploy a site into production with DEBUG turned on.
+
+Did you catch that? NEVER deploy a site into production with DEBUG turned on.
+
+Read more at `Django: DEBUG <https://docs.djangoproject.com/en/1.11/ref/settings/#debug>`__.
+
+DATABASE_URL
+~~~~~~~~~~~~
+:Type: URL
+:Default value: sqlite:///db.sqlite3 (db.sqlite3 file in the current working directory)
+
+This is the URL to your database.
+
+Note: This configures the Django's "default" database; you may also use *WHATEVER_*DATABASE_URL to configure "*whatever*" database.
+
+Read more at `dj-database-url <https://github.com/kennethreitz/dj-database-url>`__.
+
+CACHE_URL
+~~~~~~~~~
+:Type: URL
+:Default value: locmem:// (memory)
+
+This is the URL to your caching system.
+
+Note: This configures the Django's "default" cache; you may also use *WHATEVER_*CACHE_URL to configure "*whatever*" cache.
+
+Read more at `django-cache-url <https://github.com/ghickman/django-cache-url>`__.
+
+EMAIL_URL
+~~~~~~~~~
+:Type: URL
+:Default value: console:// (print emails to the console)
+
+This is the URL to your email sending system.
+
+Read more at `dj-email-url <https://github.com/migonzalvar/dj-email-url>`__.
+
+EMAIL_FROM
+~~~~~~~~~~
+:Type: email address
+:Default value: webmaster@localhost
+
+Default email address to use for emails sent to users.
+
+Read more at `Django: DEFAULT_FROM_EMAIL <https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-DEFAULT_FROM_EMAIL>`__.
+
+TRUST_X_FORWARDED_PROTO
+~~~~~~~~~~~~~~~~~~~~~~~
+:Type: boolean
+:Default value: off
+
+Turn this on if your app is behind a reverse proxy that sends X-Forwarded-Proto header. This controls the behavior of the request object’s is_secure() method.
+
+Warning: You will probably open security holes in your site if you set this without knowing what you’re doing. And if you fail to set it when you should. Seriously.
+
+Read more at `Django: SECURE_PROXY_SSL_HEADER <https://docs.djangoproject.com/en/1.11/ref/settings/#secure-proxy-ssl-header>`__.
+
+LANG
+~~~~
+:Type: string
+:Default value: en-us
+
+Default language for the environment. Supports both standard language ID format, and UNIX $LANG format.
+
+It serves two purposes:
+
+* If the locale middleware isn’t in use, it decides which translation is served to all users.
+* If the locale middleware is active, it provides a fallback language in case the user’s preferred language can’t be determined or is not supported by the website. It also provides the fallback translation when a translation for a given literal doesn’t exist for the user’s preferred language.
+
+Read more at `Django: LANGUAGE_CODE <https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-LANGUAGE_CODE>`__.
+
+TIME_ZONE
+~~~~~~~~~
+:Type: string
+:Default value: UTC
+
+A string representing the time zone for this environment. See the `list of time zones <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__.
+
+Read more at `Django: TIME_ZONE <https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-TIME_ZONE>`__.
+
+RAVEN_URL
+~~~~~~~~~
+:Type: URL
+
+Sentry DSN - use this if you're using Sentry to monitor your app.
+
+Note that you still have to add Raven app to INSTALLED_APPS, as we don't want to always require it, and modifying the list of installed apps based on the environment variables is a bad idea. However, you may safely run Django with Raven installed but RAVEN_URL unset.
