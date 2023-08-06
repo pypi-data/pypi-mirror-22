@@ -1,0 +1,15 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser"
+        xmlns:zcml="http://namespaces.zope.org/zcml"
+        i18n_domain="c2.patch.contentpaste">
+
+    <!-- Control panel -->
+    <browser:page
+            name="contentpaste-settings"
+            for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+            class=".main.ContentPasteControlPanel"
+            permission="cmf.ManagePortal"
+            />
+
+</configure>

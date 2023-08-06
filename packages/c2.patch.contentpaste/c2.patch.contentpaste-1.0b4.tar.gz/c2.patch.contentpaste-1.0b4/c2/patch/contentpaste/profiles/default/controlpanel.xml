@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="c2.patch.contentpaste"
+        purge="False">
+
+    <configlet
+            title="ContentPaste settings"
+            action_id="contentpaste_settings"
+            appId="contentpaste_settings"
+            category="Products"
+            condition_expr=""
+            url_expr="string:${portal_url}/@@contentpaste-settings"
+            visible="True"
+            i18n:attributes="title">
+        <permission>Manage portal</permission>
+    </configlet>
+
+</object>
