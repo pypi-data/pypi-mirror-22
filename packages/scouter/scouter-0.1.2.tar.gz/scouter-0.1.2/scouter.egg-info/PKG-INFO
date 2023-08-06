@@ -1,0 +1,110 @@
+Metadata-Version: 1.0
+Name: scouter
+Version: 0.1.2
+Summary: Watching Data with Callback!
+Home-page: https://github.com/VillanCh/scouter
+Author: v1ll4n
+Author-email: v1ll4n@villanch.top
+License: BSD 2-Clause License
+Description: # scouter
+        定义一群类似 Python 内置数据结构的一群数据结构，数据结构发生变化的时候，发生回调
+        
+        ## 安装方法：
+        
+        ```bash
+        pip install scouter
+        ```
+        
+        或者 `easy_install`
+        
+        或者下载源代码:
+        
+        ```bash
+        cd scouter
+        python setup.py install
+        ```
+        
+        ## 使用方法：
+        
+        ### SVar 使用回调函数监视变量
+        
+        ```python
+        
+        from scouter import SVar
+        
+        def callback(now, orig):
+            print 'Orig:{} Now:{}'.format(orig, now)
+            
+        var = SVar(4, callback)
+        var.value = 5
+        ```
+        
+        对于一个 SVar 对象，在定义的时候，可以添加一个回调函数，这个回调函数只接受两个参数：  
+        
+        * 第一个参数为当前新的值
+        * 第二个参数为原来的值
+        
+        ### SList 使用回调函数监视列表结构
+        
+        ```python
+        
+        from scouter import SList
+        
+        def print_cb(obj, index):
+            print obj, index
+            
+        def print_new(_new, orig):
+            print 'new:{} orig:{}'.format(_new, orig)
+            
+        _list = SList(value=['aaaaaaaa',2,3,4,5],
+                      add_new_item_callback=print_cb,
+                      del_new_item_callback=print_cb,
+                      new_list_value_callback=print_new)
+        
+        _list.append('asdf')
+        _list.pop(0)
+        
+        for i in _list:
+            print i
+        
+        assert 4 == _list[2]
+        
+        del _list[2]
+        
+        _list.value = [1,2,3,4,5,]
+        ```
+        
+        对于一个 SList 对象，在定义的时候，可以添加三个回调函数，这三个回调函数的参数都有两个参数：
+        
+        * 对于 add_new_item_callback 来说，第一个参数是添加的新值，第二个参数是索引
+        * 对于 del_new_item_callback 来说，第一个参数是被删除的值，第二个参数是索引
+        * 对于 new_list_value_callback 来说，第一个参数是现在的新值，第二个参数是之前的 value
+        
+        ```python
+        
+        from scouter import SDict
+        
+        def print_kv(key, value):
+            print 'key:{} value:{}'.format(key, value)
+            
+        def print_new(new, orig):
+            print 'new:{}, orig:{}'.format(new, orig)
+            
+        _dict = SDict({1:2,'key':'value'},
+                      new_kv_callback=print_kv,
+                      del_kv_callback=print_kv,
+                      new_value_callback=print_new)
+        
+        _dict['key'] = 'hhhhhhhhhvalue1'
+        _dict['key1'] = 'hhhhhhhhhvalue12'
+        del _dict[1]
+        
+        
+        _dict.value = {5:4}
+        ```
+        
+        基本同上，只是对于 new_kv_callback/del_kv_callback 来说两个参数分别为 key 和 value。  
+        
+        
+        
+Platform: UNKNOWN
