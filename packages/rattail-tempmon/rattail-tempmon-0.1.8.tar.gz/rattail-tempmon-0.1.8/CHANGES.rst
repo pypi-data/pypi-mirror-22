@@ -1,0 +1,64 @@
+
+CHANGELOG
+=========
+
+0.1.8 (2017-06-01)
+------------------
+
+* Refactor main server loop a bit, to add basic retry w/ error logging
+
+* Tweak mail templates a bit, to reference config values
+
+
+0.1.7 (2017-06-01)
+------------------
+
+* Add ``rattail export-hotcooler`` command, for initial hotcooler support
+
+* Add client error logging in case committing session fails..
+
+
+0.1.6 (2017-02-09)
+------------------
+
+* Add configurable delay per client; improve client try/catch
+
+
+0.1.5 (2016-12-12)
+------------------
+
+* Add config for "good temp" email
+
+
+0.1.4 (2016-12-11)
+------------------
+
+* Hopefully fix alert logic when status becomes good
+
+
+0.1.3 (2016-12-10)
+------------------
+
+* Add email config for tempmon-server alerts
+
+* Add mail templates to project manifest
+
+
+0.1.2 (2016-12-10)
+------------------
+
+* Add support for dummy probes (random temp data)
+
+* Add mail templates, plus initial status alert delay for probes
+
+
+0.1.1 (2016-12-05)
+------------------
+
+* Fix import bug in server daemon
+
+
+0.1.0 (2016-12-05)
+------------------
+
+* Initial release.
