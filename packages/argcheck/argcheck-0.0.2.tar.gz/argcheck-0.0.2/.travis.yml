@@ -1,0 +1,14 @@
+language: python
+python:
+  - '2.7'
+  - '3.5'
+# command to install dependencies
+install:
+  - pip install coveralls
+  - pip install parameterized
+  - python setup.py install
+# command to run tests
+script:
+  - coverage run argcheck/tests.py
+after_success:
+  - coveralls
