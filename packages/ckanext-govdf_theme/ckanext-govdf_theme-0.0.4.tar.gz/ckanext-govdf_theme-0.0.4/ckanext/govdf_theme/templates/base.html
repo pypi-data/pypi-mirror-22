@@ -1,0 +1,12 @@
+{% ckan_extends %}
+
+{% block styles %}
+  {{ super() }}  
+  {% resource 'govdf_theme/bootstrap.css' %}
+  {% resource 'govdf_theme/icomoon.css' %}
+  {% resource 'govdf_theme/gdf_ui.css' %}
+  {% resource 'govdf_theme/govdf_theme.css' %}
+  {% resource 'govdf_theme/style.js' %}
+  {% resource 'govdf_theme/bootstrap.js' %}
+{% endblock %}
+
