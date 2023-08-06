@@ -1,0 +1,64 @@
+Metadata-Version: 1.1
+Name: npmdownloader
+Version: 1.1.1
+Summary: NPM Package Downloader
+Home-page: https://github.com/ozelentok/npmdownloader
+Author: Oz Elentok
+Author-email: oz.elen@gmail.com
+License: MIT
+Download-URL: https://github.com/ozelentok/npmdownloader/tarball/1.1.1
+Description: NPM Downloader
+        ==============
+        Download packages from NPM for private npm servers such as verdaccio and sinopia
+        
+        - Python 3.5+ only
+        
+        Installation
+        ------------
+        
+        Install using pip:
+        
+        .. code:: bash
+        
+          $ pip install npmdownloader
+        
+        Usage
+        -----
+        Downloading using the CLI:
+         
+        .. code:: bash
+        
+            $ python -m npmdownloader -f [PACKAGE_FILE_LIST] -o [DOWNLOAD_DIR] -c [NUM_OF_WORKER_PROCESSES]
+        
+        Downloading a package using code:
+        
+        .. code:: python
+        
+          from npmdownloader import NpmPackageDownloader
+        
+          downloader = NpmPackageDownloader('out_dir')
+          # Download a package and its depedencies as tarballs
+          # if a package tarball already exists, the download will be skipped
+          downloader.download('react', version='15.4.1')
+        
+        Downloading multiple packages using code:
+        
+        .. code:: python
+        
+          from npmdownloader import MultiPackageDownloader
+        
+          downloader = MultiPackageDownloader('packages_list.txt', 'out_dir', workers_count=4)
+        
+Keywords: npm nodejs sinopia verdaccio offline
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Version Control
+Classifier: Topic :: Software Development
+Classifier: Topic :: System :: Software Distribution
