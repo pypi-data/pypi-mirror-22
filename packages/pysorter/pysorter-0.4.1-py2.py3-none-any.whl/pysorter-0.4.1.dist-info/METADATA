@@ -1,0 +1,32 @@
+Metadata-Version: 2.0
+Name: pysorter
+Version: 0.4.1
+Summary: A regex based file organizer
+Home-page: https://github.com/chriscz/pySorter
+Author: Chris Coetzee
+Author-email: chriscz93@gmail.com
+License: MPL
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Provides-Extra: build
+Requires-Dist: setuptools-git; extra == 'build'
+Requires-Dist: sphinx; extra == 'build'
+Requires-Dist: twine; extra == 'build'
+Requires-Dist: wheel; extra == 'build'
+Provides-Extra: test
+Requires-Dist: pytest; extra == 'test'
+Requires-Dist: pytest-cov; extra == 'test'
+Requires-Dist: testfixtures; extra == 'test'
+
+pysorter is a file and directory organization tool that 
+makes use of regular expressions.
+
+Users of pysorter may write their own `filetypes.py` file for 
+specifying sorting rules.
+

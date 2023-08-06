@@ -1,0 +1,6 @@
+pysorter is a file and directory organization tool that 
+makes use of regular expressions.
+
+Users of pysorter may write their own `filetypes.py` file for 
+specifying sorting rules.
+
