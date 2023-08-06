@@ -1,0 +1,111 @@
+Metadata-Version: 1.1
+Name: MOM_Sanitizer
+Version: 1.0.0.dev1
+Summary: A regex solution to simplify searching for specific
+strings and offer the ability to have those masked (intended for log files
+ to maintain Policy compliance).
+Home-page: https://github.com/nahum-smith/mom-sanitizer
+Author: ['Nahum Smith', 'Shan Grant']
+Author-email: ['nahumsmith(REMOVEME)(AT)gmail(DOT)com', 'grantpka(REMOVEME)(AT)gmail(DOT)com']
+License: UNKNOWN
+Description: <h1>M.O.M. Sanitizer</h1>
+        <h2>Development Version (1.0.0.dev1)</h2>
+        <h5>Note: Please clone this repository for most recent version. [Requires: Python 3.5+]</h5>
+        <h2>Overview</h2>
+        <p>For those with compliance requirements or who are concerned with minimizing exposure of personally identifiable information, we took it upon ourselves to build something that could (M)odularly assist with (O)bfuscating digital (M)edia. The efficiency of this command line tool is that you can move this application into your production environments and scan files in place, rather relocating any sensitive data. Then ideally remove this application from the environment and report your findings as this is not meant to be an ongoing solution for mitigating out of bounds PII.</p>
+        <h3>Description</h3>
+        <p><strong>mom_sanitizer</strong> was created to assist with identifying any PII (Personally Identifiable Information) stored at rest in clear text, particularly when it isn't expected such as in log files. This application can scan your unencrypted data and identify potential PII.</p>
+        <p>According to Nist Special Publication 800-122, examples of PII include, but are not limited to:
+        <em> Names, such as full name, maiden name, mother‘s maiden name, or alias
+        </em> Personal identification numbers, such as social security number (SSN), passport number, driver‘s license number, taxpayer identification number, or financial account or credit card number
+        * Address information, such as street address or email address</p>
+        <p>We are always trying to improve this utility, so please post your suggestions.</p>
+        <h2>Installation</h2>
+        <p><strong>mom_sanitizer</strong> requires Python 3.5 and the only supported platform is Linux32/64bits. Please note any difficulties encountered when using this application.</p>
+        <h5>using pip package</h5>
+        <p>download compressed files from <a href="include link here">M.O.M. Sanitizer on PyPi</a><br />
+        Unpack and install with:
+        <code>bash
+        $ pip install mom_sanitizer
+        $ sanitize *args</code>  </p>
+        <h5>Cloning from Github Repository</h5>
+        <ol>
+        <li>Clone this Repository</li>
+        <li>Move into the project directory: <code>$ cd mom_sanitizer</code></li>
+        <li>Install distribution with: <code>$ ./setup.py install</code></li>
+        <li>From anywhere on your system run program with: <code>$ sanitize *args</code>  </li>
+        </ol>
+        <h2>Usage</h2>
+        <h3>Commands</h3>
+        <p>The following command will provide the list of available command line options:</p>
+        <h4>Arguments</h4>
+        <h6>source_directory:</h6>
+        <p>The directory that the search traverses down the file tree from [if recursive]  <br />
+        The single directory the search is performed on [if non-recursive]</p>
+        <h6>file_pattern:</h6>
+        <p>Can be either: (1) an exact file or (2) a shell pattern that will match a set of files  </p>
+        <h6>recursive [-r]:</h6>
+        <p>If flagged will perform search traversing down the file tree from the source directory</p>
+        <h6>search terms:</h6>
+        <p>One or more search terms listed one after another</p>
+        <h6>ignore case [-i]:</h6>
+        <p>if flagged will set ignore_case to False.  Standard setting is case insensitive</p>
+        <h6>mask (obfuscate) [-m]:</h6>
+        <p>If flagged will replace all matched terms with a sequence of astericks.<br />
+        NOTHING OUTPUTTED TO SCREEN<br />
+        When flagged all files are searched and automatically obfuscated IN PLACE and saved.<br />
+        USE WITH CAUTION</p>
+        <h4>Sample Command</h4>
+        <p><code>bash
+        $ sanitize /home/ubuntu/workspace/projects -r '*.txt' debug windows config</code></p>
+        <h4>Sample Output</h4>
+        <p>```bash
+        Path/File: /home/ubuntu/wokspace/projects/logfile1.txt  </p>
+        <pre><code>      Line [3], Matched [debug] at position (4, 10)
+              Line [7], Matched [DEBUG] at position (7, 15)
+              Line [37], Matched [windows] at position (3, 9)
+        
+              Total Lines Searched: 98
+              Total Matches: 3
+              Total Matches By Term:
+        
+                    debug: 2  
+                    config: 0
+                    windows: 1
+        </code></pre>
+        <p>Path/File: /home/ubuntu/wokspace/projects/logfile2.txt  </p>
+        <pre><code>      Line [5], Matched [debug] at position (4, 10)
+              Line [77], Matched [DEBUG] at position (7, 15)
+              Line [103], Matched [windows] at position (3, 9)
+              Line [114], Matched [config] at position (5, 11)
+              Line [120], Matched [config] at position (1, 6)
+              Line [122], Matched [WINDOWS] at position (1, 7)
+              Line [140], Matched [DEBUG] at position (3, 9)
+        
+              Total Lines Searched: 150
+              Total Matches: 7
+              Total Matches By Term:
+        
+                    debug: 3  
+                    config: 2
+                    windows: 2
+        </code></pre>
+        <p>Program Summary:  </p>
+        <pre><code>      Total Program Matches: 10
+              Total Lines Searched: 248
+              Total Files Searched: 2
+              Total Program Matches By Term:
+                    debug: 4
+                    config: 2
+                    windows: 3
+        </code></pre>
+        <p>```</p>
+        <h4>Reporting options</h4>
+        <p>As of now output is limited to standard (seen above).   </p>
+Platform: UNKNOWN
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: Topic :: Security
