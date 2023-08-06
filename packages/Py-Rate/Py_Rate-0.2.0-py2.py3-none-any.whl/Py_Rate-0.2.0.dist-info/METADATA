@@ -1,0 +1,49 @@
+Metadata-Version: 2.0
+Name: Py-Rate
+Version: 0.2.0
+Summary: A Python tool for estimating velocity and time-series from Interferometric Synthetic Aperture Radar (InSAR) data.
+Home-page: https://github.com/GeoscienceAustralia/PyRate
+Author: Geoscience Australia InSAR team
+Author-email: insar@ga.gov.au
+License: Apache Software License 2.0
+Keywords: PyRate,Python,InSAR,Geodesy,Remote Sensing,Image Processing
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: POSIX
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Requires-Dist: Click (>=6.0)
+Requires-Dist: Cython (>=0.22.1)
+Requires-Dist: GDAL (==2.1.3)
+Requires-Dist: Pillow (>=2.8.2)
+Requires-Dist: PyYAML (>=3.11)
+Requires-Dist: glob2
+Requires-Dist: joblib
+Requires-Dist: luigi (==1.3.0)
+Requires-Dist: matplotlib (==1.5.1)
+Requires-Dist: mpi4py (==2.0.0)
+Requires-Dist: netCDF4 (==1.2.6)
+Requires-Dist: networkx (>=1.9.1)
+Requires-Dist: numpy (>=1.9.2)
+Requires-Dist: pyproj (>=1.9.5)
+Requires-Dist: scipy (>=0.15.1)
+Provides-Extra: dev
+Requires-Dist: ghp-import; extra == 'dev'
+Requires-Dist: sphinx; extra == 'dev'
+Requires-Dist: sphinxcontrib-programoutput; extra == 'dev'
+
+
+Please see the full documentation at http://geoscienceaustralia.github.io/PyRate/.
+
