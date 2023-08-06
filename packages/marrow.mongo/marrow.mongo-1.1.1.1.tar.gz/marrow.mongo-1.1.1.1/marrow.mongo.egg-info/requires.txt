@@ -1,0 +1,27 @@
+marrow.schema>=1.2.0,<2.0.0
+marrow.package>=1.1.0,<2.0.0
+pymongo>=3.2
+pathlib2; python_version < "3.4"
+
+[decimal]
+pymongo>=3.4
+
+[development]
+pytest
+pytest-cov
+pytest-flakes
+pytest-catchlog
+pytest-isort
+misaka
+pygments
+pre-commit
+
+[logger]
+tzlocal
+
+[markdown]
+misaka
+pygments
+
+[scripting]
+javascripthon<1.0

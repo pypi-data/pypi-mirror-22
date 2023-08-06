@@ -1,0 +1,49 @@
+[marrow.mongo.document]
+Document = marrow.mongo.core.document:Document
+GeoJSON = marrow.mongo.geo:GeoJSON
+GeoJSONCoord = marrow.mongo.geo:GeoJSONCoord
+GeometryCollection = marrow.mongo.geo:GeometryCollection
+LineString = marrow.mongo.geo:LineString
+MultiLineString = marrow.mongo.geo:MultiLineString
+MultiPoint = marrow.mongo.geo:MultiPoint
+MultiPolygon = marrow.mongo.geo:MultiPolygon
+Point = marrow.mongo.geo:Point
+Polygon = marrow.mongo.geo:Polygon
+
+[marrow.mongo.field]
+Alias = marrow.mongo.core.field.complex:Alias
+Array = marrow.mongo.core.field.complex:Array
+Binary = marrow.mongo.core.field.base:Binary
+Boolean = marrow.mongo.core.field.base:Boolean
+Date = marrow.mongo.core.field.base:Date
+Decimal = marrow.mongo.core.field.number:Decimal [decimal]
+Double = marrow.mongo.core.field.number:Double
+Embed = marrow.mongo.core.field.complex:Embed
+Field = marrow.mongo.core.field:Field
+Integer = marrow.mongo.core.field.number:Integer
+Long = marrow.mongo.core.field.number:Long
+Markdown = marrow.mongo.core.field.md:Markdown [markdown]
+Number = marrow.mongo.core.field.number:Number
+ObjectId = marrow.mongo.core.field.base:ObjectId
+Path = marrow.mongo.core.field.path:Path
+Period = marrow.mongo.core.field.base:Period
+PluginReference = marrow.mongo.core.field.complex:PluginReference
+Reference = marrow.mongo.core.field.complex:Reference
+Regex = marrow.mongo.core.field.base:Regex
+String = marrow.mongo.core.field.base:String
+TTL = marrow.mongo.core.field.base:TTL
+Timestamp = marrow.mongo.core.field.base:Timestamp
+Translated = marrow.mongo.core.trait.localized:Translated
+
+[marrow.mongo.trait]
+Collection = marrow.mongo.core.trait.collection:Collection
+Derived = marrow.mongo.core.trait.derived:Derived
+Expires = marrow.mongo.core.trait.expires:Expires
+Identified = marrow.mongo.core.trait.identified:Identified
+Localized = marrow.mongo.core.trait.localized:Localized
+Published = marrow.mongo.core.trait.published:Published
+Queryable = marrow.mongo.core.trait.queryable:Queryable
+
+[web.session]
+mongo = web.session.mongo:MongoSession
+
