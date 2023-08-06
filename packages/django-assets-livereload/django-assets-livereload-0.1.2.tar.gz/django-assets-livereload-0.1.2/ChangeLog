@@ -1,0 +1,48 @@
+CHANGES
+=======
+
+0.1.2
+-----
+
+* Update the Changelog
+* Rename package to django-assets-livereload (django-assets already taken)
+
+0.1.0
+-----
+
+* Update the documentation
+* Misc fixes + no reloading on file attribute change
+* Fix return-code detection
+* For now create the pid file in the directory where liveserver is run
+* Avoid monkey patching threading so that gevent does not interfere with DB
+* Fix several stupid bugs
+* Rename servestatic to liveserver
+* Rework servestatic to allow it to replace runserver
+* Bugfix
+* Fix an error in ManifestTree
+* Add files to .gitignore & fix typo
+* Fix doc after package renaming
+* Split assets into a python package
+* Provide proper documentation
+* Add a list of requirements (currently in an invalid format)
+* Update the base.html template to the new livereload tag name & image handling
+* Add a livereload middleware
+* Don't use the nonstandard settings.CDN\_ROOT in the assets app
+* Implement asset globbing (e.g. asset 'myapp:javascript:test\*')
+* Move the LICENSE file for assets app to the proper dir
+* Add LICENSE to assets app
+* Cleanup
+* Start writing documentation for the assets app
+* Bugfix livereload + finish first implementation
+* Start live-reload implementation
+* Bugfix new ManifestStorage implementation
+* Misc small fixes
+* WIP: Rework storage ease adding features
+* Misc cleanup
+* Refactor calling super into decorator (assets.ManifestStorage)
+* new: add management command to clear the cache !minor
+* Don't fail if jinja templates not installed
+* BUGFIX assets
+* Misc cleanup
+* BUGFIX: Fix some assets bugs
+* Move from Wagtail do Django-CMS
