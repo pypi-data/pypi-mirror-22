@@ -1,0 +1,38 @@
+Metadata-Version: 2.0
+Name: fstd2nc
+Version: 0.20170427.1
+Summary: Converts FSTD files (from Environment Canada) to netCDF files.
+Home-page: https://github.com/neishm/fstd2nc
+Author: Mike Neish
+Author-email: UNKNOWN
+License: LGPL-3
+Keywords: fstd2nc rpnpy
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
+Requires-Dist: netcdf4
+Requires-Dist: numpy
+Requires-Dist: pytz
+
+
+Basic usage:
+  fstd2nc <fstd_file> <netcdf_file>
+
+or
+  python -m fstd2nc <fstd_file> <netcdf_file>
+
+Use "-h" for a list of all command-line options.
+
+This PyPI package also comes with an embedded copy of Python-RPN_, librmn_, and vgrid_ in order to function properly.
+
+.. _Python-RPN: https://github.com/meteokid/python-rpn
+.. _librmn: https://github.com/armnlib/librmn
+.. _vgrid: https://gitlab.com/ECCC_CMDN/vgrid
+
+
