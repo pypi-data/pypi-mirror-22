@@ -1,0 +1,13 @@
+[console_scripts]
+edgy-project = edgy.project.__main__:main
+
+[edgy.project.feature]
+docker = edgy.project.feature.docker:DockerFeature
+git = edgy.project.feature.git:GitFeature
+make = edgy.project.feature.make:MakeFeature
+pylint = edgy.project.feature.pylint:PylintFeature
+pytest = edgy.project.feature.pytest:PytestFeature
+python = edgy.project.feature.python:PythonFeature
+sphinx = edgy.project.feature.sphinx:SphinxFeature
+yapf = edgy.project.feature.yapf:YapfFeature
+
