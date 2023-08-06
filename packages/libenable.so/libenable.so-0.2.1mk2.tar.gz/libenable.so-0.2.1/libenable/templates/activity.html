@@ -1,0 +1,58 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/fixes.html' as fixes %}
+
+{% block title %}libenable.so{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Activity Log</h1>
+      <a href="/" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-home"></span>
+        <span>Home</span>
+      </a>
+    </div>
+    <table class="table table-condensed table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Timestamp</th>
+          <th>Origin</th>
+          <th>Type</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in log %}
+        <tr>
+          <td>{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+          <td>{{ row[2] }}</td>
+          <td>{{ row[3] }}</td>
+          <td>{{ row[4] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="text-center">
+      <ul class="pagination">
+        {% for i in range(1, count) %}
+        {% if i == page %}
+        <li class="active"><a href="/activity/page/{{ i }}">{{ i }}</a></li>
+        {% else %}
+        <li><a href="/activity/page/{{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <footer style="margin-top: 1cm; text-align: center">
+    <p>Copyright 2017 Justin Willis</p>
+    <a href="https://bitbucket.org/bkvaluemeal/libenable.so" class="btn btn-link" role="button">Bitbucket</a>
+  </footer>
+{% endblock %}

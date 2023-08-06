@@ -1,0 +1,80 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/fixes.html' as fixes %}
+
+{% block title %}libenable.so{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Documentation</h1>
+      <a href="/" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-home"></span>
+        <span>Home</span>
+      </a>
+    </div>
+    <div class="row center-block">
+      <h2>Examples</h2>
+      <h3>Curl</h3>
+      <pre><code>$ curl http://{{ host }}:{{ port }}/api/statistics
+curl http://{{ host }}:{{ port }}/api/reCAPTCHA -F "site_key=&lt;site key&gt;" -X POST</pre></code>
+      <h3>Python Requests</h3>
+      <pre><code>import requests
+
+requests.get('http://{{ host }}:{{ port }}/api/statistics').json()
+requests.post('http://{{ host }}:{{ port }}/api/reCAPTCHA', data = {'site_key': '&lt;site key&gt;'}).json()</code></pre>
+      <p>The result of these examples is as follows:</p>
+      <hr>
+      <h2>Version</h2>
+      <h3>GET</h3>
+      <p>Returns the version of the application</p>
+      <pre><code>{{ version }}</code></pre>
+      <a href="/api/version">http://{{ host }}:{{ port }}/api/version</a>
+      <h2>Statistics</h2>
+      <h3>GET</h3>
+      <p>Returns statistics about the application and the Python interpreter</p>
+      <pre><code>{{ stats }}</code></pre>
+      <a href="/api/statistics">http://{{ host }}:{{ port }}/api/statistics</a>
+      <h2>reCAPTCHA</h2>
+      <h3>POST</h3>
+      <p>Enables access to reCAPTCHA protected domains</p>
+      <h4>Arguments</h4>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>site_key</td>
+          <td>The site key of the domain</td>
+        </tr>
+      </table>
+      <pre><code>{{ reCAPTCHA }}</code></pre>
+      <a href="/api/reCAPTCHA">http://{{ host }}:{{ port }}/api/reCAPTCHA</a>
+      <h2>Solve Media</h2>
+      <h3>POST</h3>
+      <p>Enables access to Solve Media protected domains</p>
+      <h4>Arguments</h4>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>site_key</td>
+          <td>The site key of the domain</td>
+        </tr>
+      </table>
+      <pre><code>{{ solve_media }}</code></pre>
+      <a href="/api/solvemedia">http://{{ host }}:{{ port }}/api/solvemedia</a>
+    </div>
+  </div>
+  <footer style="margin-top: 1cm; text-align: center">
+    <p>Copyright 2017 Justin Willis</p>
+    <a href="https://bitbucket.org/bkvaluemeal/libenable.so" class="btn btn-link" role="button">Bitbucket</a>
+  </footer>
+{% endblock %}
