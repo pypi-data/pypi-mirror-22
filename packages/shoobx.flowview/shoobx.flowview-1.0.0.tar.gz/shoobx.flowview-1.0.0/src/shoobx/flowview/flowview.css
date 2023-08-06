@@ -1,0 +1,81 @@
+<style>
+
+#baseurl {
+  width: 300px;
+  background-color: #ccc;
+}
+#baseurl:focus {
+  background-color: white;
+}
+
+
+.description {
+  font-style: italic;
+}
+
+.process-info {
+  border-left: 3px solid #5bc0de;
+  background-color: #f4f8fa;
+  padding: 6pt 12pt;
+}
+.process-info h2, .process-info h3, .process-info h4, .process-info h5 {
+  color: #5bc0de;
+}
+
+.activity-info {
+  border-left: 3px solid #f0ad4e;
+  background-color: #fcf8f2;
+  padding: 6pt 12pt;
+}
+.activity-info h2, .activity-info h3, .activity-info h4, .activity-info h5 {
+  color: #f0ad4e;
+}
+
+.sidenav {
+  background-color: white;
+  padding: 12pt;
+}
+.sidenav .nav {
+  font-size: 10pt;
+}
+.sidenav .nav .nav {
+  font-size: 8pt;
+  padding-left: 12pt;
+}
+.sidenav .nav li a {
+  color: #666;
+  padding: 0 0 0 6pt;
+  border-left: 2px solid transparent;
+}
+.sidenav .nav li ul.nav {
+  display: none
+}
+
+.sidenav .nav li.active>ul.nav {
+  display: block;
+}
+
+.sidenav .nav .active > a {
+  border-left: 2px solid #3c763d;
+  font-weight: bold;
+  color: #3c763d;
+}
+
+a.tag {
+  cursor: pointer;
+}
+
+ul.tags {
+  padding: 0;
+  margin: 0;
+}
+ul.tags li {
+  list-style: none;
+  font-size: 10pt;
+}
+
+.popover {
+  max-width: 500px;
+}
+
+</style>

@@ -1,0 +1,1963 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xpdl:Package xmlns:xpdl="http://www.wfmc.org/2008/XPDL2.1" xmlns="http://www.wfmc.org/2008/XPDL2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="external" Name="External Processes" xsi:schemaLocation="http://www.wfmc.org/2008/XPDL2.1 http://www.wfmc.org/standards/docs/bpmnxpdl_31.xsd">
+    <xpdl:PackageHeader>
+        <xpdl:XPDLVersion>2.1</xpdl:XPDLVersion>
+        <xpdl:Vendor>(c) Together Teamsolutions Co., Ltd.</xpdl:Vendor>
+        <xpdl:Created>2014-02-15 22:17:53</xpdl:Created>
+    </xpdl:PackageHeader>
+    <xpdl:Participants>
+        <xpdl:Participant Id="shoobx.app.Investor" Name="Investor">
+            <xpdl:ParticipantType Type="ROLE"/>
+        </xpdl:Participant>
+        <xpdl:Participant Id="shoobx.app.Administrator" Name="Administrator">
+            <xpdl:ParticipantType Type="ROLE"/>
+        </xpdl:Participant>
+        <xpdl:Participant Id="shoobx.app.Shareholder" Name="Shareholder">
+            <xpdl:ParticipantType Type="ROLE"/>
+        </xpdl:Participant>
+        <xpdl:Participant Id="shoobx.app.Associate" Name="Associate">
+            <xpdl:ParticipantType Type="ROLE"/>
+        </xpdl:Participant>
+        <xpdl:Participant Id="shoobx.app.Executive" Name="Executive">
+            <xpdl:ParticipantType Type="ROLE"/>
+        </xpdl:Participant>
+        <xpdl:Participant Id="shoobx.app.Manager" Name="Manager">
+            <xpdl:ParticipantType Type="ROLE"/>
+        </xpdl:Participant>
+        <xpdl:Participant Id="shoobx.app.BoardMember" Name="Board Member">
+            <xpdl:ParticipantType Type="ROLE"/>
+        </xpdl:Participant>
+        <xpdl:Participant Id="shoobx.app.Employee" Name="Employee">
+            <xpdl:ParticipantType Type="ROLE"/>
+        </xpdl:Participant>
+        <xpdl:Participant Id="system" Name="System">
+            <xpdl:ParticipantType Type="SYSTEM"/>
+        </xpdl:Participant>
+        <xpdl:Participant Id="shoobx.custom.Anyone" Name="Anyone">
+            <xpdl:ParticipantType Type="ROLE"/>
+            <xpdl:ExtendedAttributes>
+                <xpdl:ExtendedAttribute Name="JaWE_TYPE" Value="LANE_DEFAULT"/>
+            </xpdl:ExtendedAttributes>
+        </xpdl:Participant>
+        <xpdl:Participant Id="shoobx.custom.Group" Name="Group">
+            <xpdl:ParticipantType Type="ROLE"/>
+            <xpdl:ExtendedAttributes>
+                <xpdl:ExtendedAttribute Name="JaWE_TYPE" Value="LANE_DEFAULT"/>
+            </xpdl:ExtendedAttributes>
+        </xpdl:Participant>
+        <xpdl:Participant Id="samples_par1" Name="Anyone">
+            <xpdl:ParticipantType Type="ROLE"/>
+            <xpdl:ExtendedAttributes>
+                <xpdl:ExtendedAttribute Name="JaWE_TYPE" Value="LANE_DEFAULT"/>
+            </xpdl:ExtendedAttributes>
+        </xpdl:Participant>
+        <xpdl:Participant Id="samples_par2" Name="System">
+            <xpdl:ParticipantType Type="SYSTEM"/>
+            <xpdl:ExtendedAttributes>
+                <xpdl:ExtendedAttribute Name="JaWE_TYPE" Value="LANE_DEFAULT"/>
+            </xpdl:ExtendedAttributes>
+        </xpdl:Participant>
+        <xpdl:Participant Id="shoobx.app.Counsel" Name="Counsel">
+            <xpdl:ParticipantType Type="ROLE"/>
+        </xpdl:Participant>
+    </xpdl:Participants>
+    <xpdl:Applications>
+        <xpdl:Application Id="upload_shareholder_communication" Name="Upload Shareholder Communication">
+            <xpdl:Description>This workitem allows the user to store communications with shareholders
+about approved shareholder consents in the right place.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="doc_id" IsArray="false" Mode="OUT" Name="Document ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="distribution_date" IsArray="false" Mode="OUT" Name="Distribution Date">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="consents_included" IsArray="false" Mode="OUT" Name="Consents Included">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="cover_letter" IsArray="false" Mode="OUT" Name="Cover Letter">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="send_email" IsArray="false" Mode="OUT" Name="Send E-mail">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="generate_document" Name="Generate Document">
+            <xpdl:Description>System step that generates a document from a template given the needed
+metadata needed for a template and gives it a Title.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="template" IsArray="false" Mode="IN" Name="Document Template Name">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="doc_title" IsArray="false" Mode="IN" Name="Document Title">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="metadata" IsArray="false" Mode="IN" Name="Metadata">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="store_metadata" IsArray="false" Mode="IN" Name="Store Metadata">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">True</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="force_auto" IsArray="false" Mode="IN" Name="Force Auto-Generation">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="no_render" IsArray="false" Mode="IN" Name="Do not render">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="signatories" IsArray="false" Mode="IN" Name="Signatories">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">u'{}'</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="async" IsArray="false" Mode="IN" Name="Render Asynchronously">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">True</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="doc_id" IsArray="false" Mode="OUT" Name="Document ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="rendering_dependencies" IsArray="false" Mode="IN" Name="Dependencies for Rendering">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="define_bod_and_founders" Name="Define BoD and Founders">
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="collect_founders_info" IsArray="false" Mode="IN" Name="Collect Founders Information">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">True</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="welcome_founder_message" IsArray="false" Mode="IN" Name="New User Founder Email">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="welcome_officer_message" IsArray="false" Mode="IN" Name="New User Officer Email">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="welcome_member_message" IsArray="false" Mode="IN" Name="New User Member Email">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="board_size" IsArray="false" Mode="OUT" Name="Size of Board">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">3</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="bod_ids" IsArray="false" Mode="OUT" Name="BoD Member Ids">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="officers" IsArray="false" Mode="OUT" Name="Officers">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="founder_ids" IsArray="false" Mode="OUT" Name="Founder Ids">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="create_new_entity_users" Name="Create New Entity Users">
+            <xpdl:Description>Creates the initial administrator user and several others.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="admin_id" IsArray="false" Mode="OUT" Name="Administrator Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="entity_id" IsArray="false" Mode="INOUT" Name="Entity Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="entity_title" IsArray="false" Mode="IN" Name="Entity Title">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="update_object" Name="Update attributes of an object">
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="obj" IsArray="false" Mode="IN" Name="Object">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="data" IsArray="false" Mode="IN" Name="Data to update">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="founder_stock_distribution" Name="Founder Stock Distribution">
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="founders" IsArray="false" Mode="IN" Name="Founder Ids">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="founder_share_options" IsArray="false" Mode="OUT" Name="Founder Share Options">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="manage_subflows" Name="Manage multiple sub-workflows">
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="subproc_name" IsArray="false" Mode="IN" Name="Process Name">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="subjects" IsArray="false" Mode="IN" Name="Subject Ids">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="arguments" IsArray="false" Mode="IN" Name="Subflow Arguments">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="auto_execute" IsArray="false" Mode="IN" Name="Auto Execute">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="required" IsArray="false" Mode="IN" Name="Process Required">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">True</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="result" IsArray="false" Mode="OUT" Name="Subflow Results">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="sign_documents_in_parallel" Name="Sign documents in parallel">
+            <xpdl:Description>Allows to assign signing workitems to many users and wait until all the
+documents has been signed.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="signatures" IsArray="false" Mode="IN" Name="Signatures">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="additional_references" IsArray="false" Mode="IN" Name="Types of additional references to display">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="show_message" Name="Show Message">
+            <xpdl:Description>A simple step to display a message.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="approve_stakeholder_documents" Name="Approve Stakeholder Documents">
+            <xpdl:Description>This user step displays to an Approving User a summary of the workflow and
+they can decide to reject with a message for the workflow creator or
+approve.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="stakeholder_id" IsArray="false" Mode="IN" Name="Stakeholder Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="doc_ids" IsArray="false" Mode="IN" Name="Document IDs">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="is_approved" IsArray="false" Mode="OUT" Name="Is Approved">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="rejection_reason" IsArray="false" Mode="OUT" Name="Rejection Reason">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="send_email" Name="Send E-mail">
+            <xpdl:Description>System step which sends an email message to a recipient.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="message" IsArray="false" Mode="IN" Name="Message ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="recipient_id" IsArray="false" Mode="IN" Name="Recipient Stakeholder ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="attachments" IsArray="false" Mode="IN" Name="Attachments">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">()</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="collect_representations" Name="Collect Representations">
+            <xpdl:Description>Collect the representations of a company.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="requesting_doc_id" IsArray="false" Mode="IN" Name="Requesting Document">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="representations" IsArray="false" Mode="IN" Name="Representation Specification">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="disclosure_schedule" IsArray="false" Mode="OUT" Name="Disclosure Schedule">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="select_several_stakeholders" Name="Select Or Create Several Stakeholders">
+            <xpdl:Description>Workitem allows to select (or create) several stakeholders.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="form_id" IsArray="false" Mode="IN" Name="Form">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="welcome_user_message" IsArray="false" Mode="IN" Name="New User Email">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_column_title" IsArray="false" Mode="IN" Name="Extra Column Title">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_column_expression" IsArray="false" Mode="IN" Name="Extra column expression">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="role" IsArray="false" Mode="IN" Name="Role">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="need_address" IsArray="false" Mode="IN" Name="Need Address Data">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="stakeholder_ids" IsArray="false" Mode="INOUT" Name="Stakeholder Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="form_data" IsArray="false" Mode="INOUT" Name="Form data">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="start_subprocess" Name="Start a new process">
+            <xpdl:Description>Start new process and wait for it to finish. When the started process
+finishes, it's output parameters will be available in `result` parameter in
+form of dictionary: ```{subflow_ouput_name: value}```.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="subproc_name" IsArray="false" Mode="IN" Name="Process Name">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="arguments" IsArray="false" Mode="IN" Name="Subflow Arguments">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="result" IsArray="false" Mode="OUT" Name="Subflow Result">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="review_documents" Name="Review Documents">
+            <xpdl:Description>This user step displays a summary of the documents specified in the input
+such that a workflow creator can decide to makes changes before
+submission.  This step can be followed by an Approve Employee application
+where an approver can send back the workflow for the workflow creator to
+either discard the flow or make changes before resubmission.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="doc_ids" IsArray="false" Mode="IN" Name="Document IDs">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="rejection_reason" IsArray="false" Mode="IN" Name="Rejection Reason">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="wait_for_render" IsArray="false" Mode="IN" Name="Wait for Render">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="put_process_info" Name="Put Process Info">
+            <xpdl:Description>Adds a new item to the process info of the process.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="info_key" IsArray="false" Mode="IN" Name="Key">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="info_title" IsArray="false" Mode="IN" Name="Title">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="info_text" IsArray="false" Mode="IN" Name="Info Text">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="info_type" IsArray="false" Mode="IN" Name="Type">
+                    <xpdl:DataType>
+                        <xpdl:EnumerationType>
+                            <xpdl:EnumerationValue Name="info"/>
+                            <xpdl:EnumerationValue Name="ok"/>
+                            <xpdl:EnumerationValue Name="warning"/>
+                            <xpdl:EnumerationValue Name="attention"/>
+                        </xpdl:EnumerationType>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">'info'</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="verify_token" Name="Verify Token">
+            <xpdl:Description>A simple workitem to verify the token.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="token" IsArray="false" Mode="IN" Name="Security Token">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="verified" IsArray="false" Mode="OUT" Name="Verified">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="upload_and_collect_metadata" Name="Upload and Collect Metadata">
+            <xpdl:Description>Advanced work item that allows uploading a document and specifying
+metadata around the document.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="doc_title" IsArray="false" Mode="IN" Name="Document Title">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="tags" IsArray="false" Mode="IN" Name="Tags">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="doc_fields" IsArray="false" Mode="IN" Name="Document Fields">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="metadata" IsArray="false" Mode="INOUT" Name="Metadata">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="form_id" IsArray="false" Mode="IN" Name="Form">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="allow_pick_existing" IsArray="false" Mode="IN" Name="Allow picking an existing document">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="pick_from" IsArray="false" Mode="IN" Name="Pick From">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="document_id" IsArray="false" Mode="OUT" Name="Document ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="was_created" IsArray="false" Mode="OUT" Name="Was Created">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="form_data" IsArray="false" Mode="OUT" Name="Form Data">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="assign_metadata" Name="Assign Metadata">
+            <xpdl:Description>Assign the given metadata to the object.
+
+Both flat and nested entries are allowed to be passed in as metadata.
+
+If the metadata contains schemas and fields not applicable to the object,
+it is simply ignored.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="object" IsArray="false" Mode="IN" Name="Object">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="metadata" IsArray="false" Mode="IN" Name="Metadata">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="document_id" IsArray="false" Mode="IN" Name="Document Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="stakeholder_id" IsArray="false" Mode="IN" Name="Stakeholder Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="collect_metadata_with_value_source" Name="Collect Metadata With Value Source">
+            <xpdl:Description>Collect new values for any specified field including its value source.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="fields" IsArray="false" Mode="IN" Name="Fields">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="documents" IsArray="false" Mode="IN" Name="Documents">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="show_auto_filled" IsArray="false" Mode="IN" Name="Show Auto-Filled Fields">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="show_optional" IsArray="false" Mode="IN" Name="Show Optional Fields">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">True</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="show_filled" IsArray="false" Mode="IN" Name="Show Filled">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="changed_fields" IsArray="false" Mode="OUT" Name="Changed Fields">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="upload_document" Name="Upload Document">
+            <xpdl:Description>A simple workitem to just upload a document of a particular classification.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="doc_title" IsArray="false" Mode="IN" Name="Document Title">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="tags" IsArray="false" Mode="IN" Name="Tags">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="tag_prefixes" IsArray="false" Mode="IN" Name="Selectable tag prefixes">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="sigpage_message_id" IsArray="false" Mode="IN" Name="Signature page message id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="allow_pick_existing" IsArray="false" Mode="IN" Name="Allow picking an existing document">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="pick_from" IsArray="false" Mode="IN" Name="Pick From">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="document_id" IsArray="false" Mode="OUT" Name="Document ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="was_created" IsArray="false" Mode="OUT" Name="Was Created">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="sample-interactive"/>
+        <xpdl:Application Id="set_process_title" Name="Set Process Title">
+            <xpdl:Description>System step to rename the process for use in UIs that keep track of status
+of workflows or alert users to act on the workflow.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="proc_title" IsArray="false" Mode="IN" Name="Process Title">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="initialize_user" Name="Initialize User">
+            <xpdl:Description>Interactive work item to intialize the user properly.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="account_id" IsArray="false" Mode="IN" Name="Account ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="skip_login_input" IsArray="false" Mode="IN" Name="Skip E-mail Input">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="skip_address_input" IsArray="false" Mode="IN" Name="Skip Address Input">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="skip_auto_login" IsArray="false" Mode="IN" Name="Skip User Auto-Sign In">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="skip_user_merge" IsArray="false" Mode="IN" Name="Skip User Merge Feature">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="sample-automatic"/>
+        <xpdl:Application Id="create_and_edit_data_items" Name="Create and Edit Data Items">
+            <xpdl:Description>Show a table of items and allow them to be edited via a specified
+form. Items can also be added.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="item_title" IsArray="false" Mode="IN" Name="Item Title">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">u'Item'</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="columns" IsArray="false" Mode="IN" Name="Table Columns">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="form_id" IsArray="false" Mode="IN" Name="Form">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="allow_creation" IsArray="false" Mode="IN" Name="Allow Creation">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="allow_edit_check" IsArray="false" Mode="IN" Name="Check if item is editable">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="allow_delete_check" IsArray="false" Mode="IN" Name="Check if item is deletable">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="constraint_check" IsArray="false" Mode="IN" Name="Check if workitem satisfies all contstraints">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="data" IsArray="false" Mode="INOUT" Name="Form Data">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="select_document_terms" Name="Select Terms of Document">
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="template" IsArray="false" Mode="IN" Name="Document Template">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="display_only" IsArray="false" Mode="IN" Name="Display Only">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="metadata" IsArray="false" Mode="INOUT" Name="Metadata">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="find_documents" Name="Find Documents">
+            <xpdl:Description>Finds one or more documents via some tags.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="tags" IsArray="false" Mode="IN" Name="Tags">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="quantifier" IsArray="false" Mode="IN" Name="Quantifier">
+                    <xpdl:DataType>
+                        <xpdl:EnumerationType>
+                            <xpdl:EnumerationValue Name="any"/>
+                            <xpdl:EnumerationValue Name="all"/>
+                        </xpdl:EnumerationType>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="single" IsArray="false" Mode="IN" Name="Single Result">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="result" IsArray="false" Mode="OUT" Name="Result">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="collect_documents_metadata" Name="Collect Documents Metadata">
+            <xpdl:Description>This work item collects the data before the documents themselves
+exist.
+
+Workitem that collects various metadata fields for document templates
+across any metadata schema. The idea is to select all required data for
+the current process (or at least wizard.)</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="doc_fields" IsArray="false" Mode="IN" Name="Document Fields">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="metadata" IsArray="false" Mode="INOUT" Name="Metadata">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="upload_spec" IsArray="false" Mode="IN" Name="Upload specification">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="validation_rules" IsArray="false" Mode="IN" Name="Validation rules for the form">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="record_resolutions" Name="Record Resolutions">
+            <xpdl:Description>This workitem allows the user to vote on resolutions and record the
+decision.
+
+If you do not pass in a meeting date, you must set
+``collect_meeting_date`` to true.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="done_resolutions" IsArray="false" Mode="IN" Name="Done Resolutions">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="collect_meeting_date" IsArray="false" Mode="IN" Name="Collect Meeting Date">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="meeting_date" IsArray="false" Mode="INOUT" Name="Meeting Date">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="resolutions" IsArray="false" Mode="OUT" Name="Voted-on Resolutions">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="wait_for_approvals" Name="Wait For Approvals">
+            <xpdl:Description>A work item to hold the administrator while other stakeholders
+approve one or more resolutions (or documents).</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="resolutions" IsArray="false" Mode="IN" Name="Pending Resolutions">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="update_document" Name="Update Document">
+            <xpdl:Description>Regenerates the document from metadata with same id. Used to update an
+existing document with new input.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="doc_id" IsArray="false" Mode="IN" Name="Document ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="doc_title" IsArray="false" Mode="IN" Name="Document Title">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="metadata" IsArray="false" Mode="IN" Name="Metadata Mapping">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="rendering_dependencies" IsArray="false" Mode="IN" Name="Dependencies for Rendering">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="origin_doc_id" IsArray="false" Mode="IN" Name="Origin Document ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="origin_stakeholder_id" IsArray="false" Mode="IN" Name="Origin Stakeholder ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="collect_meeting_keydata" Name="Collect Meeting Key Data">
+            <xpdl:Description>Collects the key data of a board meeting.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="data" IsArray="false" Mode="OUT" Name="Data">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="select_shareholders" Name="Select Shareholders for voting.">
+            <xpdl:Description>This workitem allows the user to select a subset of shareholders.
+The UI ensures that the shareholder voting requirements are
+fulfilled.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="shareholders" IsArray="false" Mode="OUT" Name="Shareholders">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="setup_account_or_quick_sign" Name="Setup Account Or Quick Sign">
+            <xpdl:Description>Work item that presents a choice to the user whether to set up shoobx
+account and then sign documents, or just go to "sign documents" form
+directly.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="message_name" IsArray="false" Mode="IN" Name="Message Name">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="quick_sign" IsArray="false" Mode="OUT" Name="Quick Sign">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="schedule_process" Name="Schedule Process">
+            <xpdl:Description>Schedule the start of a new process at given times. Should the
+cancellation condition be true at the scheduled time of execution, the
+process is not started.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="process_name" IsArray="false" Mode="IN" Name="Process Name">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:Description>Process name</xpdl:Description>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="parameters" IsArray="false" Mode="IN" Name="Process Parameters">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:Description>Process parameters as a dict</xpdl:Description>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="initial_performer_id" IsArray="false" Mode="IN" Name="Initial Performer Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="start_times" IsArray="false" Mode="IN" Name="Start Times">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="cancellation_condition" IsArray="false" Mode="IN" Name="Cancellation Condition">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="task_ids" IsArray="false" Mode="OUT" Name="Task Ids">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="assign_tags" Name="Assign Tags">
+            <xpdl:Description>A work item to add and remove tags from a document.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="doc_id" IsArray="false" Mode="IN" Name="Document ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="add_tags" IsArray="false" Mode="IN" Name="Tags to be Added">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="remove_tags" IsArray="false" Mode="IN" Name="Tags to be Removed">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="show_form" Name="Show Form-based Message">
+            <xpdl:Description>Show a message containing a form. The available fields are generated from
+the output parameters of the activity.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="form_id" IsArray="false" Mode="IN" Name="Form">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="assign_performer" Name="Assign Participant">
+            <xpdl:Description>Assign the user to the participant for future activities. This allows
+processes to start, even if not all performers can be assigned initially.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="participant" IsArray="false" Mode="IN" Name="Participant Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="user" IsArray="false" Mode="IN" Name="User Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="create_electronic_sig" Name="Create Electronic Signature">
+            <xpdl:Description>Interactive work item to create electronic signature for the employee</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="account_id" IsArray="false" Mode="IN">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="proof_of_filing" Name="Proof of Filing">
+            <xpdl:Description>Requires assignee to download document, perform some tasks and return back
+some other document, proving they have made a "filing" of the downloaded
+document.
+
+Downloadable document identified by ``input_document_id`` parameter.
+Workitem waits until user submits ``output_document_id`` and provides a
+date of the output document.
+
+Work item also accepts name of a ``template_filename`` that will be
+displayed to the user when they visit the UI for this workitem.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="reference_document_id" IsArray="false" Mode="IN" Name="Document for downloading">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="original_document_ids" IsArray="false" Mode="IN" Name="Original documents">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="when_text" IsArray="false" Mode="IN" Name="&quot;When you receive...&quot; Text">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">u'When you receive proof of your Filing:'</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="certification_text" IsArray="false" Mode="IN" Name="Certification Text">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="metadata_fields" IsArray="false" Mode="IN" Name="Document Fields">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="document_title" IsArray="false" Mode="IN" Name="Evidence Document Title">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="tags" IsArray="false" Mode="IN" Name="Evidence Document Tags">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="upload_required" IsArray="false" Mode="IN" Name="Is the uploaded document required?">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="allow_pick_existing" IsArray="false" Mode="IN" Name="Allow picking an existing document">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="pick_from" IsArray="false" Mode="IN" Name="Pick From">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="document_id" IsArray="false" Mode="OUT" Name="Uploaded Document Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="was_created" IsArray="false" Mode="OUT" Name="Was Created">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="evaluate_expression" Name="Evaluate Expression">
+            <xpdl:Description>Evaluate ``expression`` and assign it to ``result`` output variable.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="expression" IsArray="false" Mode="IN" Name="Expression">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="result" IsArray="false" Mode="OUT" Name="Result of the Expression">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="wait_for_signatures" Name="Wait For Signatures">
+            <xpdl:Description>A work item to hold the administrator while other stakeholders
+are signing one or more documents.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="signatures" IsArray="false" Mode="IN" Name="Expected signatures">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="set_default_metadata" Name="Set Default Metadata">
+            <xpdl:Description>Generate default values for all document metadata sets, specified in
+``md_set_names``.
+
+If metadata field has no default, it will not be included into the result.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="md_set_names" IsArray="false" Mode="IN" Name="Metadata Set Names">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Content">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="metadata" IsArray="false" Mode="INOUT" Name="Metadata">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="pick_resolutions" Name="Pick Pending Resolutions">
+            <xpdl:Description>Allows the user to select one or several pending resolutions.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="resolution_type" IsArray="false" Mode="IN" Name="Resolution Type">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="resolution_template" IsArray="false" Mode="IN" Name="Resolution Template">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="exhibit_tags" IsArray="false" Mode="IN" Name="Exhibit Tags">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="selected_documents" IsArray="false" Mode="OUT" Name="Selected Documents">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="replace_document" Name="Replace Document">
+            <xpdl:Description>Replaces one document with another. The steps are as follows:
+
+1. Delete original document.
+2. Delete replacement document.
+3. Add replacement document using the new document id.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="original_doc_id" IsArray="false" Mode="IN" Name="Original Document Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="replacement_doc_id" IsArray="false" Mode="IN" Name="Replacement Document Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="new_doc_id" IsArray="false" Mode="OUT" Name="New Document Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="select_or_create_stakeholder" Name="Select Or Create Stakeholder">
+            <xpdl:Description>This workflow step is UI visible, generally to a workflow creator, to
+select an existing user of the system or define a new user.  The activity
+outputs information about the selected user.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="require_email" IsArray="false" Mode="IN" Name="Require E-mail">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">True</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="allow_create" IsArray="false" Mode="IN" Name="Allow Stakeholder Creation">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">True</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="allow_select" IsArray="false" Mode="IN" Name="Allow Stakeholder Selection">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">True</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="include_self" IsArray="false" Mode="IN" Name="Include Self">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">True</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="filter" IsArray="false" Mode="IN" Name="Filter">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="welcome_user_message" IsArray="false" Mode="IN" Name="New User Email">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="stakeholder_id" IsArray="false" Mode="OUT" Name="Stakeholder Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="was_created" IsArray="false" Mode="OUT" Name="Was Created">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="redirect_to_new_entity" Name="Redirect to new entity">
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="entity_id" IsArray="false" Mode="IN" Name="Entity Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="assign_stakeholder_role" Name="Assign Stakeholder System Role">
+            <xpdl:Description>This system workitem attached assigns a system role to the provided
+stakeholder (referenced by ID). Optionally, the workitem can also make this
+role the default login role. Additionally, the workitem can remove roles</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="account_id" IsArray="false" Mode="IN" Name="Account ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="add_roles" IsArray="false" Mode="IN" Name="Role IDs to be Added">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="remove_roles" IsArray="false" Mode="IN" Name="Role IDs to be Removed">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="default_role" IsArray="false" Mode="IN" Name="Default role ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="create_shareholder_communication" Name="Create Shareholder Communication">
+            <xpdl:Description>This workitem allows the user to inform the shareholders about approved
+shareholder consents.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="distribution_date" IsArray="false" Mode="OUT" Name="Distribution Date">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="consents_included" IsArray="false" Mode="OUT" Name="Consents Included">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="cover_letter" IsArray="false" Mode="OUT" Name="Cover Letter">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="send_email" IsArray="false" Mode="OUT" Name="Send E-mail">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="select_multidocument_terms" Name="Select Terms for many Documents">
+            <xpdl:Description>This workitem will collect metadata for several documents, created out of
+the same template. List of documents is provided in parameter.
+
+Workitem produces dict of metadatas for each document</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="template" IsArray="false" Mode="IN" Name="Document Template">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="documents" IsArray="false" Mode="IN" Name="Documents">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="display_only" IsArray="false" Mode="IN" Name="Display Only">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="multimetadata" IsArray="false" Mode="INOUT" Name="Metadata">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="sign_documents" Name="Sign Documents (Interactive or Automatic)">
+            <xpdl:Description>This is a user visible step that alerts a user by email they have a
+document to sign and manage the signing and review process.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="signatory_id" IsArray="false" Mode="IN" Name="Signer ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="docs_info" IsArray="false" Mode="IN" Name="Document Signing Mapping">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="require_review" IsArray="false" Mode="IN" Name="Require Review">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="additional_references" IsArray="false" Mode="IN" Name="Types of additional references to display">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="collect_metadata" Name="Collect Metadata">
+            <xpdl:Description>Collect the specified metadata. Several options are available to fine-tune
+the collected data fields.
+
+A flag can be used to also assign the data to the object.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="object" IsArray="false" Mode="IN" Name="Object">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="fields" IsArray="false" Mode="IN" Name="Fields">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="assign_metadata" IsArray="false" Mode="IN" Name="Assign Metadata">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="show_auto_filled" IsArray="false" Mode="IN" Name="Show Auto-Filled Fields">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="show_optional" IsArray="false" Mode="IN" Name="Show Optional Fields">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">True</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="show_filled" IsArray="false" Mode="IN" Name="Show Filled">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">False</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="metadata" IsArray="false" Mode="INOUT" Name="Metadata">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="create_entity" Name="Create Entity">
+            <xpdl:Description>Creates an entity given some user input.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="entity_id" IsArray="false" Mode="OUT" Name="Entity Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="entity_title" IsArray="false" Mode="OUT" Name="Entity Title">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="schedule_message" Name="Schedule Message">
+            <xpdl:Description>Schedule the delivery of a message at particular date times. Should
+the cancellation condition be true at the scheduled time of execution, the
+process is not started.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="recipients" IsArray="false" Mode="IN" Name="Recipients">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="delivery" IsArray="false" Mode="IN" Name="Delivery">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">(u'email', u'notification')</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="start_times" IsArray="false" Mode="IN" Name="Start Times">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="cancellation_condition" IsArray="false" Mode="IN" Name="Cancellation Condition">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="task_ids" IsArray="false" Mode="OUT" Name="Event Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="monitor_subprocesses" Name="Monitor Sub-processes">
+            <xpdl:Description>Monitor a set of subprocesses started through a "start_subprocess"
+workitem, most likely in a multi-participant lane. When all monitored
+subflows are complete, the workitem itself can be completed as well.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="activity_id" IsArray="false" Mode="IN" Name="Activity Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="sample-error"/>
+        <xpdl:Application Id="register_document_event_listener" Name="Register Document Event Listener">
+            <xpdl:Description>Start a process whenever a document is created.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="process_name" IsArray="false" Mode="IN" Name="Process Name">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="parameters" IsArray="false" Mode="IN" Name="Process Parameters">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="initial_performer_id" IsArray="false" Mode="IN" Name="Initial Performer Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="condition" IsArray="false" Mode="IN" Name="Condition">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="single" IsArray="false" Mode="IN" Name="Single">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="delay_process" Name="Delay Process">
+            <xpdl:Description>Delay progression of a process for a specified amount of time.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="delay" IsArray="false" Mode="IN" Name="Delay">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="finalize_documents" Name="Finalize Documents">
+            <xpdl:Description>A work item to wait for the document to be rendered and add tags.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="doc_id" IsArray="false" Mode="IN" Name="Document ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="add_tags" IsArray="false" Mode="IN" Name="Tags to be Added">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="remove_tags" IsArray="false" Mode="IN" Name="Tags to be Removed">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="dependencies" IsArray="false" Mode="IN" Name="Document ID dependencies">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:InitialValue ScriptType="application/python">[]</xpdl:InitialValue>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="redefine_corporate_officers" Name="Redefine Corporate officers">
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="officers" IsArray="false" Mode="INOUT" Name="Officers">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:Description>Officers Parameter Description</xpdl:Description>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+        <xpdl:Application Id="select_stakeholder_items" Name="Select Stakeholder Items">
+            <xpdl:Description>Workitem allows to select several items for existing or
+newly created stakeholders.</xpdl:Description>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="message_id" IsArray="false" Mode="IN" Name="Message Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="form_id" IsArray="false" Mode="IN" Name="Form">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="welcome_user_message" IsArray="false" Mode="IN" Name="New User Email">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_context" IsArray="false" Mode="IN" Name="Extra Context">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_column_title" IsArray="false" Mode="IN" Name="Extra Column Title">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_column_expression" IsArray="false" Mode="IN" Name="Extra column expression">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="item_key_method" IsArray="false" Mode="IN" Name="Method to get unique item ID">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="item_value_method" IsArray="false" Mode="IN" Name="Method to build the item">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="role" IsArray="false" Mode="IN" Name="Role">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="need_address" IsArray="false" Mode="IN" Name="Need Address Data">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="BOOLEAN"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="stakeholder_ids" IsArray="false" Mode="INOUT" Name="Stakeholder Id">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="items" IsArray="false" Mode="INOUT" Name="Items">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+        </xpdl:Application>
+    </xpdl:Applications>
+    <xpdl:Pools>
+        <xpdl:Pool BoundaryVisible="true" Id="samples_pool1" MainPool="true" Name="Sample Subflow" Orientation="HORIZONTAL" Process="sample_subflow">
+            <xpdl:Lanes>
+                <xpdl:Lane Id="samples_pool1_lan1" Name="Anyone">
+                    <xpdl:NodeGraphicsInfos>
+                        <xpdl:NodeGraphicsInfo BorderColor="0,0,0" FillColor="220,220,220" IsVisible="true" ToolId="JaWE"/>
+                        <xpdl:NodeGraphicsInfo BorderColor="0,0,0" FillColor="220,220,220" IsVisible="true" ToolId="JaWE"/>
+                    </xpdl:NodeGraphicsInfos>
+                    <xpdl:Performers>
+                        <xpdl:Performer>shoobx.custom.Anyone</xpdl:Performer>
+                    </xpdl:Performers>
+                </xpdl:Lane>
+            </xpdl:Lanes>
+            <xpdl:NodeGraphicsInfos>
+                <xpdl:NodeGraphicsInfo BorderColor="0,0,0" FillColor="255,255,215" IsVisible="true" ToolId="JaWE"/>
+            </xpdl:NodeGraphicsInfos>
+        </xpdl:Pool>
+    </xpdl:Pools>
+    <xpdl:WorkflowProcesses>
+        <xpdl:WorkflowProcess Id="sample_subflow" Name="Sample Subflow">
+            <xpdl:ProcessHeader>
+                <xpdl:Created>2014-05-29 11:27:13</xpdl:Created>
+            </xpdl:ProcessHeader>
+            <xpdl:FormalParameters>
+                <xpdl:FormalParameter Id="message" IsArray="false" Mode="IN" Name="Message">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:Description>Message to show to the user</xpdl:Description>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="response" IsArray="false" Mode="OUT" Name="Response">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:Description>Output parameter for flow results</xpdl:Description>
+                </xpdl:FormalParameter>
+                <xpdl:FormalParameter Id="extra_data" IsArray="false" Mode="INOUT" Name="Extra Data">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:Description>In and Out parameter for example.</xpdl:Description>
+                </xpdl:FormalParameter>
+            </xpdl:FormalParameters>
+            <xpdl:DataFields>
+                <xpdl:DataField Id="internal" IsArray="false" Name="Internal Variable">
+                    <xpdl:DataType>
+                        <xpdl:BasicType Type="STRING"/>
+                    </xpdl:DataType>
+                    <xpdl:Description>This is an internal workflow variable</xpdl:Description>
+                </xpdl:DataField>
+            </xpdl:DataFields>
+            <xpdl:Activities>
+                <xpdl:Activity Id="sample_subflow_start">
+                    <xpdl:Event>
+                        <xpdl:StartEvent Trigger="None"/>
+                    </xpdl:Event>
+                    <xpdl:NodeGraphicsInfos>
+                        <xpdl:NodeGraphicsInfo BorderColor="0,0,0" FillColor="102,204,51" Height="31" IsVisible="true" LaneId="samples_pool1_lan1" ToolId="JaWE" Width="31">
+                            <xpdl:Coordinates XCoordinate="105" YCoordinate="60"/>
+                        </xpdl:NodeGraphicsInfo>
+                    </xpdl:NodeGraphicsInfos>
+                </xpdl:Activity>
+                <xpdl:Activity Id="sample_subflow_activity" Name="Sample Subflow Activity">
+                    <xpdl:Description>This is just a sample activity for the process.</xpdl:Description>
+                    <xpdl:Implementation>
+                        <xpdl:No/>
+                    </xpdl:Implementation>
+                    <xpdl:Performers>
+                        <xpdl:Performer>shoobx.custom.Anyone</xpdl:Performer>
+                    </xpdl:Performers>
+                    <xpdl:NodeGraphicsInfos>
+                        <xpdl:NodeGraphicsInfo BorderColor="0,0,0" FillColor="187,247,190" Height="60" IsVisible="true" LaneId="samples_pool1_lan1" ToolId="JaWE" Width="90">
+                            <xpdl:Coordinates XCoordinate="195" YCoordinate="50"/>
+                        </xpdl:NodeGraphicsInfo>
+                    </xpdl:NodeGraphicsInfos>
+                </xpdl:Activity>
+                <xpdl:Activity Id="sample_subflow_finish">
+                    <xpdl:Event>
+                        <xpdl:EndEvent Result="None"/>
+                    </xpdl:Event>
+                    <xpdl:NodeGraphicsInfos>
+                        <xpdl:NodeGraphicsInfo BorderColor="0,0,0" FillColor="236,120,98" Height="31" IsVisible="true" LaneId="samples_pool1_lan1" ToolId="JaWE" Width="31">
+                            <xpdl:Coordinates XCoordinate="355" YCoordinate="60"/>
+                        </xpdl:NodeGraphicsInfo>
+                    </xpdl:NodeGraphicsInfos>
+                </xpdl:Activity>
+            </xpdl:Activities>
+            <xpdl:Transitions>
+                <xpdl:Transition From="sample_subflow_start" Id="sample_subflow_tra1" To="sample_subflow_activity">
+                    <xpdl:ConnectorGraphicsInfos>
+                        <xpdl:ConnectorGraphicsInfo FillColor="0,0,0" IsVisible="true" Style="NO_ROUTING_ORTHOGONAL" ToolId="JaWE"/>
+                    </xpdl:ConnectorGraphicsInfos>
+                </xpdl:Transition>
+                <xpdl:Transition From="sample_subflow_activity" Id="sample_subflow_tra2" To="sample_subflow_finish">
+                    <xpdl:ConnectorGraphicsInfos>
+                        <xpdl:ConnectorGraphicsInfo FillColor="0,0,0" IsVisible="true" Style="NO_ROUTING_ORTHOGONAL" ToolId="JaWE"/>
+                    </xpdl:ConnectorGraphicsInfos>
+                </xpdl:Transition>
+            </xpdl:Transitions>
+        </xpdl:WorkflowProcess>
+    </xpdl:WorkflowProcesses>
+    <xpdl:ExtendedAttributes>
+        <xpdl:ExtendedAttribute Name="EDITING_TOOL" Value="Shoobx Process Editor"/>
+        <xpdl:ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="1.1-4-20131211-1240"/>
+        <xpdl:ExtendedAttribute Name="JaWE_CONFIGURATION" Value="default"/>
+    </xpdl:ExtendedAttributes>
+</xpdl:Package>
