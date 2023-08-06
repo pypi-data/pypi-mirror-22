@@ -1,0 +1,36 @@
+{% extends 'driver27/base.html' %}
+{% load bootstrap3 champion_filter i18n %}
+
+{% block dr27_menu %}
+    {% include 'driver27/competition/competition-menu-pre.html' %}
+    {% include 'driver27/competition/competition-menu.html' %}
+{% endblock %}
+
+{% block dr27_content %}
+    {{ block.super }}
+    <table class="table table-condensed table-striped table-hover">
+        <tr>
+            <th class="col-md-2">{%  trans 'Season' %}</th>
+            <th class="col-md-4">{%  trans 'Driver leader' %}</th>
+            <th class="col-md-6">{%  trans 'Team leader' %}</th>
+        </tr>
+        {% for season in competition.seasons.all %}
+            <tr>
+            <td>
+                <a href="{% url 'dr27-season-view' competition.slug season.year %}">
+                    {{ season }}
+                </a>
+            </td>
+            <td>
+                {{ season.pk | champion_filter | safe}}
+                {{ season.leader.0 }} {{ season.leader.1 }} ({{ season.leader.2 }})
+            </td>
+            <td>
+                {{ season.team_leader.0 }} {{ season.team_leader.1 }}
+            </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}

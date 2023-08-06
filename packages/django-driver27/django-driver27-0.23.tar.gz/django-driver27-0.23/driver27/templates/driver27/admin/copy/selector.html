@@ -1,0 +1,7 @@
+{% if items_plural == 'races' %}
+    {% include 'driver27/admin/copy/includes/_selector_races.html' %}
+{% elif items_plural == 'teams' %}
+    {% include 'driver27/admin/copy/includes/_selector_teams.html' %}
+{% elif items_plural == 'seats' %}
+    {% include 'driver27/admin/copy/includes/_selector_seats.html' %}
+{% endif %}

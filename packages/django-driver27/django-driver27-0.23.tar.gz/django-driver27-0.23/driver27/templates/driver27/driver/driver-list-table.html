@@ -1,0 +1,28 @@
+{% load champion_filter i18n %}
+{% if rank %}
+<table class="table table-condensed table-striped table-hover" >
+    <thead>
+        <tr>
+        <th class="col-md-4">{%  trans 'Points' %}</th>
+        <th class="col-md-3">{%  trans 'Driver' %}</th>
+        <th class="col-md-5">{%  trans 'Team' %}</th>
+    </tr>
+    </thead>
+
+    {% for points,driver,team, positions in rank %}
+        <tr>
+        <td id="points_{{ forloop.counter }}">{{ points }}</td>
+        <td>{{ driver }}
+            {% if forloop.counter == 1%}
+                {{ season.pk | champion_filter | safe}}
+            {% endif %}
+        </td>
+        <td>{{ team }}</td>
+        </tr>
+    {% endfor %}
+
+    </table>
+
+{% else %}
+    <p>No drivers</p>
+{% endif %}
