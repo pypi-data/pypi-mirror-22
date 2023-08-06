@@ -1,0 +1,66 @@
+Metadata-Version: 2.0
+Name: grits
+Version: 0.4
+Summary: Static SPA Generator
+Home-page: https://github.com/numberoverzero/grits
+Author: Joe Cross
+Author-email: joe.mcross@gmail.com
+License: MIT
+Keywords: static blog spa generator
+Platform: any
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: click (==6.7)
+Requires-Dist: jinja2 (==2.9.5)
+Requires-Dist: lxml (==3.7.2)
+Requires-Dist: texas (==0.5.2)
+
+grits
+~~~~~
+
+Static blog generator that creates a single page app.  Dynamic routes are possible for some hosts (not GH-Pages).
+
+
+Change Log
+~~~~~~~~~~
+
+==================
+[0.4] - 2017.06.11
+==================
+
+-----
+Added
+-----
+
+* ``Renderer.render`` handles binary files, uses ``context["is_binary"]``
+  function to decide if file should be copied directly.
+  Defaults to ``grits.render.default_is_binary``.
+* Properly copy ``templates/static`` for rendering.
+
+=================
+[0.2] - 2017.1.30
+=================
+
+-----
+Added
+-----
+
+* ``grits.build``
+* scripts ``grits-build`` and ``grits-serve``
+
+==========================
+[0.1] - 2017.1.29 [YANKED]
+==========================
+
+-----
+Added
+-----
+
+Initial commit
+
+
