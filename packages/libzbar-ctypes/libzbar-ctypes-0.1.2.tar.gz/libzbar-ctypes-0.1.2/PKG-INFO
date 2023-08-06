@@ -1,0 +1,78 @@
+Metadata-Version: 1.1
+Name: libzbar-ctypes
+Version: 0.1.2
+Summary: Python ctypes libzbar wrapper
+Home-page: https://github.com/zaazbb/libzbar-ctypes
+Author: zaazbb
+Author-email: zaazbb@163.com
+License: LGPL
+Description: libzbar-ctypes
+        ===========
+        
+        This is libzbar python ctypes bindings, it should support python2 and python3.
+        
+        I can not find a python3 version zbar library under raspberry pi, so i write this codes for it.
+          
+        It should work under other platform only need replace the libzbar path.  
+        
+        It only test under Raspbian (raspberry pi) now.
+        
+        
+        Usage
+        -----
+        
+        - Install
+            - install libzbar::
+            
+                sudo apt-get install zbar-tools
+            
+            - install libzbar_ctypes
+                - python3::
+        
+                    pip install libzbar-ctypes
+        
+                - python2::
+        
+                    pip3 install libzbar-ctypes
+        
+        - Example (on raspberry pi)  
+            - install pillow  
+                install Prerequisites packages. see http://pillow.readthedocs.org/en/latest/installation.html  
+                download pillow source code (http://python-pillow.github.io/), and compile it.  
+            
+            - run the example script.
+        
+        - test
+            - test under ubuntu 15.04.
+            - test on hardware firefly.
+            - test on hardware rasyberry pi.
+        
+          
+        todo
+        ----
+        
+        Add all libzbar function bindings.
+        
+        Contact
+        -------
+        
+        by jf.  
+        
+        zaazbb <zaazbb@163.com>
+        
+Keywords: libzbar ctypes
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Multimedia :: Graphics :: Capture
+Classifier: Topic :: Multimedia :: Graphics :: Capture :: Scanners
+Classifier: Topic :: Multimedia :: Graphics :: Capture :: Screen Capture
+Classifier: License :: Freeware
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: POSIX :: Linux
