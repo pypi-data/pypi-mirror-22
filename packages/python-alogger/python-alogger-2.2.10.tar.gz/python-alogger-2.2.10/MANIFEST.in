@@ -1,0 +1,10 @@
+include *.txt
+include *.rst
+include *.py
+include *.sh
+include *.ini
+include MANIFEST.in
+include .gitreview
+recursive-include alogger *.py
+recursive-exclude alogger *.pyc __pycache__
+recursive-include alogger/tests/examples *
