@@ -1,0 +1,38 @@
+CHANGES
+=======
+
+0.2.1
+-----
+
+* Add verbosity argument to AnsiblePlaybookAction
+
+0.2.0
+-----
+
+* Flush file buffer onto disk
+* Don't check path if not string
+* Allow to pass yaml as a playbook
+* allow for passing a yaml inventory instead of a path
+* Allow for specifying an inventory file
+* Allows for JSON formatted extra_vars
+* Add extra_vars support to ansible-playbook action
+* Please use --limit in place of --args for the ansible-playbook task
+
+0.1.1
+-----
+
+* Add a note to make it clear that I do want this to become a real project
+* Please use '--become' not '--become true'
+* Update the README and gitignore
+
+0.1.0
+-----
+
+* Support more scenarios
+
+0.0.1
+-----
+
+* Update the README
+* Fix a number of PEP8 and packaging issues
+* Initial commit
