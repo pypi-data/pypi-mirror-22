@@ -1,0 +1,21 @@
+# GeoLocateImage
+
+geoimage associates an image with latitude and longitude coordinates.
+
+most useful application of this utility is to crop images at requested latitude-longitude bounding box
+
+
+        nterlon,centerlat,deltalat=latdeltavalue,deltalon=londeltavalue):  
+                from geoimage import GeoLocateImage
+                geoimg=GeoLocateImage(urlorfile,leftlon=0,rightlon=360,toplat=90,bottomlat=-90)
+                geoimg.image #contains the image
+        a useful methods are 
+                geoimg.crop_at_llbox(leftlon,rightlon,toplat,bottomlat)
+                geoimg.crop_at_llpoint(centerlon,centerlat,deltalatlon) 
+                or alternatively 
+                geoimg.crop_at_llpoint(centerlon,centerlat,deltalat=latdeltavalue,deltalon=londeltavalue)
+                #import geoimage also extends PIL.Image methods and IPython.core.display.Image methods
+                import geoimage
+                from PIL import Image
+                Image.geolocate(urlorfile,leftlon=0,rightlon=360,toplat=90,bottomlat=-90)
+                Image.crop_at_llbox(.......)
