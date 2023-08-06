@@ -1,0 +1,83 @@
+Metadata-Version: 1.2
+Name: kdbq_kernel
+Version: 0.1
+Summary: A Kdb/Q kernel for Jupyter
+Home-page: https://github.com/newtux/KdbQ_kernel
+License: UNKNOWN
+Author: GM
+Author-email: newtux@gmail.com
+Classifier: Framework :: IPython
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: System :: Shells
+Requires-Dist: pexpect (>=4.0)
+
+A Jupyter kernel for Kdb/q
+==========================
+
+No other dependencies beides Jupyter and Q. Easy setup.
+
+It is probably very rough around the edges, but seems to work. Please
+report any issues you end up having.
+
+**Other Existing Kernels**
+
+-  `IKdbQ <https://github.com/jvictorchen/IKdbQ>`__
+
+Todo
+====
+
+-  [STRIKEOUT:Multiline support] Should be done now
+-  Image support?
+-  Code cleanup
+-  Implementing code completion.
+-  Testing (I doubt k support currently works)
+-  [STRIKEOUT:Pip/Conda publication]
+
+Install
+=======
+
+This requires IPython 3. Note that ``q`` must be in your path and
+``$QHOME`` must be correctly defined.
+
+::
+
+    pip install kdbq_kernel
+    python -m kdbq_kernel.install
+
+To make sure it is installed:
+
+::
+
+    jupyter kernelspec list
+
+To use it, run one of:
+
+::
+
+    jupyter notebook
+    # In the notebook interface, select Kdb/Q from the 'New' menu
+    jupyter qtconsole --kernel kdbq
+    jupyter console --kernel kdbq
+
+More Info
+=========
+
+More information of Kdb and Q:
+
+-  `Q
+   Wiki <https://en.wikipedia.org/wiki/Q_(programming_language_from_Kx_Systems)>`__
+-  `Reference <http://code.kx.com/q/>`__
+
+For more details on how this works, also see:
+
+-  `Wrapper
+   Kernels <http://jupyter-client.readthedocs.org/en/latest/wrapperkernels.html>`__
+-  `Pepect
+   replwrap <http://pexpect.readthedocs.org/en/latest/api/replwrap.html>`__
+
+Thanks
+======
+
+This kernel is heavily/entirely based on the `Bash Kernel by
+takluyver <https://github.com/takluyver/bash_kernel>`__.
+
