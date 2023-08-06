@@ -1,0 +1,22 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _('Perguntas Frequentes') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <span property="itemListElement" typeof="ListItem" class="active">
+    <a class=" active" href="/perguntas">Perguntas Frequentes</a>
+  </span>
+{% endblock %}
+
+{% block primary %}
+  <article class="module">
+    <div class="module-content">
+      {% block asks %}        
+        <h1 class="page-heading">{{ _('Perguntas Frequentes') }}</h1>
+        {% snippet 'content/snippets/perguntas_text.html' %}
+      {% endblock %}
+    </div>
+  </article>
+{% endblock %}
+
+{% block secondary %}{% endblock %}
