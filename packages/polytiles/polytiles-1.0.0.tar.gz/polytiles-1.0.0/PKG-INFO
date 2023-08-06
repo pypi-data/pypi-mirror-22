@@ -1,0 +1,39 @@
+Metadata-Version: 1.1
+Name: polytiles
+Version: 1.0.0
+Summary: A script to render tiles for an area with mapnik
+Home-page: https://github.com/zverik/polytiles
+Author: Ilya Zverev
+Author-email: ilya@zverev.info
+License: WTFPL
+Description: PolyTiles
+        =========
+        
+        A script to get tiles from mapnik. Area can be defined by bbox, polygon
+        or an OSM polygon; tiles can be served in image files or mbtiles. Run
+        the script without parameters to see command line help.
+        
+        Requirements
+        ------------
+        
+        Mapnik and ``python-shapely`` package. Optional dependencies are
+        ``python-psycopg2`` and ``sqlite3``.
+        
+        Author and license
+        ------------------
+        
+        Written by Ilya Zverev, based on `generate\_tiles\_multiprocess.py`_,
+        licensed WTFPL.
+        
+        .. _generate\_tiles\_multiprocess.py: http://svn.openstreetmap.org/applications/rendering/mapnik/generate_tiles_multiprocess.py
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Information Technology
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities
+Classifier: License :: Public Domain
+Classifier: Programming Language :: Python :: 2
