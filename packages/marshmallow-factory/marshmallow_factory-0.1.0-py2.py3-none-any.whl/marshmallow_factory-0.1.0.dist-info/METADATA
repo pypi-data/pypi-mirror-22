@@ -1,0 +1,122 @@
+Metadata-Version: 2.0
+Name: marshmallow-factory
+Version: 0.1.0
+Summary: Convenient anonymous and nested schemas using dict literal syntax for Marshmallow.
+Home-page: https://github.com/douglas-treadwell/marshmallow-factory
+Author: Douglas Treadwell
+Author-email: douglas.treadwell@gmail.com
+License: MIT
+Keywords: serialization,rest,json,api,marshal,marshalling,deserialization,validation,schema,model,models,modelling,object,objects
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: marshmallow
+
+Marshmallow Factory
+===================
+
+
+Inspired by [Voluptuous](https://github.com/alecthomas/voluptuous).
+
+It's sometimes inconvenient to define named 
+[Marshmallow](https://github.com/marshmallow-code/marshmallow)
+Schemas, especially when those schemas are deeply nested.
+
+Example:
+
+```
+class InnerSchema(Schema):
+    inner_bool = Boolean()
+
+
+class MiddleSchema(Schema):
+    middle_int = Integer()
+    middle_nested = Nested(InnerSchema)
+
+
+class OuterSchema(Schema):
+    outer_str = String()
+    outer_nested = Nested(MiddleSchema)
+
+
+schema_instance = OuterSchema()
+schema_instance.validate(input_)
+```
+
+So, this library provides a convenient syntax for defining
+deeply nested Schemas.
+
+```
+from marshmallow_factory import schema
+
+OuterSchema = schema({
+    'outer_str': String(),
+    'outer_nested': Nested(schema({
+        'middle_int': Integer(),
+        'middle_nested': Nested(schema({
+            'inner_bool': Boolean()
+        }))
+    }))
+})
+
+schema_instance = OuterSchema()
+schema_instance.validate(input_)
+```
+
+
+Support For Meta Options
+------------------------
+
+Meta options are supported using the following syntax:
+
+```
+class Meta:
+    strict = True  # or your other options
+
+my_schema = schema({
+    'Meta': Meta,
+    'str': String()
+})
+```
+
+
+Alternative Syntax
+------------------
+
+Schema factory arguments can also be supplied as keyword
+arguments rather than a dictionary.
+
+```
+my_schema = schema(Meta=Meta, str=String())
+```
+
+For nested Schemas, plain dictionary literals can be provided
+instead of Nested(schema({...}).
+
+```
+from marshmallow_factory import schema
+
+OuterSchema = schema({
+    'outer_str': String(),
+    'outer_nested': {
+        'middle_int': Integer(),
+        'middle_nested': {
+            'inner_bool': Boolean()
+        }
+    }
+})
+
+schema_instance = OuterSchema()
+schema_instance.validate(input_)
+```
+
+
