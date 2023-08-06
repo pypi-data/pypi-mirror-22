@@ -3,36 +3,10 @@
 This repo contains 40000 packages uploaded to PyPI between 
 2017-05-02 05:17 and 2017-06-15 00:35.
 
-The repo is 54% (21993/40000) complete.
+The repo is 59% (23986/40000) complete.
 
-## Packages:
+Package contents can be found [in the code branch](https://github.com/pypi-data/pypi-mirror-22/tree/code/packages).
 
-| Name  | Count |
-| ----- | ----- |
-| gcdt | 386 |
-| frida | 210 |
-| protect | 120 |
-| coala | 110 |
-| pycrypt | 108 |
-| ppg-common | 104 |
-| coala-bears | 92 |
-| codeforlife-portal | 90 |
-| coverage | 84 |
-| zope.interface | 83 |
-| vpython | 82 |
-| vmprof | 80 |
-| missinglink-sdk | 78 |
-| moderngl | 72 |
-| crush | 70 |
-| dedupe | 68 |
-| pio-cli | 66 |
-| skitai | 64 |
-| ruamel.yaml | 63 |
-| restfulpy | 63 |
-| schul-cloud-resources-server-tests | 60 |
-| guillotina-elasticsearch | 60 |
-| lazy-object-proxy | 58 |
-| django_busybody | 57 |
-| schul-cloud-resources-api-v1 | 56 |
+A browsable package list for all repositories [all packages here](https://pypi-data.github.io/website/repositories/pypi-mirror-22).
 
 
