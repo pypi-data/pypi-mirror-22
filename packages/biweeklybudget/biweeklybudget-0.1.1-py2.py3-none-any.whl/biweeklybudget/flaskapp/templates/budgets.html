@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Budgets - BiweeklyBudget{% endblock %}
+{% block body %}
+{% include 'notifications.html' %}
+            <div class="row" id="content-row">
+                <div class="col-lg-12">
+                    <div><p><button type="button" class="btn btn-primary" id="btn_add_budget">Add Budget</button></p></div>
+                    <div class="panel panel-default" id="panel-periodic-budgets">
+                        <div class="panel-heading">
+                            Periodic Budgets
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-striped" id="table-periodic-budgets">
+                                    <thead>
+                                        <tr>
+                                            <th>Active?</th>
+                                            <th>Budget</th>
+                                            <th>Starting Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for b in periodic %}
+                                        {% if b.is_active %}<tr>{% else %}<tr class="inactive">{% endif %}
+                                            {% if b.is_active %}<td>yes</td>{% else %}<td style="color: #a94442;">NO</td>{% endif %}
+                                        <td><a href="javascript:budgetModal({{ b.id }}, null)">{{ b.name }} ({{ b.id }})</a>{% if b.is_income %} <em class="text-success">(income)</em>{% endif %}</td>
+                                            <td>{{ b.starting_balance|dollars }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default" id="panel-standing-budgets">
+                        <div class="panel-heading">
+                            Standing Budgets
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-striped" id="table-standing-budgets">
+                                    <thead>
+                                        <tr>
+                                            <th>Active?</th>
+                                            <th>Budget</th>
+                                            <th>Current Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for b in standing %}
+                                        {% if b.is_active %}<tr>{% else %}<tr class="inactive">{% endif %}
+                                            {% if b.is_active %}<td>yes</td>{% else %}<td style="color: #a94442;">NO</td>{% endif %}
+                                            <td><a href="javascript:budgetModal({{ b.id }}, null)">{{ b.name }} ({{ b.id }})</a></td>
+                                            <td>
+                                                <span>{{ b.current_balance|dollars }}</span>
+                                            </td>
+                                        </td>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+{% include 'modal.html' %}
+{% endblock %}
+{% block extra_foot_script %}
+<script>
+var default_account_id = {{ settings.DEFAULT_ACCOUNT_ID }};
+</script>
+<script src="/static/js/forms.js"></script>
+<script src="/static/js/budgets.js"></script>
+<script src="/static/js/budgets_modal.js"></script>
+<script>
+/* BEGIN conditional default modal for /budgets/<id> */
+{% if budget_id is defined and budget_id is not none %}
+budgetModal({{ budget_id }}, null);
+{% endif %}
+/* END conditional default modal for /budgets/<id> */
+</script>
+{% endblock %}
