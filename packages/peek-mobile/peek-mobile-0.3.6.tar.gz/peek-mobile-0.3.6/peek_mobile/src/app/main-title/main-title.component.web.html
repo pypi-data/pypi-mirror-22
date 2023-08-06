@@ -1,0 +1,24 @@
+<div class="peek-title-bar"
+     [class.bg-danger]="!vortexIsOnline">
+  <div class="btn-group pull-left"
+       role="group">
+    <button class="title-bar-btn"
+            [routerLink]="['/']">
+      Home
+
+    </button>
+  </div>
+  <div class="title-bar-title pull-left">
+    {{title}}
+
+  </div>
+  <div class="btn-group pull-right"
+       role="group">
+    <button class="title-bar-btn"
+            *ngFor="let link of rightLinks"
+            [routerLink]="[link.resourcePath]">
+      {{linkTitle(link)}}
+
+    </button>
+  </div>
+</div>
