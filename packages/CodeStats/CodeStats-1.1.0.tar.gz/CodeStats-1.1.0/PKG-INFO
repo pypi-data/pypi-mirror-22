@@ -1,0 +1,91 @@
+Metadata-Version: 1.1
+Name: CodeStats
+Version: 1.1.0
+Summary: Wrapper around the Code::Stats API
+Home-page: https://www.github.com/niekkeijzer/codestats/
+Author: Niek Keijzer
+Author-email: info@niekkeijzer.com
+License: UNKNOWN
+Download-URL: https://github.com/NiekKeijzer/CodeStats/archive/1.1..tar.gz
+Description: # CodeStats
+        
+        [![Build Status](https://travis-ci.org/NiekKeijzer/CodeStats.svg?branch=master)](https://travis-ci.org/NiekKeijzer/CodeStats)
+        [![Coverage Status](https://coveralls.io/repos/github/NiekKeijzer/CodeStats/badge.svg?branch=master)](https://coveralls.io/github/NiekKeijzer/CodeStats?branch=master)
+        
+        A simple wrapper around the [Code::Stats][1] API. Currently this wrapper only supports getting information from the API 
+        and presenting it in a 'Pythonic' way. Posting new stats to the API is a feature that might be added in the future. 
+        
+        ## Sync Usage
+        
+        ```python
+        from codestats.api import User
+        
+        user = User('niekkeijzer')
+        ```
+        
+        Or if you prefer to call the `load` method yourself, you can disable `auto_load`.
+        
+        ```python
+        from codestats.api import User
+        
+        user = User('niekkeijzer', auto_load=False)
+        ```
+        
+        You can also get a single language or machine instance by using the `get` method.
+        
+        ```python
+        from codestats.api import User
+        from codestats.bases import Language
+        
+        user = User('niekkeijzer')
+        python = user.get('Python', Language)
+        ```
+        
+        Or by using the shorthands
+        
+        ```python
+        from codestats.api import User
+        
+        user = User('niekkeijzer')
+        python = user.get_language('python')
+        work_pc = user.get_machine('work')
+        ```
+        
+        ## Async usage
+        
+        As of version 1.1.0 the library can be used in a non blocking manner as well. For this [asyncio][3] and [aiohttp][4] 
+         should be installed. The `User` object should be loaded differently, however the other methods work the same as the 
+         synchronous object. 
+        
+        ```python
+        from codestats.async_api import User
+        
+        async def load_user(name):
+            async with User(name) as user:
+                print(user)
+        ```
+        
+        Or without auto loading enabled. 
+        
+        ```python
+        from codestats.async_api import User
+        
+        async def load_user(name):
+            async with User(name, auto_load=False) as user:
+                await user.load()
+        ```
+        
+        `User`, `Machine` and `Language` instances each have properties to calculate the level based on the current level as well as 
+        the progress to the next level. The formula used to calculate these values is the same as is used by the official 
+        [API][2].
+        
+        ## License
+        
+        This code is released under the MIT license, see the included LICENSE file for more information.
+        
+        
+        [1]: https://codestats.net/
+        [2]: https://github.com/code-stats/code-stats/blob/master/lib/code_stats/xp_calculator.ex
+        [3]: https://asyncio.readthedocs.io/en/latest/
+        [4]: http://aiohttp.readthedocs.io
+Platform: UNKNOWN
