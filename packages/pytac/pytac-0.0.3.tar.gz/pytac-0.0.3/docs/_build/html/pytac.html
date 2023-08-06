@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pytac package &mdash; docs 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="docs 1.0 documentation" href="index.html" />
+    <link rel="prev" title="Examples" href="examples.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pytac-package">
+<h1>pytac package<a class="headerlink" href="#pytac-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pytac.cs">
+<span id="pytac-cs-module"></span><h2>pytac.cs module<a class="headerlink" href="#module-pytac.cs" title="Permalink to this headline">¶</a></h2>
+<p>Template module to define control systems.</p>
+<dl class="class">
+<dt id="pytac.cs.ControlSystem">
+<em class="property">class </em><code class="descclassname">pytac.cs.</code><code class="descname">ControlSystem</code><a class="reference internal" href="_modules/pytac/cs.html#ControlSystem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.cs.ControlSystem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Define a control system to be used with a device.</p>
+<p>It uses channel access to comunicate over the network with
+the hardware.</p>
+<dl class="method">
+<dt id="pytac.cs.ControlSystem.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>pv</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/cs.html#ControlSystem.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.cs.ControlSystem.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value of the given pv.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>pv(string): The Pv to get the value of.</dd>
+<dt>Returns:</dt>
+<dd>Number: The numeric value of the pv.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.cs.ControlSystem.put">
+<code class="descname">put</code><span class="sig-paren">(</span><em>pv</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/cs.html#ControlSystem.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.cs.ControlSystem.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put the value of a given pv.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>pv(string): The string to put the value for.
+value(Number): The value to be set.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pytac.device">
+<span id="pytac-device-module"></span><h2>pytac.device module<a class="headerlink" href="#module-pytac.device" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pytac.device.Device">
+<em class="property">class </em><code class="descclassname">pytac.device.</code><code class="descname">Device</code><span class="sig-paren">(</span><em>cs</em>, <em>rb_pv=None</em>, <em>sp_pv=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/device.html#Device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.device.Device" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pytac.device.Device.get_cs">
+<code class="descname">get_cs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/device.html#Device.get_cs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.device.Device.get_cs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pytac.device.Device.get_pv_name">
+<code class="descname">get_pv_name</code><span class="sig-paren">(</span><em>handle='*'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/device.html#Device.get_pv_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.device.Device.get_pv_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a pv name on a specified handle.</p>
+<p>If no handle is specified, then both pvs are returned.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>handle(string): The readback or setpoint handle to be returned.</dd>
+<dt>Returns:</dt>
+<dd>string: A readback or setpoint pv.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.device.Device.get_value">
+<code class="descname">get_value</code><span class="sig-paren">(</span><em>handle</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/device.html#Device.get_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.device.Device.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the value of a readback or setpoint pv.</p>
+<p>If neither readback or setpoint pvs exist then a PvException is raised.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>handle(string): Handle used to get the value off a readback or setpoint</dt>
+<dd>pv.</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>Number: The value off the pv.</dd>
+<dt>Raises:</dt>
+<dd>PvException: In case the requested pv doesn&#8217;t exist.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.device.Device.is_enabled">
+<code class="descname">is_enabled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/device.html#Device.is_enabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.device.Device.is_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether an device is enabled or disabled.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>boolean: Represents whether an device is enabled or disabled.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.device.Device.put_value">
+<code class="descname">put_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/device.html#Device.put_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.device.Device.put_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of a pv.</p>
+<p>If not setpoint pv exists a PvException is raised.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>value(Number): The value to set on the pv.</dd>
+<dt>Raises:</dt>
+<dd>PvException: An exception occured when no setpoint pv exists.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.device.Device.set_enabled">
+<code class="descname">set_enabled</code><span class="sig-paren">(</span><em>enabled=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/device.html#Device.set_enabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.device.Device.set_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable or disable an device.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>enabled (boolean): Set whether an device is disabled or enabled.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pytac.device.PvEnabler">
+<em class="property">class </em><code class="descclassname">pytac.device.</code><code class="descname">PvEnabler</code><span class="sig-paren">(</span><em>pv</em>, <em>enabled_value</em>, <em>cs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/device.html#PvEnabler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.device.PvEnabler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pytac.element">
+<span id="pytac-element-module"></span><h2>pytac.element module<a class="headerlink" href="#module-pytac.element" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pytac.element.Element">
+<em class="property">class </em><code class="descclassname">pytac.element.</code><code class="descname">Element</code><span class="sig-paren">(</span><em>name</em>, <em>length</em>, <em>element_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/element.html#Element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.element.Element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pytac.element.Element.add_device">
+<code class="descname">add_device</code><span class="sig-paren">(</span><em>field</em>, <em>device</em>, <em>uc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/element.html#Element.add_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.element.Element.add_device" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add device and unit conversion objects to a given field.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first docutils">
+<dt>field (string): The key to store the unit conversion and device</dt>
+<dd>objects.</dd>
+</dl>
+<p>device (Device): Represents a device stored on an element.
+uc (PolyUnitConv/PchipUnitConv): Represents a unit conversion object stored for a</p>
+<blockquote class="last">
+<div>device.</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.element.Element.add_to_family">
+<code class="descname">add_to_family</code><span class="sig-paren">(</span><em>family</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/element.html#Element.add_to_family"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.element.Element.add_to_family" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the element to the specified family.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>family (string): Represents the name of the family</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.element.Element.get_cs">
+<code class="descname">get_cs</code><span class="sig-paren">(</span><em>field</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/element.html#Element.get_cs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.element.Element.get_cs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pytac.element.Element.get_device">
+<code class="descname">get_device</code><span class="sig-paren">(</span><em>field</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/element.html#Element.get_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.element.Element.get_device" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the device for the given field.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>field (string): The lookup key to find the device on an element.</dd>
+<dt>Returns:</dt>
+<dd>Device: The device on the given field.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.element.Element.get_fields">
+<code class="descname">get_fields</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/element.html#Element.get_fields"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.element.Element.get_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the fields defined on an element.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>list: A sequence of all the fields defined on an element.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.element.Element.get_length">
+<code class="descname">get_length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/element.html#Element.get_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.element.Element.get_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the length of an element.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>float: A floating point number that represents the length
+of the element.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.element.Element.get_pv_name">
+<code class="descname">get_pv_name</code><span class="sig-paren">(</span><em>field</em>, <em>handle='*'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/element.html#Element.get_pv_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.element.Element.get_pv_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a pv name on a device.</p>
+<p>Can return the readback and setpoint pvs if no handle is specified.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">field (string): Uniquely identifies a device.
+handle(string): Can be &#8216;readback&#8217; or &#8216;setpoint&#8217; to return each pv.</p>
+<blockquote class="last">
+<div>If neither is specified then both pvs are returned.</div></blockquote>
+</dd>
+<dt>Returns:</dt>
+<dd>string: A readback or setpoint pv associated with the identified device.</dd>
+<dt>Raises:</dt>
+<dd>PvException: An exception occured accessing a field with
+no associated device.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.element.Element.get_pv_value">
+<code class="descname">get_pv_value</code><span class="sig-paren">(</span><em>field</em>, <em>handle</em>, <em>unit='engineering'</em>, <em>sim=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/element.html#Element.get_pv_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.element.Element.get_pv_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value of a pv.</p>
+<p>Returns the value of a pv on the element. This value is uniquely
+identified by a field and a handle. The returned value is either
+in engineering or physics units. The sim flag returns either real
+or simulated values.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">field (string): Choose which device to use.
+handle (string): Can take as value either &#8216;setpoint&#8217; or &#8216;readback&#8217;.
+unit (string): Specify either engineering or physics units to be</p>
+<blockquote>
+<div>returned.</div></blockquote>
+<p class="last">sim (boolean): Set whether real or simulated values to be returned.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>Number: A number that corresponds to the pv value of the identified
+device.</dd>
+<dt>Raises:</dt>
+<dd>PvException: When there is no associated device on the given field.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.element.Element.put_pv_value">
+<code class="descname">put_pv_value</code><span class="sig-paren">(</span><em>field</em>, <em>value</em>, <em>unit='engineering'</em>, <em>sim=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/element.html#Element.put_pv_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.element.Element.put_pv_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the pv value on a uniquely identified device.</p>
+<p>This value can be set on the machine or the simulation.
+A field is required to identify a device. Returned value
+can be engineering or physics.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>field (string): The key used to identify a device.
+value (float): The value set on the device.
+unit (string): Can be engineering or physics units.
+sim (boolean): To set whether the simulation is on or off.</dd>
+<dt>Raises:</dt>
+<dd>PvException: An exception occured accessing a field with
+no associated device.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pytac-epics-module">
+<h2>pytac.epics module<a class="headerlink" href="#pytac-epics-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pytac.exceptions">
+<span id="pytac-exceptions-module"></span><h2>pytac.exceptions module<a class="headerlink" href="#module-pytac.exceptions" title="Permalink to this headline">¶</a></h2>
+<p>Module to represent existant exceptions in Pytac.</p>
+<dl class="exception">
+<dt id="pytac.exceptions.ElementNotFoundException">
+<em class="property">exception </em><code class="descclassname">pytac.exceptions.</code><code class="descname">ElementNotFoundException</code><a class="reference internal" href="_modules/pytac/exceptions.html#ElementNotFoundException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.exceptions.ElementNotFoundException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pytac.exceptions.PvException">
+<em class="property">exception </em><code class="descclassname">pytac.exceptions.</code><code class="descname">PvException</code><a class="reference internal" href="_modules/pytac/exceptions.html#PvException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.exceptions.PvException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pytac.exceptions.UniqueSolutionException">
+<em class="property">exception </em><code class="descclassname">pytac.exceptions.</code><code class="descname">UniqueSolutionException</code><a class="reference internal" href="_modules/pytac/exceptions.html#UniqueSolutionException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.exceptions.UniqueSolutionException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pytac.lattice">
+<span id="pytac-lattice-module"></span><h2>pytac.lattice module<a class="headerlink" href="#module-pytac.lattice" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pytac.lattice.Lattice">
+<em class="property">class </em><code class="descclassname">pytac.lattice.</code><code class="descname">Lattice</code><span class="sig-paren">(</span><em>name</em>, <em>control_system</em>, <em>energy</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/lattice.html#Lattice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.lattice.Lattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pytac.lattice.Lattice.add_element">
+<code class="descname">add_element</code><span class="sig-paren">(</span><em>element</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/lattice.html#Lattice.add_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.lattice.Lattice.add_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an element to the lattice.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>element (Element): The element to be inserted into the lattice.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.lattice.Lattice.get_all_families">
+<code class="descname">get_all_families</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/lattice.html#Lattice.get_all_families"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.lattice.Lattice.get_all_families" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all available families of the lattice.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>set(string): Contains all available families in the lattice.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.lattice.Lattice.get_elements">
+<code class="descname">get_elements</code><span class="sig-paren">(</span><em>family=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/lattice.html#Lattice.get_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.lattice.Lattice.get_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the elements of a family from the lattice.</p>
+<p>If no family is specified it returns the whole lattice.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>family (string): A specific family to return the elements of.</dd>
+<dt>Returns:</dt>
+<dd>list(Element): A list that contains all elements of the specified family.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.lattice.Lattice.get_energy">
+<code class="descname">get_energy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/lattice.html#Lattice.get_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.lattice.Lattice.get_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to get the total energy of the lattice.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>Number: The total energy of the lattice.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.lattice.Lattice.get_family_pvs">
+<code class="descname">get_family_pvs</code><span class="sig-paren">(</span><em>family</em>, <em>field</em>, <em>handle</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/lattice.html#Lattice.get_family_pvs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.lattice.Lattice.get_family_pvs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all pv names for a specific family, field and handle.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>family (string): A specific family to requests elements of.
+field (string): The field to uniquely identify a device.
+handle (string): It is used to identify a readback or setpoint pv.</dd>
+<dt>Returns:</dt>
+<dd>list(string): A list of readback or setpoint pvs from the device.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.lattice.Lattice.get_family_s">
+<code class="descname">get_family_s</code><span class="sig-paren">(</span><em>family</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/lattice.html#Lattice.get_family_s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.lattice.Lattice.get_family_s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the positions for a set of elements from the same family.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>family(string): The family the positions are being asked for.</dd>
+<dt>Returns:</dt>
+<dd>list(float): A list of floating point numbers that represent the positions
+for each element.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.lattice.Lattice.get_family_values">
+<code class="descname">get_family_values</code><span class="sig-paren">(</span><em>family</em>, <em>field</em>, <em>handle='setpoint'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/lattice.html#Lattice.get_family_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.lattice.Lattice.get_family_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all pv values for a set of pvs.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>family(string): A specific family to requests the values of.
+field(string): The field to uniquely identify a device.
+handle(string): It is used to identify a readback or setpoint pv.</dd>
+<dt>Returns:</dt>
+<dd>list(float): A list of readback or setpoint pv values from the device.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.lattice.Lattice.get_length">
+<code class="descname">get_length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/lattice.html#Lattice.get_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.lattice.Lattice.get_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the length of the lattice.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>float: The length of the lattice.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.lattice.Lattice.get_s">
+<code class="descname">get_s</code><span class="sig-paren">(</span><em>given_element</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/lattice.html#Lattice.get_s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.lattice.Lattice.get_s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the position of a given element in the lattice.</p>
+<p>Note that the given element must exist in the lattice.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>given_element: The element that the position is being asked for.</dd>
+<dt>Returns:</dt>
+<dd>float: the position of the given element.</dd>
+<dt>Raises</dt>
+<dd>ElementNotFoundException: An exception is raised in case the element
+doesn&#8217;t exist inside the lattice.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytac.lattice.Lattice.set_family_values">
+<code class="descname">set_family_values</code><span class="sig-paren">(</span><em>family</em>, <em>field</em>, <em>values</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytac/lattice.html#Lattice.set_family_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytac.lattice.Lattice.set_family_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the pv value of a given family of pvs.</p>
+<p>The pvs are determined by family and device. Note that only setpoint
+pvs ca be modified.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>family(string): A specific family to set the value of.
+field(string): The field to uniquely identify a device.
+values(list(float)): A list of values to assign to the pvs.</dd>
+<dt>Raises:</dt>
+<dd>PvException: An exception raised in case the given list of values
+doesn&#8217;t match the number of found pvs.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pytac-load-csv-module">
+<h2>pytac.load_csv module<a class="headerlink" href="#pytac-load-csv-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="pytac-units-module">
+<h2>pytac.units module<a class="headerlink" href="#pytac-units-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pytac">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pytac" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pytac package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-pytac.cs">pytac.cs module</a></li>
+<li><a class="reference internal" href="#module-pytac.device">pytac.device module</a></li>
+<li><a class="reference internal" href="#module-pytac.element">pytac.element module</a></li>
+<li><a class="reference internal" href="#pytac-epics-module">pytac.epics module</a></li>
+<li><a class="reference internal" href="#module-pytac.exceptions">pytac.exceptions module</a></li>
+<li><a class="reference internal" href="#module-pytac.lattice">pytac.lattice module</a></li>
+<li><a class="reference internal" href="#pytac-load-csv-module">pytac.load_csv module</a></li>
+<li><a class="reference internal" href="#pytac-units-module">pytac.units module</a></li>
+<li><a class="reference internal" href="#module-pytac">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="examples.html" title="previous chapter">Examples</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/pytac.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Will Rogers, Razvan Vasile.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      
+      |
+      <a href="_sources/pytac.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

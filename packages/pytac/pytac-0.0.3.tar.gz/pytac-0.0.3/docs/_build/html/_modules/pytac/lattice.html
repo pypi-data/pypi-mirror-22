@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pytac.lattice &mdash; docs 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="docs 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for pytac.lattice</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">pytac.exceptions</span> <span class="kn">import</span> <span class="n">PvException</span>
+<span class="kn">from</span> <span class="nn">pytac.exceptions</span> <span class="kn">import</span> <span class="n">ElementNotFoundException</span>
+
+<div class="viewcode-block" id="Lattice"><a class="viewcode-back" href="../../pytac.html#pytac.lattice.Lattice">[docs]</a><span class="k">class</span> <span class="nc">Lattice</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">control_system</span><span class="p">,</span> <span class="n">energy</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Representation of a lattice.</span>
+
+<span class="sd">        Represents a lattice object that contains all elements</span>
+<span class="sd">        of the ring. It has a name and a control system to be used</span>
+<span class="sd">        for unit conversion.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (string): The name of the lattice.</span>
+<span class="sd">            control_system (ControlSystem): The control system used</span>
+<span class="sd">                to store the values on a pv.</span>
+<span class="sd">            energy(Number): The total energy of the lattice.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lattice</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cs</span> <span class="o">=</span> <span class="n">control_system</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_energy</span> <span class="o">=</span> <span class="n">energy</span>
+
+<div class="viewcode-block" id="Lattice.get_energy"><a class="viewcode-back" href="../../pytac.html#pytac.lattice.Lattice.get_energy">[docs]</a>    <span class="k">def</span> <span class="nf">get_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Function to get the total energy of the lattice.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Number: The total energy of the lattice.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_energy</span>
+</div>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the nth element of the lattice.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            n (int): An index that represents the nth + 1 element of the</span>
+<span class="sd">                lattice.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Element: The element asked by the index n.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lattice</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The number of elements in the lattice.</span>
+
+<span class="sd">        When using the len function returns the number of elements in</span>
+<span class="sd">        the lattice.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The number of elements in the lattice.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lattice</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Lattice.get_length"><a class="viewcode-back" href="../../pytac.html#pytac.lattice.Lattice.get_length">[docs]</a>    <span class="k">def</span> <span class="nf">get_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the length of the lattice.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The length of the lattice.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total_length</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lattice</span><span class="p">:</span>
+            <span class="n">total_length</span> <span class="o">+=</span> <span class="n">e</span><span class="o">.</span><span class="n">get_length</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">total_length</span>
+</div>
+<div class="viewcode-block" id="Lattice.add_element"><a class="viewcode-back" href="../../pytac.html#pytac.lattice.Lattice.add_element">[docs]</a>    <span class="k">def</span> <span class="nf">add_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add an element to the lattice.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            element (Element): The element to be inserted into the lattice.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lattice</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Lattice.get_elements"><a class="viewcode-back" href="../../pytac.html#pytac.lattice.Lattice.get_elements">[docs]</a>    <span class="k">def</span> <span class="nf">get_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the elements of a family from the lattice.</span>
+
+<span class="sd">        If no family is specified it returns the whole lattice.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            family (string): A specific family to return the elements of.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list(Element): A list that contains all elements of the specified family.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">family</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lattice</span>
+
+        <span class="n">matched_lattice</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lattice</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">family</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">families</span><span class="p">:</span>
+                <span class="n">matched_lattice</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">matched_lattice</span>
+</div>
+<div class="viewcode-block" id="Lattice.get_all_families"><a class="viewcode-back" href="../../pytac.html#pytac.lattice.Lattice.get_all_families">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_families</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get all available families of the lattice.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            set(string): Contains all available families in the lattice.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">families</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lattice</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">family</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">families</span><span class="p">:</span>
+                <span class="n">families</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">family</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">families</span>
+</div>
+<div class="viewcode-block" id="Lattice.get_family_pvs"><a class="viewcode-back" href="../../pytac.html#pytac.lattice.Lattice.get_family_pvs">[docs]</a>    <span class="k">def</span> <span class="nf">get_family_pvs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">handle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get all pv names for a specific family, field and handle.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            family (string): A specific family to requests elements of.</span>
+<span class="sd">            field (string): The field to uniquely identify a device.</span>
+<span class="sd">            handle (string): It is used to identify a readback or setpoint pv.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list(string): A list of readback or setpoint pvs from the device.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elements</span><span class="p">(</span><span class="n">family</span><span class="p">)</span>
+        <span class="n">pv_names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+            <span class="n">pv_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">get_pv_name</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">handle</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">pv_names</span>
+</div>
+<div class="viewcode-block" id="Lattice.get_family_values"><a class="viewcode-back" href="../../pytac.html#pytac.lattice.Lattice.get_family_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_family_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">handle</span><span class="o">=</span><span class="s">&#39;setpoint&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get all pv values for a set of pvs.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            family(string): A specific family to requests the values of.</span>
+<span class="sd">            field(string): The field to uniquely identify a device.</span>
+<span class="sd">            handle(string): It is used to identify a readback or setpoint pv.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list(float): A list of readback or setpoint pv values from the device.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pv_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_family_pvs</span><span class="p">(</span><span class="n">family</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pv_names</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Lattice.set_family_values"><a class="viewcode-back" href="../../pytac.html#pytac.lattice.Lattice.set_family_values">[docs]</a>    <span class="k">def</span> <span class="nf">set_family_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the pv value of a given family of pvs.</span>
+
+<span class="sd">        The pvs are determined by family and device. Note that only setpoint</span>
+<span class="sd">        pvs ca be modified.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            family(string): A specific family to set the value of.</span>
+<span class="sd">            field(string): The field to uniquely identify a device.</span>
+<span class="sd">            values(list(float)): A list of values to assign to the pvs.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            PvException: An exception raised in case the given list of values</span>
+<span class="sd">            doesn&#39;t match the number of found pvs.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Get the number of elements in the family</span>
+        <span class="n">pv_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_family_pvs</span><span class="p">(</span><span class="n">family</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="s">&#39;setpoint&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pv_names</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">PvException</span><span class="p">(</span><span class="s">&quot;Number of elements in given array must be equal&quot;</span>
+                              <span class="s">&quot;to the number of elements in the lattice&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cs</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">pv_names</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Lattice.get_s"><a class="viewcode-back" href="../../pytac.html#pytac.lattice.Lattice.get_s">[docs]</a>    <span class="k">def</span> <span class="nf">get_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">given_element</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find the position of a given element in the lattice.</span>
+
+<span class="sd">        Note that the given element must exist in the lattice.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            given_element: The element that the position is being asked for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: the position of the given element.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">            ElementNotFoundException: An exception is raised in case the element</span>
+<span class="sd">            doesn&#39;t exist inside the lattice.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">s_pos</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lattice</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">given_element</span><span class="p">:</span>
+                <span class="n">s_pos</span> <span class="o">+=</span> <span class="n">element</span><span class="o">.</span><span class="n">get_length</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">s_pos</span>
+        <span class="k">raise</span> <span class="n">ElementNotFoundException</span><span class="p">(</span><span class="s">&#39;Given element does not exist in the lattice&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Lattice.get_family_s"><a class="viewcode-back" href="../../pytac.html#pytac.lattice.Lattice.get_family_s">[docs]</a>    <span class="k">def</span> <span class="nf">get_family_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">family</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the positions for a set of elements from the same family.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            family(string): The family the positions are being asked for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list(float): A list of floating point numbers that represent the positions</span>
+<span class="sd">            for each element.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elements</span><span class="p">(</span><span class="n">family</span><span class="p">)</span>
+        <span class="n">s_positions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+            <span class="n">s_positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_s</span><span class="p">(</span><span class="n">element</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">s_positions</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Will Rogers, Razvan Vasile.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
