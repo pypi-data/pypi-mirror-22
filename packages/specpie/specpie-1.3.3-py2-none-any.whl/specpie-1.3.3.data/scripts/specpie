@@ -1,0 +1,40 @@
+#!/usr/bin/python
+import glob
+import os
+from subprocess import call
+
+import sys
+
+spec_files = [f for f in glob.iglob(os.path.join(os.getcwd(), '**', '*.py')) if 'spec_' in os.path.basename(f)]
+if len(spec_files) == 0:
+    print('No specs found!')
+    exit(0)
+try:
+    with open(os.path.join(os.getcwd(), '.dummy.py'), 'w') as f:
+        f.write('''
+import glob
+import os
+import sys
+python_files = [f for f in glob.iglob(os.path.join(os.getcwd(), '**', '*.py'))]
+files_to_cover = [f for f in python_files if 'spec_' not in os.path.basename(f)]
+spec_files = [f for f in python_files if 'spec_' in os.path.basename(f)]
+for f in [os.path.dirname(f) for f in spec_files]:
+    sys.path.append(f)
+try:''')
+        for i in [os.path.basename(f)[:-3] for f in spec_files]:
+            f.write('\n\timport %s\n' % i)
+        f.write('''
+except AssertionError as e:
+    pass
+except Exception as e:
+    import traceback
+    print(traceback.format_exc())''')
+    files_to_ignore = ['.dummy.py'] + spec_files
+    call(['coverage', 'run', '--omit', '.dummy.py,specs/*,tests/*,*/site-packages/*',
+          os.path.join(os.getcwd(), '.dummy.py')])
+    if len(sys.argv) > 1:
+        call(['coverage', sys.argv[1]])
+except:
+    pass
+finally:
+    os.remove(os.path.join(os.getcwd(), '.dummy.py'))
