@@ -1,0 +1,105 @@
+Metadata-Version: 1.1
+Name: spotify2musicbrainz
+Version: 0.3.2
+Summary: An aid to add information from Spotify to MusicBrainz.
+Home-page: https://gitlab.com/Freso/spotify2musicbrainz
+Author: Frederik “Freso” S. Olesen
+Author-email: spotify2musicbrainz@freso.dk
+License: GPLv3+
+Description: Spotify2MusicBrainz
+        ===================
+        
+        An aid to add information from Spotify to MusicBrainz_.
+        
+        .. _MusicBrainz: https://musicbrainz.org/
+        
+        Motivation
+        ----------
+        
+        Spotify has a lot of music. Like, a lot a lot. But due to Spotify's
+        interface, it can be a bit clunky to use userscripts on the web site,
+        and there's no way to hook into the desktop or mobile app interfaces.
+        
+        The script uses the API and command-line interface to hopefully make it
+        a bit easier to copy information from Spotify into the MusicBrainz
+        database, while also including information that isn't actually being
+        shown in any of the public phasing Spotify interfaces (such as
+        bar codes).
+        
+        Installation
+        ------------
+        
+        Spotify2MusicBrainz can be installed using ``pip`` on most platforms, like so::
+        
+          pip install spotify2musicbrainz
+          spotify2musicbrainz
+        
+        Testing
+        -------
+        
+        There are currently no tests. :(
+        
+        Contributing
+        ------------
+        
+        The project is still in its very early stages. Feel free to submit PRs,
+        but please adhere to code style and respect that not all the project
+        goals have been fully fleshed out yet, so your patch may not be in line
+        with the author's vision.
+        
+        Code style
+        ^^^^^^^^^^
+        
+        The script will have a strict adherence to PEP8_, with the exception of
+        the line length. It is nice to stay under the 72/79 characters per line,
+        but not an absolute necessity.
+        
+        .. _PEP8: https://www.python.org/dev/peps/pep-0008/
+        
+        Commits
+        ^^^^^^^
+        
+        Commits going into the master branch should strive to be
+        `atomic commits`_ with `good commit messages`_.
+        
+        .. _atomic commits: https://www.freshconsulting.com/atomic-commits/
+        .. _good commit messages: https://chris.beams.io/posts/git-commit/
+        
+        Contact
+        -------
+        
+        The project is hosted on GitLab, and any bugs, feature requests, etc.
+        should go there: https://gitlab.com/Freso/spotify2musicbrainz
+        
+        The project lead can also be found as "Freso" on `Freenode IRC`_,
+        mainly in the #metabrainz and #musicbrainz channels. Feel free say hi.
+        
+        .. _Freenode IRC: https://freenode.net/
+        
+        License
+        -------
+        
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+        
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+        
+        You should have received a copy of the GNU General Public License
+        along with this program.  If not, see <http://www.gnu.org/licenses/>.
+        
+Keywords: spotify musicbrainz music metadata data
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Multimedia :: Sound/Audio
+Classifier: Topic :: Utilities
