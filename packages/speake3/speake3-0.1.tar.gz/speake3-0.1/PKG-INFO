@@ -1,0 +1,55 @@
+Metadata-Version: 1.1
+Name: speake3
+Version: 0.1
+Summary: A wrapper for espeak for python3
+Home-page: https://github.com/GikonyoBrian/speake3
+Author: Brian Gikonyo
+Author-email: colasgikonyo@gmail.com
+License: MIT
+Download-URL: https://github.com/GikonyoBrian/speake3/archive/speake3.tar.gz
+Description: Quick links
+        ===========
+        
+        - `Home <https://github.com/giampaolo/pyftpdlib>`__
+        - `Download <https://pypi.python.org/pypi/speake3/>`__
+        
+        About
+        =====
+        
+        Speake3 library provides a wrapper around Espeak to easily
+        write efficient programs utilizing the text-to-speech functionalities
+        of espeak tts engine in Python.
+        
+        Features
+        ========
+        
+        - Queueing of text to convert to speech
+        - Able to manipulate Espeak filters to alter how voices sounds
+        
+        
+        Quick start
+        ===========
+        
+        .. code-block:: python
+        
+            >>> import speake3
+            >>> 
+            >>> engine = speake3.Speake()
+            >>> engine.set('voice', 'en')
+            >>> engine.set('amplitude', '107')
+            >>> engine.set('pitch', '99')
+            >>> engine.say("Hello world!")
+            >>> engine.talkback()
+            
+Keywords: espeak,tts,text-to-speech,engine,python3,python
+Platform: Linux
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
