@@ -1,0 +1,43 @@
+Metadata-Version: 1.0
+Name: ohmysportsfeedspy
+Version: 0.1.0
+Summary: A Python wrapper for the MySportsFeeds sports data API
+Home-page: https://github.com/MySportsFeeds/mysportsfeeds-python
+Author: ['Brad Barkhouse', 'MySportsFeeds']
+Author-email: UNKNOWN
+License: MIT
+Description: # MySportsFeeds Wrapper - Python
+        
+        ##Instructions
+        
+        Clone repo
+            
+            $ git clone https://github.com/MySportsFeeds/mysportsfeeds-python.git
+        
+        If you haven't signed up for API access, do so here [https://www.mysportsfeeds.com/index.php/register/](https://www.mysportsfeeds.com/index.php/register/)
+        
+        Install requirements and run tests
+        
+            $ make build
+        
+        ##Usage
+        
+        Create main MySportsFeeds object with API version as input parameter
+        
+            from ohmysportsfeedspy import MySportsFeeds
+        
+            msf = MySportsFeeds(version="1.0")
+        
+        Authenticate (v1.0 uses your MySportsFeeds account credentials)
+        
+            msf.authenticate("YOUR_USERNAME", "YOUR_PASSWORD")
+        
+        Start making requests, specifying: league, season, feed, format, and any other applicable params for the feed
+        
+            output = msf.msf_get_data(league='nba',season='2016-2017-regular',feed='player_gamelogs',format='json',player='stephen-curry')
+            output = msf.msf_get_data(league='nfl',season='2015-2016-regular',feed='cumulative_player_stats',format='xml',team='dallas-cowboys')
+            output = msf.msf_get_data(league='mlb',season='2016-playoff',feed='full_game_schedule',format='csv')
+        
+        That's it!  Returned data is also stored locally under "results/" by default, in appropriately named files.
+        
+Platform: UNKNOWN
