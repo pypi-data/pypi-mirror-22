@@ -1,0 +1,40 @@
+Metadata-Version: 2.0
+Name: poindent
+Version: 0.1.0
+Summary: Find an properly reindent .po files.
+Home-page: https://github.com/JulienPalard/poindent
+Author: Julien Palard
+Author-email: julien@palard.fr
+License: MIT license
+Keywords: poindent
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: tqdm
+
+========
+poindent
+========
+
+
+.. image:: https://img.shields.io/pypi/v/poindent.svg
+        :target: https://pypi.python.org/pypi/poindent
+
+Script to fix indentation of given ``.po`` files. If ``--modified`` is
+given, it will only fix modified files according to git (usefull if
+your ``.po`` files are versionned).
+
+
+This package only runs ``msgcat`` from the ``gettext`` package, so if
+your distribution don't have it, it just won't work.
+
+
+* Free software: MIT license
+
+
