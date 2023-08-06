@@ -1,0 +1,57 @@
+Metadata-Version: 2.0
+Name: yandex-search
+Version: 0.1.0.dev0
+Summary: Yandex search library
+Home-page: https://github.com/codinguncut/yandex-search
+Author: Johannes Ahlmann
+Author-email: johannes@fluquid.com
+License: MIT
+Keywords: yandex-search
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: requests
+Requires-Dist: lxml
+
+## Yandex Search
+
+using yandex.ru for web search.
+allows for 10k searches per day with validated mobile number.
+
+Notes:
+- Yandex highlights matching terms, leading to extra whitespace from
+    `' '.join`
+
+### pyyaxml
+- pyyaxml was using py2 and had even issues then
+
+## TODO:
+- functionality to deal with daily quota
+- functionality to deal with request-per-second limit
+
+## Documentation
+search operators:
+    https://yandex.com/support/search/how-to-search/search-operators.html
+settings:
+    https://xml.yandex.ru/settings.xml
+docs:
+    https://tech.yandex.ru/xml/doc/dg/concepts/restrictions-docpage/
+    https://yandex.com/support/search/robots/search-api.html
+
+=======
+History
+=======
+
+
+0.1.0-dev (unreleased)
+----------------------
+
+* First release on PyPI.
+
