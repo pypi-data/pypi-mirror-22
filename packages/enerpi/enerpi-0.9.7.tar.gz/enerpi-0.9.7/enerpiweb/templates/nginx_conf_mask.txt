@@ -1,0 +1,29 @@
+# ENERPIWEB NGINX Config:
+
+# Append the NGINX config to your actual server, or make the next symlink:
+# sudo ln -s {file_location}/{filename} /etc/nginx/sites-enabled/
+
+server {
+    listen      80;
+    server_name enerpi.local;
+    charset     utf-8;
+    client_max_body_size 75M;
+
+    # EnerpiWeb
+    location = /enerpi { rewrite ^ /enerpi/; }
+    location /enerpi/ {
+        include uwsgi_params;
+        uwsgi_param {path_enerpiweb}/__main__.py /enerpi;
+        uwsgi_pass unix:/tmp/enerpiweb_uwsgi.sock;
+        uwsgi_param         UWSGI_PYHOME    {path_venv};
+        uwsgi_param         UWSGI_CHDIR     {path_venv}/bin/uwsgi;
+        uwsgi_param         UWSGI_MODULE    {path_enerpiweb}/__main__.py;
+        uwsgi_param         UWSGI_CALLABLE  application;
+
+        uwsgi_param         UWSGI_PYHOME    /home/pi/.conda/envs/myroot;
+        uwsgi_param         UWSGI_CHDIR     /home/pi/.conda/envs/myroot/lib/python3.4/site-packages;
+        uwsgi_param         UWSGI_MODULE    /home/pi/.conda/envs/myroot/lib/python3.4/site-packages/enerpiweb/__main__.py;
+        uwsgi_param         UWSGI_CALLABLE  application;
+        uwsgi_read_timeout 300;
+    }
+}
