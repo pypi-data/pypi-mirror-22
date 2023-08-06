@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Examples &mdash; docs 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="docs 1.0 documentation" href="index.html" />
+    <link rel="next" title="pytac package" href="pytac.html" />
+    <link rel="prev" title="Python Toolkit for Accelerator Controls" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="print-bpm-pvs-along-with-s-position">
+<h2>Print BPM pvs along with s position<a class="headerlink" href="#print-bpm-pvs-along-with-s-position" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Import &#8216;pytac&#8217;:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytac.load_csv</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytac.epics</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Initialize the VMX mode:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span> <span class="o">=</span> <span class="n">pytac</span><span class="o">.</span><span class="n">load_csv</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;VMX&#39;</span><span class="p">,</span> <span class="n">pytac</span><span class="o">.</span><span class="n">epics</span><span class="o">.</span><span class="n">EpicsControlSystem</span><span class="p">())</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Version 1: Get the BPM elements:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">bpms</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">get_elements</span><span class="p">(</span><span class="s">&#39;BPM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Print the values of the readback pvs on the b1 field:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">bpm</span> <span class="ow">in</span> <span class="n">bpms</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="k">print</span><span class="p">(</span><span class="n">bpm</span><span class="o">.</span><span class="n">get_pv_name</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="s">&#39;readback&#39;</span><span class="p">),</span> <span class="n">bpm</span><span class="o">.</span><span class="n">get_pv_name</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="s">&#39;readback&#39;</span><span class="p">),</span> <span class="s">&#39;S position&#39;</span><span class="p">,</span> <span class="n">lattice</span><span class="o">.</span><span class="n">get_s</span><span class="p">(</span><span class="n">bpm</span><span class="p">))</span>
+<span class="go">(&#39;SR01C-DI-EBPM-01:SA:X&#39;, &#39;SR01C-DI-EBPM-01:SA:Y&#39;, &#39;S position&#39;, 4.38)</span>
+<span class="go">(&#39;SR01C-DI-EBPM-02:SA:X&#39;, &#39;SR01C-DI-EBPM-02:SA:Y&#39;, &#39;S position&#39;, 8.806500000000002)</span>
+<span class="go">(&#39;SR01C-DI-EBPM-03:SA:X&#39;, &#39;SR01C-DI-EBPM-03:SA:Y&#39;, &#39;S position&#39;, 11.374000000000002)</span>
+<span class="go">(&#39;SR01C-DI-EBPM-04:SA:X&#39;, &#39;SR01C-DI-EBPM-04:SA:Y&#39;, &#39;S position&#39;, 12.559000000000005)</span>
+<span class="go">(&#39;SR01C-DI-EBPM-05:SA:X&#39;, &#39;SR01C-DI-EBPM-05:SA:Y&#39;, &#39;S position&#39;, 14.942500000000006)...</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>Version 2 - to get the pv name of each bpm:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span><span class="o">.</span><span class="n">get_family_pvs</span><span class="p">(</span><span class="s">&#39;BPM&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="s">&#39;readback&#39;</span><span class="p">)</span>
+<span class="go">[&#39;SR01C-DI-EBPM-01:SA:X&#39;,</span>
+<span class="go">&#39;SR01C-DI-EBPM-02:SA:X&#39;,</span>
+<span class="go">&#39;SR01C-DI-EBPM-03:SA:X&#39;</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span><span class="o">.</span><span class="n">get_family_pvs</span><span class="p">(</span><span class="s">&#39;BPM&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="s">&#39;readback&#39;</span><span class="p">)</span>
+<span class="go">[&#39;SR01C-DI-EBPM-01:SA:Y&#39;,</span>
+<span class="go">&#39;SR01C-DI-EBPM-02:SA:Y&#39;,</span>
+<span class="go">&#39;SR01C-DI-EBPM-03:SA:Y&#39;,</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span><span class="o">.</span><span class="n">get_family_s</span><span class="p">(</span><span class="s">&#39;BPM&#39;</span><span class="p">)</span>
+<span class="go">[4.38,</span>
+<span class="go"> 8.806500000000002,</span>
+<span class="go"> 11.374000000000002,</span>
+<span class="go"> ...</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="get-the-pv-value-from-the-quad-elements">
+<h2>Get the pv value from the quad elements<a class="headerlink" href="#get-the-pv-value-from-the-quad-elements" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Import &#8216;pytac&#8217;</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytac</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Initialize the VMX mode</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span> <span class="o">=</span> <span class="n">pytac</span><span class="o">.</span><span class="n">load_csv</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;VMX&#39;</span><span class="p">,</span> <span class="n">pytac</span><span class="o">.</span><span class="n">epics</span><span class="o">.</span><span class="n">EpicsControlSystem</span><span class="p">())</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Version 1: Get the Quad elements and print their readback values on the b1 field:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">quads</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">get_elements</span><span class="p">(</span><span class="s">&#39;QUAD&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">quad</span> <span class="ow">in</span> <span class="n">quads</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="k">print</span><span class="p">(</span><span class="n">quad</span><span class="o">.</span><span class="n">get_pv_value</span><span class="p">(</span><span class="s">&#39;b1&#39;</span><span class="p">,</span> <span class="s">&#39;readback&#39;</span><span class="p">))</span>
+<span class="go">71.3240509033</span>
+<span class="go">129.351394653</span>
+<span class="go">98.2537231445</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Version 2: Print the quad pv values on the b1 field using the lattice. This is more efficient:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span><span class="o">.</span><span class="n">get_family_values</span><span class="p">(</span><span class="s">&#39;QUAD&#39;</span><span class="p">,</span> <span class="s">&#39;b1&#39;</span><span class="p">,</span> <span class="s">&#39;readback&#39;</span><span class="p">)</span>
+<span class="go">[71.32496643066406,</span>
+<span class="go"> 129.35191345214844,</span>
+<span class="go"> 98.25287628173828,</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="print-pv-names-to-file">
+<h2>Print pv names to file<a class="headerlink" href="#print-pv-names-to-file" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Import &#8216;pytac&#8217; and epics:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytac.load_csv</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytac.epics</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Initialize the VMX mode:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span> <span class="o">=</span> <span class="n">pytac</span><span class="o">.</span><span class="n">load_csv</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;VMX&#39;</span><span class="p">,</span> <span class="n">pytac</span><span class="o">.</span><span class="n">epics</span><span class="o">.</span><span class="n">EpicsControlSystem</span><span class="p">())</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Version 1: Get the Quad elements individually:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">q1b</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">get_elements</span><span class="p">(</span><span class="s">&#39;Q1B&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Print the pvs to file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;elements_in_families.txt&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_file</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="k">for</span> <span class="n">quad</span> <span class="ow">in</span> <span class="n">q1b</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>      <span class="n">pv_name</span> <span class="o">=</span> <span class="n">quad</span><span class="o">.</span><span class="n">get_pv_name</span><span class="p">(</span><span class="s">&#39;b1&#39;</span><span class="p">,</span> <span class="s">&#39;readback&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span>      <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;{}</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pv_name</span><span class="p">))</span>
+<span class="go">SR01A-PC-Q1B-10</span>
+<span class="go">SR03A-PC-Q1B-01</span>
+<span class="go">SR03A-PC-Q1B-10</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Version 2: Get the Quad elements using the lattice:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;elements_in_families.txt&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_file</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">get_family_pvs</span><span class="p">(</span><span class="s">&#39;Q1B&#39;</span><span class="p">,</span> <span class="s">&#39;b1&#39;</span><span class="p">,</span> <span class="s">&#39;readback&#39;</span><span class="p">)))</span>
+<span class="go">[&#39;SR01A-PC-Q1B-10:I&#39;, &#39;SR03A-PC-Q1B-01:I&#39;, &#39;SR03A-PC-Q1B-10:I&#39;]</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Examples</a><ul>
+<li><a class="reference internal" href="#print-bpm-pvs-along-with-s-position">Print BPM pvs along with s position</a></li>
+<li><a class="reference internal" href="#get-the-pv-value-from-the-quad-elements">Get the pv value from the quad elements</a></li>
+<li><a class="reference internal" href="#print-pv-names-to-file">Print pv names to file</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Python Toolkit for Accelerator Controls</a></li>
+      <li>Next: <a href="pytac.html" title="next chapter">pytac package</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/examples.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Will Rogers, Razvan Vasile.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      
+      |
+      <a href="_sources/examples.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pytac.device &mdash; docs 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="docs 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for pytac.device</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">pytac.exceptions</span> <span class="kn">import</span> <span class="n">PvException</span>
+<span class="kn">import</span> <span class="nn">pytac</span>
+
+
+<div class="viewcode-block" id="Device"><a class="viewcode-back" href="../../pytac.html#pytac.device.Device">[docs]</a><span class="k">class</span> <span class="nc">Device</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cs</span><span class="p">,</span> <span class="n">rb_pv</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sp_pv</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A device attached on an element.</span>
+
+<span class="sd">        Contains a control system, readback and setpoint pvs. A readback</span>
+<span class="sd">        or setpoint pv is required when creating a device otherwise a</span>
+<span class="sd">        PvException is raised. The device is enabled by default.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            cs (ControlSystem): Control system object used to get and set</span>
+<span class="sd">                the value of a pv.</span>
+<span class="sd">            rb_pv (string): A readback pv. This value cannot be changed.</span>
+<span class="sd">            sp_pv (string): A setpoint pv. This value can be read and also</span>
+<span class="sd">                changed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rb_pv</span> <span class="o">=</span> <span class="n">rb_pv</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sp_pv</span> <span class="o">=</span> <span class="n">sp_pv</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cs</span> <span class="o">=</span> <span class="n">cs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enabled</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="n">rb_pv</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">rb_pv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">sp_pv</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">sp_pv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PvException</span><span class="p">(</span><span class="s">&quot;Readback or setpoint pvs need to be given&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Device.is_enabled"><a class="viewcode-back" href="../../pytac.html#pytac.device.Device.is_enabled">[docs]</a>    <span class="k">def</span> <span class="nf">is_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check whether an device is enabled or disabled.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            boolean: Represents whether an device is enabled or disabled.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_enabled</span>
+</div>
+<div class="viewcode-block" id="Device.set_enabled"><a class="viewcode-back" href="../../pytac.html#pytac.device.Device.set_enabled">[docs]</a>    <span class="k">def</span> <span class="nf">set_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable or disable an device.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            enabled (boolean): Set whether an device is disabled or enabled.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enabled</span> <span class="o">=</span> <span class="n">enabled</span>
+</div>
+<div class="viewcode-block" id="Device.put_value"><a class="viewcode-back" href="../../pytac.html#pytac.device.Device.put_value">[docs]</a>    <span class="k">def</span> <span class="nf">put_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the value of a pv.</span>
+
+<span class="sd">        If not setpoint pv exists a PvException is raised.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            value(Number): The value to set on the pv.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            PvException: An exception occured when no setpoint pv exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Not sure if this method will need a handle flag to set</span>
+        <span class="c"># an initial value for readback pvs. Suppose not:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_pv</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cs</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sp_pv</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PvException</span><span class="p">(</span><span class="s">&quot;&quot;&quot;This device {0} has no setpoint pv.&quot;&quot;&quot;</span>
+                              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="Device.get_value"><a class="viewcode-back" href="../../pytac.html#pytac.device.Device.get_value">[docs]</a>    <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read the value of a readback or setpoint pv.</span>
+
+<span class="sd">        If neither readback or setpoint pvs exist then a PvException is raised.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            handle(string): Handle used to get the value off a readback or setpoint</span>
+<span class="sd">                pv.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Number: The value off the pv.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            PvException: In case the requested pv doesn&#39;t exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">handle</span> <span class="o">==</span> <span class="n">pytac</span><span class="o">.</span><span class="n">RB</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">rb_pv</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rb_pv</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">handle</span> <span class="o">==</span> <span class="n">pytac</span><span class="o">.</span><span class="n">SP</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_pv</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sp_pv</span><span class="p">)</span>
+
+        <span class="k">raise</span> <span class="n">PvException</span><span class="p">(</span><span class="s">&quot;&quot;&quot;This device {0} has no {1} pv.&quot;&quot;&quot;</span>
+                          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">handle</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="Device.get_pv_name"><a class="viewcode-back" href="../../pytac.html#pytac.device.Device.get_pv_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_pv_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handle</span><span class="o">=</span><span class="s">&#39;*&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a pv name on a specified handle.</span>
+
+<span class="sd">        If no handle is specified, then both pvs are returned.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            handle(string): The readback or setpoint handle to be returned.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            string: A readback or setpoint pv.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">handle</span> <span class="o">==</span> <span class="s">&#39;*&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">rb_pv</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_pv</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">handle</span> <span class="o">==</span> <span class="n">pytac</span><span class="o">.</span><span class="n">RB</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rb_pv</span>
+        <span class="k">elif</span> <span class="n">handle</span> <span class="o">==</span> <span class="n">pytac</span><span class="o">.</span><span class="n">SP</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_pv</span>
+</div>
+<div class="viewcode-block" id="Device.get_cs"><a class="viewcode-back" href="../../pytac.html#pytac.device.Device.get_cs">[docs]</a>    <span class="k">def</span> <span class="nf">get_cs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cs</span>
+
+</div></div>
+<div class="viewcode-block" id="PvEnabler"><a class="viewcode-back" href="../../pytac.html#pytac.device.PvEnabler">[docs]</a><span class="k">class</span> <span class="nc">PvEnabler</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pv</span><span class="p">,</span> <span class="n">enabled_value</span><span class="p">,</span> <span class="n">cs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A PvEnabler class to check whether a pv is enabled.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pv(string): The string representation of the pv.</span>
+<span class="sd">            enabled_value(string): A pre-defined value telling when the pv</span>
+<span class="sd">                is enabled.</span>
+<span class="sd">            cs: Control system object used to determine if a pv is enabled.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pv</span> <span class="o">=</span> <span class="n">pv</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_value</span> <span class="o">=</span> <span class="n">enabled_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cs</span> <span class="o">=</span> <span class="n">cs</span>
+
+    <span class="k">def</span> <span class="nf">__nonzero__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Used to override the &#39;if object&#39; clause.</span>
+
+<span class="sd">        Support for Python 2.7.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            boolean: Determining whether a device is enabled or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pv_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pv</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_value</span> <span class="o">==</span> <span class="n">pv_value</span>
+
+    <span class="k">def</span> <span class="nf">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Used to override the &#39;if object&#39; clause.</span>
+
+<span class="sd">        Support for Python 3.x.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            boolean: Determining whether a device is enabled or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__nonzero__</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Will Rogers, Razvan Vasile.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
