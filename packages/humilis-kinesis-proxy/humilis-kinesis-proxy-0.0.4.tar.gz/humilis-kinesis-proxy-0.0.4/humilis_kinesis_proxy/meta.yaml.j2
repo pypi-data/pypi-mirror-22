@@ -1,0 +1,34 @@
+---
+meta:
+    description:
+        AWS API Gateway proxy to AWS Kinesis
+
+    parameters:
+        stream_name:
+            description: The name of the target Kinesis stream
+            value:
+
+        partition_key_path:
+            description:
+                A global value for partition_key_path. Overriden at the path level.
+            value:
+                # Works well with Polku's SDKs
+                anonymousId
+
+        partition_key:
+            description:
+                A global value for the partition key. Overriden at the path level.
+            value:
+
+        sent_at_path:
+            description:
+                A global value for sent_at_ts_path. Overriden at the path level.
+            value:
+                sentAt
+
+        api_resources:
+            description: A list of API resources
+            value:
+                - path: post
+                  partition_key_path: userId
+                  sent_at_path: sentAt
