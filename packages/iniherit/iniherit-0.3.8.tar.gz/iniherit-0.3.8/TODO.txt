@@ -1,0 +1,54 @@
+* add travis-ci support to test py2 & py3...
+
+* What about if the per-section inheritance references settings in the
+  DEFAULT section of the inherited file?... perhaps a flag to indicate
+  how to handle this?...
+
+* There should be a command-line tool that converts iniherit-enabled
+  INI files to flat "standard" INI files.
+
+* Implement `write`... this could be done by tracking which config
+  items are "dirty", and only saving those to the base INI...
+
+* Allow ENV and SUPER default values to have special characters, e.g.:
+
+    %(ENV:VARNAME:-%(defval)s)s
+
+  or
+
+    %(ENV:VARNAME:-%(defval\)s)s
+
+* Make "%inherit" expansion support *recursive* iniherit-based expansion...
+  eg it currently supports::
+
+    value    = foo
+    %inherit = configs/%(value)s.ini configs/%(ENV:VALUE)s.ini
+
+  but not::
+
+    value    = foo
+    envval   = %(ENV:VALUE)s
+    %inherit = configs/%(value)s.ini configs/%(envval)s.ini
+
+* Allow quoting directly in %inherit during expansion, eg so that this::
+
+    %inherit  = file.ini %(list1)s "%(list2)s"
+    list1     = file2.ini file3.ini
+    list2     = other file with spaces.ini
+
+  loads the files:
+
+    - "file.ini"
+    - "file2.ini"
+    - "file3.ini"
+    - "other file with spaces.ini"
+
+  instead of:
+
+    - "file.ini"
+    - "file2.ini"
+    - "file3.ini"
+    - "other"
+    - "file"
+    - "with"
+    - "spaces.ini"
