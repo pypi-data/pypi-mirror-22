@@ -1,0 +1,28 @@
+diff --git a/pytest_dependency.py b/pytest_dependency.py
+index 82d15ca..568ed27 100644
+--- a/pytest_dependency.py
++++ b/pytest_dependency.py
+@@ -17,7 +17,7 @@ class DependencyItemStatus(object):
+     Phases = ('setup', 'call', 'teardown')
+ 
+     def __init__(self):
+-        self.results = { w:None for w in self.Phases }
++        self.results = dict([ (w,None) for w in self.Phases ])
+ 
+     def __str__(self):
+         l = ["%s: %s" % (w, self.results[w]) for w in self.Phases]
+diff --git a/setup.py b/setup.py
+index 7ee81ac..d0dd0bf 100755
+--- a/setup.py
++++ b/setup.py
+@@ -1,10 +1,6 @@
+ #! /usr/bin/python
+ 
+ import sys
+-if sys.version_info < (2, 7):
+-    raise RuntimeError("You are using Python %s.\n"
+-                       "Please apply python2_6.patch first." 
+-                       % sys.version.split()[0])
+ from setuptools import setup
+ import pytest_dependency
+ 
