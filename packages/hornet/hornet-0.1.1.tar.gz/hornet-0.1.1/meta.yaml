@@ -1,0 +1,25 @@
+{% set data = load_setup_py_data() %}
+package:
+  name: hornet
+  version: {{ data.get('version') }}
+
+source:
+  path: ./
+
+build:
+  string: py{{ CONDA_PY }}_{{ ARCH }}
+  number: {{ environ.get('GIT_BUILD_STR') }}
+  include_recipe: False
+  script: python setup.py install
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+
+about:
+  home: {{ data.get('url') }}
+  license: {{ data.get('license') }}
+  summary: {{ data.get('description') }}
