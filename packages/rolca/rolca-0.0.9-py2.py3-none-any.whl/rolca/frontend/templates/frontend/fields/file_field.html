@@ -1,0 +1,19 @@
+{% load i18n %}
+<div class="row">
+    <div id="id_{{ bound_field.html_name }}_container"
+         class="input-field file-field col s12{% if field.required %} required{% endif %}{% if bound_field.errors %} has-error{% endif %}">
+      <div class="btn {{ color }}">
+          <span>{% trans 'Select' %}</span>
+          <input type="file" name="{{ bound_field.html_name }}"/>
+      </div>
+      <div class="file-path-wrapper">
+        <input id="id_{{ bound_field.html_name }}"
+               type="text"
+               class="file-path"
+               placeholder="{{ bound_field.label }}"
+               {% if bound_field.value %}value="{{ bound_field.value }}"{% endif %}>
+      </div>
+      {% include  'frontend/fields/includes/help_text.html' %}
+      {% include  'frontend/fields/includes/field_error.html' %}
+    </div>
+</div>
