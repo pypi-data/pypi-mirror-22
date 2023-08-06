@@ -1,0 +1,78 @@
+Unix: |Unix Build Status| Windows: |Windows Build Status|\ Metrics:
+|Coverage Status| |Scrutinizer Code Quality|\ Usage: |PyPI Version|
+|PyPI Downloads|
+
+Overview
+========
+
+Desktop client for https://memecomplete.com.
+
+Setup
+=====
+
+Requirements
+------------
+
+-  Python 3.6+
+-  SpeechRecognition requirements:
+   https://github.com/Uberi/speech_recognition#requirements
+-  macOS: ``$ brew install flac portaudio swig``
+
+Installation
+------------
+
+Install the client with pip:
+
+.. code:: sh
+
+    $ pip install memecomplete-desktop
+
+or directly from the source code:
+
+.. code:: sh
+
+    $ git clone https://github.com/jacebrowning/memecomplete-desktop.git
+    $ cd memecomplete-desktop
+    $ python setup.py install
+
+Usage
+=====
+
+Launch the GUI from the command-line:
+
+.. code:: sh
+
+    $ memecomplete
+
+.. |Unix Build Status| image:: http://img.shields.io/travis/jacebrowning/memecomplete-desktop/master.svg
+   :target: https://travis-ci.org/jacebrowning/memecomplete-desktop
+.. |Windows Build Status| image:: https://img.shields.io/appveyor/ci/jacebrowning/memecomplete-desktop/master.svg
+   :target: https://ci.appveyor.com/project/jacebrowning/memecomplete-desktop
+.. |Coverage Status| image:: http://img.shields.io/coveralls/jacebrowning/memecomplete-desktop/master.svg
+   :target: https://coveralls.io/r/jacebrowning/memecomplete-desktop
+.. |Scrutinizer Code Quality| image:: http://img.shields.io/scrutinizer/g/jacebrowning/memecomplete-desktop.svg
+   :target: https://scrutinizer-ci.com/g/jacebrowning/memecomplete-desktop/?branch=master
+.. |PyPI Version| image:: http://img.shields.io/pypi/v/memecomplete-desktop.svg
+   :target: https://pypi.python.org/pypi/memecomplete-desktop
+.. |PyPI Downloads| image:: http://img.shields.io/pypi/dm/memecomplete-desktop.svg
+   :target: https://pypi.python.org/pypi/memecomplete-desktop
+
+Revision History
+================
+
+0.2 (2017/06/12)
+----------------
+
+-  Updated API to use https://memecomplete.com.
+
+0.1.1 (2016/09/14)
+------------------
+
+-  Fixed image loading.
+
+0.1 (2016/09/05)
+----------------
+
+-  Initial release.
+
+
