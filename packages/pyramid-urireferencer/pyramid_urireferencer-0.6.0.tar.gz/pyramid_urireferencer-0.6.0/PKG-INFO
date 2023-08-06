@@ -1,0 +1,84 @@
+Metadata-Version: 1.1
+Name: pyramid_urireferencer
+Version: 0.6.0
+Summary: A pyramid plugin to handle referencing external URIs.
+Home-page: https://github.com/OnroerendErfgoed/pyramid_urireferencer
+Author: Flanders Heritage Agency
+Author-email: ict@onroerenderfgoed.be
+License: UNKNOWN
+Description: pyramid_urireferencer
+        =====================
+        
+        This plugin for pyramid helps in handling references to resources in other
+        applications by allowing querying on references to certain URI's.
+        
+        
+        .. image:: https://travis-ci.org/OnroerendErfgoed/pyramid_urireferencer.png?branch=master
+                :target: https://travis-ci.org/OnroerendErfgoed/pyramid_urireferencer
+        .. image:: https://coveralls.io/repos/OnroerendErfgoed/pyramid_urireferencer/badge.png?branch=master
+                :target: https://coveralls.io/r/OnroerendErfgoed/pyramid_urireferencer
+        
+        .. image:: https://badge.fury.io/py/pyramid_urireferencer.png
+                :target: http://badge.fury.io/py/pyramid_urireferencer
+        
+        Please consult the documentatation for `UriRegistry
+        <http://uriregistry.readthedocs.org/en/latest/>`_ for more information on how
+        to use this library.
+        
+        
+        0.6.0 (2017-06-08)
+        ------------------
+        
+        - Add some extra logging. (#13)
+        - Add required function :meth:`get_uri` to the :class:`AbstractReferencer` to determine the uri of the current request (#7 and #8)
+        
+        
+        0.5.0 (2016-09-28)
+        ------------------
+        
+        - Add support for python 3.5
+        - Some minor doc fixes
+        - Changed an edge case where `items` or `applications` response attributes could
+          be `None` so that they are now always empty lists. (#6)
+        - Updated error message and added JSON error message when a backend application can't be reached (#9) and when a resource can't be deleted (#10)
+        
+        0.4.0 (2015-07-10)
+        ------------------
+        
+        - Added module `protected_resources` containing a `protected_operation` decorator function.
+        
+        0.3.0 (2015-06-25)
+        ------------------
+        
+        - Added uri and request to references parameters
+        - Included renderer in request config
+        - Removed exception in get_references view
+        - Fixed ApplicationResponse title from json
+        
+        0.2.0 (2015-06-07)
+        ------------------
+        
+        - Changed ApplicationResponse.url to service_url.
+        - Cleaned up some documentation.
+        - Added an AbstractReferencer that has no implementation whatsoever.
+        - Added Python Wheel support
+        - Make sure that the uri parameter is properly urlencoded.
+        
+        
+        0.1.0 (2015-05-21)
+        ------------------
+        
+        -  Initial version
+        
+Keywords: web wsgi pyramid uri REST references
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Framework :: Pyramid
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
