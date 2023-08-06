@@ -1,0 +1,53 @@
+Metadata-Version: 1.1
+Name: torcms-app
+Version: 0.0.1
+Summary: TorCMS apps.
+Home-page: https://www.yunsuan.org
+Author: bukun
+Author-email: bukun@osgeo.cn
+License: MIT License
+Description: # yunsuan
+        
+        ## 安装
+        
+        源代码部署。
+        
+        ## 外部库的安装
+        
+        外部库都放在 static/alien 下面。 这个文件夹内容是不在 git 代码管理中的。
+        
+        ### CodeMirror
+        
+        编辑器： codemirror
+        
+        使用cdn即可。
+        
+        http://www.bootcdn.cn/codemirror/
+        
+        
+        ##  首次安装
+        
+        
+        1. 运行
+        
+        
+        ## Database
+        
+            \set dbname yunsuan
+            CREATE USER :dbname WITH PASSWORD '131322' ; 
+            CREATE DATABASE :dbname OWNER :dbname ;
+            GRANT ALL PRIVILEGES ON DATABASE :dbname to :dbname ;
+            \c :dbname ;
+            create extension hstore;
+            \q
+        
+Keywords: torcms,tornado
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
