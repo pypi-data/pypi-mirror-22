@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <title>WebViewHandler Logs</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        pre {
+            clear: both;
+            box-sizing: border-box;
+            position: relative;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 4px 2px 8px #090909;
+            padding: 12px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            font-family: "Courier New", Courier, monospace;
+            background: #212121;
+            color: #63de00;
+            margin-bottom: 1ex;
+            height: 600px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+<script>
+    var lastline = null;
+    var line_count = function (elem) {
+        return elem.text().split('\n').length;
+    };
+    var remove_top_line = function (elem) {
+        lines = elem.text().split('\n').slice(1);
+        elem.text(lines.join('\n'));
+    }
+    var getlogs = function () {
+        $.getJSON('/getlogs', {
+            lastline: lastline
+        }).done(function (data) {
+            var atBottom = false;
+            var elem = $('#logcontents');
+            if (elem[0].scrollHeight - elem.scrollTop() <= elem.outerHeight()+20) {
+                atBottom = true;
+            }
+            elem.append(data['logs']);
+            if (atBottom) {
+                elem.animate({scrollTop: elem.prop("scrollHeight")}, 1000);
+            }
+            lastline = data['last_line_hash'];
+            while (line_count(elem) > 1000) {
+                remove_top_line(elem);
+            }
+
+        }).always(function () {
+            getlogs();
+        });
+    };
+    getlogs();
+</script>
+<pre id="logcontents"></pre>
+</body>
+</html>
