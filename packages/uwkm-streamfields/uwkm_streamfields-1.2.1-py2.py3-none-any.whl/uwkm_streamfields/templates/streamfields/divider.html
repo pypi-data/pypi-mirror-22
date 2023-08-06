@@ -1,0 +1,10 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+
+<div class="col-md-12">
+	{% for item in self %}
+		<hr style="border-top-color: {{ item.border_color }}; border-top-width: {{ item.border_width }}px;">
+	{% endfor %}
+</div>
