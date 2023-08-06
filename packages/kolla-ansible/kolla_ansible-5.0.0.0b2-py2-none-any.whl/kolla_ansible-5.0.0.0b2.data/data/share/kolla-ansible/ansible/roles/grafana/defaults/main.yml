@@ -1,0 +1,42 @@
+---
+project_name: "grafana"
+
+grafana_services:
+  grafana:
+    container_name: grafana
+    group: grafana
+    enabled: true
+    image: "{{ grafana_image_full }}"
+    volumes:
+      - "{{ node_config_directory }}/grafana/:{{ container_config_directory }}/:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+      - "grafana:/var/lib/grafana/"
+      - "kolla_logs:/var/log/kolla/"
+
+####################
+# Database
+####################
+grafana_database_name: "grafana"
+grafana_database_user: "grafana"
+grafana_database_address: "{{ kolla_internal_fqdn }}:{{ database_port }}"
+
+####################
+# Datasource
+####################
+grafana_data_source:
+  isDefault: yes
+  database: "telegraf"
+  user: admin
+  password: "{{ grafana_admin_password }}"
+  name: "telegraf"
+  type: "influxdb"
+  url: "{{ internal_protocol }}://{{ api_interface_address }}:{{ influxdb_http_port }}"
+  access: "proxy"
+  basicAuth: false
+
+##########
+# Grafana
+##########
+grafana_image: "{{ docker_registry ~ '/' if docker_registry else '' }}{{ docker_namespace }}/{{ kolla_base_distro }}-{{ kolla_install_type }}-grafana"
+grafana_tag: "{{ openstack_release }}"
+grafana_image_full: "{{ grafana_image }}:{{ grafana_tag }}"
