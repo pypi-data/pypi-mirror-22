@@ -1,0 +1,34 @@
+SYNOPSIS
+========
+
+    Invoke registration.
+
+DESCRIPTION
+===========
+
+    We reveived request to register your account and accepted it.
+    Here are code to register:
+
+        $reg_code
+
+    You have 1 hour to use that code. After that, code is invaild.
+    Your code is valid before:
+
+        $expired_date
+
+    If you don't confirm code with us before expired date, then this account
+    with name or email may be register by other users.
+
+METADATA
+========
+
+    Account             : $acc_name
+    Email               : $acc_email
+    Remote              : $remote_addr
+    Date                : $datetime_now
+
+AUTHOR
+======
+
+    $root_name <$root_email>
+    $app_name

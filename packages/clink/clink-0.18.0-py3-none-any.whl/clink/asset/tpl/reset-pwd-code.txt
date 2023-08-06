@@ -1,0 +1,40 @@
+SYNOPSIS
+========
+
+    Invoke reset password code.
+
+DESCRIPTION
+===========
+
+    We reveived request to reset password and peform successfully.
+    Here are code to reset your password:
+
+        $reset_pwd_code
+
+    You have 1 hour to use that code. After that, code is invaild.
+    Your code is valid before:
+
+        $expired_date
+
+    All of codes which grants before this code was deleted. You can't
+    use them.
+
+WARNING
+=======
+
+    If you didn't perform this action, report to us. May be your account are
+    under attacking.
+
+
+METADATA
+========
+
+    Account             : $acc_name
+    Remote              : $remote_addr
+    Date                : $datetime_now
+
+AUTHOR
+======
+
+    $root_name <root_email>
+    $app_name
