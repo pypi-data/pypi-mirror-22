@@ -1,0 +1,30 @@
+Metadata-Version: 1.0
+Name: admanagerplusclient
+Version: 0.0.5
+Summary: A client for interacting with the Ad Manager Plus Platform.
+Home-page: http://pypi.python.org/pypi/admanagerplusclient/
+Author: Jim Barcelona
+Author-email: barce@me.com
+License: LICENSE
+Description: # brightrolladclient
+        Client for the Brightroll Ad DSP
+        
+        Sample code:
+        
+        
+        from brightrolladclient import BrightRollClient
+        client = BrightRollClient()
+        client.show_config()
+        client.set_payload()
+        client.encode_payload()
+        client.set_oauth_url()
+        client.set_payload_url()
+        client.set_headers()
+        client.get_token()
+        client.get_organizations()
+        client.get_campaigns(org_id)
+        client.get_campaigns_by_advertiser(org_id, ad_id)
+        client.get_campaigns_by_advertiser_by_campaign(org_id, ad_id, campaign_id)
+        
+        
+Platform: UNKNOWN
