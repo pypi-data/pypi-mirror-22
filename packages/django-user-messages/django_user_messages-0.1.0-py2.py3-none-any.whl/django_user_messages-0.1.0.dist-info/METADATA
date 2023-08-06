@@ -1,0 +1,35 @@
+Metadata-Version: 2.0
+Name: django-user-messages
+Version: 0.1.0
+Summary: Offline addon for django.contrib.messages
+Home-page: http://github.com/matthiask/django-user-messages/
+Author: Matthias Kestenholz
+Author-email: mk@feinheit.ch
+License: MIT License
+Platform: OS Independent
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+
+================================================================
+django-user-messages - Offline addon for django.contrib.messages
+================================================================
+
+.. image:: https://travis-ci.org/matthiask/django-user-messages.svg?branch=master
+   :target: https://travis-ci.org/matthiask/django-user-messages
+
+
+Usage
+=====
+
+- Install ``django-user-messages`` using pip into your virtualenv.
+- Add ``user_messages.middleware.user_messages_middleware`` to your
+  ``MIDDLEWARE`` **after** ``MessagesMiddleware``.
+- Add ``user_messages`` to ``INSTALLED_APPS`` and run ``migrate``.
+- Use ``user_messages.api`` as you would use
+  ``django.contrib.messages``.
+
+
