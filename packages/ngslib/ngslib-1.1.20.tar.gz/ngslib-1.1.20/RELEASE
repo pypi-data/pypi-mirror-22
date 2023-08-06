@@ -1,0 +1,83 @@
+ngslib 1.1.20 update:
+	BedList: fix bug for merge() function.
+	Bed:__add__() bed.score = 0 if bed.length()==0
+	setup.py:
+		add "--without-kent" option. If BigWig and TwoBit function is not required, install with "--without-kent".
+	__init__.py:
+		check if wWigIO and wTwoBitIO can be loaded. If not, run without Kent support.
+	GeneBed:
+		fetchDB: return chain(gts) => return chain(*gts)
+
+ngslib 1.1.19 update:
+	Utils: 
+		add naturalkeys to sort strings with numbers. For chroms: sort to "chr1 chr2 ... chr10 chr11 ..." instead of "chr1 chr10 chr11 ... chr19 chr2 chr20"
+		modify touchtime function by adding the default output stream to "sys.stderr", and touchtime function will print it, instead of returning the string.			
+	GeneBed: 
+		toBed12 add txstart and txstop columns
+	misc.py: 
+		ExcelWriter to return a writer object for pandas to write in. Append is enabled.
+	setup.py: 
+		check os.system('make') return code. Stop installation if it is not 0.
+	wGetTSS.py: 
+		set ftype to 'guess'
+	wplot.py: 
+		Add Algorithms class. Add getCTable to Algorithms class.
+	wplot.py: 
+		Add fourWayVenn plot class to generate 4 way Venn diagram.
+	genome:
+		Add hg38 chrom sizes
+	Bed3:
+		add __or__, __and__ function for operators | and &.
+		update __sub__ function to return left and right parts after substraction.
+
+ngslib 1.1.18 update:
+	GeneBed: 
+		getUTR5/3 bug fix.
+	wXLS2TXT.py: 
+		basename bug fix.
+	mFile: 
+		add flush() function
+
+ngslib 1.1.17 update:
+	ngslib 1.1.15 and 1.1.16 are deleted for submission bugs.
+
+ngslib 1.1.16 update:(deleted)
+	Wrong submission.
+
+ngslib 1.1.15 update:(deleted)
+    Add __eq__ function to Bed3 class. Note __eq__ only checks the chrom, start and stop.
+	Set default converter as IO.converters[self.ftype] in TabixFile.
+	GeneBed: 
+		Add functions: genomic_position(pos) and transcript_position(pos) to convert genomic position from/to transcriptomic position.
+	GeneBed: 
+		Add function: toBed12(self)
+	Utils: 
+		Add non-canonical TIS table in transTables.
+
+ngslib 1.1.14 update:
+	wBedToFasta.py: 
+		when 'stdin' is used, input file format should be specified. 
+	IO.guess: 
+		raise error when stdin is used and file type is not specified, or input file has no extension.
+	BedList.merge: 
+		fix bugs. Allow merge for adjacent beds.
+	GeneBed.truncate: 
+		Allow gene trucation to fit a genomic region.
+
+ngslib 1.1.13 update:
+	wBedToFasta.py: 
+		By default, the program will guess the file format instead of using 'bed' as default.
+	wSamToWig.py:   
+		Allow SAM/BAM format input. Sorting is not necessary.
+	wBamToWig.py:   
+		Replaced by wSamToWig.py
+
+ngslib 1.1.12 update:
+	BigWigFile can fetch items using generator. This avoids huge memory consumption when fetching the whole chromosome.
+
+ngslib 1.1.11 update:
+	GeneBed.fetchDB() returns a DNA instead of string object if fetch from Fasta file. To be consisitent with Bed.fetchDB()
+	Fix bugs in Pipeline.ChIP_Project.
+
+ngslib 1.1.10 update:
+	test if issubclass before adding objects with Bed3 or its derived classes.
