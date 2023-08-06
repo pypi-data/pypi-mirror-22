@@ -1,0 +1,70 @@
+Metadata-Version: 2.0
+Name: markdown-link-style
+Version: 0.2.0b1
+Summary: Switch between inline and footnote link style in markdown documents.
+Home-page: https://git.ricketyspace.net/markdown-link-style
+Author: rsiddharth
+Author-email: s@ricketyspace.net
+License: GNU General Public License version 3 or later
+Keywords: markdown link inline footnote style
+Platform: GNU/Linux
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Documentation
+Classifier: Topic :: Text Processing :: General
+Classifier: Topic :: Utilities
+Requires-Dist: mistune
+
+markdown-link-style
+===================
+
+install
+-------
+
+::
+
+   pip3 install markdown-link-style
+
+source
+------
+
+::
+
+   git clone git://git.ricketyspace.net/markdown-link-style.git
+
+usage
+-----
+
+::
+
+   # footnote style
+
+   ## switch to footnote link style
+   $ mdl-style footnote path/to/document.md
+
+   ## write footnote link style version to another file
+   $ mdl-style footnote path/to/document.md path/to/document-footnote-style.md
+
+   # inline style
+
+   ## switch to inline link style
+   $ mdl-style inline path/to/document.md
+
+   ## write inline link style version to another file
+   $ mdl-style inline path/to/document.md path/to/document-inline-style.md
+
+license
+-------
+
+Under `GNU General Public License version 3 or later`__.
+
+.. _gplv3: https://www.gnu.org/licenses/gpl-3.0-standalone.html
+__ gplv3_
+
+
