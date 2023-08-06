@@ -1,0 +1,29 @@
+{% extends "jobs/base.html" %}
+{% block content %}
+{% if request.user.is_authenticated %}
+<div class="container">
+  <div class="row">
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <tr>
+          <th>Status</th>
+          <th>Work Done</th>
+          <th>Invoice Amount</th>
+        </tr>
+        <tr>
+          <td>{{ job.status }}</td>
+          <td>{{ job.work_done_description }}</td>
+          <td>{{ job.total_invoice_amount|floatformat:"-2" }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+{% else %}
+<h3 style="padding-top:30px;">You have no jobs.</h3>
+{% endif %}
+{% endblock %}
