@@ -1,0 +1,60 @@
+Metadata-Version: 1.1
+Name: cough
+Version: 0.2.1
+Summary: Write COFF object files
+Home-page: https://github.com/d3dave/cough
+Author: David D. Dorfman
+Author-email: d3dave@users.noreply.github.com
+License: MIT
+Description: cough
+        =====
+        
+        A library for building COFF object files.
+        
+        
+        Tutorial
+        --------
+        
+        Start with the ObjectModule class:
+        
+            module = ObjectModule()
+        
+        Now, let's create a '.text' section:
+        
+            section = Section(b'.text', SectionFlags.MEM_EXECUTE)
+        
+        Add a bit of code:
+        
+            section.data = b'\x29\xC0\xC3'  # return 0
+            section.size_of_raw_data = len(section.data)
+        
+        Good enough, let's add it to our module:
+        
+            module.sections.append(section)
+        
+        To make use of that bit of code, we are going to need an exported symbol:
+        
+            main = SymbolRecord(b'main', section_number=1, storage_class=StorageClass.EXTERNAL)
+        
+        Set the value to the offset in the section:
+        
+            main.value = 0
+        
+        And add it to our module:
+        
+            module.symbols.append(main)
+        
+        That's enough, let's write our module to a file:
+        
+            with open('test.obj', 'wb') as obj_file:
+                obj_file.write(module.get_buffer())
+        
+Keywords: coff pe obj build development
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: Microsoft :: Windows
