@@ -1,0 +1,78 @@
+CHANGES
+=======
+
+* Fix argument typo in example configuration
+* Pass on unhandled options
+* Refactor Cli
+* Add more badges
+* metrics baseline in compute-baseline.json
+* Pass on all unhandled options
+* Update getting started guide
+* Add codeship badge to show pypi deployment status
+* give a sample compute baseline
+* bugfix memory report
+* Add support for create new project from different templates
+* improve the regex for matching "cpu"
+* Update documentation
+* bugfix CI failure
+* use the git link to replace qtip\_spec
+* bugfix unixbench report templates
+* Revert "correct arithmetic baseline"
+* update run\_ci.sh
+* correct arithmetic baseline
+* No need to list the other nodes system information
+* Remove "plan" module. Replaced by "project"
+* Add cli-prompts while creating workspace
+* Add support for manually installed (not using installer) OPNFV pod
+* delete unuse code in directory /qtip
+* Add arithmetic metrics
+* delete unuse code in directory legacy
+* Implement sunburst badge for QPI
+* Switch to qtip-cli for ci job
+* Remove prompt for teardown
+* Refactoring workspace related commands to \`project\` group
+* Update readme of running with native \`ansible-playbook\` command
+* Check ssh-agent before running tests. Fail playbook if not running
+* Get rid of \`changed=false\` flag in test result
+* The script for CI
+* delete test scripts which are copied from releng/jjb/qtip
+* Implement setup/run command
+* Fix warning on missing ansible hosts file
+* Set installer and master-host as required options
+* Fix document index error
+* update Dockerfile
+* Remove prompts for options while creating workspace
+* Include index files in master doc
+* remove ansible.cfg.default which is no longer in use
+* Implement qtip workspace create
+* Fix release notes link
+* Update release note to Danube 2.0
+* Copy integration test scripts from releng/jjb/qtip
+* Add user guide about install from source code
+* Allow executing benchmark under non-root user
+* Revert "Merge workspace files into one folder"
+* bugfix: regex node role
+* miss dependencies for ubuntu
+* Add developer guide for framework
+* Add user guide for using ansible-playbook to run QTIP benchmarks
+* Add support for reporting to testapi
+* Add support for result aggregation
+* Include memory metrics to calculation
+* Add dpi metrics to calculation
+* Organize common tasks under qtip-common role
+* Rewrite \`export\_to\_file\` as decorator
+* Add ssl aes metrics in qpi calculation
+* Prompt for variables required for creating workspace
+* Export collected metrics to json as inputs for calculating
+* Support running collect stage only
+* Fix package missing on debian hosts
+* Collect arithmetic metrics from unixbench
+* Save logs before collecting
+* Unify workdir
+* Cleanup metrics report
+* Add support for render a justified output from list and dict
+* Organize \*\*all\*\* tasks into ansible role \`qtip\`
+* Organize results in folder named with pod and current date
+* Rename folders
+* Fix bug on apex
+* correct document of module apex\_generate\_inventory
