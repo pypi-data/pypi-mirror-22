@@ -1,0 +1,30 @@
+filter {
+  if [type] == "talisker" {
+    multiline {
+        pattern => "^%{TIMESTAMP_ISO8601}"
+        negate => true
+        what => "previous"
+    }
+    ruby {
+      code => "
+        if event['message'].length > 20000
+            event.tag 'message truncated'
+            event['message'] = event['message'][0..20000] + '...'
+        end
+      "
+    }
+    grok {
+        patterns_dir => "./patterns"
+        match => {"message"=>"(?m)%{TIMESTAMP_ISO8601:timestamp} %{LOGLEVEL:loglevel} %{MODULE:module} \"%{ESCAPED_QUOTES:logmsg}(\"|(\.\.\.))( ?)%{OPTIONAL_REST_OF_LINE:logfmt}(\n?)%{GREEDYDATA:traceback}"}
+        remove_field => [ "message" ]
+    }
+    kv {
+        source => "logfmt"
+        remove_field => [ "logfmt" ]
+    }
+    date {
+        match => [ "timestamp", "yyyy-MM-dd HH:mm:ss.SSSZ"]
+        remove_field => [ "timestamp" ]
+    }
+  }
+}
