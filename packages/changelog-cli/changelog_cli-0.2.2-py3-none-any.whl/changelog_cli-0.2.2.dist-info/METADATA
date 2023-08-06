@@ -1,0 +1,56 @@
+Metadata-Version: 2.0
+Name: changelog-cli
+Version: 0.2.2
+Summary: Command line interface for managing CHANGELOG.md files
+Home-page: https://github.com/mc706/changelog-cli
+Author: Ryan McDevitt
+Author-email: mcdevitt.ryan@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Documentation
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Topic :: Utilities
+Requires-Dist: click
+Provides-Extra: dev
+Requires-Dist: coverage; extra == 'dev'
+Requires-Dist: invoke; extra == 'dev'
+Requires-Dist: prospector; extra == 'dev'
+Requires-Dist: pypandoc; extra == 'dev'
+Requires-Dist: twine; extra == 'dev'
+Requires-Dist: wheel; extra == 'dev'
+
+Changelog CLI
+=============
+
+|PyPI version| |Build Status| |Code Health| |Coverage Status|
+
+A command line interface for managing your CHANGELOG.md files.
+
+Commands
+--------
+
+``changelog init`` -> Creates a CHANGELOG.md
+
+``changelog (new|change|fix|break) <message>`` -> adds a line to the
+appropriate section
+
+``changelog release --major|minor|patch|suggest)`` -> Cuts a release for
+the changelog, incrementing the version
+
+.. |PyPI version| image:: https://badge.fury.io/py/changelog-cli.svg
+   :target: https://badge.fury.io/py/changelog-cli
+.. |Build Status| image:: https://travis-ci.org/mc706/changelog-cli.svg?branch=master
+   :target: https://travis-ci.org/mc706/changelog-cli
+.. |Code Health| image:: https://landscape.io/github/mc706/changelog-cli/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/mc706/changelog-cli/master
+.. |Coverage Status| image:: https://coveralls.io/repos/github/mc706/changelog-cli/badge.svg?branch=master
+   :target: https://coveralls.io/github/mc706/changelog-cli?branch=master
+
+
