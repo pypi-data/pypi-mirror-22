@@ -1,0 +1,242 @@
+#!/usr/bin/env python
+
+# Python stuff
+import os
+import subprocess
+import sys
+import re
+import time
+import threading
+import unicodedata
+
+# External libraries
+import requests
+from bs4 import BeautifulSoup
+
+
+# Global declarations
+ob = None
+
+
+# Used to copy contents from /tmp folder to root dir if --save is used
+def cleanUpCode():
+    home_dir = os.path.expanduser("~")
+    print 'Copying file to ' + home_dir + '/showtime/ ...'
+    os.system('cp -R /tmp/torrent-stream/*/* ' + home_dir + '/showtime/')
+    print 'File copied successfully!'
+
+
+class Showtime:
+
+    search_URL = None # URL Of the Torrent
+    search_query = None # Input by the user
+    final_search_query = None # Final query formed after formatting
+
+    magnet_link_for_video = None # Link for the video to stream content
+    name_of_the_video = None # Title of the content
+    list_magnet_link_for_video = [] # Links for the videos to stream content used in --choice
+    list_size_of_video = [] # Sizes for the videos to stream content used in --choice
+
+    src = None # Src of the scraped page
+    choice_input = '' # Store choice of user in --choice mode
+
+    improved_search_query = None # Improves the wrong search
+    improve_option = None # check whether user wants to improve or not
+    
+    choice = False # To find whether --choice flag is used or not
+    save = False # To find whether --save flag is used or not
+    flags = False # Indicate whether any flag is included or not
+
+    def __init__(self):
+        os.system('rm -rf /tmp/torrent-stream/') # Clear cached content
+        self.clearScreen()
+        self.testRequirements()
+        self.search_URL = 'https://thepiratebay.org/search/'
+        self.getInput()
+
+    def checkSaveFlag(self):
+        return self.save
+
+    def getInput(self):
+        if '--choice' in sys.argv:
+            self.choice = True
+            self.flags = True
+
+        if '--save' in sys.argv:
+            self.save = True
+            self.flags = True
+
+        if self.flags:
+            for _name in reversed(sys.argv):
+                if _name.startswith('--'):
+                    sys.argv.pop()
+
+        if re.match('s[0-9]+e[0-9]+', sys.argv[-1]):
+            _upperCasedName = sys.argv[-1].upper()
+
+            self.search_query = '+'.join(sys.argv[1:-1])
+            self.search_query = self.search_query + '+' + _upperCasedName
+        else:
+            self.search_query = '+'.join(sys.argv[1:])
+
+        self.final_search_query = self.search_URL + self.search_query
+
+    def testRequirements(self):
+        print 'Checking for Requirements...'
+
+        if subprocess.check_output(['npm', '--version']) == 0:
+            print 'You must have NPM installed to use Showtime. Visit https://nodejs.org/en/download/'
+            exit()
+
+        if subprocess.check_output(['peerflix', '--version']) == 0:
+            print 'Installing Peerflix. This may take a while.'
+            os.system('npm install -g peerflix')
+
+        self.clearScreen()
+        print 'Requirements satisfied!'
+
+    def _fetchInfoFromPage(self):
+        self.src = ""
+
+        print 'Connecting to Server...'
+
+        while len(self.src) <= 600:
+            page = requests.get(self.final_search_query)
+            self.src = page.text
+        
+        print 'Connected!'  
+
+    def _parseInfoFromPage(self):
+        ob = BeautifulSoup(self.src, 'lxml')
+
+        if self.choice:
+            self.name_of_the_video = ob.findAll('div', {'class':'detName'})
+            self.list_size_of_video = ob.findAll('font', {'class':'detDesc'})
+        else:
+            try:
+                self.name_of_the_video = ob.find('div', {'class':'detName'}).text
+            except:
+                self.name_of_the_video = None
+
+        hyperlinks = ob.findAll('a')
+        for link in hyperlinks:
+            try:
+                if link['href'].startswith('magnet'):
+                    if self.choice:
+                        (self.list_magnet_link_for_video).append(link['href'])
+                    else:
+                        self.magnet_link_for_video = link['href']
+                        return
+            except:
+                pass
+         
+    def fetchInfo(self):
+        self._fetchInfoFromPage()
+        self._parseInfoFromPage()
+
+    def clearScreen(self):
+        os.system('clear')
+
+    def google_scrape(self):
+        google_address = "http://www.google.com/search?q={query}&num=100&hl=en&start=0".format(query=self.search_query)
+        google_page = requests.get(google_address)
+        soup = BeautifulSoup(google_page.content, 'lxml')
+
+        try:
+            self.improved_search_query = soup.find('a', attrs={'class':'spell'}).text
+            self.clearScreen()
+
+            print 'No video found by the given name.',
+
+            if "+" in self.improved_search_query:
+                print 'Did you mean : ' + ' '.join(self.improved_search_query.split("+")),
+            else:
+                print 'Did you mean : ' + self.improved_search_query,
+        except:
+            print 'No video found by the given name. Try using some other name or write correctly.' 
+            exit()
+
+        self.check_improved_results()
+
+    def check_improved_results(self):
+        self.improve_option = raw_input('y/n? ')
+        check_list = ['y', 'Y', 'yes', 'Yes', 'YES']
+
+        if self.improve_option in check_list:
+            self.final_search_query = self.search_URL + self.improved_search_query
+            self.clearScreen()
+            self.startPeerflix()         
+
+    def playFinalMsg(self):
+        self.clearScreen()
+        if self.choice:
+            print 'Playing ' + self.name_of_the_video[int(self.choice_input)-1].text,
+        else:
+            print 'Playing ' + str(self.name_of_the_video),
+        time.sleep(2)
+        print 'Sit back. Relax. Enjoy.'
+        time.sleep(2)
+        print 'It\'s\033[1m\033[91m Showtime. \033[0m'
+
+    def startPeerflix(self):
+        self.fetchInfo()
+
+        if self.choice:
+            self.clearScreen()
+
+            if len(self.list_magnet_link_for_video) == 0:
+                self.google_scrape()
+                exit()
+
+            else:
+                print 'The titles are in the decreasing order of seeds.\n'
+                _ctr = 1
+                for name, size in zip(self.name_of_the_video, self.list_size_of_video):
+                    size = unicodedata.normalize('NFKD', size.text.split(',')[1]).encode('ascii','ignore')
+                    print '%2s' % str(_ctr) + '. ' + name.text.rstrip() + ' |' + size
+                    _ctr += 1
+
+                self.choice_input = raw_input('\nEnter your choice (default 1) : ')
+
+                if self.choice_input == '':
+                    self.choice_input = '1'
+
+                if int(self.choice_input) >= _ctr or int(self.choice_input) < 1:
+                    self.clearScreen()
+                    print 'Incorrect choice. Please try again.'
+                    exit()
+                
+                threading.Thread(target=self.playFinalMsg).start()
+
+                os.system('peerflix "' + self.list_magnet_link_for_video[int(self.choice_input)] + '" --vlc')
+        else:
+            if self.magnet_link_for_video == None:
+                self.google_scrape()
+                exit()
+
+            else:
+                threading.Thread(target=self.playFinalMsg).start()
+
+                os.system('peerflix "' + self.magnet_link_for_video + '" --vlc')        
+
+
+def main():
+    global ob
+
+    ob = Showtime()
+    ob.startPeerflix()
+
+    if ob.checkSaveFlag():
+        cleanUpCode()
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        try: # In case ob isn't initialized yet
+            if ob.checkSaveFlag():
+                cleanUpCode()
+        except:
+            pass
+        exit()
